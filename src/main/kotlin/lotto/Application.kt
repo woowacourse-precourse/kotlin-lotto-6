@@ -9,7 +9,7 @@ fun main() {
     println("구입 금액을 입력해 주세요.")
     var amount = getPayment()
 
-    while (amount != -1) {
+    while (amount == -1) {
         amount = getPayment()
     }
 
