@@ -11,4 +11,12 @@ class PrintOutputView {
     fun printPurchaseAmount(purchaseAmount: Int) {
         println(purchaseAmount.toString()+ PrintText.PRINT_PURCHASE_AMOUNT)
     }
+
+    fun requireWinnerNumber() {
+        println(PrintText.REQUIRE_WINNING_NUMBER)
+    }
+
+    fun requireBonusNumber() {
+        println(PrintText.REQUIRE_BONUS_NUMBER)
+    }
 }
