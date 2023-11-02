@@ -1,9 +1,15 @@
 package lotto.view
 
 import lotto.constant.PrintText
-import lotto.domain.Lotto
+import lotto.domain.LottoGameResult
+import lotto.domain.Lottoes
 
 class PrintOutputView {
+
+    fun printError(message: String?) {
+        println(message)
+        println()
+    }
 
     fun printRequirePurchaseAmount() {
         println(PrintText.REQUIRE_PURCHASE_AMOUNT.text)
@@ -14,8 +20,9 @@ class PrintOutputView {
         println(purchaseAmount.toString() + PrintText.PRINT_PURCHASE_AMOUNT.text)
     }
 
-    fun printRandomWinningNumbers(winningNumbers: List<Lotto>) {
-        winningNumbers.forEach { println(it.toLottoNumbersResult()) }
+    fun printRandomWinningNumbers(winningNumbers: Lottoes) {
+        println(winningNumbers.toLottesResult())
+        PrintText.SEPARATE_LOTTES
         println()
     }
 
@@ -27,4 +34,13 @@ class PrintOutputView {
         println()
         println(PrintText.REQUIRE_BONUS_NUMBER.text)
     }
+
+    fun printLottoSameCount(lottoResult: LottoGameResult, purchaseAmount: Int) {
+        println()
+        println(PrintText.PRINT_RESULT.text)
+        println(PrintText.SEPARATE_RESULT.text)
+        println(lottoResult.toAllSameCountResult())
+        println(lottoResult.calculateEarningRate(purchaseAmount))
+    }
+
 }
