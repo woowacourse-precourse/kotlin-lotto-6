@@ -22,6 +22,16 @@ fun main() {
         }
         break
     }
+
+    val myLottos = mutableListOf<Lotto>()
+    repeat(amount / PAYMENT_UNIT)
+    {
+        myLottos.add(getLotto())
+    }
+    println("${amount / PAYMENT_UNIT}를 구매 했습니다.")
+    myLottos.forEach{
+        println(it)
+    }
 }
 fun isPaymentValid(amount:Int) = (amount % PAYMENT_UNIT) == 0
 fun getPayment():Int

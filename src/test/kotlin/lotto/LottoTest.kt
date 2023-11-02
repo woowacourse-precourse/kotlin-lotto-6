@@ -2,6 +2,7 @@ package lotto
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.assertj.core.api.Assertions.assertThat
 
 
 class LottoTest {
@@ -21,4 +22,9 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `Lotto 클래스를 String으로 변환 테스트`(){
+        val lotto = Lotto(listOf(1,2,3,4,5,6))
+        assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]")
+    }
 }

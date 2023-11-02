@@ -18,8 +18,9 @@ class Lotto(private val numbers: List<Int>) {
                 "[ERROR] 1부터 45까지의 숫자만 사용가능합니다."
             }
         }
+        numbers.sorted()
     }
 
     fun contains(element:Int) = numbers.contains(element)
-    // TODO: 추가 기능 구현
+    override fun toString() = numbers.toString()
 }
