@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import lotto.constant.ExtraText
 import lotto.util.UserInputValidator
 
-class ReadUserInput {
+class ReadUserInputView {
     private val validator = UserInputValidator()
 
     fun readUserSingleNumberInput(): Int {
