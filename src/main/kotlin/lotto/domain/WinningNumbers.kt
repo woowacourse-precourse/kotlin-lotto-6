@@ -17,7 +17,7 @@ class WinningNumbers(private val winningNumbers: List<String>) {
 
     private fun validateWinningNumbersRange() {
         val intWinningNumbers = winningNumbers.map { it.toInt() }.toList()
-        if (!intWinningNumbers.all { it in 1..45 }) {
+        if (!intWinningNumbers.all { it in WINNING_NUMBER_START..WINNING_NUMBER_END }) {
             throw IllegalStateException(ErrorMessage.NOT_NUMBER_RANGE_WINNING_NUMBER.message)
         }
     }
@@ -37,5 +37,7 @@ class WinningNumbers(private val winningNumbers: List<String>) {
 
     companion object {
         private const val WINNING_NUMBER_SIZE = 6
+        private const val WINNING_NUMBER_START = 1
+        private const val WINNING_NUMBER_END = 45
     }
 }
