@@ -6,7 +6,7 @@ import lotto.constant.Constant
 import lotto.constant.OutputMessage
 import lotto.constant.Exception
 
-class Purchase {
+object Purchase {
 
     //comment for starting purchase
     init {
@@ -14,7 +14,7 @@ class Purchase {
     }
 
     fun getLottoCountFromAmount(): Int {
-        val amount = Input.inputAmount()
+        val amount = Input.inputInt()
         checkValidationAmount(amount)
         return amount / Constant.PRICE_PER_LOTTO
     }
@@ -24,19 +24,14 @@ class Purchase {
             throw IllegalArgumentException(Exception.MESSAGE_EXCEPT_AMOUNT)
     }
 
-    fun getLottoNumber(lottoCount: Int): LottoSet{
-
-        val lottoSet = LottoSet()
-
-        while(lottoSet.countLotto() <= lottoCount) {
+    fun getLottoNumber(lottoCount: Int) {
+        while(LottoSet.countLotto() <= lottoCount) {
             val lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6)
-            AddLottoNumber(lottoSet, lottoNumber)
+            addLottoNumber(LottoSet, lottoNumber)
         }
-
-        return lottoSet
     }
 
-    private fun AddLottoNumber(lottoSet: LottoSet, lottoNumber: List<Int>) {
+    private fun addLottoNumber(lottoSet: LottoSet, lottoNumber: List<Int>) {
         if(checkValidationLottoNumber(lottoNumber))
             lottoSet.addLotto(Lotto(lottoNumber.sorted()))
     }

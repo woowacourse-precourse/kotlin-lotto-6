@@ -3,7 +3,7 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 
 object Input {
-    fun inputAmount(): Int {
+    fun inputInt(): Int {
         return Console.readLine().toInt()
     }
 

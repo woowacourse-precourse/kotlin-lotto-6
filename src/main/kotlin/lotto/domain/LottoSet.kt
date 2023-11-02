@@ -1,6 +1,6 @@
 package lotto.domain
 
-class LottoSet {
+object LottoSet {
 
     private val lottoSetList = mutableListOf<Lotto>()
 

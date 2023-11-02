@@ -10,7 +10,7 @@ object WinningNumber {
         println("당첨 번호를 입력해 주세요.")
     }
 
-    private fun getWinningNumber(): MutableList<Int> {
+    fun getWinningNumbers(): MutableList<Int> {
         //list<String>
         val winningNumbers = Input.inputWinningNumber()
         val winningIntNumbers = changeStringToIntNumber(winningNumbers)

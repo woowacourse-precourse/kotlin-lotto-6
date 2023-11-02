@@ -8,9 +8,9 @@ object Output {
         println("")
         println(lottoCount.toString() + OutputMessage.MESSAGE_PRINT_LOTTO_COUNT)
     }
-    fun printLottoNumber(lottoSet: LottoSet) {
+    fun printLottoNumber() {
 
-        val lottoSetList = lottoSet.getLottoSet()
+        val lottoSetList = LottoSet.getLottoSet()
 
         for(i in lottoSetList.indices) {
             println(lottoSetList[i].getNumberPerLotto().joinToString(separator=", ",prefix="[",postfix="]"))
