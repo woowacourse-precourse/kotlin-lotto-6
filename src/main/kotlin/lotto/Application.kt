@@ -1,6 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
 import lotto.PRIZE.*
 
 const val PAYMENT_UNIT = 1000
@@ -33,8 +34,10 @@ fun main() {
     val myLottos = mutableListOf<Lotto>()
     repeat(amount / PAYMENT_UNIT)
     {
-        myLottos.add(getLotto())
+        val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        myLottos.add(generateLotto(numbers))
     }
+
     println("${amount / PAYMENT_UNIT}를 구매 했습니다.")
     myLottos.forEach{
         println(it)
@@ -46,6 +49,21 @@ fun main() {
     printPrize(result)
 
     printProfit(result,amount)
+}
+fun generateLotto(numbers:List<Int>):Lotto
+{
+    var lotto:Lotto
+    while(true)
+    {
+        try {
+            lotto = Lotto(numbers)
+        }catch (e:IllegalArgumentException)
+        {
+            continue
+        }
+        break
+    }
+    return lotto
 }
 fun isPaymentValid(amount:Int) = (amount % PAYMENT_UNIT) == 0
 fun getPayment():Int
