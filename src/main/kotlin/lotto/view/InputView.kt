@@ -19,4 +19,19 @@ class InputView {
         }
         return price.toInt()
     }
+    fun inputLuckyNumber() : List<Int> {
+        var validInput = false
+        var luckyNumbers = ""
+        while(!validInput){
+            try{
+                luckyNumbers = Console.readLine()
+                InputValidator.validateInputLuckyNumber(luckyNumbers)
+                validInput=true
+            } catch(e : IllegalArgumentException){
+                println(e.message)
+                validInput=false
+            }
+        }
+        return luckyNumbers.split(",").map { it.toInt() }
+    }
 }
