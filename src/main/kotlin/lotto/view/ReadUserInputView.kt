@@ -2,6 +2,8 @@ package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.constant.ExtraText
+import lotto.domain.BonusNumber
+import lotto.domain.WinningNumbers
 import lotto.util.UserInputValidator
 
 class ReadUserInputView {
@@ -13,17 +15,17 @@ class ReadUserInputView {
         return userInput.toInt()
     }
 
-    fun readUserWinningNumberInput(): List<Int> {
+    fun readUserWinningNumberInput(): WinningNumbers {
         val userInput = Console.readLine()
         val splitUserInput = userInput.split(ExtraText.NUMBER_SEPARATOR.text)
         validateUserWinningNumberInput(splitUserInput)
-        return splitUserInput.map { it.toInt() }.toList()
+        return WinningNumbers(splitUserInput)
     }
 
-    fun readUserBonusNumberInput(): Int {
+    fun readUserBonusNumberInput(): BonusNumber {
         val userInput = Console.readLine()
         validateBonusNumberInput(userInput)
-        return userInput.toInt()
+        return BonusNumber(userInput.toInt())
     }
 
     private fun validateUserPurchaseAmountInput(userInput: String) {
