@@ -5,8 +5,7 @@ import lotto.io.input.InputConverter
 import lotto.io.input.InputValidator
 import lotto.model.Amount
 import lotto.model.Lotto
-import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -36,6 +35,19 @@ class LottoTest {
     }
 
     @Test
+    fun `로또 번호의 범위가 1~45를 벗어나면 예외가 발생한다`() {
+        assertThatThrownBy { Lotto(listOf(1, 3, 5, 35, 60, 90)) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(Exception.RANGE.toString())
+    }
+
+    @Test
+    fun `로또 번호가 조건을 만족하면 예외가 발생하지 않는다`() {
+        assertThatCode { Lotto(listOf(1, 3, 5, 10, 15, 42)) }
+            .doesNotThrowAnyException()
+    }
+
+    @Test
     fun `구매 금액에 숫자가 아닌 문자가 있으면 예외가 발생한다`() {
         assertThatThrownBy { InputValidator().checkAmount("100a") }
             .isInstanceOf(IllegalArgumentException::class.java)
@@ -47,6 +59,18 @@ class LottoTest {
         assertThatThrownBy { Amount(1200) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(Exception.DIVISIBLE.toString())
+    }
+
+
+    @Test
+    fun `구매 금액이 조건을 만족하면 예외가 발생하지 않는다`() {
+        val 구매금액 = "8000"
+
+        assertThatCode {
+            InputValidator().checkAmount(구매금액)
+            Amount(구매금액.toInt())
+        }
+            .doesNotThrowAnyException()
     }
 
     @Test
@@ -78,11 +102,13 @@ class LottoTest {
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(Exception.DIGIT.toString())
     }
+
     @Test
-    fun `로또 번호의 범위가 1~45를 벗어나면 예외가 발생한다`() {
-        assertThatThrownBy { Lotto(listOf(1, 3, 5, 35, 60, 90)) }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(Exception.RANGE.toString())
+    fun `당첨 번호가 조건을 만족하면 예외가 발생하지 않는다`() {
+        assertThatCode {
+            InputValidator().checkWinningLotto("1,2,3,4,5,6")
+        }
+            .doesNotThrowAnyException()
     }
 
 }
