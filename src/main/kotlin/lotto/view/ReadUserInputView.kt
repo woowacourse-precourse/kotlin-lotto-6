@@ -7,7 +7,7 @@ import lotto.util.UserInputValidator
 class ReadUserInputView {
     private val validator = UserInputValidator()
 
-    fun readUserSingleNumberInput(): Int {
+    fun readUserPurchaseAmountInput(): Int {
         val userInput = Console.readLine()
         validateUserPurchaseAmountInput(userInput)
         return userInput.toInt()
@@ -19,8 +19,18 @@ class ReadUserInputView {
         validateUserWinningNumberInput(splitUserInput)
     }
 
+    fun readUserBonusNumberInput(): Int {
+        val userInput = Console.readLine()
+        validateBonusNumberInput(userInput)
+        return userInput.toInt()
+    }
+
     private fun validateUserPurchaseAmountInput(userInput: String) {
-        validator.isNumberFormat(userInput)
+        validator.isPurchaseAmountFormat(userInput)
+    }
+
+    private fun validateBonusNumberInput(userInput: String) {
+        validator.isBonusNumberFormat(userInput)
     }
 
     private fun validateUserWinningNumberInput(userInput: List<String>) {
