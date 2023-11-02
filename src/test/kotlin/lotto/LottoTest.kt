@@ -49,11 +49,35 @@ class LottoTest {
             .hasMessage(Exception.DIVISIBLE.toString())
     }
 
+    @Test
+    fun `입력받은 당첨 번호 문자열을 Lotto 객체로 변환한다`() {
+        // given
+        val case = "1,4,6,10,15,29"
+
+        // when
+        val result = InputConverter().convertLotto(case)
+
+        // then
+        assertThat(result)
+            .isInstanceOf(Lotto::class.java)
+        //TODO("Lotto number까지 비교하는 방법 생각해보기")
+    }
+
     @ParameterizedTest
     @ValueSource(strings = [",1,2,3,4,5,6", "1,2,3,4,5,6,", "1,,2,3,4,5,6"])
-    fun `입력받은 당첨 번호의 쉼표가 잘못 입력된 경우 예외가 발생한다`(numbers: String) {
+    fun `입력받은 당첨 번호의 쉼표가 잘못 입력되면 예외가 발생한다`(numbers: String) {
         assertThatThrownBy { InputValidator().checkWinningLotto(numbers) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(Exception.COMMA.toString())
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1,2,3,4,5 ,6", "1,2,3,4,5a,6"])
+    fun `입력받은 당첨 번호에 숫자가 아닌 문자가 포함되면 예외가 발생한다`(numbers: String) {
+        assertThatThrownBy { InputValidator().checkWinningLotto(numbers) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(Exception.DIGIT.toString())
+    }
+
+
 }
