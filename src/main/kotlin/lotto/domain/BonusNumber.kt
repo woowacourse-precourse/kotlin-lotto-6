@@ -5,7 +5,7 @@ import lotto.constant.ErrorMessage
 class BonusNumber(private val bonusNumber: Int) {
 
     fun validateBonusNumber(winningNumbers: WinningNumbers) {
-        if (bonusNumber !in 1..45) {
+        if (bonusNumber !in WINNING_NUMBER_START..WINNING_NUMBER_END) {
             throw IllegalStateException(ErrorMessage.NOT_NUMBER_RANGE_BONUS_NUMBER.message)
         }
         val numbers = winningNumbers.convertToInt()
@@ -16,4 +16,9 @@ class BonusNumber(private val bonusNumber: Int) {
     }
 
     fun loadBonusNumber() = bonusNumber
+
+    companion object {
+        private const val WINNING_NUMBER_START = 1
+        private const val WINNING_NUMBER_END = 45
+    }
 }
