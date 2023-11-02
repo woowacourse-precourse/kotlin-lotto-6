@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms
 import lotto.PRIZE.*
 
 const val PAYMENT_UNIT = 1000
-
+const val PERCENT = 100
 fun main() {
     println("구입 금액을 입력해 주세요.")
     var amount = getPayment()
@@ -137,7 +137,7 @@ fun printProfit(result: Map<PRIZE, Int>,invest:Int)
     {
         profit += getIntMoney(key) * result.getOrDefault(key,0)
     }
-    println("총 수익률은 ${String.format("%.2f",profit.toFloat()/invest)}")
+    println("총 수익률은 ${String.format("%.1f",profit.toFloat()/invest * PERCENT)}")
 }
 fun printPrize(result:Map<PRIZE,Int>)
 {
