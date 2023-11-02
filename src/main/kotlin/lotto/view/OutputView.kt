@@ -1,6 +1,7 @@
 package lotto.view
 
 import lotto.model.Lotto
+import lotto.util.Constant.INPUT_BONUS_NUMBER_MESSAGE
 import lotto.util.Constant.INPUT_LUCKY_NUMBER_MESSAGE
 import lotto.util.Constant.INPUT_PRICE_MESSAGE
 import lotto.util.Constant.LOTTO_BUY_MESSAGE
@@ -13,4 +14,5 @@ class OutputView {
     fun printUserLotto(lottoes: List<Lotto>) = lottoes.forEach { lotto -> println(lotto.getLottoNumbers()) }
 
     fun printInputLuckyNumber() = println("\n${INPUT_LUCKY_NUMBER_MESSAGE}")
+    fun printInputBonusNumber() = println("\n${INPUT_BONUS_NUMBER_MESSAGE}")
 }
