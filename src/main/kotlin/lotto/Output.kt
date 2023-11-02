@@ -18,4 +18,15 @@ object Output {
         }
     }
 
+    fun printWinningRate() {
+        val winningRateCount = Winning.getWinningRateCount()
+        println("")
+        println("당첨 통계")
+        println("---")
+        println("3개 일치 (5,000원) - "+winningRateCount[4].toString())
+        println("4개 일치 (50,000원) - "+winningRateCount[3].toString())
+        println("5개 일치 (1,500,000원) - "+winningRateCount[2].toString())
+        println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+winningRateCount[1].toString())
+        println("6개 일치 (2,000,000,000원) - "+winningRateCount[0].toString())
+    }
 }

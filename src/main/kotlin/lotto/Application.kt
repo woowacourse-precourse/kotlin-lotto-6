@@ -16,6 +16,7 @@ fun main() {
     val winningNumbers = WinningNumber.getWinningNumbers()
     val bonusNumber = BonusNumber.getBonusNumber()
     Winning.setWinningRateCount()
+    Output.printWinningRate()
     println(winningNumbers)
     println(bonusNumber)
     println(Winning.getWinningRateCount())
