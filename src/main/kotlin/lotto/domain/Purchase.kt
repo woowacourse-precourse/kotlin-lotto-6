@@ -24,15 +24,21 @@ class Purchase {
             throw IllegalArgumentException(Exception.MESSAGE_EXCEPT_AMOUNT)
     }
 
-    fun getLottoNumber(lottoCount: Int) {
+    fun getLottoNumber(lottoCount: Int): LottoSet{
 
         val lottoSet = LottoSet()
 
         while(lottoSet.countLotto() <= lottoCount) {
             val lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6)
-            if(checkValidationLottoNumber(lottoNumber))
-                lottoSet.addLotto(Lotto(lottoNumber.sorted()))
+            AddLottoNumber(lottoSet, lottoNumber)
         }
+
+        return lottoSet
+    }
+
+    private fun AddLottoNumber(lottoSet: LottoSet, lottoNumber: List<Int>) {
+        if(checkValidationLottoNumber(lottoNumber))
+            lottoSet.addLotto(Lotto(lottoNumber.sorted()))
     }
 
     private fun checkValidationLottoNumber(lottoNumber: List<Int>): Boolean {
@@ -40,5 +46,6 @@ class Purchase {
             return false
         return true
     }
+
 
 }

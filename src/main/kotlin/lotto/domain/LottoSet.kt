@@ -2,13 +2,17 @@ package lotto.domain
 
 class LottoSet {
 
-    private val lottoSet = mutableListOf<Lotto>()
+    private val lottoSetList = mutableListOf<Lotto>()
 
     fun addLotto(lotto: Lotto) {
-        lottoSet.add(lotto)
+        lottoSetList.add(lotto)
     }
 
     fun countLotto(): Int {
-        return lottoSet.size
+        return lottoSetList.size
+    }
+
+    fun getLottoSet(): MutableList<Lotto> {
+        return lottoSetList
     }
 }
