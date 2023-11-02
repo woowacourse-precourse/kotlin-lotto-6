@@ -4,6 +4,7 @@ object Constant {
     const val LOTTO_NUMBER_ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."
     const val LOTTO_MIN_RANDOM_NUMBER = 1
     const val LOTTO_MAX_RANDOM_NUMBER = 45
+    const val LOTTO_NUMBER_SIZE = 6
     const val UNIT_PRICE = 1000
     const val INPUT_PRICE_MESSAGE = "구입금액을 입력해 주세요."
     const val INPUT_PRICE_NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 구입 금액은 숫자여야 합니다."
