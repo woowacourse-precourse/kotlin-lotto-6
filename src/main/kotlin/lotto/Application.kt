@@ -141,7 +141,7 @@ fun printProfit(result: Map<PRIZE, Int>,invest:Int)
 }
 fun printPrize(result:Map<PRIZE,Int>)
 {
-    val keys = result.keys.sorted()
+    val keys = result.keys.sortedByDescending { it }
     for(key in keys)
     {
         println("${getRank(key)}개 일치 (${getStringMoney(key)}) - ${result[key]}개 ")
