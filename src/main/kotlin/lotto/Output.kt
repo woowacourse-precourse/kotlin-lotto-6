@@ -29,4 +29,5 @@ object Output {
         println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+winningRateCount[1].toString())
         println("6개 일치 (2,000,000,000원) - "+winningRateCount[0].toString())
     }
+
 }

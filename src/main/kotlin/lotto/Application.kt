@@ -13,11 +13,11 @@ fun main() {
     Output.printLottoCount(lottoCount)
     Purchase.getLottoNumber(lottoCount)
     Output.printLottoNumber()
-    val winningNumbers = WinningNumber.getWinningNumbers()
-    val bonusNumber = BonusNumber.getBonusNumber()
     Winning.setWinningRateCount()
     Output.printWinningRate()
+
+    val winningNumbers = WinningNumber.getWinningNumbers()
+    val bonusNumber = BonusNumber.getBonusNumber()
     println(winningNumbers)
-    println(bonusNumber)
     println(Winning.getWinningRateCount())
 }
