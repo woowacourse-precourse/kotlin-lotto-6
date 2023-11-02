@@ -1,5 +1,7 @@
 package lotto
 
+import ui.InputManager
+
 fun main() {
-    TODO("프로그램 구현")
+    InputManager().inputLottoPurchaseAmount()
 }

@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import validation.ValidationManager
 
 class ApplicationTest : NsTest() {
 
@@ -47,6 +49,36 @@ class ApplicationTest : NsTest() {
         assertSimpleTest {
             runException("1000j")
             assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `로또 구입 금액이 숫자가 아니면 예외가 발생한다`() {
+        val lottoPurchaseAmount = "lotto"
+        assertThrows<IllegalArgumentException> {
+            ValidationManager().apply {
+                lottoPurchaseAmount.toValidAmount()
+            }
+        }
+    }
+
+    @Test
+    fun `로또 구입 금액이 1000으로 나누어 안떨어지면 예외가 발생한다`() {
+        val lottoPurchaseAmount = 1001
+        assertThrows<IllegalArgumentException> {
+            ValidationManager().apply {
+                lottoPurchaseAmount.modulusLottoPrice()
+            }
+        }
+    }
+
+    @Test
+    fun `로또 구입 금액이 0보다 작으면 예외가 발생한다`() {
+        val lottoPurchaseAmount = -10000
+        assertThrows<IllegalArgumentException> {
+            ValidationManager().apply {
+                lottoPurchaseAmount.lessThanZero()
+            }
         }
     }
 
