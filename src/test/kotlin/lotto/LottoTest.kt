@@ -134,7 +134,7 @@ class LottoTest {
     fun `보너스 번호가 당첨 번호와 중복되면 예외가 발생한다`() {
         // given
         val 당첨번호 = Lotto(listOf(3, 5, 10, 28, 30, 42))
-        val 보너스번호 = 30
+        val 보너스번호 = Bonus(30)
 
         // when, then
         assertThatThrownBy { WinningLotto(당첨번호, 보너스번호) }
@@ -152,12 +152,60 @@ class LottoTest {
             .hasMessage(Exception.EMPTY.toString())
     }
 
+    @ParameterizedTest
+    @MethodSource("countMatchingNumberTest")
+    fun `일치하는 로또 번호의 개수를 카운트한다`(numbers: List<Int>, expected: Int) {
+        // given
+        val 비교할로또번호 = Lotto(listOf(1, 2, 3, 4, 5, 6))
+
+        // when
+        val result = 비교할로또번호.countMatchingNumber(Lotto(numbers))
+
+        // then
+        assertThat(result).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [1, 3, 5])
+    fun `보너스 번호가 일치한지 판별한다`(bonusNumber: Int) {
+        // given
+        val 로또번호 = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val 보너스 = Bonus(bonusNumber)
+
+        // when
+        val result = 로또번호.isMatchingBonus(보너스)
+
+        // then
+        assertThat(result).isTrue()
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [10, 20, 30])
+    fun `보너스 번호가 일치하지 않는지 판별한다`(bonusNumber: Int) {
+        // given
+        val 로또번호 = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val 보너스 = Bonus(bonusNumber)
+
+        // when
+        val result = 로또번호.isMatchingBonus(보너스)
+
+        // then
+        assertThat(result).isFalse()
+    }
+
     companion object {
         @JvmStatic
         fun emptyInputTest() = listOf(
             Arguments.of({ InputValidator().checkAmount("") }),
             Arguments.of({ InputValidator().checkWinningLotto("") }),
             Arguments.of({ InputValidator().checkBonusNumber("") })
+        )
+
+        @JvmStatic
+        fun countMatchingNumberTest() = listOf(
+            Arguments.of(listOf(1, 2, 3, 10, 11, 12), 3),
+            Arguments.of(listOf(10, 15, 23, 28, 34, 40), 0),
+            Arguments.of(listOf(5, 6, 25, 31, 40, 42), 2)
         )
     }
 }
