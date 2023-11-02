@@ -23,6 +23,13 @@ class LottoGame {
         val line = price/1000
         println()
         println("${line}개를 구매했습니다.")
+        printNumber(line)
     }
-
+    private fun printNumber(line: Int) {
+        for(i in 0 until line){
+            val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6).sorted()
+            println(numbers)
+        }
+        println()
+    }
 }
