@@ -4,8 +4,12 @@ import camp.nextstep.edu.missionutils.Console
 import validation.ValidationManager
 
 class InputManager(private val validationManager: ValidationManager = ValidationManager()) {
-    fun inputLottoPurchaseAmount() {
-        val lottoPurchaseAmount = validationManager.validateAmount(Console.readLine())
-        println(lottoPurchaseAmount)
+    fun inputLottoPurchaseAmount(errorMessage: () -> Unit): Int {
+        return try {
+            validationManager.validateAmount(Console.readLine())
+        } catch (exception: IllegalArgumentException) {
+            errorMessage()
+            inputLottoPurchaseAmount(errorMessage)
+        }
     }
 }
