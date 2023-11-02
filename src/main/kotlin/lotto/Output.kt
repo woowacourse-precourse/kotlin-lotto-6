@@ -2,6 +2,7 @@ package lotto
 
 import lotto.constant.OutputMessage
 import lotto.domain.LottoSet
+import lotto.domain.Winning
 
 object Output {
     fun printLottoCount(lottoCount: Int) {

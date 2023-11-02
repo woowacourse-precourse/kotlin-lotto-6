@@ -4,6 +4,7 @@ import lotto.domain.Purchase
 import lotto.Output
 import lotto.domain.WinningNumber
 import lotto.domain.BonusNumber
+import lotto.domain.Winning
 
 fun main() {
 
@@ -14,6 +15,8 @@ fun main() {
     Output.printLottoNumber()
     val winningNumbers = WinningNumber.getWinningNumbers()
     val bonusNumber = BonusNumber.getBonusNumber()
+    Winning.setWinningRateCount()
     println(winningNumbers)
     println(bonusNumber)
+    println(Winning.getWinningRateCount())
 }
