@@ -14,7 +14,7 @@ class Purchase {
     }
 
     fun getLottoCountFromAmount(): Int {
-        val amount = Input.inputAmount().toInt()
+        val amount = Input.inputAmount()
         checkValidationAmount(amount)
         return amount / Constant.PRICE_PER_LOTTO
     }

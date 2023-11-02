@@ -8,5 +8,6 @@ fun main() {
     val purchase = Purchase()
     val lottoCount = purchase.getLottoCountFromAmount()
     Output.printLottoCount(lottoCount)
-    Output.printLottoNumber(purchase.getLottoNumber(lottoCount))
+    val lottoNumber = purchase.getLottoNumber(lottoCount)
+    Output.printLottoNumber(lottoNumber)
 }
