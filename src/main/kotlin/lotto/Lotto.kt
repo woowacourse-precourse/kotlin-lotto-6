@@ -44,7 +44,13 @@ class Lotto(private val numbers: List<Int>) {
         for(lotto in lottos)
         {
             val prize = getPrize(lotto,bonusNumber)
+            if(prize == PRIZE.NONE) continue
             result[prize] = result.getOrDefault(prize,0) + 1
+        }
+        for(prize in PRIZE.values())
+        {
+            if(prize == PRIZE.NONE) continue
+            result[prize] = result.getOrDefault(prize,0)
         }
         return result
     }
