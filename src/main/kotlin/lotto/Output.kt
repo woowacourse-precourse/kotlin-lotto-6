@@ -30,4 +30,7 @@ object Output {
         println("6개 일치 (2,000,000,000원) - "+winningRateCount[0].toString())
     }
 
+    fun printEarningRate(earningRate: Double) {
+        println("총 수익률은 " + earningRate.toString() + "%입니다.")
+    }
 }
