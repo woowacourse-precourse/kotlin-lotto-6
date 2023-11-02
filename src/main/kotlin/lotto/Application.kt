@@ -6,13 +6,17 @@ import lotto.PRIZE.*
 const val PAYMENT_UNIT = 1000
 
 fun main() {
+    println("구입 금액을 입력해 주세요.")
     var amount = getPayment()
 
     while (amount != -1) {
         amount = getPayment()
     }
 
+    println("당첨 번호를 입력해 주세요.")
     val lotto = getLotto()
+
+    println("보너스 번호를 입력해 주세요.")
     var bonusNumber:Int
     while(true)
     {
@@ -36,6 +40,8 @@ fun main() {
         println(it)
     }
 
+    println("당첨 통계")
+    println("---")
     val result = lotto.getResult(myLottos,bonusNumber)
     printPrize(result)
 
