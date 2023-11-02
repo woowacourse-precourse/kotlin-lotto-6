@@ -1,12 +1,16 @@
 package lotto
 
 import lotto.constants.Exception
+import lotto.io.input.InputConverter
 import lotto.io.input.InputValidator
 import lotto.model.Amount
 import lotto.model.Lotto
+import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 
 class LottoTest {
@@ -43,5 +47,13 @@ class LottoTest {
         assertThatThrownBy { Amount(1200) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(Exception.DIVISIBLE.toString())
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = [",1,2,3,4,5,6", "1,2,3,4,5,6,", "1,,2,3,4,5,6"])
+    fun `입력받은 당첨 번호의 쉼표가 잘못 입력된 경우 예외가 발생한다`(numbers: String) {
+        assertThatThrownBy { InputValidator().checkWinningLotto(numbers) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(Exception.COMMA.toString())
     }
 }
