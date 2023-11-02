@@ -1,5 +1,10 @@
 package lotto
 
+import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.test.NsTest
+import lottoView.LottoOutPut
+import lottoViewModel.ValidInput
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -19,6 +24,5 @@ class LottoTest {
             Lotto(listOf(1, 2, 3, 4, 5, 5))
         }
     }
-
     // 아래에 추가 테스트 작성 가능
 }
