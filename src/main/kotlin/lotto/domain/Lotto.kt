@@ -5,5 +5,8 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
     }
 
+    fun getNumberPerLotto(): List<Int> {
+        return numbers
+    }
     // TODO: 추가 기능 구현
 }

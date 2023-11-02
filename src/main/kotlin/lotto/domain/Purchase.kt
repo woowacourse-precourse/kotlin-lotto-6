@@ -28,10 +28,17 @@ class Purchase {
 
         val lottoSet = LottoSet()
 
-        for(i in 1..lottoCount) {
+        while(lottoSet.countLotto() <= lottoCount) {
             val lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6)
-            lottoSet.addLotto(Lotto(lottoNumber.sorted()))
+            if(checkValidationLottoNumber(lottoNumber))
+                lottoSet.addLotto(Lotto(lottoNumber.sorted()))
         }
+    }
+
+    private fun checkValidationLottoNumber(lottoNumber: List<Int>): Boolean {
+        if(lottoNumber.distinct().size != lottoNumber.size)
+            return false
+        return true
     }
 
 }
