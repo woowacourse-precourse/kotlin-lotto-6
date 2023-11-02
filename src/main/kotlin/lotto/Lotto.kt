@@ -22,5 +22,38 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun contains(element:Int) = numbers.contains(element)
+    private fun getSetOfNumber() = numbers.toSet()
+    private fun getPrize(lotto:Lotto,bonusNumber:Int):PRIZE
+    {
+        when(numbers.intersect(lotto.getSetOfNumber()).size)
+        {
+            3-> return PRIZE.FIFTH
+            4-> return PRIZE.FOURTH
+            5-> {
+                if(numbers.minus(lotto.getSetOfNumber()).contains(bonusNumber))
+                    return PRIZE.SECOND
+                return PRIZE.THIRD
+            }
+            6-> return PRIZE.FIRST
+            else-> return PRIZE.NONE
+        }
+    }
+    fun getResult(lottos:List<Lotto>,bonusNumber: Int):Map<PRIZE,Int>
+    {
+        val result = mutableMapOf<PRIZE,Int>()
+        for(lotto in lottos)
+        {
+            val prize = getPrize(lotto,bonusNumber)
+            result[prize] = result.getOrDefault(prize,0) + 1
+        }
+        return result
+    }
+    fun printResult()
+    {
+
+    }
     override fun toString() = numbers.toString()
+}
+enum class PRIZE{
+    FIRST,SECOND,THIRD,FOURTH,FIFTH,NONE
 }

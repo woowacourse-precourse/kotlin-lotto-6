@@ -1,8 +1,10 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.PRIZE.*
 
 const val PAYMENT_UNIT = 1000
+
 fun main() {
     var amount = getPayment()
 
@@ -11,10 +13,11 @@ fun main() {
     }
 
     val lotto = getLotto()
+    var bonusNumber:Int
     while(true)
     {
         try {
-            val bonusNumber = Console.readLine().toInt()
+            bonusNumber = Console.readLine().toInt()
             if(isValidLuckyNumber(bonusNumber,lotto)) throw IllegalArgumentException("[ERROR] 유효하지 않은 보너스 번호입니다.")
         }catch (e:IllegalArgumentException)
         {
@@ -32,6 +35,9 @@ fun main() {
     myLottos.forEach{
         println(it)
     }
+
+    val result = lotto.getResult(myLottos,bonusNumber)
+    printPrize(result)
 }
 fun isPaymentValid(amount:Int) = (amount % PAYMENT_UNIT) == 0
 fun getPayment():Int
@@ -60,5 +66,49 @@ fun getLotto(): Lotto {
         break
     }
     return lotto
+}
+fun getStringMoney(prize: PRIZE):String
+{
+    when(prize)
+    {
+        FIFTH -> return "5000"
+        FOURTH -> return "50,000"
+        THIRD -> return "1,500,000"
+        SECOND -> return "30,000,000"
+        FIRST -> return "2,000,000,000"
+        NONE-> return "0"
+    }
+}
+fun getIntMoney(prize: PRIZE):Int
+{
+    when(prize)
+    {
+        FIFTH -> return 5000
+        FOURTH -> return 50000
+        THIRD -> return 1500000
+        SECOND -> return 30000000
+        FIRST -> return 2000000000
+        NONE-> return 0
+    }
+}
+fun getRank(prize: PRIZE):Int
+{
+    when(prize)
+    {
+        FIFTH -> return 3
+        FOURTH -> return 4
+        THIRD -> return 5
+        SECOND -> return 5
+        FIRST -> return 6
+        NONE-> return 0
+    }
+}
+fun printPrize(result:Map<PRIZE,Int>)
+{
+    val keys = result.keys.sorted()
+    for(key in keys)
+    {
+        println("${getRank(key)}개 일치 (${getStringMoney(key)}) - ${result[key]}개 ")
+    }
 }
 fun isValidLuckyNumber(bonusNumber:Int,lotto: Lotto) = lotto.contains(bonusNumber) && bonusNumber in 1..45
