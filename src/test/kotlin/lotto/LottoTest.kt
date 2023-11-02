@@ -78,6 +78,11 @@ class LottoTest {
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(Exception.DIGIT.toString())
     }
-
+    @Test
+    fun `로또 번호의 범위가 1~45를 벗어나면 예외가 발생한다`() {
+        assertThatThrownBy { Lotto(listOf(1, 3, 5, 35, 60, 90)) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(Exception.RANGE.toString())
+    }
 
 }
