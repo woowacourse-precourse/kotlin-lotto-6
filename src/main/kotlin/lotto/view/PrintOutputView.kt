@@ -39,7 +39,7 @@ class PrintOutputView {
         println()
         println(PrintText.PRINT_RESULT.text)
         println(PrintText.SEPARATE_RESULT.text)
-        println(lottoResult.toAllSameCountResult())
+        print(lottoResult.toAllSameCountResult())
         println(lottoResult.calculateEarningRate(purchaseAmount))
     }
 

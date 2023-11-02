@@ -9,6 +9,7 @@ enum class PrintText(val text: String) {
     SEPARATE_LOTTES("\n"),
     PRINT_RESULT("당첨 통계"),
     SEPARATE_RESULT("---"),
+    SAME_NUMBER_COUNT("개"),
     PRINT_EARNING_RATE("총 수익률은 "),
     PRINT_PERCENT("%입니다.")
 }

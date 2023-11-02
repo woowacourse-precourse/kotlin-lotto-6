@@ -81,7 +81,7 @@ class LottoGameResult {
         for (sameNumberCount in sameNumberCounts) {
             sb.append(
                 sameNumberCount.key + PrintText.SEPARATE_SAME_COUNT.text
-                        + allSameCount[sameNumberCount.value] + PrintText.SEPARATE_LOTTES.text
+                        + allSameCount[sameNumberCount.value] + PrintText.SAME_NUMBER_COUNT.text + PrintText.SEPARATE_LOTTES.text
             )
         }
         return sb.toString()
