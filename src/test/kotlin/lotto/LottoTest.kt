@@ -2,6 +2,7 @@ package lotto
 
 import lotto.constants.Exception
 import lotto.io.input.InputValidator
+import lotto.model.Amount
 import lotto.model.Lotto
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
@@ -32,14 +33,14 @@ class LottoTest {
 
     @Test
     fun `구매 금액에 숫자가 아닌 문자가 있으면 예외가 발생한다`() {
-        assertThatThrownBy { InputValidator().checkPurchaseAmount("100a") }
+        assertThatThrownBy { InputValidator().checkAmount("100a") }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(Exception.DIGIT.toString())
     }
 
     @Test
     fun `구매 금액이 1000으로 나누어 떨어지지 않으면 예외가 발생한다`() {
-        assertThatThrownBy { InputValidator().checkPurchaseAmount("1200") }
+        assertThatThrownBy { Amount(1200) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(Exception.DIVISIBLE.toString())
     }

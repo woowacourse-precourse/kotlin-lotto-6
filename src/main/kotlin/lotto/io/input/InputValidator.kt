@@ -3,16 +3,9 @@ package lotto.io.input
 import lotto.constants.Exception
 
 class InputValidator {
-    fun checkPurchaseAmount(purchaseAmount: String): Boolean {
-        try {
-            checkEmpty(purchaseAmount)
-            checkNotDigit(purchaseAmount)
-            checkNotDivisible(purchaseAmount, PURCHASE_AMOUNT_UNIT)
-        } catch (e: IllegalArgumentException) {
-            println(e)
-            return false
-        }
-        return true
+    fun checkAmount(amount: String) {
+        checkEmpty(amount)
+        checkNotDigit(amount)
     }
 
     private fun checkEmpty(value: String) {
@@ -21,10 +14,6 @@ class InputValidator {
 
     private fun checkNotDigit(value: String) {
         require(value.all { it.isDigit() }) { Exception.DIGIT }
-    }
-
-    private fun checkNotDivisible(value: String, unit: Int) {
-        require(value.toInt() % unit == 0) { Exception.DIVISIBLE }
     }
 
     companion object {
