@@ -11,6 +11,17 @@ fun main() {
     }
 
     val lotto = getLotto()
+    while(true)
+    {
+        try {
+            val bonusNumber = Console.readLine().toInt()
+            if(isValidLuckyNumber(bonusNumber,lotto)) throw IllegalArgumentException("[ERROR] 유효하지 않은 보너스 번호입니다.")
+        }catch (e:IllegalArgumentException)
+        {
+            continue
+        }
+        break
+    }
 }
 fun isPaymentValid(amount:Int) = (amount % PAYMENT_UNIT) == 0
 fun getPayment():Int
@@ -40,3 +51,4 @@ fun getLotto(): Lotto {
     }
     return lotto
 }
+fun isValidLuckyNumber(bonusNumber:Int,lotto: Lotto) = lotto.contains(bonusNumber) && bonusNumber in 1..45

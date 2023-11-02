@@ -20,5 +20,6 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 
+    fun contains(element:Int) = numbers.contains(element)
     // TODO: 추가 기능 구현
 }
