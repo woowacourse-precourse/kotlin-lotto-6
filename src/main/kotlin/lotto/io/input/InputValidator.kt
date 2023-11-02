@@ -14,6 +14,11 @@ class InputValidator {
         numbers.split(",").forEach { number -> checkNotDigit(number) }
     }
 
+    fun checkBonusNumber(bonus: String) {
+        checkEmpty(bonus)
+        checkNotDigit(bonus)
+    }
+
     private fun checkEmpty(value: String) {
         require(value.isNotEmpty()) { Exception.EMPTY }
     }

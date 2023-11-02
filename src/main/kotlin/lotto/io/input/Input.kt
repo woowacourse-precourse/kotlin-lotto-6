@@ -2,6 +2,7 @@ package lotto.io.input
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.model.Amount
+import lotto.model.Bonus
 import lotto.model.Lotto
 
 class Input {
@@ -18,5 +19,11 @@ class Input {
         val lottoWithComma = Console.readLine()
         validator.checkWinningLotto(lottoWithComma)
         return converter.convertLotto(lottoWithComma)
+    }
+
+    fun inputBonusNumber(): Bonus {
+        val bonus = Console.readLine()
+        validator.checkBonusNumber(bonus)
+        return Bonus(bonus.toInt())
     }
 }
