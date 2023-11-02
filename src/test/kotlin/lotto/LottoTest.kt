@@ -6,6 +6,7 @@ import lotto.io.input.InputValidator
 import lotto.model.Amount
 import lotto.model.Bonus
 import lotto.model.Lotto
+import lotto.model.WinningLotto
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -125,6 +126,18 @@ class LottoTest {
     @Test
     fun `보너스 번호가 범위 1~45를 벗어나면 예외가 발생한다`() {
         assertThatThrownBy { Bonus(50) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(Exception.RANGE.toString())
+    }
+
+    @Test
+    fun `보너스 번호가 당첨 번호와 중복되면 예외가 발생한다`() {
+        // given
+        val 당첨번호 = Lotto(listOf(3, 5, 10, 28, 30, 42))
+        val 보너스번호 = 30
+
+        // when, then
+        assertThatThrownBy { WinningLotto(당첨번호, 보너스번호) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(Exception.RANGE.toString())
     }
