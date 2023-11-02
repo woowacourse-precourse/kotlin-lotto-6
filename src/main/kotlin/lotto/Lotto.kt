@@ -1,9 +1,14 @@
 package lotto
 
+import camp.nextstep.edu.missionutils.*
+
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
+        numbers.sorted()
     }
 
-    // TODO: 추가 기능 구현
+    fun getLottoNumberString() : String {
+        return numbers.toString()
+    }
 }

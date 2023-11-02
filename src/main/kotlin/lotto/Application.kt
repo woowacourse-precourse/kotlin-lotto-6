@@ -21,6 +21,8 @@ fun main() {
 
     println("\n${purchaseAmount}개를 구매했습니다.")
     for(i in 0 until purchaseAmount){
-        //lottoList[i] 로또번호 리스트 출력
+        println(lottoList[i].getLottoNumberString())
     }
+
+
 }
