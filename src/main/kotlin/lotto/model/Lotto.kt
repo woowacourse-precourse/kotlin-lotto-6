@@ -7,7 +7,7 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6) { Exception.SIZE }
         require(numbers.size == numbers.distinct().size) { Exception.DUPLICATION }
         require(numbers == numbers.sorted()) { Exception.SORT }
-        require(numbers.all { number -> number in 1..45 })
+        require(numbers.all { number -> number in 1..45 }) { Exception.RANGE }
     }
 
     override fun toString() = numbers.toString()
