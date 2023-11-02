@@ -1,5 +1,11 @@
 package lotto
 
+import lotto.domain.Purchase
+
 fun main() {
-    TODO("프로그램 구현")
+
+    //purchase도 싱글턴으로 될거 같은데..
+    val purchase = Purchase()
+    val lottoCount = purchase.getLottoCountFromAmount()
+
 }
