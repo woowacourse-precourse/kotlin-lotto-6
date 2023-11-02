@@ -9,6 +9,8 @@ import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
 
 
@@ -111,4 +113,22 @@ class LottoTest {
             .doesNotThrowAnyException()
     }
 
+    @ParameterizedTest
+    @MethodSource("emptyInputTest")
+    fun `입력값이 비어있으면 예외가 발생한다`(execution: () -> Unit) {
+        assertThatThrownBy {
+            execution.invoke()
+        }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(Exception.EMPTY.toString())
+    }
+
+    companion object {
+        @JvmStatic
+        fun emptyInputTest() = listOf(
+            Arguments.of({ InputValidator().checkAmount("") }),
+            Arguments.of({ InputValidator().checkWinningLotto("") }),
+            Arguments.of({ InputValidator().checkBonusNumber("") })
+        )
+    }
 }
