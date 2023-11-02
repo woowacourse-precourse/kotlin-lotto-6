@@ -1,5 +1,6 @@
 package lotto.domain
 
+import camp.nextstep.edu.missionutils.Randoms
 import lotto.Input
 import lotto.constant.Constant
 import lotto.constant.OutputMessage
@@ -19,7 +20,18 @@ class Purchase {
     }
 
     private fun checkValidationAmount(amount: Int) {
-        if(amount % 1000 != 0)
+        if(amount % Constant.PRICE_PER_LOTTO != 0)
             throw IllegalArgumentException(Exception.MESSAGE_EXCEPT_AMOUNT)
     }
+
+    fun getLottoNumber(lottoCount: Int) {
+
+        val lottoSet = LottoSet()
+
+        for(i in 1..lottoCount) {
+            val lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+            lottoSet.addLotto(Lotto(lottoNumber.sorted()))
+        }
+    }
+
 }
