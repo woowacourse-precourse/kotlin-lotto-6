@@ -1,7 +1,7 @@
 package lotto.view
 
-import lotto.Lotto
 import lotto.constant.PrintText
+import lotto.domain.Lotto
 
 class PrintOutputView {
 
