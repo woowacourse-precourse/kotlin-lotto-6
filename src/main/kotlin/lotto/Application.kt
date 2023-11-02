@@ -1,7 +1,6 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
-import kotlin.NumberFormatException
 
 const val PAYMENT_UNIT = 1000
 fun main() {
@@ -10,6 +9,8 @@ fun main() {
     while (amount != -1) {
         amount = getPayment()
     }
+
+    val lotto = getLotto()
 }
 fun isPaymentValid(amount:Int) = (amount % PAYMENT_UNIT) == 0
 fun getPayment():Int
@@ -23,4 +24,19 @@ fun getPayment():Int
         return -1
     }
     return amount
+}
+fun getLotto(): Lotto {
+    var lotto:Lotto
+    while(true)
+    {
+        try {
+            lotto = Lotto(Console.readLine()
+                .split(",")
+                .map { it.toInt() })
+        }catch (e:IllegalArgumentException) {
+            continue
+        }
+        break
+    }
+    return lotto
 }
