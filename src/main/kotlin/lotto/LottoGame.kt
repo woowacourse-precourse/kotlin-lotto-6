@@ -6,9 +6,16 @@ import camp.nextstep.edu.missionutils.Randoms
 class LottoGame {
     private val error = Error()
     private val numbers = mutableListOf<Int>()
+    private var bonus = 0
     fun start(){
         inputPrice()
         inputPrizeNumber()
+        inputBonusNumber()
+    }
+    private fun inputBonusNumber(){
+        val bonusNum = Console.readLine().toInt()
+        bonus = bonusNum
+
     }
     private fun inputPrizeNumber(){
         println("당첨 번호를 입력해 주세요.")
