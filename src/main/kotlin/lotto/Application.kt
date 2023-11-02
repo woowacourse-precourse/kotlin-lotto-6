@@ -38,6 +38,8 @@ fun main() {
 
     val result = lotto.getResult(myLottos,bonusNumber)
     printPrize(result)
+
+    printProfit(result,amount)
 }
 fun isPaymentValid(amount:Int) = (amount % PAYMENT_UNIT) == 0
 fun getPayment():Int
@@ -102,6 +104,16 @@ fun getRank(prize: PRIZE):Int
         FIRST -> return 6
         NONE-> return 0
     }
+}
+fun printProfit(result: Map<PRIZE, Int>,invest:Int)
+{
+    val keys = result.keys.sorted()
+    var profit = 0
+    for(key in keys)
+    {
+        profit += getIntMoney(key) * result.getOrDefault(key,0)
+    }
+    println("총 수익률은 ${String.format("%.2f",profit.toFloat()/invest)}")
 }
 fun printPrize(result:Map<PRIZE,Int>)
 {
