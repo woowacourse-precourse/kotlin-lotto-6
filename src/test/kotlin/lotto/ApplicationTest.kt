@@ -49,6 +49,13 @@ class ApplicationTest : NsTest() {
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
+    @Test
+    fun `1000단위로 나누어 떨어지지 않는 경우`(){
+        assertSimpleTest {
+            runException("1999")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
 
     override fun runMain() {
         main()
