@@ -2,7 +2,7 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
 
-enum class MatchCount() {
+enum class MatchCount {
     NONE,
     ONE,
     TWO,
@@ -13,8 +13,9 @@ enum class MatchCount() {
     ALL
 }
 
+
 fun main() {
-    println("구입금액으 입력해 주세요")
+    println("구입금액을 입력해 주세요")
     val money = readlnOrNull()
     val price = 1000
     val numoflotto = money?.toInt()?.div(price)
@@ -39,10 +40,10 @@ fun main() {
         match.add(Lotto(mynumber[i]).checklotto(winningnumber, bonus))
     }
 
-    printtotal(match)
+    printtotal(match, money.toInt())
 }
 
-fun printtotal(matchnum: List<MatchCount>) {
+fun printtotal(matchnum: List<MatchCount>, money: Int) {
     println("당첨 통계")
     println("---")
     val three = matchnum.count{it == MatchCount.THREE}
@@ -56,4 +57,11 @@ fun printtotal(matchnum: List<MatchCount>) {
     println("5개 일치 (1,500,000원) - $five 개")
     println("5개 일치, 보너스 볼 일치 (30,000,000원) - $bonus 개")
     println("6개 일치 (2,000,000,000원) - $all 개")
+}
+fun yeildcalculation(three: Int, four: Int, five: Int, bonus: Int, all: Int, money: Int)
+{
+    val totalmoney = three * 5000 + four * 50000 + five * 1500000 + bonus * 30000000 + all * 2000000000
+    val result = totalmoney / money * 100
+    val formattedresult = String.format("%.2f", result)
+    println("총 수익률은 $result")
 }
