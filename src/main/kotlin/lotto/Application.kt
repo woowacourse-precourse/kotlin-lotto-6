@@ -3,6 +3,7 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.PRIZE.*
+import java.lang.NumberFormatException
 
 const val PAYMENT_UNIT = 1000
 const val PERCENT = 100
@@ -26,6 +27,7 @@ fun main() {
             if(isValidLuckyNumber(bonusNumber,lotto)) throw IllegalArgumentException("[ERROR] 유효하지 않은 보너스 번호입니다.")
         }catch (e:IllegalArgumentException)
         {
+            println(e.message)
             continue
         }
         break
@@ -59,6 +61,7 @@ fun generateLotto(numbers:List<Int>):Lotto
             lotto = Lotto(numbers)
         }catch (e:IllegalArgumentException)
         {
+            println(e.message)
             continue
         }
         break
@@ -66,14 +69,26 @@ fun generateLotto(numbers:List<Int>):Lotto
     return lotto
 }
 fun isPaymentValid(amount:Int) = (amount % PAYMENT_UNIT) == 0
+fun getNumber():Int
+{
+    var input:Int
+    try {
+        input = Console.readLine().toInt()
+    }catch (e:NumberFormatException)
+    {
+        throw IllegalArgumentException("[ERROR] 숫자만 입력가능합니다.")
+    }
+    return input
+}
 fun getPayment():Int
 {
     var amount:Int
     try {
-        amount = Console.readLine().toInt()
-        if(!isPaymentValid(amount)) throw IllegalArgumentException("[ERROR] 숫자만 입력가능합니다.")
+        amount = getNumber()
+        if(!isPaymentValid(amount)) throw IllegalArgumentException("[ERROR]")
     }catch (e:IllegalArgumentException)
     {
+        println(e.message)
         return -1
     }
     return amount
@@ -87,6 +102,7 @@ fun getLotto(): Lotto {
                 .split(",")
                 .map { it.toInt() })
         }catch (e:IllegalArgumentException) {
+            println(e.message)
             continue
         }
         break
