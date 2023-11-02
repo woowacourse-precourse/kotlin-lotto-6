@@ -24,5 +24,13 @@ fun main() {
         println(lottoList[i].getLottoNumberString())
     }
 
+    println("\n당첨 번호를 입력해 주세요.")
+    val winningNumbers =  readln()
+    //예외처리
+
+    println("\n보너스 번호를 입력해 주세요.")
+    val bonusNumber = readln().toInt()
+    //예외처리
+
 
 }
