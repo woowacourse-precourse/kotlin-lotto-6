@@ -4,6 +4,7 @@ import lotto.constants.Exception
 import lotto.io.input.InputConverter
 import lotto.io.input.InputValidator
 import lotto.model.Amount
+import lotto.model.Bonus
 import lotto.model.Lotto
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
@@ -15,6 +16,7 @@ import org.junit.jupiter.params.provider.ValueSource
 
 
 class LottoTest {
+    private val validator = InputValidator()
     @Test
     fun `로또 번호의 개수가 6개가 넘어가면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
@@ -37,7 +39,7 @@ class LottoTest {
     }
 
     @Test
-    fun `로또 번호의 범위가 1~45를 벗어나면 예외가 발생한다`() {
+    fun `로또 번호가 범위 1~45를 벗어나면 예외가 발생한다`() {
         assertThatThrownBy { Lotto(listOf(1, 3, 5, 35, 60, 90)) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(Exception.RANGE.toString())
@@ -51,7 +53,7 @@ class LottoTest {
 
     @Test
     fun `구매 금액에 숫자가 아닌 문자가 있으면 예외가 발생한다`() {
-        assertThatThrownBy { InputValidator().checkAmount("100a") }
+        assertThatThrownBy { validator.checkAmount("100a") }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(Exception.DIGIT.toString())
     }
@@ -69,7 +71,7 @@ class LottoTest {
         val 구매금액 = "8000"
 
         assertThatCode {
-            InputValidator().checkAmount(구매금액)
+            validator.checkAmount(구매금액)
             Amount(구매금액.toInt())
         }
             .doesNotThrowAnyException()
@@ -92,7 +94,7 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(strings = [",1,2,3,4,5,6", "1,2,3,4,5,6,", "1,,2,3,4,5,6"])
     fun `입력받은 당첨 번호의 쉼표가 잘못 입력되면 예외가 발생한다`(numbers: String) {
-        assertThatThrownBy { InputValidator().checkWinningLotto(numbers) }
+        assertThatThrownBy { validator.checkWinningLotto(numbers) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(Exception.COMMA.toString())
     }
@@ -100,7 +102,7 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(strings = ["1,2,3,4,5 ,6", "1,2,3,4,5a,6"])
     fun `입력받은 당첨 번호에 숫자가 아닌 문자가 포함되면 예외가 발생한다`(numbers: String) {
-        assertThatThrownBy { InputValidator().checkWinningLotto(numbers) }
+        assertThatThrownBy { validator.checkWinningLotto(numbers) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(Exception.DIGIT.toString())
     }
@@ -108,9 +110,23 @@ class LottoTest {
     @Test
     fun `당첨 번호가 조건을 만족하면 예외가 발생하지 않는다`() {
         assertThatCode {
-            InputValidator().checkWinningLotto("1,2,3,4,5,6")
+            validator.checkWinningLotto("1,2,3,4,5,6")
         }
             .doesNotThrowAnyException()
+    }
+
+    @Test
+    fun `보너스 번호에 숫자가 아닌 문자가 있으면 예외가 발생한다`() {
+        assertThatThrownBy { validator.checkBonusNumber("12a") }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(Exception.DIGIT.toString())
+    }
+
+    @Test
+    fun `보너스 번호가 범위 1~45를 벗어나면 예외가 발생한다`() {
+        assertThatThrownBy { Bonus(50) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(Exception.RANGE.toString())
     }
 
     @ParameterizedTest
