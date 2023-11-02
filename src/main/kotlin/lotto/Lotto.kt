@@ -5,7 +5,7 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == WINNING_NUMBERS_SIZE)
     }
 
-    fun printLottoNumbers(): String {
+    fun toLottoNumbersResult(): String {
         return numbers.toString()
     }
 

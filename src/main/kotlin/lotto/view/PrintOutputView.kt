@@ -16,6 +16,7 @@ class PrintOutputView {
 
     fun printRandomWinningNumbers(winningNumbers: List<Lotto>) {
         winningNumbers.forEach { println(it.toLottoNumbersResult()) }
+        println()
     }
 
     fun requireWinningNumber() {
@@ -23,6 +24,7 @@ class PrintOutputView {
     }
 
     fun requireBonusNumber() {
+        println()
         println(PrintText.REQUIRE_BONUS_NUMBER.text)
     }
 }

@@ -13,10 +13,11 @@ class ReadUserInputView {
         return userInput.toInt()
     }
 
-    fun readUserWinningNumberInput() {
+    fun readUserWinningNumberInput(): List<Int> {
         val userInput = Console.readLine()
         val splitUserInput = userInput.split(ExtraText.NUMBER_SEPARATOR.text)
         validateUserWinningNumberInput(splitUserInput)
+        return splitUserInput.map { it.toInt() }.toList()
     }
 
     fun readUserBonusNumberInput(): Int {

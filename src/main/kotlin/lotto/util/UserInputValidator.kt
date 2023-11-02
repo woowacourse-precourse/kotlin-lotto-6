@@ -19,7 +19,7 @@ class UserInputValidator {
     }
 
     fun isNumberListFormat(userInput: List<String>) {
-        userInput.forEach { require(it.none { char -> !char.isDigit() }) }
+        userInput.forEach { require(it.none { char -> !char.isDigit() }) { ErrorMessage.NOT_NUMBER_WINNING_NUMBER.message } }
     }
 
     companion object {
