@@ -1,5 +1,6 @@
 package lotto.view
 
+import lotto.Lotto
 import lotto.constant.PrintText
 
 class PrintOutputView {
@@ -9,10 +10,15 @@ class PrintOutputView {
     }
 
     fun printPurchaseAmount(purchaseAmount: Int) {
+        println()
         println(purchaseAmount.toString() + PrintText.PRINT_PURCHASE_AMOUNT.text)
     }
 
-    fun requireWinnerNumber() {
+    fun printRandomWinningNumbers(winningNumbers: List<Lotto>) {
+        winningNumbers.forEach { println(it.toLottoNumbersResult()) }
+    }
+
+    fun requireWinningNumber() {
         println(PrintText.REQUIRE_WINNING_NUMBER.text)
     }
 
