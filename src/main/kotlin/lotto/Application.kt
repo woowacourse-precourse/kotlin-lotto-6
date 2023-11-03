@@ -13,6 +13,10 @@ fun main() {
         return main()
     }
     lottoOutput.purchaseDetailPrint(purchaseAmount)
-    lottoOutput.randomNumbersPrint(purchaseAmount)
+    try{
+        lottoOutput.randomNumbersPrint(purchaseAmount)
+    }catch (e:IllegalArgumentException){
+        print(e.message)
+    }
 }
 

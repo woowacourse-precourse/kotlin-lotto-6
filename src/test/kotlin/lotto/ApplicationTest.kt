@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class ApplicationTest : NsTest() {
 
@@ -54,6 +55,13 @@ class ApplicationTest : NsTest() {
         assertSimpleTest {
             runException("1999")
             assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+    @Test
+    fun `6개가 아닌 입력사항`(){
+       assertThrows<IllegalArgumentException>{
+            Lotto(listOf(1,2,3,4,5,6,7,8))
+           assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
 
