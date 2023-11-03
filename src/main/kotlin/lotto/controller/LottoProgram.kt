@@ -1,6 +1,7 @@
 package lotto.controller
 
 import lotto.util.Validator.isItInteger
+import lotto.util.Validator.isItPositive
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -13,7 +14,7 @@ class LottoProgram {
     fun run() {
         outputView.printPurchaseAmount()
        val purchaseAmount = inputView.getPurchaseAmount()
-        isItInteger(purchaseAmount)
+        isItPositive(purchaseAmount.toInt())
     }
     private fun getLottoTicketCount(purchaseAmount:Int) = purchaseAmount/ LOTTO_PURCHASE_COST
 

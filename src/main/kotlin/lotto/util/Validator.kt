@@ -7,10 +7,16 @@ package lotto.util
 */
 private const val ERROR_CONVENTION = "[ERROR] "
 private const val NOT_INTEGER_MSG = "입력 값은 정수여야 합니다."
+private const val NOT_NEGATIVE_INTEGER_MSG = "입력 값은 0보다 큰 정수여야 합니다."
+
+private const val POSITIVE_NUM = 1
 
 object Validator {
      fun isItInteger(input: String) {
         val value = input.toIntOrNull()
-        require(value != null) { ERROR_CONVENTION + NOT_INTEGER_MSG }
+        require(value != null) {ERROR_CONVENTION + NOT_INTEGER_MSG }
+    }
+    fun isItPositive(input: Int){
+       require(input>= POSITIVE_NUM){ERROR_CONVENTION + NOT_NEGATIVE_INTEGER_MSG }
     }
 }
