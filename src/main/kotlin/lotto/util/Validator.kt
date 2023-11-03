@@ -1,7 +1,5 @@
 package lotto.util
 
-import java.lang.IllegalArgumentException
-
 object Validator {
     fun validateInteger(input: String) {
         require(input.toIntOrNull() != null) { Exception.INVALID_INTEGER.getMessage() }

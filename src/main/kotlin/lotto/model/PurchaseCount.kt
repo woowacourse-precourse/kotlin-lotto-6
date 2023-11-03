@@ -4,7 +4,7 @@ import lotto.util.Validator.validate1000Unit
 import lotto.util.Validator.validateInteger
 import lotto.util.Validator.validateRange
 
-class LottoPurchase(private val purchase: String) {
+class PurchaseCount(private val purchase: String) {
     private var _count = 0
     val count: Int
         get() = _count
