@@ -2,6 +2,8 @@ package lotto.view
 
 
 import lotto.model.Constants
+import lotto.model.Lotto
+import lotto.model.Random
 
 class Output {
     fun printMoney() {
@@ -12,4 +14,9 @@ class Output {
         println(purchaseNumber.toString()+Constants.PURCHASE_NUMBER)
     }
 
+    fun printLottoNumbers(purchaseNumber: Int){
+        repeat(purchaseNumber){
+            println(Lotto(Random().lottoGenerator()))
+        }
+    }
 }
