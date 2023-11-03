@@ -1,0 +1,32 @@
+## 기능 목록
+
+- [ ] 로또 구매 금액 메시지를 출력하는 기능 - `printAmountMessage()`#OutputView
+- [ ] 구매한 로또 수를 출력하는 기능 - `printLottoQuantity()`#OutputView
+- [ ] 로또 번호를 출력하는 기능 - `printLottoNumbers()`#OutputView
+- [ ] 당첨 번호 메시지를 출력하는 기능 - `printLottoWinningNumber()`#OutputView
+- [ ] 보너스 번호 메시지를 출력하는 기능 - `printBonusNumber()`#OutputView
+- [ ] 로또 당첨 결과를 출력하는 기능 - `printLottoWinningResults()`#OutputView
+- [ ] 로또 구매 금액 입력을 요청하는 기능 - `inputPurchaseAmount()`#InputView
+- [ ] 당첨 번호 입력을 요청하는 기능 - `inputWinningNumber()`#InputView
+- [ ] 보너스 번호 입력을 요청하는 기 - `inputBonusNumber()`#InputView
+- [ ] 로또 게임을 실행하는 기능 - `run()`#LottoGameController
+- [ ] 로또 게임 실행 및 결과를 계산하는 기능 - `playLottoGame()`#LottoGameController
+- [ ] 로또 구매 수량을 계산하는 기능 - `getQuantity()`#LottoGame
+- [ ] 랜덤 로또 번호를 생성하는 기능 - `createRandomLottoNumbers()`#LottoGame
+- [ ] 로또 결과를 계산하는 기능 - `getLottoResults()`#LottoGame
+- [ ] 로또 당첨 결과를 계산하는 기능 - `getLottoMatchResult()`#LottoGame
+- [ ] 수익률을 계산하는 기능 - `calculateRate()`#LottoGame
+- [ ] 구매 금액 입력을 예외 처리하는 기능 - `inputPurchaseAmountException()`#Exceptions
+- [ ] 당첨 번호 입력을 예외 처리하는 기능 - `inputWinningNumberException()`#Exceptions
+- [ ] 보너스 번호 입력을 예외 처리하는 기능 - `inputBonusNumberException()`#Exceptions
+- [ ] 상수 값 #Constant
+- RacingCarGame Test
+  - [ ] `getQuantity` 함수 테스트
+  - [ ] `createRandomLottoNumbers` 함수 테스트
+  - [ ] `getCorrectLottoResults` 함수 테스트
+  - [ ] `getLottoMatchResult` 함수 테스트
+  - [ ] `calculateRate` 함수 테스트
+- Exception Test
+  - [ ] `inputPurchaseAmountException` 함수 테스트
+  - [ ] `inputWinningNumberException` 함수 테스트
+  - [ ] `inputBonusNumberException` 함수 테스트
