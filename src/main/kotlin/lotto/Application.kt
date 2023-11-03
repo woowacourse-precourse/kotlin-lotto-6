@@ -38,8 +38,27 @@ fun main() {
         println(randomNumbers.sorted())
     }
 
-    println("\n당첨 번호를 입력해 주세요.")
-    val winningLotteryNumbers = Console.readLine().split(',')
+//    println("\n당첨 번호를 입력해 주세요.")
+//    val winningLotteryNumbers = Console.readLine().split(',').map { it.toInt() }
+//    Lotto(winningLotteryNumbers)
+//    println(winningLotteryNumbers)
+
+
+    var winningLotteryNumbers: List<Int> = mutableListOf()
+    var validWinningNumbers = false
+
+    while (!validWinningNumbers) {
+        println("\n당첨 번호를 입력해 주세요.")
+        val input = Console.readLine()
+        try {
+            winningLotteryNumbers = input.split(',').map { it.trim().toInt() }
+            val lotto = Lotto(winningLotteryNumbers)
+            validWinningNumbers = true
+        } catch (e: NumberFormatException) {
+            println("당첨 번호는 모두 숫자여야 합니다.")
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+        }
+    }
     println(winningLotteryNumbers)
-    //println("List of lottoPurchaseCounts: $lottoPurchaseCounts")
 }

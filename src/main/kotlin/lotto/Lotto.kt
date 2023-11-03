@@ -10,7 +10,12 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
 
         if (numbers.toSet().size != numbers.size) {
-            throw IllegalArgumentException("[ERROR] 중복된 숫자가 없어야 합니다.")
+            throw IllegalArgumentException("[ERROR] 중복되는 숫자가 없어야 합니다.")
         }
+
+        if (numbers.any { it < 1 || it > 45 }) {
+            throw IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자만 입력하세요.")
+        }
+
     }
 }
