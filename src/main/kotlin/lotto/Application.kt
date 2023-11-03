@@ -23,6 +23,6 @@ fun getValidateUserInput(): Int {
     return userInput.toInt()
 }
 
-fun printBuyCountMessage(count: Int) {
-    println("${count}개를 구매했습니다.")
+fun printPurchaseCount(purchaseCount: Int) {
+    println("${purchaseCount}개를 구매했습니다.")
 }
