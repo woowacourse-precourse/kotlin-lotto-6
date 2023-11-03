@@ -1,10 +1,11 @@
 package lotto.validator
 
 import lotto.exception.InputException
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
-import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class InputValidatorTest {
     @Test
@@ -20,16 +21,17 @@ class InputValidatorTest {
         // given
         val input = ""
         // when & then
-        val exception = assertThrows<IllegalArgumentException> { InputValidator.validateInputPurchaseAmount(input) }
-        assertThat(exception.message).isEqualTo(InputException.STRING_BLANK.message)
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
+            .isThrownBy { InputValidator.validateInputPurchaseAmount(input) }
+            .withMessage(InputException.STRING_BLANK.message)
     }
 
-    @Test
-    fun `구입금액 입력 검증 - 숫자 외 입력`() {
-        // given
-        val input = "abcd"
+    @ParameterizedTest
+    @ValueSource(strings = ["abcd", "2147483648", "-2147483649"])
+    fun `구입금액 입력 검증 - Int 범위 초과 입력`(input: String) {
         // when & then
-        val exception = assertThrows<IllegalArgumentException> { InputValidator.validateInputPurchaseAmount(input) }
-        assertThat(exception.message).isEqualTo(InputException.NOT_INTEGER.message)
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
+            .isThrownBy { InputValidator.validateInputPurchaseAmount(input) }
+            .withMessage(InputException.NOT_INTEGER.message)
     }
 }
