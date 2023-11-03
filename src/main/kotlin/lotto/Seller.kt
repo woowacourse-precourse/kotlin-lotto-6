@@ -5,7 +5,7 @@ class Seller {
         val count = amount / LOTTO_PRICE
         val lottoPapers = mutableListOf<Lotto>()
         repeat(count) {
-            lottoPapers.add(Lotto(NumberGeneration().generateNumbers()))
+            lottoPapers.add(Lotto(NumberGenerator().generateNumbers()))
         }
         return lottoPapers
     }
