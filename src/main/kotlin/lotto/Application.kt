@@ -37,6 +37,7 @@ fun main() {
 
     val winningList = HashMap<Int, Int>()
     val winningPrice = listOf<String>("0", "2,000,000,000", "30,000,000", "1,500,000", "50,000", "5,000")
+    val winningPriceInt = listOf<Int>(0,2000000000,30000000,1500000,50000,5000)
     for(i in 0 ..< 6) winningList[i] = 0
 
     lottoList.forEach {
@@ -46,4 +47,14 @@ fun main() {
     for(i in 5 downTo 1){
         println("${i}개 일치 (${winningPrice[i]}원) - ${winningList[i]}개")
     }
+
+    var totalWinningPrice = 0.0
+
+    for(i in 1 ..< 6){
+        totalWinningPrice += winningPriceInt[i]* winningList[i]!!
+    }
+
+    val rate = totalWinningPrice/(1000*purchaseAmount)
+
+    println("총 수입률은 ${String.format("%.1f", rate)}%입니다.")
 }
