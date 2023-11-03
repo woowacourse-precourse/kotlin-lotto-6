@@ -11,6 +11,6 @@ class LottoGeneratorTest {
     @DisplayName("로또 발행 테스트")
     fun lottoPublishTest() {
         val lottoNumbers: List<Int> = lottoGenerator.lottoPublish()
-        assertThat(lottoNumbers).hasSize(8).allSatisfy { value -> assertThat(value).isBetween(1, 45) }
+        assertThat(lottoNumbers).hasSize(6).allSatisfy { value -> assertThat(value).isBetween(1, 45) }
     }
 }
