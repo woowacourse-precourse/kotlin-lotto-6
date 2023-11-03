@@ -22,3 +22,7 @@ fun getValidateUserInput(): Int {
     validate1000Unit(userInput)
     return userInput.toInt()
 }
+
+fun printBuyCountMessage(count: Int) {
+    println("${count}개를 구매했습니다.")
+}
