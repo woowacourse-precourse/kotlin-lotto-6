@@ -1,4 +1,4 @@
-package lotto
+package lotto.util
 
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import lotto.util.Validator.validate1000Unit
