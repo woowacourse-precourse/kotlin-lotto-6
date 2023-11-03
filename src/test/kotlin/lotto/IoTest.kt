@@ -48,28 +48,28 @@ class IoTest {
 
     @Test
     fun `구입 금액 예외 상황 - 1000이하의 숫자2`() {
-        assertThrows<java.lang.IllegalArgumentException> {
+        assertThrows<IllegalArgumentException> {
             checker.checkAmount("0")
         }
     }
 
     @Test
     fun `구입 금액 예외 상황 - 1000이하의 숫자3`() {
-        assertThrows<java.lang.IllegalArgumentException> {
+        assertThrows<IllegalArgumentException> {
             checker.checkAmount("-1")
         }
     }
 
     @Test
     fun `구입 금액 예외 상황 - 1000단위가 아닌 수1`() {
-        assertThrows<java.lang.IllegalArgumentException> {
+        assertThrows<IllegalArgumentException> {
             checker.checkAmount("1001")
         }
     }
 
     @Test
     fun `구입 금액 예외 상황 - 1000단위가 아닌 수2`() {
-        assertThrows<java.lang.IllegalArgumentException> {
+        assertThrows<IllegalArgumentException> {
             checker.checkAmount("19999")
         }
     }

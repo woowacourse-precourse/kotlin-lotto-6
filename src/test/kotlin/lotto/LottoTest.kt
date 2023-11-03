@@ -1,8 +1,9 @@
 package lotto
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-
+import org.assertj.core.api.Assertions.assertThat
 
 class LottoTest {
     @Test
@@ -12,7 +13,7 @@ class LottoTest {
         }
     }
 
-    // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+
     @Test
     fun `로또 번호에 중복된 숫자가 있으면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
@@ -20,5 +21,15 @@ class LottoTest {
         }
     }
 
-    // 아래에 추가 테스트 작성 가능
+
+    @Test
+    fun `랜덤하게 생성한 로또 번호들이 중복이 있는지 확인`() {
+        val generator = RandomNumbersGenerator()
+        var numbers:List<Int>
+        repeat(100000) {
+            numbers = generator.makeRandomNumbers()
+            Assertions.assertEquals(numbers.size, numbers.distinct().size)
+        }
+    }
+
 }
