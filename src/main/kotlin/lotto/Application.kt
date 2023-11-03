@@ -1,5 +1,6 @@
 package lotto
 import lottoView.LottoOutPut
+import lottoViewModel.CreateNumbers
 import lottoViewModel.ValidInput
 
 fun main() {
@@ -12,5 +13,6 @@ fun main() {
         return main()
     }
     lottoOutput.purchaseDetailPrint(purchaseAmount)
+    lottoOutput.randomNumbersPrint(purchaseAmount)
 }
 

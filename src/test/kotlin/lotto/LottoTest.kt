@@ -1,9 +1,5 @@
 package lotto
 
-import camp.nextstep.edu.missionutils.Console
-import camp.nextstep.edu.missionutils.test.NsTest
-import lottoView.LottoOutPut
-import lottoViewModel.ValidInput
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

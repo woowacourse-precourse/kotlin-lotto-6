@@ -1,5 +1,6 @@
 package lotto
 import camp.nextstep.edu.missionutils.Randoms
+import lottoViewModel.CreateNumbers
 import lottoViewModel.ValidInput
 import java.lang.IllegalArgumentException
 
