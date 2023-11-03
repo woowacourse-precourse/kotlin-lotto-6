@@ -21,6 +21,9 @@ class Output {
     fun printWriteAnswer() {
         println(Constants.WRITE_JACKPOT)
     }
+    fun printWriteBonus() {
+        println(Constants.WRITE_BONUS)
+    }
 
     fun printAnswerCompare(answers:List<Int>,profit:Float) {
         println(Constants.COMPARE_ANSWER)

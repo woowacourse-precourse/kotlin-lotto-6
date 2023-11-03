@@ -1,9 +1,6 @@
 package lotto.controller
 
-import lotto.model.Count
-import lotto.model.Lotto
-import lotto.model.Random
-import lotto.model.Money
+import lotto.model.*
 import lotto.view.Input
 import lotto.view.Output
 
@@ -15,6 +12,7 @@ class LottoMachine {
 
         Output().printWriteAnswer()
         val answers = Input().write()
+        val userInput = UserLottoNumber().convert(answers)
 
 
     }
