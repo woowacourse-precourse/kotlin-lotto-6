@@ -3,6 +3,8 @@ package lotto.controller
 import lotto.view.InputView
 import lotto.view.OutputView
 
+private const val LOTTO_PURCHASE_COST = 1000
+
 class LottoProgram {
     private val inputView = InputView()
     private val outputView = OutputView()
@@ -12,6 +14,6 @@ class LottoProgram {
         purchaseAmount = inputView.getPurchaseAmount().toInt()
         print(getLottoTicketCount(purchaseAmount))
     }
-    private fun getLottoTicketCount(purchaseAmount:Int) = purchaseAmount/1000
+    private fun getLottoTicketCount(purchaseAmount:Int) = purchaseAmount/ LOTTO_PURCHASE_COST
 
 }
