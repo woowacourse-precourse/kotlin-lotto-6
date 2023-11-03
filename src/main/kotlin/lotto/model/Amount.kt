@@ -8,4 +8,5 @@ class Amount(private val amount: Int) {
         require(amount % PURCHASE_AMOUNT_UNIT.value == 0) { Exception.DIVISIBLE }
     }
 
+    fun getPurchaseCount() = amount / PURCHASE_AMOUNT_UNIT.value
 }
