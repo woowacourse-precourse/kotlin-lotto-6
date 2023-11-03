@@ -1,5 +1,6 @@
 package lotto
 import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     var amount = 0 // 구입 금액
@@ -30,7 +31,11 @@ fun main() {
     println("\n" + lottoPurchaseCount + "개를 구매했습니다.")
 
     val lottoPurchaseCounts = List(lottoPurchaseCount) { List(6) { 0 } }
-    for (i in lottoPurchaseCounts)
-        Lotto(i)
+    for (i in 0 until lottoPurchaseCount){
+        val randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        //Lotto(randomNumbers)
+        println(randomNumbers)
+    }
+
     //println("List of lottoPurchaseCounts: $lottoPurchaseCounts")
 }
