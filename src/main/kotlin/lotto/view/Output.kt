@@ -14,10 +14,8 @@ class Output {
         println(purchaseNumber.toString()+Constants.PURCHASE_NUMBER)
     }
 
-    fun printLottoNumbers(purchaseNumber: Int){
-        repeat(purchaseNumber){
-            println(Lotto(Random().lottoGenerator()).serve())
-        }
+    fun printLottoNumbers(lotto:List<Int>){
+        println(lotto)
     }
 
     fun printWriteAnswer() {
