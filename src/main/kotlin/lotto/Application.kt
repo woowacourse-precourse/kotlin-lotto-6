@@ -35,9 +35,11 @@ fun main() {
         val randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
         //Lotto(randomNumbers)
         lottoPurchaseCounts[i] = randomNumbers.sorted()
-        println(randomNumbers)
+        println(randomNumbers.sorted())
     }
 
-    println(lottoPurchaseCounts)
+    println("\n당첨 번호를 입력해 주세요.")
+    val winningLotteryNumbers = Console.readLine().split(',')
+    println(winningLotteryNumbers)
     //println("List of lottoPurchaseCounts: $lottoPurchaseCounts")
 }
