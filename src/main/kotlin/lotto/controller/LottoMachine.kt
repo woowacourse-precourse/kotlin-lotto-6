@@ -3,6 +3,7 @@ package lotto.controller
 import lotto.model.*
 import lotto.view.Input
 import lotto.view.Output
+import org.mockito.AdditionalAnswers
 
 class LottoMachine {
     fun start(){
@@ -10,15 +11,16 @@ class LottoMachine {
         val count = Count().calculate(money)
         val userLotto = purchaseNumberLotto(count)
         val answers = userAnswer()
-        val bonus = userBonus()
-
+        val bonus = userBonus(answers)
+        val jackpot =
 
 
     }
-    fun userBonus():Int{
+    fun userBonus(answers: List<Int>):Int{
         Output().printWriteBonus()
         val bonus = Input().write()
         Bonus().BonusFomatValidate(bonus)
+        Bonus().BonuDuplicationValidate(bonus.toInt(),answers)
         return bonus.toInt()
     }
     fun userAnswer():List<Int>{
