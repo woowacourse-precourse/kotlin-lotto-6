@@ -20,6 +20,7 @@ class Constants {
         const val ERROR_DUPLICATE_WINNING_NUMBER_MESSAGE = "[ERROR] 당첨 번호에 중복된 숫자가 포함되어 있습니다."
         const val ERROR_DUPLICATE_WINNING_AND_BONUS_NUMBER_MESSAGE = "[ERROR] 당첨 번호랑 보너스 번호는 서로 중복되면 안됩니다."
         const val LOTTO_PRICE = 1000
+        const val MIN_NUMBER = 0
         const val MIN_LOTTO_NUMBER = 1
         const val MAX_LOTTO_NUMBER = 45
     }
