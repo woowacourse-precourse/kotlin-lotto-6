@@ -11,17 +11,17 @@ private const val NOT_EMPTY_MSG = "입력 값은 공백이 될 수 없습니다.
 private const val POSITIVE_NUM = 1
 
 object Validator {
-     fun isItInteger(input: String) {
+     private fun isItInteger(input: String) {
         val value = input.toIntOrNull()
         require(value != null) {ERROR_CONVENTION + NOT_INTEGER_MSG }
     }
-    fun isItPositive(input: Int){
+    private fun isItPositive(input: Int){
        require(input>= POSITIVE_NUM){ERROR_CONVENTION + NOT_NEGATIVE_INTEGER_MSG }
     }
-    fun isItNotEmpty(input: String){
+    private fun isItNotEmpty(input: String){
         require(input.trim().isNotEmpty()){ERROR_CONVENTION + NOT_EMPTY_MSG }
     }
-    fun isDivisibleByThousand(input: Int) {
+    private fun isDivisibleByThousand(input: Int) {
         require(input % LOTTO_PURCHASE_COST ==0){ERROR_CONVENTION + NOT_DIVISIBLE_MSG}
     }
     fun isValidPurchaseAmount(input: String){
