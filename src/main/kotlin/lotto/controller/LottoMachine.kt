@@ -8,15 +8,27 @@ class LottoMachine {
     fun start(){
         val money = moneyInput()
         val count = Count().calculate(money)
-        val userLotto = PurchaseNumberLotto(count)
+        val userLotto = purchaseNumberLotto(count)
+        val answers = userAnswer()
+        val bonus = userBonus()
 
-        Output().printWriteAnswer()
-        val answers = Input().write()
-        val userInput = UserLottoNumber().convert(answers)
 
 
     }
-    fun PurchaseNumberLotto(count:Int) :List<List<Int>>{
+    fun userBonus():Int{
+        Output().printWriteBonus()
+        val bonus = Input().write()
+        Bonus().BonusFomatValidate(bonus)
+        return bonus.toInt()
+    }
+    fun userAnswer():List<Int>{
+        Output().printWriteAnswer()
+        val answers = Input().write()
+        val userAnswerInput = UserLottoNumber().convert(answers)
+        return userAnswerInput
+    }
+
+    fun purchaseNumberLotto(count:Int) :List<List<Int>>{
         Output().printPurchase(count)
         val userLotto: MutableList<List<Int>> = mutableListOf()
         val lotto = Random().lottoGenerator()
