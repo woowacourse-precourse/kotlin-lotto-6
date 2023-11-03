@@ -33,4 +33,9 @@ class OutputView {
     fun outputProfitPercentageMessage(profitPercentage: Float) {
         println(String.format(OUTPUT_PROFIT_PERCENTAGE_MESSAGE, profitPercentage))
     }
+    fun outputRandomLottoList(lottoList: MutableMap<Int, List<Int>>) {
+        lottoList.values.forEach{ value ->
+            println(value)
+        }
+    }
 }

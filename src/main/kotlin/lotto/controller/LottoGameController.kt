@@ -16,6 +16,8 @@ class LottoGameController {
         getPurchaseAmount()
         getTicketNumber(purchaseAmount)
         getRandomLottoLists()
+        outputView.outputPurchaseCountMessage(ticket)
+        outputView.outputRandomLottoList(randomLottoLists)
 
     }
     private fun getPurchaseAmount(){
