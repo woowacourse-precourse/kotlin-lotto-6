@@ -10,4 +10,8 @@ class LottoView {
     fun numbersList(numbers: List<Int>){
         println(numbers)
     }
+
+    fun pickView(){
+        println("당첨 번호를 입력해주세요.")
+    }
 }
