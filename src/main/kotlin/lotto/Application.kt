@@ -13,12 +13,25 @@ fun getUserInput(prompt: UserPrompt): String{
     return readLine()
 }
 
+fun getUserInputHandler(prompt: UserPrompt): Any {
+    while (true) {
+        try {
+            return when (prompt) {
+                UserPrompt.LOTTO_NUMBERS -> getUserInput(prompt).split(',').map { it.toInt() }
+                else -> getUserInput(prompt).toInt()
+            }
+        } catch (e: NumberFormatException) {
+            println("[ERROR] 잘못된 값을 입력하였습니다.")
+        }
+    }
+}
+
+
 fun main() {
 
-    val purchaseAmount = getUserInput(UserPrompt.PURCHASE_AMOUNT)
-    val lottoNumbers = getUserInput(UserPrompt.LOTTO_NUMBERS)
-    val bonusNumber = getUserInput(UserPrompt.BONUS_NUMBER)
-
+    val purchaseAmount = getUserInputHandler(UserPrompt.PURCHASE_AMOUNT)
+    val lottoNumbers = getUserInputHandler(UserPrompt.LOTTO_NUMBERS)
+    val bonusNumber = getUserInputHandler(UserPrompt.BONUS_NUMBER)
 
 
 }
