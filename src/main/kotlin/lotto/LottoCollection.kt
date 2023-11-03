@@ -1,8 +1,9 @@
 package lotto
 
 class LottoCollection {
+    val lottoCollection: MutableList<Lotto> = mutableListOf()
 
-    fun putLotto() {
-
+    fun putLotto(lotto: Lotto) {
+        lottoCollection.add(lotto)
     }
 }
