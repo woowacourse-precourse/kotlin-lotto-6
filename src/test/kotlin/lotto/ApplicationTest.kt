@@ -48,6 +48,14 @@ class ApplicationTest : NsTest() {
             runException("1000j","1000","1,2,3,4,5,6","7")
             assertThat(output()).contains(ERROR_MESSAGE)
         }
+        assertSimpleTest {
+            runException("1000","1,2,3,4,5,6,7,8","1,2,3,4,5,6","7")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+        assertSimpleTest {
+            runException("1000","1,2,3,4,5,6","6","7")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
     }
 
     override fun runMain() {
