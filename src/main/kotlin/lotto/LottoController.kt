@@ -13,7 +13,7 @@ class LottoController(
     private val lottoSupplier: LottoSupplier
 ) {
     private val winningCounts = mutableMapOf<WinningResult, Int>()
-    private var totalWinningAmount = 0
+    private var totalWinningAmount: Long = 0
 
     fun readyWinningCounts() {
         WinningResult.entries.forEach { winningResult ->
@@ -82,6 +82,6 @@ class LottoController(
         }
     }
 
-    fun getTotalReturn(totalWinningAmount: Int, purchaseCount: Int) =
+    fun getTotalReturn(totalWinningAmount: Long, purchaseCount: Int) =
         totalWinningAmount.toDouble() / purchaseCount
 }
