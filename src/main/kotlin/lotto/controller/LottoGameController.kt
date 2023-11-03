@@ -15,6 +15,7 @@ class LottoGameController {
     fun playGame(){
         getPurchaseAmount()
         getTicketNumber(purchaseAmount)
+        getRandomLottoLists()
 
     }
     private fun getPurchaseAmount(){
@@ -22,5 +23,8 @@ class LottoGameController {
     }
     private fun getTicketNumber(purchaseAmount: Int) {
         ticket = lottoGameService.calculateLottoPurchaseQuantity(purchaseAmount)
+    }
+    private fun getRandomLottoLists(){
+        randomLottoLists=lottoGameService.lottoNumberGenerator(ticket)
     }
 }
