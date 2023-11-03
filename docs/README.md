@@ -9,8 +9,7 @@
 - [x] 로또 번호 비교 - compareNumbers()
 
 ### 판매자 - Seller
-- [x] 로또 구입 기능 - sellLotto() O
-- []
+- [x] 로또 판매 기능 - sellLotto() O
 
 ### 당첨 번호 - WinningNumber O
 - [x] 당첨 번호 getter - getWinningNumbers() O
@@ -20,7 +19,7 @@
 
 ### 입력
 - [x] 로또 구입 금액 입력 - inputMoney() O
-- [x] 당첨 로또 번호 입력
+- [x] 당첨 로또 번호 입력 - inputWinningNumber() O
 - [x] 보너스 번호 입력
 
 ### 수익률
