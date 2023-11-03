@@ -1,9 +1,13 @@
 # 기능 목록
 
 ### 로또 - Lotto
-- [x] 로또 번호 가져 오기 - getNumbers()
-- [x] 로또 번호 출력 - printNumbers()
+- [x] 로또 번호 가져 오기 - getNumbers() O
+- [x] 로또 번호 출력 - printNumbers() O
 - [x] 로또 번호 비교 - compareNumbers()
+
+### 판매자 - Seller
+- [x] 로또 구입 기능
+- []
 
 ### 당첨 번호 
 - [x] 당첨 번호 입력
