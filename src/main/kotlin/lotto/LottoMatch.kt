@@ -33,6 +33,7 @@ class LottoMatch {
 
     fun purchaseCheck(): Int {
         val cost = purchaseValid()
+        LottoView().buyView(cost.toInt()/1000)
         return cost.toInt()/1000
     }
 }
