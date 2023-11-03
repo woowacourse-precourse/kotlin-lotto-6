@@ -5,8 +5,6 @@ import lotto.util.Validator.isItPositive
 import lotto.view.InputView
 import lotto.view.OutputView
 
-private const val LOTTO_PURCHASE_COST = 1000
-
 class LottoProgram {
     private val inputView = InputView()
     private val outputView = OutputView()
@@ -18,4 +16,7 @@ class LottoProgram {
     }
     private fun getLottoTicketCount(purchaseAmount:Int) = purchaseAmount/ LOTTO_PURCHASE_COST
 
+    companion object{
+        const val LOTTO_PURCHASE_COST = 1000
+    }
 }
