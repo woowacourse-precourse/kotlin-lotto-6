@@ -1,7 +1,10 @@
 # 기능 목록
 
+### 로또 게임
+- [x] 로또 게임 시작 기능 - startLottoGame O
+- [x] 구매한 로또를 출력하는 기능 printLotto O
 ### 로또 - Lotto
-- [x] 로또 번호 가져 오기 - getNumbers() O
+- [x] 로또 번호 가져 오기 - getNumbers() O 
 - [x] 로또 번호 출력 - printNumbers() O
 - [x] 로또 번호 비교 - compareNumbers()
 
@@ -14,10 +17,10 @@
 - [x] 보너스 번호 입력
 
 ### 자신의 로또 번호 생성
-- [x] 랜덤한 숫자 생성
+- [x] 랜덤한 숫자 생성 - generateNumbers() O
 
 ### 입력
-- [x] 로또 구입 금액 입력
+- [x] 로또 구입 금액 입력 - inputMoney() O
 - [x] 당첨 로또 번호 입력
 - [x] 보너스 번호 입력
 

@@ -11,6 +11,6 @@ class Seller {
     }
 
     companion object {
-        const val LOTTO_PRICE = 1000
+        private const val LOTTO_PRICE = 1000
     }
 }
