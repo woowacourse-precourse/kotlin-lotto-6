@@ -29,4 +29,8 @@ fun main() {
     lottoPurchaseCount = amount / 1000
     println("\n" + lottoPurchaseCount + "개를 구매했습니다.")
 
+    val lottoPurchaseCounts = List(lottoPurchaseCount) { List(6) { 0 } }
+    for (i in lottoPurchaseCounts)
+        Lotto(i)
+    //println("List of lottoPurchaseCounts: $lottoPurchaseCounts")
 }
