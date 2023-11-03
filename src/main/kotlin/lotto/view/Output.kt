@@ -16,7 +16,7 @@ class Output {
 
     fun printLottoNumbers(purchaseNumber: Int){
         repeat(purchaseNumber){
-            println(Lotto(Random().lottoGenerator()))
+            println(Lotto(Random().lottoGenerator()).serve())
         }
     }
 }
