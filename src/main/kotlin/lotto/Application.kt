@@ -1,6 +1,9 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.util.Validator.validate1000Unit
+import lotto.util.Validator.validateInteger
+import lotto.util.Validator.validateRange
 
 fun main() {
 
@@ -12,4 +15,10 @@ fun printGameStartMessage() {
 
 fun getUserInput(): String = Console.readLine()
 
-
+fun getValidateUserInput(): Int {
+    val userInput = getUserInput()
+    validateInteger(userInput)
+    validateRange(userInput)
+    validate1000Unit(userInput)
+    return userInput.toInt()
+}
