@@ -34,18 +34,21 @@ class LottoController {
         }
     }
 
-    fun generateNumber(): MutableList<Int> {
+
+    fun generateNumbers(): MutableList<Int> {
         val numberCollection: MutableList<Int> = mutableListOf()
-        for (i in 0 until LOTTO_DIGIT) {
-            val randNum = Randoms.pickNumberInRange(1,LOTTO_MAX_NUM)
-            numberCollection.add(randNum)
+        while (numberCollection.size < LOTTO_DIGIT) {
+            val randNum = Randoms.pickNumberInRange(1, LOTTO_MAX_NUM)
+            if (!numberCollection.contains(randNum)) {
+                numberCollection.add(randNum)
+            }
         }
         return numberCollection
     }
 
     fun lottoGenerate(lottoCount: Int) {
         for (i in 0 until lottoCount) {
-            val randNums = generateNumber()
+            val randNums = generateNumbers()
             val lotto = Lotto(randNums)
             lottoCollection.putLotto(lotto)
         }
