@@ -4,6 +4,7 @@ import lotto.Constants
 import lotto.Constants.Companion.OUTPUT_FIVE_MATCH_MESSAGE
 import lotto.Constants.Companion.OUTPUT_FIVE_WITH_BONUS_MATCH_MESSAGE
 import lotto.Constants.Companion.OUTPUT_FOUR_MATCH_MESSAGE
+import lotto.Constants.Companion.OUTPUT_PROFIT_PERCENTAGE_MESSAGE
 import lotto.Constants.Companion.OUTPUT_PURCHASE_COUNT_MESSAGE
 import lotto.Constants.Companion.OUTPUT_SIX_MATCH_MESSAGE
 import lotto.Constants.Companion.OUTPUT_THREE_MATCH_MESSAGE
@@ -28,5 +29,8 @@ class OutputView {
         println(String.format(OUTPUT_FIVE_MATCH_MESSAGE, lottoFiveMatch.getCount()))
         println(String.format(OUTPUT_FIVE_WITH_BONUS_MATCH_MESSAGE, lottoFiveWithBonusMatch.getCount()))
         println(String.format(OUTPUT_SIX_MATCH_MESSAGE, lottoSixMatch.getCount()))
+    }
+    fun outputProfitPercentageMessage(profitPercentage: Float) {
+        println(String.format(OUTPUT_PROFIT_PERCENTAGE_MESSAGE, profitPercentage))
     }
 }
