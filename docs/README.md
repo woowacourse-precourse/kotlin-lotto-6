@@ -1,6 +1,6 @@
 # 기능 목록
 
-### 로또 게임
+### 로또 게임 컨트롤러 - LottoGameController
 - [x] 로또 게임 시작 기능 - startLottoGame O
 - [x] 구매한 로또를 출력하는 기능 printLotto O
 ### 로또 - Lotto
@@ -9,14 +9,13 @@
 - [x] 로또 번호 비교 - compareNumbers()
 
 ### 판매자 - Seller
-- [x] 로또 구입 기능
+- [x] 로또 구입 기능 - sellLotto() O
 - []
 
-### 당첨 번호 
-- [x] 당첨 번호 입력
-- [x] 보너스 번호 입력
+### 당첨 번호 - WinningNumber O
+- [x] 당첨 번호 getter - getWinningNumbers() O
 
-### 자신의 로또 번호 생성
+### 자신의 로또 번호 생성 - NumberGenerator
 - [x] 랜덤한 숫자 생성 - generateNumbers() O
 
 ### 입력
