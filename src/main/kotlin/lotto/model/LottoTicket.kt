@@ -5,5 +5,5 @@ class LottoTicket(private val purchaseCount: Int) {
     val numbers: List<List<Int>>
         get() = _numbers
 
-    fun addTickets(lottoNumbers: List<Int>) = _numbers.add(lottoNumbers)
+    fun addNumbers(lottoNumbers: List<Int>) = _numbers.add(lottoNumbers)
 }

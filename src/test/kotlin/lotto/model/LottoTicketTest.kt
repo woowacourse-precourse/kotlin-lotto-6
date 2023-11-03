@@ -13,8 +13,8 @@ class LottoTicketTest {
     @BeforeEach
     fun setUp() {
         lottoTicket = LottoTicket(2)
-        lottoTicket.addTickets(lottoGenerator.lottoPublish())
-        lottoTicket.addTickets(lottoGenerator.lottoPublish())
+        lottoTicket.addNumbers(lottoGenerator.lottoPublish())
+        lottoTicket.addNumbers(lottoGenerator.lottoPublish())
     }
 
     @Test
