@@ -34,4 +34,6 @@ class LottoController(
         }
     }
 
+    fun getTotalReturn(totalWinningAmount: Int, purchaseCount: Int) =
+        totalWinningAmount.toDouble() / purchaseCount
 }
