@@ -1,14 +1,15 @@
 ## 기능 목록
 - 게임 시작 전
-    - [x]  구입 안내 메세지 출력한다.
-    - [x]  로또 구매 가격을 입력한다.
-        - [x]  숫자가 아니면 예외처리한다.
-        - [x]  로또 가격의 범위가 유효하지 않다면 예외처리한다.(1000보다 크며 정수값보다 작아야한다.)
-        - [x]  로또 가격이 1000원 단위가 아니면 예외처리한다.
-        - [x]  위의 검증이 끝나면 사용자의 입력을 정수값으로 변환한다.
+    - [x]  구입 안내 메세지 출력한다. - OutputView#printGameStartMessage()
+    - [x]  로또 구매 가격을 입력한다. - InputView#getUserInput()
+        - [x]  숫자가 아니면 예외처리한다. - Validator#validateInteger()
+        - [x]  로또 가격의 범위가 유효하지 않다면 예외처리한다. - Validator#validateRange()
+        - [x]  로또 가격이 1000원 단위가 아니면 예외처리한다. - Validator#validate1000Unit()
+        - [x]  위의 검증이 끝나면 사용자의 입력을 정수값으로 변환한다. - InputView#getValidateUserInput()
 - 로또 시작
-    - [x]  로또 발행 안내 메세지를 출력한다.
-    - [x]  로또를 구매한 개수만큼 출력한다.
+    - [x]  로또 발행 안내 메세지를 출력한다. - OutputView#printPurchaseCount()
+    - [x]  구매 가격만큼 로또를 발행한다. - LottoGenerator#getSortedNumbers()
+    - [x]  로또를 구매한 개수만큼 출력한다. - OutputView#printLottoTicket()
         - [x]  각 숫자는 중복이 없어야 한다.
         - [x]  각 숫자는 1부터 45까지의 숫자여야 한다.
         - [x]  번호는 오름차순으로 보여줘야 한다.
