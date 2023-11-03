@@ -7,10 +7,11 @@ class LottoController {
     val LOTTO_DIGIT = 6
     val LOTTO_MAX_NUM = 45
     private var cost = 0
-    private var lottoCollection = LottoCollection()
+    var lottoCollection = LottoCollection()
 
     fun start() {
-
+        inputLottoCost()
+        lottoGenerate(cost/1000)
     }
 
     fun checkLottoCost(cost: Int) {
@@ -23,6 +24,7 @@ class LottoController {
     }
 
     fun inputLottoCost() {
+        println("구입금액을 입력해 주세요.")
         val inputCost = Console.readLine()
         val cost = inputCost.toInt()
         try {
@@ -35,7 +37,7 @@ class LottoController {
     }
 
 
-    fun generateNumbers(): MutableList<Int> {
+    fun generateNumbers(): List<Int> {
         val numberCollection: MutableList<Int> = mutableListOf()
         while (numberCollection.size < LOTTO_DIGIT) {
             val randNum = Randoms.pickNumberInRange(1, LOTTO_MAX_NUM)
