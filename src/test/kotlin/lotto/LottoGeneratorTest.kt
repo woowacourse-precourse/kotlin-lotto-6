@@ -1,4 +1,4 @@
-package lotto.study
+package lotto
 
 import lotto.util.LottoGenerator
 import org.assertj.core.api.Assertions.*
