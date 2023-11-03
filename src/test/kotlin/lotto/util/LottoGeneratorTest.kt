@@ -12,6 +12,6 @@ class LottoGeneratorTest {
     fun lottoPublishTest() {
         val lottoNumbers: List<Int> = lottoGenerator.getSortedNumbers()
         assertThat(lottoNumbers).hasSize(6).doesNotHaveDuplicates()
-            .allSatisfy { value -> assertThat(value).isBetween(1, 45) }
+            .allSatisfy { value -> assertThat(value).isBetween(1, 45) }.isSorted
     }
 }

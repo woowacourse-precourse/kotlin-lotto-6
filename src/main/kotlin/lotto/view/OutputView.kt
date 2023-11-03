@@ -12,9 +12,9 @@ class OutputView {
     }
 
     fun printLottoTicket(lottoTicket: LottoTicket) {
-        val ticket = lottoTicket.numbers
-        repeat(ticket.size) { index ->
-            println(ticket[index].toString())
+        val numbers = lottoTicket.numbers
+        numbers.forEach {
+            println(it)
         }
     }
 }
