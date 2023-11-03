@@ -1,7 +1,6 @@
 package lotto.controller
 
 import lotto.model.LottoTicketCount
-import lotto.util.Validator.isValidPurchaseAmount
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -12,9 +11,7 @@ class LottoProgram {
     fun run() {
         outputView.printPurchaseAmount()
 
-        val userInput = inputView.getPurchaseAmount()
-        isValidPurchaseAmount(userInput)
-
+        val userInput = inputView.getValidPurchaseAmount()
         val lottoTicketCount = LottoTicketCount(userInput)
         val lottoCount = lottoTicketCount.lottoCount
 

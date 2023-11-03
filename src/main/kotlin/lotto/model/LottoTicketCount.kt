@@ -10,4 +10,6 @@ class LottoTicketCount(private val _purchase: String) {
        return  purchase / LOTTO_PURCHASE_COST
     }
 
+
+
 }

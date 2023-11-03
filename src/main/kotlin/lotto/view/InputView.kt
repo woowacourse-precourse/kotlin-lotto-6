@@ -1,11 +1,19 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.controller.LottoProgram
-import lotto.util.*
+import lotto.util.Validator.isValidPurchaseAmount
 
 class InputView {
-    fun getPurchaseAmount(): String = Console.readLine()
+    private fun getPurchaseAmount(): String = Console.readLine()
 
-
+    fun getValidPurchaseAmount():String{
+        return try {
+            val userInput = getPurchaseAmount()
+            isValidPurchaseAmount(userInput)
+            userInput
+        } catch (e:IllegalArgumentException){
+            println(e.message)
+            getValidPurchaseAmount()
+        }
+    }
 }
