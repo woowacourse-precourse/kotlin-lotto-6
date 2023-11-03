@@ -32,3 +32,17 @@
             - [ ]  수익률은 소수점 둘째자리에서 반올림한다.(ex 100.0%, 51.5%)
 
 <br>
+
+## 기능 요구사항
+- [ ]  예외 처리는 IllegalArgumentException을 발생시키고 "[ERROR]”로 시작하는 에러 메세지를 출력한다.
+- [ ]  에러메세지를 출력하고 그 부분부터 다시 입력받는다.
+- [ ]  게임 종료 시 `System.exit()` 를 호출하지 않는다.
+- [ ]  indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
+- [ ]  함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어야한다.
+- [ ]  함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
+- [ ]  else를 지양한다.
+- [ ]  Enum 클래스를 적용해 프로그래밍을 구현한다.
+- [ ]  핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
+- [ ]  `Lotto` 클래스에 필드를 추가할 수 없다.
+- [ ]  랜덤값 추출 `camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange` 사용한다.
+- [ ]  사용자 입력은 `camp.nextstep.edu.missionutils.Console.readLine()` 을 이용한다.
