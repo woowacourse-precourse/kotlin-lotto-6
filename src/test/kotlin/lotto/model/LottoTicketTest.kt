@@ -12,7 +12,7 @@ class LottoTicketTest {
 
     @BeforeEach
     fun setUp() {
-        lottoTicket = LottoTicket(2)
+        lottoTicket = LottoTicket()
         lottoTicket.addNumbers(lottoGenerator.getSortedNumbers())
         lottoTicket.addNumbers(lottoGenerator.getSortedNumbers())
     }
