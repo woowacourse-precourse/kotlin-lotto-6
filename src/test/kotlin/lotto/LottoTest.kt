@@ -193,6 +193,18 @@ class LottoTest {
         assertThat(result).isFalse()
     }
 
+    @ParameterizedTest
+    @MethodSource("convertWithDigitCommaTest")
+    fun `숫자의 천 단위로 쉼표를 붙인다`(inputNumber: Int, expected: String) {
+        // given
+
+        // when
+        val result = inputNumber.convertWithDigitComma()
+
+        // then
+        assertThat(result).isEqualTo(expected)
+    }
+
     companion object {
         @JvmStatic
         fun emptyInputTest() = listOf(
@@ -206,6 +218,14 @@ class LottoTest {
             Arguments.of(listOf(1, 2, 3, 10, 11, 12), 3),
             Arguments.of(listOf(10, 15, 23, 28, 34, 40), 0),
             Arguments.of(listOf(5, 6, 25, 31, 40, 42), 2)
+        )
+
+        @JvmStatic
+        fun convertWithDigitCommaTest() = listOf(
+            Arguments.of(100, "100"),
+            Arguments.of(4000, "4,000"),
+            Arguments.of(15000000, "15,000,000"),
+            Arguments.of(2000000000, "2,000,000,000"),
         )
     }
 }
