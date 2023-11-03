@@ -11,4 +11,26 @@ class Lotto(private val numbers: List<Int>) {
     fun getLottoNumberString() : String {
         return numbers.toString()
     }
+
+    fun getRank(winningNumbers: List<Int>, bonusNumber : Int) : Int {
+        var matchNumbers = getMatchNumbers(winningNumbers)
+        return when(matchNumbers){
+            3 -> 5
+            4 -> 4
+            6 -> 1
+            5 -> {
+                if(numbers.contains(bonusNumber)) 2
+                else 3
+            }
+            else -> 0
+        }
+    }
+
+    fun getMatchNumbers(winningNumbers: List<Int>) : Int {
+        var matchNumbers = 0
+        winningNumbers.forEach {
+            if(numbers.contains(it)) matchNumbers++
+        }
+        return matchNumbers
+    }
 }

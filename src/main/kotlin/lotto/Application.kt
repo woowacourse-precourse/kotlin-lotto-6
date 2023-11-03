@@ -25,12 +25,25 @@ fun main() {
     }
 
     println("\n당첨 번호를 입력해 주세요.")
-    val winningNumbers =  readln()
+    val winningNumbers = readln().split(',').map { it.toInt() }
     //예외처리
 
     println("\n보너스 번호를 입력해 주세요.")
     val bonusNumber = readln().toInt()
     //예외처리
 
+    println("\n당첨 통계")
+    println("---")
 
+    val winningList = HashMap<Int, Int>()
+    val winningPrice = listOf<String>("0", "2,000,000,000", "30,000,000", "1,500,000", "50,000", "5,000")
+    for(i in 0 ..< 6) winningList[i] = 0
+
+    lottoList.forEach {
+        winningList[it.getRank(winningNumbers, bonusNumber)] = winningList[it.getRank(winningNumbers, bonusNumber)]!! + 1
+    }
+
+    for(i in 5 downTo 1){
+        println("${i}개 일치 (${winningPrice[i]}원) - ${winningList[i]}개")
+    }
 }
