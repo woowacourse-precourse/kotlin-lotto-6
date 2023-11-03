@@ -2,7 +2,15 @@ package lotto
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6)
+        while (true) {
+            try {
+                require(numbers.distinct().size == 6)
+                break
+            } catch (e: IllegalArgumentException) {
+                println("[Error] 6개의 숫자를 입력해주세요.")
+                throw IllegalArgumentException()
+            }
+        }
     }
     fun printnumbers()
     {

@@ -26,6 +26,7 @@ fun main() {
     for (i in 0 until numoflotto)
     {
         val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        numbers.sort()
         mynumber.add(numbers)
         Lotto(numbers).printnumbers()
     }
@@ -64,6 +65,7 @@ fun moneycheck(): Int {
         } catch (e: IllegalArgumentException)
         {
             println("[Error] 정수가 아닙니다.")
+            throw IllegalArgumentException()
         }
 
     }
@@ -83,6 +85,7 @@ fun winningnumbercheck(): List<Int> {
         } catch (e: IllegalArgumentException)
         {
             println("[Error] 정수가 아닙니다.")
+            throw IllegalArgumentException()
         }
 
     }
@@ -102,6 +105,7 @@ fun bonuscheck(): Int {
         } catch (e: IllegalArgumentException)
         {
             println("[Error] 정수가 아닙니다.")
+            throw IllegalArgumentException()
         }
 
     }
@@ -126,7 +130,7 @@ fun printtotal(matchnum: List<MatchCount>, money: Int) {
 fun yeildcalculation(three: Int, four: Int, five: Int, bonus: Int, all: Int, money: Int)
 {
     val totalmoney = three * 5000 + four * 50000 + five * 1500000 + bonus * 30000000 + all * 2000000000
-    val result = totalmoney / money * 100
+    val result: Double = (totalmoney / money * 100).toDouble()
     val formattedresult = String.format("%.2f", result)
-    println("총 수익률은 $formattedresult")
+    println("총 수익률은 ${formattedresult}%입니다.")
 }
