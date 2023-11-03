@@ -7,7 +7,7 @@ class Lotto(private val numbers: List<Int>) {
                 require(numbers.distinct().size == 6)
                 break
             } catch (e: IllegalArgumentException) {
-                println("[Error] 6개의 숫자를 입력해주세요.")
+                println("[Error]")
                 throw IllegalArgumentException()
             }
         }
@@ -30,7 +30,7 @@ class Lotto(private val numbers: List<Int>) {
             4 -> MatchCount.FOUR
             5 -> if (bonus in winningnumbers) MatchCount.FIVEBONUS else MatchCount.FIVE
             6 -> MatchCount.ALL
-            else -> throw IllegalArgumentException("유효한 숫자가 아닙니다.")
+            else -> throw IllegalArgumentException("[ERROR]]")
         }
     }
 }

@@ -49,23 +49,13 @@ fun moneycheck(): Int {
     {
         try {
             val input = readlnOrNull()
-            if (input != null)
-            {
-                val money = input.toInt()
-                val price = 1000
-                val numoflotto = money.div(price)
-                if(money.rem(price) != 0){
-                    throw IllegalArgumentException("[Error] 1,000원으로 나누어 떨어지지 않습니다.")
-                }
-                return numoflotto
-            }
-            else {
-                throw IllegalArgumentException()
-            }
+            val money = input?.toInt() ?: throw IllegalArgumentException()
+            val price = 1000
+            require(money % price == 0)
+            return money / price
         } catch (e: IllegalArgumentException)
         {
-            println("[Error] 정수가 아닙니다.")
-            throw IllegalArgumentException()
+            println("[ERROR]")
         }
 
     }
@@ -76,16 +66,10 @@ fun winningnumbercheck(): List<Int> {
     {
         try {
             val input = readlnOrNull()
-            if (input != null) {
-                return input.split(",").map { it.toInt() }
-            }
-            else {
-                throw IllegalArgumentException()
-            }
+            return input?.split(",")?.map { it.toInt() } ?: throw IllegalArgumentException("[ERROR]")
         } catch (e: IllegalArgumentException)
         {
-            println("[Error] 정수가 아닙니다.")
-            throw IllegalArgumentException()
+            print("[ERROR]")
         }
 
     }
@@ -96,16 +80,10 @@ fun bonuscheck(): Int {
     {
         try {
             val input = readlnOrNull()
-            if (input != null) {
-                return input.toInt()
-            }
-            else {
-                throw IllegalArgumentException()
-            }
+            return input?.toInt() ?: throw IllegalArgumentException("[Error]")
         } catch (e: IllegalArgumentException)
         {
-            println("[Error] 정수가 아닙니다.")
-            throw IllegalArgumentException()
+            print("[Error]")
         }
 
     }
@@ -130,7 +108,6 @@ fun printtotal(matchnum: List<MatchCount>, money: Int) {
 fun yeildcalculation(three: Int, four: Int, five: Int, bonus: Int, all: Int, money: Int)
 {
     val totalmoney = three * 5000 + four * 50000 + five * 1500000 + bonus * 30000000 + all * 2000000000
-    val result: Double = (totalmoney / money * 100).toDouble()
-    val formattedresult = String.format("%.2f", result)
-    println("총 수익률은 ${formattedresult}%입니다.")
+    val result = (totalmoney.toFloat() / money * 100)
+    println("총 수익률은 ${result}%입니다.")
 }
