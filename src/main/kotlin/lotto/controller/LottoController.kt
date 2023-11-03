@@ -11,7 +11,6 @@ class LottoController(private val inputView: InputView, private val outputView: 
     private val lottoGenerator = LottoGenerator()
     private val lottoTicket = LottoTicket()
     private lateinit var lottoPurchase: LottoPurchase
-    private var purchaseCount = 0
 
     fun run() {
         gameInit()
@@ -39,8 +38,8 @@ class LottoController(private val inputView: InputView, private val outputView: 
     }
 
     private fun publishLottoTicket() {
-        outputView.printPurchaseCount(purchaseCount)
-        repeat(purchaseCount) {
+        outputView.printPurchaseCount(lottoPurchase.count)
+        repeat(lottoPurchase.count) {
             val numbers = lottoGenerator.getSortedNumbers()
             lottoTicket.addNumbers(numbers)
         }
