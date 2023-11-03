@@ -23,4 +23,15 @@ class Output {
     fun printWriteAnswer() {
         println(Constants.WRITE_JACKPOT)
     }
+
+    fun printAnswerCompare(answers:List<Int>,profit:Float) {
+        println(Constants.COMPARE_ANSWER)
+        println(Constants.THREE_DASH)
+        println(Constants.THREE_SAME+answers[0])
+        println(Constants.THREE_SAME+answers[0])
+        println(Constants.THREE_SAME+answers[0])
+        println(Constants.THREE_SAME+answers[0])
+        println(Constants.THREE_SAME+answers[0])
+        println(Constants.TOTAL_PROFIT+profit+Constants.PERCENT)
+    }
 }
