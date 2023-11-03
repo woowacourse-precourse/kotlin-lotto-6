@@ -20,13 +20,19 @@ class LottoMatch {
         }
     }
 
-    fun purchaseAmount(){
+    fun purchaseValid(): String {
         var validInput = false
+        var cost:String
         do{
             LottoView().purchaseView()
-            val cost = Console.readLine()
+            cost = Console.readLine()
             validInput = checkPurchase(cost)
         } while(!validInput)
+        return cost
+    }
 
+    fun purchaseCheck(): Int {
+        val cost = purchaseValid()
+        return cost.toInt()/1000
     }
 }
