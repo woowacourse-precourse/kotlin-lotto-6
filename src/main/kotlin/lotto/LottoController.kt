@@ -15,6 +15,15 @@ class LottoController(
     private val winningCounts = mutableMapOf<WinningResult, Int>()
     private var totalWinningAmount = 0
 
+    fun calculateWinningCounts(lottos: Lottos, winningLotto: WinningLotto) {
+        lottos.forEach { lotto ->
+            val winningResult = getWinningResult(lotto, winningLotto)
+            val prefixResult = winningCounts.getOrDefault(winningResult, 0) + 1
+            winningCounts[winningResult] = prefixResult
+            totalWinningAmount += winningResult.amount
+        }
+    }
+
     fun getWinningResult(lotto: Lotto, winningLotto: WinningLotto): WinningResult {
         val count = lotto.countMatchingNumber(winningLotto.lotto)
 
