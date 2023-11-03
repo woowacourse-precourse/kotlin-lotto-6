@@ -8,15 +8,17 @@ import lotto.view.OutputView
 class LottoProgram {
     private val inputView = InputView()
     private val outputView = OutputView()
-    private var lottoCount = 0
 
     fun run() {
         outputView.printPurchaseAmount()
 
         val userInput = inputView.getPurchaseAmount()
         isValidPurchaseAmount(userInput)
+
         val lottoTicketCount = LottoTicketCount(userInput)
-        lottoCount = lottoTicketCount.lottoCount
+        val lottoCount = lottoTicketCount.lottoCount
+
+        outputView.printLottoCount(lottoCount)
 
     }
 
