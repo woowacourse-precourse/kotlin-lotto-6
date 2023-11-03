@@ -6,7 +6,7 @@ import lotto.model.Lotto
 import lotto.model.Random
 
 class Output {
-    fun printMoney() {
+    fun printWriteMoney() {
         println(Constants.WRITE_MONEY)
     }
 
@@ -18,5 +18,9 @@ class Output {
         repeat(purchaseNumber){
             println(Lotto(Random().lottoGenerator()).serve())
         }
+    }
+
+    fun printWriteAnswer() {
+        println(Constants.WRITE_JACKPOT)
     }
 }

@@ -6,7 +6,7 @@ class Constants {
         val PURCHASE_NUMBER = "개를 구매했습니다."
         val WRITE_JACKPOT = "당첨 번호를 입력해 주세요."
         val WRITE_BONUS = "보너스 번호를 입력해 주세요."
-        val JACKPOT_situation = "당첨 통계"
+        val COMPARE_ANSWER = "당첨 통계"
         val THREE_DASH = "---"
         val THREE_SAME = "3개 일치 (5,000원) - "
         val FOUR_SAME = "4개 일치 (50,000원) - "
