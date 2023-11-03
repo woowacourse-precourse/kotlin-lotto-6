@@ -15,6 +15,30 @@ class LottoController(
     private val winningCounts = mutableMapOf<WinningResult, Int>()
     private var totalWinningAmount = 0
 
+    fun run() {
+        output.printInputAmount()
+        val amount = input.inputAmount()
+
+        val purchaseCount = amount.getPurchaseCount()
+        output.printPurchaseCount(purchaseCount)
+
+        val lottos = lottoSupplier.supplyLottos(purchaseCount)
+        output.printLottos(lottos)
+
+        output.printInputWinningNumbers()
+        val winningNumbers = input.inputWinningLotto()
+
+        output.printInputBonusNumber()
+        val winningBonusNumber = input.inputBonusNumber()
+
+        val winningLotto = WinningLotto(winningNumbers, winningBonusNumber)
+
+        calculateWinningCounts(lottos, winningLotto)
+
+        val totalReturn = getTotalReturn(totalWinningAmount, purchaseCount)
+        output.printWinningStat(winningCounts, totalReturn)
+    }
+
     fun calculateWinningCounts(lottos: Lottos, winningLotto: WinningLotto) {
         lottos.forEach { lotto ->
             val winningResult = getWinningResult(lotto, winningLotto)
