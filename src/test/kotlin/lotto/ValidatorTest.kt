@@ -1,6 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
+import lotto.util.Validator.validateInteger
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
