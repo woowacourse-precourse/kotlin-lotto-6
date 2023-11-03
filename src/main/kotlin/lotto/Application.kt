@@ -60,5 +60,9 @@ fun main() {
             println(e.message)
         }
     }
-    println(winningLotteryNumbers)
+    //println(winningLotteryNumbers)
+
+    println("\n보너스 번호를 입력해 주세요.")
+    val bonusNumber = Console.readLine().toInt()
+    println(bonusNumber)
 }
