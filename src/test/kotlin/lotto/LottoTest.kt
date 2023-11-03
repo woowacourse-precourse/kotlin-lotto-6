@@ -205,6 +205,18 @@ class LottoTest {
         assertThat(result).isEqualTo(expected)
     }
 
+    @ParameterizedTest
+    @MethodSource("convertWithRoundTest")
+    fun `소수점 첫째자리까지 반올림한다`(doubleNumber: Double, expected: String) {
+        // given
+
+        // when
+        val result = doubleNumber.convertWithRound()
+
+        // then
+        assertThat(result).isEqualTo(expected)
+    }
+
     companion object {
         @JvmStatic
         fun emptyInputTest() = listOf(
@@ -226,6 +238,15 @@ class LottoTest {
             Arguments.of(4000, "4,000"),
             Arguments.of(15000000, "15,000,000"),
             Arguments.of(2000000000, "2,000,000,000"),
+        )
+
+        @JvmStatic
+        fun convertWithRoundTest() = listOf(
+            Arguments.of(1.35, "1.4"),
+            Arguments.of(20.3333, "20.3"),
+            Arguments.of(20, "20.0"),
+            Arguments.of(1234.56789, "1234.6"),
+            Arguments.of(100.1, "100.1")
         )
     }
 }
