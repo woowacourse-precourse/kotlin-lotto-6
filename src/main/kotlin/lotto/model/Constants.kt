@@ -25,5 +25,6 @@ class Constants {
         val ERROR_NO_CHAGES = "[ERROR] 잔돈은 안받습니다."
         val ERROR_MONEY_RANGE = "[ERROR] 1000원 이상 돈을 주십시오."
         val ERROR_LOTTO_DUPlICATION = "[ERROR] 로또 번호 중복 발견."
+        val ERROR_LOTTO_FORMAT = "[ERROR] 로또 번호는 숫자여야 합니다."
     }
 }

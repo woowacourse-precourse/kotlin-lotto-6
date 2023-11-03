@@ -1,7 +1,7 @@
 package lotto
 
-import lotto.controller.NewLotto
+import lotto.controller.LottoMachine
 
 fun main() {
-    NewLotto().start()
+    LottoMachine().start()
 }

@@ -3,7 +3,7 @@ package lotto.model
 import java.lang.NumberFormatException
 
 
-class Validation {
+class Money {
 
     fun MoneyFomatValidate(money: String) {
         try {

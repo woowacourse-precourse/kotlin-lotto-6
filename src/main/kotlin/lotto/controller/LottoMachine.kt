@@ -3,15 +3,18 @@ package lotto.controller
 import lotto.model.Count
 import lotto.model.Lotto
 import lotto.model.Random
-import lotto.model.Validation
+import lotto.model.Money
 import lotto.view.Input
 import lotto.view.Output
 
-class NewLotto {
+class LottoMachine {
     fun start(){
         val money = moneyInput()
         val count = Count().calculate(money)
         val userLotto = PurchaseNumberLotto(count)
+
+        Output().printWriteAnswer()
+        val answers = Input().write()
 
 
     }
@@ -28,9 +31,9 @@ class NewLotto {
     fun moneyInput():Int{
         Output().printWriteMoney()
         val money = Input().write()
-        Validation().MoneyFomatValidate(money)
-        Validation().MoneyRangeValidate(money)
-        Validation().MoneyChangesValidate(money)
+        Money().MoneyFomatValidate(money)
+        Money().MoneyRangeValidate(money)
+        Money().MoneyChangesValidate(money)
         return money.toInt()
     }
 }
