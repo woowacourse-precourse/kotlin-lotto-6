@@ -7,9 +7,9 @@ enum class Print(private val msg: String) {
     INPUT_BONUS_NUMBERS("보너스 번호를 입력해 주세요."),
     WINNING_STAT("당첨 통계"),
     DIVIDE_LINE("---"),
-    MATCHING_NUMBER("%d개 일치%s (%d원) - %개"),
+    MATCHING_NUMBER("%d개 일치%s (%s원) - %d개"),
     BONUS(", 보너스 볼 일치"),
-    TOTAL_RETURN("총 수익률은 %f%입니다.");
+    TOTAL_RETURN("총 수익률은 %s%%입니다.");
 
     override fun toString() = msg
 }

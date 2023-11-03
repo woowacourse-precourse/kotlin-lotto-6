@@ -10,7 +10,7 @@ class Output {
 
     fun printPurchaseCount(purchaseCount: Int) {
         lineBreak()
-        println(Print.PURCHASE_COUNT.format(purchaseCount))
+        println(Print.PURCHASE_COUNT.toString().format(purchaseCount))
     }
 
     fun printLottos(lottos: Lottos) {
@@ -20,7 +20,7 @@ class Output {
 
     fun printInputWinningNumbers() = println(Print.INPUT_WINNING_NUMBERS)
 
-    fun printInputBonusNumbers() {
+    fun printInputBonusNumber() {
         lineBreak()
         println(Print.INPUT_BONUS_NUMBERS)
     }
@@ -40,23 +40,22 @@ class Output {
             val winningCount = result.value
             val bonusMessage = run {
                 if (winningResult == WinningResult.FIVE_BONUS) {
-                    Print.BONUS
+                    Print.BONUS.toString()
                 } else ""
             }
 
-            println(Print.MATCHING_NUMBER.format(
+            println(Print.MATCHING_NUMBER.toString().format(
                 winningResult.matchingCount,
                 bonusMessage,
-                winningResult.amount,winningCount))
+                winningResult.toString(),
+                winningCount))
         }
     }
 
     private fun printTotalReturn(totalReturn: Double) {
         val totalReturnRound = totalReturn.convertWithRound()
-        println(Print.TOTAL_RETURN.format(totalReturnRound))
+        println(Print.TOTAL_RETURN.toString().format(totalReturnRound))
     }
-
-    private fun Print.format(vararg args: Any) = this.toString().format(args)
 
     private fun lineBreak() = println()
 }
