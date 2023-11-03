@@ -30,12 +30,14 @@ fun main() {
     lottoPurchaseCount = amount / 1000
     println("\n" + lottoPurchaseCount + "개를 구매했습니다.")
 
-    val lottoPurchaseCounts = List(lottoPurchaseCount) { List(6) { 0 } }
+    val lottoPurchaseCounts = List(lottoPurchaseCount) { List(6) { 0 } }.toMutableList()
     for (i in 0 until lottoPurchaseCount){
         val randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
         //Lotto(randomNumbers)
+        lottoPurchaseCounts[i] = randomNumbers.sorted()
         println(randomNumbers)
     }
 
+    println(lottoPurchaseCounts)
     //println("List of lottoPurchaseCounts: $lottoPurchaseCounts")
 }
