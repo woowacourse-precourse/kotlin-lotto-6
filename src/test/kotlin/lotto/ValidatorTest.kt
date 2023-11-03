@@ -43,4 +43,22 @@ class ValidatorTest {
             }
         }
     }
+
+    @Test
+    @DisplayName("로또 구매 가격이 1000원 단위가 아니면 예외가 발생한다.")
+    fun validate1000UnitTest() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> {
+                validate1000Unit("1001")
+            }
+
+            assertThrows<IllegalArgumentException> {
+                validate1000Unit("2001")
+            }
+
+            assertThrows<IllegalArgumentException> {
+                validate1000Unit("10001")
+            }
+        }
+    }
 }
