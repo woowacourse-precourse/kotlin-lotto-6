@@ -1,6 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.model.LottoTicket
 import lotto.util.Validator.validate1000Unit
 import lotto.util.Validator.validateInteger
 import lotto.util.Validator.validateRange
@@ -25,4 +26,11 @@ fun getValidateUserInput(): Int {
 
 fun printPurchaseCount(purchaseCount: Int) {
     println("${purchaseCount}개를 구매했습니다.")
+}
+
+fun printLottoTicket(lottoTicket: LottoTicket) {
+    val ticket = lottoTicket.numbers
+    repeat(ticket.size) {
+        println(ticket.toString())
+    }
 }
