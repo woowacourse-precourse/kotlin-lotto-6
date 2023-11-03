@@ -2,5 +2,5 @@ package lotto
 
 fun main() {
     val cnt = LottoMatch().purchaseCheck()
-    println(cnt)
+    val lottoNumbers = LottoPick().randomLotto(cnt)
 }

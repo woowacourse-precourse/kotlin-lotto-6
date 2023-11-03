@@ -7,4 +7,7 @@ class LottoView {
     fun buyView(cnt: Int){
         println(cnt.toString() + "개를 구매했습니다.")
     }
+    fun numbersList(numbers: List<Int>){
+        println(numbers)
+    }
 }
