@@ -8,12 +8,14 @@ import lotto.model.Lotto
 import lotto.model.Lottos
 
 class LottoSupplier {
-    fun supplyLottos(count: Int) {
+    fun supplyLottos(count: Int): Lottos {
         val lottos = Lottos()
 
         repeat(count) {
             lottos.add(supplyLotto())
         }
+
+        return lottos
     }
 
     fun supplyLotto(): Lotto {
