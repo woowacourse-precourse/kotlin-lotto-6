@@ -1,4 +1,6 @@
-package lotto
+package lotto.model
+
+import lotto.util.NumberGenerator
 
 class Seller {
     fun sellLotto(amount: Int): List<Lotto> {

@@ -1,4 +1,9 @@
-package lotto
+package lotto.controller
+
+import lotto.view.Input
+import lotto.model.Lotto
+import lotto.model.Seller
+import lotto.model.WinningNumber
 
 class LottoGameController {
     private val seller = Seller()
@@ -12,7 +17,7 @@ class LottoGameController {
     }
 
     private fun printLotto(lottoPaper: List<Lotto>) {
-        println("\n${getLottoCount(lottoPaper)}${USER_LOTTO}")
+        println("\n${getLottoCount(lottoPaper)}$USER_LOTTO")
         lottoPaper.forEach {
             it.printNumbers()
         }
