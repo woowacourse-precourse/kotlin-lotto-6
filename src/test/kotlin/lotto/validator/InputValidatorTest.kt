@@ -1,6 +1,5 @@
 package lotto.validator
 
-import lotto.exception.InputException
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
@@ -23,7 +22,7 @@ class InputValidatorTest {
         // when & then
         assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { InputValidator.validateInputPurchaseAmount(input) }
-            .withMessage(InputException.STRING_BLANK.message)
+            .withMessage("[ERROR] 빈 값이 입력되었습니다.")
     }
 
     @ParameterizedTest
@@ -32,6 +31,6 @@ class InputValidatorTest {
         // when & then
         assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { InputValidator.validateInputPurchaseAmount(input) }
-            .withMessage(InputException.NOT_INTEGER.message)
+            .withMessage("[ERROR] 숫자를 입력해주세요.")
     }
 }
