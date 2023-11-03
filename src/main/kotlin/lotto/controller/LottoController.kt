@@ -5,6 +5,7 @@ import lotto.model.LottoTicket
 import lotto.util.LottoGenerator
 import lotto.view.InputView
 import lotto.view.OutputView
+import java.lang.IllegalArgumentException
 
 class LottoController(private val inputView: InputView, private val outputView: OutputView) {
     private val lottoGenerator = LottoGenerator()
@@ -28,8 +29,13 @@ class LottoController(private val inputView: InputView, private val outputView: 
     }
 
     private fun getPurchaseCount() {
-        val userInputPrice = inputView.getUserInput()
-        lottoPurchase = LottoPurchase(userInputPrice)
+        try {
+            val userInputPrice = inputView.getUserInput()
+            lottoPurchase = LottoPurchase(userInputPrice)
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            getPurchaseCount()
+        }
     }
 
     private fun publishLottoTicket() {
