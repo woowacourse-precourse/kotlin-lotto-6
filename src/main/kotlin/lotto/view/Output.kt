@@ -27,11 +27,11 @@ class Output {
     fun printAnswerCompare(answers:List<Int>,profit:Float) {
         println(Constants.COMPARE_ANSWER)
         println(Constants.THREE_DASH)
-        println(Constants.THREE_SAME+answers[0])
-        println(Constants.THREE_SAME+answers[0])
-        println(Constants.THREE_SAME+answers[0])
-        println(Constants.THREE_SAME+answers[0])
-        println(Constants.THREE_SAME+answers[0])
+        println(Constants.THREE_SAME+answers[0]+Constants.COUNT)
+        println(Constants.FOUR_SAME+answers[0]+Constants.COUNT)
+        println(Constants.FIVE_SAME+answers[0]+Constants.COUNT)
+        println(Constants.FIVE_WITH_BONUS_SAME+answers[0]+Constants.COUNT)
+        println(Constants.SIX_SAME+answers[0]+Constants.COUNT)
         println(Constants.TOTAL_PROFIT+profit+Constants.PERCENT)
     }
 }
