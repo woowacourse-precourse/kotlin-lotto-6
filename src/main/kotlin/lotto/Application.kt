@@ -2,7 +2,9 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 
 fun main() {
-    var amount = 0
+    var amount = 0 // 구입 금액
+    var lottoPurchaseCount = 0 // 로또 구매 장수
+
     while (true) {
         println("구입금액을 입력해주세요.")
         val purchaseAmount = Console.readLine()
@@ -23,5 +25,8 @@ fun main() {
             println(e.message)
         }
     }
+
+    lottoPurchaseCount = amount / 1000
+    println("\n" + lottoPurchaseCount + "개를 구매했습니다.")
 
 }
