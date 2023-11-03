@@ -2,6 +2,7 @@ package lotto
 
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import lotto.util.Validator.validateInteger
+import lotto.util.Validator.validateRange
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -35,6 +36,10 @@ class ValidatorTest {
 
             assertThrows<IllegalArgumentException> {
                 validateRange("0")
+            }
+
+            assertThrows<IllegalArgumentException> {
+                validateRange("${Int.MAX_VALUE.toLong() + 1}")
             }
         }
     }
