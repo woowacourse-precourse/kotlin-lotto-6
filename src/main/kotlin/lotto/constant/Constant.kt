@@ -3,6 +3,9 @@ package lotto.constant
 class Constant {
     companion object {
         const val PRICE_PER_LOTTO = 1000
+        const val INPUT_COUNT = 6
+        const val MIN_LOTTO_NUMBER = 1
+        const val MAX_LOTTO_NUMBER = 45
         const val INDEX_START = 1
         const val WINNING_RATE_FIRST_INDEX = 0
         const val WINNING_RATE_SECOND_INDEX = 1

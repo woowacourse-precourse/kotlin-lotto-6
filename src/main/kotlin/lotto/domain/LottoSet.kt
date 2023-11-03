@@ -8,10 +8,6 @@ object LottoSet {
         lottoSetList.add(lotto)
     }
 
-    fun countLotto(): Int {
-        return lottoSetList.size
-    }
-
     fun getLottoSet(): MutableList<Lotto> {
         return lottoSetList
     }

@@ -64,12 +64,13 @@ object Winning {
         }
     }
 
-    fun calculateEarningRate(): Double {
+    fun calculateEarningRate(lottoCount: Int): Double {
         var sum=0
         for(winningInfor in winningRateInfor) {
             sum += winningInfor.price
         }
-        var result = (Purchase.getLottoCountFromAmount() * Constant.PRICE_PER_LOTTO).toDouble() / sum.toDouble() * 100
+        if(sum==0) return 0.0
+        val result = (sum.toDouble()/(Constant.PRICE_PER_LOTTO * lottoCount)) * 100
         return round(result*10)/10
     }
 

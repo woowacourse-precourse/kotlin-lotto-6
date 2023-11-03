@@ -16,31 +16,25 @@ object Purchase {
     fun getLottoCountFromAmount(): Int {
         val amount = Input.inputInt()
         checkValidationAmount(amount)
-        return amount / Constant.PRICE_PER_LOTTO
+        return amount.toInt() / Constant.PRICE_PER_LOTTO
     }
 
-    private fun checkValidationAmount(amount: Int) {
-        if(amount % Constant.PRICE_PER_LOTTO != 0)
+    private fun checkValidationAmount(amount: String) {
+        if(!(amount.all { Character.isDigit(it) })) {
+            println(Exception.MESSAGE_EXCEPT_DIGIT)
+            throw IllegalArgumentException(Exception.MESSAGE_EXCEPT_DIGIT)
+        }
+        if(amount.toInt() % Constant.PRICE_PER_LOTTO != 0) {
+            println(Exception.MESSAGE_EXCEPT_AMOUNT)
             throw IllegalArgumentException(Exception.MESSAGE_EXCEPT_AMOUNT)
-    }
-
-    fun getLottoNumber(lottoCount: Int) {
-        while(LottoSet.countLotto() <= lottoCount) {
-            val lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6)
-            addLottoNumber(LottoSet, lottoNumber)
         }
     }
 
-    private fun addLottoNumber(lottoSet: LottoSet, lottoNumber: List<Int>) {
-        if(checkValidationLottoNumber(lottoNumber))
-            lottoSet.addLotto(Lotto(lottoNumber.sorted()))
+    fun getLottoNumber(lottoCount: Int) {
+        for(i in Constant.INDEX_START ..lottoCount) {
+            val lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+            LottoSet.addLotto(Lotto(lottoNumber.sorted()))
+        }
     }
-
-    private fun checkValidationLottoNumber(lottoNumber: List<Int>): Boolean {
-        if(lottoNumber.distinct().size != lottoNumber.size)
-            return false
-        return true
-    }
-
 
 }

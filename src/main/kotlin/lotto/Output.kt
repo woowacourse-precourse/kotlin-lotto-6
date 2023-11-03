@@ -3,11 +3,11 @@ package lotto
 import lotto.constant.OutputMessage
 import lotto.domain.LottoSet
 import lotto.domain.Winning
+import lotto.constant.OutputMessage.Companion.MESSAGE_PER_COUNT
 
 object Output {
     fun printLottoCount(lottoCount: Int) {
-        println("")
-        println(lottoCount.toString() + OutputMessage.MESSAGE_PRINT_LOTTO_COUNT)
+        println(OutputMessage.CHANGE_LINE + lottoCount.toString() + OutputMessage.MESSAGE_PRINT_LOTTO_COUNT)
     }
     fun printLottoNumber() {
 
@@ -20,17 +20,15 @@ object Output {
 
     fun printWinningRate() {
         val winningRateCount = Winning.getWinningRateCount()
-        println("")
-        println("당첨 통계")
-        println("---")
-        println("3개 일치 (5,000원) - "+winningRateCount[4].toString())
-        println("4개 일치 (50,000원) - "+winningRateCount[3].toString())
-        println("5개 일치 (1,500,000원) - "+winningRateCount[2].toString())
-        println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+winningRateCount[1].toString())
-        println("6개 일치 (2,000,000,000원) - "+winningRateCount[0].toString())
+        println(OutputMessage.MESSAGE_WINNING_RATE_START)
+        println(OutputMessage.MESSAGE_WINNING_RATE_FIFTH + winningRateCount[4].toString() + MESSAGE_PER_COUNT)
+        println(OutputMessage.MESSAGE_WINNING_RATE_FOURTH + winningRateCount[3].toString() + MESSAGE_PER_COUNT)
+        println(OutputMessage.MESSAGE_WINNING_RATE_THIRD + winningRateCount[2].toString() + MESSAGE_PER_COUNT)
+        println(OutputMessage.MESSAGE_WINNING_RATE_SECOND + winningRateCount[1].toString() + MESSAGE_PER_COUNT)
+        println(OutputMessage.MESSAGE_WINNING_RATE_FIRST + winningRateCount[0].toString() + MESSAGE_PER_COUNT)
     }
 
     fun printEarningRate(earningRate: Double) {
-        println("총 수익률은 " + earningRate.toString() + "%입니다.")
+        println(OutputMessage.MESSAGE_EARNING_RATE_PREFIX + earningRate.toString() + OutputMessage.MESSAGE_EARNING_RATE_POSTFIX)
     }
 }

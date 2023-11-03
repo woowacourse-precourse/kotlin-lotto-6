@@ -1,21 +1,28 @@
 package lotto.domain
 
 import lotto.Input
-import net.bytebuddy.pool.TypePool.Resolution.Illegal
+import lotto.constant.Exception
+import lotto.constant.Constant
+import lotto.constant.OutputMessage
 
 object WinningNumber {
 
+    private var winningIntNumbers = mutableListOf<Int>()
+
     init {
-        println("")
-        println("당첨 번호를 입력해 주세요.")
+        println(OutputMessage.MESSAGE_INPUT_WINNING_NUMBER)
     }
 
     fun getWinningNumbers(): MutableList<Int> {
+        return winningIntNumbers
+    }
+
+    fun inputWinningNumbers() {
         //list<String>
         val winningNumbers = Input.inputWinningNumber()
-        val winningIntNumbers = changeStringToIntNumber(winningNumbers)
-        checkValidationWinningNumber(winningIntNumbers)
-        return winningIntNumbers
+        val winningIntNumbersBeforeCheck = changeStringToIntNumber(winningNumbers)
+        checkValidationWinningNumber(winningIntNumbersBeforeCheck)
+        winningIntNumbers = winningIntNumbersBeforeCheck
     }
 
     private fun changeStringToIntNumber(winningNumbers: List<String>): MutableList<Int> {
@@ -33,21 +40,20 @@ object WinningNumber {
     }
 
     private fun checkLengthWinningNumber(winningNumbers: List<Int>) {
-        if(winningNumbers.size != 6)
-            throw IllegalArgumentException("오류")
+        if(winningNumbers.size != Constant.INPUT_COUNT)
+            throw IllegalArgumentException(Exception.MESSAGE_EXCEPT_LENGTH_WINNING_NUMBER)
     }
 
     private fun checkDuplicateWinningNumber(winningNumbers: List<Int>) {
         if(winningNumbers.distinct().size != winningNumbers.size)
-            throw IllegalArgumentException("오류")
+            throw IllegalArgumentException(Exception.MESSAGE_EXCEPT_DUPLICATE)
     }
 
     private fun checkRangeWinningNumber(winningNumbers: List<Int>) {
-        for(number in winningNumbers) {
-            val winningNumber = number.toInt()
-            if(winningNumber in 1..45)
+        for(winningNumber in winningNumbers) {
+            if(winningNumber in Constant.MIN_LOTTO_NUMBER..Constant.MAX_LOTTO_NUMBER)
                 continue
-            throw IllegalArgumentException("오류")
+            throw IllegalArgumentException(Exception.MESSAGE_EXCEPT_RANGE)
         }
     }
 }
