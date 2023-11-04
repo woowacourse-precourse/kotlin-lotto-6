@@ -1,6 +1,6 @@
 package lotto
 
-private val lottoNumberRange = 1..45
+val lottoNumberRange = 1..45
 
 fun <T> List<T>.isUnique(): Boolean {
     val uniqueItems = this.toSet()
