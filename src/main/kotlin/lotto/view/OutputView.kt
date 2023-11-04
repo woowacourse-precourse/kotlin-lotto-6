@@ -9,4 +9,7 @@ class OutputView {
 
     fun printLottoQuantity(quantity: Int) = println(LOTTO_QUANTITY_MESSAGE.format(quantity))
 
+    fun printLottoNumbers(lottoNumbers: List<Lotto>) =
+        lottoNumbers.forEach { lottoNumber -> println(lottoNumber.getNumbers()) }
+
 }
