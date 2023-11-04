@@ -28,9 +28,7 @@ class ValidateSplit {
     }
 
     private fun validateDuplicatedNumbers(myNumbers: List<String>) {
-        require(myNumbers.toSet().size == myNumbers.size) {
-            "${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_DUPLICATED_MESSAGE}"
-        }
+
     }
 
 }
