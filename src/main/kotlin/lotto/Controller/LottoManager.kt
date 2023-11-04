@@ -15,16 +15,21 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         outputView.showInputMyNumbersMessage()
 
         val numbers = inputView.inputMyNumbers()
-        val lotto = Lotto(splitMyNumbers(numbers))
+        val lottoNumbers = splitMyNumbers(numbers)
+
+        val lotto = Lotto(changeStringToInteger(lottoNumbers))
+    }
+
+    private fun changeStringToInteger(numbers: List<String>) : List<Int> {
+        return numbers.map { it.toInt() }
     }
 
     fun calculateTicket(buyPrice: Int): Int {
         return buyPrice / Constants.THOUSAND_PRICE
     }
 
-    fun splitMyNumbers(myNumbers: String): List<Int> {
+    fun splitMyNumbers(myNumbers: String): List<String> {
         val validateSplit = ValidateSplit()
-        validateSplit.validateSplitMyNumbers(myNumbers.split(Constants.DELIMITER))
-
+        return validateSplit.validateSplitMyNumbers(myNumbers.split(Constants.DELIMITER))
     }
 }
