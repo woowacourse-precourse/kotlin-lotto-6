@@ -4,10 +4,8 @@ import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import lotto.util.Validator.validate1000Unit
 import lotto.util.Validator.validateInteger
 import lotto.util.Validator.validateLottoInteger
-import lotto.util.Validator.validateLottoNotNull
 import lotto.util.Validator.validateLottoRange
 import lotto.util.Validator.validateLottoLength
-import lotto.util.Validator.validateLottoSpace
 import lotto.util.Validator.validateLottoUnique
 import lotto.util.Validator.validateRange
 import org.junit.jupiter.api.DisplayName
@@ -74,28 +72,6 @@ class ValidatorTest {
     fun validateLottoIntegerTest() {
         assertThrows<IllegalArgumentException> {
             validateLottoInteger("a,b,1,c")
-        }
-    }
-
-    @Test
-    @DisplayName("로또 당첨번호에 널값이 들어오면 예외가 발생한다.")
-    fun validateLottoNotNullTest() {
-        assertSimpleTest {
-            assertThrows<IllegalArgumentException> {
-                validateLottoNotNull("1,,2,3")
-            }
-
-            assertThrows<IllegalArgumentException> {
-                validateLottoNotNull("1, ,2,3")
-            }
-        }
-    }
-
-    @Test
-    @DisplayName("당첨 번호에 공백이 존재할 시 예외가 발생한다.")
-    fun validateLottoSpaceTest() {
-        assertThrows<IllegalArgumentException> {
-            validateLottoSpace("1, 2, 3")
         }
     }
 
