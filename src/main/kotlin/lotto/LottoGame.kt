@@ -15,7 +15,6 @@ class LottoGame {
     companion object {
         private val inputView = InputView()
         private val outputView = OutputView()
-
     }
 
     fun start() {
@@ -26,12 +25,12 @@ class LottoGame {
 
         printPurchaseLottoResult(purchaseNumber, lottoList)
 
-        val winningNumbers = getWinningNumberList()
-        val bonusNumber = getBonusNumber()
+        val winningNumberList = getWinningNumberList()
+        val bonusNumber = getBonusNumber(winningNumberList)
 
         outputView.printWinningStatisticsMention()
 
-        val winningList : HashMap<Int, Int> = getWinningList(lottoList, winningNumbers, bonusNumber)
+        val winningList: HashMap<Int, Int> = getWinningList(lottoList, winningNumberList, bonusNumber)
 
         outputView.printWinningStatics(winningList)
 
@@ -67,9 +66,9 @@ class LottoGame {
         return inputView.inputWinningNumberList()
     }
 
-    fun getBonusNumber(): Int {
+    fun getBonusNumber(winningNumberList: List<Int>): Int {
         outputView.printBonusNumberInputMention()
-        return inputView.inputBonusNumber()
+        return inputView.inputBonusNumber(winningNumberList)
     }
 
     fun getWinningList(lottoList: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): HashMap<Int, Int> {
@@ -84,7 +83,7 @@ class LottoGame {
         return tmpWinningList
     }
 
-    fun getTotalPrice(winningList : HashMap<Int, Int>): Double {
+    fun getTotalPrice(winningList: HashMap<Int, Int>): Double {
         var totalWinningPrice = 0.0
         for (i in 1..<6) {
             totalWinningPrice += getWinningPrice(i).price * winningList[i]!!
