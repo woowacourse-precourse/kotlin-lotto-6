@@ -46,4 +46,10 @@ class LottoPick {
         }
         return pickList
     }
+
+    fun bonusPickNumber(): Int {
+        LottoView().bonusView()
+        val bonusNumber = Console.readLine()
+        return bonusNumber.toInt()
+    }
 }

@@ -14,4 +14,8 @@ class LottoView {
     fun pickView(){
         println("당첨 번호를 입력해주세요.")
     }
+
+    fun bonusView(){
+        println("보너스 번호를 입력해주세요.")
+    }
 }
