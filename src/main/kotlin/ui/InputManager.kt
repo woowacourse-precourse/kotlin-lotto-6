@@ -21,4 +21,13 @@ class InputManager(private val validationManager: ValidationManager = Validation
             jackpotNumbers(errorMessage)
         }
     }
+
+    fun bonusNumber(errorMessage: () -> Unit): Int {
+        return try {
+            validationManager.validBonusNumber(Console.readLine().toInt())
+        } catch (exception: IllegalArgumentException) {
+            errorMessage()
+            bonusNumber(errorMessage)
+        }
+    }
 }
