@@ -13,12 +13,14 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         val buyPrice = inputView.inputBuyPrice()
         val ticket = calculateTicket(buyPrice)
         outputView.showBuyTicketMessage(ticket)
+
         reapeatLottoNumbers(ticket)
         outputView.showInputMyNumbersMessage()
 
-        val numbers = inputView.inputMyNumbers()
-        val lottoNumbers = splitMyNumbers(numbers)
-        Lotto(changeStringToInteger(lottoNumbers))
+        val numbers = splitMyNumbers(inputView.inputMyNumbers())
+
+        val lottoNumbers = changeStringToInteger(numbers)
+        val lotto = Lotto(lottoNumbers)
 
     }
 
