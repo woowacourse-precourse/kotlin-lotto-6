@@ -7,7 +7,7 @@
 - [ ] 보너스 번호 메시지를 출력하는 기능 - `printBonusNumber()`#OutputView
 - [ ] 로또 당첨 결과를 출력하는 기능 - `printLottoWinningResults()`#OutputView
 - [x] 로또 구매 금액 입력을 요청하는 기능 - `inputPurchaseAmount()`#InputView
-- [ ] 당첨 번호 입력을 요청하는 기능 - `inputWinningNumber()`#InputView
+- [x] 당첨 번호 입력을 요청하는 기능 - `inputWinningNumber()`#InputView
 - [ ] 보너스 번호 입력을 요청하는 기 - `inputBonusNumber()`#InputView
 - [ ] 로또 게임을 실행하는 기능 - `run()`#LottoGameController
 - [ ] 로또 게임 실행 및 결과를 계산하는 기능 - `playLottoGame()`#LottoGameController
