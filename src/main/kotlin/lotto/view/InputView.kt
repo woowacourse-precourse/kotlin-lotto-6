@@ -35,4 +35,19 @@ class InputView {
         }
         return luckyNumbers.split(",").map { it.toInt() }
     }
+    fun inputBonusNumber(luckyNumbers : List<Int>) : Int{
+        var validInput = false
+        var bonusNumber = ""
+        while(!validInput){
+            try{
+                bonusNumber = Console.readLine()
+                Exception.validateInputBonusNumber(bonusNumber, luckyNumbers)
+                validInput = true
+            } catch(e : IllegalArgumentException){
+                println(e.message)
+                validInput = false
+            }
+        }
+        return bonusNumber.toInt()
+    }
 }
