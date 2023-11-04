@@ -43,4 +43,9 @@ class OutputView {
         println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningRanks[2]}개")
         println("6개 일치 (2,000,000,000원) - ${winningRanks[1]}개")
     }
+
+    fun printRateOfReturn(rateOfReturn: Double) {
+        val roundedRateOfReturn = Math.round(rateOfReturn * 100.0) / 100.0
+        println("총 수익률은 ${roundedRateOfReturn}%입니다.")
+    }
 }
