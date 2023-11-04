@@ -52,7 +52,7 @@ class View(
         printer.print(winnings = results, profitPercentage = profitPercentage)
     }
 
-    fun run() {
+    private fun input(): Pair<Purchase, WinningNumber> {
         printer.print(Message.InputMoneyAmount)
         val purchase = inputPurchase()
         printer.print(purchase)
@@ -65,10 +65,11 @@ class View(
         val bonusNumber = inputBonusWinningNumber(normalWinningNumbers)
         printer.printEmptyLine()
 
-        val winningNumber = WinningNumber(
-            normalNumbers = normalWinningNumbers,
-            bonusNumber = bonusNumber
-        )
+        return purchase to WinningNumber(normalWinningNumbers, bonusNumber)
+    }
+
+    fun run() {
+        val (purchase: Purchase, winningNumber: WinningNumber) = input()
         printWinningResult(purchase, winningNumber)
     }
 
