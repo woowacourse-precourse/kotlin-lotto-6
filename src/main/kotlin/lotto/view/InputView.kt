@@ -2,6 +2,7 @@ package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.model.Lotto
+import lotto.utils.Exceptions.inputBonusNumberException
 import lotto.utils.Exceptions.inputPurchaseAmountException
 import lotto.utils.Exceptions.inputWinningNumberException
 
@@ -24,4 +25,11 @@ class InputView {
         }
     }
 
+    fun inputBonusNumber(winningNumber: Lotto): Int {
+        while (true) {
+            inputBonusNumberException(winningNumber = winningNumber, bonusNumber = Console.readLine().trim())
+                .onSuccess { return it }
+                .onFailure { println(it) }
+        }
+    }
 }
