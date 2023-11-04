@@ -21,11 +21,11 @@ class WinResult(private val user : User, private val winningLotto : WinningLotto
         return Place.decidePlace(matchNumbers,matchBonus)
     }
 
-    fun calculateEarningRate(price : Int) : Double{
+    fun calculateEarningRate() : Double{
         var earnMoney = 0
         for(place in _placeResult){
             earnMoney += place.key.price * place.value
         }
-        return (earnMoney / price.toDouble()) * 100
+        return (earnMoney / user.price.toDouble()) * 100
     }
 }

@@ -24,6 +24,6 @@ class LottoController(private val inputView: InputView = InputView(),private val
         val winResult = WinResult(user,winningLotto)
         winResult.calculateResult()
         outPutView.printWinStatisticsResult(winResult.placeResult)
-        outPutView.printTotalEarningRate(winResult.calculateEarningRate(user.price))
+        outPutView.printTotalEarningRate(winResult.calculateEarningRate())
     }
 }
