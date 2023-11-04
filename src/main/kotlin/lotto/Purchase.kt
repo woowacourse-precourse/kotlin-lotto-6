@@ -13,11 +13,15 @@ class Purchase(private val amountWon: Int) {
         require(amountWon % AMOUNT_UNIT_WON == 0) { Message.InvalidPurchaseAmountError }
 
         val count = amountWon / AMOUNT_UNIT_WON
+        this.lottos = createRandomLottos(count)
+    }
+
+    private fun createRandomLottos(count: Int): List<Lotto> {
         val lottos = mutableListOf<Lotto>()
         repeat(count) {
             lottos += Lotto.random()
         }
-        this.lottos = lottos
+        return lottos
     }
 
     fun check(winningNumber: WinningNumber): WinningStatics {
