@@ -2,7 +2,7 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 
-class LottoMatch {
+class LottoPurchase {
     fun validatePurchase(cost: String) : Boolean {
         if(cost.isBlank() || !cost.all{it.isDigit()}){
             throw IllegalArgumentException("[Error] 잘못된 숫자 입력입니다.")
@@ -10,7 +10,7 @@ class LottoMatch {
         return true
     }
 
-    fun checkPurchase(cost: String) : Boolean{
+    private fun checkPurchase(cost: String) : Boolean{
         return try {
             validatePurchase(cost)
             true
@@ -20,7 +20,7 @@ class LottoMatch {
         }
     }
 
-    fun purchaseValid(): String {
+    private fun purchaseValid(): String {
         var validInput = false
         var cost:String
         do{
