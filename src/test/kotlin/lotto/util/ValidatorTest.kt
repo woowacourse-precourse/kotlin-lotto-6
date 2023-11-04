@@ -3,6 +3,7 @@ package lotto.util
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import lotto.util.Validator.validate1000Unit
 import lotto.util.Validator.validateInteger
+import lotto.util.Validator.validateLottoInteger
 import lotto.util.Validator.validateRange
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -65,7 +66,7 @@ class ValidatorTest {
 
     @Test
     @DisplayName("로또 당첨 번호에 숫자가 아닌 값이 들어오면 예외가 발생한다.")
-    fun validateIntegerList() {
+    fun validateLottoIntegerTest() {
         assertThrows<IllegalArgumentException> {
             validateLottoInteger("a,b,1,c")
         }

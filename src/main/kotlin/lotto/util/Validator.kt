@@ -13,4 +13,11 @@ object Validator {
         val number = input.toInt()
         require(number % 1000 == 0) { Exception.INVALID_1000_UNIT.getMessage() }
     }
+
+    fun validateLottoInteger(input: String) {
+        val validation = input.chunked(1)
+        validation.forEach {
+            require(it.toIntOrNull() != null) { "당첨번호가 정수가 아닙니다." }
+        }
+    }
 }
