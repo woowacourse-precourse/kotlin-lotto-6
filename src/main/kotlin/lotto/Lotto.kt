@@ -6,5 +6,9 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.all { it in 1..45}) { "1 ~ 45 범위 밖의 숫자가 존재합니다." }
     }
 
+    fun isNumRepeated(numbers: List<Int>): Boolean {
+        return numbers.size != numbers.distinct().count();
+    }
+
     // TODO: 추가 기능 구현
 }
