@@ -1,21 +1,20 @@
 package lotto.domain
 
-import camp.nextstep.edu.missionutils.Randoms
+import lotto.constants.isDuplicateErrorMessage
 
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
+        isDuplicate()
     }
     fun sortNumbers(): List<Int> {
-        return numbers
+        return numbers.sorted()
     }
 
-    fun printNumbers(): String {
-        return ""
-    }
-
-    fun isDuplicate(){
-
+   fun isDuplicate(){
+        if(numbers.distinct().size!=6){
+            throw IllegalArgumentException(isDuplicateErrorMessage)
+        }
     }
 
 }

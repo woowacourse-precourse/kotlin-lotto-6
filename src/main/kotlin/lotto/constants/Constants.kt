@@ -7,3 +7,4 @@ const val isNotIntErrorMessage = "[ERROR] 숫자가 아닌 값을 입력하였�
 const val isBlankErrorMessage = "[ERROR] 공백을 입력할 수 없습니다."
 const val indivisibleBy1000ErrorMessage = "[ERROR] 1000으로 나눌 수 없습니다."
 const val isNotSize6ErrorMessage = "[ERROR] 1000으로 나눌 수 없습니다."
+const val isDuplicateErrorMessage = "[ERROR] 중복된 숫자가 있습니다."

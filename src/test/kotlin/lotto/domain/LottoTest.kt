@@ -1,8 +1,8 @@
 package lotto.domain
 
-import lotto.domain.Lotto
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.assertj.core.api.Assertions.assertThat
 
 
 class LottoTest {
@@ -24,16 +24,13 @@ class LottoTest {
     // 아래에 추가 테스트 작성 가능
     @Test
     fun `sortNumbers 메서드 사용시 정렬된 오름차순 정렬된 int list를 반환`() {
-        assertThrows<IllegalArgumentException> {
-            Lotto(listOf(1, 2, 3, 4, 5, 6, 7))
-        }
+        //given
+        val lotto = Lotto(listOf(1, 5, 3, 4, 6, 2))
+
+        //then
+        assertThat(lotto.sortNumbers()).isEqualTo(listOf(1, 2, 3, 4, 5, 6))
     }
-    @Test
-    fun `printNumbers 메서드 사용시 양쪽에 bracket을 포함해 출력`() {
-        assertThrows<IllegalArgumentException> {
-            Lotto(listOf(1, 2, 3, 4, 5, 6, 7))
-        }
-    }
+
     @Test
     fun `isDuplicate 메서드 사용시 중복된 숫자가 있다면 예외 발생`() {
         assertThrows<IllegalArgumentException> {
