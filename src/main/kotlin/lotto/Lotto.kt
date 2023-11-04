@@ -3,12 +3,15 @@ package lotto
 class Lotto(private val numbers: List<Int>) {
     init {
         require(isValidNumberCount()) { INVALID_NUMBER_COUNT_ERROR_MESSAGE }
-        require(isValidRangeNumbers()) { INVALID_RANGE_NUMBER }
+        require(isValidRangeNumber()) { INVALID_RANGE_NUMBER }
+        require(isValidDistinctNumber()) { INVALID_DISTINCT_NUMBER }
     }
 
     private fun isValidNumberCount() = numbers.size == NUMBER_COUNT
 
-    private fun isValidRangeNumbers() = numbers.all { it in MIN_NUMBER..MAX_NUMBER }
+    private fun isValidRangeNumber() = numbers.all { it in MIN_NUMBER..MAX_NUMBER }
+
+    private fun isValidDistinctNumber() = numbers.size == numbers.distinct().size
 
     companion object {
         const val NUMBER_COUNT = 6
@@ -17,5 +20,7 @@ class Lotto(private val numbers: List<Int>) {
         const val MIN_NUMBER = 1
         const val MAX_NUMBER = 45
         const val INVALID_RANGE_NUMBER = "로또 번호의 범위가 ${MIN_NUMBER}이상 ${MAX_NUMBER}이하가 아닙니다."
+
+        const val INVALID_DISTINCT_NUMBER = "중복된 로또 번호가 있습니다."
     }
 }
