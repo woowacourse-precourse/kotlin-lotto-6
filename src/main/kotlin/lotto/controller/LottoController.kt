@@ -20,5 +20,10 @@ class LottoController(private val inputView: InputView = InputView(),private val
         winningLotto.setLuckyNumbers(inputView.inputLuckyNumber())
         outPutView.printInputBonusNumber()
         winningLotto.setBonusNumber(inputView.inputBonusNumber(winningLotto.luckyNumbers))
+        outPutView.printWinStatisticsMessage()
+        val winResult = WinResult(user,winningLotto)
+        winResult.calculateResult()
+        outPutView.printWinStatisticsResult(winResult.placeResult)
+
     }
 }
