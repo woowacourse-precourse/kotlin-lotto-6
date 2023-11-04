@@ -6,4 +6,8 @@ object OutputUtil {
     fun printInputMoney() {
         println(MESSAGE_INPUT_MONEY)
     }
+
+    fun printExceptionMessage(message: String) {
+        println("[ERROR] $message")
+    }
 }

@@ -104,7 +104,7 @@
   🧐 생각한 방법 : InputUtil 내부에 IllegalArgumentException을 발생시키고, OutputUtil을 통해 에러 메시지를 출력한다.
 
       () InputUtil 각 메서드에 예외처리를 한다.
-      () OutputUtil 메서드에 예외를 출력하는 메서드를 생성한다.
+      (완료) OutputUtil 메서드에 예외를 출력하는 메서드를 생성한다.
 
 <hr />
 
