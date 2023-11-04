@@ -1,10 +1,10 @@
 package lotto.model
 
 import camp.nextstep.edu.missionutils.Randoms
-import lotto.constants.Lotto.LOTTO_PRICE
-import lotto.constants.Lotto.LOTTO_SIZE
-import lotto.constants.Lotto.MAXIMUM_NUMBER
-import lotto.constants.Lotto.MINIMUM_NUMBER
+import lotto.constants.LottoConstants.LOTTO_PRICE
+import lotto.constants.LottoConstants.LOTTO_SIZE
+import lotto.constants.LottoConstants.MAXIMUM_NUMBER
+import lotto.constants.LottoConstants.MINIMUM_NUMBER
 
 object LottoService {
     fun buyLotto(money: Int): List<List<Int>> =

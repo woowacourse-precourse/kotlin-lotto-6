@@ -1,6 +1,6 @@
 package lotto.constants
 
-object Lotto {
+object LottoConstants {
     const val MINIMUM_NUMBER = 1
     const val MAXIMUM_NUMBER = 45
     const val LOTTO_PRICE = 1000
