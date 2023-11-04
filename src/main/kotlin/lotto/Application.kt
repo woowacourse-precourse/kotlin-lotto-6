@@ -10,8 +10,9 @@ fun main() {
 //    val amount = inputAmountFromUser(user)
 //    println(amount)
 
-    val winningNumbers = inputWinningNumbersFromUser(user)
-    println(winningNumbers)
+//    val winningNumbers = inputWinningNumbersFromUser(user)
+//    println(winningNumbers)
+    user.inputBonusNumber()
 }
 
 fun inputAmountFromUser(user: User): Int {

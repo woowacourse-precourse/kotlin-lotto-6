@@ -3,11 +3,14 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 
 class User {
-    private var _amount: Int = 0
+    private var _amount = 0
     val amount get() = _amount
 
-    private var _winningNumbers: MutableList<Int> = mutableListOf()
-    val winningNumbers: List<Int> get() = _winningNumbers
+    private var _winningNumbers = mutableListOf<Int>()
+    val winningNumbers get() = _winningNumbers.sorted().toList()
+
+    private var _bonusNumber = 0
+    val bonusNumber get() = _bonusNumber
 
     fun inputAmount() {
         val input = Console.readLine()
@@ -27,15 +30,24 @@ class User {
     private fun setWinningNumbers(inputs: List<String>) {
         val trimmedInputs = inputs.map { it.trim() }
         trimmedInputs.forEach {
-            require(isValidWinningNumber(it)) { INVALID_WINNING_NUMBER_ERROR_MESSAGE }
+            require(isValidNumber(it)) { INVALID_NUMBER_ERROR_MESSAGE }
         }
 
         val numbers = trimmedInputs.map { it.toInt() }
-        require(isValidNumberCount(numbers)) { INVALID_NUMBER_COUNT_ERROR_MESSAGE }
+        require(isValidWinningNumberCount(numbers)) { INVALID_WINNING_NUMBER_COUNT_ERROR_MESSAGE }
         require(isValidRangeNumber(numbers)) { INVALID_RANGE_NUMBER_ERROR_MESSAGE }
         require(isValidDistinctNumber(numbers)) { INVALID_DISTINCT_NUMBER_ERROR_MESSAGE }
 
         _winningNumbers.addAll(numbers)
+    }
+
+    fun inputBonusNumber() {
+        val input = Console.readLine()
+        setBonusNumber(input.trim())
+    }
+
+    private fun setBonusNumber(input: String) {
+        require(isValidNumber(input)) { INVALID_NUMBER_ERROR_MESSAGE }
     }
 
     private fun isValidAmount(input: String) =
@@ -47,28 +59,29 @@ class User {
 
     private fun isAmountInUnit(amount: Int) = amount >= AMOUNT_UNIT && amount % AMOUNT_UNIT == 0
 
-    private fun isValidWinningNumber(input: String) = isNotEmpty(input) && isInputDigitsOnly(input)
+    private fun isValidNumber(input: String) = isNotEmpty(input) && isInputDigitsOnly(input)
 
-    private fun isValidNumberCount(numbers: List<Int>) = numbers.size == NUMBER_COUNT
+    private fun isValidWinningNumberCount(numbers: List<Int>) = numbers.size == WINNING_NUMBER_COUNT
 
     private fun isValidRangeNumber(numbers: List<Int>) = numbers.all { it in Lotto.MIN_NUMBER..Lotto.MAX_NUMBER }
 
     private fun isValidDistinctNumber(numbers: List<Int>) = numbers.size == numbers.distinct().size
+
 
     companion object {
         const val AMOUNT_UNIT = 1000
         const val INVALID_AMOUNT_ERROR_MESSAGE = "금액은 $AMOUNT_UNIT 단위의 숫자만 입력이 가능합니다."
 
         const val SEPARATOR = ","
-        const val INVALID_WINNING_NUMBER_ERROR_MESSAGE = "당첨 번호는 숫자로 입력해야 합니다."
+        const val INVALID_NUMBER_ERROR_MESSAGE = "번호는 숫자로 입력해야 합니다."
 
-        const val NUMBER_COUNT = 6
-        const val INVALID_NUMBER_COUNT_ERROR_MESSAGE = "당첨 번호의 개수가 ${NUMBER_COUNT}개가 아닙니다."
+        const val WINNING_NUMBER_COUNT = 6
+        const val INVALID_WINNING_NUMBER_COUNT_ERROR_MESSAGE = "당첨 번호의 개수가 ${WINNING_NUMBER_COUNT}개가 아닙니다."
 
         const val MIN_NUMBER = 1
         const val MAX_NUMBER = 45
-        const val INVALID_RANGE_NUMBER_ERROR_MESSAGE = "당첨 번호의 범위가 ${MIN_NUMBER}이상 ${MAX_NUMBER}이하가 아닙니다."
+        const val INVALID_RANGE_NUMBER_ERROR_MESSAGE = "번호의 범위가 ${MIN_NUMBER}이상 ${MAX_NUMBER}이하가 아닙니다."
 
-        const val INVALID_DISTINCT_NUMBER_ERROR_MESSAGE = "중복된 당첨 번호가 있습니다."
+        const val INVALID_DISTINCT_NUMBER_ERROR_MESSAGE = "중복된 번호가 있습니다."
     }
 }
