@@ -1,0 +1,11 @@
+package lotto.domain
+
+class Consumer (Money : Int) {
+    private val myManager = LottoManager()
+
+    fun purchaseLotto(numberTimes : Int){
+        for (i in 1..numberTimes){
+            myManager.generateLotto()
+        }
+    }
+}
