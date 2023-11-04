@@ -14,6 +14,7 @@ class LottoGame {
         inputMoney = inputManager.getInputMoney().toInt()
         setLottos()
         outputView.printNumberOfLottos(lottos)
+        outputView.printLottoNumbers(lottos)
     }
 
     private fun setLottos() {
