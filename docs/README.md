@@ -13,14 +13,15 @@
 
 ### 당첨 번호 - WinningNumber O
 - [x] 당첨 번호 getter - getWinningNumbers() O
+- [x] 보너스 번호 getter - getBonusNumber() O
 
 ### 자신의 로또 번호 생성 - NumberGenerator
 - [x] 랜덤한 숫자 생성 - generateNumbers() O
 
-### 입력
+### 입력 - Input
 - [x] 로또 구입 금액 입력 - inputMoney() O
 - [x] 당첨 로또 번호 입력 - inputWinningNumber() O
-- [x] 보너스 번호 입력
+- [x] 보너스 번호 입력 - inputBonusNumber() O
 
 ### 수익률
 - [x] 수익률 비교

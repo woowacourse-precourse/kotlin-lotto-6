@@ -10,7 +10,8 @@ class LottoGameController {
     private val input = Input()
 
     fun startLottoGame() {
-        val lottoPapers = seller.sellLotto(input.inputMoney())
+        val money = input.inputMoney()
+        val lottoPapers = seller.sellLotto(money)
         printLotto(lottoPapers)
 
         val winningNumber = createWinningNumber()
@@ -23,7 +24,7 @@ class LottoGameController {
         }
     }
 
-    private fun createWinningNumber(): WinningNumber = WinningNumber(input.inputWinningNumber())
+    private fun createWinningNumber(): WinningNumber = WinningNumber(input.inputWinningNumber(), input.inputBonusNumber())
 
     companion object {
         private var USER_LOTTO = "개를 구매했습니다."
