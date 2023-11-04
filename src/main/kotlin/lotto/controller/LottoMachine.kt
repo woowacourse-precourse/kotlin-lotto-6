@@ -11,9 +11,10 @@ class LottoMachine {
         val userLotto = purchaseNumberLotto(count)
         val answers = userAnswer()
         val bonus = userBonus(answers)
-        var jackpot = Jackpot().discriminate(answers,bonus,userLotto)
 
-
+        val jackpot = Jackpot().discriminate(answers,bonus,userLotto)
+        val profit = Profit().calculateProfit(money,jackpot)
+        Output().printAnswerCompare()
 
     }
     fun userBonus(answers: List<Int>):Int{
