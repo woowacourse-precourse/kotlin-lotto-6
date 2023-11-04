@@ -10,7 +10,7 @@ class LottoPick {
     }
     fun randomLotto(cnt: Int):MutableList<List<Int>>{
         val lottoList: MutableList<List<Int>> = mutableListOf()
-        for(i in 0 until cnt){
+        (0 until cnt).forEach{
             val numbers = randomNumber()
             lottoList.add(numbers)
             LottoView().numbersList(numbers)
