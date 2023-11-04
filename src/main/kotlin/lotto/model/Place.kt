@@ -1,5 +1,16 @@
 package lotto.model
 
-enum class Place(private val correct: Int, private val bonus: Boolean) {
-    FIRST(6, false), SECOND(5, true), THIRD(5, false), FOURTH(4, false), FIFTH(3, false)
+sealed class Place(val correct: Int, val price: Int, val bonus: Boolean) {
+    data object First : Place(6, 2000000000, false)
+
+    data object Second : Place(5, 30000000, true)
+
+    data object Third : Place(5, 1500000, false)
+
+    data object Fourth : Place(4, 50000, false)
+
+    data object Fifth : Place(3, 5000, false)
+
+    data object NonPlace : Place(2, 0, false)
+
 }
