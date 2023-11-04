@@ -10,6 +10,7 @@ object OutputUtil {
     private const val MESSAGE_INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요."
     private const val MESSAGE_INPUT_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요."
     private const val MESSAGE_WINNING_DETAIL = "\n당첨 통계\n---"
+    private const val MESSAGE_EARNING_RATE = "총 수익률은 "
 
 
     fun printInputMoney() {
@@ -41,5 +42,9 @@ object OutputUtil {
         Winner.values().forEach {_winner ->
             println("${_winner.message}${winningMap.getOrDefault(_winner, 0)}개")
         }
+    }
+
+    fun printEarningRate(earningRate: Double) {
+        println("$MESSAGE_EARNING_RATE${earningRate}입니다.")
     }
 }
