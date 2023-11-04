@@ -14,7 +14,7 @@ class Validate {
     }
 
     private fun validateInputUnderThousands(price: Int) {
-        require(!(price < 1000)) { "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_INPUT_UNDER_THOUSAND}" }
+        require(price >= 1000) { "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_INPUT_UNDER_THOUSAND}" }
     }
 
     private fun validateInputNotNumber(x: String) {
