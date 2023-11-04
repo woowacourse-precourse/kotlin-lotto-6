@@ -56,7 +56,7 @@ class PurchaseTest {
                 Arguments.of(
                     Purchase(amount = 2000),
                     listOf(WinningResult.Six, WinningResult.None),
-                    1_000_000.0
+                    100_000_000.0
                 ),
                 Arguments.of(
                     Purchase(amount = 1000),
@@ -71,7 +71,7 @@ class PurchaseTest {
                         WinningResult.Six,
                         WinningResult.Six
                     ),
-                    2_000_000.0
+                    200_000_000.0
                 )
             )
         }
