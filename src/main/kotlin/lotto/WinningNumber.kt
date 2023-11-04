@@ -7,6 +7,8 @@ class WinningNumber(
     init {
         requireUnique(numbers, bonus)
         require(numbers.size == NUMBERS_SIZE)
+        require(numbers.isInLottoNumberRange())
+        require(bonus.isInLottoNumberRange())
     }
 
     private fun requireUnique(numbers: List<Int>, bonusNumber: Int) {

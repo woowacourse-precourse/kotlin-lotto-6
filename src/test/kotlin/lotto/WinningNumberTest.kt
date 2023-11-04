@@ -43,4 +43,24 @@ class WinningNumberTest {
             )
         }
     }
+
+    @Test
+    fun `당첨 번호 숫자가 범위를 벗어나면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            WinningNumber(
+                numbers = listOf(1, 2, 3, 4, 5, 46),
+                bonus = 1
+            )
+        }
+    }
+
+    @Test
+    fun `보너스 번호 숫자가 범위를 벗어나면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            WinningNumber(
+                numbers = listOf(1, 2, 3, 4, 5, 6),
+                bonus = 46
+            )
+        }
+    }
 }
