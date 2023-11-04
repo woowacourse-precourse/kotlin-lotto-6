@@ -32,6 +32,7 @@ class User {
 
         val numbers = trimmedInputs.map { it.toInt() }
         require(isValidNumberCount(numbers)) { INVALID_NUMBER_COUNT_ERROR_MESSAGE }
+        require(isValidRangeNumber(numbers)) { INVALID_RANGE_NUMBER_ERROR_MESSAGE }
     }
 
     private fun isValidAmount(input: String) =
@@ -47,6 +48,8 @@ class User {
 
     private fun isValidNumberCount(numbers: List<Int>) = numbers.size == NUMBER_COUNT
 
+    private fun isValidRangeNumber(numbers: List<Int>) = numbers.all { it in Lotto.MIN_NUMBER..Lotto.MAX_NUMBER }
+
     companion object {
         const val AMOUNT_UNIT = 1000
         const val INVALID_AMOUNT_ERROR_MESSAGE = "금액은 $AMOUNT_UNIT 단위의 숫자만 입력이 가능합니다."
@@ -56,5 +59,9 @@ class User {
 
         const val NUMBER_COUNT = 6
         const val INVALID_NUMBER_COUNT_ERROR_MESSAGE = "당첨 번호의 개수는 ${NUMBER_COUNT}개이어야 합니다."
+
+        const val MIN_NUMBER = 1
+        const val MAX_NUMBER = 45
+        const val INVALID_RANGE_NUMBER_ERROR_MESSAGE = "당첨 번호의 범위가 ${MIN_NUMBER}이상 ${MAX_NUMBER}이하가 아닙니다."
     }
 }
