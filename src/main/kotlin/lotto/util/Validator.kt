@@ -23,7 +23,7 @@ object Validator {
 
     fun validateLottoRange(input: List<Int>) {
         input.forEach {
-            require(it in 1..45) { "당첨번호가 1부터 45까지의 숫자가 아닙니다." }
+            validateNumberRange(it)
         }
     }
 
@@ -33,5 +33,9 @@ object Validator {
 
     fun validateLottoUnique(input: List<Int>) {
         require(input.distinct().size == 6) { "당첨번호의 숫자에 중복이 존재합니다." }
+    }
+
+    fun validateNumberRange(input: Int) {
+        require(input in 1..45) { "번호가 1부터 45까지의 숫자가 아닙니다." }
     }
 }

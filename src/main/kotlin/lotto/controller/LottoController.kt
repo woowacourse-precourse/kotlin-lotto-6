@@ -13,10 +13,12 @@ class LottoController(private val inputView: InputView, private val outputView: 
     private val lottoTicket = LottoTicket()
     private lateinit var purchaseCount: PurchaseCount
     private lateinit var lotto: Lotto
+    private var bonusNumber = 0
 
     fun run() {
         gameInit()
         settingLotto()
+        settingBonusNumber()
     }
 
     private fun gameInit() {
@@ -57,6 +59,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
     private fun settingLotto() {
         outputView.printLottoPurchaseInfoMessage()
         lottoPublish()
+        println() //예제 출력과 같게 하기 위해 공백 추가
     }
 
     private fun lottoPublish() {
@@ -66,6 +69,21 @@ class LottoController(private val inputView: InputView, private val outputView: 
         } catch (e: IllegalArgumentException) {
             println(e.message)
             lottoPublish()
+        }
+    }
+
+    private fun settingBonusNumber() {
+        outputView.printBonusLottoInfoMessage()
+        bonusNumberPublish()
+    }
+
+    private fun bonusNumberPublish() {
+        try {
+            val userInput = inputView.getValidBonusLottoNumber()
+            lotto.isValidBonusNumber(userInput)
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            bonusNumberPublish()
         }
     }
 }

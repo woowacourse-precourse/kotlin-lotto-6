@@ -61,3 +61,4 @@
 - Lotto 클래스 내부에서는 List<Int>의 자료형만 받고 있는데 만약 입력할 때 애초에 정수가 아니라면 어디서 검증하지??
 - 검증 부분은 Validator 클래스를 만들어서 관리하고 있다. 그러면 Lotto 클래스 내부에서도 init 부분에 Validator의 메서드를 사용해야함.
     - 그러면 Lotto 테스트를 하는 Validator 함수는 LottoTest에 위치해야할까 아니면 ValidatorTest에 위치해야할까
+- 보너스번호는 어떻게 관리해야할까

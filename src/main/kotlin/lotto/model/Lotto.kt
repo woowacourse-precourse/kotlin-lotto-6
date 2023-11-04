@@ -11,5 +11,7 @@ class Lotto(private val numbers: List<Int>) {
         validateLottoRange(numbers)
     }
 
-    // TODO: 추가 기능 구현
+    fun isValidBonusNumber(bonus: Int) {
+        require(!numbers.contains(bonus)) { "보너스 번호가 당첨번호와 중복됩니다." }
+    }
 }
