@@ -14,7 +14,7 @@ class LottoResult(
 
         if (winningCount == 5) {
             if (lottoTicket.contains(bonus)) {
-                winningCount++
+                winningCount = -1
             }
         }
 
