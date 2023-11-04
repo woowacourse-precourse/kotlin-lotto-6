@@ -29,13 +29,23 @@ class LottoController(private val inputView: InputView = InputView(),private val
         outPutView.printTotalEarningRate(winResult.earningRate)
     }
     private fun inputPrice(){
-        user.setPrice(inputView.inputPrice())
+        try {
+            user.setPrice(inputView.inputPrice())
+        } catch (e: IllegalArgumentException){
+            println(e.message)
+            inputPrice()
+        }
     }
-    private fun buyLotto(){
+    private fun buyLotto() {
         user.buyLotto()
     }
     private fun inputLuckyNumber(){
-        winningLotto.setLuckyNumbers(inputView.inputLuckyNumber())
+        try {
+            winningLotto.setLuckyNumbers(inputView.inputLuckyNumber())
+        } catch (e:IllegalArgumentException){
+            println(e.message)
+            inputLuckyNumber()
+        }
     }
     private fun inputBonusNumber(){
         try {
