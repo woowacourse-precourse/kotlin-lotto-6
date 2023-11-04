@@ -3,12 +3,12 @@ package lotto
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
-    val lotto = publishLotto()
-    println(lotto.getSortedNumbers())
+//    val lotto = publishLotto()
+//    println(lotto.getSortedNumbers())
 
     val user = User()
-    val amount = inputAmountFromUser(user)
-    println(amount)
+//    val amount = inputAmountFromUser(user)
+//    println(amount)
 
     user.inputWinningNumbers()
 }

@@ -17,7 +17,7 @@ class Lotto(private val numbers: List<Int>) {
 
     companion object {
         const val NUMBER_COUNT = 6
-        const val INVALID_NUMBER_COUNT_ERROR_MESSAGE = "로또 번호의 개수가 ${NUMBER_COUNT}개가 아닙니다."
+        const val INVALID_NUMBER_COUNT_ERROR_MESSAGE = "로또 번호의 개수는 ${NUMBER_COUNT}개이어야 합니다."
 
         const val MIN_NUMBER = 1
         const val MAX_NUMBER = 45
