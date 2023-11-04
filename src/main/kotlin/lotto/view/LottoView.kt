@@ -11,6 +11,6 @@ class LottoView {
 
     fun showAndReturnWinningNumber(): List<Int> {
         OutputUtil.printInputWinningNumber()
-        return listOf()
+        return InputUtil.inputWinningNumber()
     }
 }
