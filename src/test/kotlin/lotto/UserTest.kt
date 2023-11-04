@@ -13,7 +13,7 @@ class UserTest {
 
     // 테스트 보류
     @Test
-    fun `입력값이 빈 문자열이면 예외를 발생한다`() {
+    fun `금액 입력값이 빈 문자열이면 예외를 발생한다`() {
         // given
         val input = ""
 
@@ -23,7 +23,7 @@ class UserTest {
     }
 
     @Test
-    fun `입력값에 숫자가 아닌 문자가 포함되면 예외를 발생한다`() {
+    fun `금액 입력값에 숫자가 아닌 문자가 포함되면 예외를 발생한다`() {
         // given
         val input = "123a"
 
@@ -43,9 +43,44 @@ class UserTest {
     }
 
     @Test
-    fun `올바른 입력값에 대해 예상한 결과와 일치한다`() {
+    fun `올바른 금액 입력값에 대해 예상한 결과와 일치한다`() {
         // given
         val input = "1000"
+
+        // when
+
+        // then
+    }
+
+    @Test
+    fun `당천 번호 입력값이 빈 문자열인 경우 예외를 발생한다`() {
+        // given
+        val input = listOf(
+            "", ",", ", 2, 3", "1, , 3", "1, 2, "
+        )
+
+        // when
+
+        // then
+    }
+
+    @Test
+    fun `당천 번호 입력값에 구분자 외 숫자가 아닌 문자가 포함되면 예외를 발생한다`() {
+        // given
+        val input = listOf(
+            "a", "a,", ",b", "a, 1", "1, b,", "a, b"
+        )
+
+        // when
+
+        // then
+    }
+
+    @Test
+    fun `올바른 당천 번호 입력값에 대해 예상한 결과와 일치한다`() {
+        // given
+        val input = "1, 2, 3, 4, 5, 6"
+        val expectedWinningNumbers = listOf(1, 2, 3, 4, 5, 6)
 
         // when
 
