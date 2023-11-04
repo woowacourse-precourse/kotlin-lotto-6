@@ -6,10 +6,11 @@ import lotto.model.isDigit
 import lotto.model.isLessThanThousand
 
 class InputView {
-    fun inputPurchaseAmount() {
+    fun inputPurchaseAmount(): Int {
         val amount = Console.readLine()
         amount.isDigit()
         amount.isLessThanThousand()
         amount.isAmountInThousand()
+        return amount.toInt() / 1000
     }
 }
