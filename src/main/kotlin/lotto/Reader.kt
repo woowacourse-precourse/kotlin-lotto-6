@@ -3,16 +3,20 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 
 object Reader {
-    fun inputIntOrNull(): Int? {
+    fun inputInt(): Int {
         val line = Console.readLine()
-        return line.toIntOrNull()
+        val trimmed = line.trim()
+        val errorMessage = Message.NotNumberError
+        return trimmed.toIntOrNull() ?: throw IllegalArgumentException(errorMessage.toString())
     }
 
-    fun inputIntegerListOrNull(delimiter: Char): List<Int>? {
+    fun inputIntList(delimiter: Char): List<Int> {
         val line = Console.readLine()
         val splittedInput = line.split(delimiter)
+        val errorMessage = Message.NotNumberError
         return splittedInput.map {
-            it.toIntOrNull() ?: return null
+            val trimmed = it.trim()
+            trimmed.toIntOrNull() ?: throw IllegalArgumentException(errorMessage.toString())
         }
     }
 }

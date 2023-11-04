@@ -6,12 +6,8 @@ class View(
 ) {
     private fun inputPurchase(): Purchase {
         while (true) {
-            val amount = reader.inputIntOrNull()
-            if (amount == null) {
-                printer.error(Message.NotNumberOrOverflow)
-                continue
-            }
             runOrPrintErrorIfThrow {
+                val amount = reader.inputInt()
                 return Purchase(amount = amount)
             }
         }
@@ -19,12 +15,8 @@ class View(
 
     private fun inputWinningNumber(): List<Int> {
         while (true) {
-            val numbers = reader.inputIntegerListOrNull(WINNING_NUMBER_DELIMITER)
-            if (numbers == null) {
-                printer.error(Message.NotNumberOrOverflow)
-                continue
-            }
             runOrPrintErrorIfThrow {
+                val numbers = reader.inputIntList(WINNING_NUMBER_DELIMITER)
                 WinningNumber.validate(numbers)
                 return numbers
             }
@@ -33,12 +25,8 @@ class View(
 
     private fun inputBonusNumber(winningNumber: List<Int>): Int {
         while (true) {
-            val bonusNumber = reader.inputIntOrNull()
-            if (bonusNumber == null) {
-                printer.error(Message.NotNumberOrOverflow)
-                continue
-            }
             runOrPrintErrorIfThrow {
+                val bonusNumber = reader.inputInt()
                 WinningNumber.validate(winningNumber, bonusNumber)
                 return bonusNumber
             }
