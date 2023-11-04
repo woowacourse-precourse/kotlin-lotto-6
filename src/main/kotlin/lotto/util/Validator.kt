@@ -1,8 +1,5 @@
 package lotto.util
 
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
-
 object Validator {
     fun validateInteger(input: String) {
         require(input.toIntOrNull() != null) { Exception.INVALID_INTEGER.getMessage() }
@@ -39,5 +36,13 @@ object Validator {
         input.forEach {
             require(it in 1..45) { "당첨번호가 1부터 45까지의 숫자가 아닙니다." }
         }
+    }
+
+    fun validateLottoLength(input: List<Int>) {
+        require(input.size == 6) { "당첨번호의 숫자가 6자리가 아닙니다." }
+    }
+
+    fun validateLottoUnique(input: List<Int>){
+        require(input.distinct().size == 6) { "당첨번호의 숫자에 중복이 존재합니다." }
     }
 }
