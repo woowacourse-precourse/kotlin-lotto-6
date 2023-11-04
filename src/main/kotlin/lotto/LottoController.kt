@@ -18,9 +18,16 @@ class LottoController {
         lottoView.showGenerateLotto(lottoCollection)
         inputWinningNumber()
         inputPlusNumber()
+        checkWin()
     }
 
-    fun checkLottoCost(cost: Int) {
+    fun checkLottoCost(InputCost: String) {
+        var cost = 0
+        try {
+            cost = InputCost.toInt()
+        } catch (e: IllegalArgumentException) {
+            throw IllegalArgumentException("숫자를 입력해 주세요.")
+        }
         if (cost % 1000 != 0) {
             throw IllegalArgumentException("1000단위로 입력해 주세요.")
         }
@@ -32,10 +39,9 @@ class LottoController {
     fun inputLottoCost() {
         println("구입금액을 입력해 주세요.")
         val inputCost = Console.readLine()
-        val cost = inputCost.toInt()
         try {
-            checkLottoCost(cost)
-            this.cost = cost
+            checkLottoCost(inputCost)
+            this.cost = inputCost.toInt()
         } catch (e: IllegalArgumentException) {
             println("[ERROR] 알맞은 금액을 입력해주세요.")
             inputLottoCost()
@@ -63,7 +69,7 @@ class LottoController {
     }
 
     fun checkWinningNumbers(winningNumbers: List<Int>) {
-        require(winningNumbers.size == 6)
+        require(winningNumbers.size == LOTTO_DIGIT)
         require(winningNumbers.distinct().size == winningNumbers.size)
         for (number in winningNumbers) {
             require(number <= LOTTO_MAX_NUM)
@@ -89,6 +95,7 @@ class LottoController {
     }
 
     fun checkPlusNumber(plusNumber: Int) {
+        require(!winningNumbers.contains(plusNumber))
         require(plusNumber <= LOTTO_MAX_NUM)
         require(1 <= plusNumber)
     }
@@ -100,15 +107,19 @@ class LottoController {
         try {
             checkPlusNumber(plusNumber)
         } catch (e: IllegalArgumentException) {
-            println("[ERROR] 1-45의 숫자를 입력해 주세요.")
+            println("[ERROR] 1-45의 당첨 번호와 겹치지 않는 수자를 입력해 주세요.")
             inputPlusNumber()
         }
         println()
     }
 
     fun checkWin() {
-
+        val winRankList = lottoCollection.checkWin(winningNumbers, plusNumber)
+        val winRankNumList = mutableListOf(0,0,0,0,0,0)
+        for (rank in winRankList) {
+            winRankNumList[rank] ++
+        }
+        lottoView.showLottoResult(winRankNumList)
+        lottoView.showLottoResultAverage(winRankNumList)
     }
-
-
 }

@@ -10,4 +10,12 @@ class LottoCollection {
     fun collectionSize(): Int {
         return lottoCollection.size
     }
+
+    fun checkWin(winNumbers: List<Int>, plusNumber: Int):List<Int> {
+        val winRankList: MutableList<Int> = mutableListOf()
+        for (lotto in lottoCollection) {
+            winRankList.add(lotto.checkWin(winNumbers,plusNumber))
+        }
+        return winRankList
+    }
 }

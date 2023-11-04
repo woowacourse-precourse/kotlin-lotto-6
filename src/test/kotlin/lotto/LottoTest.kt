@@ -28,14 +28,14 @@ class LottoTest {
     @Test
     fun `로또 금액이 1000 단위가 아닌 경우 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
-            lottoController.checkLottoCost(1001)
+            lottoController.checkLottoCost("1001")
         }
     }
 
     @Test
     fun `로또 금액이 0 이하인 경우 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
-            lottoController.checkLottoCost(0)
+            lottoController.checkLottoCost("0")
         }
     }
 
