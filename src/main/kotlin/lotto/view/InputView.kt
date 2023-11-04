@@ -1,9 +1,11 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.model.*
 import lotto.model.isAmountInThousand
 import lotto.model.isDigit
 import lotto.model.isLessThanThousand
+import lotto.model.isLottoNumber
 
 class InputView {
     fun inputPurchaseAmount(): Int {
@@ -16,6 +18,9 @@ class InputView {
 
     fun inputWinNumber() {
         val winNumber = Console.readLine().trim().split(",")
-        println(winNumber)
+        winNumber.lottoSize()
+        winNumber.forEach { number ->
+            number.isLottoNumber()
+        }
     }
 }
