@@ -3,7 +3,7 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
-class LottoPick() {
+class LottoPick {
 
     private fun randomNumber(): List<Int> {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6)
