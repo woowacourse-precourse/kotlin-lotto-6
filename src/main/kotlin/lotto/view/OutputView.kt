@@ -24,4 +24,9 @@ class OutputView {
         println()
         println("당첨 번호를 입력해 주세요.")
     }
+
+    fun printBonusNumberInstruction() {
+        println()
+        println("보너스 번호를 입력해 주세요.")
+    }
 }
