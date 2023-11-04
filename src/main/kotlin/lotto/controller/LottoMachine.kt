@@ -34,7 +34,7 @@ class LottoMachine {
         val userLotto: MutableList<List<Int>> = mutableListOf()
 
         repeat(count) {
-            val lotto = Random().lottoGenerator()
+            val lotto = Random().lottoGenerator().sorted()
             userLotto.add(Lotto(lotto).serve())
             Output().printLottoNumbers(lotto)
         }

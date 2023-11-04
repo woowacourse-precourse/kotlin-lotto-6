@@ -9,6 +9,6 @@ class Profit {
         profit += jackpot[3] * Constants.THIRTY_MILLION
         profit += jackpot[4] * Constants.TWO_BILLION
 
-        return profit/money.toFloat()
+        return profit/money.toFloat()*Constants.HUNDRED
     }
 }

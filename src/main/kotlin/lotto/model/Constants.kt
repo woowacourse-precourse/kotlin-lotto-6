@@ -2,6 +2,7 @@ package lotto.model
 
 class Constants {
     companion object{
+        val HUNDRED = 100
         val THOUSAND = 1000
         val FIVE_THOUSAND = 5000
         val FIFTY_THOUSAND = 50000
