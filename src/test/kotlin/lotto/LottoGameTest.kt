@@ -39,4 +39,18 @@ class LottoGameTest {
         assertThat(result).hasSize(quantity)
     }
 
+    @Test
+    fun `getCorrectLottoResults - Given 유효한 로또 번호, 당첨 번호, 보너스 번호가 주어지면, when 로또 결과를 생성하는 함수 호출를 호출하면, then 로또 결과 목록을 반환해야 함`() {
+        // Given
+        val lottoNumbers = listOf(Lotto(listOf(1, 2, 3, 4, 5, 6)), Lotto(listOf(2, 3, 4, 5, 6, 7)))
+        val winningNumber = Lotto(listOf(2, 3, 4, 5, 6, 7))
+        val bonusNumber = 8
+
+        // When
+        val result = lottoGame.getLottoResults(lottoNumbers, winningNumber, bonusNumber)
+
+        // Then
+        assertThat(result).hasSize(2)
+    }
+
 }
