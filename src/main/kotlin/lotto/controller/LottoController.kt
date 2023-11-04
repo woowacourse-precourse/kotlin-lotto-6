@@ -1,5 +1,6 @@
 package lotto.controller
 
+import lotto.model.Lotto
 import lotto.model.PurchaseCount
 import lotto.model.LottoTicket
 import lotto.util.LottoGenerator
@@ -11,15 +12,18 @@ class LottoController(private val inputView: InputView, private val outputView: 
     private val lottoGenerator = LottoGenerator()
     private val lottoTicket = LottoTicket()
     private lateinit var purchaseCount: PurchaseCount
+    private lateinit var lotto: Lotto
 
     fun run() {
         gameInit()
+        settingLotto()
     }
 
     private fun gameInit() {
         settingPurchaseCount()
         publishLottoTicket()
         printLottoTicket()
+        println() //예제 출력과 같게 하기 위해 공백 추가
     }
 
     private fun settingPurchaseCount() {
@@ -48,5 +52,20 @@ class LottoController(private val inputView: InputView, private val outputView: 
     private fun printLottoTicket() {
         outputView.printPurchaseCount(purchaseCount.count)
         outputView.printLottoTicket(lottoTicket)
+    }
+
+    private fun settingLotto() {
+        outputView.printLottoPurchaseInfoMessage()
+        lottoPublish()
+    }
+
+    private fun lottoPublish() {
+        try {
+            val userInput = inputView.getValidLottoInput()
+            lotto = Lotto(userInput)
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            lottoPublish()
+        }
     }
 }

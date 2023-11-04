@@ -8,7 +8,7 @@ import lotto.util.Validator.validateLottoSpace
 class InputView {
     fun getUserInput(): String = Console.readLine()
 
-    fun getValidInput(): List<Int> {
+    fun getValidLottoInput(): List<Int> {
         val input = getUserInput()
         validateLottoInteger(input)
         validateLottoNotNull(input)
