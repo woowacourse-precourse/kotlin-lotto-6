@@ -5,6 +5,7 @@ import kotlin.math.roundToLong
 class Purchase(private val amount: Int) {
     init {
         require(amount % AMOUNT_UNIT_WON == 0)
+        require(amount > 0)
     }
 
     fun calculateProfitPercentage(results: List<WinningResult>): Double {

@@ -18,6 +18,16 @@ class PurchaseTest {
         }
     }
 
+    @Test
+    fun `구매 금액이 0원 이하면 예외가 발생한다`() {
+        val amounts = listOf(0, -1, -1000)
+        amounts.forEach { amount ->
+            assertThrows<IllegalArgumentException> {
+                Purchase(amount)
+            }
+        }
+    }
+
     @ParameterizedTest
     @MethodSource("generate_Purchase_WinningResults_ProfitPercentage")
     fun `이익률을 정확히 계산한다 `(
