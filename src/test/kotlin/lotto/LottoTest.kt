@@ -1,5 +1,6 @@
 package lotto
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
@@ -39,13 +40,13 @@ class LottoTest {
     }
 
     @Test
-    fun `생성한 로또 번호가 6개가 맞는가`() {
+    fun `생성한 로또 번호가 6개가 들어간다`() {
         val numbers = lottoController.generateNumbers()
         Assertions.assertThat(numbers.size).isEqualTo(6)
     }
 
     @Test
-    fun `생성되는 숫자가 들어가는가`() {
+    fun `생성되는 숫자가 들어간다`() {
         val numberCollection: MutableList<Int> = mutableListOf()
         var num = 1
         while (numberCollection.size < 6) {
@@ -58,7 +59,7 @@ class LottoTest {
     }
 
     @Test
-    fun `중복되는 숫자 무시가 들어가는가`() {
+    fun `중복되는 숫자 무시가 들어간다`() {
         val numberCollection: MutableList<Int> = mutableListOf()
         var num = 1
         while (numberCollection.size < 6) {
@@ -73,11 +74,46 @@ class LottoTest {
     }
 
     @Test
-    fun `금액에 맞게 로또가 생성되는가`() {
+    fun `금액에 맞게 로또가 생성된다`() {
         lottoController.lottoGenerate(3)
         Assertions.assertThat(lottoController.lottoCollection.lottoCollection.size).isEqualTo(3)
     }
 
+    @Test
+    fun `당첨 번호가 6개가 아닐 때 오류 발생한다`() {
+        val inputWinningNumbers = "1,2,3,4,5,6,7"
+        val inputCollection = inputWinningNumbers.split(",")
+        val winningNumbers: MutableList<Int> = mutableListOf()
+        for (number in inputCollection) {
+            winningNumbers.add(number.toInt())
+        }
+        assertThrows<IllegalArgumentException> {
+            lottoController.checkWinningNumbers(winningNumbers)
+        }
+    }
 
+    @Test
+    fun `당첨 번호가 1-45가 아닐 때 오류 발생한다`() {
+        val inputWinningNumbers = "1,2,3,4,5,46"
+        val inputCollection = inputWinningNumbers.split(",")
+        val winningNumbers: MutableList<Int> = mutableListOf()
+        for (number in inputCollection) {
+            winningNumbers.add(number.toInt())
+        }
+        assertThrows<IllegalArgumentException> {
+            lottoController.checkWinningNumbers(winningNumbers)
+        }
+    }
+
+    @Test
+    fun `당첨 번호가 저장이 된다`() {
+        val inputWinningNumbers = "1,2,3,4,5,6"
+        val inputCollection = inputWinningNumbers.split(",")
+        val winningNumbers: MutableList<Int> = mutableListOf()
+        for (number in inputCollection) {
+            winningNumbers.add(number.toInt())
+        }
+        Assertions.assertThat(winningNumbers).contains(1,2,3,4,5,6)
+    }
     // 아래에 추가 테스트 작성 가능
 }
