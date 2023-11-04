@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.utils.Exceptions.inputPurchaseAmountException
+import lotto.utils.Exceptions.inputWinningNumberException
 import org.junit.jupiter.api.Test
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -25,6 +26,29 @@ class ExceptionsTest {
 
         // When & Then
         assertThatThrownBy { inputPurchaseAmountException(purchaseAmount).getOrThrow() }.isInstanceOf(
+                NumberFormatException::class.java
+            )
+    }
+
+    @Test
+    fun `inputWinningNumberException - Given 유효한 당첨 번호가 주어지면, When inputWinningNumberException을 호출하면, Then Lotto 객체를 반환해야 함`() {
+        // Given
+        val winningNumber = listOf("1", "2", "3", "4", "5", "6")
+
+        // When
+        val result = inputWinningNumberException(winningNumber)
+
+        // Then
+        assertThat(result.getOrNull()).isInstanceOf(Lotto::class.java)
+    }
+
+    @Test
+    fun `inputWinningNumberException - Given 유효하지 않은 당첨 번호가 주어지면, When & Then NumberFormatException을 던져야 함`() {
+        // Given
+        val winningNumber = listOf("1", "2", "invalidNumber", "4", "5", "6")
+
+        // When & Then
+        assertThatThrownBy { inputWinningNumberException(winningNumber).getOrThrow() }.isInstanceOf(
                 NumberFormatException::class.java
             )
     }
