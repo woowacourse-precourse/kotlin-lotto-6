@@ -14,6 +14,7 @@ class LottoController(
         val number = inputView.inputPurchaseAmount()
         outputView.printPurchaseNumber(number)
         val lotteryTickets = lottoNumber.generateLotto(number)
+        outputView.printInputWinNumberMessage()
     }
 
 }
