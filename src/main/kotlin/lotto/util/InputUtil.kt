@@ -20,10 +20,11 @@ object InputUtil {
     fun inputWinningNumber(): List<Int> =
         checkWinningNumberAvailable(Console.readLine())
 
-    fun inputBonusNumber(): Int =
+    fun inputBonusNumber(winningNumber: List<Int>): Int =
         try {
             val number = Console.readLine().toInt()
             checkNumberInRange(number)
+            checkNumberOverlap(winningNumber, number)
             number
         } catch (e: NumberFormatException) {
             printExceptionMessage(EXCEPTION_MESSAGE_MONEY_NOT_NUMBER)
@@ -74,6 +75,13 @@ object InputUtil {
         if (number !in LOTTO_RANGE) {
             printExceptionMessage(EXCEPTION_MESSAGE_NOT_IN_RANGE)
             throw IllegalArgumentException(EXCEPTION_MESSAGE_NOT_IN_RANGE)
+        }
+    }
+
+    private fun checkNumberOverlap(winningNumber: List<Int>, number: Int) {
+        if (winningNumber.contains(number)) {
+            printExceptionMessage(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
+            throw IllegalArgumentException(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
         }
     }
 }
