@@ -34,6 +34,8 @@ class User {
         require(isValidNumberCount(numbers)) { INVALID_NUMBER_COUNT_ERROR_MESSAGE }
         require(isValidRangeNumber(numbers)) { INVALID_RANGE_NUMBER_ERROR_MESSAGE }
         require(isValidDistinctNumber(numbers)) { INVALID_DISTINCT_NUMBER_ERROR_MESSAGE }
+
+        _winningNumbers.addAll(numbers)
     }
 
     private fun isValidAmount(input: String) =

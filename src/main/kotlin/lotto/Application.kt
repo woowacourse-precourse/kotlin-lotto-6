@@ -10,7 +10,8 @@ fun main() {
 //    val amount = inputAmountFromUser(user)
 //    println(amount)
 
-    user.inputWinningNumbers()
+    val winningNumbers = inputWinningNumbersFromUser(user)
+    println(winningNumbers)
 }
 
 fun inputAmountFromUser(user: User): Int {
@@ -23,6 +24,18 @@ fun inputAmountFromUser(user: User): Int {
     }
 
     return user.amount
+}
+
+fun inputWinningNumbersFromUser(user: User): List<Int> {
+    while (user.winningNumbers.isEmpty()) {
+        try {
+            user.inputWinningNumbers()
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] ${e.message}")
+        }
+    }
+
+    return user.winningNumbers
 }
 
 // 로또 번호 생성을 캡슐화를 해야 하나 고민
