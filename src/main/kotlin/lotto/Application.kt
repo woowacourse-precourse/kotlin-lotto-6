@@ -6,16 +6,16 @@ import lotto.Constants.ASK_AMOUNT
 import lotto.Constants.PRICE
 
 fun main() {
-    askAmount()
+    Purchase(askAmount()).lottoNum()
 }
 
-fun askAmount() {
+fun askAmount(): Int {
     try {
         println(ASK_AMOUNT)
-        validAmount()
+        return validAmount()
     } catch (e: Exception) {
         println(AMOUNT_ERROR)
-        askAmount()
+        return askAmount()
     }
 }
 
