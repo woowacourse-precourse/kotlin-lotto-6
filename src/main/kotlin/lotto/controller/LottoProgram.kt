@@ -1,5 +1,6 @@
 package lotto.controller
 
+import lotto.model.LottoPublisher
 import lotto.model.LottoTicketCount
 import lotto.view.InputView
 import lotto.view.OutputView
@@ -7,7 +8,7 @@ import lotto.view.OutputView
 class LottoProgram {
     private val inputView = InputView()
     private val outputView = OutputView()
-
+    private val lottoPublisher = LottoPublisher()
     fun run() {
         outputView.printPurchaseAmount()
 
@@ -16,7 +17,7 @@ class LottoProgram {
         val lottoCount = lottoTicketCount.lottoCount
 
         outputView.printLottoCount(lottoCount)
-
+        lottoPublisher.publishLottoList(lottoCount)
     }
 
     companion object {
