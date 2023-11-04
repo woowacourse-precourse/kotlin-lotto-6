@@ -3,10 +3,12 @@ package lotto.util
 import camp.nextstep.edu.missionutils.Console
 import lotto.constants.Error.EXCEPTION_MESSAGE_MONEY_NOT_DIVIDED_PRICE
 import lotto.constants.Error.EXCEPTION_MESSAGE_MONEY_NOT_NUMBER
+import lotto.constants.Error.EXCEPTION_MESSAGE_NOT_IN_RANGE
 import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST
 import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_NOT_NUMBER
 import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_SIZE_INVALID
 import lotto.constants.LottoConstants
+import lotto.constants.LottoConstants.LOTTO_RANGE
 import lotto.constants.LottoConstants.LOTTO_SIZE
 import lotto.util.OutputUtil.printExceptionMessage
 
@@ -35,7 +37,9 @@ object InputUtil {
     private fun checkWinningNumberAvailable(winningNumberString: String): List<Int> =
         try {
             val winningNumber = winningNumberString.split(",").map { _numberString ->
-                _numberString.toInt()
+                val number = _numberString.toInt()
+                checkWinningNumberInRange(number)
+                number
             }
             checkWinningNumberSize(winningNumber)
             winningNumber
@@ -54,6 +58,13 @@ object InputUtil {
                 printExceptionMessage(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
                 throw IllegalArgumentException(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
             }
+        }
+    }
+
+    private fun checkWinningNumberInRange(number: Int) {
+        if (number !in LOTTO_RANGE) {
+            printExceptionMessage(EXCEPTION_MESSAGE_NOT_IN_RANGE)
+            throw IllegalArgumentException(EXCEPTION_MESSAGE_NOT_IN_RANGE)
         }
     }
 }
