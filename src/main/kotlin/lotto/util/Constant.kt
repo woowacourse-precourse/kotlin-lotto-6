@@ -18,7 +18,7 @@ object Constant {
     const val INPUT_BONUS_NUMBER_NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다."
     const val WINNING_STATISTICS_MESSAGE = "당첨 통계\n---"
     const val LOTTO_BUY_MESSAGE = "%d개를 구매했습니다."
-    const val TOTAL_EARNING_RATE_MESSAGE = "총 수익률은 %.2f입니다."
+    const val TOTAL_EARNING_RATE_MESSAGE = "총 수익률은 %.1f%%입니다."
     const val FIRST_PLACE_MESSAGE = "6개 일치 (2,000,000,000원) - %d개"
     const val SECOND_PLACE_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"
     const val THIRD_PLACE_MESSAGE = "5개 일치 (1,500,000원) - %d개"
