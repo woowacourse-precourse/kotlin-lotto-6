@@ -1,5 +1,6 @@
 package lotto.domain
 
+import camp.nextstep.edu.missionutils.Randoms
 import lotto.exception.LottoShopException
 
 object LottoShop {
@@ -25,7 +26,11 @@ object LottoShop {
         }
 
     private fun generateLotto(): Lotto {
-        val numbers = (1..45).shuffled().take(6).sorted()
+        val numbers = Randoms.pickUniqueNumbersInRange(
+            LottoNumber.MIN_LOTTO_NUMBER,
+            LottoNumber.MAX_LOTTO_NUMBER,
+            Lotto.LOTTO_SIZE
+        ).sorted()
         return Lotto(numbers.map { LottoNumber(it) })
     }
 }
