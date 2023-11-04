@@ -1,17 +1,23 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
+import util.Validator.validateBonusNumber
+import util.Validator.validatePurchaseAmount
+import util.Validator.validateWinningNumbers
 
 class InputView {
-    fun inputPurchaseAmount(): String {
-        return Console.readLine()
+    fun inputPurchaseAmount(): Int {
+        val purchaseAmount = Console.readLine()
+        return validatePurchaseAmount(purchaseAmount)
     }
 
-    fun inputWinningNumbers(): String {
-        return Console.readLine()
+    fun inputWinningNumbers(): List<Int> {
+        val winningNumbers = Console.readLine()
+        return validateWinningNumbers(winningNumbers)
     }
 
-    fun inputBonusNumber(): String {
-        return Console.readLine()
+    fun inputBonusNumber(winningNumbers: List<Int>): Int {
+        val bonusNumber = Console.readLine()
+        return validateBonusNumber(bonusNumber, winningNumbers)
     }
 }

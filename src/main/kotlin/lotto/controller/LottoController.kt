@@ -8,9 +8,6 @@ import util.Constants.LOTTO_AMOUNT_UNIT
 import util.Constants.LOTTO_NUMBER_END
 import util.Constants.LOTTO_NUMBER_START
 import util.Constants.LOTTO_TOTAL_NUMBER
-import util.Validator.validateBonusNumber
-import util.Validator.validatePurchaseAmount
-import util.Validator.validateWinningNumbers
 
 class LottoController {
     private val inputView = InputView()
@@ -28,7 +25,7 @@ class LottoController {
         outputView.printPurchaseAmountInstruction()
         return try {
             val purchaseAmount = inputView.inputPurchaseAmount()
-            validatePurchaseAmount(purchaseAmount) / LOTTO_AMOUNT_UNIT
+            purchaseAmount / LOTTO_AMOUNT_UNIT
         } catch (illegalArgumentException: IllegalArgumentException) {
             outputView.printErrorMessage(illegalArgumentException.message.toString())
             getNumberOfPurchases()
@@ -58,7 +55,7 @@ class LottoController {
         outputView.printWinningNumbersInstruction()
         return try {
             val winnerNumbers = inputView.inputWinningNumbers()
-            validateWinningNumbers(winnerNumbers)
+            winnerNumbers
         } catch (illegalArgumentException: IllegalArgumentException) {
             outputView.printErrorMessage(illegalArgumentException.message.toString())
             getWinningNumbers()
@@ -68,8 +65,8 @@ class LottoController {
     fun getBonusNumber(winningNumbers: List<Int>): Int {
         outputView.printBonusNumberInstruction()
         return try {
-            val bonusNumber = inputView.inputBonusNumber()
-            validateBonusNumber(bonusNumber, winningNumbers)
+            val bonusNumber = inputView.inputBonusNumber(winningNumbers)
+            bonusNumber
         } catch (illegalArgumentException: IllegalArgumentException) {
             outputView.printErrorMessage(illegalArgumentException.message.toString())
             getBonusNumber(winningNumbers)
