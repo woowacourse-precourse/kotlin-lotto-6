@@ -7,7 +7,7 @@ class OutputView {
         println("구입금액을 입력해 주세요.")
     }
 
-    fun printPurchaseAmountErrorMessage(errorMessage: String) {
+    fun printErrorMessage(errorMessage: String) {
         println("[ERROR] $errorMessage")
     }
 
@@ -18,5 +18,10 @@ class OutputView {
 
     fun printLottoNumbers(lotto: Lotto) {
         println(lotto)
+    }
+
+    fun printWinningNumbersInstruction() {
+        println()
+        println("당첨 번호를 입력해 주세요.")
     }
 }

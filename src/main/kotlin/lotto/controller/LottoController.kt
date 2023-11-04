@@ -9,6 +9,7 @@ import util.Constants.LOTTO_NUMBER_END
 import util.Constants.LOTTO_NUMBER_START
 import util.Constants.LOTTO_TOTAL_NUMBER
 import util.Validator.validatePurchaseAmount
+import util.Validator.validateWinningNumbers
 
 class LottoController {
     private val inputView = InputView()
@@ -18,6 +19,7 @@ class LottoController {
         val numberOfPurchases = getNumberOfPurchases()
         val lottos = makeLottos(numberOfPurchases)
         purchaseLottos(lottos)
+        val winningNumbers = getWinningNumbers()
     }
 
     fun getNumberOfPurchases(): Int {
@@ -26,7 +28,7 @@ class LottoController {
             val purchaseAmount = inputView.inputPurchaseAmount()
             validatePurchaseAmount(purchaseAmount) / LOTTO_AMOUNT_UNIT
         } catch (illegalArgumentException: IllegalArgumentException) {
-            outputView.printPurchaseAmountErrorMessage(illegalArgumentException.message.toString())
+            outputView.printErrorMessage(illegalArgumentException.message.toString())
             getNumberOfPurchases()
         }
     }
@@ -47,6 +49,17 @@ class LottoController {
         outputView.printNumberOfPurchases(lottos.size)
         for (lotto in lottos) {
             outputView.printLottoNumbers(lotto)
+        }
+    }
+
+    fun getWinningNumbers(): List<Int>{
+        outputView.printWinningNumbersInstruction()
+        return try {
+            val winnerNumbers = inputView.inputWinningNumbers()
+            validateWinningNumbers(winnerNumbers)
+        } catch (illegalArgumentException: IllegalArgumentException) {
+            outputView.printErrorMessage(illegalArgumentException.message.toString())
+            getWinningNumbers()
         }
     }
 }

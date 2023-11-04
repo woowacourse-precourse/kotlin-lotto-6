@@ -7,4 +7,7 @@ class InputView {
         return Console.readLine()
     }
 
+    fun inputWinningNumbers(): String {
+        return Console.readLine()
+    }
 }
