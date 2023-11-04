@@ -3,6 +3,7 @@ package lotto
 import lotto.domain.Purchase
 import lotto.validate.ValidatePrice
 import lotto.validate.ValidateSplit
+import lotto.validate.validateBonus
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -83,6 +84,15 @@ class LottoTest {
         val validateSplit = ValidateSplit()
         assertThrows<IllegalArgumentException> {
             validateSplit.validateSplitMyNumbers(listOf("1", "1"))
+        }
+    }
+
+    @Test
+    fun `보너스번호와 당첨번호에 중복이 존재할 경우`() {
+        val validateBonus = validateBonus()
+        val bonusNumber = 1
+        assertThrows<IllegalArgumentException> {
+            validateBonus.validateBonus(bonusNumber, listOf(1, 2, 3, 4, 5, 6))
         }
     }
 }
