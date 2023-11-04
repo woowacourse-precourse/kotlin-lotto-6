@@ -5,5 +5,4 @@ import ui.OutputManager
 
 fun main() {
     val test = InputManager().inputJackpotNumbers { OutputManager().invalidLottoNumbers() }
-    println(test)
 }
