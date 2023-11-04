@@ -66,4 +66,17 @@ class LottoGameTest {
         assertThat(result).isEqualTo(expectedResult)
     }
 
+    @Test
+    fun `calculateRate - Given 로또 당첨 결과 목록과 구매 금액이 주어지면, when 수익율을 생성하는 함수 호출를 호출하면, then 예상 수익율을 반환해야 함`() {
+        // Given
+        val lottoMatchResult = LottoMatchResult(threeMatching = 5)
+        val purchaseAmount = 50000
+        val expectedRate = 50.0f
+
+        // When
+        val result = lottoGame.calculateRate(lottoMatchResult, purchaseAmount)
+
+        // Then
+        assertThat(result).isEqualTo(expectedRate)
+    }
 }
