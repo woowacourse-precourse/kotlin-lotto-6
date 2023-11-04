@@ -7,16 +7,16 @@ class LottoPublisher {
     val publishedLottoList: List<List<Int>>
         get() = _publishedLottoList
 
-    private lateinit var _publishedLottoList: MutableList<MutableList<Int>>
-    private var _publishedLotto = MutableList<Int>(LOTTO_SIZE) { INIT_NUMS }
+    private lateinit var _publishedLottoList: MutableList<List<Int>>
+    private var _publishedLotto = List<Int>(LOTTO_SIZE) { INIT_NUMS }
 
 
-    private fun publishLotto(): MutableList<Int> {
+    private fun publishLotto(): List<Int> {
         _publishedLotto = Randoms.pickUniqueNumbersInRange(LOTTO_RANGE_START, LOTTO_RANGE_END, LOTTO_SIZE)
-        return _publishedLotto
+        return _publishedLotto.sorted()
     }
 
-    fun publishLottoList(times: Int): MutableList<MutableList<Int>> {
+    fun publishLottoList(times: Int): MutableList<List<Int>> {
         _publishedLottoList = MutableList(times) { _publishedLotto }
         repeat(times) { _publishedLottoList[it] = publishLotto() }
         return _publishedLottoList
