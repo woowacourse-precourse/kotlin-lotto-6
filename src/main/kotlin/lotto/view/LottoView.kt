@@ -9,7 +9,12 @@ class LottoView {
 
     fun getPurchaseAmount(): Int {
         outputView.printPurchaseAmountInstruction()
-        val purchaseAmount = inputView.inputPurchaseAmount()
-        return validator.validatePurchaseAmount(purchaseAmount)
+        return try {
+            val purchaseAmount = inputView.inputPurchaseAmount()
+            validator.validatePurchaseAmount(purchaseAmount)
+        } catch (illegalArgumentException: IllegalArgumentException) {
+            outputView.printPurchaseAmountErrorMessage(illegalArgumentException.message.toString())
+            getPurchaseAmount()
+        }
     }
 }
