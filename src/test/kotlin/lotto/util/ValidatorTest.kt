@@ -5,6 +5,7 @@ import lotto.util.Validator.validate1000Unit
 import lotto.util.Validator.validateInteger
 import lotto.util.Validator.validateLottoInteger
 import lotto.util.Validator.validateLottoNotNull
+import lotto.util.Validator.validateLottoSpace
 import lotto.util.Validator.validateRange
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test

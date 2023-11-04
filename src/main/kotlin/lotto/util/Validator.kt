@@ -1,5 +1,8 @@
 package lotto.util
 
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+
 object Validator {
     fun validateInteger(input: String) {
         require(input.toIntOrNull() != null) { Exception.INVALID_INTEGER.getMessage() }
@@ -26,5 +29,9 @@ object Validator {
         validation.forEach {
             require(it.trim().isNotEmpty()) { "당첨번호에 널값이 존재합니다." }
         }
+    }
+
+    fun validateLottoSpace(input: String) {
+        require(!input.contains(' ')) { "당첨번호에 공백이 존재합니다." }
     }
 }
