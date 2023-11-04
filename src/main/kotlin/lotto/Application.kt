@@ -9,6 +9,8 @@ fun main() {
     val user = User()
     val amount = inputAmountFromUser(user)
     println(amount)
+
+    user.inputWinningNumbers()
 }
 
 fun inputAmountFromUser(user: User): Int {

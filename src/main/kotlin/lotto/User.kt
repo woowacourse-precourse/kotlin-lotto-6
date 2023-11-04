@@ -6,16 +6,29 @@ class User {
     private var _amount: Int = 0
     val amount get() = _amount
 
-    fun inputAmount() {
-        val trimmedInput = readAndTrimInput()
-        setAmountFromInput(trimmedInput)
-    }
+    private var _winningNumbers: MutableList<Int> = mutableListOf()
+    val winningNumbers: List<Int> get() = _winningNumbers
 
-    private fun readAndTrimInput() = Console.readLine().trim()
+    fun inputAmount() {
+        val input = Console.readLine()
+        setAmountFromInput(input.trim())
+    }
 
     private fun setAmountFromInput(input: String) {
         require(isValidAmount(input)) { INVALID_AMOUNT_ERROR_MESSAGE }
         _amount = input.toInt()
+    }
+
+    fun inputWinningNumbers() {
+        val input = Console.readLine()
+        setWinningNumbers(input.split(SEPARATOR))
+    }
+
+    private fun setWinningNumbers(inputs: List<String>) {
+        val trimmedInputs = inputs.map { it.trim() }
+        trimmedInputs.forEach {
+            require(isValidWinningNumber(it)) { INVALID_WINNING_NUMBER }
+        }
     }
 
     private fun isValidAmount(input: String) =
@@ -27,8 +40,14 @@ class User {
 
     private fun isAmountInUnit(amount: Int) = amount >= AMOUNT_UNIT && amount % AMOUNT_UNIT == 0
 
+    private fun isValidWinningNumber(input: String) = isNotEmpty(input) && isInputDigitsOnly(input)
+
     companion object {
         const val AMOUNT_UNIT = 1000
         const val INVALID_AMOUNT_ERROR_MESSAGE = "금액은 $AMOUNT_UNIT 단위의 숫자만 입력이 가능합니다."
+
+        const val SEPARATOR = ","
+        const val INVALID_WINNING_NUMBER = "당첨 번호는 숫자로 입력해야 합니다."
+
     }
 }
