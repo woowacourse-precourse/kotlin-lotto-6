@@ -1,9 +1,6 @@
 package lotto.controller
 
-import lotto.model.Bonus
-import lotto.model.Lotto
-import lotto.model.PurchaseCount
-import lotto.model.LottoTicket
+import lotto.model.*
 import lotto.util.LottoGenerator
 import lotto.view.InputView
 import lotto.view.OutputView
@@ -15,11 +12,14 @@ class LottoController(private val inputView: InputView, private val outputView: 
     private lateinit var purchaseCount: PurchaseCount
     private lateinit var lotto: Lotto
     private lateinit var bonus: Bonus
+    private lateinit var lottoResult: LottoResult
+    private val lottoRankings = LottoRankings()
 
     fun run() {
         gameInit()
         settingLotto()
         settingBonusNumber()
+        checkWinningNumbers()
     }
 
     private fun gameInit() {
@@ -82,11 +82,19 @@ class LottoController(private val inputView: InputView, private val outputView: 
         try {
             val userInput = inputView.getUserInput()
             bonus = Bonus(userInput)
-            val numbers = lotto.getNumbers()
+            val numbers = lotto.getWinningNumbers()
             bonus.checkUniqueNumber(numbers)
         } catch (e: IllegalArgumentException) {
             println(e.message)
             bonusNumberPublish()
+        }
+    }
+
+    private fun checkWinningNumbers() {
+        lottoResult = LottoResult(lotto.getWinningNumbers(), bonus.getNumber())
+        repeat(purchaseCount.count) { round ->
+            val winning = lottoResult.calculateRanking(lottoTicket.numbers[round])
+            lottoRankings.addRanking(winning)
         }
     }
 }

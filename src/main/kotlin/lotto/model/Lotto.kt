@@ -11,5 +11,5 @@ class Lotto(private val numbers: List<Int>) {
         validateLottoRange(numbers)
     }
 
-    fun getNumbers(): List<Int> = numbers
+    fun getWinningNumbers(): List<Int> = numbers
 }
