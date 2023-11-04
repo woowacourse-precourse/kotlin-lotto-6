@@ -10,7 +10,7 @@ class Lotto(private val numbers: List<Int>) {
     }
 
 
-    fun validateNumbers() {
+    private fun validateNumbers() {
         for (number in numbers) {
             if (number !in 1..45) {
                 throw IllegalArgumentException("[Error] 1에서 45 사이의 숫자여야 합니다.")
@@ -18,7 +18,7 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 
-    fun validateRepeat(){
+    private fun validateRepeat(){
         val checkRepeat = mutableListOf<Int>()
         for(number in numbers){
             if(number in checkRepeat){
