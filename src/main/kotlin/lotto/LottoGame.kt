@@ -2,13 +2,13 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
 
-enum class WinningPrice(val rank: Int, val price: Int) {
-    FIFTH(5, 5000),
-    FOURTH(4, 50000),
-    THIRD(3, 1500000),
-    SECOND(2, 30000000),
-    FIRST(1, 2000000000),
-    ZERO(0, 0)
+enum class WinningPrice(val correspondResult: String, val price: Int) {
+    FIFTH("3개 일치", 5000),
+    FOURTH("4개 일치", 50000),
+    THIRD("5개 일치", 1500000),
+    SECOND("5개 일치, 보너스 볼 일치", 30000000),
+    FIRST("6개 일치", 2000000000),
+    ZERO("3개 미만 일치", 0)
 }
 
 class LottoGame {
@@ -34,7 +34,7 @@ class LottoGame {
 
         outputView.printWinningStatics(winningList)
 
-        var totalWinningPrice = getTotalPrice(winningList)
+        val totalWinningPrice = getTotalPrice(winningList)
         val rate = totalWinningPrice / (10 * purchaseNumber)
 
         outputView.printProfitRate(rate)

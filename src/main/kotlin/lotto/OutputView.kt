@@ -32,7 +32,7 @@ class OutputView {
 
     fun printWinningStatics(winningList : HashMap<Int, Int>) {
         for(i in 5 downTo 1){
-            println("${i}개 일치 (${decimalFormat.format(getWinningPrice(i).price)}원) - ${winningList[i]}개")
+            println("${getWinningPrice(i).correspondResult} (${decimalFormat.format(getWinningPrice(i).price)}원) - ${winningList[i]}개")
         }
     }
 
