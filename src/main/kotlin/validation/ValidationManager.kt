@@ -14,14 +14,14 @@ class ValidationManager {
         return jackpotNumbers.isCorrectLottoCount()
     }
 
-    fun validBonusNumber(bonusNumber: Int, lottoNumbers: List<Int>) =
-        lottoNumbers.containsBonusNumber(bonusNumber.validLottoNumber())
+    fun validBonusNumber(bonusNumber: Int, jackpotNumbers: List<Int>) =
+        jackpotNumbers.containBonusNumber(bonusNumber.validLottoNumber())
 
     internal fun Int.lessThanZero(): Int = require(this >= 0).let { return this }
     internal fun Int.modulusLottoPrice(): Int = require(this % LOTTO_PRICE == 0).let { return this }
     internal fun ArrayList<Int>.isCorrectLottoCount(): ArrayList<Int> = require(size == LOTTO_COUNT).let { return this }
     fun Int.validLottoNumber(): Int = require(this in VALID_LOTTO_NUMBER).let { return this }
-    fun List<Int>.containsBonusNumber(bonusNumber: Int): Int = require(!contains(bonusNumber)).let { return bonusNumber }
+    fun List<Int>.containBonusNumber(bonusNumber: Int): Int = require(!contains(bonusNumber)).let { return bonusNumber }
 
     companion object {
         private const val LOTTO_PRICE = 1000
