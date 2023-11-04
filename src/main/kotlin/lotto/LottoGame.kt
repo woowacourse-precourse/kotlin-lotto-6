@@ -2,16 +2,51 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
 
+enum class WinningPrice(val rank: Int, val price: Int) {
+    FIFTH(5, 5000),
+    FOURTH(4, 50000),
+    THIRD(3, 1500000),
+    SECOND(2, 30000000),
+    FIRST(1, 2000000000),
+    ZERO(0, 0)
+}
+
 class LottoGame {
-    private val inputView = InputView()
-    private val outputView = OutputView()
+    companion object {
+        private val inputView = InputView()
+        private val outputView = OutputView()
+
+    }
 
     fun start() {
-        outputView.printPurchaseAmountInputMention()
-        val purchasePrice = inputView.inputPurchaseAmount()
-
+        val purchasePrice = getPurchasePrice()
         val purchaseNumber = purchasePrice / 1000
 
+        val lottoList: List<Lotto> = getLottoList(purchaseNumber)
+
+        printPurchaseLottoResult(purchaseNumber, lottoList)
+
+        val winningNumbers = getWinningNumberList()
+        val bonusNumber = getBonusNumber()
+
+        outputView.printWinningStatisticsMention()
+
+        val winningList : HashMap<Int, Int> = getWinningList(lottoList, winningNumbers, bonusNumber)
+
+        outputView.printWinningStatics(winningList)
+
+        var totalWinningPrice = getTotalPrice(winningList)
+        val rate = totalWinningPrice / (10 * purchaseNumber)
+
+        outputView.printProfitRate(rate)
+    }
+
+    fun getPurchasePrice(): Int {
+        outputView.printPurchaseAmountInputMention()
+        return inputView.inputPurchaseAmount()
+    }
+
+    fun getLottoList(purchaseNumber: Int): List<Lotto> {
         val tmpLottoList = mutableListOf<Lotto>()
 
         for (i in 0 until purchaseNumber) {
@@ -19,44 +54,52 @@ class LottoGame {
             val tmpLotto = Lotto(numbers)
             tmpLottoList.add(tmpLotto)
         }
+        return tmpLottoList.toList()
+    }
 
-        val lottoList: List<Lotto> = tmpLottoList
+    fun printPurchaseLottoResult(purchaseNumber: Int, lottoList: List<Lotto>) {
+        outputView.printPurchaseNumberMention(purchaseNumber)
+        outputView.printLottoList(purchaseNumber, lottoList)
+    }
 
-        outputView.printPurchaseNumber(purchaseNumber)
-        for (i in 0 until purchaseNumber) {
-            println(lottoList[i].getLottoNumberString())
-        }
-
+    fun getWinningNumberList(): List<Int> {
         outputView.printWinningNumberInputMention()
-        val winningNumbers = inputView.inputWinningNumberList()
+        return inputView.inputWinningNumberList()
+    }
 
+    fun getBonusNumber(): Int {
         outputView.printBonusNumberInputMention()
-        val bonusNumber = inputView.inputBonusNumber()
+        return inputView.inputBonusNumber()
+    }
 
-        outputView.printWinningStatisticsMention()
-
-        val winningList = HashMap<Int, Int>()
-        val winningPrice = listOf<String>("0", "2,000,000,000", "30,000,000", "1,500,000", "50,000", "5,000")
-        val winningPriceInt = listOf<Int>(0, 2000000000, 30000000, 1500000, 50000, 5000)
-        for (i in 0..<6) winningList[i] = 0
+    fun getWinningList(lottoList: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): HashMap<Int, Int> {
+        val tmpWinningList = HashMap<Int, Int>()
+        for (i in 0..<6) tmpWinningList[i] = 0
 
         lottoList.forEach {
-            winningList[it.getRank(winningNumbers, bonusNumber)] =
-                winningList.getValue(it.getRank(winningNumbers, bonusNumber)) + 1
+            tmpWinningList[it.getRank(winningNumbers, bonusNumber)] =
+                tmpWinningList.getValue(it.getRank(winningNumbers, bonusNumber)) + 1
         }
 
-        for (i in 5 downTo 1) {
-            println("${i}개 일치 (${winningPrice[i]}원) - ${winningList[i]}개")
-        }
+        return tmpWinningList
+    }
 
+    fun getTotalPrice(winningList : HashMap<Int, Int>): Double {
         var totalWinningPrice = 0.0
-
         for (i in 1..<6) {
-            totalWinningPrice += winningPriceInt[i] * winningList[i]!!
+            totalWinningPrice += getWinningPrice(i).price * winningList[i]!!
         }
+        return totalWinningPrice
+    }
 
-        val rate = totalWinningPrice / (10 * purchaseNumber)
-
-        outputView.printProfitRate(rate)
+    fun getWinningPrice(rank: Int): WinningPrice {
+        return when (rank) {
+            5 -> WinningPrice.FIFTH
+            4 -> WinningPrice.FOURTH
+            3 -> WinningPrice.THIRD
+            2 -> WinningPrice.SECOND
+            1 -> WinningPrice.FIRST
+            else -> WinningPrice.ZERO
+        }
     }
 }
