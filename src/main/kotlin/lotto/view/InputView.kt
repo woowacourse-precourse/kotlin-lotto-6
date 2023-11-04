@@ -5,11 +5,11 @@ class InputView {
     fun lottoPurchase(): Int{
         return (Console.readLine()).toInt()
     }
-    fun inputRightLottoNumber(): List<String>{
+    fun inputRightLottoNumber(): List<Int>{
         val rightLottoNumber=Console.readLine()
-        return rightLottoNumber.split(",")
+        return rightLottoNumber.split(",").map { it.toInt() }
     }
-    fun inputBonusNumber(): String{
-        return Console.readLine()
+    fun inputBonusNumber(): Int{
+        return (Console.readLine()).toInt()
     }
 }
