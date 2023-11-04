@@ -18,4 +18,19 @@ class LottoTest {
             Lotto(listOf(1, 2, 3, 4, 5, 5))
         }
     }
+
+    @Test
+    fun `로또 번호가 범위를 벗어나면 예외가 발생한다`() {
+        val numbersCases = listOf(
+            listOf(0, 1, 2, 3, 4, 5),
+            listOf(1, 2, 3, 4, 5, 46),
+            listOf(-10, 2, 3, 4, 5, 6),
+            listOf(1, 2, 3, 4, 5, 1000)
+        )
+        numbersCases.forEach { numbers ->
+            assertThrows<IllegalArgumentException> {
+                Lotto(numbers)
+            }
+        }
+    }
 }
