@@ -1,13 +1,15 @@
 package lotto.controller
 
 import lotto.model.User
+import lotto.model.WinResult
+import lotto.model.WinningLotto
 import lotto.view.InputView
 import lotto.view.OutputView
 
 class LottoController(private val inputView: InputView = InputView(),private val outPutView : OutputView = OutputView()) {
 
     private val user = User()
-    private lateinit var luckyNumbers : List<Int>
+    private val winningLotto = WinningLotto()
     fun run(){
         outPutView.printInputPrice()
         val price = inputView.inputPrice()
@@ -15,8 +17,8 @@ class LottoController(private val inputView: InputView = InputView(),private val
         user.buyLotto(price)
         outPutView.printUserLotto(user.lottoes)
         outPutView.printInputLuckyNumber()
-        luckyNumbers = inputView.inputLuckyNumber()
-        //TODO 보너스 번호 입력
-        //TODO 당첨 통계 구현
+        winningLotto.setLuckyNumbers(inputView.inputLuckyNumber())
+        outPutView.printInputBonusNumber()
+        winningLotto.setBonusNumber(inputView.inputBonusNumber(winningLotto.luckyNumbers))
     }
 }
