@@ -6,4 +6,5 @@ class InputView {
     fun inputPurchaseAmount(): String {
         return Console.readLine()
     }
+
 }
