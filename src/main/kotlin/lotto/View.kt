@@ -28,11 +28,10 @@ class View(
             }
             try {
                 WinningNumber.validate(numbers)
+                return numbers
             } catch (e: Exception) {
                 printer.error(e.message ?: Message.InvalidInputError.toString())
-                continue
             }
-            return numbers
         }
     }
 
@@ -45,11 +44,10 @@ class View(
             }
             try {
                 WinningNumber.validate(winningNumber, bonusNumber)
+                return bonusNumber
             } catch (e: Exception) {
                 printer.error(e.message ?: Message.InvalidInputError.toString())
-                continue
             }
-            return bonusNumber
         }
     }
 
