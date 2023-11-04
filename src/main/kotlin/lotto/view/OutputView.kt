@@ -1,6 +1,5 @@
 package lotto.view
 
-import lotto.utils.Constants
 import lotto.utils.Messages
 
 class OutputView {

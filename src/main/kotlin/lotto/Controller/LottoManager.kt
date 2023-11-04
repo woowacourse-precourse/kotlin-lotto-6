@@ -18,7 +18,7 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
 
         val numbers = inputView.inputMyNumbers()
         val lottoNumbers = splitMyNumbers(numbers)
-        val lotto = Lotto(changeStringToInteger(lottoNumbers))
+        Lotto(changeStringToInteger(lottoNumbers))
 
     }
 
