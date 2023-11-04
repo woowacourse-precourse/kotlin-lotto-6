@@ -3,8 +3,8 @@ package lotto
 import java.text.DecimalFormat
 
 object Printer {
-    fun println() {
-        kotlin.io.println()
+    fun printEmptyLine() {
+        println()
     }
 
     fun print(message: Message) {
@@ -14,10 +14,10 @@ object Printer {
     fun print(purchase: Purchase) {
         val lottos = purchase.lottos
         val purchasedMessage = Message.Purchased.toString()
-        println()
+        printEmptyLine()
         println(purchasedMessage.format(lottos.size))
         lottos.forEach { println(it) }
-        println()
+        printEmptyLine()
     }
 
     fun print(results: List<WinningResult>, profitPercentage: Double) {

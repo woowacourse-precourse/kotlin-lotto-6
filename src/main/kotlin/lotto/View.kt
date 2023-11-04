@@ -67,11 +67,11 @@ class View(
 
         printer.print(Message.InputWinningNumber)
         val winningNumber = inputWinningNumber()
-        printer.println()
+        printer.printEmptyLine()
 
         printer.print(Message.InputBonusNumber)
         val bonusNumber = inputBonusNumber(winningNumber)
-        printer.println()
+        printer.printEmptyLine()
 
         printWinningResult(purchase, WinningNumber(numbers = winningNumber, bonus = bonusNumber))
     }
