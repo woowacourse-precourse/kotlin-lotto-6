@@ -6,6 +6,7 @@ class LottoView {
         for (lotto in lottoCollection.lottoCollection) {
             println(lotto.amount())
         }
+        println()
     }
 
     fun showLottoResult() {

@@ -9,11 +9,15 @@ class LottoController {
     private var cost = 0
     var lottoCollection = LottoCollection()
     val lottoView = LottoView()
-
+    val winningNumbers: MutableList<Int> = mutableListOf()
+    var plusNumber: Int = 0
     fun start() {
         inputLottoCost()
+        println()
         lottoGenerate(cost/1000)
         lottoView.showGenerateLotto(lottoCollection)
+        inputWinningNumber()
+        inputPlusNumber()
     }
 
     fun checkLottoCost(cost: Int) {
@@ -58,12 +62,48 @@ class LottoController {
         }
     }
 
-    fun inputWinningNumber() {
+    fun checkWinningNumbers(winningNumbers: List<Int>) {
+        require(winningNumbers.size == 6)
+        require(winningNumbers.distinct().size == winningNumbers.size)
+        for (number in winningNumbers) {
+            require(number <= LOTTO_MAX_NUM)
+            require(1 <= number)
+        }
+    }
 
+    fun inputWinningNumber() {
+        println("당첨 번호를 입력해 주세요.")
+        val inputWinningNumbers = Console.readLine()
+        val inputCollection = inputWinningNumbers.split(",")
+        winningNumbers.clear()
+        for (number in inputCollection) {
+            winningNumbers.add(number.toInt())
+        }
+        try {
+            checkWinningNumbers(winningNumbers)
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] 6자리의 1-45의 숫자를 입력해 주세요.")
+            inputWinningNumber()
+        }
+        println()
+    }
+
+    fun checkPlusNumber(plusNumber: Int) {
+        require(plusNumber <= LOTTO_MAX_NUM)
+        require(1 <= plusNumber)
     }
 
     fun inputPlusNumber() {
-
+        println("보너스 번호를 입력해 주세요.")
+        val inputPlusNumber = Console.readLine()
+        plusNumber = inputPlusNumber.toInt()
+        try {
+            checkPlusNumber(plusNumber)
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] 1-45의 숫자를 입력해 주세요.")
+            inputPlusNumber()
+        }
+        println()
     }
 
     fun checkWin() {
