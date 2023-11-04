@@ -15,8 +15,9 @@ class GameController {
     fun play() {
         val purchaseAmount = inputPurchaseAmount(inputView)
         val lottoNumbers = createLottos(purchaseAmount.Count)
+        outputView.printPurchaseResults(lottoNumbers)
 
-        println(lottoNumbers)
+
     }
 
     private fun inputPurchaseAmount(inputView: InputView): PurchaseAmount {

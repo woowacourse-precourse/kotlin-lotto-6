@@ -1,11 +1,14 @@
 package lotto
 
+import camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest
 import camp.nextstep.edu.missionutils.test.NsTest
+import org.assertj.core.api.Java6Assertions.assertThat
+import org.junit.jupiter.api.Test
 
 class ApplicationTest : NsTest() {
 
 //    @Test
-//    fun `기능 테스트`() {
+//    fun `전체 기능 통합 테스트`() {
 //        assertRandomUniqueNumbersInRangeTest(
 //            {
 //                run("8000", "1,2,3,4,5,6", "7")
@@ -45,6 +48,30 @@ class ApplicationTest : NsTest() {
 //            assertThat(output()).contains(ERROR_MESSAGE)
 //        }
 //    }
+
+    @Test
+    fun `1) 구입 금액 입력, Lotto N장 생성 및 정렬, 발행한 로또 수량 및 번호 출력`() {
+        assertRandomUniqueNumbersInRangeTest(
+            {
+                run("6000")
+                assertThat(output()).contains(
+                    "6개를 구매했습니다.",
+                    "[7, 11, 16, 35, 36, 44]",
+                    "[1, 8, 11, 31, 41, 42]",
+                    "[13, 14, 16, 38, 42, 45]",
+                    "[7, 11, 30, 40, 42, 43]",
+                    "[2, 13, 22, 32, 38, 45]",
+                    "[1, 3, 5, 14, 22, 45]",
+                )
+            },
+            listOf(7, 35, 16, 11, 44, 36),
+            listOf(1, 8, 11, 31, 41, 42),
+            listOf(13, 45, 16, 38, 42, 14),
+            listOf(43, 11, 30, 40, 42, 7),
+            listOf(2, 13, 22, 32, 38, 45),
+            listOf(45, 22, 14, 5, 3, 1)
+        )
+    }
 
     override fun runMain() {
         main()
