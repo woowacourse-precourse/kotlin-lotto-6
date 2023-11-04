@@ -1,9 +1,10 @@
 package lotto.model
 
 class Lotto(private val numbers: List<Int>) {
-    init {
-        require(numbers.size == 6)
-    }
+    lateinit var lottoNumbers: List<Int>
 
-    // TODO: 추가 기능 구현
+    init {
+        LottoNumValidation().validateLottoNum(numbers)
+        lottoNumbers = numbers
+    }
 }
