@@ -13,7 +13,7 @@
 - [ ] 로또 게임 실행 및 결과를 계산하는 기능 - `playLottoGame()`#LottoGameController
 - [x] 로또 구매 수량을 계산하는 기능 - `getQuantity()`#LottoGame
 - [x] 랜덤 로또 번호를 생성하는 기능 - `createRandomLottoNumbers()`#LottoGame
-- [ ] 로또 결과를 계산하는 기능 - `getLottoResults()`#LottoGame
+- [x] 로또 결과를 계산하는 기능 - `getLottoResults()`#LottoGame
 - [ ] 로또 당첨 결과를 계산하는 기능 - `getLottoMatchResult()`#LottoGame
 - [ ] 수익률을 계산하는 기능 - `calculateRate()`#LottoGame
 - [x] 구매 금액 입력을 예외 처리하는 기능 - `inputPurchaseAmountException()`#Exceptions
