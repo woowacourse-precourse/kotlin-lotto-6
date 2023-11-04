@@ -29,4 +29,4 @@
 - Exception Test
   - [x] `inputPurchaseAmountException` 함수 테스트
   - [x] `inputWinningNumberException` 함수 테스트
-  - [ ] `inputBonusNumberException` 함수 테스트
+  - [x] `inputBonusNumberException` 함수 테스트
