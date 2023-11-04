@@ -3,7 +3,6 @@ package lotto.controller
 import lotto.model.*
 import lotto.view.Input
 import lotto.view.Output
-import org.mockito.AdditionalAnswers
 
 class LottoMachine {
     fun start(){
@@ -12,7 +11,8 @@ class LottoMachine {
         val userLotto = purchaseNumberLotto(count)
         val answers = userAnswer()
         val bonus = userBonus(answers)
-        val jackpot =
+        var jackpot = Jackpot().discriminate(answers,bonus,userLotto)
+
 
 
     }

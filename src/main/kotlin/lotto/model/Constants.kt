@@ -4,6 +4,12 @@ class Constants {
     companion object{
         val THOUSAND = 1000
         val ZERO = 0
+        val ONE = 1
+        val TWO = 2
+        val THREE = 3
+        val FOUR = 4
+        val FIVE = 5
+        val SIX = 6
 
         val WRITE_MONEY = "구입금액을 입력해 주세요."
         val PURCHASE_NUMBER = "개를 구매했습니다."
