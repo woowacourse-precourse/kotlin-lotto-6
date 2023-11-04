@@ -3,6 +3,7 @@ package lotto.view
 import lotto.model.Lotto
 import lotto.model.LottoMatchResult
 import lotto.model.LottoReward
+import lotto.model.LottoWinningResult
 import lotto.utils.Constant.BONUS_NUMBER_MESSAGE
 import lotto.utils.Constant.LOTTO_QUANTITY_MESSAGE
 import lotto.utils.Constant.LOTTO_WINNING_NUMBER_MESSAGE
@@ -25,13 +26,27 @@ class OutputView {
 
     fun printBonusNumber() = println(BONUS_NUMBER_MESSAGE)
 
-    fun printLottoWinningResults(lottoMatchResult: LottoMatchResult, rate: Float) {
+    fun printLottoWinningResults(lottoWinningResult: LottoWinningResult) {
         println(WINNING_STATISTICS_HEADER_MESSAGE)
-        println(MATCH_PRIZE_MESSAGE.format(LottoReward.FIFTH.matchedCount, LottoReward.FIFTH.prize, lottoMatchResult.threeMatching))
-        println(MATCH_PRIZE_MESSAGE.format(LottoReward.FOURTH.matchedCount, LottoReward.FOURTH.prize, lottoMatchResult.fourMatching))
-        println(MATCH_PRIZE_MESSAGE.format(LottoReward.THIRD.matchedCount, LottoReward.THIRD.prize, lottoMatchResult.fiveMatching))
-        println(MATCH_PRIZE_BONUS_MESSAGE.format(LottoReward.SECOND.matchedCount, LottoReward.SECOND.prize, lottoMatchResult.fiveMatchingWithBonus))
-        println(MATCH_PRIZE_MESSAGE.format(LottoReward.FIRST.matchedCount, LottoReward.FIRST.prize, lottoMatchResult.sixMatching))
-        println(YIELD_MESSAGE.format(rate))
+
+        LottoReward.entries.forEach { reward ->
+            printMatchCountMessage(reward, lottoWinningResult)
+        }
+
+        println(YIELD_MESSAGE.format(lottoWinningResult.rate))
     }
+
+    private fun printMatchCountMessage(reward: LottoReward, lottoWinningResult: LottoWinningResult) {
+        val matchCount = when(reward) {
+            LottoReward.FIFTH -> lottoWinningResult.lottoMatchResult.threeMatching
+            LottoReward.FOURTH -> lottoWinningResult.lottoMatchResult.fourMatching
+            LottoReward.THIRD -> lottoWinningResult.lottoMatchResult.fiveMatching
+            LottoReward.SECOND -> lottoWinningResult.lottoMatchResult.fiveMatchingWithBonus
+            LottoReward.FIRST -> lottoWinningResult.lottoMatchResult.sixMatching
+        }
+
+        val message = if (reward == LottoReward.SECOND) MATCH_PRIZE_BONUS_MESSAGE else MATCH_PRIZE_MESSAGE
+        println(message.format(reward.matchedCount, reward.prize, matchCount))
+    }
+
 }
