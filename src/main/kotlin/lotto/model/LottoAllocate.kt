@@ -1,5 +1,5 @@
 package lotto.model
 
-class Rand {
+class LottoAllocate {
 
 }
