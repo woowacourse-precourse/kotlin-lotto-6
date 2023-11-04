@@ -21,4 +21,10 @@ class LottoGameService {
         }
         return purchaseLottoLists
     }
+    private fun checkWinningLottoNumber(lotto: List<Int>, randomLottoLists: MutableMap<Int, List<Int>>, ticketCheck: Int): Int {
+        return randomLottoLists[ticketCheck]!!.intersect(lotto.toSet()).count()
+    }
+    private fun checkWinningBonusNumber(bonus: Int, randomLottoLists: MutableMap<Int, List<Int>>, ticketCheck: Int): Boolean {
+        return randomLottoLists[ticketCheck]!!.contains(bonus)
+    }
 }
