@@ -1,5 +1,4 @@
 package lotto.view
 
-class Output {
-
+class OutputTest {
 }

@@ -1,9 +1,11 @@
-📜 기능 목록
+## 📜 기능 목록
 
 ### ⌨️ 입력
 
 - [ ] 로또 구입 금액을 입력 받는다.
     - [ ] 구입 금액이 1,000원으로 나누어 떨어지지 않는 경우 IllegalArgumentException 발생
+    - [ ] 입력이 문자라면, IllegalArgumentException 발생
+    - [ ] 입력이 공백이라면, IllegalArgumentException 발생
 
 - [ ] 당첨 번호를 입력 받는다. 번호는 쉼표(,)를 기준으로 구분한다.
     - [ ] 입력이 문자라면, IllegalArgumentException 발생
@@ -32,12 +34,10 @@
 - [ ] 클래스 분리
     - [ ] Input - 입력에 대한 기능 구현, 예외 처리
     - [ ] Output - 결과 출력
-    - [ ] Lotto - 오름차순, 당첨 번호와 비교
-    - [ ] WinningLotto - 당첨 번호 관리
-    - [ ] Computer - 계산과 관련된 기능을 구현
-    - [ ] Controller - 메인 로직 구현
-
-- [ ] Constants - 패키지 변수로 변수 선언 및 접근
+    - [ ] Lotto - 오름차순 정렬 기능
+    - [ ] Lottos - 구입 금액 만큼의 로또 객체 생성
+    - [ ] LottoRank - 로또 등수 계산
+    - [ ] LottoController - 메인 로직 구현
 
 ### 🪜 목표
 
@@ -45,7 +45,7 @@
 - 클래스 분리
     - 클래스 구현 순서 지키기
     - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현
-- Enum 클래스를 적용
+- Enum 클래스를 Rank 및 Output에 적용
 
 ## 🚀 기능 요구 사항
 

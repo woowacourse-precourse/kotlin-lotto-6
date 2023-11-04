@@ -1,4 +1,4 @@
 package lotto.controller
 
-class Controller {
+class ControllerTest {
 }
