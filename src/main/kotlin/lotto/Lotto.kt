@@ -3,13 +3,8 @@ package lotto
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == SIZE)
-        requireUnique(numbers)
+        require(numbers.isUnique())
         requireInRange(numbers)
-    }
-
-    private fun requireUnique(numbers: List<Int>) {
-        val uniqueNumbers = numbers.toSet()
-        require(uniqueNumbers.size == SIZE)
     }
 
     private fun requireInRange(numbers: List<Int>) {
