@@ -9,5 +9,6 @@ class LottoController(
 ) {
     fun run() {
         outputView.printPurchaseAmount()
+        val purchaseAmount = inputView.getValue()
     }
 }
