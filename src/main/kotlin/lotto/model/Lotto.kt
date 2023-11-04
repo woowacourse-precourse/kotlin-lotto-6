@@ -1,8 +1,12 @@
 package lotto.model
 
+import lotto.util.LottoValidatorUtil
+
 class Lotto(private val numbers: List<Int>) {
+
     init {
-        require(numbers.size == 6)
+        LottoValidatorUtil.checkWinningNumberSize(numbers)
+        checkLottoNumbersInRange()
     }
 
     override fun toString(): String {
@@ -10,4 +14,10 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun getNumbers() = numbers
+
+    private fun checkLottoNumbersInRange() {
+        numbers.forEach { _number ->
+            LottoValidatorUtil.checkNumberInRange(_number)
+        }
+    }
 }
