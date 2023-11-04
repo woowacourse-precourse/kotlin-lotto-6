@@ -5,10 +5,34 @@ import lotto.constants.LottoConstants.LOTTO_PRICE
 import lotto.constants.LottoConstants.LOTTO_SIZE
 import lotto.constants.LottoConstants.MAXIMUM_NUMBER
 import lotto.constants.LottoConstants.MINIMUM_NUMBER
+import lotto.model.Winner.*
+import java.util.*
 
 object LottoService {
+    private lateinit var winningMap: EnumMap<Winner, Int>
     fun buyLotto(money: Int): List<Lotto> =
         List(money / LOTTO_PRICE) { generateLotto() }
+
+    fun getWinningMap(purchasedLottoList: List<Lotto>, winningNumber: Lotto, bonusNumber: Int): EnumMap<Winner, Int> {
+        winningMap = EnumMap(Winner::class.java)
+        purchasedLottoList.forEach { _lottoNumber ->
+            val (count, isBonusNumber) = checkLotto(_lottoNumber, winningNumber, bonusNumber)
+            setWinningDetails(count, isBonusNumber)
+        }
+        return winningMap
+    }
+
+    private fun checkLotto(lottoNumber: Lotto, winningNumber: Lotto, bonusNumber: Int): Pair<Int, Boolean> {
+        var count = 0
+        var isBonusNumberExist = false
+        lottoNumber.getNumbers().forEach { _number ->
+            when {
+                winningNumber.getNumbers().contains(_number) -> count += 1
+                _number == bonusNumber -> isBonusNumberExist = true
+            }
+        }
+        return Pair(count, isBonusNumberExist)
+    }
 
     private fun generateLotto(): Lotto {
         val lottoNumbers = mutableSetOf<Int>()
@@ -16,5 +40,17 @@ object LottoService {
             lottoNumbers.add(Randoms.pickNumberInRange(MINIMUM_NUMBER, MAXIMUM_NUMBER))
         }
         return Lotto(lottoNumbers.toList())
+    }
+
+    private fun setWinningDetails(count: Int, isBonusNumber: Boolean) {
+        when (count) {
+            FIRST_GRADE.correspondNumber -> winningMap[FIRST_GRADE] = winningMap.getOrDefault(FIRST_GRADE, 0) + 1
+            SECOND_GRADE.correspondNumber -> {
+                val grade = if (isBonusNumber) SECOND_GRADE else THIRD_GRADE
+                winningMap[grade] = winningMap.getOrDefault(grade, 0) + 1
+            }
+            FOURTH_GRADE.correspondNumber -> winningMap[FOURTH_GRADE] = winningMap.getOrDefault(FOURTH_GRADE, 0) + 1
+            FIFTH_GRADE.correspondNumber -> winningMap[FIFTH_GRADE] = winningMap.getOrDefault(FIFTH_GRADE, 0) + 1
+        }
     }
 }
