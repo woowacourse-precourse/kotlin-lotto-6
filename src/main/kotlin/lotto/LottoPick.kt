@@ -18,19 +18,18 @@ class LottoPick() {
         return lottoList
     }
 
-    fun pickValid(pickList: List<String>){
+    fun pickValid(pickList: List<String>): List<Int>{
         val numbers = pickList.mapNotNull { it.toIntOrNull() }
         Lotto(numbers)
-
+        return numbers
     }
-    private fun validPickNumber() : List<String> {
+    private fun validPickNumber(): List<Int> {
         LottoView().pickView()
         val numbers = Console.readLine()
         val pickList = numbers.split(",")
-        pickValid(pickList)
-        return pickList
+        return pickValid(pickList)
     }
-    fun pickNumber(): List<String> {
+    fun pickNumber(): List<Int> {
         while(true) {
             try {
                 return validPickNumber()
@@ -44,12 +43,17 @@ class LottoPick() {
         if(bonusNum == null || bonusNum < 0 || bonusNum > 45)
             throw IllegalArgumentException("[Error] 보너스 번호가 유효하지 않습니다.")
     }
-    fun bonusPickNumber(): Int {
+    fun bonusRepeat(bonusNumber: Int, prizeNumber: List<Int>){
+        if(bonusNumber in prizeNumber)
+            throw IllegalArgumentException("[Error] 보너스 번호가 당첨 번호에 중복됩니다.")
+    }
+    fun bonusPickNumber(prizeNumber:List<Int>): Int {
         while (true) {
             try {
                 LottoView().bonusView()
                 val bonusNumber = Console.readLine()
                 bonusCheck(bonusNumber)
+                bonusRepeat(bonusNumber.toInt(), prizeNumber)
                 return bonusNumber.toInt()
             } catch (e: IllegalArgumentException) {
                 println(e.message)
