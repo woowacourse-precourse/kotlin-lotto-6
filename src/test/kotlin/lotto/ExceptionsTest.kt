@@ -1,5 +1,7 @@
 package lotto
 
+import lotto.model.Lotto
+import lotto.utils.Exceptions.inputBonusNumberException
 import lotto.utils.Exceptions.inputPurchaseAmountException
 import lotto.utils.Exceptions.inputWinningNumberException
 import org.junit.jupiter.api.Test
@@ -53,4 +55,28 @@ class ExceptionsTest {
             )
     }
 
+    @Test
+    fun `inputBonusNumberException - Given 유효한 보너스 번호와 당첨 번호가 주어지면, When inputBonusNumberException을 호출하면, 예상 결과를 반환해야 함`() {
+        // Given
+        val winningNumber = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val bonusNumber = "7"
+
+        // When
+        val result = inputBonusNumberException(winningNumber, bonusNumber)
+
+        // Then
+        assertThat(result.getOrNull()).isEqualTo(7)
+    }
+
+    @Test
+    fun `inputBonusNumberException - Given 유효하지 않은 보너스 번호가 주어지면, When & Then NumberFormatException을 던져야 함`() {
+        // Given
+        val winningNumber = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val bonusNumber = "invalidBonus"
+
+        // When & Then
+        assertThatThrownBy {
+            inputBonusNumberException(winningNumber, bonusNumber).getOrThrow()
+        }.isInstanceOf(NumberFormatException::class.java)
+    }
 }
