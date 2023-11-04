@@ -2,15 +2,15 @@ package lotto
 
 import java.util.*
 
+enum class InputErrorCode(val message: String) {
+    NUMBER_IN_RANGE("[Error] 1에서 45 사이의 숫자여야 합니다."),
+    NUMBERS_NOT_VALID("[Error] 입력 값이 6개가 아니거나 당첨 번호에 문자열이 포함되어 있습니다."),
+    REPEATED_NUMBER("[Error] 입력 값 중 중복된 숫자가 있습니다.")
+}
 class Lotto(private val numbers: List<Int>) {
-    companion object{
-        private const val NUMBER_IN_RANGE = "[Error] 1에서 45 사이의 숫자여야 합니다."
-        private const val NUMBERS_NOT_VALID = "[Error] 입력 값이 6개가 아니거나 당첨 번호에 문자열이 포함되어 있습니다."
-        private const val REPEATED_NUMBER = "[Error] 입력 값 중 중복된 숫자가 있습니다."
-    }
     init {
         require(numbers.size == 6){
-            NUMBERS_NOT_VALID
+            InputErrorCode.NUMBERS_NOT_VALID
         }
         validateNumbers()
         validateRepeat()
@@ -20,7 +20,7 @@ class Lotto(private val numbers: List<Int>) {
     private fun validateNumbers() {
         for (number in numbers) {
             if (number !in 1..45) {
-                throw IllegalArgumentException(NUMBER_IN_RANGE)
+                throw IllegalArgumentException(InputErrorCode.NUMBER_IN_RANGE.message)
             }
         }
     }
@@ -29,7 +29,7 @@ class Lotto(private val numbers: List<Int>) {
         val checkRepeat = mutableListOf<Int>()
         for(number in numbers){
             if(number in checkRepeat){
-                throw IllegalArgumentException(REPEATED_NUMBER)
+                throw IllegalArgumentException(InputErrorCode.REPEATED_NUMBER.message)
             }
             checkRepeat.add(number)
         }

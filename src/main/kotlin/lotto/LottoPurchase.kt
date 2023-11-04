@@ -2,13 +2,15 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 
+enum class PurchaseErrorCode(val message: String){
+    ERROR_MESSAGE("[ERROR] 잘못된 숫자 입력입니다.")
+}
+
 class LottoPurchase {
-    companion object {
-        private const val ERROR_MESSAGE = "[ERROR] 잘못된 숫자 입력입니다."
-    }
+
     fun validatePurchase(cost: String) : Boolean {
         if(cost.isBlank() || !cost.all{it.isDigit()}){
-            throw IllegalArgumentException(ERROR_MESSAGE)
+            throw IllegalArgumentException(PurchaseErrorCode.ERROR_MESSAGE.message)
         }
         return true
     }
