@@ -5,18 +5,66 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class InputTest {
+    private val input = Input()
     @Test
-    fun ` 로또 구입 금액을 입력 받는다`() {
+    fun `validatePurchaseAmount 메서드 사용시 1000원으로 나누어 떨어지지 않을 때 오류 발생`() {
+        //then
         assertThrows<IllegalArgumentException> {
-            Lotto(listOf(1, 2, 3, 4, 5, 6, 7))
+            input.validatePurchaseAmount("14900")
         }
     }
 
-    // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
     @Test
-    fun `로또 번호에 중복된 숫자가 있으면 예외가 발생한다`() {
+    fun `validatePurchaseAmount 메서드 사용시 문자일 때 오류 발생`() {
+        //then
         assertThrows<IllegalArgumentException> {
-            Lotto(listOf(1, 2, 3, 4, 5, 5))
+            input.validatePurchaseAmount("asdf")
+        }
+    }
+
+    @Test
+    fun `validatePurchaseAmount 메서드 사용시 공백일 때 오류 발생`() {
+        //then
+        assertThrows<IllegalArgumentException> {
+            input.validatePurchaseAmount("")
+        }
+    }
+    @Test
+    fun `validateWinningLottoNumber 메서드 사용시 문자일 때 오류 발생`() {
+        //then
+        assertThrows<IllegalArgumentException> {
+            input.validateWinningLottoNumber("asdf")
+        }
+    }
+    @Test
+    fun `validateWinningLottoNumber 메서드 사용시 공백일 때 오류 발생`() {
+        //then
+        assertThrows<IllegalArgumentException> {
+            input.validateWinningLottoNumber("")
+        }
+    }
+
+    @Test
+    fun `validateWinningLottoNumber 메서드 사용시 숫자가 6개가 아닐 때 오류 발생`() {
+        //then
+        assertThrows<IllegalArgumentException> {
+            input.validateWinningLottoNumber("1,2,3,4,5,6,7")
+        }
+    }
+
+    @Test
+    fun `validateBonusNumber 메서드 사용시 문자일 때 오류 발생`() {
+        //then
+        assertThrows<IllegalArgumentException> {
+            input.validateBonusNumber("asdf")
+        }
+    }
+
+    @Test
+    fun `validateBonusNumber 메서드 사용시 공백일 때 오류 발생`() {
+        //then
+        assertThrows<IllegalArgumentException> {
+            input.validateBonusNumber("")
         }
     }
 }
