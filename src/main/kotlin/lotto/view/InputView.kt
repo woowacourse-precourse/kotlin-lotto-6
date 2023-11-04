@@ -1,6 +1,7 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.util.Exception
 
 class InputView {
 
@@ -10,7 +11,7 @@ class InputView {
         while(!validInput) {
             try {
                 price = Console.readLine()
-                InputValidator.validateInputPrice(price)
+                Exception.validateInputPrice(price)
                 validInput=true
             } catch (e: IllegalArgumentException) {
                 println(e.message)
@@ -25,7 +26,7 @@ class InputView {
         while(!validInput){
             try{
                 luckyNumbers = Console.readLine()
-                InputValidator.validateInputLuckyNumber(luckyNumbers)
+                Exception.validateInputLuckyNumber(luckyNumbers)
                 validInput=true
             } catch(e : IllegalArgumentException){
                 println(e.message)

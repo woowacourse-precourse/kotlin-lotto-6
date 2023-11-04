@@ -9,7 +9,7 @@ import lotto.util.Constant.LOTTO_NUMBER_SIZE
 import lotto.util.Constant.UNIT_PRICE
 import java.lang.IllegalArgumentException
 
-object InputValidator {
+object Exception {
 
     fun validateInputPrice(price : String){
         if(price.toIntOrNull()==null){
