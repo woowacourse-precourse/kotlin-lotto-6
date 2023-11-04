@@ -11,4 +11,11 @@ class BuyingPriceTest {
             containsOnlyDigits("1234567980.0")
         }
     }
+
+    @Test
+    fun `1,000원 단위가 아닐 경우 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            require("28000".toInt() % 1000 == 0)
+        }
+    }
 }
