@@ -79,4 +79,12 @@ class LottoTest {
             validateSplit.validateSplitMyNumbers(listOf("100"))
         }
     }
+
+    @Test
+    fun `당첨번호에 중복이 존재할 경우`() {
+        val validateSplit = ValidateSplit()
+        assertThrows<IllegalArgumentException> {
+            validateSplit.validateSplitMyNumbers(listOf("1", "1"))
+        }
+    }
 }
