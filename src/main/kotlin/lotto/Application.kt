@@ -1,21 +1,26 @@
 package lotto
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import kotlin.reflect.typeOf
 
 fun main() {
     var amount = 0 // 구입 금액
     var lottoPurchaseCount = 0 // 로또 구매 장수
+    var lottoNumberMatch = 0
+    var totalPrize = 0
+    var prizeCounts = IntArray(5) { 0 }
+    var rateOfReturn = 0
+    var purchaseAmount = 0
 
     while (true) {
         println("구입금액을 입력해주세요.")
-        val purchaseAmount = Console.readLine()
+        purchaseAmount = Console.readLine().toInt()
 
         try {
-            amount = purchaseAmount.toInt()
 
-            if (amount < 1000) {
+            if (purchaseAmount < 1000) {
                 throw IllegalArgumentException("[ERROR] 1000 이상의 금액을 입력하세요.")
-            } else if (amount % 1000 != 0) {
+            } else if (purchaseAmount % 1000 != 0) {
                 throw IllegalArgumentException("[ERROR] 1000으로 나누어 떨어지는 값을 입력하세요.")
             } else {
                 break // Break out of the loop when valid input is provided
@@ -27,7 +32,7 @@ fun main() {
         }
     }
 
-    lottoPurchaseCount = amount / 1000
+    lottoPurchaseCount = purchaseAmount / 1000
     println("\n" + lottoPurchaseCount + "개를 구매했습니다.")
 
     val lottoPurchaseCounts = List(lottoPurchaseCount) { List(6) { 0 } }.toMutableList()
@@ -62,7 +67,7 @@ fun main() {
     }
     //println(winningLotteryNumbers)
 
-    var bonusNumber: Int
+    var bonusNumber: Int = 0
     var validBonusNumber = false
 
     while (!validBonusNumber) {
@@ -83,4 +88,52 @@ fun main() {
             println(e.message)
         }
     }
+
+    for (i in 0 until lottoPurchaseCount) {
+        val union = lottoPurchaseCounts[i] + winningLotteryNumbers
+        val intersection = union.groupBy { it }.filter { it.value.size > 1 }.flatMap { it.value }.distinct()
+        lottoNumberMatch = intersection.size
+        val bonusNumberMatch = lottoPurchaseCounts[i].contains(bonusNumber)
+        if (bonusNumberMatch && lottoNumberMatch != 5) {
+            lottoNumberMatch += 1
+        }
+
+        when {
+            lottoNumberMatch == 6 -> {
+                totalPrize += 2000000000
+                prizeCounts[4]++
+            }
+            lottoNumberMatch == 5 && bonusNumberMatch -> {
+                totalPrize += 30000000
+                prizeCounts[3]++
+            }
+            lottoNumberMatch == 5 -> {
+                totalPrize += 1500000
+                prizeCounts[2]++
+            }
+            lottoNumberMatch == 4 -> {
+                totalPrize += 50000
+                prizeCounts[1]++
+            }
+            lottoNumberMatch == 3 -> {
+                totalPrize += 5000
+                prizeCounts[0]++
+            }
+        }
+
+    }
+    val prizeDescriptions = listOf(
+            "3개 일치 (5,000원)",
+            "4개 일치 (50,000원)",
+            "5개 일치 (1,500,000원)",
+            "5개 일치, 보너스 볼 일치 (30,000,000원)",
+            "6개 일치 (2,000,000,000원)"
+    )
+
+    println("\n당첨 통계\n---")
+    for (i in 0 until prizeCounts.size) {
+        println("${prizeDescriptions[i]} - ${prizeCounts[i]}개")
+    }
+
+
 }
