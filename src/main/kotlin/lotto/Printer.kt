@@ -1,6 +1,10 @@
 package lotto
 
 object Printer {
+    fun println() {
+        kotlin.io.println()
+    }
+
     fun print(message: Message) {
         println(message)
     }

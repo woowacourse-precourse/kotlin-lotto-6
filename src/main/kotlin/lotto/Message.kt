@@ -13,7 +13,13 @@ enum class Message(private val content: String) {
         content = "${AMOUNT_UNIT_WON}원 단위가 아닙니다. 구매금액은 ${AMOUNT_UNIT_WON}원 단위로 입력해주세요."
     ),
 
-    Purchased(content = "%d개를 구매했습니다.");
+    Purchased(content = "%d개를 구매했습니다."),
+
+    InputWinningNumber(content = "당첨 번호를 입력해 주세요."),
+    DuplicatedError(content = "중복된 숫자가 존재합니다. 다시 입력해주세요."),
+    WinningNumberSizeError(content = "%d개를 입력해주세요."),
+    WinningNumberRangeError(content = "%d에서 %d 사이의 숫자들만 입력해주세요."),
+    InputBonusNumber(content = "보너스 번호를 입력해 주세요.");
 
     override fun toString(): String {
         return content
