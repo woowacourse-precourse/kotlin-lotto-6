@@ -14,12 +14,16 @@ class LottoController(private val inputView: InputView, private val outputView: 
     private lateinit var bonus: Bonus
     private lateinit var lottoResult: LottoResult
     private val lottoRankings = LottoRankings()
+    private val lottoProfit = LottoProfit()
 
     fun run() {
         gameInit()
         settingLotto()
         settingBonusNumber()
         checkWinningNumbers()
+        outputView.printLottoRankings(lottoRankings)
+        lottoProfit.calculateRate(lottoRankings.rank, purchaseCount.count * 1000)
+        outputView.printLottoProfitRate(lottoProfit)
     }
 
     private fun gameInit() {
