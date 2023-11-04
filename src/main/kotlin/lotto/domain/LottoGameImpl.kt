@@ -4,10 +4,16 @@ import camp.nextstep.edu.missionutils.Randoms
 import lotto.model.Lotto
 import lotto.model.LottoMatchResult
 import lotto.model.LottoResult
+import lotto.utils.Constant.FIFTH_REWARD
+import lotto.utils.Constant.FIRST_REWARD
+import lotto.utils.Constant.FOURTH_REWARD
 import lotto.utils.Constant.LOTTO_COST
 import lotto.utils.Constant.LOTTO_SIZE
 import lotto.utils.Constant.MAX_LOTTO_NUMBER
 import lotto.utils.Constant.MIN_LOTTO_NUMBER
+import lotto.utils.Constant.PERCENT
+import lotto.utils.Constant.SECOND_REWARD
+import lotto.utils.Constant.THIRD_REWARD
 
 class LottoGameImpl : LottoGame {
 
@@ -48,4 +54,13 @@ class LottoGameImpl : LottoGame {
             }
         }
 
+    override fun calculateRate(lottoMatchResult: LottoMatchResult, purchaseAmount: Int): Float {
+        val reward = lottoMatchResult.sixMatching * FIRST_REWARD +
+                lottoMatchResult.fiveMatchingWithBonus * SECOND_REWARD +
+                lottoMatchResult.fiveMatching * THIRD_REWARD +
+                lottoMatchResult.fourMatching * FOURTH_REWARD +
+                lottoMatchResult.threeMatching * FIFTH_REWARD
+
+        return (reward.toFloat() / purchaseAmount * PERCENT)
+    }
 }
