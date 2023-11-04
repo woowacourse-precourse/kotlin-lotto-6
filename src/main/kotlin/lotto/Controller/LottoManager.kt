@@ -13,13 +13,13 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         val buyPrice = inputView.inputBuyPrice()
         val ticket = calculateTicket(buyPrice)
         outputView.showBuyTicketMessage(ticket)
+        reapeatLottoNumbers(ticket)
         outputView.showInputMyNumbersMessage()
 
         val numbers = inputView.inputMyNumbers()
         val lottoNumbers = splitMyNumbers(numbers)
         val lotto = Lotto(changeStringToInteger(lottoNumbers))
 
-        reapeatLottoNumbers(ticket)
     }
 
     private fun changeStringToInteger(numbers: List<String>) : List<Int> {
@@ -37,13 +37,16 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
 
     fun reapeatLottoNumbers(ticket: Int) {
         repeat(ticket) {
-            generateLottoNumbers()
+            outputView.showLottoNumbers(generateLottoNumbers())
         }
     }
     fun generateLottoNumbers(): List<Int> {
-        return Randoms.pickUniqueNumbersInRange(
-            Constants.LOTTO_START_NUMBER, Constants.LOTTO_LAST_NUMBER, Constants.LOTTO_SIZE
-        )
+        val lottoNumbers = Randoms.pickUniqueNumbersInRange(Constants.LOTTO_START_NUMBER, Constants.LOTTO_LAST_NUMBER, Constants.LOTTO_SIZE)
+        return sortLottoNumbers(lottoNumbers)
+    }
+
+    fun sortLottoNumbers(lottoNumbers: List<Int>): List<Int> {
+        return lottoNumbers.sorted()
     }
 
 }
