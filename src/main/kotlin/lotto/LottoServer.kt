@@ -6,13 +6,24 @@ import client.Client
 class LottoServer {
     private val client = Client()
     private val lottoList = mutableListOf<Lotto>()
-    fun start(){
+    fun start() {
         val count = client.inputBuyMoneyToCount()
         createLottoRepeatByCount(count)
+        client.outputUsersLotto(lottoList)
+        val winNumberList = client.inputWinNumberList()
+        val bonusNumber = client.inputBonusNumber()
+        val winPrizeList = computeWinPrize(winNumberList, bonusNumber)
+        println(winPrizeList)
+    }
+
+    private fun computeWinPrize(winNumberList: List<Int>, bonusNumber: Int): List<WinState> {
+        return lottoList.map { lotto ->
+            lotto.computeWinState(winNumberList,bonusNumber)
+        }
     }
 
     private fun createLottoRepeatByCount(count: Int) {
-        repeat(count){
+        repeat(count) {
             val lotto = createLotto()
             insertLottoToList(lotto)
         }
