@@ -2,6 +2,7 @@ package lotto
 
 import lotto.Controller.LottoManager
 import lotto.validate.ValidatePrice
+import lotto.validate.ValidateSplit
 import lotto.view.InputView
 import lotto.view.OutputView
 import org.junit.jupiter.api.Test
@@ -60,6 +61,22 @@ class LottoTest {
         val validatePrice = ValidatePrice()
         assertThrows<IllegalArgumentException> {
             validatePrice.validateInputPrice("1111")
+        }
+    }
+
+    @Test
+    fun `당첨번호가 숫자가 아닌 경우`() {
+        val validateSplit = ValidateSplit()
+        assertThrows<IllegalArgumentException> {
+            validateSplit.validateSplitMyNumbers(listOf("wooteco"))
+        }
+    }
+
+    @Test
+    fun `당첨번호가 입력 범위를 벗어난 경우`() {
+        val validateSplit = ValidateSplit()
+        assertThrows<IllegalArgumentException> {
+            validateSplit.validateSplitMyNumbers(listOf("100"))
         }
     }
 }
