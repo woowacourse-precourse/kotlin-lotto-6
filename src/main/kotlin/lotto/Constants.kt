@@ -23,5 +23,11 @@ class Constants {
         const val MIN_NUMBER = 0
         const val MIN_LOTTO_NUMBER = 1
         const val MAX_LOTTO_NUMBER = 45
+        const val THREE_MATCH_WINNING_AMOUNT = 5000
+        const val FORE_MATCH_WINNING_AMOUNT = 50000
+        const val FIVE_MATCH_WINNING_AMOUNT = 1500000
+        const val FIVE_WITH_BONUS_MATCH_WINNING_AMOUNT = 30000000
+        const val SIX_MATCH_WINNING_AMOUNT = 2000000000
+
     }
 }

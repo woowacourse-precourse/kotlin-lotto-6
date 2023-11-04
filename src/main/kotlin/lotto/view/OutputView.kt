@@ -1,6 +1,5 @@
 package lotto.view
 
-import lotto.Constants
 import lotto.Constants.Companion.OUTPUT_FIVE_MATCH_MESSAGE
 import lotto.Constants.Companion.OUTPUT_FIVE_WITH_BONUS_MATCH_MESSAGE
 import lotto.Constants.Companion.OUTPUT_FOUR_MATCH_MESSAGE
