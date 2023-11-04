@@ -17,7 +17,7 @@ object Validator {
     fun validateLottoInteger(input: String) {
         val validation = input.split(",")
         validation.forEach {
-            require(it.toIntOrNull() != null) { "당첨번호가 유효한 정수가 아닙니다." }
+            validateInteger(it)
         }
     }
 
@@ -28,18 +28,18 @@ object Validator {
     }
 
     fun validateLottoLength(input: List<Int>) {
-        require(input.size == 6) { "당첨번호의 숫자가 6자리가 아닙니다." }
+        require(input.size == 6) { Exception.INVALID_LOTTO_LENGTH.getMessage() }
     }
 
     fun validateLottoUnique(input: List<Int>) {
-        require(input.distinct().size == 6) { "당첨번호의 숫자에 중복이 존재합니다." }
+        require(input.distinct().size == 6) { Exception.INVALID_LOTTO_UNIQUE.getMessage() }
     }
 
     fun validateNumberRange(input: Int) {
-        require(input in 1..45) { "번호가 1부터 45까지의 숫자가 아닙니다." }
+        require(input in 1..45) { Exception.INVALID_LOTTO_RANGE.getMessage() }
     }
 
     fun validateNotNull(input: String) {
-        require(input.trim().isNotEmpty()) { "사용자의 입력이 널값입니다." }
+        require(input.trim().isNotEmpty()) { Exception.INVALID_NOT_NULL.getMessage() }
     }
 }
