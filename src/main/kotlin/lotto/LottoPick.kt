@@ -9,8 +9,7 @@ class LottoPick() {
     }
 
     private fun randomNumber(): List<Int> {
-        val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
-        return numbers
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6)
     }
     fun randomLotto(cnt: Int):MutableList<List<Int>>{
         val lottoList: MutableList<List<Int>> = mutableListOf()
