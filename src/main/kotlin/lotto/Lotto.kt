@@ -1,10 +1,9 @@
 package lotto
 
-import camp.nextstep.edu.missionutils.*
-
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6)
+        require(numbers.size == 6) { "[ERROR] 로또에는 6개의 숫자가 필요합니다." }
+        require(numbers.distinct().size == 6) { "[ERROR] 중복되지 않은 6개의 숫자가 필요합니다." }
     }
 
     fun getLottoNumberString() : String {
@@ -12,7 +11,7 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun getRank(winningNumbers: List<Int>, bonusNumber : Int) : Int {
-        var matchNumbers = getMatchNumbers(winningNumbers)
+        val matchNumbers = getMatchNumbers(winningNumbers)
         return when(matchNumbers){
             3 -> 5
             4 -> 4
