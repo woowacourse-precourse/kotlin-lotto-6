@@ -28,5 +28,5 @@
   - [x] `calculateRate` 함수 테스트
 - Exception Test
   - [x] `inputPurchaseAmountException` 함수 테스트
-  - [ ] `inputWinningNumberException` 함수 테스트
+  - [x] `inputWinningNumberException` 함수 테스트
   - [ ] `inputBonusNumberException` 함수 테스트
