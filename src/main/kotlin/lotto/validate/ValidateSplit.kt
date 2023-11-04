@@ -10,6 +10,7 @@ class ValidateSplit {
             validateInputNotNumber(it)
             validateMyNumbersRange(it)
         }
+        validateDuplicatedNumbers(myNumbers)
         return myNumbers
     }
 
@@ -24,6 +25,12 @@ class ValidateSplit {
     private fun validateMyNumbersRange(x: String) {
         require(x.all { it.toString().toInt() in Constants.LOTTO_START_NUMBER..Constants.LOTTO_LAST_NUMBER })
         { "${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_OVER_RANGE_MESSAGE}" }
-
     }
+
+    private fun validateDuplicatedNumbers(myNumbers: List<String>) {
+        require(myNumbers.toSet().size == myNumbers.size) {
+            "${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_DUPLICATED_MESSAGE}"
+        }
+    }
+
 }
