@@ -6,10 +6,15 @@ class WinningNumber(
 ) {
     init {
         requireUnique(numbers, bonus)
+        require(numbers.size == NUMBERS_SIZE)
     }
 
     private fun requireUnique(numbers: List<Int>, bonusNumber: Int) {
         val totalNumbers = numbers + bonusNumber
         require(totalNumbers.isUnique())
+    }
+
+    companion object {
+        private const val NUMBERS_SIZE = 6
     }
 }

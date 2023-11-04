@@ -23,4 +23,24 @@ class WinningNumberTest {
             )
         }
     }
+
+    @Test
+    fun `당첨 번호의 개수가 6개가 넘어가면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            WinningNumber(
+                numbers = listOf(1, 2, 3, 4, 5, 6, 7),
+                bonus =  1
+            )
+        }
+    }
+
+    @Test
+    fun `당첨 번호의 개수가 6개보다 작으면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            WinningNumber(
+                numbers = listOf(1, 2, 3, 4, 5),
+                bonus =  1
+            )
+        }
+    }
 }
