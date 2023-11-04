@@ -2,6 +2,7 @@ package lotto.Controller
 
 import lotto.Lotto
 import lotto.utils.Constants
+import lotto.validate.ValidateSplit
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -22,6 +23,8 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
     }
 
     fun splitMyNumbers(myNumbers: String): List<Int> {
-        return myNumbers.split(Constants.DELIMITER).map { it.toInt() }
+        val validateSplit = ValidateSplit()
+        validateSplit.validateSplitMyNumbers(myNumbers.split(Constants.DELIMITER))
+
     }
 }
