@@ -7,8 +7,8 @@ class Purchase(private val amount: Int) {
     val lottos: List<Lotto>
 
     init {
-        require(amount % AMOUNT_UNIT_WON == 0)
-        require(amount > 0)
+        require(amount > 0) { Message.NumberIsZeroOrNegative }
+        require(amount % AMOUNT_UNIT_WON == 0) { Message.InvalidPurchaseAmount }
 
         val count = amount / AMOUNT_UNIT_WON
         val lottos = mutableListOf<Lotto>()
@@ -30,6 +30,6 @@ class Purchase(private val amount: Int) {
     }
 
     companion object {
-        private const val AMOUNT_UNIT_WON = 1000
+        const val AMOUNT_UNIT_WON = 1_000
     }
 }
