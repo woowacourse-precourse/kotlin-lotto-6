@@ -3,7 +3,7 @@ package lotto.validate
 import lotto.utils.Constants
 import lotto.utils.Messages
 
-class Validate {
+class ValidatePrice {
     fun validateInputPrice(price: String): Int {
         validateInputIsEmpty(price)
         validateInputNotNumber(price)

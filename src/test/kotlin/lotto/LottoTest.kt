@@ -1,7 +1,7 @@
 package lotto
 
 import lotto.Controller.LottoManager
-import lotto.validate.Validate
+import lotto.validate.ValidatePrice
 import lotto.view.InputView
 import lotto.view.OutputView
 import org.junit.jupiter.api.Test
@@ -33,33 +33,33 @@ class LottoTest {
 
     @Test
     fun `구입금액이 1000원이 안되는 경우`() {
-        val validate = Validate()
+        val validatePrice = ValidatePrice()
         assertThrows<IllegalArgumentException> {
-            validate.validateInputPrice("990")
+            validatePrice.validateInputPrice("990")
         }
     }
 
     @Test
     fun `구입금액 입력이 숫자가 아닌경우`() {
-        val validate = Validate()
+        val validatePrice = ValidatePrice()
         assertThrows<IllegalArgumentException> {
-            validate.validateInputPrice("wooteco")
+            validatePrice.validateInputPrice("wooteco")
         }
     }
 
     @Test
     fun `구입금액 입력이 없는 경우`() {
-        val validate = Validate()
+        val validatePrice = ValidatePrice()
         assertThrows<IllegalArgumentException> {
-            validate.validateInputPrice("")
+            validatePrice.validateInputPrice("")
         }
     }
 
     @Test
     fun `구입금액 입력이 1000원으로 안나눠지는 수일 경우`() {
-        val validate = Validate()
+        val validatePrice = ValidatePrice()
         assertThrows<IllegalArgumentException> {
-            validate.validateInputPrice("1111")
+            validatePrice.validateInputPrice("1111")
         }
     }
 }

@@ -1,13 +1,13 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.validate.Validate
+import lotto.validate.ValidatePrice
 
 class InputView {
     fun inputBuyPrice(): Int {
-        val validate = Validate()
+        val validatePrice = ValidatePrice()
         val price = Console.readLine()
-        val validatedPrice = validate.validateInputPrice(price)
+        val validatedPrice = validatePrice.validateInputPrice(price)
         return validatedPrice
     }
 
