@@ -36,7 +36,7 @@ class LottoView {
                 5 -> sumCost += 5000 * rankNumList[5]
             }
         }
-        val averagePercent = round((sumCost / (count * 10)) * 100 / 100)
+        val averagePercent = round((sumCost / (count * 10)) * 10) / 10
         println("총 수익률은 ${averagePercent}%입니다.")
     }
 }

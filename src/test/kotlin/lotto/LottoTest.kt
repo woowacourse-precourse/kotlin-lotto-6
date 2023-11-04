@@ -5,11 +5,13 @@ import camp.nextstep.edu.missionutils.Randoms
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import kotlin.math.round
 
 
 class LottoTest {
     val lottoController = LottoController()
     val lottoView = LottoView()
+    val lottoCollection = LottoCollection()
 
     @Test
     fun `로또 번호의 개수가 6개가 넘어가면 예외가 발생한다`() {
@@ -114,6 +116,38 @@ class LottoTest {
             winningNumbers.add(number.toInt())
         }
         Assertions.assertThat(winningNumbers).contains(1,2,3,4,5,6)
+    }
+
+    @Test
+    fun `당첨된 등수 리스트를 만든다`() {
+        lottoCollection.putLotto(Lotto(listOf(1,2,3,4,5,6)))
+        lottoCollection.putLotto(Lotto(listOf(1,2,3,4,5,7)))
+        lottoCollection.putLotto(Lotto(listOf(1,2,3,4,7,8)))
+        lottoCollection.putLotto(Lotto(listOf(1,2,3,7,8,9)))
+        val winRankList = lottoCollection.checkWin(listOf(1,2,3,4,5,6), 7)
+        val winRankNumList = mutableListOf(0,0,0,0,0,0)
+        for (rank in winRankList) {
+            winRankNumList[rank] ++
+        }
+        Assertions.assertThat(winRankNumList).isEqualTo(mutableListOf(0,1,1,0,1,1))
+    }
+
+    @Test
+    fun `수익률을 계산한다`() {
+        val rankNumList = mutableListOf(10,0,0,0,1,1)
+        var sumCost: Double = 0.0
+        val count = rankNumList.sum()
+        for (i in 0..5) {
+            when (i) {
+                1 -> sumCost += 2000000000 * rankNumList[1]
+                2 -> sumCost += 30000000 * rankNumList[2]
+                3 -> sumCost += 1500000 * rankNumList[3]
+                4 -> sumCost += 50000 * rankNumList[4]
+                5 -> sumCost += 5000 * rankNumList[5]
+            }
+        }
+        val averagePercent = round((sumCost / (count * 10)) * 10) / 10
+        Assertions.assertThat(averagePercent).isEqualTo(458.3)
     }
     // 아래에 추가 테스트 작성 가능
 }
