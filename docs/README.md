@@ -1,6 +1,6 @@
 ## 기능 목록
 
-- [ ] 로또 구매 금액 메시지를 출력하는 기능 - `printAmountMessage()`#OutputView
+- [x] 로또 구매 금액 메시지를 출력하는 기능 - `printAmountMessage()`#OutputView
 - [ ] 구매한 로또 수를 출력하는 기능 - `printLottoQuantity()`#OutputView
 - [ ] 로또 번호를 출력하는 기능 - `printLottoNumbers()`#OutputView
 - [ ] 당첨 번호 메시지를 출력하는 기능 - `printLottoWinningNumber()`#OutputView
