@@ -26,7 +26,10 @@ class LottoGameController {
         val lotto = Lotto(convertStringToList(enterWinningNumbers)).getNumber
         val bonus = Bonus(getBonusNumber()).getBonusNumber
         validator.checkForDuplicates(lotto,bonus)
-        lottoGameService.calculateWinningStatistics(lotto,bonus)
+        lottoGameService.calculateWinningStatistics(lotto,bonus,randomLottoLists,ticket)
+        outputView.outputWinningStatisticsMessage()
+        val profit = lottoGameService.calculateProfitPercentage(purchaseAmount.toDouble())
+        outputView.outputProfitPercentageMessage(profit)
     }
     private fun getPurchaseAmount(){
         purchaseAmount = inputView.inputPurchaseAmountMessage().toInt()
