@@ -7,7 +7,8 @@ enum class Exception(private val message: String) {
     INVALID_LOTTO_LENGTH("당첨번호의 숫자가 6자리가 아닙니다."),
     INVALID_LOTTO_UNIQUE("당첨번호의 숫자에 중복이 존재합니다."),
     INVALID_LOTTO_RANGE("번호가 1부터 45까지의 숫자가 아닙니다."),
-    INVALID_NOT_NULL("사용자의 입력이 널값입니다.");
+    INVALID_NOT_NULL("사용자의 입력이 널값입니다."),
+    DUPLICATED_NUMBER("중복된 입력입니다.");
 
     private val format = "[ERROR]"
 

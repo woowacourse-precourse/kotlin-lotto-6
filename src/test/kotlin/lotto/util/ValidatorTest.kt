@@ -2,6 +2,7 @@ package lotto.util
 
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import lotto.util.Validator.validate1000Unit
+import lotto.util.Validator.validateContain
 import lotto.util.Validator.validateInteger
 import lotto.util.Validator.validateLottoInteger
 import lotto.util.Validator.validateLottoRange
@@ -126,6 +127,14 @@ class ValidatorTest {
             assertThrows<IllegalArgumentException> {
                 validateNumberRange(46)
             }
+        }
+    }
+
+    @Test
+    @DisplayName("검증 값이 주어진 리스트에 중복된 값이면 예외가 발생한다.")
+    fun validateContainTest() {
+        assertThrows<IllegalArgumentException> {
+            validateContain(listOf(1, 2, 3, 4, 5, 6), 4)
         }
     }
 }

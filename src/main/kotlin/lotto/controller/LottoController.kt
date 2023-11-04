@@ -4,6 +4,7 @@ import lotto.model.Lotto
 import lotto.model.PurchaseCount
 import lotto.model.LottoTicket
 import lotto.util.LottoGenerator
+import lotto.util.Validator.validateContain
 import lotto.view.InputView
 import lotto.view.OutputView
 import java.lang.IllegalArgumentException
@@ -79,8 +80,9 @@ class LottoController(private val inputView: InputView, private val outputView: 
 
     private fun bonusNumberPublish() {
         try {
-            val userInput = inputView.getValidBonusLottoNumber()
-            lotto.isValidBonusNumber(userInput)
+            bonusNumber = inputView.getValidBonusLottoNumber()
+            val numbers = lotto.getNumbers()
+            validateContain(numbers, bonusNumber)
         } catch (e: IllegalArgumentException) {
             println(e.message)
             bonusNumberPublish()

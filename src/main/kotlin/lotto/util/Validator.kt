@@ -42,4 +42,8 @@ object Validator {
     fun validateNotNull(input: String) {
         require(input.trim().isNotEmpty()) { Exception.INVALID_NOT_NULL.getMessage() }
     }
+
+    fun validateContain(numbers: List<Int>, validation: Int) {
+        require(!numbers.contains(validation)) { Exception.DUPLICATED_NUMBER.getMessage() }
+    }
 }
