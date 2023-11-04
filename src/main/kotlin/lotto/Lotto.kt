@@ -1,8 +1,10 @@
 package lotto
 
+import lotto.utils.Messages
+
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6) {"6개의 숫자를 입력해주세요."}
+        require(numbers.size == 6) {"${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_SIZE_MESSAGE}"}
     }
 
     // TODO: 추가 기능 구현

@@ -12,7 +12,7 @@ class Validate {
     }
 
     private fun validateInputUnderThousands(price: Int) {
-        require(!(price < 1000)) { Messages.VALIDATE_INPUT_UNDER_THOUSAND }
+        require(!(price < 1000)) { "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_INPUT_UNDER_THOUSAND}" }
     }
 
     private fun validateInputNotNumber(x: String) {
@@ -20,7 +20,7 @@ class Validate {
     }
 
     private fun validateInputIsEmpty(x: String) {
-        require(x.isNotEmpty()) { Messages.VALIDATE_INPUT_EMPTY }
+        require(x.isNotEmpty()) { "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_INPUT_EMPTY}" }
     }
 
 }
