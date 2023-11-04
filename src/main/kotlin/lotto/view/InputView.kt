@@ -29,4 +29,7 @@ class InputView {
             getValidWinningNums()
         }
     }
+    fun getValidBonusNum():Int{
+        return getUserInput().toInt()
+    }
 }

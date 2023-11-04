@@ -1,5 +1,6 @@
 package lotto.controller
 
+import lotto.Lotto
 import lotto.model.LottoPublisher
 import lotto.model.LottoTicketCount
 import lotto.view.InputView
@@ -21,7 +22,9 @@ class LottoProgram {
         outputView.printLottoList(lottoPublisher.publishedLottoList)
         outputView.printRequireWinningNums()
 
-        inputView.getValidWinningNums()
+        val winningNums = inputView.getValidWinningNums()
+
+        val lotto = Lotto(winningNums)
     }
 
     companion object {
