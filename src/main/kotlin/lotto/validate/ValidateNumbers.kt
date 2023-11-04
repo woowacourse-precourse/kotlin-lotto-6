@@ -4,7 +4,7 @@ import lotto.utils.Constants
 import lotto.utils.Messages
 
 class ValidateNumbers {
-    fun validateInputMyNumbers(myNumbers: String): String {
+    fun validateInputNumbers(myNumbers: String): String {
         validateInputIsEmpty(myNumbers)
         validateMyNumberDelimiter(myNumbers)
         return myNumbers
