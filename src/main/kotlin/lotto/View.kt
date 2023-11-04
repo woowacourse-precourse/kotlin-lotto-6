@@ -11,10 +11,8 @@ class View(
                 printer.error(Message.NotNumberOrOverflow)
                 continue
             }
-            try {
+            runOrPrintErrorIfThrow {
                 return Purchase(amount = amount)
-            } catch (e: Exception) {
-                printer.error(e.message ?: Message.InvalidInputError.toString())
             }
         }
     }
@@ -26,11 +24,9 @@ class View(
                 printer.error(Message.NotNumberOrOverflow)
                 continue
             }
-            try {
+            runOrPrintErrorIfThrow {
                 WinningNumber.validate(numbers)
                 return numbers
-            } catch (e: Exception) {
-                printer.error(e.message ?: Message.InvalidInputError.toString())
             }
         }
     }
@@ -42,12 +38,21 @@ class View(
                 printer.error(Message.NotNumberOrOverflow)
                 continue
             }
-            try {
+            runOrPrintErrorIfThrow {
                 WinningNumber.validate(winningNumber, bonusNumber)
                 return bonusNumber
-            } catch (e: Exception) {
-                printer.error(e.message ?: Message.InvalidInputError.toString())
             }
+        }
+    }
+
+    private inline fun runOrPrintErrorIfThrow(
+        defaultMessage: Message = Message.InvalidInputError,
+        block: () -> Unit
+    ) {
+        try {
+            block()
+        } catch (e: Exception) {
+            printer.error(e.message ?: defaultMessage.toString())
         }
     }
 
