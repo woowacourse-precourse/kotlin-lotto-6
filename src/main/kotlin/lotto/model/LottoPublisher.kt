@@ -12,8 +12,8 @@ class LottoPublisher {
 
 
     private fun publishLotto(): List<Int> {
-        _publishedLotto = Randoms.pickUniqueNumbersInRange(LOTTO_RANGE_START, LOTTO_RANGE_END, LOTTO_SIZE)
-        return _publishedLotto.sorted()
+        _publishedLotto = Randoms.pickUniqueNumbersInRange(LOTTO_RANGE_START, LOTTO_RANGE_END, LOTTO_SIZE).sorted()
+        return _publishedLotto
     }
 
     fun publishLottoList(times: Int): MutableList<List<Int>> {
