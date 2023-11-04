@@ -13,7 +13,7 @@ object Printer {
 
     fun print(purchase: Purchase) {
         val lottos = purchase.lottos
-        val purchasedMessage = Message.Purchased.toString()
+        val purchasedMessage = Message.Purchased
         printEmptyLine()
         println(purchasedMessage.format(lottos.size))
         lottos.forEach { println(it) }

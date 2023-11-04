@@ -28,11 +28,11 @@ class WinningNumber(
         fun validate(winningNumber: List<Int>) {
             require(winningNumber.isUnique()) { Message.DuplicatedError }
             require(winningNumber.size == NUMBERS_SIZE) {
-                val errorMessage = Message.WinningNumberSizeError.toString()
+                val errorMessage = Message.WinningNumberSizeError
                 errorMessage.format(NUMBERS_SIZE)
             }
             require(winningNumber.isInLottoNumberRange()) {
-                val errorMessage = Message.WinningNumberRangeError.toString()
+                val errorMessage = Message.WinningNumberRangeError
                 errorMessage.format(lottoNumberRange.first, lottoNumberRange.last)
             }
         }
@@ -43,7 +43,7 @@ class WinningNumber(
                 Message.DuplicatedWithWinningNumber
             }
             require(bonusNumber.isInLottoNumberRange()) {
-                val errorMessage = Message.WinningNumberRangeError.toString()
+                val errorMessage = Message.WinningNumberRangeError
                 errorMessage.format(lottoNumberRange.first, lottoNumberRange.last)
             }
         }
