@@ -10,7 +10,7 @@ class View(
         while (true) {
             try {
                 val amount = reader.inputInt()
-                return Purchase(amount = amount)
+                return Purchase(amountWon = amount)
             } catch (e: IllegalArgumentException) {
                 printInputError(e.message)
             }

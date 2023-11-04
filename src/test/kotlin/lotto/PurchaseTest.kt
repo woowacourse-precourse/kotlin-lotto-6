@@ -27,7 +27,7 @@ class PurchaseTest {
 
     @Test
     fun `구매 금액을 1000원으로 나눈만큼 로또들을 생성한다`() {
-        val purchase = Purchase(amount = 20_000)
+        val purchase = Purchase(amountWon = 20_000)
         assert(purchase.lottoCount == 20)
     }
 
@@ -36,7 +36,7 @@ class PurchaseTest {
         assertRandomUniqueNumbersInRangeTest(
             {
                 val amountWon = 1_000
-                val purchase = Purchase(amount = amountWon)
+                val purchase = Purchase(amountWon = amountWon)
                 val winningNumber = WinningNumber(
                     normalNumbers = listOf(1, 2, 3, 4, 5, 6),
                     bonusNumber = 7
@@ -44,7 +44,7 @@ class PurchaseTest {
 
                 val statics = purchase.check(winningNumber)
 
-                val actual = Winning.Six.moneyWon.toDouble() / amountWon * 100
+                val actual = Winning.Six.priceWon.toDouble() / amountWon * 100
                 assert(statics.profitPercentage == actual)
             },
             listOf(1, 2, 3, 4, 5, 6),
@@ -56,7 +56,7 @@ class PurchaseTest {
         assertRandomUniqueNumbersInRangeTest(
             {
                 val amountWon = 1_000
-                val purchase = Purchase(amount = amountWon)
+                val purchase = Purchase(amountWon = amountWon)
                 val winningNumber = WinningNumber(
                     normalNumbers = listOf(1, 2, 3, 4, 5, 6),
                     bonusNumber = 7

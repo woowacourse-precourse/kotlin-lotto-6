@@ -37,7 +37,7 @@ object Printer {
         val bonusText = if (this == Winning.FiveAndBonus) {
             Message.BonusMatch.toString()
         } else ""
-        val moneyText = moneyWon.toMoneyFormat()
+        val moneyText = priceWon.toMoneyFormat()
         println(Message.WinningItemResult.format(matchCount, bonusText, moneyText, count))
     }
 
