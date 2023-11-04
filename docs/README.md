@@ -12,7 +12,7 @@
  │── Application.kt
  │── model
  │   │── Lotto.kt
- │   │    └── LottoValidator // Lotto를 검증하는 Lotto의 inner Class
+ │   │── Winner.kt
  │   └── LottoService.kt
  │── view
  │   └── LottoView.kt
@@ -20,11 +20,11 @@
  │   └── LottoController.kt
  │── util
  │   ├── InputUtil.kt
- │   └── OutputUtil.kt
+ │   ├── OutputUtil.kt
+ │   └── LottoValidatorUtil.kt
  └── constants
-     │── Lotto.kt
-     │── Error.kt
-     └── Winner.kt
+     │── LottoConstants.kt
+     └── Error.kt
 ```
 
 <hr />
@@ -51,7 +51,7 @@
       (완료) LottoController 내부에 중복되지 않는 숫자 6개와 보너스 번호 1개를 뽑는 메서드를 구현한다.
 
 
-- [ ] 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
+- [x] 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
   - 1등: 6개 번호 일치 / 2,000,000,000원
   - 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
   - 3등: 5개 번호 일치 / 1,500,000원
@@ -60,8 +60,8 @@
 
       🧐 생각한 방법 : LottoService 내부에서 당첨 내역을 반환하는 메서를 구현한다.
 
-          () LottoService 내부에 당첨 내역 반환하는 메서드 생성.
-          () LottoService 내부에 당첨 내역 반환하는 메서드 구현.
+          (완료) LottoService 내부에 당첨 내역 반환하는 메서드 생성.
+          (완료) LottoService 내부에 당첨 내역 반환하는 메서드 구현.
 
 - [x] 로또 구입 금액을 입력하면 구입 금액에 해당하는 만큼 로또를 발행해야 한다.
 
@@ -89,22 +89,22 @@
       (완료) 당첨번호와 보너스 번호를 입력 받아 반환하는 메서드를 LottoView에 구현한다.
       (완료) LottoView의 위 메서드를 호출하는 메서드를 LottoController에 구현한다.
 
-- [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
+- [x] 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
 
   🧐 생각한 방법 : 사용자가 구매한 로또 번호와 당첨번호를 비교하여 당첨 내역 및 수익률을 출력하는 메서드를 구현한다.
 
-      () LottoService에 사용자가 구매한 로또 번호와 당첨번호를 비교하여 당첨 내역 및 수익률을 반환하는 메서드를 구현한다.
-      () LottoView에 당첨내역과 수익률을 보여주는 메서드를 구현한다.
-      () OutputUtil에 당첨내역과 수익률을 출력하는 메서드를 구현한다.
-      () LottoController에 당첨내역과 수익률을 출력하고 종료하는 메서드를 구현한다.
+      (완료) LottoService에 사용자가 구매한 로또 번호와 당첨번호를 비교하여 당첨 내역 및 수익률을 반환하는 메서드를 구현한다.
+      (완료) LottoView에 당첨내역과 수익률을 보여주는 메서드를 구현한다.
+      (완료) OutputUtil에 당첨내역과 수익률을 출력하는 메서드를 구현한다.
+      (완료) LottoController에 당첨내역과 수익률을 출력하고 종료하는 메서드를 구현한다.
 
 
-- [ ] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+- [x] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
   `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 
   🧐 생각한 방법 : InputUtil 내부에 IllegalArgumentException을 발생시키고, OutputUtil을 통해 에러 메시지를 출력한다.
 
-      () InputUtil 각 메서드에 예외처리를 한다.
+      (완료) InputUtil 각 메서드에 예외처리를 한다.
       (완료) OutputUtil 메서드에 예외를 출력하는 메서드를 생성한다.
 
 <hr />
