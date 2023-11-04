@@ -24,7 +24,7 @@ class LottoController {
 
     private fun createWinningNumberAndBonusNumber() {
         winningNumber = lottoView.showAndReturnWinningNumber()
-        // TODO : bonusNumber = lottoView.showAndReturnBonusNumber()
+        bonusNumber = lottoView.showAndReturnBonusNumber()
     }
 
     companion object {

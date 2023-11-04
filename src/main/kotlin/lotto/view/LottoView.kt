@@ -13,4 +13,9 @@ class LottoView {
         OutputUtil.printInputWinningNumber()
         return InputUtil.inputWinningNumber()
     }
+
+    fun showAndReturnBonusNumber(): Int {
+        OutputUtil.printInputBonusNumber()
+        return InputUtil.inputBonusNumber()
+    }
 }

@@ -20,6 +20,16 @@ object InputUtil {
     fun inputWinningNumber(): List<Int> =
         checkWinningNumberAvailable(Console.readLine())
 
+    fun inputBonusNumber(): Int =
+        try {
+            val number = Console.readLine().toInt()
+            checkNumberInRange(number)
+            number
+        } catch (e: NumberFormatException) {
+            printExceptionMessage(EXCEPTION_MESSAGE_MONEY_NOT_NUMBER)
+            throw IllegalArgumentException(EXCEPTION_MESSAGE_MONEY_NOT_NUMBER)
+        }
+
 
     private fun checkMoneyAvailable(moneyString: String): Int =
         try {
@@ -38,7 +48,7 @@ object InputUtil {
         try {
             val winningNumber = winningNumberString.split(",").map { _numberString ->
                 val number = _numberString.toInt()
-                checkWinningNumberInRange(number)
+                checkNumberInRange(number)
                 number
             }
             checkWinningNumberSize(winningNumber)
@@ -61,7 +71,7 @@ object InputUtil {
         }
     }
 
-    private fun checkWinningNumberInRange(number: Int) {
+    private fun checkNumberInRange(number: Int) {
         if (number !in LOTTO_RANGE) {
             printExceptionMessage(EXCEPTION_MESSAGE_NOT_IN_RANGE)
             throw IllegalArgumentException(EXCEPTION_MESSAGE_NOT_IN_RANGE)
