@@ -9,18 +9,19 @@ class WinningNumber(
     }
 
     fun check(lotto: Lotto): Winning {
-        // TODO: matchCount로 리팩토링하기
-        var winningCount = 0
+        var matchCount = 0
         normalNumbers.forEach { number ->
             if (lotto.contains(number)) {
-                ++winningCount
+                ++matchCount
             }
         }
-        val bonusCount = if (lotto.contains(bonusNumber)) 1 else 0
-        return Winning.create(
-            winningCount = winningCount,
-            bonusCount = bonusCount
-        )
+        val hasBonus = if (lotto.contains(bonusNumber)) {
+            ++matchCount
+            true
+        } else {
+            false
+        }
+        return Winning.create(matchCount = matchCount, hasBonus = hasBonus)
     }
 
     companion object {

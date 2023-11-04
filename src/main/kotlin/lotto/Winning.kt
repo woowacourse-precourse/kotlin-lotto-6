@@ -9,12 +9,12 @@ enum class Winning(val moneyWon: Long, val matchCount: Int) {
     Six(moneyWon = 2_000_000_000, matchCount = 6);
 
     companion object {
-        fun create(winningCount: Int, bonusCount: Int): Winning {
-            return when (winningCount + bonusCount) {
+        fun create(matchCount: Int, hasBonus: Boolean): Winning {
+            return when (matchCount) {
                 in 0..2 -> None
                 3 -> Three
                 4 -> Four
-                5 -> if (bonusCount == 1) FiveAndBonus else Five
+                5 -> if (hasBonus) FiveAndBonus else Five
                 6 -> Six
                 else -> throw IllegalArgumentException()
             }
