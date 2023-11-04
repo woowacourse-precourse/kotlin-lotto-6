@@ -38,10 +38,21 @@ class LottoPick() {
             }
         }
     }
-
+    fun bonusCheck(bonus: String){
+        val bonusNum = bonus.toIntOrNull()
+        if(bonusNum == null || bonusNum < 0 || bonusNum > 45)
+            throw IllegalArgumentException("[Error] 보너스 번호가 유효하지 않습니다.")
+    }
     fun bonusPickNumber(): Int {
-        LottoView().bonusView()
-        val bonusNumber = Console.readLine()
-        return bonusNumber.toInt()
+        while (true) {
+            try {
+                LottoView().bonusView()
+                val bonusNumber = Console.readLine()
+                bonusCheck(bonusNumber)
+                return bonusNumber.toInt()
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 }
