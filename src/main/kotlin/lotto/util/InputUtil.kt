@@ -36,13 +36,17 @@ object InputUtil {
             val winningNumber = winningNumberString.split(",").map { _numberString ->
                 _numberString.toInt()
             }
-            if (winningNumber.toSet().size < LOTTO_SIZE) {
-                printExceptionMessage(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
-                throw IllegalArgumentException(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
-            }
+            checkWinningNumberSize(winningNumber)
             winningNumber
         } catch (e: NumberFormatException) {
             printExceptionMessage(EXCEPTION_MESSAGE_WINNING_NUMBER_NOT_NUMBER)
             throw IllegalArgumentException(EXCEPTION_MESSAGE_WINNING_NUMBER_NOT_NUMBER)
         }
+
+    private fun checkWinningNumberSize(winningNumber: List<Int>) {
+        if (winningNumber.toSet().size < LOTTO_SIZE) {
+            printExceptionMessage(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
+            throw IllegalArgumentException(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
+        }
+    }
 }
