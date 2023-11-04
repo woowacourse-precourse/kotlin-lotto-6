@@ -1,16 +1,15 @@
 package lotto.view
-
+import camp.nextstep.edu.missionutils.Console
 class InputView {
 
-    fun lottoPurchase(){
-
+    fun lottoPurchase(): Int{
+        return (Console.readLine()).toInt()
     }
-
-    fun inputRightLottoNumber(){
-
+    fun inputRightLottoNumber(): List<String>{
+        val rightLottoNumber=Console.readLine()
+        return rightLottoNumber.split(",")
     }
-
-    fun inputBonusNumber(){
-
+    fun inputBonusNumber(): String{
+        return Console.readLine()
     }
 }
