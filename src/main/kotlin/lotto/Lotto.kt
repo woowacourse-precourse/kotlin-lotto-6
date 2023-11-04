@@ -1,5 +1,7 @@
 package lotto
 
+import java.util.*
+
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6){
@@ -28,6 +30,49 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 
+    fun bonusCheck(inputNumbers: List<Int>, bonus: Int): Boolean{
+        val frequency = Collections.frequency(inputNumbers, bonus)
+        return frequency == 1
+    }
+    fun matchNumber(inputNumbers: List<Int>, bonusNum: Int): Pair<Int, Boolean> {
+        val difference = inputNumbers.minus(numbers)
+        val duplicationCount = inputNumbers.size - difference.size
+        var rank = 0
+        var check = false
+        when (duplicationCount) {
+            3 -> rank = 5
+            4 -> rank = 4
+            5 -> {
+                rank = 3
+                check = bonusCheck(inputNumbers, bonusNum)
+            }
+            6 -> rank = 1
+        }
+        return Pair(rank, check)
+    }
 
+    fun compareLotto(lottoNumbers: MutableList<List<Int>>, bonusNum: Int) : MutableList<Int> {
+        val lottoResult = mutableListOf(0,0,0,0,0)
+        lottoNumbers.forEach { lottoList ->
+            val result = matchNumber(lottoList, bonusNum)
+            if(result.first == 3 && result.second) {
+                lottoResult[1] += 1
+            } else if(result.first > 0)
+                lottoResult[result.first-1] += 1
+        }
+        LottoView().prizeStatusView(lottoResult)
+        return lottoResult
+    }
+
+    fun lottoProfit(invest: Int,totalResult: List<Int>){
+        var profit = 0.0
+        profit += totalResult[0] * 2000000000
+        profit += totalResult[1] * 30000000
+        profit += totalResult[2] * 1500000
+        profit += totalResult[3] * 50000
+        profit += totalResult[4] * 5000
+        val profitMargin = profit / invest * 100
+        LottoView().totalRate(profitMargin)
+    }
 
 }

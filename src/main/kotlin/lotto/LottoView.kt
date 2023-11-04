@@ -18,4 +18,16 @@ class LottoView {
     fun bonusView(){
         println("보너스 번호를 입력해주세요.")
     }
+
+    fun prizeStatusView(lottoResult: List<Int>){
+        println("당첨 통계 \n---")
+        println("3개 일치 (5,000원) - ${lottoResult[4]}개")
+        println("4개 일치 (50,000원) - ${lottoResult[3]}개")
+        println("5개 일치 (1,500,000원) - ${lottoResult[2]}개")
+        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoResult[1]}개")
+        println("6개 일치 (2,000,000,000원) - ${lottoResult[0]}개")
+    }
+    fun totalRate(rate: Double){
+        println("총 수익률은 ${rate}%입니다.")
+    }
 }
