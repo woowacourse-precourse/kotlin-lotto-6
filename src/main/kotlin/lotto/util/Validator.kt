@@ -38,4 +38,8 @@ object Validator {
     fun validateNumberRange(input: Int) {
         require(input in 1..45) { "번호가 1부터 45까지의 숫자가 아닙니다." }
     }
+
+    fun validateNotNull(input: String) {
+        require(input.trim().isNotEmpty()) { "사용자의 입력이 널값입니다." }
+    }
 }
