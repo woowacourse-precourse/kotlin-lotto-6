@@ -68,8 +68,6 @@ fun main() {
             }
             result[count-3] += 1
         }
-
-
     }
 
     println("\n당첨 통계\n---")
