@@ -1,5 +1,6 @@
 package lotto.validate
 
+import lotto.utils.Constants
 import lotto.utils.Messages
 
 class validateBonus {
@@ -7,6 +8,7 @@ class validateBonus {
         validateDuplicateBonusNumber(bonusNumber, winningNumbers)
         validateInputIsEmpty(bonusNumber.toString())
         validateInputNotNumber(bonusNumber.toString())
+        validateMyNumbersRange(bonusNumber)
 
     }
 
@@ -24,5 +26,10 @@ class validateBonus {
 
     private fun validateInputNotNumber(bonusNumber: String) {
         require(bonusNumber.all { it.isDigit() }) {"${Messages.ERROR_MESSAGE} ${Messages.INVALID_INPUT}" }
+    }
+
+    private fun validateMyNumbersRange(bonusNumber: Int) {
+        require(bonusNumber in Constants.LOTTO_START_NUMBER..Constants.LOTTO_LAST_NUMBER)
+        { "${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_OVER_RANGE_MESSAGE}" }
     }
 }
