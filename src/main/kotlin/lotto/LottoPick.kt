@@ -2,9 +2,9 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
-class LottoPick {
+class LottoPick() {
 
-    fun randomNumber(): List<Int> {
+    private fun randomNumber(): List<Int> {
         val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
         return numbers
     }
@@ -19,32 +19,24 @@ class LottoPick {
     }
 
     fun pickValid(pickList: List<String>){
-        if(pickList.size != 6){
-            throw IllegalArgumentException("[Error] 입력 값이 6개가 되어야 합니다.")
-        }
-        for(numberString in pickList){
-            val number = numberString.toIntOrNull()
-            if(number == null){
-                throw IllegalArgumentException("[Error] 잘못된 입력 값")
-            }
-        }
+        val numbers = pickList.mapNotNull { it.toIntOrNull() }
+        val lotto = Lotto(numbers)
     }
-
+    private fun validPickNumber() : List<String> {
+        LottoView().pickView()
+        val numbers = Console.readLine()
+        val pickList = numbers.split(",")
+        pickValid(pickList)
+        return pickList
+    }
     fun pickNumber(): List<String> {
-        var pickList: List<String>? = null
-        while(pickList == null) {
-            LottoView().pickView()
-            val numbers = Console.readLine()
-            var pickList = numbers.split(",")
+        while(true) {
             try {
-                pickValid(pickList)
-                return pickList
+                return validPickNumber()
             } catch (e: IllegalArgumentException) {
                 println(e.message)
-                pickList = emptyList()
             }
         }
-        return pickList
     }
 
     fun bonusPickNumber(): Int {
