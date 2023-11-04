@@ -12,11 +12,10 @@ object Printer {
     }
 
     fun print(purchase: Purchase) {
-        val lottos = purchase.lottos
         val purchasedMessage = Message.Purchased
         printEmptyLine()
-        println(purchasedMessage.format(lottos.size))
-        lottos.forEach { println(it) }
+        println(purchasedMessage.format(purchase.lottoCount))
+        println(purchase)
         printEmptyLine()
     }
 

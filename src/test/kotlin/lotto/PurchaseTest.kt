@@ -31,8 +31,7 @@ class PurchaseTest {
     @Test
     fun `구매 금액을 1000원으로 나눈만큼 로또들을 생성한다`() {
         val purchase = Purchase(amount = 20_000)
-        val lottos = purchase.lottos
-        assert(lottos.size == 20)
+        assert(purchase.lottoCount == 20)
     }
 
     @ParameterizedTest

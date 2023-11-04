@@ -4,7 +4,9 @@ import kotlin.math.roundToLong
 
 class Purchase(private val amount: Int) {
 
-    val lottos: List<Lotto>
+    private val lottos: List<Lotto>
+
+    val lottoCount: Int get() = lottos.size
 
     init {
         require(amount > 0) { Message.NumberIsZeroOrNegativeError }
@@ -18,6 +20,10 @@ class Purchase(private val amount: Int) {
         this.lottos = lottos
     }
 
+    fun check(winningNumber: WinningNumber): List<Winning> {
+        return lottos.map { winningNumber.check(it) }
+    }
+
     fun calculateProfitPercentage(winnings: List<Winning>): Double {
         val totalProfitAmount: Long = winnings.sumOf { it.moneyWon }
         val profitPercentage: Double = totalProfitAmount.toDouble() / amount * 100
@@ -27,6 +33,10 @@ class Purchase(private val amount: Int) {
     private fun Double.roundToTwoDecimalPlaces(): Double {
         val roundedNumberAtTwoDecimal = (this * 10).roundToLong()
         return roundedNumberAtTwoDecimal.toDouble() / 10
+    }
+
+    override fun toString(): String {
+        return lottos.joinToString("\n") { it.toString() }
     }
 
     companion object {
