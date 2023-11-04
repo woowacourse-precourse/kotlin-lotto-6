@@ -45,6 +45,6 @@ object OutputUtil {
     }
 
     fun printEarningRate(earningRate: Double) {
-        println("$MESSAGE_EARNING_RATE${earningRate}입니다.")
+        println("$MESSAGE_EARNING_RATE${earningRate}%입니다.")
     }
 }
