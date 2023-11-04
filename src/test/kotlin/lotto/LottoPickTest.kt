@@ -20,4 +20,17 @@ class LottoPickTest {
             LottoPick().pickValid(pickNumber)
         }
     }
+
+    @Test
+    fun `보너스 번호 입력 시 숫자가 아니면 에러 발생`(){
+        assertThrows<IllegalArgumentException> {
+            LottoPick().bonusCheck("ss")
+        }
+    }
+    @Test
+    fun `보너스 번호 입력 시 숫자 범위가 아니면 에러 발생`(){
+        assertThrows<IllegalArgumentException> {
+            LottoPick().bonusCheck("50")
+        }
+    }
 }
