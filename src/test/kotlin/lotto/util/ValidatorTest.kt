@@ -86,4 +86,12 @@ class ValidatorTest {
             }
         }
     }
+
+    @Test
+    @DisplayName("당첨 번호에 공백이 존재할 시 예외가 발생한다.")
+    fun validateLottoSpaceTest() {
+        assertThrows<IllegalArgumentException> {
+            validateLottoSpace("1, 2, 3")
+        }
+    }
 }
