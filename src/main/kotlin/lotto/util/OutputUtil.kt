@@ -18,7 +18,7 @@ object OutputUtil {
     }
 
     fun printExceptionMessage(message: String) {
-        println("\n[ERROR] $message")
+        println(message)
     }
 
     fun printPurchasedLottoList(purchasedLottoList: List<Lotto>) {
