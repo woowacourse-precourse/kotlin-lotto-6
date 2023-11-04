@@ -35,7 +35,17 @@ class UserTest {
     }
 
     @Test
-    fun `올바른 입력값이 예상한 결과와 일치한다`() {
+    fun `유효하지 않은 금액 단위이면 예외를 발생한다`() {
+        // given
+        val input = "3500"
+
+        // when
+
+        // then
+    }
+
+    @Test
+    fun `올바른 입력값에 대해 예상한 결과와 일치한다`() {
         // given
         val input = "1000"
 
