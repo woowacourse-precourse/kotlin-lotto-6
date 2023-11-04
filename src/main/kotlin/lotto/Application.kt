@@ -8,5 +8,5 @@ fun main() {
     val lottoModel = LottoModel()
     val lottoView = LottoView()
     val lottoController = LottoController(lottoModel, lottoView)
-    lottoController.stratLotto()
+    lottoController.startLotto()
 }

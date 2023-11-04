@@ -7,7 +7,7 @@ import lotto.view.LottoView
 
 class LottoController(private val lottoModel: LottoModel,private val lottoView: LottoView) {
 
-    fun stratLotto() {
+    fun startLotto() {
         lottoView.printEnterPurchaseMessage()
         inputPurchaseAmount()
     }
