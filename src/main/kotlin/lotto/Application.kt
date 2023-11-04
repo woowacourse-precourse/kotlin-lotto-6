@@ -135,5 +135,12 @@ fun main() {
         println("${prizeDescriptions[i]} - ${prizeCounts[i]}개")
     }
 
+    rateOfReturn = totalPrize / purchaseAmount
+
+    fun roundDigit (number : Float, digits : Int): Double {
+        return Math. round (number * Math.pow(10.0, digits.toDouble())) / Math.pow(10.0, digits.toDouble())
+    }
+
+    println("총 수익률은 ${roundDigit(totalPrize.toFloat() / purchaseAmount * 100, 1)}%입니다.")
 
 }
