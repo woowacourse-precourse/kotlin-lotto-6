@@ -20,4 +20,8 @@ object InputView {
         val validatedNumbers = validateNumbers.validateInputNumbers(myNumbers)
         return validatedNumbers
     }
+
+    fun inputBonusNumber(): Int {
+        return Console.readLine().toInt()
+    }
 }

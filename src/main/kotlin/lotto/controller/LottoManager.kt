@@ -23,7 +23,9 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         val winningNumbers = winningLotto.createWinningLotto()
 
         val lotto = Lotto(winningNumbers)
-        compareLottoNumbers(lotto, winningNumbers)
+
+        outputView.showInputBonusNumberMessage()
+        inputView.inputBonusNumber()
     }
 
     fun compareLottoNumbers(lotto: Lotto, winningNumbers: List<Int>) {
@@ -35,8 +37,6 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         }
         println(count)
     }
-
-
 
 
 

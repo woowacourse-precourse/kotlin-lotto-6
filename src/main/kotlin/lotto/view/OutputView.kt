@@ -20,4 +20,8 @@ object OutputView {
             println(lottoNumber)
         }
     }
+
+    fun showInputBonusNumberMessage() {
+        println(Messages.BONUS_NUMBER_MESSAGE)
+    }
 }
