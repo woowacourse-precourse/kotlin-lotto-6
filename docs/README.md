@@ -30,3 +30,6 @@
   - [x] `inputPurchaseAmountException` 함수 테스트
   - [x] `inputWinningNumberException` 함수 테스트
   - [x] `inputBonusNumberException` 함수 테스트
+
+## 결과물
+<img width="328" alt="image" src="https://user-images.githubusercontent.com/69571848/280453431-620c64a9-f300-4aef-8e0c-2152f5f46a7f.png">
