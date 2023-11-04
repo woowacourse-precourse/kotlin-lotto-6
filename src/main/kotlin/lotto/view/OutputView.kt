@@ -1,5 +1,6 @@
 package lotto.view
 
+import lotto.utils.Constants
 import lotto.utils.Messages
 
 class OutputView {
@@ -12,5 +13,9 @@ class OutputView {
 
     fun showBuyTicketMessage(ticket: Int) {
         println("$ticket${Messages.BUY_TICKET_MESSAGE}")
+    }
+
+    fun showLottoNumbers(lottoNumbers: List<Int>) {
+        println(lottoNumbers)
     }
 }
