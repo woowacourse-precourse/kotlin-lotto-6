@@ -54,7 +54,7 @@ fun main() {
         totalWinningPrice += winningPriceInt[i]* winningList[i]!!
     }
 
-    val rate = totalWinningPrice/(1000*purchaseAmount)
+    val rate = totalWinningPrice/(10*purchaseAmount)
 
     println("총 수입률은 ${String.format("%.1f", rate)}%입니다.")
 }
