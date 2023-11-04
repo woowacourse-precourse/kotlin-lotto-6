@@ -2,6 +2,7 @@ package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.util.DELIMITER
+import lotto.util.Validator.isValidBonusNum
 import lotto.util.Validator.isValidPurchaseAmount
 import lotto.util.Validator.isValidWinningNums
 
@@ -29,7 +30,15 @@ class InputView {
             getValidWinningNums()
         }
     }
-    fun getValidBonusNum():Int{
-        return getUserInput().toInt()
+
+    fun getValidBonusNum(winningNums:List<Int>):Int{
+        return try {
+            val userInput = getUserInput()
+            isValidBonusNum(userInput,winningNums)
+            userInput.toInt()
+        }catch (e:IllegalArgumentException){
+            println(e.message)
+            getValidBonusNum(winningNums)
+        }
     }
 }
