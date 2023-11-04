@@ -7,7 +7,7 @@ class Lotto(private val numbers: List<Int>) {
         require(isValidDistinctNumber()) { INVALID_DISTINCT_NUMBER_ERROR_MESSAGE }
     }
 
-    fun getSortedNumbers() = numbers.sorted()
+    fun getSortedNumbers() = numbers.sorted() // 도메인 로직 X
 
     private fun isValidNumberCount() = numbers.size == NUMBER_COUNT
 
