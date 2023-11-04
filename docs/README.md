@@ -25,20 +25,20 @@
 
 <hr />
 
-- [ ] 로또 번호의 숫자 범위는 1~45까지이다.
+- [x] 로또 번호의 숫자 범위는 1~45까지이다.
   
   🧐 생각한 방법 : LottoController 내부에서 숫자 범위 내 로또 번호를 생성하는 로직을 생성한다.
 
       (완료) LottoController 클래스를 생성 및 설계.
       (완료) LottoController 클래스 내부에, 구매한 Lotto리스트와 당첨번호를 프로퍼티로 생성.
-      () LottoService 내부에 숫자 범위 내 로또 번호를 생성하는 로직을 생성.
+      (완료) LottoService 내부에 숫자 범위 내 로또 번호를 생성하는 로직을 생성.
 
 - [ ] 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
 
   🧐 생각한 방법 : LottoView에서 LottoController를 통해 중복되지 않는 6개 숫자를 반환하는 로직을 구성한다.
 
-      () LottoService 클래스 내부에 Lotto를 발행해 반환하는 메서드를 구현한다.
-      () Lotto 클래스의 inner class인 LottoValidator에서 Lotto가 중복되는지 체크하는 메서드를 구현한다.
+      (완료) LottoService 클래스 내부에 Lotto를 발행해 반환하는 메서드를 구현한다.
+      (완료) Lotto 클래스의 inner class인 LottoValidator에서 Lotto가 중복되는지 체크하는 메서드를 구현한다.
 
 - [ ] 당첨 번호 추첨 시 중복되지 않는 숫자 6개와 보너스 번호 1개를 뽑는다.
 
