@@ -28,12 +28,12 @@ class LottoPick() {
         return numbers
     }
     private fun validPickNumber(): List<Int> {
-        LottoView().pickView()
         val numbers = Console.readLine()
         val pickList = numbers.split(",")
         return pickValid(pickList)
     }
     fun pickNumber(): List<Int> {
+        LottoView().pickView()
         while(true) {
             try {
                 return validPickNumber()
@@ -52,9 +52,9 @@ class LottoPick() {
             throw IllegalArgumentException(BonusErrorCode.BONUS_REPEATED.message)
     }
     fun bonusPickNumber(prizeNumber:List<Int>): Int {
+        LottoView().bonusView()
         while (true) {
             try {
-                LottoView().bonusView()
                 val bonusNumber = Console.readLine()
                 bonusCheck(bonusNumber)
                 bonusRepeat(bonusNumber.toInt(), prizeNumber)
