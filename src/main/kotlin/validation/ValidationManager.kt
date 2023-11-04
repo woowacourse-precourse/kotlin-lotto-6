@@ -6,7 +6,7 @@ class ValidationManager {
     fun validAmount(lottoPurchaseAmount: Int): Int =
         lottoPurchaseAmount.lessThanZero().modulusLottoPrice()
 
-    fun validJackpotNumbers(numbers: String): List<Int> {
+    fun validJackpotNumbers(numbers: String): ArrayList<Int> {
         val jackpotNumbers: ArrayList<Int> = arrayListOf()
         numbers.withCommaToList().forEach { number ->
             jackpotNumbers.add(number.validLottoNumber())
@@ -18,7 +18,7 @@ class ValidationManager {
 
     internal fun Int.lessThanZero(): Int = require(this >= 0).let { return this }
     internal fun Int.modulusLottoPrice(): Int = require(this % LOTTO_PRICE == 0).let { return this }
-    internal fun List<Int>.isCorrectLottoCount(): List<Int> = require(size == LOTTO_COUNT).let { return this }
+    internal fun ArrayList<Int>.isCorrectLottoCount(): ArrayList<Int> = require(size == LOTTO_COUNT).let { return this }
     fun Int.validLottoNumber(): Int = require(this in VALID_LOTTO_NUMBER).let { return this }
 
     companion object {
