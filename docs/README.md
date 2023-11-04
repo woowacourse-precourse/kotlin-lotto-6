@@ -9,7 +9,7 @@
 - [x] 로또 구매 금액 입력을 요청하는 기능 - `inputPurchaseAmount()`#InputView
 - [x] 당첨 번호 입력을 요청하는 기능 - `inputWinningNumber()`#InputView
 - [x] 보너스 번호 입력을 요청하는 기능 - `inputBonusNumber()`#InputView
-- [ ] 로또 게임을 실행하는 기능 - `run()`#LottoGameController
+- [x] 로또 게임을 실행하는 기능 - `run()`#LottoGameController
 - [ ] 로또 게임 실행 및 결과를 계산하는 기능 - `playLottoGame()`#LottoGameController
 - [x] 로또 구매 수량을 계산하는 기능 - `getQuantity()`#LottoGame
 - [x] 랜덤 로또 번호를 생성하는 기능 - `createRandomLottoNumbers()`#LottoGame
