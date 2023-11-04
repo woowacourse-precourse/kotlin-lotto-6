@@ -5,9 +5,7 @@ class WinningNumber(
     private val bonus: Int
 ) {
     init {
-        validate(numbers)
-        require((numbers + bonus).isUnique())
-        require(bonus.isInLottoNumberRange())
+        validate(numbers, bonus)
     }
 
     fun check(lotto: Lotto): WinningResult {
@@ -27,13 +25,24 @@ class WinningNumber(
     companion object {
         private const val NUMBERS_SIZE = 6
 
-        fun validate(numbers: List<Int>) {
-            require(numbers.isUnique()) { Message.DuplicatedError }
-            require(numbers.size == NUMBERS_SIZE) {
+        fun validate(winningNumber: List<Int>) {
+            require(winningNumber.isUnique()) { Message.DuplicatedError }
+            require(winningNumber.size == NUMBERS_SIZE) {
                 val errorMessage = Message.WinningNumberSizeError.toString()
                 errorMessage.format(NUMBERS_SIZE)
             }
-            require(numbers.isInLottoNumberRange()) {
+            require(winningNumber.isInLottoNumberRange()) {
+                val errorMessage = Message.WinningNumberRangeError.toString()
+                errorMessage.format(lottoNumberRange.first, lottoNumberRange.last)
+            }
+        }
+
+        fun validate(winningNumber: List<Int>, bonusNumber: Int) {
+            validate(winningNumber)
+            require((winningNumber + bonusNumber).isUnique()) {
+                Message.DuplicatedWithWinningNumber
+            }
+            require(bonusNumber.isInLottoNumberRange()) {
                 val errorMessage = Message.WinningNumberRangeError.toString()
                 errorMessage.format(lottoNumberRange.first, lottoNumberRange.last)
             }

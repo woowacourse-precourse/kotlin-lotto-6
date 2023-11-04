@@ -36,6 +36,23 @@ class View(
         }
     }
 
+    private fun inputBonusNumber(winningNumber: List<Int>): Int {
+        while (true) {
+            val bonusNumber = reader.inputIntOrNull()
+            if (bonusNumber == null) {
+                printer.error(Message.NotNumberOrOverflow)
+                continue
+            }
+            try {
+                WinningNumber.validate(winningNumber, bonusNumber)
+            } catch (e: Exception) {
+                printer.error(e.message ?: Message.InvalidInputError.toString())
+                continue
+            }
+            return bonusNumber
+        }
+    }
+
     fun run() {
         printer.print(Message.InputMoneyAmount)
         val purchase = inputPurchase()
@@ -43,6 +60,10 @@ class View(
 
         printer.print(Message.InputWinningNumber)
         val winningNumber = inputWinningNumber()
+        printer.println()
+
+        printer.print(Message.InputBonusNumber)
+        val bonusNumber = inputBonusNumber(winningNumber)
         printer.println()
     }
 
