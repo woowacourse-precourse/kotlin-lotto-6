@@ -3,9 +3,12 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 
 class LottoPurchase {
+    companion object {
+        private const val ERROR_MESSAGE = "[ERROR] 잘못된 숫자 입력입니다."
+    }
     fun validatePurchase(cost: String) : Boolean {
         if(cost.isBlank() || !cost.all{it.isDigit()}){
-            throw IllegalArgumentException("[Error] 잘못된 숫자 입력입니다.")
+            throw IllegalArgumentException(ERROR_MESSAGE)
         }
         return true
     }
@@ -23,8 +26,8 @@ class LottoPurchase {
     private fun purchaseValid(): String {
         var validInput = false
         var cost:String
+        LottoView().purchaseView()
         do{
-            LottoView().purchaseView()
             cost = Console.readLine()
             validInput = checkPurchase(cost)
         } while(!validInput)
