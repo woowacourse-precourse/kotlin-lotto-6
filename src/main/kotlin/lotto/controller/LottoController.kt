@@ -1,8 +1,13 @@
 package lotto.controller
 
+import camp.nextstep.edu.missionutils.Randoms
+import lotto.model.Lotto
 import lotto.view.InputView
 import lotto.view.OutputView
 import util.Constants.LOTTO_AMOUNT_UNIT
+import util.Constants.LOTTO_NUMBER_END
+import util.Constants.LOTTO_NUMBER_START
+import util.Constants.LOTTO_TOTAL_NUMBER
 import util.Validator.validatePurchaseAmount
 
 class LottoController {
@@ -22,5 +27,9 @@ class LottoController {
             outputView.printPurchaseAmountErrorMessage(illegalArgumentException.message.toString())
             getNumberOfPurchase()
         }
+    }
+
+    fun generateLottoNumbers(numberOfPurchase: Int): List<Int> {
+        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_START, LOTTO_NUMBER_END, LOTTO_TOTAL_NUMBER)
     }
 }
