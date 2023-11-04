@@ -2,8 +2,8 @@ package ui
 
 class OutputManager {
     fun promptPurchaseAmount() = println(OutputMessages.PROMPT_PURCHASE_AMOUNT)
-    fun invalidPurchaseAmount(): () -> Unit = { println(OutputMessages.INVALID_PURCHASE_AMOUNT) }
-    fun invalidLottoNumbers(): () -> Unit = { println(OutputMessages.INVALID_LOTTO_NUMBERS) }
+    fun invalidPurchaseAmount() = println(OutputMessages.INVALID_PURCHASE_AMOUNT)
+    fun invalidLottoNumbers() = println(OutputMessages.INVALID_LOTTO_NUMBERS)
     fun purchaseLottoCount(lottoCount: Int) = println(OutputMessages.PURCHASE_LOTTO_COUNT.toString().format(lottoCount))
     fun promptJackpotNumbers() = println(OutputMessages.PROMPT_JACKPOT_NUMBERS)
     fun promptBonusNumber() = println(OutputMessages.PROMPT_BONUS_NUMBER)
