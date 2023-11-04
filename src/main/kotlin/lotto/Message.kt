@@ -21,7 +21,16 @@ enum class Message(private val content: String) {
     WinningNumberRangeError(content = "%d에서 %d 사이의 숫자들만 입력해주세요."),
 
     InputBonusNumber(content = "보너스 번호를 입력해 주세요."),
-    DuplicatedWithWinningNumber(content = "당첨 번호와 중복됩니다.");
+    DuplicatedWithWinningNumber(content = "당첨 번호와 중복됩니다."),
+
+    WinningResultHeader(content = "당첨 통계\n---"),
+    BonusMatch(content = ", 보너스 볼 일치"),
+    WinningItemResult(content = "%d개 일치%s (%s원) - %d개"),
+    ProfitPercentage(content = "총 수익률은 %.1f%%입니다.");
+
+    fun format(vararg args: Any): String {
+        return content.format(*args)
+    }
 
     override fun toString(): String {
         return content

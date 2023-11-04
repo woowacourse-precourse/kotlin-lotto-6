@@ -53,6 +53,13 @@ class View(
         }
     }
 
+    private fun printWinningResult(purchase: Purchase, winningNumber: WinningNumber) {
+        val lottos = purchase.lottos
+        val results = lottos.map { winningNumber.check(it) }
+        val profitPercentage = purchase.calculateProfitPercentage(results)
+        printer.print(results = results, profitPercentage = profitPercentage)
+    }
+
     fun run() {
         printer.print(Message.InputMoneyAmount)
         val purchase = inputPurchase()
@@ -65,6 +72,8 @@ class View(
         printer.print(Message.InputBonusNumber)
         val bonusNumber = inputBonusNumber(winningNumber)
         printer.println()
+
+        printWinningResult(purchase, WinningNumber(numbers = winningNumber, bonus = bonusNumber))
     }
 
     companion object {
