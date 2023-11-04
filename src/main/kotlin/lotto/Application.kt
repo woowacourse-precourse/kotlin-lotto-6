@@ -1,11 +1,24 @@
 package lotto
 
-import lotto.domain.Money
-import lotto.validator.InputValidator
 import lotto.view.InputView
+import lotto.validator.InputValidator
+
+import lotto.domain.LottoShop
+import lotto.domain.Lottos
+import lotto.domain.Money
 
 fun main() {
-    val money: Money = getInputPurchaseAmount()
+    val lottos = generateLottos()
+}
+
+private fun generateLottos(): Lottos {
+    return try {
+        val money = getInputPurchaseAmount()
+        LottoShop.buyLottos(money)
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+        generateLottos()
+    }
 }
 
 private fun getInputPurchaseAmount(): Money {
