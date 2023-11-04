@@ -1,6 +1,6 @@
 package lotto.view
 
-class LottoGameView {
+class LottoSystemView {
 
     companion object {
         const val ENTER_LOTTO_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해주세요."
