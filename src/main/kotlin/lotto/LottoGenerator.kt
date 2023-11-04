@@ -7,7 +7,7 @@ object LottoGenerator {
     internal fun create(money: Int = 1000): MutableList<Lotto> {
         val lottos: MutableList<Lotto> = mutableListOf()
         val count = moneyToCount(money)
-        for (i in 2..count) lottos.add(Lotto())
+        for (i in 1..count) lottos.add(Lotto())
 
         return lottos
     }
