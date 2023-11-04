@@ -29,4 +29,18 @@ class OutputView {
         println()
         println("보너스 번호를 입력해 주세요.")
     }
+
+    fun printWinningStatisticsInstruction() {
+        println()
+        println("당첨 통계")
+        println("---")
+    }
+
+    fun printWinningStatistics(winningRanks: List<Int>) {
+        println("3개 일치 (5,000원) - ${winningRanks[5]}개")
+        println("4개 일치 (50,000원) - ${winningRanks[4]}개")
+        println("5개 일치 (1,500,000원) - ${winningRanks[3]}개")
+        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningRanks[2]}개")
+        println("6개 일치 (2,000,000,000원) - ${winningRanks[1]}개")
+    }
 }
