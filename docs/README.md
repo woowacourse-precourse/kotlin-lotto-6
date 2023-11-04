@@ -29,8 +29,8 @@
   
   🧐 생각한 방법 : LottoController 내부에서 숫자 범위 내 로또 번호를 생성하는 로직을 생성한다.
 
-      () LottoController 클래스를 생성 및 설계.
-      () LottoController 클래스 내부에, 구매한 Lotto리스트와 당첨번호를 프로퍼티로 생성.
+      (완료) LottoController 클래스를 생성 및 설계.
+      (완료) LottoController 클래스 내부에, 구매한 Lotto리스트와 당첨번호를 프로퍼티로 생성.
       () LottoService 내부에 숫자 범위 내 로또 번호를 생성하는 로직을 생성.
 
 - [ ] 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
