@@ -65,10 +65,23 @@ class UserTest {
     }
 
     @Test
-    fun `당천 번호 입력값에 구분자 외 숫자가 아닌 문자가 포함되면 예외를 발생한다`() {
+    fun `당첨 번호 입력값에 구분자 외 숫자가 아닌 문자가 포함되면 예외를 발생한다`() {
         // given
         val input = listOf(
             "a", "a,", ",b", "a, 1", "1, b,", "a, b"
+        )
+
+        // when
+
+        // then
+    }
+
+    @Test
+    fun `당첨 번호가 6개가 아닐 때 예외를 발생한다`() {
+        // given
+        val input = listOf(
+            "1, 2, 3, 4, 5",
+            "1, 2, 3, 4, 5, 6, 7"
         )
 
         // when
