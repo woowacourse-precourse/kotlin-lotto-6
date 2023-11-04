@@ -103,7 +103,17 @@ class UserTest {
     }
 
     @Test
-    fun `올바른 당천 번호 입력값에 대해 예상한 결과와 일치한다`() {
+    fun `당첨 번호에 중복된 숫자가 있으면 예외가 발생한다`() {
+        // given
+        val input = "1, 2, 3, 4, 5, 5"
+
+        // when
+
+        // then
+    }
+
+    @Test
+    fun `올바른 당첨 번호 입력값에 대해 예상한 결과와 일치한다`() {
         // given
         val input = "1, 2, 3, 4, 5, 6"
         val expectedWinningNumbers = listOf(1, 2, 3, 4, 5, 6)
