@@ -11,7 +11,7 @@ object LottoInputHandler {
 
     fun isValidCost(cost : Int?) : Boolean{
         cost?.let {
-            if(isMultipleOfThousand(it) != LottoInputState.SUCCESSFUL && isInRange(it) != LottoInputState.SUCCESSFUL){
+            if(isMultipleOfThousand(it) == LottoInputState.SUCCESSFUL && isInRange(it) == LottoInputState.SUCCESSFUL){
                 return true
             }
         }
