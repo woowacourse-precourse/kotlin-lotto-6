@@ -122,4 +122,37 @@ class UserTest {
 
         // then
     }
+
+    @Test
+    fun `보너스 번호 입력값이 빈 문자열인 경우 예외를 발생한다`() {
+        // given
+        val input = ""
+
+        // when
+
+        // then
+    }
+
+    @Test
+    fun `보너스 번호 입력값에 숫자가 아닌 문자가 포함되면 예외를 발생한다`() {
+        // given
+        val input = listOf(
+            "1a", "1,", "a"
+        )
+
+        // when
+
+        // then
+    }
+
+    @Test
+    fun `올바른 보너스 번호 입력값에 대해 예상한 결과와 일치한다`() {
+        // given
+        val input = "1"
+        val expectedBonusNumber = 1
+
+        // when
+
+        // then
+    }
 }
