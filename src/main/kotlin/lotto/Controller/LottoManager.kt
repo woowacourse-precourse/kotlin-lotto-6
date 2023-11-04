@@ -1,5 +1,6 @@
 package lotto.Controller
 
+import camp.nextstep.edu.missionutils.Randoms
 import lotto.Lotto
 import lotto.utils.Constants
 import lotto.validate.ValidateSplit
@@ -16,8 +17,9 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
 
         val numbers = inputView.inputMyNumbers()
         val lottoNumbers = splitMyNumbers(numbers)
-
         val lotto = Lotto(changeStringToInteger(lottoNumbers))
+
+        reapeatLottoNumbers(ticket)
     }
 
     private fun changeStringToInteger(numbers: List<String>) : List<Int> {
@@ -32,4 +34,16 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         val validateSplit = ValidateSplit()
         return validateSplit.validateSplitMyNumbers(myNumbers.split(Constants.DELIMITER))
     }
+
+    fun reapeatLottoNumbers(ticket: Int) {
+        repeat(ticket) {
+            generateLottoNumbers()
+        }
+    }
+    fun generateLottoNumbers(): List<Int> {
+        return Randoms.pickUniqueNumbersInRange(
+            Constants.LOTTO_START_NUMBER, Constants.LOTTO_LAST_NUMBER, Constants.LOTTO_SIZE
+        )
+    }
+
 }
