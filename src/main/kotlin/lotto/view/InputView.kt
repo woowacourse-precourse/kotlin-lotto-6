@@ -15,13 +15,4 @@ class InputView {
         validateLottoInteger(input)
         return input.split(",").map { it.toInt() }
     }
-
-    fun getValidBonusLottoNumber(): Int {
-        val input = getUserInput()
-        validateNotNull(input)
-        validateInteger(input)
-        val intInput = input.toInt()
-        validateNumberRange(intInput)
-        return intInput
-    }
 }
