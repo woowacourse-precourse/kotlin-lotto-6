@@ -6,7 +6,9 @@ import lotto.util.Validator.validateInteger
 import lotto.util.Validator.validateLottoInteger
 import lotto.util.Validator.validateLottoNotNull
 import lotto.util.Validator.validateLottoRange
+import lotto.util.Validator.validateLottoLength
 import lotto.util.Validator.validateLottoSpace
+import lotto.util.Validator.validateLottoUnique
 import lotto.util.Validator.validateRange
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -102,6 +104,22 @@ class ValidatorTest {
     fun validateLottoRangeTest() {
         assertThrows<IllegalArgumentException> {
             validateLottoRange(listOf(1, 2, 3, 4, 5, 46))
+        }
+    }
+
+    @Test
+    @DisplayName("당첨번호의 숫자가 6자리가 아닐 시 예외가 발생한다.")
+    fun validateLottoLengthTest() {
+        assertThrows<IllegalArgumentException> {
+            validateLottoLength(listOf(1, 2, 3, 4, 5))
+        }
+    }
+
+    @Test
+    @DisplayName("당첨번호의 숫자에 중복이 있으면 예외가 발생한다.")
+    fun validateLottoUniqueTest() {
+        assertThrows<IllegalArgumentException> {
+            validateLottoUnique(listOf(1, 2, 3, 4, 5, 5))
         }
     }
 }
