@@ -15,7 +15,7 @@ object Validator {
     }
 
     fun validateLottoInteger(input: String) {
-        val validation = input.chunked(1)
+        val validation = input.split(",")
         validation.forEach {
             require(it.toIntOrNull() != null) { "당첨번호가 정수가 아닙니다." }
         }
