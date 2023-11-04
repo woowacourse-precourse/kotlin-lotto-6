@@ -12,4 +12,5 @@ object Messages {
     const val VALIDATE_INPUT_EMPTY = "입력값이 없습니다."
     const val VALIDATE_INPUT_UNDER_THOUSAND = "1000보다 적은 금액은 입력될 수 없습니다."
     const val MY_NUMBERS_SIZE_MESSAGE = "숫자 6개가 입력되지 않았습니다."
+    const val VALIDATE_NO_REMINDER = "금액을 1000으로 나눌 수 없습니다."
 }

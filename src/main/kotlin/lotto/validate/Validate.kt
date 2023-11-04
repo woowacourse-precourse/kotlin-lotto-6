@@ -1,5 +1,6 @@
 package lotto.validate
 
+import lotto.utils.Constants
 import lotto.utils.Messages
 
 class Validate {
@@ -7,6 +8,7 @@ class Validate {
         validateInputIsEmpty(price)
         validateInputNotNumber(price)
         validateInputUnderThousands(price.toInt())
+        validateNoRemainder(price.toInt())
 
         return price.toInt()
     }
@@ -23,4 +25,8 @@ class Validate {
         require(x.isNotEmpty()) { "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_INPUT_EMPTY}" }
     }
 
+    private fun validateNoRemainder(price: Int) {
+        require(price % Constants.THOUSAND_PRICE == Constants.ZERO_PRICE)
+        { "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_NO_REMINDER}" }
+    }
 }
