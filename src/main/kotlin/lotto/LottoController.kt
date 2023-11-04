@@ -22,16 +22,16 @@ class LottoController {
     }
 
     fun checkLottoCost(InputCost: String) {
-        var cost = 0
+        var checkCost : Int
         try {
-            cost = InputCost.toInt()
+            checkCost = InputCost.toInt()
         } catch (e: IllegalArgumentException) {
             throw IllegalArgumentException("숫자를 입력해 주세요.")
         }
-        if (cost % 1000 != 0) {
+        if (checkCost % 1000 != 0) {
             throw IllegalArgumentException("1000단위로 입력해 주세요.")
         }
-        if (cost <= 0) {
+        if (checkCost <= 0) {
             throw IllegalArgumentException("0을 초과한 값을 입력해 주세요.")
         }
     }
@@ -41,7 +41,7 @@ class LottoController {
         val inputCost = Console.readLine()
         try {
             checkLottoCost(inputCost)
-            this.cost = inputCost.toInt()
+            cost = inputCost.toInt()
         } catch (e: IllegalArgumentException) {
             println("[ERROR] 알맞은 금액을 입력해주세요.")
             inputLottoCost()
@@ -50,13 +50,7 @@ class LottoController {
 
 
     fun generateNumbers(): List<Int> {
-        val numberCollection: MutableList<Int> = mutableListOf()
-        while (numberCollection.size < LOTTO_DIGIT) {
-            val randNum = Randoms.pickNumberInRange(1, LOTTO_MAX_NUM)
-            if (!numberCollection.contains(randNum)) {
-                numberCollection.add(randNum)
-            }
-        }
+        val numberCollection = Randoms.pickUniqueNumbersInRange(1, LOTTO_MAX_NUM, 6)
         return numberCollection
     }
 
