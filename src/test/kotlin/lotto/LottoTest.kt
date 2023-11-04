@@ -32,4 +32,19 @@ class LottoTest {
         }
     }
 
+    @Test
+    fun `랜덤 생성한 로또 번호들이 오름차순 정렬 되어있는지 확인`() {
+        val generator =RandomNumbersGenerator()
+
+        var numbers: List<Int>
+
+        repeat(100000) {
+            numbers = generator.makeRandomNumbers()
+            for(idx in 1 until 6) {
+                assertThat(numbers[idx -1 ]).isLessThan(numbers[idx])
+            }
+        }
+    }
+
+
 }
