@@ -11,8 +11,7 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun getRank(winningNumbers: List<Int>, bonusNumber : Int) : Int {
-        val matchNumbers = getMatchNumbers(winningNumbers)
-        return when(matchNumbers){
+        return when(getMatchNumbers(winningNumbers)){
             3 -> 5
             4 -> 4
             6 -> 1
