@@ -8,7 +8,7 @@ class LottoPublisher {
         get() = _publishedLottoList
 
     private lateinit var _publishedLottoList: MutableList<List<Int>>
-    private var _publishedLotto = List<Int>(LOTTO_SIZE) { INIT_NUMS }
+    private var _publishedLotto = List<Int>(LOTTO_SIZE) { ZERO_NUM }
 
 
     private fun publishLotto(): List<Int> {
@@ -24,7 +24,7 @@ class LottoPublisher {
 
     companion object {
         const val LOTTO_SIZE = 6
-        const val INIT_NUMS = 0
+        const val ZERO_NUM = 0
         const val LOTTO_RANGE_START = 1
         const val LOTTO_RANGE_END = 45
     }
