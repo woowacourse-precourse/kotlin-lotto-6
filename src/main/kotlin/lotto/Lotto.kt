@@ -15,4 +15,8 @@ class Lotto(private val numbers: List<Int>) {
     fun getLotto(): List<Int> {
         return numbers
     }
+
+    override fun toString(): String {
+        return "$numbers"
+    }
 }
