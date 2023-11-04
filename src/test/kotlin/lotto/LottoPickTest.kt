@@ -33,4 +33,11 @@ class LottoPickTest {
             LottoPick().bonusCheck("50")
         }
     }
+    @Test
+    fun `보너스 번호 입력 시 당첨 번호에 있다면 에러 발생`(){
+        val pickNumber:List<Int> = listOf(1,2,3,4,5)
+        assertThrows<IllegalArgumentException> {
+            LottoPick().bonusRepeat(2,pickNumber)
+        }
+    }
 }
