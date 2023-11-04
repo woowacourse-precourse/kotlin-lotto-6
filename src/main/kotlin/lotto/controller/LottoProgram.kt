@@ -19,6 +19,7 @@ class LottoProgram {
         outputView.printLottoCount(lottoCount)
         lottoPublisher.publishLottoList(lottoCount)
         outputView.printLottoList(lottoPublisher.publishedLottoList)
+        outputView.printRequireWinningNums()
     }
 
     companion object {
