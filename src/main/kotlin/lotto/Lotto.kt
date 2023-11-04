@@ -2,7 +2,6 @@ package lotto
 
 import lotto.utils.Constants
 import lotto.utils.Messages
-import lotto.validate.ValidateSplit
 
 class Lotto(private val numbers: List<Int>) {
     init {
