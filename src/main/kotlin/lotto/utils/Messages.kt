@@ -14,4 +14,5 @@ object Messages {
     const val MY_NUMBERS_SIZE_MESSAGE = "숫자 6개가 입력되지 않았습니다."
     const val VALIDATE_NO_REMINDER = "금액을 1000으로 나눌 수 없습니다."
     const val MY_NUMBERS_DELIMITER_MESSAGE = "구분하기 위한 쉼표를 찾을 수 없습니다."
+    const val MY_NUMBERS_OVER_RANGE_MESSAGE = "입력 범위를 벗어났습니다. (1~45에서 입력가능)"
 }
