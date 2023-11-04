@@ -3,6 +3,7 @@ package lotto
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
+import org.junit.jupiter.api.assertThrows
 
 class LottoGeneratorTest {
 
@@ -24,5 +25,20 @@ class LottoGeneratorTest {
     @Test
     fun `구입 금액만큼 로또를 발행한다_값 100_000`() {
         assertThat(LottoGenerator.createByMoney(100_000)).hasSize(100)
+    }
+
+    @Test
+    fun `구입 금액이 1000원 단위가 아닐 경우 예외 발생_값 900`() {
+        assertThrows<IllegalArgumentException> { LottoGenerator.createByMoney(900) }
+    }
+
+    @Test
+    fun `구입 금액이 1000원 단위가 아닐 경우 예외 발생_값 13800`() {
+        assertThrows<IllegalArgumentException> { LottoGenerator.createByMoney(13800) }
+    }
+
+    @Test
+    fun `구입 금액이 1000원 단위가 아닐 경우 예외 발생_값 0`() {
+        assertThrows<IllegalArgumentException> { LottoGenerator.createByMoney(0) }
     }
 }
