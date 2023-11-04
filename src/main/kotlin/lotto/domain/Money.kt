@@ -2,19 +2,8 @@ package lotto.domain
 
 import lotto.exception.MoneyException
 
-class Money(private val money: Int) {
-
-    companion object {
-        private const val DIVISOR = 1000
-    }
-
+class Money(val amount: Int) {
     init {
-        checkDivisibleByDivisor(money)
-        checkGreaterThanOrEqualDivisor(money)
+        require(amount >= 0) { MoneyException.NOT_POSITIVE_NUMBER.message }
     }
-
-    private fun checkDivisibleByDivisor(input: Int) =
-        require(input % DIVISOR == 0) { MoneyException.NOT_DIVISIBLE.getDivisor(DIVISOR) }
-    private fun checkGreaterThanOrEqualDivisor(input: Int) =
-        require(input >= DIVISOR) { MoneyException.LESS_THAN_DIVISOR.getDivisor(DIVISOR) }
 }
