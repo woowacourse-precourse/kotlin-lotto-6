@@ -15,18 +15,19 @@ class LottoController {
     private val outputView = OutputView()
 
     fun run() {
-        val numberOfPurchase = getNumberOfPurchase()
-        val lottos = makeLottos(numberOfPurchase)
+        val numberOfPurchases = getNumberOfPurchases()
+        val lottos = makeLottos(numberOfPurchases)
+        purchaseLottos(lottos)
     }
 
-    fun getNumberOfPurchase(): Int {
+    fun getNumberOfPurchases(): Int {
         outputView.printPurchaseAmountInstruction()
         return try {
             val purchaseAmount = inputView.inputPurchaseAmount()
             validatePurchaseAmount(purchaseAmount) / LOTTO_AMOUNT_UNIT
         } catch (illegalArgumentException: IllegalArgumentException) {
             outputView.printPurchaseAmountErrorMessage(illegalArgumentException.message.toString())
-            getNumberOfPurchase()
+            getNumberOfPurchases()
         }
     }
 
@@ -40,5 +41,12 @@ class LottoController {
             lottos.add(Lotto(generateLottoNumbers()))
         }
         return lottos
+    }
+
+    fun purchaseLottos(lottos: List<Lotto>) {
+        outputView.printNumberOfPurchases(lottos.size)
+        for (lotto in lottos) {
+            outputView.printLottoNumbers(lotto)
+        }
     }
 }
