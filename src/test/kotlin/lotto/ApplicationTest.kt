@@ -57,7 +57,7 @@ class ApplicationTest : NsTest() {
         val lottoPurchaseAmount = "lotto"
         assertThrows<IllegalArgumentException> {
             ValidationManager().apply {
-                lottoPurchaseAmount.toValidAmount()
+                lottoPurchaseAmount.toValidNumber()
             }
         }
     }
