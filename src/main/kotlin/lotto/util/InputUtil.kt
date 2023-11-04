@@ -7,7 +7,6 @@ import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_
 import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_NOT_NUMBER
 import lotto.constants.LottoConstants
 import lotto.model.Lotto
-import lotto.util.OutputUtil.printExceptionMessage
 
 object InputUtil {
 
@@ -24,7 +23,6 @@ object InputUtil {
             checkNumberOverlap(winningNumber, number)
             number
         } catch (e: NumberFormatException) {
-            printExceptionMessage(EXCEPTION_MESSAGE_MONEY_NOT_NUMBER)
             throw IllegalArgumentException(EXCEPTION_MESSAGE_MONEY_NOT_NUMBER)
         }
 
@@ -32,12 +30,10 @@ object InputUtil {
         try {
             val money = moneyString.toInt()
             if (money % LottoConstants.LOTTO_PRICE != 0) {
-                printExceptionMessage(EXCEPTION_MESSAGE_MONEY_NOT_DIVIDED_PRICE)
                 throw IllegalArgumentException(EXCEPTION_MESSAGE_MONEY_NOT_DIVIDED_PRICE)
             }
             money
         } catch (e: NumberFormatException) {
-            printExceptionMessage(EXCEPTION_MESSAGE_MONEY_NOT_NUMBER)
             throw IllegalArgumentException(EXCEPTION_MESSAGE_MONEY_NOT_NUMBER)
         }
 
@@ -49,13 +45,11 @@ object InputUtil {
             })
             winningNumber
         } catch (e: NumberFormatException) {
-            printExceptionMessage(EXCEPTION_MESSAGE_WINNING_NUMBER_NOT_NUMBER)
             throw IllegalArgumentException(EXCEPTION_MESSAGE_WINNING_NUMBER_NOT_NUMBER)
         }
 
     private fun checkNumberOverlap(winningNumber: Lotto, number: Int) {
         if (winningNumber.getNumbers().contains(number)) {
-            printExceptionMessage(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
             throw IllegalArgumentException(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
         }
     }

@@ -17,8 +17,10 @@ object OutputUtil {
         println(MESSAGE_INPUT_MONEY)
     }
 
-    fun printExceptionMessage(message: String) {
-        println(message)
+    fun printExceptionMessage(message: String?) {
+        message?.let {_message ->
+            println(_message)
+        }
     }
 
     fun printPurchasedLottoList(purchasedLottoList: List<Lotto>) {
