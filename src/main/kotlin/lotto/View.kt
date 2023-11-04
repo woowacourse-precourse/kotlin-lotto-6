@@ -46,9 +46,9 @@ class View(
     }
 
     private fun printWinningResult(purchase: Purchase, winningNumber: WinningNumber) {
-        val results = purchase.check(winningNumber)
-        val profitPercentage = purchase.calculateProfitPercentage(results)
-        printer.print(winnings = results, profitPercentage = profitPercentage)
+        val winnings = purchase.check(winningNumber)
+        val profitPercentage = purchase.calculateProfitPercentage(winnings)
+        printer.print(winnings = winnings, profitPercentage = profitPercentage)
     }
 
     private fun input(): Pair<Purchase, WinningNumber> {
