@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import lotto.validate.ValidateNumbers
 import lotto.validate.ValidatePrice
 
-class InputView {
+object InputView {
     fun inputBuyPrice(): Int {
         val validatePrice = ValidatePrice()
         val price = Console.readLine()

@@ -1,8 +1,9 @@
 package lotto.view
 
+import lotto.Lotto
 import lotto.utils.Messages
 
-class OutputView {
+object OutputView {
     fun showInputBuyPriceMessage() {
         println(Messages.BUY_PRICE_MESSAGE)
     }
@@ -14,7 +15,7 @@ class OutputView {
         println("$ticket${Messages.BUY_TICKET_MESSAGE}")
     }
 
-    fun showLottoNumbers(lottoNumbers: List<Int>) {
+    fun showLottoNumbers(lottoNumbers: MutableList<Lotto>) {
         println(lottoNumbers)
     }
 }
