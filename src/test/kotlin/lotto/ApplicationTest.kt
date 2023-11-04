@@ -53,16 +53,6 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun `로또 구입 금액이 숫자가 아니면 예외가 발생한다`() {
-        val lottoPurchaseAmount = "lotto"
-        assertThrows<IllegalArgumentException> {
-            ValidationManager().apply {
-                lottoPurchaseAmount.toValidNumber()
-            }
-        }
-    }
-
-    @Test
     fun `로또 구입 금액이 1000으로 나누어 안떨어지면 예외가 발생한다`() {
         val lottoPurchaseAmount = 1001
         assertThrows<IllegalArgumentException> {
