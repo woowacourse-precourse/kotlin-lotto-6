@@ -13,7 +13,7 @@ private const val NOT_DIVISIBLE_MSG = "입력 값은 천 원 단위여야 합니
 private const val NOT_EMPTY_MSG = "입력 값은 공백이 될 수 없습니다."
 private const val NOT_IN_RANGE_MSG = "입력 값은 1부터 45 사이의 정수로 구성되어야 합니다."
 private const val NOT_UNIQUE_NUMS_MSG = "입력 값은 중복된 값이 존재하면 안됩니다."
-private const val INVALID_SIZE_MSG =  "사이즈는 %d이어야 합니다."
+private const val INVALID_SIZE_MSG =  "사이즈는 ${LOTTO_SIZE}이어야 합니다."
 private const val ALREADY_EXIST_MSG =  "이미 존재하는 숫자입니다."
 
 private const val POSITIVE_NUM = 1
@@ -47,7 +47,7 @@ object Validator {
     }
 
     private fun isProperSize(input:List<String>) {
-        require(input.size == LOTTO_SIZE){ ERROR_CONVENTION + INVALID_SIZE_MSG.format(LOTTO_SIZE) }
+        require(input.size == LOTTO_SIZE){ ERROR_CONVENTION + INVALID_SIZE_MSG}
     }
     private fun isNumExist(input: Int,winningNums: List<Int>){
         require(!winningNums.contains(input)){ ERROR_CONVENTION + ALREADY_EXIST_MSG}
