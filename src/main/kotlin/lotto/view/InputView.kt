@@ -6,11 +6,11 @@ import lotto.util.Validator.isValidPurchaseAmount
 import lotto.util.Validator.isValidWinningNums
 
 class InputView {
-    private fun getPurchaseAmount(): String = Console.readLine()
+    private fun getUserInput(): String = Console.readLine()
 
     fun getValidPurchaseAmount(): String {
         return try {
-            val userInput = getPurchaseAmount()
+            val userInput = getUserInput()
             isValidPurchaseAmount(userInput)
             userInput
         } catch (e: IllegalArgumentException) {
@@ -21,7 +21,7 @@ class InputView {
 
     fun getValidWinningNums(): List<Int> {
         return try {
-            val userInput = Console.readLine()
+            val userInput = getUserInput()
             isValidWinningNums(userInput)
             userInput.split(DELIMITER).map { it.toInt() }
         } catch (e: IllegalArgumentException) {
