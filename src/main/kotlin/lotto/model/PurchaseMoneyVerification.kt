@@ -1,18 +1,16 @@
 package lotto.model
 
-import lotto.config.ExceptionMessage
-import lotto.config.GameConfigValue
+import lotto.config.ExceptionMessage.UNIT_ERROR
+import lotto.config.GameConfigValue.PURCHASE_AMOUNT_UNIT
 
 class PurchaseMoneyVerification {
     fun inputMoneyCheck(lottoPurchaseMoney:Int):Int{
 
-        if(lottoPurchaseMoney % GameConfigValue.PURCHASE_AMOUNT_UNIT == 0){
-            return lottoPurchaseMoney/GameConfigValue.PURCHASE_AMOUNT_UNIT
+        if(lottoPurchaseMoney % PURCHASE_AMOUNT_UNIT == 0){
+            return lottoPurchaseMoney/PURCHASE_AMOUNT_UNIT
         }
         else{
-            throw IllegalArgumentException(ExceptionMessage.UNIT_ERROR)
+            throw IllegalArgumentException(UNIT_ERROR)
         }
     }
-
-
 }
