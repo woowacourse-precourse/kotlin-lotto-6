@@ -5,6 +5,8 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6){
             "[Error] 입력 값이 6개가 아니거나 당첨 번호에 문자열이 포함되어 있습니다."
         }
+        validateNumbers()
+        validateRepeat()
     }
 
 

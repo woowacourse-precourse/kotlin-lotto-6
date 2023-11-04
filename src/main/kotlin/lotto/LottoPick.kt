@@ -20,8 +20,7 @@ class LottoPick() {
 
     fun pickValid(pickList: List<String>){
         val numbers = pickList.mapNotNull { it.toIntOrNull() }
-        Lotto(numbers).validateNumbers()
-        Lotto(numbers).validateRepeat()
+        Lotto(numbers)
 
     }
     private fun validPickNumber() : List<String> {
