@@ -9,6 +9,7 @@ class LottoController {
     private val lottoView: LottoView by lazy { LottoView() }
     private lateinit var purchasedLottoList: List<Lotto>
     private lateinit var winningNumber: Lotto
+    private var money: Int = NOT_SET
     private var bonusNumber: Int = NOT_SET
 
     fun start() {
@@ -17,7 +18,7 @@ class LottoController {
     }
 
     private fun buyLotto() {
-        val money = lottoView.showBuyViewAndReturnMoney()
+        money = lottoView.showBuyViewAndReturnMoney()
         purchasedLottoList = lottoService.buyLotto(money)
         lottoView.showPurchasedLottoList(purchasedLottoList)
     }
