@@ -1,11 +1,11 @@
 package lotto
 
+import camp.nextstep.edu.missionutils.Randoms
+
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
-        for(number in numbers){
-        }
+        println(numbers)
     }
-
 
 }
