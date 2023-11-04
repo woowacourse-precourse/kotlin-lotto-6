@@ -21,6 +21,7 @@ class View(
     }
 
     fun run() {
-        inputPurchase()
+        val purchase = inputPurchase()
+        printer.print(purchase)
     }
 }

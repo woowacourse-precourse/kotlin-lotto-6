@@ -5,6 +5,15 @@ object Printer {
         println(message)
     }
 
+    fun print(purchase: Purchase) {
+        val lottos = purchase.lottos
+        val purchasedMessage = Message.Purchased.toString()
+        println()
+        println(purchasedMessage.format(lottos.size))
+        lottos.forEach { println(it) }
+        println()
+    }
+
     fun error(message: Message) {
         error(message.toString())
     }

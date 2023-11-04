@@ -13,6 +13,10 @@ class Lotto(private val numbers: List<Int>) {
         return numbers.contains(number)
     }
 
+    override fun toString(): String {
+        return "[${numbers.joinToString()}]"
+    }
+
     companion object {
         private const val SIZE = 6
 
@@ -22,7 +26,8 @@ class Lotto(private val numbers: List<Int>) {
                 lottoNumberRange.last,
                 SIZE
             )
-            return Lotto(numbers)
+            val sorted = numbers.sorted()
+            return Lotto(sorted)
         }
     }
 }

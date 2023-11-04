@@ -11,7 +11,9 @@ enum class Message(private val content: String) {
     NumberIsZeroOrNegative(content = "0이하의 금액을 입력했습니다. 다시 입력해주세요."),
     InvalidPurchaseAmount(
         content = "${AMOUNT_UNIT_WON}원 단위가 아닙니다. 구매금액은 ${AMOUNT_UNIT_WON}원 단위로 입력해주세요."
-    );
+    ),
+
+    Purchased(content = "%d개를 구매했습니다.");
 
     override fun toString(): String {
         return content
