@@ -4,12 +4,13 @@
 ___
 
 - [ ] **1. 구입 금액 입력 / N개의 Lotto를 뽑기 / 발행한 로또 수량 및 번호 출력**
-    - [ ] **입력** - InputView
+    - [x] **입력** - InputView
         - `구입금액을 입력해 주세요.` - .purchaseAmountPrompt()
             - 검증 : 1,000원 단위인지?
             - `예외`
                 - 숫자가 아닌 경우
-                - 1000 % 0 != 0 인 경우
+                - 0이 입력된 경우
+                - inputData % 1000 != 0 인 경우
     - [ ] **처리** - GameController.`set()`
         - 6개의 랜덤 숫자들을 N번 뽑기 - `set()` -> .createUniqueNumbers()
         - `로또 번호를 오름차순으로 정렬` - `set()` -> .sortedNumbers()
