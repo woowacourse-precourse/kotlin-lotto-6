@@ -1,6 +1,5 @@
-package lotto
+package lotto.model
 
-import lotto.model.PurchaseAmount
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -8,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class PurchaseAmountTest {
+
     @ParameterizedTest
     @ValueSource(strings = ["a", "!", " "])
     fun `PurchaseAmount 생성, 숫자가 입력 됐는지`(inputdata: String) {

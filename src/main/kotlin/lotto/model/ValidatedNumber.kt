@@ -1,6 +1,6 @@
 package lotto.model
 
-class LottoNumber(number: Int) {
+class ValidatedNumber(number: Int) {
 //    init {
 //        validate()
 //    }

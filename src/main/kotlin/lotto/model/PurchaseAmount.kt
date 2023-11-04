@@ -3,7 +3,7 @@ package lotto.model
 class PurchaseAmount(
     private val _data: String
 ) {
-    val data: Int get() = _data.toInt()
+    val Count: Int get() = _data.toInt() / PURCHASE_AMOUNT_UNIT
 
     init {
         val data = requireNotNull(_data.toIntOrNull()) {
