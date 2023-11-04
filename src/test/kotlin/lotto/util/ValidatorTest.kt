@@ -71,4 +71,22 @@ class ValidatorTest {
             validateLottoInteger("a,b,1,c")
         }
     }
+
+    @Test
+    @DisplayName("로또 당첨번호에 공백이 들어오거나 널값이 들어오면 예외가 발생한다.")
+    fun validateLottoNotNullTest() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> {
+                validateLottoNotNull("1,,2,3")
+            }
+
+            assertThrows<IllegalArgumentException> {
+                validateLottoNotNull("1, ,2,3")
+            }
+
+            assertThrows<IllegalArgumentException> {
+                validateLottoNotNull("1, 2,3")
+            }
+        }
+    }
 }
