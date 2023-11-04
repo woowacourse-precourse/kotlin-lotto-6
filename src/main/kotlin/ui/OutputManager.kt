@@ -2,13 +2,14 @@ package ui
 
 class OutputManager {
     fun promptPurchaseAmount() = println(OutputMessages.PROMPT_PURCHASE_AMOUNT)
-    fun invalidPurchaseAmount() = println(OutputMessages.INVALID_PURCHASE_AMOUNT)
-    fun invalidLottoNumbers() = println(OutputMessages.INVALID_LOTTO_NUMBERS)
+    fun invalidPurchaseAmount() = println("${OutputMessages.INVALID_PURCHASE_AMOUNT} ${OutputMessages.RE_TRY}")
+    fun invalidLottoNumbers() = println("${OutputMessages.INVALID_LOTTO_NUMBERS} ${OutputMessages.RE_TRY}")
     fun purchaseLottoCount(lottoCount: Int) = println(OutputMessages.PURCHASE_LOTTO_COUNT.toString().format(lottoCount))
     fun lottoNumbers(numbers: List<Int>) = println(numbers)
     fun promptJackpotNumbers() = println(OutputMessages.PROMPT_JACKPOT_NUMBERS)
     fun promptBonusNumber() = println(OutputMessages.PROMPT_BONUS_NUMBER)
     fun lottoStats() = println(OutputMessages.LOTTO_STATS)
+    fun retry() = println(OutputMessages.RE_TRY)
     fun line() = println(OutputMessages.LINE)
     fun lottoResult(
         correctLottoNumbers: Int,
@@ -26,6 +27,7 @@ enum class OutputMessages(private val message: String) {
     PROMPT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     PURCHASE_LOTTO_COUNT("%d개를 구매했습니다."),
     LOTTO_RESULT("%d개 일치 (%s원) - %d개"),
+    RE_TRY("다시 입력해주세요."),
     LINE("---"),
     LOTTO_STATS("당첨 통계");
 
