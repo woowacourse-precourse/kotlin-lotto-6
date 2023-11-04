@@ -1,6 +1,5 @@
 package lotto
 
-import java.util.*
 
 enum class InputErrorCode(val message: String) {
     NUMBER_IN_RANGE("[Error] 1에서 45 사이의 숫자여야 합니다."),
@@ -36,7 +35,7 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     private fun bonusCheck(inputNumbers: List<Int>, bonus: Int): Boolean{
-        val frequency = Collections.frequency(inputNumbers, bonus)
+        val frequency = inputNumbers.count { it == bonus }
         return frequency == 1
     }
     private fun matchNumber(inputNumbers: List<Int>, bonusNum: Int): Pair<Int, Boolean> {
