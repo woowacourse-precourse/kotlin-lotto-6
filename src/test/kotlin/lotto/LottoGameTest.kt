@@ -53,4 +53,17 @@ class LottoGameTest {
         assertThat(result).hasSize(2)
     }
 
+    @Test
+    fun `getLottoMatchResult - Given 로또 결과 목록이 주어지면, when 로또 당첨 번호 결과를 생성하는 함수 호출를 호출하면, then 로또 당첨 번호 결과를 반환해야 함`() {
+        // Given
+        val lottoResults = listOf(LottoResult(6, false), LottoResult(5, true), LottoResult(4, false))
+        val expectedResult = LottoMatchResult(sixMatching = 1, fiveMatchingWithBonus = 1, fourMatching = 1)
+
+        // When
+        val result = lottoGame.getLottoMatchResult(lottoResults)
+
+        // Then
+        assertThat(result).isEqualTo(expectedResult)
+    }
+
 }
