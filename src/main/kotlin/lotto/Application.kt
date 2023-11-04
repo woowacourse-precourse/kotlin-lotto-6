@@ -1,5 +1,14 @@
 package lotto
 
+import lotto.controller.LottoGameController
+import lotto.domain.LottoGameImpl
+import lotto.view.InputView
+import lotto.view.OutputView
+
 fun main() {
-    TODO("프로그램 구현")
+    LottoGameController(
+        inputView = InputView(),
+        outputView = OutputView(),
+        lottoGame = LottoGameImpl(),
+    ).run()
 }
