@@ -2,8 +2,16 @@ package lotto
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6)
+        require(numbers.size == SIZE)
+        requireUnique(numbers)
     }
 
-    // TODO: 추가 기능 구현
+    private fun requireUnique(numbers: List<Int>) {
+        val uniqueNumbers = numbers.toSet()
+        require(uniqueNumbers.size == SIZE)
+    }
+
+    companion object {
+        private const val SIZE = 6
+    }
 }
