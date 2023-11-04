@@ -1,12 +1,12 @@
 package client
-
+import camp.nextstep.edu.missionutils.Console
 class Client {
-    val util = ClientUtil()
-    fun inputBuyMoney(): Int {
-        val input = readln()
+    private val util = ClientUtil()
+    fun inputBuyMoneyToCount(): Int {
+        val input = Console.readLine()
         util.checkIsInteger(input)
         val money = input.toInt()
         util.checkNoDividedByThousand(money)
-        return money
+        return money/1000
     }
 }
