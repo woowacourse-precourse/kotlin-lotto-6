@@ -2,6 +2,7 @@ package lotto.domain
 
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.model.Lotto
+import lotto.model.LottoResult
 import lotto.utils.Constant.LOTTO_COST
 import lotto.utils.Constant.LOTTO_SIZE
 import lotto.utils.Constant.MAX_LOTTO_NUMBER
@@ -19,6 +20,16 @@ class LottoGameImpl : LottoGame {
                 LOTTO_SIZE,
             ).sorted()
         )
+    }
+
+    override fun getLottoResults(
+        lottoNumbers: List<Lotto>,
+        winningNumber: Lotto,
+        bonusNumber: Int,
+    ): List<LottoResult> = lottoNumbers.map { lotto ->
+        val matchedCount = lotto.getNumbers().count { it in winningNumber.getNumbers() }
+        val hasBonus = bonusNumber in lotto.getNumbers()
+        LottoResult(matchedCount = matchedCount, hasBonus = hasBonus)
     }
 
 }
