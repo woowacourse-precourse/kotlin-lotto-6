@@ -16,6 +16,8 @@ object OutputView {
     }
 
     fun showLottoNumbers(lottoNumbers: MutableList<Lotto>) {
-        println(lottoNumbers)
+        for (lottoNumber in lottoNumbers) {
+            println(lottoNumber)
+        }
     }
 }
