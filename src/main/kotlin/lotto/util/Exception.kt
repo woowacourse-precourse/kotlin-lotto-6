@@ -1,5 +1,7 @@
 package lotto.util
 
+import lotto.util.Constant.INPUT_BONUS_NUMBER_NOT_NUMBER_ERROR_MESSAGE
+import lotto.util.Constant.INPUT_BONUS_NUMBER_OVERLAP_ERROR_MESSAGE
 import lotto.util.Constant.INPUT_LUCKY_NUMBER_LENGTH_ERROR_MESSAGE
 import lotto.util.Constant.INPUT_LUCKY_NUMBER_NOT_NUMBER_ERROR_MESSAGE
 import lotto.util.Constant.INPUT_LUCKY_NUMBER_OVERLAP_ERROR_MESSAGE
@@ -29,6 +31,14 @@ object Exception {
         }
         if(luckyNumbers.toSet().size != LOTTO_NUMBER_SIZE){
             throw  IllegalArgumentException(INPUT_LUCKY_NUMBER_OVERLAP_ERROR_MESSAGE)
+        }
+    }
+    fun validateInputBonusNumber(number : String, luckyNumbers : List<Int>){
+        if(number.toIntOrNull()==null){
+            throw  IllegalArgumentException(INPUT_BONUS_NUMBER_NOT_NUMBER_ERROR_MESSAGE)
+        }
+        if(luckyNumbers.contains(number.toInt())){
+            throw  IllegalArgumentException(INPUT_BONUS_NUMBER_OVERLAP_ERROR_MESSAGE)
         }
     }
 }
