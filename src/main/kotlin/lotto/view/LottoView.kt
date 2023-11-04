@@ -1,7 +1,9 @@
 package lotto.view
 
+import lotto.enums.OutPut
+
 class LottoView {
     fun printEnterPurchaseMessage() {
-        println("구입금액을 입력해 주세요.")
+        println(OutPut.PLEASE_INPUT_AMOUNT.message)
     }
 }
