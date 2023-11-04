@@ -28,7 +28,7 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         return buyPrice / Constants.THOUSAND_PRICE
     }
 
-    fun splitMyNumbers(myNumbers: String): List<String> {
+    private fun splitMyNumbers(myNumbers: String): List<String> {
         val validateSplit = ValidateSplit()
         return validateSplit.validateSplitMyNumbers(myNumbers.split(Constants.DELIMITER))
     }
