@@ -3,13 +3,15 @@ package lotto.view
 class OutputView {
 
 
-    fun lottoStartMessage() = println(OutputMessages.PURCHASE_MONEY.message)
-
+    fun lottoPurchaseMessage() = println(OutputMessages.PURCHASE_MONEY.message)
+    fun lottoPurchaseConfirm(purchaseLottoNumber: Int)= println(OutputMessages.PURCHASE_CONFIRMATION.message.format(purchaseLottoNumber))
+    fun rightLottoNumberMessage() = println(OutputMessages.CORRECT_LOTTO_NUMBER.message)
+    fun bonusLottoNumberMessage() = println(OutputMessages.BONUS_NUMBER.message)
 }
 
 enum class OutputMessages(val message: String) {
     PURCHASE_MONEY("구입금액을 입력해 주세요."),
-    PURCHASE_CONFIRMATION("%d%%개를 구매했습니다."),
+    PURCHASE_CONFIRMATION("%d개를 구매했습니다."),
     CORRECT_LOTTO_NUMBER("당첨 번호를 입력해 주세요."),
     BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     WINNING_STATISTICS("당첨 통계"),
