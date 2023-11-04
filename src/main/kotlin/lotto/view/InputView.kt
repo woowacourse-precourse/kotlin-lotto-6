@@ -3,11 +3,11 @@ package lotto.view
 import camp.nextstep.edu.missionutils.Console
 
 class InputView {
-    fun InputBuyPriceMessage(): Int {
+    fun inputBuyPrice(): Int {
         return Console.readLine().toInt()
     }
 
-    fun InputMyNumbersMessage(): String {
+    fun inputMyNumbers(): String {
         return Console.readLine()
     }
 }

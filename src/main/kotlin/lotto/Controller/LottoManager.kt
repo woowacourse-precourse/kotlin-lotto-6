@@ -8,20 +8,20 @@ import lotto.view.OutputView
 class LottoManager(private val inputView: InputView, private val outputView: OutputView) {
     fun run() {
         outputView.showInputBuyPriceMessage()
-        val ticket = calculateTicket(inputView.InputBuyPriceMessage())
+        val buyPrice = inputView.inputBuyPrice()
+        val ticket = calculateTicket(buyPrice)
         outputView.showBuyTicketMessage(ticket)
         outputView.showInputMyNumbersMessage()
-        val numbers = inputView.InputMyNumbersMessage()
 
+        val numbers = inputView.inputMyNumbers()
         val lotto = Lotto(splitMyNumbers(numbers))
     }
 
-    fun calculateTicket(buyPrice: Int): Int {
+    private fun calculateTicket(buyPrice: Int): Int {
         return buyPrice / Constants.THOUSAND_PRICE
     }
 
-    fun splitMyNumbers(myNumbers: String): List<Int> {
+    private fun splitMyNumbers(myNumbers: String): List<Int> {
         return myNumbers.split(Constants.DELIMITER).map { it.toInt() }
     }
-
 }
