@@ -17,7 +17,7 @@ class UserLottoNumber {
         try {
             number.toInt()
         } catch (e: NumberFormatException) {
-            println(Constants.ERROR_LOTTO_FORMAT)
+            error(Constants.ERROR_LOTTO_FORMAT)
         }
     }
 }

@@ -8,7 +8,7 @@ class Bonus {
         try {
             bonus.toInt()
         } catch (e: NumberFormatException) {
-            println(Constants.ERROR_BONUS_FORMAT)
+            error(Constants.ERROR_BONUS_FORMAT)
         }
     }
     fun BonuDuplicationValidate(bonus: Int,answer: List<Int>) {

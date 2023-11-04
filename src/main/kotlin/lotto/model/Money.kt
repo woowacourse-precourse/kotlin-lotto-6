@@ -9,7 +9,7 @@ class Money {
         try {
             money.toInt()
         } catch (e: NumberFormatException) {
-            println(Constants.ERROR_MONEY_FORMAT)
+            error(Constants.ERROR_MONEY_FORMAT)
         }
     }
 
