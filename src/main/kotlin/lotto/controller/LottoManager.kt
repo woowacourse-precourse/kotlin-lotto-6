@@ -1,3 +1,4 @@
+package controller
 
 import lotto.Lotto
 import lotto.domain.LottoWrapper
@@ -22,5 +23,24 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         val winningNumbers = winningLotto.createWinningLotto()
 
         val lotto = Lotto(winningNumbers)
+        compareLottoNumbers(lotto, winningNumbers)
     }
+
+    fun compareLottoNumbers(lotto: Lotto, winningNumbers: List<Int>) {
+        var count = 0
+        for (winningNumber in winningNumbers) {
+            if (lotto.getLotto().contains(winningNumber)) {
+                count++
+            }
+        }
+        println(count)
+    }
+
+
+
+
+
+
+
+
 }
