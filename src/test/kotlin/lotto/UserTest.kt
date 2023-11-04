@@ -90,6 +90,19 @@ class UserTest {
     }
 
     @Test
+    fun `당첨 번호의 범위가 1이상 45이하가 아니면 예외가 발생한다`() {
+        // given
+        val input = listOf(
+            "1, 2, 3, 4, 5, 45",
+            "0, 1, 2, 3, 4, 5"
+        )
+
+        // when
+
+        // then
+    }
+
+    @Test
     fun `올바른 당천 번호 입력값에 대해 예상한 결과와 일치한다`() {
         // given
         val input = "1, 2, 3, 4, 5, 6"
