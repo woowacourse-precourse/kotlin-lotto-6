@@ -26,4 +26,17 @@ object Validator {
             throw IllegalArgumentException(ErrorMessage.INVALID_INPUT.message)
         }
     }
+
+    fun validateBonusNumber(bonusNumber: String, winningNumbers: List<Int>): Int {
+        try {
+            val validBonusNumber = bonusNumber.toInt()
+            require(validBonusNumber in 1..45) { ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.message }
+            for (winningNumber in winningNumbers) {
+                require(validBonusNumber != winningNumber) { ErrorMessage.DUPLICATED_BONUS_NUMBER.message }
+            }
+            return validBonusNumber
+        } catch (numberFormatException: NumberFormatException) {
+            throw IllegalArgumentException(ErrorMessage.INVALID_INPUT.message)
+        }
+    }
 }
