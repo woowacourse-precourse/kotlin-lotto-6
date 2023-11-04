@@ -74,7 +74,7 @@ class LottoTest {
     @Test
     fun `금액에 맞게 로또가 생성되는가`() {
         lottoController.lottoGenerate(3)
-//        Assertions.assertThat(lottoController.lottoCollection.lottoCollection.size).isEqualTo(3)
+        Assertions.assertThat(lottoController.lottoCollection.lottoCollection.size).isEqualTo(3)
     }
 
     // 아래에 추가 테스트 작성 가능

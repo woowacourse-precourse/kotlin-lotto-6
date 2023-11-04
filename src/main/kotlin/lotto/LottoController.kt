@@ -8,10 +8,12 @@ class LottoController {
     val LOTTO_MAX_NUM = 45
     private var cost = 0
     var lottoCollection = LottoCollection()
+    val lottoView = LottoView()
 
     fun start() {
         inputLottoCost()
         lottoGenerate(cost/1000)
+        lottoView.showGenerateLotto(lottoCollection)
     }
 
     fun checkLottoCost(cost: Int) {

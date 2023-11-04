@@ -5,4 +5,8 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
         require(numbers.distinct().size == numbers.size)
     }
+
+    fun amount(): List<Int> {
+        return numbers.sorted()
+    }
 }

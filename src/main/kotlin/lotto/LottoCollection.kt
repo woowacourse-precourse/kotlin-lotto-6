@@ -6,4 +6,8 @@ class LottoCollection {
     fun putLotto(lotto: Lotto) {
         lottoCollection.add(lotto)
     }
+
+    fun collectionSize(): Int {
+        return lottoCollection.size
+    }
 }
