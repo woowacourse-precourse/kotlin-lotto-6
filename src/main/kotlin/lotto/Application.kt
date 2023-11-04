@@ -3,7 +3,15 @@ package lotto
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
-    publishLotto()
+    val lotto = publishLotto()
+    println(lotto.toString())
+
+    val user = User()
+    user.inputAmount()
+    println(user.amount)
+
+    user.inputAmount()
+    println(user.amount)
 }
 
 // 로또 번호 생성을 캡슐화를 해야 하나 고민
