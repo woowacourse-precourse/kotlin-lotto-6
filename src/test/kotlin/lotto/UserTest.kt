@@ -1,9 +1,7 @@
 package lotto
 
-import org.assertj.core.api.AssertionsForClassTypes
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 
 class UserTest {
     private lateinit var user: User
