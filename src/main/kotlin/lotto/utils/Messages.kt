@@ -10,5 +10,5 @@ object Messages {
     const val VALIDATE_INPUT_ZERO = "0은 입력될 수 없습니다."
     const val INVALID_INPUT = "유효한 값이 아닙니다."
     const val VALIDATE_INPUT_EMPTY = "입력값이 없습니다."
-    const val VALIDATE_INPUT_UNDER_THOUSAND = "1000보다 적은 가격입니다."
+    const val VALIDATE_INPUT_UNDER_THOUSAND = "1000보다 적은 금액은 입력될 수 없습니다."
 }
