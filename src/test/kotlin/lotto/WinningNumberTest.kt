@@ -9,7 +9,7 @@ class WinningNumberTest {
         assertThrows<IllegalArgumentException> {
             WinningNumber(
                 numbers = listOf(1, 2, 3, 4, 5, 5),
-                bonus =  7
+                bonus = 7
             )
         }
     }
@@ -19,7 +19,7 @@ class WinningNumberTest {
         assertThrows<IllegalArgumentException> {
             WinningNumber(
                 numbers = listOf(1, 2, 3, 4, 5, 6),
-                bonus =  1
+                bonus = 1
             )
         }
     }
@@ -29,7 +29,7 @@ class WinningNumberTest {
         assertThrows<IllegalArgumentException> {
             WinningNumber(
                 numbers = listOf(1, 2, 3, 4, 5, 6, 7),
-                bonus =  1
+                bonus = 1
             )
         }
     }
@@ -39,7 +39,7 @@ class WinningNumberTest {
         assertThrows<IllegalArgumentException> {
             WinningNumber(
                 numbers = listOf(1, 2, 3, 4, 5),
-                bonus =  1
+                bonus = 1
             )
         }
     }
