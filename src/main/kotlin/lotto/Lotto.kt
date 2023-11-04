@@ -10,7 +10,7 @@ enum class InputErrorCode(val message: String) {
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6){
-            InputErrorCode.NUMBERS_NOT_VALID
+            InputErrorCode.NUMBERS_NOT_VALID.message
         }
         validateNumbers()
         validateRepeat()
