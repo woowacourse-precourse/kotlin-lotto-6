@@ -34,4 +34,10 @@ object Validator {
     fun validateLottoSpace(input: String) {
         require(!input.contains(' ')) { "당첨번호에 공백이 존재합니다." }
     }
+
+    fun validateLottoRange(input: List<Int>) {
+        input.forEach {
+            require(it in 1..45) { "당첨번호가 1부터 45까지의 숫자가 아닙니다." }
+        }
+    }
 }

@@ -5,6 +5,7 @@ import lotto.util.Validator.validate1000Unit
 import lotto.util.Validator.validateInteger
 import lotto.util.Validator.validateLottoInteger
 import lotto.util.Validator.validateLottoNotNull
+import lotto.util.Validator.validateLottoRange
 import lotto.util.Validator.validateLottoSpace
 import lotto.util.Validator.validateRange
 import org.junit.jupiter.api.DisplayName
@@ -93,6 +94,14 @@ class ValidatorTest {
     fun validateLottoSpaceTest() {
         assertThrows<IllegalArgumentException> {
             validateLottoSpace("1, 2, 3")
+        }
+    }
+
+    @Test
+    @DisplayName("당첨번호가 1부터 45까지의 숫자가 아니면 예외가 발생한다.")
+    fun validateLottoRangeTest() {
+        assertThrows<IllegalArgumentException> {
+            validateLottoRange(listOf(1, 2, 3, 4, 5, 46))
         }
     }
 }
