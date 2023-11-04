@@ -1,6 +1,7 @@
 package controller
 
 import lotto.Lotto
+import lotto.domain.Bonus
 import lotto.domain.LottoWrapper
 import lotto.domain.Purchase
 import lotto.domain.WinningLotto
@@ -24,8 +25,8 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
 
         val lotto = Lotto(winningNumbers)
 
-        outputView.showInputBonusNumberMessage()
-        inputView.inputBonusNumber()
+        val bonus = Bonus()
+        bonus.createBonusNumber(winningNumbers)
     }
 
     fun compareLottoNumbers(lotto: Lotto, winningNumbers: List<Int>) {
