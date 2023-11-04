@@ -20,8 +20,8 @@
 - [x] 당첨 번호 입력을 예외 처리하는 기능 - `inputWinningNumberException()`#Exceptions
 - [x] 보너스 번호 입력을 예외 처리하는 기능 - `inputBonusNumberException()`#Exceptions
 - [x] 상수 값 #Constant
-- RacingCarGame Test
-  - [ ] `getQuantity` 함수 테스트
+- LottoGame Test
+  - [x] `getQuantity` 함수 테스트
   - [ ] `createRandomLottoNumbers` 함수 테스트
   - [ ] `getCorrectLottoResults` 함수 테스트
   - [ ] `getLottoMatchResult` 함수 테스트
