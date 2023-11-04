@@ -35,11 +35,11 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 
-    fun bonusCheck(inputNumbers: List<Int>, bonus: Int): Boolean{
+    private fun bonusCheck(inputNumbers: List<Int>, bonus: Int): Boolean{
         val frequency = Collections.frequency(inputNumbers, bonus)
         return frequency == 1
     }
-    fun matchNumber(inputNumbers: List<Int>, bonusNum: Int): Pair<Int, Boolean> {
+    private fun matchNumber(inputNumbers: List<Int>, bonusNum: Int): Pair<Int, Boolean> {
         val difference = inputNumbers.minus(numbers)
         val duplicationCount = inputNumbers.size - difference.size
         var rank = 0
