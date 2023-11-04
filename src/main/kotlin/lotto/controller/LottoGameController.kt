@@ -1,5 +1,6 @@
 package lotto.controller
 
+import lotto.Constants.Companion.ERROR_INVALID_LOTTO_AMOUNT_EXCEPTION
 import lotto.LottoGameService
 import lotto.model.Bonus
 import lotto.model.Lotto
@@ -32,7 +33,12 @@ class LottoGameController {
         outputView.outputProfitPercentageMessage(profit)
     }
     private fun getPurchaseAmount(){
-        purchaseAmount = inputView.inputPurchaseAmountMessage().toInt()
+        try {
+            purchaseAmount = inputView.inputPurchaseAmountMessage().toInt()
+        } catch (error: IllegalArgumentException){
+            println(ERROR_INVALID_LOTTO_AMOUNT_EXCEPTION)
+            getPurchaseAmount()
+        }
     }
     private fun getTicketNumber(purchaseAmount: Int) {
         ticket = lottoGameService.calculateLottoPurchaseQuantity(purchaseAmount)
