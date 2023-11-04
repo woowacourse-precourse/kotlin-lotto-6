@@ -29,6 +29,6 @@ class User {
 
     companion object {
         const val AMOUNT_UNIT = 1000
-        const val INVALID_AMOUNT_ERROR_MESSAGE = "[ERROR] 금액은 ${AMOUNT_UNIT} 단위의 숫자만 입력이 가능합니다."
+        const val INVALID_AMOUNT_ERROR_MESSAGE = "금액은 $AMOUNT_UNIT 단위의 숫자만 입력이 가능합니다."
     }
 }
