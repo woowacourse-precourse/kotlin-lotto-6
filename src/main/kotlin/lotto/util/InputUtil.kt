@@ -5,6 +5,7 @@ import lotto.constants.Error.EXCEPTION_MESSAGE_MONEY_NOT_DIVIDED_PRICE
 import lotto.constants.Error.EXCEPTION_MESSAGE_MONEY_NOT_NUMBER
 import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST
 import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_NOT_NUMBER
+import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_SIZE_INVALID
 import lotto.constants.LottoConstants
 import lotto.constants.LottoConstants.LOTTO_SIZE
 import lotto.util.OutputUtil.printExceptionMessage
@@ -44,9 +45,15 @@ object InputUtil {
         }
 
     private fun checkWinningNumberSize(winningNumber: List<Int>) {
-        if (winningNumber.toSet().size < LOTTO_SIZE) {
-            printExceptionMessage(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
-            throw IllegalArgumentException(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
+        when {
+            winningNumber.size != LOTTO_SIZE -> {
+                printExceptionMessage(EXCEPTION_MESSAGE_WINNING_NUMBER_SIZE_INVALID)
+                throw IllegalArgumentException(EXCEPTION_MESSAGE_WINNING_NUMBER_SIZE_INVALID)
+            }
+            winningNumber.toSet().size != LOTTO_SIZE -> {
+                printExceptionMessage(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
+                throw IllegalArgumentException(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
+            }
         }
     }
 }
