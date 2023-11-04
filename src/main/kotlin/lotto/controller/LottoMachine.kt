@@ -11,11 +11,9 @@ class LottoMachine {
         val userLotto = purchaseNumberLotto(count)
         val answers = userAnswer()
         val bonus = userBonus(answers)
-
         val jackpot = Jackpot().discriminate(answers,bonus,userLotto)
         val profit = Profit().calculateProfit(money,jackpot)
-        Output().printAnswerCompare()
-
+        Output().printAnswerCompare(jackpot,profit)
     }
     fun userBonus(answers: List<Int>):Int{
         Output().printWriteBonus()
@@ -34,8 +32,9 @@ class LottoMachine {
     fun purchaseNumberLotto(count:Int) :List<List<Int>>{
         Output().printPurchase(count)
         val userLotto: MutableList<List<Int>> = mutableListOf()
-        val lotto = Random().lottoGenerator()
+
         repeat(count) {
+            val lotto = Random().lottoGenerator()
             userLotto.add(Lotto(lotto).serve())
             Output().printLottoNumbers(lotto)
         }
