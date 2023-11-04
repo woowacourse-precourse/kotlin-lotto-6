@@ -1,18 +1,20 @@
 package lotto.controller
 
 import lotto.LottoGameService
+import lotto.model.Bonus
+import lotto.model.Lotto
 import lotto.view.InputView
 import lotto.view.OutputView
+import lotto.Validator
 
 class LottoGameController {
     private val inputView = InputView()
     private val outputView = OutputView()
     private val lottoGameService = LottoGameService()
+    private val validator = Validator()
     private var ticket = 0
     private var randomLottoLists = mutableMapOf<Int,List<Int>>()
     private var purchaseAmount = 0
-    private var userLottoNumber = listOf<Int>()
-    private var bonusNumber = 0
 
     fun playGame(){
         getPurchaseAmount()
@@ -25,6 +27,8 @@ class LottoGameController {
         getBonusNumber()
 
 
+        val lotto = Lotto(convertStringToList(enterWinningNumbers))
+        val bonus = Bonus(getBonusNumber())
     }
     private fun getPurchaseAmount(){
         purchaseAmount = inputView.inputPurchaseAmountMessage().toInt()
@@ -38,11 +42,11 @@ class LottoGameController {
     private fun getEnterWinningNumbers(): String {
         return inputView.inputEnterWinningNumbersMessage()
     }
-    private fun convertStringToList(enterWinningNumbers: String){
-        userLottoNumber = enterWinningNumbers.split(",").map { it.trim().toInt() }
+    private fun convertStringToList(enterWinningNumbers: String): List<Int> {
+         return enterWinningNumbers.split(",").map { it.trim().toInt() }
     }
-    private fun getBonusNumber(){
-        bonusNumber = inputView.inputEnterBonusNumbersMessage().toInt()
+    private fun getBonusNumber(): Int {
+        return inputView.inputEnterBonusNumbersMessage().toInt()
     }
 
 }
