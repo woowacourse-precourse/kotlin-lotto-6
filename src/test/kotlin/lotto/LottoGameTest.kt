@@ -27,4 +27,16 @@ class LottoGameTest {
         assertThat(result).isEqualTo(expectedQuantity)
     }
 
+    @Test
+    fun `createRandomLottoNumbers - Given 유효한 로또 수량이 주어지면, when 로또 랜덤 번호를 생성하는 함수 호출하면, then 주어진 수량의 로또 번호 목록을 반환해야 함`() {
+        // Given
+        val quantity = 5
+
+        // When
+        val result = lottoGame.createRandomLottoNumbers(quantity)
+
+        // Then
+        assertThat(result).hasSize(quantity)
+    }
+
 }
