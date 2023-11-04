@@ -1,6 +1,11 @@
 package lotto.utils
 
 object Constant {
+    // 요구 사항 상수
+    const val LOTTO_COST = 1000
+    const val MIN_LOTTO_NUMBER = 1
+    const val MAX_LOTTO_NUMBER = 45
+    const val LOTTO_SIZE = 6
     // 출력 메시지
     const val PURCHASE_AMOUNT_MESSAGE = "구매 금액을 입력해 주세요."
     const val LOTTO_QUANTITY_MESSAGE = "\n%d개를 구매했습니다."
