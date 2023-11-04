@@ -16,6 +16,7 @@ class LottoController {
 
     fun run() {
         val numberOfPurchase = getNumberOfPurchase()
+        val lottos = makeLottos(numberOfPurchase)
     }
 
     fun getNumberOfPurchase(): Int {
@@ -29,7 +30,15 @@ class LottoController {
         }
     }
 
-    fun generateLottoNumbers(numberOfPurchase: Int): List<Int> {
+    fun generateLottoNumbers(): List<Int> {
         return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_START, LOTTO_NUMBER_END, LOTTO_TOTAL_NUMBER)
+    }
+
+    fun makeLottos(numberOfPurchase: Int): List<Lotto> {
+        val lottos = mutableListOf<Lotto>()
+        for (number in 0 until numberOfPurchase) {
+            lottos.add(Lotto(generateLottoNumbers()))
+        }
+        return lottos
     }
 }
