@@ -7,6 +7,8 @@ class Lotto(private val numbers: List<Int>) {
         require(isValidDistinctNumber()) { INVALID_DISTINCT_NUMBER_ERROR_MESSAGE }
     }
 
+    fun getSortedNumbers() = numbers.sorted()
+
     private fun isValidNumberCount() = numbers.size == NUMBER_COUNT
 
     private fun isValidRangeNumber() = numbers.all { it in MIN_NUMBER..MAX_NUMBER }

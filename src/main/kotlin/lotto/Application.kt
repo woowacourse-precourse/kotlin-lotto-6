@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     val lotto = publishLotto()
-    println(lotto.toString())
+    println(lotto.getSortedNumbers())
 
     val user = User()
     user.inputAmount()
