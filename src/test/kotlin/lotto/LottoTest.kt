@@ -1,5 +1,6 @@
 package lotto
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -17,5 +18,10 @@ class LottoTest {
         assertThrows<IllegalArgumentException> {
             Lotto(listOf(1, 2, 3, 4, 5, 5))
         }
+    }
+
+    @Test
+    fun `로또 번호를 오름차순으로 정렬하여 반환한다`() {
+        assertThat(Lotto(listOf(6, 5, 4, 3, 2, 1)).getAscendingList()).isEqualTo(listOf(1, 2, 3, 4, 5, 6))
     }
 }
