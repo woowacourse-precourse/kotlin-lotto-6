@@ -20,4 +20,11 @@ object Validator {
             require(it.toIntOrNull() != null) { "당첨번호가 정수가 아닙니다." }
         }
     }
+
+    fun validateLottoNotNull(input: String) {
+        val validation = input.split(",")
+        validation.forEach {
+            require(it.trim().isNotEmpty()) { "당첨번호에 널값이 존재합니다." }
+        }
+    }
 }
