@@ -5,25 +5,50 @@ import lotto.model.WinResult
 import lotto.model.WinningLotto
 import lotto.view.InputView
 import lotto.view.OutputView
+import net.bytebuddy.asm.Advice.OffsetMapping.Factory.Illegal
 
 class LottoController(private val inputView: InputView = InputView(),private val outPutView : OutputView = OutputView()) {
 
     private val user = User()
     private val winningLotto = WinningLotto()
+    private val winResult = WinResult(user,winningLotto)
     fun run(){
         outPutView.printInputPrice()
-        user.setPrice(inputView.inputPrice())
+        inputPrice()
         outPutView.printBuyLotto(user.price)
-        user.buyLotto()
+        buyLotto()
         outPutView.printUserLotto(user.lottoes)
         outPutView.printInputLuckyNumber()
-        winningLotto.setLuckyNumbers(inputView.inputLuckyNumber())
+        inputLuckyNumber()
         outPutView.printInputBonusNumber()
-        winningLotto.setBonusNumber(inputView.inputBonusNumber(winningLotto.luckyNumbers))
+        inputBonusNumber()
         outPutView.printWinStatisticsMessage()
-        val winResult = WinResult(user,winningLotto)
-        winResult.calculateResult()
+        calculateResult()
         outPutView.printWinStatisticsResult(winResult.placeResult)
-        outPutView.printTotalEarningRate(winResult.calculateEarningRate())
+        calculateEarningRate()
+        outPutView.printTotalEarningRate(winResult.earningRate)
+    }
+    private fun inputPrice(){
+        user.setPrice(inputView.inputPrice())
+    }
+    private fun buyLotto(){
+        user.buyLotto()
+    }
+    private fun inputLuckyNumber(){
+        winningLotto.setLuckyNumbers(inputView.inputLuckyNumber())
+    }
+    private fun inputBonusNumber(){
+        try {
+            winningLotto.setBonusNumber(inputView.inputBonusNumber())
+        } catch (e : IllegalArgumentException){
+            println(e.message)
+            inputBonusNumber()
+        }
+    }
+    private fun calculateResult(){
+        winResult.calculateResult()
+    }
+    private fun calculateEarningRate(){
+        winResult.calculateEarningRate()
     }
 }
