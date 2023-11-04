@@ -4,8 +4,8 @@ import kotlin.math.*
 import lotto.constant.Constant
 
 object Winning {
-    private val winningRateCount = mutableListOf<Int>()
-    private val winningRateInfor = mutableListOf<LottoInfor>()
+    private var winningRateCount = mutableListOf<Int>()
+    private var winningRateInfor = mutableListOf<LottoInfor>()
 
     enum class LottoInfor(val correct: Int, val price :Int, val bonusCheck: Boolean) {
         FIRST(6, 2000000000, false),
@@ -51,6 +51,10 @@ object Winning {
         return LottoInfor.NOTHING
     }
 
+    fun publicSetWinningRate(correctCount: Int, correctBonus: Boolean): LottoInfor {
+        return setWinningRate(correctCount, correctBonus)
+    }
+
     private fun initWinningRateCount() {
         for(i in Constant.INDEX_START..Constant.WINNING_RATE_COUNT)
             winningRateCount.add(Constant.WINNING_RATE_INIT_COUNT)
@@ -64,14 +68,19 @@ object Winning {
         }
     }
 
-    fun calculateEarningRate(lottoCount: Int): Double {
-        var sum=0
+    fun calculateEarningRate(lottoCount: Int): String {
+        var sum = 0
         for(winningInfor in winningRateInfor) {
             sum += winningInfor.price
         }
-        if(sum==0) return 0.0
-        val result = (sum.toDouble()/(Constant.PRICE_PER_LOTTO * lottoCount)) * 100
-        return round(result*10)/10
+        if(sum == 0) return Constant.NO_EARNING_RATE
+        val result = (sum.toDouble() / (Constant.PRICE_PER_LOTTO * lottoCount)) * 100
+        return String.format("%,.1f",result)
+    }
+
+    fun publicCalculateEarningRate(testWinningRateInfor: MutableList<LottoInfor>, lottoCount: Int): String {
+        winningRateInfor = testWinningRateInfor
+        return calculateEarningRate(lottoCount)
     }
 
     private fun compareNumberWithWinningNumber(lotto: Lotto): Int {

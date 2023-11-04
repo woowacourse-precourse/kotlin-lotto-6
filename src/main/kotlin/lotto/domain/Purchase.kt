@@ -5,6 +5,7 @@ import lotto.Input
 import lotto.constant.Constant
 import lotto.constant.OutputMessage
 import lotto.constant.Exception
+import net.bytebuddy.pool.TypePool.Resolution.Illegal
 
 object Purchase {
 
@@ -14,16 +15,39 @@ object Purchase {
     }
 
     fun getLottoCountFromAmount(): Int {
-        val amount = Input.inputInt()
-        checkValidationAmount(amount)
+        var validCheck = false
+        var amount = Constant.EMPTY_STRING
+        while(!validCheck) {
+            amount = Input.inputInt()
+            try {
+                checkValidationAmount(amount)
+                validCheck = true
+            } catch (e: IllegalArgumentException) { }
+        }
         return amount.toInt() / Constant.PRICE_PER_LOTTO
     }
 
     private fun checkValidationAmount(amount: String) {
+        checkDigitAmount(amount)
+        checkZeroAmount(amount)
+        checkNumberAmount(amount)
+    }
+
+    private fun checkDigitAmount(amount: String) {
         if(!(amount.all { Character.isDigit(it) })) {
             println(Exception.MESSAGE_EXCEPT_DIGIT)
             throw IllegalArgumentException(Exception.MESSAGE_EXCEPT_DIGIT)
         }
+    }
+
+    private fun checkZeroAmount(amount: String) {
+        if(amount.toInt() == Constant.AMOUNT_IS_ZERO) {
+            println(Exception.MESSAGE_EXCEPT_RANGE_AMOUNT)
+            throw IllegalArgumentException(Exception.MESSAGE_EXCEPT_RANGE_AMOUNT)
+        }
+    }
+
+    private fun checkNumberAmount(amount: String) {
         if(amount.toInt() % Constant.PRICE_PER_LOTTO != 0) {
             println(Exception.MESSAGE_EXCEPT_AMOUNT)
             throw IllegalArgumentException(Exception.MESSAGE_EXCEPT_AMOUNT)
@@ -37,4 +61,7 @@ object Purchase {
         }
     }
 
+    fun publicCheckValidationAmount(amount: String) {
+        checkValidationAmount(amount)
+    }
 }

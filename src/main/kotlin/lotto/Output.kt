@@ -28,7 +28,7 @@ object Output {
         println(OutputMessage.MESSAGE_WINNING_RATE_FIRST + winningRateCount[0].toString() + MESSAGE_PER_COUNT)
     }
 
-    fun printEarningRate(earningRate: Double) {
-        println(OutputMessage.MESSAGE_EARNING_RATE_PREFIX + earningRate.toString() + OutputMessage.MESSAGE_EARNING_RATE_POSTFIX)
+    fun printEarningRate(earningRate: String) {
+        println(OutputMessage.MESSAGE_EARNING_RATE_PREFIX + earningRate + OutputMessage.MESSAGE_EARNING_RATE_POSTFIX)
     }
 }

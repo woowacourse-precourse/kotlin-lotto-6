@@ -22,4 +22,11 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `로또 번호에 1미만이거나 45초과의 숫자가 있다`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(0,1,2,3,4,5,6))
+            Lotto(listOf(1,2,3,4,5,46))
+        }
+    }
 }
