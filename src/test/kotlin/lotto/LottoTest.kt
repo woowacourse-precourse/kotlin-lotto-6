@@ -28,7 +28,7 @@ class LottoTest {
     @Test
     fun `구입금액에 따라 티켓이 변경되는지 확인한다`() {
         val Manager = LottoManager(InputView(), OutputView())
-            Manager.calculateTicket(1000).equals(1)
+            Manager.calculateTicket(1000)
     }
 
     @Test
