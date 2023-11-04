@@ -1,6 +1,6 @@
 package lotto.domain
 
-import lotto.utils.Messages
+import lotto.validate.validateBonus
 import lotto.view.InputView.inputBonusNumber
 import lotto.view.OutputView.showInputBonusNumberMessage
 
@@ -11,12 +11,9 @@ class Bonus {
 
     fun createBonusNumber(winningNumbers: List<Int>) {
         val bonus = inputBonusNumber()
-        validateDuplicateBonusNumber(bonus, winningNumbers)
+        val validateBonus = validateBonus()
+        return validateBonus.validateBonus(bonus, winningNumbers)
     }
 
-    private fun validateDuplicateBonusNumber(bonus: Int, winningNumbers: List<Int>) {
-        require(!winningNumbers.contains(bonus)) {
-            "${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_DUPLICATED_MESSAGE}"
-        }
-    }
+
 }
