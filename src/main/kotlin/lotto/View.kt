@@ -5,7 +5,6 @@ class View(
     private val reader: Reader = Reader
 ) {
     private fun inputPurchase(): Purchase {
-        printer.print(Message.InputMoneyAmount)
         while (true) {
             val amount = reader.inputIntOrNull()
             if (amount == null) {
@@ -21,6 +20,7 @@ class View(
     }
 
     fun run() {
+        printer.print(Message.InputMoneyAmount)
         val purchase = inputPurchase()
         printer.print(purchase)
     }
