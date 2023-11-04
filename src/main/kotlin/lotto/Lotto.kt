@@ -2,9 +2,10 @@ package lotto
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == NUMBER_COUNT) { INVALID_NUMBER_COUNT_ERROR_MESSAGE }
+        require(isValidNumberCount()) { INVALID_NUMBER_COUNT_ERROR_MESSAGE }
     }
 
+    private fun isValidNumberCount() = numbers.size == NUMBER_COUNT
 
     companion object {
         const val NUMBER_COUNT = 6
