@@ -21,6 +21,11 @@ object LottoService {
         }
         return winningMap
     }
+    
+    fun getEarningRate(winningMap: EnumMap<Winner, Int>, money: Int): Double =
+        "%.2f".format(money.toDouble() / winningMap.entries.sumOf { (_winner, _numbers) ->
+            _winner.prize * _numbers
+        }).toDouble()
 
     private fun checkLotto(lottoNumber: Lotto, winningNumber: Lotto, bonusNumber: Int): Pair<Int, Boolean> {
         var count = 0
