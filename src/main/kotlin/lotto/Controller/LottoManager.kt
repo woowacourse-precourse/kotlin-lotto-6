@@ -17,11 +17,11 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         val lotto = Lotto(splitMyNumbers(numbers))
     }
 
-    private fun calculateTicket(buyPrice: Int): Int {
+    fun calculateTicket(buyPrice: Int): Int {
         return buyPrice / Constants.THOUSAND_PRICE
     }
 
-    private fun splitMyNumbers(myNumbers: String): List<Int> {
+    fun splitMyNumbers(myNumbers: String): List<Int> {
         return myNumbers.split(Constants.DELIMITER).map { it.toInt() }
     }
 }
