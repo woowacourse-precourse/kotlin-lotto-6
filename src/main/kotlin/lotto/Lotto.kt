@@ -7,4 +7,6 @@ class Lotto(private val numbers: List<Int>) {
                 .size == 6
         )
     }
+
+    internal fun getAscendingList() = numbers.sorted()
 }
