@@ -1,6 +1,7 @@
 package lotto.view
 
 import lotto.utils.Constant.LOTTO_QUANTITY_MESSAGE
+import lotto.utils.Constant.LOTTO_WINNING_NUMBER_MESSAGE
 import lotto.utils.Constant.PURCHASE_AMOUNT_MESSAGE
 
 class OutputView {
@@ -11,5 +12,7 @@ class OutputView {
 
     fun printLottoNumbers(lottoNumbers: List<Lotto>) =
         lottoNumbers.forEach { lottoNumber -> println(lottoNumber.getNumbers()) }
+
+    fun printLottoWinningNumber() = println(LOTTO_WINNING_NUMBER_MESSAGE)
 
 }
