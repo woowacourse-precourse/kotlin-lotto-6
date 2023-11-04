@@ -6,7 +6,7 @@ import lotto.Lottos
 import lotto.LottoResult
 
 class LottoController {
-    fun pickRandomNums(): MutableList<Int>? {
+    fun pickRandomNums(): MutableList<Int> {
         val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
         return numbers
     }
@@ -14,5 +14,9 @@ class LottoController {
     fun pickRandomNum(): Int {
         val number = Randoms.pickNumberInRange(1, 45)
         return number
+    }
+
+    fun toAscending(unsorted: MutableList<Int>) {
+        return unsorted.sort()
     }
 }
