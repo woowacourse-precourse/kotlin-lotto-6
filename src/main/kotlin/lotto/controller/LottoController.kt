@@ -19,6 +19,7 @@ class LottoController {
         purchaseLottos(lottos)
         val winningNumbers = getWinningNumbers()
         val bonusNumber = getBonusNumber(winningNumbers)
+        getWinningStatistics(lottos, winningNumbers, bonusNumber)
     }
 
     fun getNumberOfPurchases(): Int {
@@ -71,5 +72,32 @@ class LottoController {
             outputView.printErrorMessage(illegalArgumentException.message.toString())
             getBonusNumber(winningNumbers)
         }
+    }
+
+    fun getWinningStatistics(lottos: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int) {
+        outputView.printWinningStatisticsInstruction()
+        val winningStatistics = mutableListOf<Pair<Int, Boolean>>()
+        for (lotto in lottos) {
+            val matchedNumbers = lotto.getNumbers().intersect(winningNumbers).size
+            val bonusMatched = lotto.getNumbers().contains(bonusNumber)
+            winningStatistics.add(Pair(matchedNumbers, bonusMatched))
+        }
+        outputView.printWinningStatistics(judgementWinningRanks(winningStatistics))
+    }
+
+    fun judgementWinningRanks(winningResults: List<Pair<Int, Boolean>>): List<Int> {
+        val winningRanks = mutableListOf(0, 0, 0, 0, 0, 0)
+        for (winningResult in winningResults) {
+            val winningRank = when {
+                winningResult.first == 6 -> 1
+                winningResult.first == 5 && winningResult.second ->  2
+                winningResult.first == 5 -> 3
+                winningResult.first == 4 ->  4
+                winningResult.first == 3 ->  5
+                else -> 0
+            }
+            winningRanks[winningRank] += 1
+        }
+        return winningRanks
     }
 }
