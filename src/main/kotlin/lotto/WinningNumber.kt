@@ -42,7 +42,7 @@ class WinningNumber(
         fun validate(normalNumbers: List<Int>, bonusNumber: Int) {
             validate(normalNumbers)
             require((normalNumbers + bonusNumber).isUnique()) {
-                Message.DuplicatedWithNormalWinningNumber
+                Message.DuplicatedWithNormalWinningNumberError
             }
             require(bonusNumber.isInLottoNumberRange()) {
                 val errorMessage = Message.WinningNumberRangeError

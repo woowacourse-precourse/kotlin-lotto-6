@@ -8,8 +8,8 @@ enum class Message(private val content: String) {
 
     InputMoneyAmount(content = "구입금액을 입력해 주세요."),
     NotNumberError(content = "숫자가 아니거나 너무 큰 수를 입력했습니다. 다시 입력해주세요."),
-    NumberIsZeroOrNegative(content = "0이하의 금액을 입력했습니다. 다시 입력해주세요."),
-    InvalidPurchaseAmount(
+    NumberIsZeroOrNegativeError(content = "0이하의 금액을 입력했습니다. 다시 입력해주세요."),
+    InvalidPurchaseAmountError(
         content = "${AMOUNT_UNIT_WON}원 단위가 아닙니다. 구매금액은 ${AMOUNT_UNIT_WON}원 단위로 입력해주세요."
     ),
 
@@ -21,7 +21,7 @@ enum class Message(private val content: String) {
     WinningNumberRangeError(content = "%d에서 %d 사이의 숫자들만 입력해주세요."),
 
     InputBonusWinningNumber(content = "보너스 번호를 입력해 주세요."),
-    DuplicatedWithNormalWinningNumber(content = "당첨 번호와 중복됩니다."),
+    DuplicatedWithNormalWinningNumberError(content = "당첨 번호와 중복됩니다."),
 
     WinningResultHeader(content = "당첨 통계\n---"),
     BonusMatch(content = ", 보너스 볼 일치"),
