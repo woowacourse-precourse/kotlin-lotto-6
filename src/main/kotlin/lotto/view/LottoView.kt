@@ -8,8 +8,19 @@ class LottoView {
         println(ControlMessage.INPUT_MONEY)
     }
     fun showTicket(num : Int){
-        println("${num}${ControlMessage.SHOW_TICKET}")
+        println("\n${num}${ControlMessage.SHOW_TICKET}")
     }
+
+    fun showTicketNumber(buy_lotto_number : Array<Array<Int>>,inputMoney : Pair<Int,Int>){
+        for(ticket in 1..inputMoney.second){
+            print("[")
+            for(num in 0..4){
+                print("${buy_lotto_number[ticket-1][num]}, ")
+            }
+            println("${buy_lotto_number[ticket-1][5]}]")
+        }
+    }
+
     fun inputWinningNumber(){
         println(ControlMessage.INPUT_WINNING_NUMBER)
     }

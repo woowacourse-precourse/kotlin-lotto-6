@@ -2,11 +2,17 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.control.LottoControl
+import lotto.service.LottoService
 import org.assertj.core.internal.Characters
 import kotlin.math.round
 
 
 fun main() {
+    val start = LottoService()
+    start.start()
+
+
 //    println("구입금액을 입력해 주세요.")
 //    val buy = Console.readLine().toInt()
 //
@@ -18,6 +24,7 @@ fun main() {
 //
 //    for(i in 1..case){
 //        var number = Randoms.pickUniqueNumbersInRange(1,45,6)
+//        number.sort()
 //        for(j in 1..6){
 //            buy_lotto_number[i-1][j-1] = number.get(j-1)
 //        }
@@ -25,13 +32,13 @@ fun main() {
 //        buy_lotto_number[i-1].sort()
 //    }
 //
-//    for(i in 1..case){
-//        print("[")
-//        for(j in 1..5){
-//            print("${buy_lotto_number[i-1][j-1]}, ")
-//        }
-//        println("${buy_lotto_number[i-1][5]}]")
-//    }
+////    for(i in 1..case){
+////        print("[")
+////        for(j in 1..5){
+////            print("${buy_lotto_number[i-1][j-1]}, ")
+////        }
+////        println("${buy_lotto_number[i-1][5]}]")
+////    }
 //
 //    println("\n당첨 번호를 입력해 주세요.")
 //    var win_number = Console.readLine().split(",")
