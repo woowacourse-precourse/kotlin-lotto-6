@@ -41,4 +41,8 @@ class LottoGameController {
     private fun convertStringToList(enterWinningNumbers: String){
         userLottoNumber = enterWinningNumbers.split(",").map { it.trim().toInt() }
     }
+    private fun getBonusNumber(){
+        bonusNumber = inputView.inputEnterBonusNumbersMessage().toInt()
+    }
+
 }
