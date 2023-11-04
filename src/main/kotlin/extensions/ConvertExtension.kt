@@ -1,3 +1,3 @@
 package extensions
 
-fun String.withCommaToList(): List<String> = split(",")
+fun String.withCommaToList(): List<Int> = split(",").map { it.toInt() }
