@@ -19,14 +19,15 @@ object Printer {
         printEmptyLine()
     }
 
-    fun print(winnings: List<Winning>, profitPercentage: Double) {
+    fun print(statics: WinningStatics) {
         print(Message.WinningResultHeader)
+        val profitPercentage = statics.profitPercentage
         val winningEnums = Winning.values()
         winningEnums.forEach { winningEnum ->
             if (winningEnum == Winning.None) {
                 return@forEach
             }
-            val count = winnings.count { it == winningEnum }
+            val count = statics.countOf(winningEnum)
             winningEnum.print(count)
         }
         println(Message.ProfitPercentage.format(profitPercentage))

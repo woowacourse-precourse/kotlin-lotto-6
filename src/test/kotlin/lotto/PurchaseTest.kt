@@ -1,11 +1,8 @@
 package lotto
 
+import camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
 class PurchaseTest {
     @Test
@@ -34,45 +31,49 @@ class PurchaseTest {
         assert(purchase.lottoCount == 20)
     }
 
-    @ParameterizedTest
-    @MethodSource("generate_Purchase_WinningResults_ProfitPercentage")
-    fun `이익률을 정확히 계산한다 `(
-        purchase: Purchase,
-        winnings: List<Winning>,
-        expectedProfitPercentage: Double
-    ) {
-        val actualProfitPercentage = purchase.calculateProfitPercentage(winnings)
+    @Test
+    fun `구매 정보를 당첨 번호와 확인 했을 때 올바른 수익률을 생성한다`() {
+        assertRandomUniqueNumbersInRangeTest(
+            {
+                val amountWon = 1_000
+                val purchase = Purchase(amount = amountWon)
+                val winningNumber = WinningNumber(
+                    normalNumbers = listOf(1, 2, 3, 4, 5, 6),
+                    bonusNumber = 7
+                )
 
-        assert(actualProfitPercentage == expectedProfitPercentage) {
-            "Actual: $actualProfitPercentage, Expected: $expectedProfitPercentage"
-        }
+                val statics = purchase.check(winningNumber)
+
+                val actual = Winning.Six.moneyWon.toDouble() / amountWon * 100
+                assert(statics.profitPercentage == actual)
+            },
+            listOf(1, 2, 3, 4, 5, 6),
+        )
     }
 
-    companion object {
-        @JvmStatic
-        private fun generate_Purchase_WinningResults_ProfitPercentage(): Stream<Arguments> {
-            return Stream.of(
-                Arguments.of(
-                    Purchase(amount = 2000),
-                    listOf(Winning.Six, Winning.None),
-                    100_000_000.0
-                ),
-                Arguments.of(
-                    Purchase(amount = 1000),
-                    listOf(Winning.None),
-                    0.0
-                ),
-                Arguments.of(
-                    Purchase(amount = 4000),
-                    listOf(
-                        Winning.Six,
-                        Winning.Six,
-                        Winning.Six,
-                        Winning.Six
-                    ),
-                    200_000_000.0
+    @Test
+    fun `구매 정보를 당첨 번호와 확인 했을 때 올바른 당첨 개수를 생성한다`() {
+        assertRandomUniqueNumbersInRangeTest(
+            {
+                val amountWon = 1_000
+                val purchase = Purchase(amount = amountWon)
+                val winningNumber = WinningNumber(
+                    normalNumbers = listOf(1, 2, 3, 4, 5, 6),
+                    bonusNumber = 7
                 )
-            )
-        }
+
+                val statics = purchase.check(winningNumber)
+
+                val winnings = Winning.values()
+                winnings.forEach { winning ->
+                    val count = statics.countOf(winning)
+                    when (winning) {
+                        Winning.Six -> assert(count == 1)
+                        else -> assert(count == 0)
+                    }
+                }
+            },
+            listOf(1, 2, 3, 4, 5, 6),
+        )
     }
 }

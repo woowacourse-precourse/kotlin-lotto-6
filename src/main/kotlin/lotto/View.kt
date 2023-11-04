@@ -45,12 +45,6 @@ class View(
         Printer.error(message ?: Message.InvalidInputError.toString())
     }
 
-    private fun printWinningResult(purchase: Purchase, winningNumber: WinningNumber) {
-        val winnings = purchase.check(winningNumber)
-        val profitPercentage = purchase.calculateProfitPercentage(winnings)
-        printer.print(winnings = winnings, profitPercentage = profitPercentage)
-    }
-
     private fun input(): Pair<Purchase, WinningNumber> {
         printer.print(Message.InputMoneyAmount)
         val purchase = inputPurchase()
@@ -69,7 +63,8 @@ class View(
 
     fun run() {
         val (purchase: Purchase, winningNumber: WinningNumber) = input()
-        printWinningResult(purchase, winningNumber)
+        val statics = purchase.check(winningNumber)
+        printer.print(statics)
     }
 
     companion object {

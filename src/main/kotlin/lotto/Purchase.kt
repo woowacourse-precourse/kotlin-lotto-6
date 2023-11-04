@@ -2,6 +2,7 @@ package lotto
 
 import kotlin.math.roundToLong
 
+// TODO: amount 대신 금액으로 명확하게 바꾸기
 class Purchase(private val amount: Int) {
 
     private val lottos: List<Lotto>
@@ -20,11 +21,13 @@ class Purchase(private val amount: Int) {
         this.lottos = lottos
     }
 
-    fun check(winningNumber: WinningNumber): List<Winning> {
-        return lottos.map { winningNumber.check(it) }
+    fun check(winningNumber: WinningNumber): WinningStatics {
+        val winnings = lottos.map { winningNumber.check(it) }
+        val profitPercentage = calculateProfitPercentage(winnings)
+        return WinningStatics(winnings = winnings, profitPercentage = profitPercentage)
     }
 
-    fun calculateProfitPercentage(winnings: List<Winning>): Double {
+    private fun calculateProfitPercentage(winnings: List<Winning>): Double {
         val totalProfitAmount: Long = winnings.sumOf { it.moneyWon }
         val profitPercentage: Double = totalProfitAmount.toDouble() / amount * 100
         return profitPercentage.roundToTwoDecimalPlaces()
