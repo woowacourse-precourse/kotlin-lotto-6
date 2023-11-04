@@ -11,6 +11,8 @@ class LottoGameController {
     private var ticket = 0
     private var randomLottoLists = mutableMapOf<Int,List<Int>>()
     private var purchaseAmount = 0
+    private var userLottoNumber = listOf<Int>()
+    private var bonusNumber = 0
 
     fun playGame(){
         getPurchaseAmount()
@@ -18,6 +20,10 @@ class LottoGameController {
         getRandomLottoLists()
         outputView.outputPurchaseCountMessage(ticket)
         outputView.outputRandomLottoList(randomLottoLists)
+        val enterWinningNumbers = getEnterWinningNumbers()
+        convertStringToList(enterWinningNumbers)
+        getBonusNumber()
+
 
     }
     private fun getPurchaseAmount(){
@@ -28,5 +34,11 @@ class LottoGameController {
     }
     private fun getRandomLottoLists(){
         randomLottoLists=lottoGameService.lottoNumberGenerator(ticket)
+    }
+    private fun getEnterWinningNumbers(): String {
+        return inputView.inputEnterWinningNumbersMessage()
+    }
+    private fun convertStringToList(enterWinningNumbers: String){
+        userLottoNumber = enterWinningNumbers.split(",").map { it.trim().toInt() }
     }
 }
