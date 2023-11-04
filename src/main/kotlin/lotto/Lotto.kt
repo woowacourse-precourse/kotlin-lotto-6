@@ -7,6 +7,10 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.isInLottoNumberRange())
     }
 
+    fun contains(number: Int): Boolean {
+        return numbers.contains(number)
+    }
+
     companion object {
         private const val SIZE = 6
     }
