@@ -7,6 +7,8 @@ import lotto.util.Validator.validateLottoInteger
 import lotto.util.Validator.validateLottoRange
 import lotto.util.Validator.validateLottoLength
 import lotto.util.Validator.validateLottoUnique
+import lotto.util.Validator.validateNotNull
+import lotto.util.Validator.validateNumberRange
 import lotto.util.Validator.validateRange
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -96,6 +98,34 @@ class ValidatorTest {
     fun validateLottoUniqueTest() {
         assertThrows<IllegalArgumentException> {
             validateLottoUnique(listOf(1, 2, 3, 4, 5, 5))
+        }
+    }
+
+    @Test
+    @DisplayName("입력이 널값이면 예외가 발생한다.")
+    fun validateNotNullTest() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> {
+                validateNotNull("")
+            }
+
+            assertThrows<IllegalArgumentException> {
+                validateNotNull(" ")
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("번호가 1부터 45까지의 숫자가 아니면 예외가 발생한다.")
+    fun validateNumberRangeTest() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> {
+                validateNumberRange(0)
+            }
+
+            assertThrows<IllegalArgumentException> {
+                validateNumberRange(46)
+            }
         }
     }
 }
