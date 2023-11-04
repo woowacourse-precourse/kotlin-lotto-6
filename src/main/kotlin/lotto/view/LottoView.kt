@@ -8,4 +8,9 @@ class LottoView {
         OutputUtil.printInputMoney()
         return InputUtil.inputMoney()
     }
+
+    fun showAndReturnWinningNumber(): List<Int> {
+        OutputUtil.printInputWinningNumber()
+        return listOf()
+    }
 }

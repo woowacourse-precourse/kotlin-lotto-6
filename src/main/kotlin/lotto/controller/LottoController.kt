@@ -13,12 +13,18 @@ class LottoController {
 
     fun start() {
         buyLotto()
+        createWinningNumberAndBonusNumber()
     }
 
     private fun buyLotto() {
         val money = lottoView.showBuyViewAndReturnMoney()
         purchasedLottoList = lottoService.buyLotto(money)
         printPurchasedLottoList(purchasedLottoList)
+    }
+
+    private fun createWinningNumberAndBonusNumber() {
+        winningNumber = lottoView.showAndReturnWinningNumber()
+        // TODO : bonusNumber = lottoView.showAndReturnBonusNumber()
     }
 
     companion object {
