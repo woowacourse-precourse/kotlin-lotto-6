@@ -12,7 +12,7 @@ class LottoController(
     fun run() {
         outputView.printInputPriceMessage()
         val number = inputView.inputPurchaseAmount()
-        outputView.printPurchaseNumber(number)
+        outputView.printPurchaseNumberMessage(number)
         val lotteryTickets = lottoNumber.generateLotto(number)
         outputView.printInputWinNumberMessage()
     }
