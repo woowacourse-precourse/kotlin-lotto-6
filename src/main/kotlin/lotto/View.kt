@@ -1,47 +1,48 @@
 package lotto
 
+import kotlin.IllegalArgumentException
+
 class View(
     private val printer: Printer = Printer,
     private val reader: Reader = Reader
 ) {
     private fun inputPurchase(): Purchase {
         while (true) {
-            runOrPrintErrorIfThrow {
+            try {
                 val amount = reader.inputInt()
                 return Purchase(amount = amount)
+            } catch (e: IllegalArgumentException) {
+                printInputError(e.message)
             }
         }
     }
 
     private fun inputWinningNumber(): List<Int> {
         while (true) {
-            runOrPrintErrorIfThrow {
+            try {
                 val numbers = reader.inputIntList(WINNING_NUMBER_DELIMITER)
                 WinningNumber.validate(numbers)
                 return numbers
+            } catch (e: IllegalArgumentException) {
+                printInputError(e.message)
             }
         }
     }
 
     private fun inputBonusNumber(winningNumber: List<Int>): Int {
         while (true) {
-            runOrPrintErrorIfThrow {
+            try {
                 val bonusNumber = reader.inputInt()
                 WinningNumber.validate(winningNumber, bonusNumber)
                 return bonusNumber
+            } catch (e: IllegalArgumentException) {
+                printInputError(e.message)
             }
         }
     }
 
-    private inline fun runOrPrintErrorIfThrow(
-        defaultMessage: Message = Message.InvalidInputError,
-        block: () -> Unit
-    ) {
-        try {
-            block()
-        } catch (e: Exception) {
-            printer.error(e.message ?: defaultMessage.toString())
-        }
+    private fun printInputError(message: String? = null) {
+        Printer.error(message ?: Message.InvalidInputError.toString())
     }
 
     private fun printWinningResult(purchase: Purchase, winningNumber: WinningNumber) {

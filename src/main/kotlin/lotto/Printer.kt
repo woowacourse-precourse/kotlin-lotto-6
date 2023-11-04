@@ -45,10 +45,6 @@ object Printer {
         return DecimalFormat("#,###").format(this)
     }
 
-    fun error(message: Message) {
-        error(message.toString())
-    }
-
     fun error(message: String) {
         println(Message.ErrorPrefix.toString() + message)
     }
