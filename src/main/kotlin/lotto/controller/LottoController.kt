@@ -1,6 +1,7 @@
 package lotto.controller
 
 import lotto.model.LottoService
+import lotto.util.OutputUtil.printPurchasedLottoList
 import lotto.view.LottoView
 
 class LottoController {
@@ -17,6 +18,7 @@ class LottoController {
     private fun buyLotto() {
         val money = lottoView.showBuyViewAndReturnMoney()
         purchasedLottoList = lottoService.buyLotto(money)
+        printPurchasedLottoList(purchasedLottoList)
     }
 
     companion object {
