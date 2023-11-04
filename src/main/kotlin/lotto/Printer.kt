@@ -20,21 +20,21 @@ object Printer {
         printEmptyLine()
     }
 
-    fun print(results: List<WinningResult>, profitPercentage: Double) {
+    fun print(winnings: List<Winning>, profitPercentage: Double) {
         print(Message.WinningResultHeader)
-        val winningResultEnums = WinningResult.values()
-        winningResultEnums.forEach { enum ->
-            if (enum == WinningResult.None) {
+        val winningEnums = Winning.values()
+        winningEnums.forEach { winningEnum ->
+            if (winningEnum == Winning.None) {
                 return@forEach
             }
-            val count = results.count { it == enum }
-            enum.print(count)
+            val count = winnings.count { it == winningEnum }
+            winningEnum.print(count)
         }
         println(Message.ProfitPercentage.format(profitPercentage))
     }
 
-    private fun WinningResult.print(count: Int) {
-        val bonusText = if (this == WinningResult.FiveAndBonus) {
+    private fun Winning.print(count: Int) {
+        val bonusText = if (this == Winning.FiveAndBonus) {
             Message.BonusMatch.toString()
         } else ""
         val moneyText = moneyWon.toMoneyFormat()

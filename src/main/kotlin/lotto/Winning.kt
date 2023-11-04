@@ -1,6 +1,6 @@
 package lotto
 
-enum class WinningResult(val moneyWon: Long, val matchCount: Int) {
+enum class Winning(val moneyWon: Long, val matchCount: Int) {
     None(moneyWon = 0, matchCount = 0),
     Three(moneyWon = 5_000, matchCount = 3),
     Four(moneyWon = 50_000, matchCount = 4),
@@ -9,7 +9,7 @@ enum class WinningResult(val moneyWon: Long, val matchCount: Int) {
     Six(moneyWon = 2_000_000_000, matchCount = 6);
 
     companion object {
-        fun create(winningCount: Int, bonusCount: Int): WinningResult {
+        fun create(winningCount: Int, bonusCount: Int): Winning {
             return when (winningCount + bonusCount) {
                 in 0..2 -> None
                 3 -> Three

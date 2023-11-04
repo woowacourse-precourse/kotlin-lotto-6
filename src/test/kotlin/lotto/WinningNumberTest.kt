@@ -69,11 +69,11 @@ class WinningNumberTest {
     }
 
     @ParameterizedTest
-    @MethodSource("generate_WinningNumber_Lotto_WinningResult")
+    @MethodSource("generate_WinningNumber_Lotto_Winning")
     fun `로또 번호와 비교하면 당첨 결과가 반환된다`(
         winningNumber: WinningNumber,
         lotto: Lotto,
-        expected: WinningResult
+        expected: Winning
     ) {
         val actual = winningNumber.check(lotto)
         assert(actual == expected) {
@@ -83,37 +83,37 @@ class WinningNumberTest {
 
     companion object {
         @JvmStatic
-        fun generate_WinningNumber_Lotto_WinningResult(): Stream<Arguments> {
+        fun generate_WinningNumber_Lotto_Winning(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(
                     WinningNumber(numbers = listOf(1, 2, 3, 4, 5, 6), bonus = 7),
                     Lotto(listOf(1, 2, 3, 4, 5, 6)),
-                    WinningResult.Six
+                    Winning.Six
                 ),
                 Arguments.of(
                     WinningNumber(numbers = listOf(1, 2, 3, 4, 5, 6), bonus = 7),
                     Lotto(listOf(1, 2, 3, 4, 5, 7)),
-                    WinningResult.Six
+                    Winning.Six
                 ),
                 Arguments.of(
                     WinningNumber(numbers = listOf(1, 2, 3, 4, 10, 11), bonus = 5),
                     Lotto(listOf(1, 2, 3, 4, 5, 45)),
-                    WinningResult.FiveAndBonus
+                    Winning.FiveAndBonus
                 ),
                 Arguments.of(
                     WinningNumber(numbers = listOf(1, 2, 3, 4, 5, 6), bonus = 7),
                     Lotto(listOf(1, 2, 3, 4, 5, 45)),
-                    WinningResult.Five
+                    Winning.Five
                 ),
                 Arguments.of(
                     WinningNumber(numbers = listOf(1, 2, 3, 4, 5, 6), bonus = 7),
                     Lotto(listOf(1, 2, 3, 7, 15, 45)),
-                    WinningResult.Four
+                    Winning.Four
                 ),
                 Arguments.of(
                     WinningNumber(numbers = listOf(1, 2, 3, 4, 5, 6), bonus = 7),
                     Lotto(listOf(10, 20, 30, 40, 41, 45)),
-                    WinningResult.None
+                    Winning.None
                 )
             )
         }

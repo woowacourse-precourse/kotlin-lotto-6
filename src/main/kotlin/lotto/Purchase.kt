@@ -18,8 +18,8 @@ class Purchase(private val amount: Int) {
         this.lottos = lottos
     }
 
-    fun calculateProfitPercentage(results: List<WinningResult>): Double {
-        val totalProfitAmount: Long = results.sumOf { it.moneyWon }
+    fun calculateProfitPercentage(winnings: List<Winning>): Double {
+        val totalProfitAmount: Long = winnings.sumOf { it.moneyWon }
         val profitPercentage: Double = totalProfitAmount.toDouble() / amount * 100
         return profitPercentage.roundToTwoDecimalPlaces()
     }

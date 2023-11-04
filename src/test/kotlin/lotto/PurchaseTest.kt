@@ -39,10 +39,10 @@ class PurchaseTest {
     @MethodSource("generate_Purchase_WinningResults_ProfitPercentage")
     fun `이익률을 정확히 계산한다 `(
         purchase: Purchase,
-        winningResults: List<WinningResult>,
+        winnings: List<Winning>,
         expectedProfitPercentage: Double
     ) {
-        val actualProfitPercentage = purchase.calculateProfitPercentage(winningResults)
+        val actualProfitPercentage = purchase.calculateProfitPercentage(winnings)
 
         assert(actualProfitPercentage == expectedProfitPercentage) {
             "Actual: $actualProfitPercentage, Expected: $expectedProfitPercentage"
@@ -55,21 +55,21 @@ class PurchaseTest {
             return Stream.of(
                 Arguments.of(
                     Purchase(amount = 2000),
-                    listOf(WinningResult.Six, WinningResult.None),
+                    listOf(Winning.Six, Winning.None),
                     100_000_000.0
                 ),
                 Arguments.of(
                     Purchase(amount = 1000),
-                    listOf(WinningResult.None),
+                    listOf(Winning.None),
                     0.0
                 ),
                 Arguments.of(
                     Purchase(amount = 4000),
                     listOf(
-                        WinningResult.Six,
-                        WinningResult.Six,
-                        WinningResult.Six,
-                        WinningResult.Six
+                        Winning.Six,
+                        Winning.Six,
+                        Winning.Six,
+                        Winning.Six
                     ),
                     200_000_000.0
                 )

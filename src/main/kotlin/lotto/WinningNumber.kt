@@ -8,7 +8,7 @@ class WinningNumber(
         validate(numbers, bonus)
     }
 
-    fun check(lotto: Lotto): WinningResult {
+    fun check(lotto: Lotto): Winning {
         var winningCount = 0
         numbers.forEach { number ->
             if (lotto.contains(number)) {
@@ -16,7 +16,7 @@ class WinningNumber(
             }
         }
         val bonusCount = if (lotto.contains(bonus)) 1 else 0
-        return WinningResult.create(
+        return Winning.create(
             winningCount = winningCount,
             bonusCount = bonusCount
         )

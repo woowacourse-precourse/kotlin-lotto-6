@@ -49,7 +49,7 @@ class View(
         val lottos = purchase.lottos
         val results = lottos.map { winningNumber.check(it) }
         val profitPercentage = purchase.calculateProfitPercentage(results)
-        printer.print(results = results, profitPercentage = profitPercentage)
+        printer.print(winnings = results, profitPercentage = profitPercentage)
     }
 
     fun run() {
