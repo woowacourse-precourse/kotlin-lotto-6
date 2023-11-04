@@ -6,6 +6,12 @@ import lotto.Constants.Companion.LOTTO_PRICE
 import lotto.Constants.Companion.MAX_LOTTO_NUMBER
 import lotto.Constants.Companion.MIN_LOTTO_NUMBER
 import lotto.Constants.Companion.MIN_NUMBER
+import lotto.Constants.Companion.THREE_MATCH_WINNING_AMOUNT
+import lotto.Constants.Companion.FORE_MATCH_WINNING_AMOUNT
+import lotto.Constants.Companion.FIVE_MATCH_WINNING_AMOUNT
+import lotto.Constants.Companion.FIVE_WITH_BONUS_MATCH_WINNING_AMOUNT
+import lotto.Constants.Companion.SIX_MATCH_WINNING_AMOUNT
+import lotto.model.LottoRank
 
 class LottoGameService {
     fun calculateLottoPurchaseQuantity(purchaseAmount: Int): Int {
@@ -40,5 +46,22 @@ class LottoGameService {
     }
     private fun checkWinningBonusNumber(bonus: Int, randomLottoLists: MutableMap<Int, List<Int>>, ticketCheck: Int): Boolean {
         return randomLottoLists[ticketCheck]!!.contains(bonus)
+    }
+    private fun saveWinningStatsToRank(winningLottoCheck: Int, bonusNumberCheck: Boolean, ticketCheck: Int) {
+        if (winningLottoCheck == 3 || winningLottoCheck == 2 && bonusNumberCheck){
+            LottoRank.THREE_MATCH.increment()
+        }
+        if (winningLottoCheck == 4 || winningLottoCheck == 3 && bonusNumberCheck){
+            LottoRank.FOUR_MATCH.increment()
+        }
+        if (winningLottoCheck == 5 ){
+            LottoRank.FIVE_MATCH.increment()
+        }
+        if (winningLottoCheck == 5 && bonusNumberCheck){
+            LottoRank.FIVE_MATCH_WITH_BONUS.increment()
+        }
+        if (winningLottoCheck == 6 ){
+            LottoRank.SIX_MATCH.increment()
+        }
     }
 }
