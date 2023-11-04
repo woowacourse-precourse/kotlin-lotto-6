@@ -24,7 +24,7 @@
   - [x] `getQuantity` 함수 테스트
   - [x] `createRandomLottoNumbers` 함수 테스트
   - [x] `getCorrectLottoResults` 함수 테스트
-  - [ ] `getLottoMatchResult` 함수 테스트
+  - [x] `getLottoMatchResult` 함수 테스트
   - [ ] `calculateRate` 함수 테스트
 - Exception Test
   - [ ] `inputPurchaseAmountException` 함수 테스트
