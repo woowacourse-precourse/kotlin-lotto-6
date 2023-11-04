@@ -17,7 +17,7 @@
 - [ ] 로또 당첨 결과를 계산하는 기능 - `getLottoMatchResult()`#LottoGame
 - [ ] 수익률을 계산하는 기능 - `calculateRate()`#LottoGame
 - [x] 구매 금액 입력을 예외 처리하는 기능 - `inputPurchaseAmountException()`#Exceptions
-- [ ] 당첨 번호 입력을 예외 처리하는 기능 - `inputWinningNumberException()`#Exceptions
+- [x] 당첨 번호 입력을 예외 처리하는 기능 - `inputWinningNumberException()`#Exceptions
 - [ ] 보너스 번호 입력을 예외 처리하는 기능 - `inputBonusNumberException()`#Exceptions
 - [ ] 상수 값 #Constant
 - RacingCarGame Test
