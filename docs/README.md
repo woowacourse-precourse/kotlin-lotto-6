@@ -18,9 +18,12 @@
  │   └── LottoView.kt
  │── controller
  │   └── LottoController.kt
- └── util
-     ├── InputUtil.kt
-     └── OutputUtil.kt
+ │── util
+ │   ├── InputUtil.kt
+ │   └── OutputUtil.kt
+ └── constants
+     │── Lotto.kt
+     └── Error.kt
 ```
 
 <hr />
