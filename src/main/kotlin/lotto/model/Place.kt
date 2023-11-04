@@ -13,4 +13,16 @@ sealed class Place(val correct: Int, val price: Int, val bonus: Boolean) {
 
     data object NonPlace : Place(2, 0, false)
 
+    companion object {
+        fun decidePlace(correct: Int, bonus: Boolean): Place {
+            return when {
+                correct == First.correct && bonus == First.bonus -> First
+                correct == Second.correct && bonus == Second.bonus -> Second
+                correct == Third.correct && bonus == Third.bonus -> Third
+                correct == Fourth.correct && bonus == Fourth.bonus -> Fourth
+                correct == Fifth.correct && bonus == Fifth.bonus -> Fifth
+                else -> NonPlace
+            }
+        }
+    }
 }
