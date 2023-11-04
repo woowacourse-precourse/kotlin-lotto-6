@@ -5,6 +5,7 @@ class OutputManager {
     fun invalidPurchaseAmount() = println(OutputMessages.INVALID_PURCHASE_AMOUNT)
     fun invalidLottoNumbers() = println(OutputMessages.INVALID_LOTTO_NUMBERS)
     fun purchaseLottoCount(lottoCount: Int) = println(OutputMessages.PURCHASE_LOTTO_COUNT.toString().format(lottoCount))
+    fun lottoNumbers(numbers: List<Int>) = println(numbers)
     fun promptJackpotNumbers() = println(OutputMessages.PROMPT_JACKPOT_NUMBERS)
     fun promptBonusNumber() = println(OutputMessages.PROMPT_BONUS_NUMBER)
     fun lottoStats() = println(OutputMessages.LOTTO_STATS)
