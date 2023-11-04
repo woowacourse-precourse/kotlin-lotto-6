@@ -30,7 +30,6 @@ object InputUtil {
             throw IllegalArgumentException(EXCEPTION_MESSAGE_MONEY_NOT_NUMBER)
         }
 
-
     private fun checkMoneyAvailable(moneyString: String): Int =
         try {
             val money = moneyString.toInt()
