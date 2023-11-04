@@ -64,4 +64,15 @@ class LottoGameService {
             LottoRank.SIX_MATCH.increment()
         }
     }
+    // 수익률 구하는 함수
+    fun calculateProfitPercentage(purchaseAmount: Double): Double {
+        val threeMatch = LottoRank.THREE_MATCH.getCount()
+        val fourMatch = LottoRank.FOUR_MATCH.getCount()
+        val fiveMatch =LottoRank.FIVE_MATCH.getCount()
+        val fiveWithBonusMatch = LottoRank.FIVE_MATCH_WITH_BONUS.getCount()
+        val sixMatch = LottoRank.SIX_MATCH.getCount()
+        val totalMoney =
+            (threeMatch * THREE_MATCH_WINNING_AMOUNT) + (fourMatch * FORE_MATCH_WINNING_AMOUNT) + (fiveMatch * FIVE_MATCH_WINNING_AMOUNT) + (fiveWithBonusMatch * FIVE_WITH_BONUS_MATCH_WINNING_AMOUNT) + (sixMatch * SIX_MATCH_WINNING_AMOUNT).toDouble()
+        return (totalMoney/purchaseAmount)*100.00
+    }
 }
