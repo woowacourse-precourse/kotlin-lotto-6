@@ -39,6 +39,14 @@ class LottoGameController(
 
         outputView.printBonusNumber()
         val bonusNumber = inputView.inputBonusNumber(winningNumber = winningNumber)
+    private fun processGame(
+        purchaseAmount: Int, lottoNumbers: List<Lotto>, winningNumber: Lotto, bonusNumber: Int
+    ): LottoWinningResult {
+        val lottoResults = lottoGame.getLottoResults(lottoNumbers, winningNumber, bonusNumber)
+        val lottoMatchResult = lottoGame.getLottoMatchResult(lottoResults)
+        val rate = lottoGame.calculateRate(lottoMatchResult, purchaseAmount)
+        return LottoWinningResult(lottoMatchResult, rate)
+    }
 
         action(lottoNumbers, winningNumber, bonusNumber)
     }
