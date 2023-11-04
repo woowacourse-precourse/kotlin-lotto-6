@@ -2,6 +2,7 @@ package lotto.controller
 
 import lotto.domain.LottoGame
 import lotto.model.Lotto
+import lotto.model.LottoWinningResult
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -12,33 +13,24 @@ class LottoGameController(
 ) {
 
     fun run() {
-        outputView.printAmountMessage()
-        val purchaseAmount = inputView.inputPurchaseAmount()
-
-        playLottoGame(purchaseAmount = purchaseAmount) { lottoNumbers, winningNumber, bonusNumber ->
-            val lottoResults = lottoGame.getLottoResults(
-                lottoNumbers = lottoNumbers,
-                winningNumber = winningNumber,
-                bonusNumber = bonusNumber,
-            )
-            val lottoMatchResult = lottoGame.getLottoMatchResult(lottoResults = lottoResults)
-            val rate = lottoGame.calculateRate(lottoMatchResult = lottoMatchResult, purchaseAmount = purchaseAmount)
-            outputView.printLottoWinningResults(lottoMatchResult = lottoMatchResult, rate = rate)
+        playLottoGame { purchaseAmount, lottoNumbers, winningNumber, bonusNumber ->
+            val lottoWinningResult = processGame(purchaseAmount, lottoNumbers, winningNumber, bonusNumber)
+            outputView.printLottoWinningResults(lottoWinningResult)
         }
     }
 
-    private inline fun playLottoGame(purchaseAmount: Int, action: (List<Lotto>, Lotto, Int) -> Unit) {
-        val quantity = lottoGame.getQuantity(purchaseAmount = purchaseAmount)
-        outputView.printLottoQuantity(quantity = quantity)
+    private inline fun playLottoGame(action: (purchaseAmount: Int, lottoNumbers: List<Lotto>, winningNumber: Lotto, bonusNumber: Int) -> Unit) {
+        val purchaseAmount = getInputAfterMessage(outputView::printAmountMessage) { inputView.inputPurchaseAmount() }
+        val quantity = lottoGame.getQuantity(purchaseAmount)
+        outputView.printLottoQuantity(quantity)
+        val lottoNumbers = lottoGame.createRandomLottoNumbers(quantity)
+        outputView.printLottoNumbers(lottoNumbers)
+        val winningNumber = getInputAfterMessage(outputView::printLottoWinningNumber) { inputView.inputWinningNumber() }
+        val bonusNumber = getInputAfterMessage(outputView::printBonusNumber) { inputView.inputBonusNumber(winningNumber) }
 
-        val lottoNumbers = lottoGame.createRandomLottoNumbers(quantity = quantity)
-        outputView.printLottoNumbers(lottoNumbers = lottoNumbers)
+        action(purchaseAmount, lottoNumbers, winningNumber, bonusNumber)
+    }
 
-        outputView.printLottoWinningNumber()
-        val winningNumber = inputView.inputWinningNumber()
-
-        outputView.printBonusNumber()
-        val bonusNumber = inputView.inputBonusNumber(winningNumber = winningNumber)
     private fun processGame(
         purchaseAmount: Int, lottoNumbers: List<Lotto>, winningNumber: Lotto, bonusNumber: Int
     ): LottoWinningResult {
@@ -48,6 +40,8 @@ class LottoGameController(
         return LottoWinningResult(lottoMatchResult, rate)
     }
 
-        action(lottoNumbers, winningNumber, bonusNumber)
+    private inline fun <T> getInputAfterMessage(printMessage: () -> Unit, input: () -> T): T {
+        printMessage()
+        return input()
     }
 }
