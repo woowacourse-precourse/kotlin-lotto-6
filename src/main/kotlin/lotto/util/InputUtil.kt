@@ -1,4 +1,9 @@
 package lotto.util
 
-class InputUtil {
+import camp.nextstep.edu.missionutils.Console
+
+object InputUtil {
+
+    fun inputMoney() =
+        Console.readLine().toInt()
 }
