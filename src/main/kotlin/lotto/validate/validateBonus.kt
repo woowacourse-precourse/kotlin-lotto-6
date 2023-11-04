@@ -6,6 +6,7 @@ class validateBonus {
     fun validateBonus(bonusNumber: Int, winningNumbers: List<Int>) {
         validateDuplicateBonusNumber(bonusNumber, winningNumbers)
         validateInputIsEmpty(bonusNumber.toString())
+        validateInputNotNumber(bonusNumber.toString())
 
     }
 
@@ -15,11 +16,13 @@ class validateBonus {
         }
     }
 
-    private fun validateInputIsEmpty(myNumbers: String) {
-        require(myNumbers.isNotEmpty()) {
+    private fun validateInputIsEmpty(bonusNumber: String) {
+        require(bonusNumber.isNotEmpty()) {
             "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_INPUT_EMPTY}"
         }
     }
 
-
+    private fun validateInputNotNumber(bonusNumber: String) {
+        require(bonusNumber.all { it.isDigit() }) {"${Messages.ERROR_MESSAGE} ${Messages.INVALID_INPUT}" }
+    }
 }
