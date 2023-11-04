@@ -1,5 +1,8 @@
 package lotto.model
 
+
+import lotto.util.Constant.INPUT_BONUS_NUMBER_OVERLAP_ERROR_MESSAGE
+
 class WinningLotto {
 
     private var _luckyNumbers = listOf<Int>()
@@ -12,6 +15,7 @@ class WinningLotto {
     }
 
     fun setBonusNumber(bonusNumber : Int){
+        require(!luckyNumbers.contains(bonusNumber)) { INPUT_BONUS_NUMBER_OVERLAP_ERROR_MESSAGE}
         _bonusNumber = bonusNumber
     }
 }

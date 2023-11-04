@@ -30,9 +30,8 @@ object Exception {
         require(luckyNumbers.toSet().size == LOTTO_NUMBER_SIZE) { INPUT_LUCKY_NUMBER_OVERLAP_ERROR_MESSAGE }
     }
 
-    fun validateInputBonusNumber(number: String, luckyNumbers: List<Int>) {
+    fun validateInputBonusNumber(number: String) {
         requireNotNull(number.toIntOrNull()) { INPUT_BONUS_NUMBER_NOT_NUMBER_ERROR_MESSAGE }
         require(number.toInt() in LOTTO_MIN_RANDOM_NUMBER..LOTTO_MAX_RANDOM_NUMBER) { INPUT_BONUS_NUMBER_NOT_NUMBER_ERROR_MESSAGE }
-        require(!luckyNumbers.contains(number.toInt())) { INPUT_BONUS_NUMBER_OVERLAP_ERROR_MESSAGE }
     }
 }
