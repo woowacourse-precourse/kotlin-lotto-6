@@ -8,6 +8,7 @@ import util.Constants.LOTTO_AMOUNT_UNIT
 import util.Constants.LOTTO_NUMBER_END
 import util.Constants.LOTTO_NUMBER_START
 import util.Constants.LOTTO_TOTAL_NUMBER
+import util.Validator.validateBonusNumber
 import util.Validator.validatePurchaseAmount
 import util.Validator.validateWinningNumbers
 
@@ -20,6 +21,7 @@ class LottoController {
         val lottos = makeLottos(numberOfPurchases)
         purchaseLottos(lottos)
         val winningNumbers = getWinningNumbers()
+        val bonusNumber = getBonusNumber(winningNumbers)
     }
 
     fun getNumberOfPurchases(): Int {
@@ -52,7 +54,7 @@ class LottoController {
         }
     }
 
-    fun getWinningNumbers(): List<Int>{
+    fun getWinningNumbers(): List<Int> {
         outputView.printWinningNumbersInstruction()
         return try {
             val winnerNumbers = inputView.inputWinningNumbers()
@@ -60,6 +62,17 @@ class LottoController {
         } catch (illegalArgumentException: IllegalArgumentException) {
             outputView.printErrorMessage(illegalArgumentException.message.toString())
             getWinningNumbers()
+        }
+    }
+
+    fun getBonusNumber(winningNumbers: List<Int>): Int {
+        outputView.printBonusNumberInstruction()
+        return try {
+            val bonusNumber = inputView.inputBonusNumber()
+            validateBonusNumber(bonusNumber, winningNumbers)
+        } catch (illegalArgumentException: IllegalArgumentException) {
+            outputView.printErrorMessage(illegalArgumentException.message.toString())
+            getBonusNumber(winningNumbers)
         }
     }
 }
