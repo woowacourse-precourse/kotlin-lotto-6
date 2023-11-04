@@ -18,9 +18,10 @@ class InputView {
 
     fun inputWinNumber() {
         val winNumber = Console.readLine().trim().split(",")
-        winNumber.lottoSize()
+        winNumber.checkLottoSize()
         winNumber.forEach { number ->
             number.isLottoNumber()
         }
+        winNumber.isDuplicateNumber()
     }
 }
