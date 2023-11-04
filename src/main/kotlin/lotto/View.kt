@@ -17,11 +17,11 @@ class View(
         }
     }
 
-    private fun inputWinningNumber(): List<Int> {
+    private fun inputNormalWinningNumbers(): List<Int> {
         while (true) {
             try {
                 val numbers = reader.inputIntList(WINNING_NUMBER_DELIMITER)
-                WinningNumber.validate(numbers)
+                WinningNumber.validate(normalNumbers = numbers)
                 return numbers
             } catch (e: IllegalArgumentException) {
                 printInputError(e.message)
@@ -29,12 +29,12 @@ class View(
         }
     }
 
-    private fun inputBonusNumber(winningNumber: List<Int>): Int {
+    private fun inputBonusWinningNumber(normalNumbers: List<Int>): Int {
         while (true) {
             try {
-                val bonusNumber = reader.inputInt()
-                WinningNumber.validate(winningNumber, bonusNumber)
-                return bonusNumber
+                val bonus = reader.inputInt()
+                WinningNumber.validate(normalNumbers = normalNumbers, bonusNumber = bonus)
+                return bonus
             } catch (e: IllegalArgumentException) {
                 printInputError(e.message)
             }
@@ -57,15 +57,19 @@ class View(
         val purchase = inputPurchase()
         printer.print(purchase)
 
-        printer.print(Message.InputWinningNumber)
-        val winningNumber = inputWinningNumber()
+        printer.print(Message.InputNormalWinningNumber)
+        val normalWinningNumbers = inputNormalWinningNumbers()
         printer.printEmptyLine()
 
-        printer.print(Message.InputBonusNumber)
-        val bonusNumber = inputBonusNumber(winningNumber)
+        printer.print(Message.InputBonusWinningNumber)
+        val bonusNumber = inputBonusWinningNumber(normalWinningNumbers)
         printer.printEmptyLine()
 
-        printWinningResult(purchase, WinningNumber(numbers = winningNumber, bonus = bonusNumber))
+        val winningNumber = WinningNumber(
+            normalNumbers = normalWinningNumbers,
+            bonusNumber = bonusNumber
+        )
+        printWinningResult(purchase, winningNumber)
     }
 
     companion object {
