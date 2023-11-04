@@ -18,6 +18,7 @@ object OutputUtil {
         purchasedLottoList.forEach { _lotto ->
             println(_lotto)
         }
+        println()
     }
 
     fun printInputWinningNumber() {
