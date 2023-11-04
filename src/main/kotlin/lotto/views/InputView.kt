@@ -1,11 +1,11 @@
 package lotto.views
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.domain.blankCheck
-import lotto.domain.moneyCheck
-import lotto.domain.numberCheck
+import lotto.domain.*
 
 object InputView {
+
+
     fun enterMoney(): Int {
         val input = Console.readLine()
         try{
@@ -19,5 +19,26 @@ object InputView {
         }
         return enterMoney()
     }
+    fun enterWinningNumber(): List<Int> {
+        val input = Console.readLine()
+        val splitInput = input.split(",")
+        try {
+            val validNumber = winningNumberErrorCheck(input, splitInput)
+            return validNumber
+        }catch (e:IllegalArgumentException){
+            println("[ERROR] ${e.message}")
+        }
+        return enterWinningNumber()
+    }
 
+    fun enterBonusNumber(winningNumber :List<Int>): Int {
+        val bonus = Console.readLine()
+        try{
+            return bonusNumberErrorCheck(winningNumber, bonus)
+
+        }catch (e:IllegalArgumentException){
+            println("[ERROR] ${e.message}")
+        }
+        return enterBonusNumber(winningNumber)
+    }
 }
