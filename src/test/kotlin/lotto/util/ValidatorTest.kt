@@ -62,4 +62,12 @@ class ValidatorTest {
             }
         }
     }
+
+    @Test
+    @DisplayName("로또 당첨 번호에 숫자가 아닌 값이 들어오면 예외가 발생한다.")
+    fun validateIntegerList() {
+        assertThrows<IllegalArgumentException> {
+            validateLottoInteger(listOf("a", "b", "c"))
+        }
+    }
 }
