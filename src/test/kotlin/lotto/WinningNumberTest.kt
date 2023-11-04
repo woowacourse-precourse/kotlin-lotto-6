@@ -69,7 +69,7 @@ class WinningNumberTest {
     }
 
     @ParameterizedTest
-    @MethodSource("generateLottoWinningResults")
+    @MethodSource("generate_WinningNumber_Lotto_WinningResult")
     fun `로또 번호와 비교하면 당첨 결과가 반환된다`(
         winningNumber: WinningNumber,
         lotto: Lotto,
@@ -83,7 +83,7 @@ class WinningNumberTest {
 
     companion object {
         @JvmStatic
-        fun generateLottoWinningResults(): Stream<Arguments> {
+        fun generate_WinningNumber_Lotto_WinningResult(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(
                     WinningNumber(numbers = listOf(1, 2, 3, 4, 5, 6), bonus = 7),
