@@ -4,6 +4,6 @@ import lotto.utils.Messages
 
 class OutputView {
     fun showInputBuyPriceMessage() {
-        println("{Messages.BUY_PRICE_MESSAGE}")
+        println(Messages.BUY_PRICE_MESSAGE)
     }
 }
