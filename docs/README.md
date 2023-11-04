@@ -23,7 +23,8 @@
  │   └── OutputUtil.kt
  └── constants
      │── Lotto.kt
-     └── Error.kt
+     │── Error.kt
+     └── Winner.kt
 ```
 
 <hr />
