@@ -7,7 +7,10 @@ import lotto.view.OutputView
 class LottoManager(private val inputView: InputView, private val outputView: OutputView) {
     fun run() {
         outputView.showInputBuyPriceMessage()
-
+        val ticket = calculateTicket(inputView.InputBuyPriceMessage())
     }
 
+    fun calculateTicket(buyPrice: Int): Int {
+        return buyPrice / Constants.THOUSAND_PRICE
+    }
 }
