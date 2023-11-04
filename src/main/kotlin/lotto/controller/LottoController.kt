@@ -3,6 +3,8 @@ package lotto.controller
 import camp.nextstep.edu.missionutils.Console
 import lotto.Lotto
 import lotto.Messages
+import lotto.Validation.validateMoneyUnit
+import lotto.Validation.validateOutOfRange
 
 class LottoController {
 
@@ -10,11 +12,14 @@ class LottoController {
 
     fun startLotto() {
         println(Messages.TEXT_INPUT_LOTTO_AMOUNT.message)
-        val amount = Console.readLine()
-        val num = inputLottoAmount(amount)
+        do {
+            val amount = Console.readLine()
+        } while (inputLottoAmount(amount))
     }
 
-    fun inputLottoAmount(amount: String): Long {
-        return amount.toLong() / 1000
+    fun inputLottoAmount(amount: String): Boolean {
+        val num = validateOutOfRange(amount)
+        validateMoneyUnit(num)
+        return true
     }
 }
