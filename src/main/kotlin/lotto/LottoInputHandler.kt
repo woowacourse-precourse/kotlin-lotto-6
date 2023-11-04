@@ -11,13 +11,21 @@ object LottoInputHandler {
 
     fun isValidCost(cost : Int?) : Boolean{
         cost?.let {
-            if(isMultipleOfThousand(it) && cost != 0){
+            if(isMultipleOfThousand(it) != LottoInputState.SUCCESSFUL && isInRange(it) != LottoInputState.SUCCESSFUL){
                 return true
             }
         }
         return false
     }
 
-    private fun isMultipleOfThousand(int : Int): Boolean = int % 1000 == 0
+    private fun isMultipleOfThousand(int : Int) = if(int % 1000 == 0) LottoInputState.SUCCESSFUL else LottoInputState.NOT_DIVISIBLE_BY_1000
 
+    private fun isInRange(int : Int) = if (int <= 45 && int >= 1) LottoInputState.SUCCESSFUL else LottoInputState.OUT_OF_RANGE
+
+
+    enum class LottoInputState {
+        SUCCESSFUL,
+        NOT_DIVISIBLE_BY_1000,
+        OUT_OF_RANGE
+    }
 }
