@@ -13,4 +13,9 @@ class InputView {
         amount.isAmountInThousand()
         return amount.toInt() / 1000
     }
+
+    fun inputWinNumber() {
+        val winNumber = Console.readLine().trim().split(",")
+        println(winNumber)
+    }
 }
