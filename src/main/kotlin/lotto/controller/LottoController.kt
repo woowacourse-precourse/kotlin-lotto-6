@@ -12,9 +12,9 @@ class LottoController(private val inputView: InputView = InputView(),private val
     private val winningLotto = WinningLotto()
     fun run(){
         outPutView.printInputPrice()
-        val price = inputView.inputPrice()
-        outPutView.printBuyLotto(price)
-        user.buyLotto(price)
+        user.setPrice(inputView.inputPrice())
+        outPutView.printBuyLotto(user.price)
+        user.buyLotto()
         outPutView.printUserLotto(user.lottoes)
         outPutView.printInputLuckyNumber()
         winningLotto.setLuckyNumbers(inputView.inputLuckyNumber())
@@ -24,6 +24,6 @@ class LottoController(private val inputView: InputView = InputView(),private val
         val winResult = WinResult(user,winningLotto)
         winResult.calculateResult()
         outPutView.printWinStatisticsResult(winResult.placeResult)
-        outPutView.printTotalEarningRate(winResult.calculateEarningRate(price))
+        outPutView.printTotalEarningRate(winResult.calculateEarningRate(user.price))
     }
 }
