@@ -31,4 +31,5 @@ class OutputView {
         println(SECOND_PLACE_MESSAGE.format(map.getOrElse(Place.Second) { 0 }))
         println(FIRST_PLACE_MESSAGE.format(map.getOrElse(Place.First) { 0 }))
     }
+    fun printTotalEarningRate(earnRate : Double) = println(TOTAL_EARNING_RATE_MESSAGE.format(earnRate))
 }
