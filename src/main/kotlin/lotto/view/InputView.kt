@@ -10,4 +10,8 @@ class InputView {
     fun inputWinningNumbers(): String {
         return Console.readLine()
     }
+
+    fun inputBonusNumber(): String {
+        return Console.readLine()
+    }
 }
