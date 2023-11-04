@@ -17,16 +17,16 @@ class LottoPrizeCheck(
     private fun containsBonusNumber(): Boolean = lotto.getNumbers().contains(jackpotNumbers.last())
 
     companion object {
-        const val MATCH_THREE_NUMBERS = 3
-        const val MATCH_FOUR_NUMBERS = 4
-        const val MATCH_FIVE_NUMBERS = 5
-        const val MATCH_SIX_NUMBERS = 6
+        private const val MATCH_THREE_NUMBERS = 3
+        private const val MATCH_FOUR_NUMBERS = 4
+        private const val MATCH_FIVE_NUMBERS = 5
+        private const val MATCH_SIX_NUMBERS = 6
 
-        const val FIRST_PLACE_INDEX = 0
-        const val SECOND_PLACE_INDEX = 1
-        const val THIRD_PLACE_INDEX = 2
-        const val FOURTH_PLACE_INDEX = 3
-        const val FOURTH_FIFTH = 4
+        private const val FIRST_PLACE_INDEX = 0
+        private const val SECOND_PLACE_INDEX = 1
+        private const val THIRD_PLACE_INDEX = 2
+        private const val FOURTH_PLACE_INDEX = 3
+        private  const val FOURTH_FIFTH = 4
         const val NO_LUCK = -1
     }
 }
