@@ -4,21 +4,21 @@ import camp.nextstep.edu.missionutils.Console
 import validation.ValidationManager
 
 class InputManager(private val validationManager: ValidationManager = ValidationManager()) {
-    fun inputLottoPurchaseAmount(errorMessage: () -> Unit): Int {
+    fun lottoPurchaseAmount(errorMessage: () -> Unit): Int {
         return try {
-            validationManager.validateAmount(Console.readLine().toInt())
+            validationManager.validAmount(Console.readLine().toInt())
         } catch (exception: IllegalArgumentException) {
             errorMessage()
-            inputLottoPurchaseAmount(errorMessage)
+            lottoPurchaseAmount(errorMessage)
         }
     }
 
-    fun inputJackpotNumbers(errorMessage: () -> Unit): List<Int> {
+    fun jackpotNumbers(errorMessage: () -> Unit): List<Int> {
         return try {
-            validationManager.validateJackpotNumbers(Console.readLine())
+            validationManager.validJackpotNumbers(Console.readLine())
         } catch (exception: IllegalArgumentException) {
             errorMessage()
-            inputJackpotNumbers(errorMessage)
+            jackpotNumbers(errorMessage)
         }
     }
 }

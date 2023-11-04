@@ -3,10 +3,10 @@ package validation
 import extensions.withCommaToList
 
 class ValidationManager {
-    fun validateAmount(lottoPurchaseAmount: Int): Int =
+    fun validAmount(lottoPurchaseAmount: Int): Int =
         lottoPurchaseAmount.lessThanZero().modulusLottoPrice()
 
-    fun validateJackpotNumbers(numbers: String): List<Int> {
+    fun validJackpotNumbers(numbers: String): List<Int> {
         val jackpotNumbers: ArrayList<Int> = arrayListOf()
         numbers.withCommaToList().forEach { number ->
             jackpotNumbers.add(number.isValidLottoNumber())
