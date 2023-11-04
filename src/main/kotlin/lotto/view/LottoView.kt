@@ -19,4 +19,8 @@ class LottoView {
         OutputUtil.printInputBonusNumber()
         return InputUtil.inputBonusNumber(winningNumber)
     }
+
+    fun showPurchasedLottoList(purchasedLottoList: List<Lotto>) {
+        OutputUtil.printPurchasedLottoList(purchasedLottoList)
+    }
 }
