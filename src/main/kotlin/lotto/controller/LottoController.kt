@@ -1,5 +1,6 @@
 package lotto.controller
 
+import lotto.model.Lotto
 import lotto.model.LottoService
 import lotto.util.OutputUtil.printPurchasedLottoList
 import lotto.view.LottoView
@@ -7,8 +8,8 @@ import lotto.view.LottoView
 class LottoController {
     private val lottoService = LottoService
     private val lottoView: LottoView by lazy { LottoView() }
-    private lateinit var purchasedLottoList: List<List<Int>>
-    private lateinit var winningNumber: List<Int>
+    private lateinit var purchasedLottoList: List<Lotto>
+    private lateinit var winningNumber: Lotto
     private var bonusNumber: Int = NOT_SET
 
     fun start() {
@@ -24,7 +25,7 @@ class LottoController {
 
     private fun createWinningNumberAndBonusNumber() {
         winningNumber = lottoView.showAndReturnWinningNumber()
-        bonusNumber = lottoView.showAndReturnBonusNumber()
+        bonusNumber = lottoView.showAndReturnBonusNumber(winningNumber)
     }
 
     companion object {

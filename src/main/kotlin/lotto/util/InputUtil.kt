@@ -10,6 +10,7 @@ import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_SIZE_INVALID
 import lotto.constants.LottoConstants
 import lotto.constants.LottoConstants.LOTTO_RANGE
 import lotto.constants.LottoConstants.LOTTO_SIZE
+import lotto.model.Lotto
 import lotto.util.OutputUtil.printExceptionMessage
 
 object InputUtil {
@@ -17,10 +18,10 @@ object InputUtil {
     fun inputMoney(): Int =
         checkMoneyAvailable(Console.readLine())
 
-    fun inputWinningNumber(): List<Int> =
+    fun inputWinningNumber(): Lotto =
         checkWinningNumberAvailable(Console.readLine())
 
-    fun inputBonusNumber(winningNumber: List<Int>): Int =
+    fun inputBonusNumber(winningNumber: Lotto): Int =
         try {
             val number = Console.readLine().toInt()
             checkNumberInRange(number)
@@ -44,13 +45,13 @@ object InputUtil {
             throw IllegalArgumentException(EXCEPTION_MESSAGE_MONEY_NOT_NUMBER)
         }
 
-    private fun checkWinningNumberAvailable(winningNumberString: String): List<Int> =
+    private fun checkWinningNumberAvailable(winningNumberString: String): Lotto =
         try {
-            val winningNumber = winningNumberString.split(",").map { _numberString ->
+            val winningNumber = Lotto(winningNumberString.split(",").map { _numberString ->
                 val number = _numberString.toInt()
                 checkNumberInRange(number)
                 number
-            }
+            })
             checkWinningNumberSize(winningNumber)
             winningNumber
         } catch (e: NumberFormatException) {
@@ -58,13 +59,13 @@ object InputUtil {
             throw IllegalArgumentException(EXCEPTION_MESSAGE_WINNING_NUMBER_NOT_NUMBER)
         }
 
-    private fun checkWinningNumberSize(winningNumber: List<Int>) {
+    private fun checkWinningNumberSize(winningNumber: Lotto) {
         when {
-            winningNumber.size != LOTTO_SIZE -> {
+            winningNumber.getNumbers().size != LOTTO_SIZE -> {
                 printExceptionMessage(EXCEPTION_MESSAGE_WINNING_NUMBER_SIZE_INVALID)
                 throw IllegalArgumentException(EXCEPTION_MESSAGE_WINNING_NUMBER_SIZE_INVALID)
             }
-            winningNumber.toSet().size != LOTTO_SIZE -> {
+            winningNumber.getNumbers().toSet().size != LOTTO_SIZE -> {
                 printExceptionMessage(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
                 throw IllegalArgumentException(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
             }
@@ -78,8 +79,8 @@ object InputUtil {
         }
     }
 
-    private fun checkNumberOverlap(winningNumber: List<Int>, number: Int) {
-        if (winningNumber.contains(number)) {
+    private fun checkNumberOverlap(winningNumber: Lotto, number: Int) {
+        if (winningNumber.getNumbers().contains(number)) {
             printExceptionMessage(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
             throw IllegalArgumentException(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
         }

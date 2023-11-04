@@ -1,5 +1,6 @@
 package lotto.view
 
+import lotto.model.Lotto
 import lotto.util.InputUtil
 import lotto.util.OutputUtil
 
@@ -9,13 +10,13 @@ class LottoView {
         return InputUtil.inputMoney()
     }
 
-    fun showAndReturnWinningNumber(): List<Int> {
+    fun showAndReturnWinningNumber(): Lotto {
         OutputUtil.printInputWinningNumber()
         return InputUtil.inputWinningNumber()
     }
 
-    fun showAndReturnBonusNumber(): Int {
+    fun showAndReturnBonusNumber(winningNumber: Lotto): Int {
         OutputUtil.printInputBonusNumber()
-        return InputUtil.inputBonusNumber()
+        return InputUtil.inputBonusNumber(winningNumber)
     }
 }
