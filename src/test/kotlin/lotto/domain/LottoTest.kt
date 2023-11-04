@@ -22,4 +22,22 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `sortNumbers 메서드 사용시 정렬된 오름차순 정렬된 int list를 반환`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1, 2, 3, 4, 5, 6, 7))
+        }
+    }
+    @Test
+    fun `printNumbers 메서드 사용시 양쪽에 bracket을 포함해 출력`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1, 2, 3, 4, 5, 6, 7))
+        }
+    }
+    @Test
+    fun `isDuplicate 메서드 사용시 중복된 숫자가 있다면 예외 발생`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1, 2, 3, 4, 5, 1))
+        }
+    }
 }

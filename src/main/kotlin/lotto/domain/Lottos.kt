@@ -1,5 +1,7 @@
 package lotto.domain
 
-class Lottos {
+
+class Lottos(amount:Int) {
+
 
 }
