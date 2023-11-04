@@ -17,6 +17,7 @@ class LottoController(
         outputView.printInputWinNumberMessage()
         inputView.inputWinNumber()
         outputView.printInputBonusNumberMessage()
+        inputView.inputBonusNumber()
     }
 
 }

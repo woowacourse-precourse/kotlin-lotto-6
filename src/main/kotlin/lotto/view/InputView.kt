@@ -24,4 +24,10 @@ class InputView {
         }
         winNumber.isDuplicateNumber()
     }
+
+    fun inputBonusNumber() {
+        val bonusNumber = Console.readLine()
+        bonusNumber.isDigit()
+        bonusNumber.isLottoNumber()
+    }
 }
