@@ -4,13 +4,12 @@ import camp.nextstep.edu.missionutils.Randoms
 import lotto.Constants.Companion.LOTTO_PRICE
 import lotto.Constants.Companion.MAX_LOTTO_NUMBER
 import lotto.Constants.Companion.MIN_LOTTO_NUMBER
-import lotto.Constants.Companion.MIN_NUMBER
 import lotto.Constants.Companion.THREE_MATCH_WINNING_AMOUNT
 import lotto.Constants.Companion.FORE_MATCH_WINNING_AMOUNT
 import lotto.Constants.Companion.FIVE_MATCH_WINNING_AMOUNT
 import lotto.Constants.Companion.FIVE_WITH_BONUS_MATCH_WINNING_AMOUNT
 import lotto.Constants.Companion.SIX_MATCH_WINNING_AMOUNT
-import lotto.modle.LottoRank
+import lotto.model.LottoRank
 
 class LottoGameService {
     fun calculateLottoPurchaseQuantity(purchaseAmount: Int): Int {

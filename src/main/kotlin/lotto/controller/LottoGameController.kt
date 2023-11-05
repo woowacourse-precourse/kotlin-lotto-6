@@ -1,6 +1,5 @@
 package lotto.controller
 
-import lotto.Constants.Companion.ERROR_INVALID_LOTTO_AMOUNT_EXCEPTION
 import lotto.LottoGameService
 import lotto.model.Bonus
 import lotto.model.Lotto
@@ -15,7 +14,6 @@ class LottoGameController {
     private val validator = Validator()
     private var ticket = 0
     private var randomLottoLists = mutableMapOf<Int,List<Int>>()
-    private var purchaseAmount = 0
 
     fun playGame(){
         val purchaseAmount= getPurchaseAmount()
