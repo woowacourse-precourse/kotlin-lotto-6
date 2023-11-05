@@ -1,8 +1,7 @@
 package lotto.model
 
+import lotto.util.Constants.LOTTO_PRICE
 import lotto.util.Validator.validate1000Unit
-import lotto.util.Validator.validateInteger
-import lotto.util.Validator.validateNotNull
 import lotto.util.Validator.validateRange
 
 class PurchaseCount(private val purchase: Int) {
@@ -13,6 +12,6 @@ class PurchaseCount(private val purchase: Int) {
     init {
         validateRange(purchase)
         validate1000Unit(purchase)
-        _count = purchase / 1000
+        _count = purchase / LOTTO_PRICE
     }
 }

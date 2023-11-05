@@ -1,6 +1,7 @@
 package lotto.controller
 
 import lotto.model.*
+import lotto.util.Constants.LOTTO_PRICE
 import lotto.util.LottoGenerator
 import lotto.view.InputView
 import lotto.view.OutputView
@@ -102,7 +103,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
 
     private fun showLottoStatistics() {
         outputView.printLottoRankings(lottoRankings)
-        lottoProfit.calculateRate(lottoRankings.rank, purchaseCount.count * 1000)
+        lottoProfit.calculateRate(lottoRankings.rank, purchaseCount.count * LOTTO_PRICE)
         outputView.printLottoProfitRate(lottoProfit)
     }
 }
