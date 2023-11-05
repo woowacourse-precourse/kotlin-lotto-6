@@ -20,13 +20,13 @@ class WinningLotto(private val numbers: List<LottoNumber>) {
         }
     }
 
-        private fun isBonusNumberMatched(lotto: List<LottoNumber>, bonusNumber: LottoNumber): WinningRank {
-            if (lotto.contains(bonusNumber)) {
-                return WinningRank.FIVE_MATCHES_WITH_BONUS_NUMBER
-            }
-            return WinningRank.FIVE_MATCHES
+    private fun isBonusNumberMatched(lotto: List<LottoNumber>, bonusNumber: LottoNumber): WinningRank {
+        if (lotto.contains(bonusNumber)) {
+            return WinningRank.FIVE_MATCHES_WITH_BONUS_NUMBER
         }
-
+        return WinningRank.FIVE_MATCHES
     }
+
+}
 
 
