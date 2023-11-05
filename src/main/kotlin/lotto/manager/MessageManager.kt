@@ -12,6 +12,7 @@ class MessageManager {
 
     fun printLottoResult() = println("$RECORD_RESULT\n$RECORD_LINE")
 
+
     companion object {
         private const val ENTER_PURCHASE_PRICE = "구입금액을 입력해 주세요."
         private const val COUNT_PURCHASE_AMOUNT = "개를 구매했습니다."

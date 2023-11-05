@@ -1,6 +1,6 @@
 package lotto
 
-enum class StatisticsResult(
+enum class GameResult(
     val matchNumber : Int,
     val price : Int,
     val comment : String
