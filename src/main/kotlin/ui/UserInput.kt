@@ -8,12 +8,24 @@ object UserInput {
     fun readMoney(): Int {
         println(MSG_INPUT_MONEY)
         val money = Console.readLine()
-        InputValidator.checkIsDigit(money)
+        InputValidator
+            .checkIsDigit(money)
+            .checkIsEmptyString(money)
+
         return money.toInt()
     }
 }
 
 object InputValidator {
 
-    fun checkIsDigit(input: String) = require(input.all{ it.isDigit() })
+    fun checkIsDigit(input: String): InputValidator {
+        require(input.all{ it.isDigit() })
+        return this
+    }
+
+    fun checkIsEmptyString(input: String): InputValidator {
+        require(input.isNotEmpty())
+        return this
+    }
+
 }
