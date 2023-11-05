@@ -1,5 +1,6 @@
 package lotto.model
 
+import lotto.util.Winnings
 import kotlin.math.roundToInt
 
 class LottoProfit {
@@ -8,7 +9,11 @@ class LottoProfit {
         get() = _rate
 
     private fun getTotalGain(rankings: List<Int>): Int {
-        return rankings[0] * 2000000000 + rankings[1] * 30000000 + rankings[2] * 1500000 + rankings[3] * 50000 + rankings[4] * 5000
+        return rankings[0] * Winnings.RANKING_1ST.price +
+                rankings[1] * Winnings.RANKING_2ST.price +
+                rankings[2] * Winnings.RANKING_3ST.price +
+                rankings[3] * Winnings.RANKING_4ST.price +
+                rankings[4] * Winnings.RANKING_5ST.price
     }
 
     fun calculateRate(rankings: List<Int>, purchasePrice: Int) {
