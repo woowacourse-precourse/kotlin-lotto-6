@@ -8,6 +8,7 @@ class ValidateSplit {
         myNumbers.forEach {
             validateInputZero(it)
             validateInputNotNumber(it)
+            validateInputEmpty(it)
         }
         validateDuplicateBonusNumber(myNumbers)
         validateMyNumbersRange(myNumbers)
@@ -16,6 +17,10 @@ class ValidateSplit {
 
     private fun validateInputNotNumber(myNumbers: String) {
         require(myNumbers.all { it.isDigit() }) { "${Messages.ERROR_MESSAGE} ${Messages.INVALID_INPUT}" }
+    }
+
+    private fun validateInputEmpty(myNumbers: String) {
+        require(myNumbers.isEmpty()) { "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_INPUT_EMPTY}" }
     }
 
     private fun validateInputZero(myNumbers: String) {
@@ -32,5 +37,6 @@ class ValidateSplit {
             "${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_DUPLICATED_MESSAGE}"
         }
     }
+
 
 }
