@@ -5,7 +5,7 @@ import util.ErrorMessage
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6) { ErrorMessage.INVALID_LOTTO_COUNT }
-        require(numbers.size == numbers.toSet().size) { ErrorMessage.DUPLICATED_LOTTO_NUMBER }
+        require(numbers.toSet().size == 6) { ErrorMessage.DUPLICATED_LOTTO_NUMBER }
     }
 
     override fun toString(): String {
