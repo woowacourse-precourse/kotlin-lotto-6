@@ -1,10 +1,14 @@
 package view
 
+import lotto.Lotto
+
 class OutputView {
 
     fun printPurchaseAmount() = println(RequestType.PURCHASE_AMOUNT.message)
 
     fun printPurchasedItemCount(count: Int) = println("\n${count}${RequestType.PURCHASED_N_ITEMS.message}")
+
+    fun printLottoInfo(lotto: Lotto) = println(lotto.getLottoNumberInfo())
 
     private enum class RequestType(val message: String) {
         PURCHASE_AMOUNT("구입금액을 입력해 주세요"),

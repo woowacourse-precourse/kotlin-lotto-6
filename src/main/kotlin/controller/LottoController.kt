@@ -23,7 +23,6 @@ class LottoController(private val inputView: InputView, private val outputView: 
             break
         } while (true)
 
-        outputView.printPurchasedItemCount(money.getPurchasableLottoTicketCount())
         do {
             try {
                 purchasedLottoTickets.add(generateLottoTickets())
@@ -33,5 +32,9 @@ class LottoController(private val inputView: InputView, private val outputView: 
             }
         } while (purchasedLottoTickets.size != money.getPurchasableLottoTicketCount())
 
+        outputView.printPurchasedItemCount(money.getPurchasableLottoTicketCount())
+        purchasedLottoTickets.forEach { lotto ->
+            outputView.printLottoInfo(lotto)
+        }
     }
 }
