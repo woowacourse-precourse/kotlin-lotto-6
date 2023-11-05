@@ -21,13 +21,11 @@ fun moneyCheck(money: Int) {
 fun winningNumberErrorCheck(input: String, splitInput: List<String>): List<Int> {
     winBlankCheck(splitInput)
     winNumberCheck(splitInput)
-    println(splitInput)
     winNumberIndexCheck(splitInput)
     val changeNumbers = input.split(",").map { it.toInt() }
-    val validNumber = changeNumbers.filter { it in 1..45 }
     winChangeNumberCheck(changeNumbers)
-    winValidNumberCheck(validNumber)
-    return validNumber
+    winValidNumberCheck(changeNumbers)
+    return changeNumbers.filter { it in 1..45 }
 }
 
 fun winNumberCheck(splitInput: List<String>) {
@@ -51,7 +49,8 @@ fun winNumberIndexCheck(splitInput: List<String>) {
     }
 }
 
-fun winValidNumberCheck(validNumber: List<Int>) {
+fun winValidNumberCheck(changeNumbers: List<Int>) {
+    val validNumber= changeNumbers.filter { it in 1..45 }
     if (validNumber.size != 6) {
         throw IllegalArgumentException("범위를 초과한 수가 있습니다")
 
