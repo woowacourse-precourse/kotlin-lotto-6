@@ -24,7 +24,7 @@ class Lotto(private val numbers: List<Int>) {
         const val MAX_NUMBER = 45
         val validRange = (MIN_NUMBER..MAX_NUMBER)
         const val NUMBER_OF_LOTTO_NUMBERS = 6
-        const val MISMATCH_NUMBER_OF_LOTTO_NUMBERS_MESSAGE = "${NUMBER_OF_LOTTO_NUMBERS}의 숫자가 필요합니다."
+        const val MISMATCH_NUMBER_OF_LOTTO_NUMBERS_MESSAGE = "${NUMBER_OF_LOTTO_NUMBERS}개의 숫자가 필요합니다."
         const val DUPLICATED_NUMBER_EXIST_MESSAGE = "중복된 숫자가 존재합니다."
         const val NUMBERS_NOT_IN_VALID_RANGE = "모든 숫자는 반드시 $MIN_NUMBER~$MAX_NUMBER 사이에 존재해야 합니다."
         const val NUMBERS_NOT_IN_ASCENDING_ORDER = "로또 번호가 오름차순이 되도록 해주세요."
