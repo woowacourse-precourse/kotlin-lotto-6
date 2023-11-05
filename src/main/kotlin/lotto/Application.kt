@@ -114,7 +114,7 @@ fun printStatistics(results: List<Rank>) {//당첨 통계 출력 및 수익율 �
 
     val totalPrizeMoney = results.sumOf { it.prizeMoney.toLong() }
     val purchaseMoney = results.size * 1000L
-    val profit = totalPrizeMoney - purchaseMoney
-    val profitRate = profit / purchaseMoney.toDouble() * 100
-    println("총 수익률은 ${String.format("%.2f", profitRate)}%입니다.")
+    val netProfit = totalPrizeMoney - purchaseMoney
+    val profitRate = (netProfit.toDouble() / purchaseMoney) * 100
+    println("총 수익률은 ${String.format("%.1f", profitRate)}%입니다.")
 }
