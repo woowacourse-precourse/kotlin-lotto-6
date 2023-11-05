@@ -22,4 +22,8 @@ class Lottos(private val amount: Int) {
         }
         return rankCounts
     }
+
+    fun getLottos():ArrayList<Lotto>{
+        return lottos
+    }
 }

@@ -6,15 +6,18 @@ import lotto.constants.askWinningLottoNumberMessage
 import lotto.constants.bonusMessage
 import lotto.constants.winningStatisticsDivider
 import lotto.constants.winningStatisticsMessage
-import lotto.domain.Lotto
+import lotto.domain.Lottos
 import lotto.domain.Rank
+import java.text.NumberFormat
+import java.util.Locale
 
 
 class Output {
 
-    private val grossProfitMessage = "총 수익률은 %f입니다."
+    private val lottoAmountMessage = "%d개를 구매했습니다."
+    private val grossProfitMessage = "총 수익률은 %.1f%%입니다."
     private val hitMessage = "%d개 일치"
-    private val prizeMessage = " - (%s원)"
+    private val prizeMessage = " (%s원)"
     private val hitCountMessage = " - %d개"
     fun askPurchaseAmount() {
         println(askPurchaseAmountMessage)
@@ -28,10 +31,10 @@ class Output {
         println(askBonusNumberMessage)
     }
 
-    fun printLottos(lottos: ArrayList<Lotto>) {
-        lottos.all {
-            println(it)
-            true
+    fun printLottos(lottos : Lottos) {
+        println(lottoAmountMessage.format(lottos.getLottos().size))
+        for(lotto in lottos.getLottos()){
+            println(lotto.toString())
         }
     }
 
@@ -39,7 +42,9 @@ class Output {
         println(winningStatisticsMessage)
         println(winningStatisticsDivider)
         for (rank in result.keys) {
-            printRankMessage(rank, result[rank]!!)
+            if(rank!=Rank.NOTHING) {
+                printRankMessage(rank, result[rank]!!)
+            }
         }
     }
 
@@ -56,7 +61,8 @@ class Output {
         return hitMessage.format(hit)
     }
     private fun prizeMessage(prize: Int):String{
-        return prizeMessage.format(prize)
+        val formatter = NumberFormat.getNumberInstance(Locale("en", "US"))
+        return prizeMessage.format(formatter.format(prize))
     }
     private fun hitCountMessage(count:Int):String{
         return hitCountMessage.format(count)

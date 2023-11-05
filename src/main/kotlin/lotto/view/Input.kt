@@ -1,7 +1,6 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.constants.askBonusNumberMessage
 import lotto.constants.askPurchaseAmountMessage
 import lotto.constants.askWinningLottoNumberMessage
 import lotto.constants.indivisibleBy1000ErrorMessage
@@ -48,11 +47,7 @@ class Input {
     }
 
     fun validateBonusNumber(input: String): Int {
-        val bonusNumber = toInt(input)
-        if (input.toInt() % 1000 != 0) {
-            throw IllegalArgumentException(indivisibleBy1000ErrorMessage)
-        }
-        return bonusNumber
+        return toInt(input)
     }
 
     private fun toInt(input:String):Int{

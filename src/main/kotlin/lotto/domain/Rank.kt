@@ -7,11 +7,11 @@ import lotto.constants.secondPrize
 import lotto.constants.thirdPrize
 
 enum class Rank(val hit: Int, val bonusHit: Boolean, val prize: Int) {
-    FIRST(6, false, firstPrize),
-    SECOND(5, true, secondPrize),
-    THIRD(5, false, thirdPrize),
-    FOURTH(4, false, fourthPrize),
     FIFTH(3, false, fifthPrize),
+    FOURTH(4, false, fourthPrize),
+    THIRD(5, false, thirdPrize),
+    SECOND(5, true, secondPrize),
+    FIRST(6, false, firstPrize),
     NOTHING(0, false, 0);
 
     companion object {
