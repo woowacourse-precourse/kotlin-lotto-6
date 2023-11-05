@@ -48,12 +48,12 @@ class OutputView {
         println(WINNING_STATISTICS_INSTRUCTION.message)
     }
 
-    fun printWinningStatistics(winningRanks: List<Int>) {
-        println(WINNING_FIFTH_RANK.message.format(winningRanks[FIFTH_RANK]))
-        println(WINNING_FOURTH_RANK.message.format(winningRanks[FOURTH_RANK]))
-        println(WINNING_THIRD_RANK.message.format(winningRanks[THIRD_RANK]))
-        println(WINNING_SECOND_RANK.message.format(winningRanks[SECOND_RANK]))
-        println(WINNING_FIRST_RANK.message.format(winningRanks[FIRST_RANK]))
+    fun printWinningStatistics(winningStatistics: List<Int>) {
+        println(WINNING_FIFTH_RANK.message.format(winningStatistics[FIFTH_RANK]))
+        println(WINNING_FOURTH_RANK.message.format(winningStatistics[FOURTH_RANK]))
+        println(WINNING_THIRD_RANK.message.format(winningStatistics[THIRD_RANK]))
+        println(WINNING_SECOND_RANK.message.format(winningStatistics[SECOND_RANK]))
+        println(WINNING_FIRST_RANK.message.format(winningStatistics[FIRST_RANK]))
     }
 
     fun printRateOfReturn(rateOfReturn: Double) {
