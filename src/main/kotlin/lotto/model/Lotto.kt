@@ -1,7 +1,9 @@
 package lotto.model
 
 import lotto.util.Constants.LOTTO_SIZE
+import lotto.util.Constants.MATCH_FIVE
 import lotto.util.Constants.MATCH_FIVE_BONUS
+import lotto.util.Constants.ZERO_NUM
 
 class Lotto(private val numbers: List<Int>) {
     init {
@@ -9,15 +11,14 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun checkLottoWinning(bonusNum:Int,lottoLists: List<List<Int>>):List<Int>{
-        val result= MutableList(lottoLists.size){0}
-
-        for(i in lottoLists.indices){
-           val a=  lottoLists[i].intersect(numbers.toSet()).count()
-            result[i] = a
-            if(result[i] == 5 && lottoLists[i].contains(bonusNum)){
-                result[i] = MATCH_FIVE_BONUS
+        val winningResult= MutableList(lottoLists.size){ZERO_NUM}
+        for((i,lottoList) in lottoLists.withIndex()){
+            val count = lottoList.intersect(numbers.toSet()).count()
+            winningResult[i] = count
+            if (count == MATCH_FIVE && lottoList.contains(bonusNum)) {
+                winningResult[i] = MATCH_FIVE_BONUS
             }
         }
-        return result
+        return winningResult
     }
 }
