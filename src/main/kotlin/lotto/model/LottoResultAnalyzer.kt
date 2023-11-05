@@ -10,7 +10,11 @@ private const val FIVE_BONUS_MATCH_PRIZE = 30000000
 private const val SIX_MATCH_PRIZE = 2000000000
 
 class LottoResultAnalyzer {
+    val analyzedLottoResults:List<Int>
+        get() = _analyzedLottoResults
+
     private var _analyzedLottoResults = MutableList(5) { 0 }
+
     private var _profit = 0
 
     val profitRate: Double
@@ -31,9 +35,6 @@ class LottoResultAnalyzer {
         }
     }
 
-    fun getAnalyzedLottoResults(): List<Int> {
-        return _analyzedLottoResults.toList()
-    }
 
     private fun sumProfit() {
         val (threeMatch, fourMatch, fiveMatch, fiveBonusMatch, sixMatch) = _analyzedLottoResults

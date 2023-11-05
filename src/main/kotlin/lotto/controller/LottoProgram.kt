@@ -31,13 +31,13 @@ class LottoProgram {
         outputView.printRequireBonusNums()
         val bonusNum = inputView.getValidBonusNum(winningNums)
         val lottoResult = lotto.checkLottoWinning(bonusNum, lottoPublisher.publishedLottoList)
-        val lottoResultAnalyzer = LottoResultAnalyzer()
-        lottoResultAnalyzer.analyzeLottoResults(lottoResult)
 
-        val analyzedResult = lottoResultAnalyzer.getAnalyzedLottoResults()
+        val lottoResultAnalyzer = LottoResultAnalyzer()
+        
+        lottoResultAnalyzer.analyzeLottoResults(lottoResult)
         lottoResultAnalyzer.calculateProfitRate(userInput.toInt())
 
-        outputView.printWinningStats(analyzedResult,lottoResultAnalyzer.profitRate)
+        outputView.printWinningStats(lottoResultAnalyzer.analyzedLottoResults,lottoResultAnalyzer.profitRate)
     }
 
     companion object {
