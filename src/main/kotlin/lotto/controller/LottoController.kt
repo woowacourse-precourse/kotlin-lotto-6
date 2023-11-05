@@ -11,10 +11,15 @@ import lotto.model.Lotteries
 class LottoController {
 
     private lateinit var lotteries: Lotteries
+    private lateinit var winningLottoNumbers: MutableList<Int>
+
+    private var bonusLottoNumber: Int = 0
 
     fun startLotto() {
         println(Messages.TEXT_INPUT_LOTTO_AMOUNT.message)
         inputLottoAmount()
+        inputWinningLottoNumbers()
+        inputBonusLottoNumber()
     }
 
     private fun inputLottoAmount() {
@@ -37,7 +42,7 @@ class LottoController {
     }
 
     private fun createLotteries(num: Long) {
-        println("$num" + Messages.TEXT_PRINT_LOTTO_NUM.message)
+        println("\n$num" + Messages.TEXT_PRINT_LOTTO_NUM.message)
         val randomLotteries = mutableListOf<Lotto>()
         for (i in 1..num) {
             val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
@@ -46,5 +51,18 @@ class LottoController {
         }
         lotteries = Lotteries(randomLotteries)
         lotteries.printLotteries()
+    }
+
+    private fun inputWinningLottoNumbers() {
+        println("\n" + Messages.TEXT_INPUT_WINNING_LOTTO_NUMBER.message)
+        val numbers = Console.readLine()
+        numbers.split(",").forEach {
+            winningLottoNumbers.add(it.toInt())
+        }
+    }
+
+    private fun inputBonusLottoNumber() {
+        println("\n" + Messages.TEXT_INPUT_BONUS_LOTTO_NUMBER.message)
+        bonusLottoNumber = Console.readLine().toInt()
     }
 }
