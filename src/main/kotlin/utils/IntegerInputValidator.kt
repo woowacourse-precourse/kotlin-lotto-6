@@ -1,5 +1,7 @@
 package utils
 
+import lotto.LottoMachine
+
 open class IntegerInputValidator {
 
     open fun validateIsString(input: String) {
@@ -12,6 +14,15 @@ open class IntegerInputValidator {
 
     open fun validateIsZero(input: String) {
         require(input.toInt() != 0) { INPUT_ZERO_ERR_MSG }
+    }
+
+    open fun validateOutOfRange(input: Int) {
+        require(input in LottoMachine.START_RANGE_LOTTO_NUM..LottoMachine.END_RANGE_LOTTO_NUM) {
+            getInvalidRangeLottoNumErrMsg(
+                LottoMachine.START_RANGE_LOTTO_NUM,
+                LottoMachine.END_RANGE_LOTTO_NUM
+            )
+        }
     }
 
     companion object {
