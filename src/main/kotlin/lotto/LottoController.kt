@@ -12,6 +12,8 @@ class LottoController {
         println()
         val lottoCount = inputView.calculateCount(priceAmount)
         generateAllLotto(lottoCount)
+        val lottoNumberInput = inputLottoNumber()
+        // 결과 확인용 println(lottoNumberInput)
     }
 
     private fun inputPriceAmount(): Int {
@@ -35,6 +37,7 @@ class LottoController {
             addLotto(sortedLotto)
             outView.printOneLotto(sortedLotto)
         }
+        println()
     }
 
     private fun generateOneLotto(): List<Int> {
@@ -43,5 +46,20 @@ class LottoController {
 
     private fun addLotto(oneLotto: List<Int>) {
         lottoList.add(oneLotto)
+    }
+
+    private fun inputLottoNumber(): List<Int> {
+        while (true) {
+            try {
+                val lottoNumberInput = inputView.validateLottoNumberInput()
+                val splitLottoNumbers = inputView.validateLottoNumber(lottoNumberInput)
+                inputView.validateLottoSize(splitLottoNumbers)
+                val intLottoNumbers = inputView.validateLottoRange(splitLottoNumbers)
+                inputView.validateLottoRepeat(intLottoNumbers)
+                return intLottoNumbers
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 }
