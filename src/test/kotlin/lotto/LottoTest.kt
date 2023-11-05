@@ -1,5 +1,9 @@
 package lotto
 
+import lotto.domain.Lotto
+import lotto.domain.NumberIssuer
+import lotto.utils.Constant.LOTTO_NUMBER_SIZE
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -21,4 +25,11 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @Test
+    fun `발행된 숫자 List의 size는 6이어야 한다`() {
+        val numbers = NumberIssuer.issueNumbers()
+        Assertions.assertThat(LOTTO_NUMBER_SIZE.equals(numbers.size))
+    }
+
 }
