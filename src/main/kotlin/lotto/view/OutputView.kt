@@ -1,6 +1,7 @@
 package lotto.view
 
 import lotto.domain.Lotto
+import lotto.domain.Result
 
 class OutputView {
     fun printNumberOfLottos(lottos: List<Lotto>) {
@@ -11,5 +12,11 @@ class OutputView {
         lottos.forEach { lotto ->
             println(lotto)
         }
+    }
+
+    fun printWinningResult(result: Result) {
+        println("\n당첨 통계")
+        println("---")
+        println(result)
     }
 }

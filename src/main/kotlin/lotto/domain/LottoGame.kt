@@ -24,6 +24,7 @@ class LottoGame {
 
             result.put(Rank.checkRank(count, isBonus))
         }
+        outputView.printWinningResult(result)
     }
 
     private fun printLottos(lottos: List<Lotto>) {
