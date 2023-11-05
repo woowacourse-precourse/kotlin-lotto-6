@@ -9,9 +9,8 @@ class Lotto(private val numbers: List<Int>) {
     fun calculateResult(winningNumbers: List<Int>, bonusNumber: Int): Rank {
         val matchCount = numbers.intersect(winningNumbers).size
         val bonusMatch = numbers.contains(bonusNumber)
-
         return Rank.findRank(matchCount, bonusMatch)
-
+    }
         fun getSortedNumbers(): List<Int> {
             return numbers.sorted()
         }
@@ -21,7 +20,7 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 
-    enum class Rank(
+enum class Rank(
         val matchCount: Int,
         val prizeMoney: Int,
         val needBonus: Boolean = false
@@ -41,4 +40,3 @@ class Lotto(private val numbers: List<Int>) {
             }
         }
     }
-}
