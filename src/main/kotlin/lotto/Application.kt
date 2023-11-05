@@ -1,5 +1,7 @@
 package lotto
 
+import lotto.ui.LottoGame
+
 fun main() {
-    TODO("프로그램 구현")
+    LottoGame().start()
 }
