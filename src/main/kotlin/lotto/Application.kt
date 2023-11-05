@@ -42,14 +42,30 @@ fun makeLotto(number: Int) {
         lottoList.add(Lotto(makeNumbers()))
     }
     printLottoList(lottoList)
+}
 
+fun readPrice(): Int {
+    println("구입금액을 입력해 주세요.")
+    val input = readlnOrNull() ?: throw IllegalArgumentException("숫자가 입력되지 않았거나 올바르지 않은 형식입니다.")
+    return input.toInt()
+}
+
+fun readWinningNumbers(): List<Int> {
+    print("당첨 번호를 입력해 주세요.")
+    val inputLine = readlnOrNull() ?: throw IllegalArgumentException("숫자가 입력되지 않았거나 올바르지 않은 형식입니다.")
+    return inputLine.split(",").map { it.toInt() }
+}
+
+fun readBonusNumber(): Int {
+    print("보너스 번호를 입력해 주세요.")
+    val input = readlnOrNull() ?: throw IllegalArgumentException("숫자가 입력되지 않았거나 올바르지 않은 형식입니다.")
+    return input.toInt()
 }
 
 fun main() {
-    val price: Int
-    println("구입금액을 입력해 주세요.")
-    price = (readlnOrNull() ?: throw IllegalArgumentException("숫자가 입력되지 않았거나 올바르지 않은 형식입니다.")).toInt()
+    val price = readPrice()
+    val bonusNumber = readBonusNumber()
+    val winningNumbers = readWinningNumbers()
+
     makeLotto(price / 1000)
-
-
 }
