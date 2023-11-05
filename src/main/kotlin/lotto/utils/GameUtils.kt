@@ -5,7 +5,16 @@ import lotto.data.model.LottoWinningNumber
 import lotto.data.model.UserLottoState
 
 object GameUtils {
-    
+
+    // 로또 생성
+    fun generateLotto(count: Int): List<List<Int>> {
+        val lottoNumbersList = mutableListOf<List<Int>>()
+        for (i in 1..count) {
+            lottoNumbersList.add(generateLottoNumbers())
+        }
+        return lottoNumbersList
+    }
+
     // 6자리 랜덤번호 생성
     private fun generateLottoNumbers(): List<Int> {
         val num = Randoms.pickUniqueNumbersInRange(
