@@ -1,7 +1,5 @@
 package lotto
 
-import java.util.*
-
 class LottoResult() {
 
     lateinit var winLotto: Lotto
@@ -17,22 +15,18 @@ class LottoResult() {
     fun calculateWinLottos(lottos: MutableList<Lotto>) {
         for (lotto in lottos) {
             when (countWinNumbers(lotto)) {
-                MatchNumber.THREE_MATCH.value ->  MatchNumber.THREE_MATCH.count++
-                MatchNumber.FOUR_MATCH.value ->  MatchNumber.FOUR_MATCH.count++
-                MatchNumber.FIVE_MATCH.value ->  {
-                    if (hasBonus(lotto)) MatchNumber.FIVE_BONUS_MATCH.count++
-                    MatchNumber.FIVE_MATCH.count++
-                }
-                MatchNumber.SIX_MATCH.value ->  MatchNumber.SIX_MATCH.count++
+                LottoPrize.FIFTH_PRIZE.value -> LottoPrize.FIFTH_PRIZE.count++
+                LottoPrize.FOUTRH_PRIZE.value -> LottoPrize.FOUTRH_PRIZE.count++
+                LottoPrize.THIRD_PRIZE.value -> countSecondOrThird(lotto)
+                LottoPrize.JACKPOT.value -> LottoPrize.JACKPOT.count++
             }
         }
     }
-
-    enum class MatchNumber(val value: Int, var count: Int) {
-        THREE_MATCH(3, 0),
-        FOUR_MATCH(4, 0),
-        FIVE_MATCH(5, 0),
-        FIVE_BONUS_MATCH(5, 0),
-        SIX_MATCH(6, 0);
+    private fun countSecondOrThird(lotto: Lotto) {
+        if (hasBonus(lotto)) {
+            LottoPrize.SECOND_PRIZE.count++
+            return
+        }
+        LottoPrize.THIRD_PRIZE.count++
     }
 }
