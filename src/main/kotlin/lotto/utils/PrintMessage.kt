@@ -1,11 +1,13 @@
 package lotto.utils
 
 object PrintMessage {
-    const val PRINT_REQUEST_COST = "구입금액을 입력해 주세요.\n"
-    const val PRINT_REQUEST_WIN_NUMBER = "당첨 번호를 입력해 주세요.\n"
-    const val PRINT_REQUEST_BONUS_NUMBER = "보너스 번호를 입력해 주세요.\n"
-    const val PRINT_TOTAL_RESULT = "당첨 통계\n"
-    const val PRINT_TOTAL_AREA = "---\n"
+    const val PRINT_REQUEST_COST = "구입금액을 입력해 주세요."
+    const val PRINT_REQUEST_WIN_NUMBER = "당첨 번호를 입력해 주세요."
+    const val PRINT_REQUEST_BONUS_NUMBER = "보너스 번호를 입력해 주세요."
+    const val PRINT_TOTAL_RESULT = "당첨 통계"
+    const val PRINT_TOTAL_AREA = "---"
+    const val PRINT_COUNT = "개"
+    const val PRINT_MATCH = "일치"
     const val WINNER_REWARD_1TH = "2,000,000,000원"
     const val WINNER_REWARD_2TH = "30,000,000원"
     const val WINNER_REWARD_3TH = "1,500,000원"
