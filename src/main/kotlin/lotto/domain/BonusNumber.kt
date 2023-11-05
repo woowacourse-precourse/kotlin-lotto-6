@@ -8,8 +8,8 @@ class BonusNumber(private val bonusNumber: Int) {
         if (bonusNumber !in WINNING_NUMBER_START..WINNING_NUMBER_END) {
             throw IllegalStateException(ErrorMessage.NOT_NUMBER_RANGE_BONUS_NUMBER.message)
         }
-        val numbers = winningNumbers.convertToInt()
-        if (numbers.contains(bonusNumber)) {
+        val numbers = winningNumbers.getWinningNumbers()
+        if (numbers!!.contains(bonusNumber)) {
             throw IllegalStateException(ErrorMessage.NOT_DUPLICATED_BONUS_NUMBER.message)
         }
 

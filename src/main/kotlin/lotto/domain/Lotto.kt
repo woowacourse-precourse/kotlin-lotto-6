@@ -13,7 +13,7 @@ class Lotto(private val numbers: List<Int>) {
 
     fun compareWinningNumbers(winningNumbers: WinningNumbers): Int {
         var sameWinningNumberCount = 0
-        winningNumbers.convertToInt().forEach {
+        winningNumbers.getWinningNumbers()!!.forEach {
             if (numbers.contains(it)) sameWinningNumberCount++
         }
         return sameWinningNumberCount

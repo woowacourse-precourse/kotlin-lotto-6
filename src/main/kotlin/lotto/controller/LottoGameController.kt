@@ -2,10 +2,12 @@ package lotto.controller
 
 import lotto.domain.BonusNumber
 import lotto.domain.Lottoes
+import lotto.domain.PurchasePrice
 import lotto.domain.WinningNumbers
 import lotto.service.LottoGameService
 import lotto.view.PrintOutputView
 import lotto.view.ReadUserInputView
+import java.util.function.Supplier
 
 class LottoGameController(
     private val inputView: ReadUserInputView,
@@ -20,21 +22,26 @@ class LottoGameController(
         printLottoResult(winningNumbers, bonusNumber, purchaseAmount)
     }
 
-    private fun requirePurchaseAmount(): Int {
+    private fun <T> normal(supplier: Supplier<T>): T {
         while (true) {
             try {
-                outputView.printRequirePurchaseAmount()
-                return inputView.readUserPurchaseAmountInput()
+                return supplier.get()
             } catch (e: Exception) {
                 outputView.printError(e.message)
             }
         }
     }
 
-    private fun printLottoNumbers(purchaseAmount: Int) {
-        val lottoCount = purchaseAmount / PURCHASE_AMOUNT_UNIT
-        outputView.printPurchaseAmount(lottoCount)
-        outputView.printRandomWinningNumbers(generateLottoNumbers(lottoCount))
+    private fun requirePurchaseAmount(): PurchasePrice {
+        return normal {
+            outputView.printRequirePurchaseAmount()
+            PurchasePrice(inputView.readUserPurchaseAmountInput())
+        }
+    }
+
+    private fun printLottoNumbers(purchaseAmount: PurchasePrice) {
+        outputView.printPurchaseAmount(purchaseAmount.calculateLottoCount())
+        outputView.printRandomWinningNumbers(generateLottoNumbers(purchaseAmount.calculateLottoCount()))
     }
 
     private fun generateLottoNumbers(lottoCount: Int): Lottoes {
@@ -42,35 +49,28 @@ class LottoGameController(
     }
 
     private fun requireWinningNumbers(): WinningNumbers {
-        while (true) {
-            try {
-                outputView.requireWinningNumber()
-                return inputView.readUserWinningNumberInput()
-            } catch (e: Exception) {
-                outputView.printError(e.message)
-            }
+        return normal {
+            outputView.requireWinningNumber()
+            inputView.readUserWinningNumberInput()
         }
     }
 
     private fun requireBonusNumber(winningNumbers: WinningNumbers): BonusNumber {
-        while (true) {
-            try {
-                outputView.requireBonusNumber()
-                val bonusNumber = inputView.readUserBonusNumberInput()
-                bonusNumber.validateBonusNumber(winningNumbers)
-                return bonusNumber
-            } catch (e: Exception) {
-                outputView.printError(e.message)
-            }
+        return normal {
+            outputView.requireBonusNumber()
+            val bonusNumber = inputView.readUserBonusNumberInput()
+            bonusNumber.validateBonusNumber(winningNumbers)
+            bonusNumber
         }
     }
 
-    private fun printLottoResult(winningNumbers: WinningNumbers, bonusNumber: BonusNumber, purchaseAmount: Int) {
+    private fun printLottoResult(
+        winningNumbers: WinningNumbers,
+        bonusNumber: BonusNumber,
+        purchaseAmount: PurchasePrice
+    ) {
         val lottoResult = service.calculateLottoResult(winningNumbers, bonusNumber)
-        outputView.printLottoSameCount(lottoResult, purchaseAmount)
+        outputView.printLottoSameCount(lottoResult, purchaseAmount.getPurchasePrice())
     }
 
-    companion object {
-        private const val PURCHASE_AMOUNT_UNIT = 1000
-    }
 }
