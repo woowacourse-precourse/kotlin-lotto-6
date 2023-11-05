@@ -20,18 +20,15 @@ object Exception {
         require(price.toInt() % UNIT_PRICE == 0) { INPUT_PRICE_UNIT_ERROR_MESSAGE }
     }
 
-    fun validateInputLuckyNumber(numbers: String) {
-        val luckyNumbers = numbers.split(",")
-        require(luckyNumbers.size == LOTTO_NUMBER_SIZE) { INPUT_LUCKY_NUMBER_LENGTH_ERROR_MESSAGE }
-        for (luckyNumber in luckyNumbers){
-            requireNotNull(luckyNumber.toIntOrNull()) {INPUT_LUCKY_NUMBER_NOT_NUMBER_ERROR_MESSAGE }
-            require(luckyNumber.toInt() in LOTTO_MIN_RANDOM_NUMBER .. LOTTO_MAX_RANDOM_NUMBER){ INPUT_LUCKY_NUMBER_NOT_NUMBER_ERROR_MESSAGE }
+    fun validateInputLuckyNumber(numbers: List<Int>) {
+        require(numbers.size == LOTTO_NUMBER_SIZE) { INPUT_LUCKY_NUMBER_LENGTH_ERROR_MESSAGE }
+        for (luckyNumber in numbers){
+            require(luckyNumber in LOTTO_MIN_RANDOM_NUMBER .. LOTTO_MAX_RANDOM_NUMBER){ INPUT_LUCKY_NUMBER_NOT_NUMBER_ERROR_MESSAGE }
         }
-        require(luckyNumbers.toSet().size == LOTTO_NUMBER_SIZE) { INPUT_LUCKY_NUMBER_OVERLAP_ERROR_MESSAGE }
+        require(numbers.toSet().size == LOTTO_NUMBER_SIZE) { INPUT_LUCKY_NUMBER_OVERLAP_ERROR_MESSAGE }
     }
 
-    fun validateInputBonusNumber(number: String) {
-        requireNotNull(number.toIntOrNull()) { INPUT_BONUS_NUMBER_NOT_NUMBER_ERROR_MESSAGE }
-        require(number.toInt() in LOTTO_MIN_RANDOM_NUMBER..LOTTO_MAX_RANDOM_NUMBER) { INPUT_BONUS_NUMBER_NOT_NUMBER_ERROR_MESSAGE }
+    fun validateInputBonusNumber(number: Int) {
+        require(number in LOTTO_MIN_RANDOM_NUMBER..LOTTO_MAX_RANDOM_NUMBER) { INPUT_BONUS_NUMBER_NOT_NUMBER_ERROR_MESSAGE }
     }
 }

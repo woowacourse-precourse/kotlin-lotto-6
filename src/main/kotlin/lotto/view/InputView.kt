@@ -1,6 +1,7 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.util.Constant
 import lotto.util.Exception
 
 class InputView {
@@ -12,16 +13,17 @@ class InputView {
     }
 
     fun inputLuckyNumber(): List<Int> {
-        var luckyNumbers = ""
-        luckyNumbers = Console.readLine()
-        Exception.validateInputLuckyNumber(luckyNumbers)
-        return luckyNumbers.split(",").map { it.toInt() }
+        val luckyNumbers = Console.readLine().split(",")
+        for(luckyNumber in luckyNumbers){
+            requireNotNull(luckyNumber.toIntOrNull()) { Constant.INPUT_LUCKY_NUMBER_NOT_NUMBER_ERROR_MESSAGE }
+        }
+        return luckyNumbers.map{ it.toInt() }
     }
 
     fun inputBonusNumber(): Int {
         var bonusNumber = ""
         bonusNumber = Console.readLine()
-        Exception.validateInputBonusNumber(bonusNumber)
+        requireNotNull(bonusNumber.toIntOrNull()) { Constant.INPUT_BONUS_NUMBER_NOT_NUMBER_ERROR_MESSAGE}
         return bonusNumber.toInt()
     }
 }
