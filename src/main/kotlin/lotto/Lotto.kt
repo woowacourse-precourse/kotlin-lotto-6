@@ -1,15 +1,17 @@
 package lotto
 
-class Lotto(numbers: List<Int>) {
-    val sortedNumbers: List<Int> = numbers.sorted()
-
+class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
         require(numbers.toSet().size == 6)
     }
 
+    fun getSortedNumbers(): List<Int> {
+        return numbers.sorted()
+    }
+
     fun matchCount(winningNumbers: List<Int>): Int {
-        return sortedNumbers.intersect(winningNumbers).size
+        return getSortedNumbers().intersect(winningNumbers).size
     }
 
     // TODO: 추가 기능 구현
