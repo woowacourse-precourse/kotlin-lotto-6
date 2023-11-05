@@ -38,13 +38,9 @@ class LottoController(
             try {
                 return reader.block()
             } catch (e: IllegalArgumentException) {
-                printInputError(e.message)
+                printer.error(e.message ?: Message.InvalidInputError.toString())
             }
         }
-    }
-
-    private fun printInputError(message: String? = null) {
-        printer.error(message ?: Message.InvalidInputError.toString())
     }
 
     private fun input(): Pair<Purchase, WinningNumber> {
