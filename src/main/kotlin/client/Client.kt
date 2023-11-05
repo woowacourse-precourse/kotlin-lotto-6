@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import constants.*
 import lotto.Lotto
 import lotto.WinState
+import java.text.DecimalFormat
 
 class Client {
     private val util = ClientUtil()
@@ -52,5 +53,12 @@ class Client {
         println(OUTPUT_FIVE_WIN_MESSAGE+ winPrizeList.count { it == WinState.FIVE }+OUTPUT_COUNT)
         println(OUTPUT_FIVE_WITH_BONUS_WIN_MESSAGE+ winPrizeList.count { it == WinState.FIVEPLUSBONUS }+OUTPUT_COUNT)
         println(OUTPUT_SIX_WIN_MESSAGE+ winPrizeList.count { it == WinState.SIX }+OUTPUT_COUNT)
+    }
+    fun formatNumber(number: Float): String {
+        val decimalFormat = DecimalFormat("#,###.#")
+        return decimalFormat.format(number)
+    }
+    fun outputRateOfReturn(rateOfReturn: Float) {
+        println(OUTPUT_RATE_OF_RETURN_FIRST_MESSAGE+formatNumber(rateOfReturn)+OUTPUT_RATE_OF_RETURN_SECOND_MESSAGE)
     }
 }

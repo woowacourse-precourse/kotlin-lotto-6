@@ -11,6 +11,8 @@ const val OUTPUT_FIVE_WIN_MESSAGE = "5개 일치 (1,500,000원) - "
 const val OUTPUT_FIVE_WITH_BONUS_WIN_MESSAGE = "5개 일치, 보너스 볼일치 (30,000,000원) - "
 const val OUTPUT_SIX_WIN_MESSAGE = "6개 일치 (2,000,000,000원) - "
 const val OUTPUT_COUNT ="개"
+const val OUTPUT_RATE_OF_RETURN_FIRST_MESSAGE= "총 수익률은"
+const val OUTPUT_RATE_OF_RETURN_SECOND_MESSAGE = "% 입니다."
 
 const val ERROR_LOTTO_NUMBER_MESSAGE = "[ERROR] 로또 번호는 1에서 45사이입니다."
 const val ERROR_WIN_NUMBER_MESSAGE = "[ERROR] 당첨 번호 형식 오류 입니다."
