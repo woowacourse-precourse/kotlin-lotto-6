@@ -12,4 +12,13 @@ object Exception {
         }
         return amount
     }
+
+    fun enterWinningNumberException(input: String?): List<Int> {
+        val numbers = input?.split(",")?.map { it.trim().toInt() }
+        if (numbers != null && numbers.size == 6 && numbers.all { it in 1..45 }) {
+            return numbers
+        } else {
+            throw IllegalArgumentException("[ERROR] 올바른 당첨 번호를 입력해주세요.")
+        }
+    }
 }

@@ -9,7 +9,11 @@ class LottoView {
         while (true) {
             println("구입 금액을 입력해 주세요.")
             val input = Console.readLine()
-            return Exception.purchaseAmountEntryException(input) ?: continue
+            try {
+                return Exception.purchaseAmountEntryException(input) ?: continue
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
         }
     }
 
@@ -17,6 +21,18 @@ class LottoView {
         println("$numOfTickets 개를 구매했습니다.")
         lottoTickets.forEach { lottoTicket ->
             println(lottoTicket.numbers.sorted())
+        }
+    }
+
+    fun getWinningNumbersFromUser(): List<Int> {
+        while (true) {
+            try {
+                println("당첨 번호를 입력해 주세요. (1~45까지의 숫자 6개, 쉼표로 구분)")
+                val input = Console.readLine()
+                return Exception.enterWinningNumberException(input)
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
         }
     }
 
