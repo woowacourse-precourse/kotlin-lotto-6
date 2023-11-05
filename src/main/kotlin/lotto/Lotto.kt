@@ -7,10 +7,6 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
     }
 
-    override fun toString(): String {
-        return numbers.joinToString(separator = ", ", prefix = "[", postfix = "]")
-    }
-
     fun compareNumber(winningNumber: WinningNumber): Pair<Int, Boolean> {
         val comparisonNumbers = winningNumber.getWinningNumbers()
         val matchNumbers = numbers.intersect(comparisonNumbers.toSet()).size
@@ -19,7 +15,9 @@ class Lotto(private val numbers: List<Int>) {
         return Pair(matchNumbers, matchBonus)
     }
 
-    fun printLottoNumber() {}
+    fun printLottoNumber() {
+        println(numbers.joinToString(separator = ", ", prefix = "[", postfix = "]"))
+    }
 
     fun resultOfLotto(result: Pair<Int, Boolean>): String {
         val (matchNumbers, matchBonus) = result
