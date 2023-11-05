@@ -21,7 +21,6 @@ object UserInput {
 
     fun readMoney(): Int {
         println(MSG_INPUT_MONEY)
-
         val money = readOnlyDigit().toInt()
         Validator.checkPurchaseRange(money)
 
@@ -30,23 +29,32 @@ object UserInput {
 
     fun readWinNumbers(): List<Int> {
         println(MSG_INPUT_WIN_NUMBERS)
-
-        val winNumbers = inputToNumbersByComma(readOnlyDigit())
-        Validator.checkProperNumbersSize(winNumbers)
+        val winNumbers = inputToNumbersByComma(Console.readLine())
+        Validator
+            .checkProperNumbersSize(winNumbers)
+            .checkNumberListInRange(winNumbers)
 
         return winNumbers
     }
 
     fun readBonusNumber(): Int {
         println(MSG_INPUT_BONUS_NUMBER)
-
         val bonus = readOnlyDigit().toInt()
         Validator.checkNumberInRange(bonus)
+
         return bonus
     }
 }
 
-private fun inputToNumbersByComma(input: String) =
-    input.split(",")
-        .map { it.toInt() }
-        .distinct()
+private fun inputToNumbersByComma(input: String): List<Int> {
+    return input.split(",")
+        .map {
+            val digit = it.trim()
+            Validator
+                .checkIsDigit(digit)
+                .checkIsEmptyString(digit)
+            digit.toInt()
+        }.distinct()
+}
+
+
