@@ -1,4 +1,4 @@
-package lotto.modeltest
+package lotto.model
 
 import lotto.model.Bonus
 import org.junit.jupiter.api.Test
