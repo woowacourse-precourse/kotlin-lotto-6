@@ -39,6 +39,7 @@ class LottoProgram {
         outputView.printLottoResult(analyzedResult)
 
         lottoResultAnalyzer.calculateProfitRate(userInput.toInt())
+        outputView.printProfitRate(lottoResultAnalyzer.profitRate)
     }
 
     companion object {

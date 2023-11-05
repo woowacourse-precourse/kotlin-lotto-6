@@ -12,6 +12,8 @@ private const val SIX_MATCH_MSG = "6개 일치 (2,000,000,000원) - %d개"
 
 private const val WINNING_STATS_HEADER_MSG = "당첨 통계\n" + "---"
 
+private const val PROFIT_RATE_MSG = "총 수익률은 %.1f%%입니다."
+
 class OutputView {
     fun printPurchaseAmount() {
         println(PURCHASE_AMOUNT_MSG)
@@ -48,5 +50,8 @@ class OutputView {
     }
     fun printWinningStatsHeader(){
         println(WINNING_STATS_HEADER_MSG)
+    }
+    fun printProfitRate(profitRate:Double){
+        println(PROFIT_RATE_MSG.format(profitRate))
     }
 }
