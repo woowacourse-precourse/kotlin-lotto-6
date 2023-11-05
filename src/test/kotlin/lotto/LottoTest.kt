@@ -2,8 +2,6 @@ package lotto
 
 import lotto.controller.LottoController
 import lotto.model.Lotto
-import lotto.view.InputView
-import lotto.view.OutputView
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -11,8 +9,6 @@ import util.Constants.LOTTO_MAX_NUMBER
 import util.Constants.LOTTO_MIN_NUMBER
 
 class LottoTest {
-    private val inputView = InputView()
-    private val outputView = OutputView()
     private val lottoController = LottoController()
 
     @Test
