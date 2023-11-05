@@ -21,6 +21,16 @@ class Lotto(private val numbers: List<Int>) {
 
     fun printLottoNumber() {}
 
-    fun resultOfLotto(result: Pair<Int, Boolean>) {}
+    fun resultOfLotto(result: Pair<Int, Boolean>): String {
+        val (matchNumbers, matchBonus) = result
+        return when {
+            matchNumbers == 6 -> "1등"
+            matchNumbers == 5 && matchBonus -> "2등"
+            matchNumbers == 5 -> "3등"
+            matchNumbers == 4 -> "4등"
+            matchNumbers == 3 -> "5등"
+            else -> "낙첨"
+        }
+    }
 
 }
