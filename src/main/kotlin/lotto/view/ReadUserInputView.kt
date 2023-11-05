@@ -17,9 +17,10 @@ class ReadUserInputView {
 
     fun readUserWinningNumberInput(): WinningNumbers {
         val userInput = Console.readLine()
+        validator.isContainBlank(userInput)
         val splitUserInput = userInput.split(ExtraText.NUMBER_SEPARATOR.text)
         validateUserWinningNumberInput(splitUserInput)
-        return WinningNumbers(splitUserInput)
+        return WinningNumbers(splitUserInput.map { it.toInt() }.toList())
     }
 
     fun readUserBonusNumberInput(): BonusNumber {
