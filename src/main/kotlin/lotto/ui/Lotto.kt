@@ -1,13 +1,13 @@
 package lotto.ui
 
-import lotto.data.repository.LottoRepositoryImpl
-import lotto.ui.repository.LottoRepository
 import lotto.ui.viewmodel.LottoViewModel
 import lotto.utils.CommonConst
+import lotto.utils.Exceptions
 
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
+        Exceptions.validateDuplicates(numbers)
     }
 
     fun startLottoDraw(bonusNumber: Int, viewModel: LottoViewModel) {

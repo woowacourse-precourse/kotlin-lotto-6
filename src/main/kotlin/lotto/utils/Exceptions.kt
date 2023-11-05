@@ -34,6 +34,10 @@ object Exceptions {
         return input
     }
 
+    fun validateDuplicates(numbers: List<Int>) {
+        if (numbers.toSet().size!=6) throwIllegalArgumentException(CommonConst.ILLEGAL_ARGUMENT_EXCEPTION_WINNING_NUMBERS_IS_DUPLICATES)
+    }
+
     // 보너스 번호 예외처리
     fun validateBonusNumber(input: String?, winningNumbers: List<Int>): Int? {
         when {

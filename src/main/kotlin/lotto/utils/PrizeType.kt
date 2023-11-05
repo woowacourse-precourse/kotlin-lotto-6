@@ -7,8 +7,7 @@ enum class PrizeType(val price: Int) {
     FOURTH(50000),
     FIFTH(5000),
     NON(0);
-
-
+    
     companion object {
         fun getPrice(name: String?): Int {
             return values().find {

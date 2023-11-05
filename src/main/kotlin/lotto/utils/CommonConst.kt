@@ -33,6 +33,7 @@ object CommonConst {
     const val ILLEGAL_ARGUMENT_EXCEPTION_WINNING_NUMBERS_IS_NOT_DIGIT = "[ERROR] 숫자가 아닌 값을 입력하셨습니다. 다시 입력해주세요."
     const val ILLEGAL_ARGUMENT_EXCEPTION_WINNING_NUMBERS = "[ERROR] 유효하지 않은 번호입니다. 6자리의 서로다른 번호를 입력해주세요"
     const val ILLEGAL_ARGUMENT_EXCEPTION_WINNING_NUMBERS_OUT_OF_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."
+    const val ILLEGAL_ARGUMENT_EXCEPTION_WINNING_NUMBERS_IS_DUPLICATES = "[ERROR] 중복되지 않은 번호를 입력해주세요."
 
     // bonus number
     const val ILLEGAL_ARGUMENT_EXCEPTION_BONUS_NUMBER_CONTAIN_WINNING_NUMBER = "[ERROR] 보너스 숫자는 추첨 번호와 다른 값을 입력해주세요."
