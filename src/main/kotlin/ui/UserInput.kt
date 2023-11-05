@@ -1,6 +1,7 @@
 package ui
 
 import camp.nextstep.edu.missionutils.Console
+import util.Constants.MSG_INPUT_BONUS_NUMBER
 import util.Constants.MSG_INPUT_MONEY
 import util.Constants.MSG_INPUT_WIN_NUMBERS
 import util.Validator
@@ -33,6 +34,18 @@ object UserInput {
         Validator.checkProperNumbersSize(winNumbers)
 
         return winNumbers
+    }
+
+    fun readBonusNumber(): Int {
+        println(MSG_INPUT_BONUS_NUMBER)
+        val input = Console.readLine()
+        Validator
+            .checkIsDigit(input)
+            .checkIsEmptyString(input)
+
+        val bonus = input.toInt()
+        Validator.checkNumberInRange(bonus)
+        return bonus
     }
 }
 
