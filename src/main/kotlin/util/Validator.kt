@@ -23,6 +23,14 @@ object Validator {
         return this
     }
 
+    fun checkIsDivisibleByThousand(money: Int): Validator {
+        require(
+            money >= 1000 &&
+            money % 1000 == 0
+        )
+        return this
+    }
+
     fun checkProperNumbersSize(numbers: List<Int>): Validator {
         require(
             numbers.distinct()
