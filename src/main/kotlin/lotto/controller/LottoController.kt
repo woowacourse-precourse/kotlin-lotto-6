@@ -4,14 +4,21 @@ import camp.nextstep.edu.missionutils.Randoms
 import lotto.model.Lotto
 import lotto.view.InputView
 import lotto.view.OutputView
+import util.Constants.FIFTH_RANK
 import util.Constants.FIFTH_PRIZE_AMOUNT
+import util.Constants.FIRST_RANK
 import util.Constants.FIRST_PRIZE_AMOUNT
+import util.Constants.FOURTH_RANK
 import util.Constants.FOURTH_PRIZE_AMOUNT
 import util.Constants.LOTTO_AMOUNT_UNIT
 import util.Constants.LOTTO_MAX_NUMBER
 import util.Constants.LOTTO_MIN_NUMBER
 import util.Constants.LOTTO_TOTAL_NUMBER
+import util.Constants.NO_RANK
+import util.Constants.NO_PRIZE_AMOUNT
+import util.Constants.SECOND_RANK
 import util.Constants.SECOND_PRIZE_AMOUNT
+import util.Constants.THIRD_RANK
 import util.Constants.THIRD_PRIZE_AMOUNT
 
 class LottoController {
@@ -110,12 +117,12 @@ class LottoController {
         val winningRanks = mutableListOf(0, 0, 0, 0, 0, 0)
         for (winningStatistic in winningStatistics) {
             val winningRank = when {
-                winningStatistic.first == 6 -> 1
-                winningStatistic.first == 5 && winningStatistic.second -> 2
-                winningStatistic.first == 5 -> 3
-                winningStatistic.first == 4 -> 4
-                winningStatistic.first == 3 -> 5
-                else -> 0
+                winningStatistic.first == 6 -> FIRST_RANK
+                winningStatistic.first == 5 && winningStatistic.second -> SECOND_RANK
+                winningStatistic.first == 5 -> THIRD_RANK
+                winningStatistic.first == 4 -> FOURTH_RANK
+                winningStatistic.first == 3 -> FIFTH_RANK
+                else -> NO_RANK
             }
             winningRanks[winningRank] += 1
         }
@@ -124,8 +131,7 @@ class LottoController {
 
     fun getRateOfReturn(purchaseAmount: Int, winningRanks: List<Int>) {
         var winningAmount = 0.0
-
-        for (winningRank in 1..5) {
+        for (winningRank in FIRST_RANK..FIFTH_RANK) {
             winningAmount += calculateWinningAmount(winningRank, winningRanks[winningRank])
         }
         val rateOfReturn = (winningAmount / purchaseAmount) * 100
@@ -134,12 +140,12 @@ class LottoController {
 
     fun calculateWinningAmount(winningRank: Int, numberOfWinningRank: Int): Int {
         return when (winningRank) {
-            1 -> FIRST_PRIZE_AMOUNT * numberOfWinningRank
-            2 -> SECOND_PRIZE_AMOUNT * numberOfWinningRank
-            3 -> THIRD_PRIZE_AMOUNT * numberOfWinningRank
-            4 -> FOURTH_PRIZE_AMOUNT * numberOfWinningRank
-            5 -> FIFTH_PRIZE_AMOUNT * numberOfWinningRank
-            else -> 0
+            FIRST_RANK -> FIRST_PRIZE_AMOUNT * numberOfWinningRank
+            SECOND_RANK -> SECOND_PRIZE_AMOUNT * numberOfWinningRank
+            THIRD_RANK -> THIRD_PRIZE_AMOUNT * numberOfWinningRank
+            FOURTH_RANK -> FOURTH_PRIZE_AMOUNT * numberOfWinningRank
+            FIFTH_RANK -> FIFTH_PRIZE_AMOUNT * numberOfWinningRank
+            else -> NO_PRIZE_AMOUNT
         }
     }
 }
