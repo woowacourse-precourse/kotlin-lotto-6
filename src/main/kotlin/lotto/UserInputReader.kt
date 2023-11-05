@@ -2,30 +2,40 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import utils.LottoPurchaseValidator
+import utils.WinningNumbersValidator
 import utils.createErrMsg
 import java.lang.IllegalArgumentException
 
 class UserInputReader {
 
     private val purchaseValidator = LottoPurchaseValidator()
+    private val winningNumbersValidator = WinningNumbersValidator()
 
     fun getPrice(): Int {
-        var input: String
+        var userInput: String
         var isValid: Boolean
         do {
             println(ENTER_PRICE_MSG)
-            input = Console.readLine()
+            userInput = Console.readLine()
             isValid = try {
-                purchaseValidator.checkInputValidation(input)
+                purchaseValidator.checkInputValidation(userInput)
             } catch (e: IllegalArgumentException) {
                 println(createErrMsg(e.message ?: "Unknown error"))
                 false
             }
         } while (!isValid)
-        return input.toInt()
+        return userInput.toInt()
+    }
+
+    fun getWinningNumbers() {
+        println(ENTER_WINNING_NUMBERS_MSG)
+        val userInput = Console.readLine()
+        userInput.split(DELIMITER)
     }
 
     companion object {
         const val ENTER_PRICE_MSG = "구입금액을 입력해 주세요."
+        const val ENTER_WINNING_NUMBERS_MSG = "\n당첨 번호를 입력해 주세요."
+        const val DELIMITER = ","
     }
 }
