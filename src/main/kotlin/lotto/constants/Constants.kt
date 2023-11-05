@@ -16,3 +16,7 @@ const val secondPrize = 30000000
 const val thirdPrize = 1500000
 const val fourthPrize = 50000
 const val fifthPrize = 5000
+
+const val winningStatisticsMessage = "당첨 통계"
+const val winningStatisticsDivider = "---"
+const val bonusMessage = ", 보너스 볼 일치"
