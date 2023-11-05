@@ -22,10 +22,10 @@ class BonusNumberValidator : IntegerInputValidator() {
     }
 
     fun validateDuplicateValueWithWinningNumber(bonusNumber: Int, winningNumbers: List<Int>) {
-        require(!winningNumbers.contains(bonusNumber)) { DUPLICATE_NUMBER_ERR_MSG }
+        require(!winningNumbers.contains(bonusNumber)) { DUPLICATE_WITH_WINNER_NUMBERS_ERR_MSG }
     }
 
     companion object {
-        const val DUPLICATE_NUMBER_ERR_MSG = "보너스 번호는 당첨 번호와 동일한 숫자가 될 수 없습니다."
+        const val DUPLICATE_WITH_WINNER_NUMBERS_ERR_MSG = "보너스 번호는 당첨 번호와 동일한 숫자가 될 수 없습니다."
     }
 }

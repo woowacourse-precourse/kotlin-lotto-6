@@ -13,6 +13,7 @@ class WinningNumbersValidator : IntegerInputValidator() {
             input.toInt()
         }
         validateOutOfRange(numbers)
+        validateDuplicateNumbers(numbers)
         return true
     }
 
@@ -35,5 +36,13 @@ class WinningNumbersValidator : IntegerInputValidator() {
                 )
             }
         }
+    }
+
+    fun validateDuplicateNumbers(numbers: List<Int>) {
+        require(numbers.toSet().size == numbers.size) { INPUT_DUPLICATE_NUMBERS_ERR_MSG }
+    }
+
+    companion object {
+        const val INPUT_DUPLICATE_NUMBERS_ERR_MSG = "중복된 숫자를 입력하실 수 없습니다."
     }
 }

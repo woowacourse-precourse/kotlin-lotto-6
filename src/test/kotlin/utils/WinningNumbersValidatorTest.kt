@@ -34,6 +34,12 @@ class WinningNumbersValidatorTest {
     }
 
     @Test
+    fun When_Duplicate_Numbers_In_WinnerNumbers_Expect_InValid() {
+        val input = "1,2,3,3,4,5".split(',').map { it.toInt() }
+        assertThrows<IllegalArgumentException> { winningNumbersValidator.validateDuplicateNumbers(input) }
+    }
+
+    @Test
     fun When_6Numbers_InValidRange_Expect_Valid() {
         val input = "1,2,3,4,5,6".split(',')
         assert(winningNumbersValidator.checkInputValidation(input))
