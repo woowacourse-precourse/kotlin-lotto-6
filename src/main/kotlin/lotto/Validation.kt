@@ -1,5 +1,7 @@
 package lotto
 
+import lotto.model.Lotto
+
 object Validation {
 
     fun validateOutOfRange(amount: String): Long {
@@ -14,5 +16,19 @@ object Validation {
 
     fun validateDuplicateNumber(numbers: List<Int>) {
         require(numbers.toSet().size == numbers.size) { Messages.EXCEPTION_DUPLICATE_NUMBER.message }
+    }
+
+    fun validateLottoNumber(str: String): Int {
+        val num = str.trim().toIntOrNull() ?: throw IllegalArgumentException(Messages.EXCEPTION_WRONG_FORMAT.message)
+        require(num in 1..45) { Messages.EXCEPTION_WRONG_RANGE_NUMBER.message }
+        return num
+    }
+
+    fun validateLengthNumber(numbers: List<Int>) {
+        require(numbers.size == 6) { Messages.EXCEPTION_LENGTH_NUMBER.message }
+    }
+
+    fun validateDuplicateBonusNumber(bonusNumber: Int, winningNumbers: List<Int>) {
+        require(!winningNumbers.contains(bonusNumber)) { Messages.EXCEPTION_DUPLICATE_NUMBER.message }
     }
 }

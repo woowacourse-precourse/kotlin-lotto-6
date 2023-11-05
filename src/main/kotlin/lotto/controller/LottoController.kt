@@ -4,6 +4,10 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.model.Lotto
 import lotto.Messages
+import lotto.Validation.validateDuplicateBonusNumber
+import lotto.Validation.validateDuplicateNumber
+import lotto.Validation.validateLengthNumber
+import lotto.Validation.validateLottoNumber
 import lotto.Validation.validateMoneyUnit
 import lotto.Validation.validateOutOfRange
 import lotto.model.Lotteries
@@ -11,7 +15,7 @@ import lotto.model.Lotteries
 class LottoController {
 
     private lateinit var lotteries: Lotteries
-    private lateinit var winningLottoNumbers: MutableList<Int>
+    private lateinit var winningLotto: MutableList<Int>
 
     private var bonusLottoNumber: Int = 0
 
@@ -26,7 +30,7 @@ class LottoController {
         while (true) {
             try {
                 val amount = Console.readLine()
-                val num = validateLottoAmount(amount)
+                val num = checkLottoAmount(amount)
                 createLotteries(num)
                 break
             } catch (e: IllegalArgumentException) {
@@ -35,7 +39,7 @@ class LottoController {
         }
     }
 
-    fun validateLottoAmount(amount: String): Long {
+    fun checkLottoAmount(amount: String): Long {
         val num = validateOutOfRange(amount)
         validateMoneyUnit(num)
         return num / 1000L
@@ -55,14 +59,33 @@ class LottoController {
 
     private fun inputWinningLottoNumbers() {
         println("\n" + Messages.TEXT_INPUT_WINNING_LOTTO_NUMBER.message)
-        val numbers = Console.readLine()
-        numbers.split(",").forEach {
-            winningLottoNumbers.add(it.toInt())
+        while (true) {
+            try {
+                val numbers = Console.readLine()
+                winningLotto = mutableListOf()
+                numbers.split(",").forEach {
+                    winningLotto.add(validateLottoNumber(it))
+                }
+                validateLengthNumber(winningLotto)
+                validateDuplicateNumber(winningLotto)
+                break
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
         }
     }
 
     private fun inputBonusLottoNumber() {
         println("\n" + Messages.TEXT_INPUT_BONUS_LOTTO_NUMBER.message)
-        bonusLottoNumber = Console.readLine().toInt()
+        while (true) {
+            try {
+                val number = Console.readLine()
+                bonusLottoNumber = validateLottoNumber(number)
+                validateDuplicateBonusNumber(bonusLottoNumber, winningLotto)
+                break
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 }
