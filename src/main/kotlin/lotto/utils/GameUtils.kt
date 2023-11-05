@@ -17,7 +17,9 @@ object GameUtils {
                 + lottoState.fourthPrizeCount * PrizeType.getPrice(PrizeType.FOURTH.name)
                 + lottoState.fifthPrizeCount * PrizeType.getPrice(PrizeType.FIFTH.name))
 
-    
+    private fun parseToRate(prize: Double, size: Int): Double =
+        (prize / size.toDouble().multiplyByThousand()).multiplyByHundred()
+
     // 로또 생성
     fun generateLotto(count: Int): List<List<Int>> {
         val lottoNumbersList = mutableListOf<List<Int>>()
