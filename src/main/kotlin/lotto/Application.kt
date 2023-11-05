@@ -11,16 +11,10 @@ val NUMBERS = mutableSetOf<Int>()
 var BONUS_NUMBER: Int? = null
 
 fun main() {
-    while (MONEY == null) {
-        inputMoney()
-    }
+    while (MONEY == null) inputMoney()
     makeLottoes()
-    while (NUMBERS.size != 6) {
-        inputNumbers()
-    }
-    while (BONUS_NUMBER == null) {
-        inputBonusNumber()
-    }
+    while (NUMBERS.size != 6) inputNumbers()
+    while (BONUS_NUMBER == null) inputBonusNumber()
     countMatchedNumbers()
     countJackpot()
     showJackpotCount()
@@ -161,8 +155,11 @@ fun showReturn() {
     for (item in LottoPrize.entries) {
         prize += item.prize * item.jackpot
     }
-    val roundedPercentage = (Math.round((((prize - MONEY!!) / MONEY!!) * 100).toDouble() * 10) / 10).toDouble()
-    println("총 수익률은 ${roundedPercentage}%입니다.")
+
+    var roundedPercentage = (prize - MONEY!!) / MONEY!!.toDouble() * 100
+    if (roundedPercentage < 0) roundedPercentage += 100
+
+    println("총 수익률은 ${String.format("%.1f", roundedPercentage)}%입니다.")
 }
 
 fun throwErrorMessage(text: String) {
