@@ -1,12 +1,14 @@
 package ui
 
+import domain.Lotto
+
 class OutputManager {
     fun promptPurchaseAmount() = println(OutputMessages.PROMPT_PURCHASE_AMOUNT)
     fun invalidPurchaseAmount() = println("${OutputMessages.INVALID_PURCHASE_AMOUNT} ${OutputMessages.RE_TRY}")
     fun invalidLottoNumbers() = println("${OutputMessages.INVALID_LOTTO_NUMBERS} ${OutputMessages.RE_TRY}")
     fun invalidBonusNumber() = println("${OutputMessages.INVALID_BONUS_NUMBER} ${OutputMessages.RE_TRY}")
     fun purchaseLottoCount(lottoCount: Int) = println(OutputMessages.PURCHASE_LOTTO_COUNT.toString().format(lottoCount))
-    fun lottoNumbers(lottoNumber: List<Int>) = println(lottoNumber)
+    fun lottoNumbers(lottoNumber: List<Lotto>) { lottoNumber.forEach { println(it.getNumbers()) } }
     fun promptJackpotNumbers() = println(OutputMessages.PROMPT_JACKPOT_NUMBERS)
     fun promptBonusNumber() = println(OutputMessages.PROMPT_BONUS_NUMBER)
     fun lottoStats() = println(OutputMessages.LOTTO_STATS)
