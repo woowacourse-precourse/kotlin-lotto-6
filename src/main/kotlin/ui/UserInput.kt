@@ -10,14 +10,19 @@ import util.Validator
 
 object UserInput {
 
-    fun readMoney(): Int {
-        println(MSG_INPUT_MONEY)
+    private fun readOnlyDigit(): String {
         val input = Console.readLine()
         Validator
             .checkIsDigit(input)
             .checkIsEmptyString(input)
 
-        val money = input.toInt()
+        return input
+    }
+
+    fun readMoney(): Int {
+        println(MSG_INPUT_MONEY)
+
+        val money = readOnlyDigit().toInt()
         Validator.checkPurchaseRange(money)
 
         return money
@@ -25,12 +30,8 @@ object UserInput {
 
     fun readWinNumbers(): List<Int> {
         println(MSG_INPUT_WIN_NUMBERS)
-        val input = Console.readLine()
-        Validator
-            .checkIsDigit(input)
-            .checkIsEmptyString(input)
 
-        val winNumbers = inputToNumbersByComma(input)
+        val winNumbers = inputToNumbersByComma(readOnlyDigit())
         Validator.checkProperNumbersSize(winNumbers)
 
         return winNumbers
@@ -38,12 +39,8 @@ object UserInput {
 
     fun readBonusNumber(): Int {
         println(MSG_INPUT_BONUS_NUMBER)
-        val input = Console.readLine()
-        Validator
-            .checkIsDigit(input)
-            .checkIsEmptyString(input)
 
-        val bonus = input.toInt()
+        val bonus = readOnlyDigit().toInt()
         Validator.checkNumberInRange(bonus)
         return bonus
     }
