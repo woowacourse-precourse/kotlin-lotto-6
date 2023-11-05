@@ -6,5 +6,5 @@ enum class Position {
     Third,
     Fourth,
     Fifth,
-    NoLuck
+    NoLuck,
 }

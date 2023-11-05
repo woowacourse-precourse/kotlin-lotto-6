@@ -25,11 +25,13 @@ class LottoTest {
         val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
         assertEquals(lotto.toString(), "[1, 2, 3, 4, 5, 6]")
     }
+
     @Test
     fun `로또 번호 정렬 테스트`() {
         val lotto = Lotto(listOf(6, 5, 4, 3, 2, 1))
         assertEquals(lotto.toString(), "[1, 2, 3, 4, 5, 6]")
     }
+
     @Test
     fun `로또번호 겹치는 개수 알아내기 테스트`() {
         val userLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
