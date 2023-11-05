@@ -10,7 +10,7 @@ private const val FIVE_MATCH_MSG = "5개 일치 (1,500,000원) - %d개"
 private const val FIVE_BONUS_MATCH_MSG = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"
 private const val SIX_MATCH_MSG = "6개 일치 (2,000,000,000원) - %d개"
 
-private const val WINNING_STATS_HEADER_MSG = "당첨 통계\n" + "---"
+private const val WINNING_STATS_HEADER_MSG = "\n당첨 통계\n" + "---"
 
 private const val PROFIT_RATE_MSG = "총 수익률은 %.1f%%입니다."
 
@@ -35,7 +35,7 @@ class OutputView {
         println("\n$LOTTO_BONUS_NUM_MSG")
     }
 
-    fun printLottoResult(result: List<Int>) {
+    private fun printWinningResult(result: List<Int>) {
         val formats = listOf(
             THREE_MATCH_MSG,
             FOUR_MATCH_MSG,
@@ -45,13 +45,21 @@ class OutputView {
         )
 
         formats.forEachIndexed { index, format ->
-            println(String.format(format,result[index]))
+            println(String.format(format, result[index]))
         }
     }
-    fun printWinningStatsHeader(){
+
+    private fun printWinningStatsHeader() {
         println(WINNING_STATS_HEADER_MSG)
     }
-    fun printProfitRate(profitRate:Double){
+
+    private fun printProfitRate(profitRate: Double) {
         println(PROFIT_RATE_MSG.format(profitRate))
+    }
+
+    fun printWinningStats(result: List<Int>, profitRate: Double) {
+        printWinningStatsHeader()
+        printWinningResult(result)
+        printProfitRate(profitRate)
     }
 }

@@ -35,11 +35,9 @@ class LottoProgram {
         lottoResultAnalyzer.analyzeLottoResults(lottoResult)
 
         val analyzedResult = lottoResultAnalyzer.getAnalyzedLottoResults()
-
-        outputView.printLottoResult(analyzedResult)
-
         lottoResultAnalyzer.calculateProfitRate(userInput.toInt())
-        outputView.printProfitRate(lottoResultAnalyzer.profitRate)
+
+        outputView.printWinningStats(analyzedResult,lottoResultAnalyzer.profitRate)
     }
 
     companion object {
