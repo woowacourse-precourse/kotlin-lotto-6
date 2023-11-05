@@ -24,12 +24,12 @@
   - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다
 
 ## 기능 목록
-- [] 로또 구입 금액을 1000원 단위로 입력받는다
-  - [] 공백 문자를 제거한다
-  - [] 쉼표를 제거한다
-  - [] `ERROR` : 아무런 값을 입력하지 않았을 시  `IllegalArgumentException` 발생
-  - [] `ERROR` : 숫자가 아닐 시 `IllegalArgumentException` 발생
-  - [] `ERROR` : 1,000원으로 나누어 떨어지지 않으면 `IllegalArgumentException` 발생
+- [x] 로또 구입 금액을 1000원 단위로 입력받는다
+  - [x] 공백 문자를 제거한다
+  - [x] 쉼표를 제거한다
+  - [x] `ERROR` : 아무런 값을 입력하지 않았을 시  `IllegalArgumentException` 발생
+  - [x] `ERROR` : 숫자가 아닐 시 `IllegalArgumentException` 발생
+  - [x] `ERROR` : 1,000원으로 나누어 떨어지지 않으면 `IllegalArgumentException` 발생
 
 
 - [] 발행한 로또 수량을 출력한다

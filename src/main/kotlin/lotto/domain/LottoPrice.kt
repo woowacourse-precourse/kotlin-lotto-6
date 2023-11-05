@@ -2,12 +2,12 @@ package lotto.domain
 
 import lotto.validator.PurchasePriceValidator
 
-class LottoPrice(private val value: Int) {
+class LottoPrice(private val value: String) {
     init {
-        PurchasePriceValidator()
+        PurchasePriceValidator(value)
     }
 
     fun getNumberOfTickets(): Int {
-        return value / 1000
+        return value.toInt() / 1000
     }
 }
