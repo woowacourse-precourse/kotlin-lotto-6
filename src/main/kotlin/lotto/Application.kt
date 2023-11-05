@@ -8,7 +8,7 @@ fun main() {
     lottoGenerator.create()
 
     UserOutput.printPurchaseResult(lottoGenerator.lottos.size)
-    for (lotto in lottoGenerator.lottos) println(lotto.toAscendingList())
+    lottoGenerator.printLotto()
 
     val lottoResult = LottoResult().apply {
         this.winLotto = Lotto(UserInput.readWinNumbers())

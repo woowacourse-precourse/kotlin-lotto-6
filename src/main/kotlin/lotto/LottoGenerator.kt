@@ -14,5 +14,9 @@ class LottoGenerator(var money: Int = 0) {
         for (i in 1..moneyToCountByThousand()) lottos.add(Lotto())
     }
 
+    fun printLotto() {
+        for (lotto in lottos) println(lotto.toAscendingList())
+    }
+
     private fun moneyToCountByThousand() = money / 1000
 }
