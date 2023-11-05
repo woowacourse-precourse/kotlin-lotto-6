@@ -19,4 +19,16 @@ class OutputView {
     fun printHorizon() {
         println("---")
     }
+    private fun printNumberOfGame(game: Int) {
+        println("%d개를 구매했습니다.".format(game))
+    }
+    private fun printPurchaseAGame(number: List<Int>) {
+        println(number)
+    }
+    fun printPurchase(game: Int, numbers: List<List<Int>>) {
+        printNumberOfGame(game)
+        for (number in numbers) {
+            printPurchaseAGame(number)
+        }
+    }
 }
