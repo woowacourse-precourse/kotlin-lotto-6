@@ -8,7 +8,16 @@ object GameUtils {
     fun divideByThousand(price: Int) = price.div(1000)
     private fun Double.multiplyByThousand() = this.times(1000)
     private fun Double.multiplyByHundred() = this.times(100)
-   
+    fun parseToInt(num: String) = num.split(",").map { it.trim().toInt() }
+
+    private fun calculateTotalPrize(lottoState: UserLottoState) =
+        (lottoState.firstPrizeCount * PrizeType.getPrice(PrizeType.FIRST.name)
+                + lottoState.secondPrizeCount * PrizeType.getPrice(PrizeType.SECOND.name)
+                + lottoState.thirdPrizeCount * PrizeType.getPrice(PrizeType.THIRD.name)
+                + lottoState.fourthPrizeCount * PrizeType.getPrice(PrizeType.FOURTH.name)
+                + lottoState.fifthPrizeCount * PrizeType.getPrice(PrizeType.FIFTH.name))
+
+    
     // 로또 생성
     fun generateLotto(count: Int): List<List<Int>> {
         val lottoNumbersList = mutableListOf<List<Int>>()
