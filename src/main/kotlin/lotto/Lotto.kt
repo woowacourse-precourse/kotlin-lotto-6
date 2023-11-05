@@ -3,7 +3,8 @@ package lotto
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
+        require(numbers.toSet().size == numbers.size)
     }
 
-    // TODO: 추가 기능 구현
+    override fun toString(): String = numbers.toString()
 }
