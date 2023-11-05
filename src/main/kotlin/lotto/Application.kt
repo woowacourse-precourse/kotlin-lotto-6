@@ -7,9 +7,8 @@ fun main() {
     val money = getInputMoney()
     val lottoCount = money / 1000
     println("${lottoCount}개를 구매했습니다.")
-
-    val lottos = (1..lottoCount).map { Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)) }
-    lottos.forEach { println(it.getSortedNumbers()) }
+    val lottos = purchaseLottos(lottoCount)
+    printLottos(lottos)
 
     val winningNumbers = getWinningNumbers()
     val bonusNumber = getBonusNumber()
@@ -25,6 +24,15 @@ fun getWinningNumbers(): List<Int> {
     val winningNumbers = readLine()!!.split(",").map { it.trim().toInt() }
     validateWinningNumbers(winningNumbers)
     return winningNumbers
+}
+
+fun purchaseLottos(lottoCount: Int): List<Lotto> {
+    println("${lottoCount}개를 구매했습니다.")
+    return (1..lottoCount).map { Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)) }
+}
+
+fun printLottos(lottos: List<Lotto>) {
+    lottos.forEach { println(it.getSortedNumbers()) }
 }
 
 fun validateWinningNumbers(winningNumbers: List<Int>) {
