@@ -2,6 +2,7 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.LottoPrize as LottoPrize
 
 var MONEY: Int? = null
 val LOTTOES = mutableListOf<Lotto>()
@@ -20,6 +21,7 @@ fun main() {
         inputBonusNumber()
     }
     countMatchedNumbers()
+    countJackpot()
 }
 
 fun inputMoney() {
@@ -114,6 +116,25 @@ fun countMatchedNumbers() {
     for (item in LOTTOES) {
         item.matchingNumbers(NUMBERS)
         item.matchingBonusNumber(BONUS_NUMBER!!)
+    }
+}
+
+// 당첨금 계산
+fun countJackpot() {
+    for (item in LOTTOES) {
+        checkJackpot(item)
+    }
+}
+
+fun checkJackpot(item: Lotto) {
+    val matchedCount = item.matchedNumbersCount
+    val matchedBonus = item.matchedBonusNumber
+    when {
+        matchedCount == LottoPrize.MATCHED3.matchedNumbers -> LottoPrize.MATCHED3.incrementCount()
+        matchedCount == LottoPrize.MATCHED4.matchedNumbers -> LottoPrize.MATCHED4.incrementCount()
+        matchedCount == LottoPrize.MATCHED5.matchedNumbers && matchedBonus == LottoPrize.MATCHED5.matchedBonus -> LottoPrize.MATCHED5.incrementCount()
+        matchedCount == LottoPrize.MATCHED5_AND_BONUS.matchedNumbers && matchedBonus == LottoPrize.MATCHED5_AND_BONUS.matchedBonus -> LottoPrize.MATCHED5_AND_BONUS.incrementCount()
+        matchedCount == LottoPrize.MATCHED6.matchedNumbers -> LottoPrize.MATCHED6.incrementCount()
     }
 }
 
