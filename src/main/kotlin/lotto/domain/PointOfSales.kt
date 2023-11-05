@@ -23,4 +23,7 @@ class PointOfSales {
     private fun getRandomLottoNum() =
         Randoms.pickUniqueNumbersInRange(Lotto.START_NUM, Lotto.END_NUM, Lotto.LENGTH_OF_NUM).sorted()
 
+    companion object {
+        const val QUANTITY_SHOULD_BE_MORE_THEN_0 = "[ERROR] 구매 수량은 1개 이상이어야 합니다."
+    }
 }
