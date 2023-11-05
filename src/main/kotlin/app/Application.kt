@@ -3,7 +3,7 @@ package app
 import camp.nextstep.edu.missionutils.Console
 import lotto.Lotto
 import lotto.LottoInitializer
-import lotto.UserInterface
+import UI.UserInterface
 
 fun main() {
     val lotto = LottoInitializer()
@@ -12,6 +12,7 @@ fun main() {
 
     var price = Console.readLine().toInt()
     var amountOfLotto = lotto.dividePriceByThousand(price)
+
     for(amount in 0 until amountOfLotto) {
         val numbers = lotto.makeLottoNumber()
         val userlotto = Lotto(numbers)

@@ -1,4 +1,4 @@
-package lotto
+package UI
 
 enum class UserInterface (
     val mention : String

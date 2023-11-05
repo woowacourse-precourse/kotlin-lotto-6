@@ -21,6 +21,18 @@ class LottoInitializer {
 
     fun dividePriceByThousand(price: Int): Int{
         val amountOfLotto = price / 1000
+        checkPriceMultipleOfThousands(price)
         return amountOfLotto
+    }
+
+    fun checkPriceMultipleOfThousands(input: Int){
+        if(input % 1000 != 0){
+            throw IllegalArgumentException("[ERROR] 로또 구매 금액은 1,000원 단위로 입력 되어야 합니다.")
+        }
+    }
+
+    fun sortLottoNumber(lottoNumber: List<Int>): List<Int>{
+        var sortNumber = lottoNumber.sorted()
+        return sortNumber
     }
 }
