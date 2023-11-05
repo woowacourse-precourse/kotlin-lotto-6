@@ -1,12 +1,11 @@
 package lotto
 
 import exception.Exception
-import ui.Input
-import java.util.SimpleTimeZone
+import ui.Input.inputMoney
 
 class Buy {
     fun buyLotto(): Int {
-        val inputMoney = Input().inputMoney()
+        val inputMoney = inputMoney()
         return inputMoney / 1000
     }
 
