@@ -6,7 +6,6 @@ fun main() {
     println("구입금액을 입력해 주세요.")
     val money = getInputMoney()
     val lottoCount = money / 1000
-    println("${lottoCount}개를 구매했습니다.")
     val lottos = purchaseLottos(lottoCount)
     printLottos(lottos)
 
@@ -23,6 +22,9 @@ fun getWinningNumbers(): List<Int> {
     println("당첨 번호를 입력해 주세요.")
     val winningNumbers = readLine()!!.split(",").map { it.trim().toInt() }
     validateWinningNumbers(winningNumbers)
+    if (winningNumbers.size != 6) {
+        throw IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.")
+    }
     return winningNumbers
 }
 
