@@ -19,4 +19,11 @@ class WinningNumbersManagerTest {
             WinningNumbersManager(listOf("1", "2", "3", "33", "46", "4"))
         }
     }
+
+    @Test
+    fun `숫자가 아닌 다른 문자가 포함되어 있을 경우 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            WinningNumbersManager(listOf("1", "2", "3", "33", "test", "4"))
+        }
+    }
 }
