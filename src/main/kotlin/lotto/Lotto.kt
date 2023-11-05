@@ -7,4 +7,8 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     override fun toString(): String = numbers.toString()
+
+    fun countSameNumber(winningNumbers: List<Int>): Int = numbers.count { it in winningNumbers }
+
+    fun hasBonusNumber(bonusNumber: Int): Boolean = numbers.contains(bonusNumber)
 }
