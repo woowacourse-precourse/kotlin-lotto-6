@@ -9,6 +9,7 @@ class ValidateSplit {
             validateInputZero(it)
             validateInputNotNumber(it)
         }
+        validateDuplicateBonusNumber(myNumbers)
         validateMyNumbersRange(myNumbers)
         return myNumbers
     }
@@ -26,5 +27,10 @@ class ValidateSplit {
         { "${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_OVER_RANGE_MESSAGE}" }
     }
 
+    private fun validateDuplicateBonusNumber(x: List<String>) {
+        require(x.toSet().size == x.size) {
+            "${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_DUPLICATED_MESSAGE}"
+        }
+    }
 
 }
