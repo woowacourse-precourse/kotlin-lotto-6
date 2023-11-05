@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Console
 import lotto.domain.*
 
 object InputView {
-
-
     fun enterMoney(): Int {
         val input = Console.readLine()
         try{
@@ -23,9 +21,8 @@ object InputView {
         val input = Console.readLine()
         val splitInput = input.split(",")
         try {
-            val validNumber = winningNumberErrorCheck(input, splitInput)
-            return validNumber
-        }catch (e:IllegalArgumentException){
+            return winningNumberErrorCheck(input, splitInput)
+        } catch (e: IllegalArgumentException) {
             println("[ERROR] ${e.message}")
         }
         return enterWinningNumber()
@@ -35,7 +32,6 @@ object InputView {
         val bonus = Console.readLine()
         try{
             return bonusNumberErrorCheck(winningNumber, bonus)
-
         }catch (e:IllegalArgumentException){
             println("[ERROR] ${e.message}")
         }
