@@ -11,17 +11,25 @@ class LottoGame(
 ) {
     fun startGame() {
         val price = userInputReader.getPrice()
+        val lottoTickets = generateLottoTickets(price)
 
+        determineWiningResult(lottoTickets)
+        gameConsole.showEarningRate(lottoResultChecker.calculateEarningRate(price))
+    }
+
+    private fun generateLottoTickets(price: Int): List<Lotto> {
         val numOfLotto = lottoMachine.calculateNumberOfLotto(price)
         val lottoTickets = lottoMachine.getLottoTickets(numOfLotto)
-        gameConsole.showLottoTickets(lottoTickets, numOfLotto)
 
+        gameConsole.showLottoTickets(lottoTickets, numOfLotto)
+        return lottoTickets
+    }
+
+    private fun determineWiningResult(lottoTickets: List<Lotto>) {
         val winningNumbers = userInputReader.getWinningNumbers()
         val bonusNum = userInputReader.getBonusNumber(winningNumbers)
+        val winningResult = lottoResultChecker.compareLottoTicketsWithWinningNumbers(lottoTickets, winningNumbers, bonusNum)
 
-        val winningResult =
-            lottoResultChecker.compareLottoTicketsWithWinningNumbers(lottoTickets, winningNumbers, bonusNum)
         gameConsole.showWinningStatistic(winningResult)
-
     }
 }
