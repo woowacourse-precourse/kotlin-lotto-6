@@ -38,6 +38,8 @@ class LottoController(private val lottoView: LottoView, private val lotto: Lotto
 
 
     private fun displayWinningStatistics(winnings: Map<LottoRank, Int>, purchaseAmount: Int) {
+        println("\n당첨 통계")
+        println("---")
 
         for (rank in LottoRank.entries) {
             if (rank != LottoRank.NONE) {
@@ -46,6 +48,11 @@ class LottoController(private val lottoView: LottoView, private val lotto: Lotto
                 println("${rank.matchCount}개 일치 (${prize}원) - ${count}개")
             }
         }
+
+        val totalPrize = winnings.entries.sumBy { (rank, count) -> rank.prize * count }
+        val totalProfitRate = (totalPrize - purchaseAmount).toDouble() / purchaseAmount * 100
+
+        println("총 수익률은 $totalProfitRate%입니다.")
     }
 
     fun run() {
