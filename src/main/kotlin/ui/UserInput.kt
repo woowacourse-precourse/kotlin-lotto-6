@@ -3,6 +3,8 @@ package ui
 import camp.nextstep.edu.missionutils.Console
 
 const val MSG_INPUT_MONEY = "구입금액을 입력해 주세요."
+const val MSG_INPUT_WIN_NUMBERS = "당첨 번호를 입력해 주세요."
+const val MSG_INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요."
 
 const val MAX_PURCHASE_MONEY = 100_000
 const val MIN_PURCHASE_MONEY = 1000
@@ -21,7 +23,24 @@ object UserInput {
 
         return money
     }
+
+    fun readWinNumbers(): List<Int> {
+        println(MSG_INPUT_WIN_NUMBERS)
+        val input = Console.readLine()
+        InputValidator
+            .checkIsDigit(input)
+            .checkIsEmptyString(input)
+
+        val winNumbers = inputToNumbersByComma(input)
+
+        return winNumbers
+    }
 }
+
+private fun inputToNumbersByComma(input: String) =
+    input.split(",")
+        .map { it.toInt() }
+        .distinct()
 
 object InputValidator {
 
