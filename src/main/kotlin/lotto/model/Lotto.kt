@@ -7,13 +7,13 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
     }
 
-    fun getLottoState(): List<LottoState> {
-        return numbers.map { LottoState(it) }
+    fun getLottoState(): List<Int> {
+        return numbers
     }
 
     companion object {
         fun makeLotto(randomLottoGenerator: RandomGenerator): Lotto {
-            return Lotto(randomLottoGenerator.pickNumberInRange(0, 45, 6))
+            return Lotto(randomLottoGenerator.pickNumberInRange(1, 45, 6))
         }
     }
 }
