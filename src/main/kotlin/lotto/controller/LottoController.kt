@@ -26,44 +26,15 @@ class LottoController {
     private val outputView = OutputView()
 
     fun run() {
-        var purchaseAmount: Int
-        var winningNumbers: List<Int>
-        var bonusNumber: Int
-
-        while (true) {
-            try {
-                outputView.printPurchaseAmountInstruction()
-                purchaseAmount = inputView.inputPurchaseAmount()
-                break
-            } catch (illegalArgumentException: IllegalArgumentException) {
-                outputView.printErrorMessage(illegalArgumentException.message.toString())
-            }
-        }
-
+        val purchaseAmount = getInputWithValidation("purchaseAmount") { inputView.inputPurchaseAmount() }
         val numberOfPurchase = getNumberOfPurchase(purchaseAmount)
+
         val lottos: List<Lotto> = makeLottos(numberOfPurchase)
         outputView.printNumberOfPurchases(lottos.size)
         lottos.forEach { lotto -> outputView.printLotto(lotto) }
 
-        while (true) {
-            try {
-                outputView.printWinningNumbersInstruction()
-                winningNumbers = inputView.inputWinningNumbers()
-                break
-            } catch (illegalArgumentException: IllegalArgumentException) {
-                outputView.printErrorMessage(illegalArgumentException.message.toString())
-            }
-        }
-
-        while (true) {
-            try {
-                outputView.printBonusNumberInstruction()
-                bonusNumber = inputView.inputBonusNumber(winningNumbers)
-                break
-            } catch (illegalArgumentException: IllegalArgumentException) {
-                outputView.printErrorMessage(illegalArgumentException.message.toString())
-            }
-        }
+        val winningNumbers = getInputWithValidation("winningNumbers") { inputView.inputWinningNumbers() }
+        val bonusNumber = getInputWithValidation("bonusNumber") { inputView.inputBonusNumber(winningNumbers) }
 
         val winningStatistics = getWinningStatistics(lottos, winningNumbers, bonusNumber)
         outputView.printWinningStatisticsInstruction()
@@ -72,6 +43,21 @@ class LottoController {
         val totalWinningAmount = getTotalWinningAmount(winningStatistics)
         val rateOfReturn = getRateOfReturn(purchaseAmount, totalWinningAmount)
         outputView.printRateOfReturn(rateOfReturn)
+    }
+
+    fun <T> getInputWithValidation(input: String, inputFunction: () -> T): T {
+        return try {
+            when (input) {
+                "purchaseAmount" -> outputView.printPurchaseAmountInstruction()
+                "winningNumbers" -> outputView.printWinningNumbersInstruction()
+                "bonusNumber" -> outputView.printBonusNumberInstruction()
+            }
+            val inputResult = inputFunction()
+            inputResult
+        } catch (illegalArgumentException: IllegalArgumentException) {
+            outputView.printErrorMessage(illegalArgumentException.message.toString())
+            getInputWithValidation(input, inputFunction)
+        }
     }
 
     fun getNumberOfPurchase(purchaseAmount: Int): Int {
