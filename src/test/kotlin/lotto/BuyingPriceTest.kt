@@ -5,6 +5,7 @@ import org.junit.jupiter.api.assertThrows
 import util.Validator.containsOnlyDigits
 import util.Validator.isAmountInThousandWon
 import util.Validator.isEmptyValue
+import util.Validator.isValidNumberFormat
 
 class BuyingPriceTest {
     @Test
@@ -31,7 +32,7 @@ class BuyingPriceTest {
     @Test
     fun `올바른 숫자 형태를 입력하지 않았을 경우 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
-            require("03262".first() == '0')
+            isValidNumberFormat("000123")
         }
     }
 }
