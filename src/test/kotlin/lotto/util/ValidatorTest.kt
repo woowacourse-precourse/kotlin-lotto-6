@@ -35,19 +35,15 @@ class ValidatorTest {
     fun validateRangeTest() {
         assertSimpleTest {
             assertThrows<IllegalArgumentException> {
-                validateRange("-1000")
+                validateRange(-1000)
             }
 
             assertThrows<IllegalArgumentException> {
-                validateRange("999")
+                validateRange(999)
             }
 
             assertThrows<IllegalArgumentException> {
-                validateRange("0")
-            }
-
-            assertThrows<IllegalArgumentException> {
-                validateRange("${Int.MAX_VALUE.toLong() + 1}")
+                validateRange(0)
             }
         }
     }
@@ -57,15 +53,11 @@ class ValidatorTest {
     fun validate1000UnitTest() {
         assertSimpleTest {
             assertThrows<IllegalArgumentException> {
-                validate1000Unit("1001")
+                validate1000Unit(1001)
             }
 
             assertThrows<IllegalArgumentException> {
-                validate1000Unit("2001")
-            }
-
-            assertThrows<IllegalArgumentException> {
-                validate1000Unit("10001")
+                validate1000Unit(2001)
             }
         }
     }

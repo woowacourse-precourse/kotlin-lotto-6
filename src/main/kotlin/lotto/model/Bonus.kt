@@ -2,20 +2,17 @@ package lotto.model
 
 
 import lotto.util.Validator.validateContain
-import lotto.util.Validator.validateInteger
-import lotto.util.Validator.validateNotNull
 import lotto.util.Validator.validateNumberRange
 
-class Bonus(private val bonus: String) {
+class Bonus(private val _number: Int) {
+    val number: Int
+        get() = _number
+
     init {
-        validateNotNull(bonus)
-        validateInteger(bonus)
-        validateNumberRange(bonus.toInt())
+        validateNumberRange(_number)
     }
 
     fun checkUniqueNumber(numbers: List<Int>) {
-        validateContain(numbers, bonus.toInt())
+        validateContain(numbers, _number)
     }
-
-    fun getNumber(): Int = bonus.toInt()
 }

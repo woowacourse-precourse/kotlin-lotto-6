@@ -21,9 +21,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
         settingLotto()
         settingBonusNumber()
         checkWinningNumbers()
-        outputView.printLottoRankings(lottoRankings)
-        lottoProfit.calculateRate(lottoRankings.rank, purchaseCount.count * 1000)
-        outputView.printLottoProfitRate(lottoProfit)
+        showLottoStatistics()
     }
 
     private fun gameInit() {
@@ -41,7 +39,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
 
     private fun getPurchaseCount() {
         try {
-            val userInputPrice = inputView.getUserInput()
+            val userInputPrice = inputView.getValidIntegerInput()
             purchaseCount = PurchaseCount(userInputPrice)
         } catch (e: IllegalArgumentException) {
             println(e.message)
@@ -84,9 +82,9 @@ class LottoController(private val inputView: InputView, private val outputView: 
 
     private fun bonusNumberPublish() {
         try {
-            val userInput = inputView.getUserInput()
-            bonus = Bonus(userInput)
+            val userInput = inputView.getValidIntegerInput()
             val numbers = lotto.getWinningNumbers()
+            bonus = Bonus(userInput)
             bonus.checkUniqueNumber(numbers)
         } catch (e: IllegalArgumentException) {
             println(e.message)
@@ -95,10 +93,16 @@ class LottoController(private val inputView: InputView, private val outputView: 
     }
 
     private fun checkWinningNumbers() {
-        lottoResult = LottoResult(lotto.getWinningNumbers(), bonus.getNumber())
+        lottoResult = LottoResult(lotto.getWinningNumbers(), bonus.number)
         repeat(purchaseCount.count) { round ->
             val winning = lottoResult.calculateRanking(lottoTicket.numbers[round])
             lottoRankings.addRanking(winning)
         }
+    }
+
+    private fun showLottoStatistics() {
+        outputView.printLottoRankings(lottoRankings)
+        lottoProfit.calculateRate(lottoRankings.rank, purchaseCount.count * 1000)
+        outputView.printLottoProfitRate(lottoProfit)
     }
 }

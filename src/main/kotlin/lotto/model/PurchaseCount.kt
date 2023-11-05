@@ -5,16 +5,14 @@ import lotto.util.Validator.validateInteger
 import lotto.util.Validator.validateNotNull
 import lotto.util.Validator.validateRange
 
-class PurchaseCount(private val purchase: String) {
+class PurchaseCount(private val purchase: Int) {
     private var _count = 0
     val count: Int
         get() = _count
 
     init {
-        validateNotNull(purchase)
-        validateInteger(purchase)
         validateRange(purchase)
         validate1000Unit(purchase)
-        _count = purchase.toInt() / 1000
+        _count = purchase / 1000
     }
 }
