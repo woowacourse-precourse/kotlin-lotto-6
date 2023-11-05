@@ -1,8 +1,7 @@
 package lotto
 
-import ui.InputManager
-import ui.OutputManager
+import game.LottoGame
 
 fun main() {
-    val test = InputManager().inputJackpotNumbers { OutputManager().invalidLottoNumbers() }
+    LottoGame().startLottoGame()
 }
