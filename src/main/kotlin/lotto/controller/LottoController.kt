@@ -1,7 +1,6 @@
 package lotto.controller
 
 import lotto.model.*
-import lotto.util.Constants.LOTTO_PRICE
 import lotto.view.InputView
 import lotto.view.OutputView
 import java.lang.IllegalArgumentException
@@ -11,7 +10,7 @@ class LottoController(
     private val outputView: OutputView
 ) {
     private val lottoTicket = LottoTicket()
-    private lateinit var purchaseCount: PurchaseCount
+    private lateinit var purchase: Purchase
     private lateinit var lotto: Lotto
     private lateinit var bonus: Bonus
     private lateinit var lottoResult: LottoResult
@@ -26,7 +25,7 @@ class LottoController(
 
     private fun gameInit() {
         settingPurchaseCount()
-        lottoTicket.lottoTicketPublish(purchaseCount.count)
+        lottoTicket.lottoTicketPublish(purchase.count)
         printLottoTicket()
     }
 
@@ -47,7 +46,7 @@ class LottoController(
 
     private fun checkWinningNumbers() {
         lottoResult = LottoResult(lotto.getWinningNumbers(), bonus.number)
-        repeat(purchaseCount.count) { round ->
+        repeat(purchase.count) { round ->
             val winning = lottoResult.calculateRanking(lottoTicket.numbers[round])
             lottoRankings.addRanking(winning)
         }
@@ -61,7 +60,7 @@ class LottoController(
     private fun getPurchaseCount() {
         try {
             val userInputPrice = inputView.getValidIntegerInput()
-            purchaseCount = PurchaseCount(userInputPrice)
+            purchase = Purchase(userInputPrice)
         } catch (e: IllegalArgumentException) {
             println(e.message)
             getPurchaseCount()
@@ -69,7 +68,7 @@ class LottoController(
     }
 
     private fun printLottoTicket() {
-        outputView.printPurchaseCount(purchaseCount.count)
+        outputView.printPurchaseCount(purchase.count)
         outputView.printLottoTicket(lottoTicket)
     }
 
@@ -96,7 +95,7 @@ class LottoController(
     }
 
     private fun showLottoStatistics() {
-        val lottoProfit = LottoProfit(lottoRankings.rank, purchaseCount.count * LOTTO_PRICE)
+        val lottoProfit = LottoProfit(lottoRankings.rank, purchase.price)
         outputView.printLottoRankings(lottoRankings)
         outputView.printLottoProfitRate(lottoProfit)
     }

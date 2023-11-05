@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 class LottoTicketTest {
-    private val lottoGenerator = LottoGenerator()
     private lateinit var lottoTicket: LottoTicket
 
     @BeforeEach

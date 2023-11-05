@@ -12,15 +12,15 @@ class PurchaseCountTest {
     fun constructorTest() {
         Assertions.assertSimpleTest {
             assertThrows<IllegalArgumentException> {
-                val purchaseCount = PurchaseCount(3021)
+                val purchase = Purchase(3021)
             }
 
             assertThrows<IllegalArgumentException> {
-                val purchaseCount = PurchaseCount(1001)
+                val purchase = Purchase(1001)
             }
 
             assertThrows<IllegalArgumentException> {
-                val purchaseCount = PurchaseCount(-1000)
+                val purchase = Purchase(-1000)
             }
         }
     }
@@ -28,7 +28,7 @@ class PurchaseCountTest {
     @Test
     @DisplayName("유효한 값이 들어가면 1000원으로 나눈 값으로 초기화한다.")
     fun validConstructTest() {
-        val purchaseCount = PurchaseCount(8000)
+        val purchaseCount = Purchase(8000)
         val validation = purchaseCount.count
         val result = 8
         assertThat(validation).isEqualTo(result)
