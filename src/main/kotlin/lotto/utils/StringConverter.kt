@@ -1,4 +1,4 @@
-package lotto
+package lotto.utils
 
 fun Int.convertWithDigitComma() = "%,d".format(this)
 
