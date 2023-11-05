@@ -5,7 +5,7 @@ import lotto.validate.ValidateSplit
 import lotto.view.InputView.inputMyNumbers
 import lotto.view.OutputView.showInputMyNumbersMessage
 
-class WinningLotto {
+class LottoWinning {
     init {
         showInputMyNumbersMessage()
     }

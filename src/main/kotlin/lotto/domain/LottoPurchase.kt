@@ -4,13 +4,13 @@ import lotto.utils.Constants
 import lotto.view.OutputView.showInputBuyPriceMessage
 import lotto.view.InputView.inputBuyPrice
 
-class Purchase {
+class LottoPurchase {
     init {
         showInputBuyPriceMessage()
     }
+
     fun buyLotto(): Int {
-        val money = inputBuyPrice()
-        return money
+        return inputBuyPrice()
     }
 
     fun calculateTicket(buyPrice: Int): Int {
