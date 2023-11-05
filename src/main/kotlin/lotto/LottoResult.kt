@@ -38,10 +38,9 @@ class LottoResult(val winLotto: Lotto, val bonus: Int) {
 
         return this
     }
-    fun showProfitData(money: Int) {
-        val profit: Double = (sumTotalPrizeMoney().toDouble() / money * 100)
-        UserOutput.printProfitResult(profit)
-    }
+    fun showProfitData(money: Int) = UserOutput.printProfitResult(calculateProfit(money))
+
+    private fun calculateProfit(money: Int): Double = sumTotalPrizeMoney().toDouble() / money * 100
 
     private fun sumTotalPrizeMoney(): Long {
         var totalPrizeMoney: Long = 0

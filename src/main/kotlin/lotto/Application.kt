@@ -18,5 +18,4 @@ fun main() {
         .calculateWinLottos(lottoGenerator.lottos)
         .showWinLottoData()
         .showProfitData(lottoGenerator.money)
-
 }
