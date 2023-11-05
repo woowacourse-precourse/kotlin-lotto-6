@@ -30,4 +30,16 @@ class ClientUtil {
             exception.noCorrectLottoNumber()
         }
     }
+
+    fun checkIsDuplicated(stringInputList: List<String>) {
+        if(stringInputList.size != stringInputList.distinct().size){
+            exception.duplicatedWinPrizeList()
+        }
+    }
+
+    fun checkIsInWinNumberList(bonusNumber: Int, winNumberList: List<Int>) {
+        if(bonusNumber in winNumberList){
+            exception.bonusInWinNumberList()
+        }
+    }
 }

@@ -12,7 +12,7 @@ class LottoServer {
         createLottoRepeatByCount(count)
         client.outputUsersLotto(lottoList)
         val winNumberList = client.inputWinNumberList()
-        val bonusNumber = client.inputBonusNumber()
+        val bonusNumber = client.inputBonusNumber(winNumberList)
         val winPrizeList = computeWinPrize(winNumberList, bonusNumber)
         client.outputWinPrize(winPrizeList)
         val rateOfReturn = computeRateOfReturn(winPrizeList, count)
