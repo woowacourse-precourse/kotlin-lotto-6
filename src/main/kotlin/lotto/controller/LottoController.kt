@@ -1,20 +1,21 @@
 package lotto.controller
 
+import lotto.exception.IllegalPurchaseAmountException
+import lotto.model.Purchase
 import lotto.view.InputView
-import lotto.view.OutputView
 
-class LottoController(inputView: InputView, outputView: OutputView) {
-
-    private val inputView = InputView()
+class LottoController() {
 
     fun make() {
-        setPurchaseAmount()
-        setWinningNumber()
-        setBonusNumber()
+        val purchase = Purchase(getPurchaseAmount())
     }
 
-    private fun setPurchaseAmount() {
-        val purchaseAmount = inputView.inputPurchaseAmount()
+    private fun getPurchaseAmount(): Int {
+        try {
+            return InputView.inputPurchaseAmount()
+        } catch (e: IllegalArgumentException) {
+            throw IllegalPurchaseAmountException()
+        }
     }
 
     private fun setWinningNumber() {
