@@ -1,23 +1,22 @@
 package lotto.model
 
 import lotto.util.Constant
+import lotto.util.Constant.INPUT_PRICE_UNIT_ERROR_MESSAGE
+import lotto.util.Constant.LOTTO_BUY_ERROR_MESSAGE
 import lotto.util.Constant.UNIT_PRICE
+import lotto.util.Exception
 
-class User {
+class User(private val price : Int, private val lottoes : List<Lotto>) {
 
-    private val _lottoes: MutableList<Lotto> = mutableListOf()
-    val lottoes : List<Lotto> get() = _lottoes
-
-    private var _price = 0
-    val price get() = _price
-
-    fun setPrice(price: Int){
-        require(price % UNIT_PRICE == 0) { Constant.INPUT_PRICE_UNIT_ERROR_MESSAGE }
-        _price = price
-    }
-    fun buyLotto() {
-        repeat(_price / UNIT_PRICE) {
-            _lottoes.add(Lotto(LottoNumberGenerator.makeLottoNumber()))
+    init{
+        require(price % UNIT_PRICE ==0) { INPUT_PRICE_UNIT_ERROR_MESSAGE}
+        for(lotto in lottoes) {
+            Exception.validateLottoNumber(lotto.getLottoNumbers())
         }
+        require(price / UNIT_PRICE == lottoes.size) { LOTTO_BUY_ERROR_MESSAGE}
     }
+    fun getLottoes() = lottoes
+
+    fun getPrice() = price
+
 }

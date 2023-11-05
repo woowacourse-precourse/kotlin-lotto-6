@@ -7,7 +7,7 @@ class WinResult(private val user : User, private val winningLotto : WinningLotto
     val earningRate get() = _earningRate
 
     fun calculateResult(){
-        for(lotto in user.lottoes){
+        for(lotto in user.getLottoes()){
            val place = compareLottoNumber(lotto,winningLotto)
             _placeResult[place] = _placeResult.getOrDefault(place, 0)+1
         }
@@ -26,6 +26,6 @@ class WinResult(private val user : User, private val winningLotto : WinningLotto
         for(place in _placeResult){
             earnMoney += place.key.price * place.value
         }
-        _earningRate =  (earnMoney / user.price.toDouble()) * 100
+        _earningRate =  (earnMoney / user.getPrice().toDouble()) * 100
     }
 }
