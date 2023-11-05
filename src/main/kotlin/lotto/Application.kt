@@ -38,7 +38,7 @@ fun getInputMoney(): Int {
         money = try {
             val input = readLine() ?: throw IllegalArgumentException("구입 금액을 입력해야 합니다.")
             validateMoney(input)
-        } catch (e: Exception) {
+        } catch (e: IllegalArgumentException) {
             println("[ERROR] ${e.message}")
             0
         }
@@ -48,7 +48,7 @@ fun getInputMoney(): Int {
 
 fun validateMoney(input: String): Int {
     val money = input.toIntOrNull() ?: throw IllegalArgumentException("구입 금액은 숫자여야 합니다.")
-    if (money % 1000 != 0) {
+    if (money <= 0 || money % 1000 != 0) {
         throw IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.")
     }
     return money
