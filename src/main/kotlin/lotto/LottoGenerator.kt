@@ -1,9 +1,10 @@
 package lotto
 
+import ui.UserInput
 import ui.UserOutput
 import util.Validator
 
-class LottoGenerator(var money: Int = 0) {
+class LottoGenerator(var money: Int = UserInput.readMoney()) {
 
     val lottos: MutableList<Lotto> = mutableListOf()
 

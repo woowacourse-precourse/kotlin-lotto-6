@@ -2,18 +2,14 @@ package lotto
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class LottoResultTest {
 
-    val lottoResult = LottoResult()
-
-    @BeforeEach
-    fun init() {
-        lottoResult.winLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
-    }
-
+    private val lottoResult = LottoResult(
+        winLotto = Lotto(listOf(1, 2, 3, 4, 5, 6)),
+        bonus = 42
+    )
 
     @Test
     fun `구입한 로또 번호와 당첨 번호 6개가 일치하는 경우`() {
@@ -46,7 +42,6 @@ class LottoResultTest {
     }
     @Test
     fun `구입한 로또 번호에 보너스 번호가 있는지 확인한다`() {
-        lottoResult.bonus = 42
         val lotto = Lotto(listOf(1, 2, 3, 7, 8, 42))
 
         assertTrue(lottoResult.hasBonus(lotto))

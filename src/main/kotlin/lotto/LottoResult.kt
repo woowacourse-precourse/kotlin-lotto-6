@@ -1,12 +1,9 @@
 package lotto
 
+import ui.UserInput
 import ui.UserOutput
 
-class LottoResult() {
-
-    lateinit var winLotto: Lotto
-    var bonus = 0
-
+class LottoResult(val winLotto: Lotto, val bonus: Int) {
     fun countWinNumbers(lotto: Lotto): Int {
         return winLotto.toAscendingList()
             .intersect(lotto.toAscendingList().toSet())
