@@ -32,9 +32,10 @@ class LottoTest {
     @Test
     fun `로또 구매 개수`() {
         val purchaseAmount = 8000
+        val expectNumberOfPurchase = 8
 
-        val numberOfPurchase = lottoController.getNumberOfPurchase(purchaseAmount)
+        val actualNumberOfPurchase = lottoController.getNumberOfPurchase(purchaseAmount)
 
-        assertThat(numberOfPurchase).isEqualTo(8)
+        assertThat(expectNumberOfPurchase).isEqualTo(actualNumberOfPurchase)
     }
 }
