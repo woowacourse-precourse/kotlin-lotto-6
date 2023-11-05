@@ -5,8 +5,9 @@ import util.Validator
 
 class Lotto(private val numbers: List<Int> = Randoms.pickUniqueNumbersInRange(1, 45, 6)) {
     init {
-        Validator.checkProperNumbersSize(numbers)
-        require(numbers.all { it in 1..45 })
+        Validator
+            .checkProperNumbersSize(numbers)
+            .checkNumbersInRange(numbers)
     }
     fun toAscendingList() = numbers.sorted()
 }

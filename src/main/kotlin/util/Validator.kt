@@ -1,7 +1,10 @@
 package util
 
+import util.Constants.MAX_LOTTO_RANGE
 import util.Constants.MAX_PURCHASE_MONEY
+import util.Constants.MIN_LOTTO_RANGE
 import util.Constants.MIN_PURCHASE_MONEY
+import util.Constants.PROPER_LOTTO_SIZE
 
 object Validator {
 
@@ -20,9 +23,17 @@ object Validator {
         return this
     }
 
-    fun checkProperNumbersSize(numbers: List<Int>) =
+    fun checkProperNumbersSize(numbers: List<Int>): Validator {
         require(
             numbers.distinct()
-                .size == 6
+                .size == PROPER_LOTTO_SIZE
         )
+        return this
+    }
+
+    fun checkNumbersInRange(numbers: List<Int>): Validator {
+        require(numbers.all { it in MIN_LOTTO_RANGE..MAX_LOTTO_RANGE })
+        return this
+    }
+
 }
