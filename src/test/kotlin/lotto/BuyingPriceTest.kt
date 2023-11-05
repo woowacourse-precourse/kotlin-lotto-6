@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import util.Validator.containsOnlyDigits
 import util.Validator.isAmountInThousandWon
+import util.Validator.isEmptyValue
 
 class BuyingPriceTest {
     @Test
@@ -23,7 +24,7 @@ class BuyingPriceTest {
     @Test
     fun `값을 입력하지 않을 경우 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
-            require("".isEmpty())
+            isEmptyValue("")
         }
     }
 }
