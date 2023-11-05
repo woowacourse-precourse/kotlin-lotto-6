@@ -9,7 +9,7 @@ class Lotto(private val numbers: List<Int>) {
 
     fun checkGrade(win: Lotto, bonusNum: Int): GRADE {
         val countOfSame = numbers.intersect(win.numbers.toSet()).size
-        val isBonusContain = bonusNum in numbers
+        val isBonusContain = countOfSame == 5 && bonusNum in numbers
         return GRADE.from(countOfSame, isBonusContain)
     }
 
