@@ -9,7 +9,7 @@ class Customer {
     fun buyLotteries(price:Int){
         val lottoService = LottoService()
         repeat(price / 1000){
-            lotteries.add(lottoService.getLotto())
+            lotteries.add(lottoService.createLotto())
         }
     }
 
