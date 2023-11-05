@@ -1,5 +1,13 @@
 package lotto
 
+import lotto.domain.*
+
 fun main() {
-    TODO("프로그램 구현")
+    val validator = Validator()
+    val io = IO(validator)
+    val pos = PointOfSales()
+    val store = Store(io, pos)
+    val person = Person(io, store)
+
+    person.startTravelToBuyLotto()
 }
