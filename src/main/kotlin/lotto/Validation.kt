@@ -1,6 +1,14 @@
 package lotto
 
 class Validation {
+    fun purchaseMoneyValidation(purchaseMoney: String) {
+        return checkValidPurchaseMoney(purchaseMoney)
+    }
+
+    fun lottoNumberValidation(lottoNumber: String) {
+        return checkValidLottoNumber(lottoNumber)
+    }
+
     private fun checkValidPurchaseMoney(purchaseMoney: String) {
         val purchaseMoneyToInt = purchaseMoney.toIntOrNull()
         require(purchaseMoneyToInt != null) { "구입 금액은 숫자만 입력 받을 수 있습니다." }
