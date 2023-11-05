@@ -24,7 +24,14 @@ object InputView {
         }
         checkDuplicateNumber(winningNumbers)
         checkNumbersSize(winningNumbers)
+
         return winningNumbers
+    }
+
+    fun getBonusNumber(): Int {
+        println("\n$WINNING_NUMBER_MESSAGE")
+        val bonusNumber = Console.readLine()
+        return checkPositiveInteger(bonusNumber)
     }
 
     private fun checkPositiveInteger(inputWinningNumber: String): Int {
