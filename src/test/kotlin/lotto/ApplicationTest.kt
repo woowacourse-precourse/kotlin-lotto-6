@@ -57,4 +57,36 @@ class ApplicationTest : NsTest() {
     companion object {
         private const val ERROR_MESSAGE = "[ERROR]"
     }
+
+    @Test
+    fun `입력 금액이 1000 단위가 아닌 경우 예외 처리 테스트`() {
+        assertSimpleTest {
+            runException("1500")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `당첨 번호가 1-45 범위를 벗어난 경우 예외 처리 테스트`() {
+        assertSimpleTest {
+            runException("8000", "1,2,3,4,5,46", "7")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `보너스 번호가 1-45 범위를 벗어난 경우 예외 처리 테스트`() {
+        assertSimpleTest {
+            runException("8000", "1,2,3,4,5,6", "46")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `보너스 번호가 당첨 번호와 중복된 경우 예외 처리 테스트`() {
+        assertSimpleTest {
+            runException("8000", "1,2,3,4,5,6", "6")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
 }
