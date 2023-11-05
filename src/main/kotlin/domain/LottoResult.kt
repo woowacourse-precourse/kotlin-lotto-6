@@ -1,39 +1,19 @@
 package domain
 
 class LottoResult(
-    val checkPrize: Array<Int> = Array(PRIZE_COUNT) { 0 },
-    private val amount: Int
+    private val checkPrize: Array<Int> = Array(PRIZE_COUNT) { 0 },
+    private val purchaseLotto: List<Lotto>,
+    private val lottoPrizeCheck: LottoPrizeCheck
 ) {
-    fun rateOfReturn(): String = getTotalPrize().calculateRateOfReturn()
-
-    private fun getTotalPrize(): Int {
-        var myTotalPrize = 0
-        checkPrize.forEachIndexed { index, prize ->
-            myTotalPrize += when (index) {
-                0 -> WINNING_FIFTH_PLACE * prize
-                1 -> WINNING_FOURTH_PLACE * prize
-                2 -> WINNING_THIRD_PLACE * prize
-                3 -> WINNING_SECOND_PLACE * prize
-                else -> WINNING_FIRST_PLACE * prize
-            }
+    fun lottoResult(): Array<Int> {
+        purchaseLotto.forEach { prize ->
+            val prizeResultIndex = lottoPrizeCheck.checkPrize(prize)
+            if(prizeResultIndex != LottoPrizeCheck.INDEX_NOTHING) checkPrize[prizeResultIndex]++
         }
-        return myTotalPrize
-    }
-
-    private fun Int.calculateRateOfReturn(): String {
-        return "${ROUND_TO_TWO_DECIMALS.format ((this.toFloat() / amount.toFloat()) * 100)}$PERCENTAGE"
+        return checkPrize
     }
 
     companion object {
         private const val PRIZE_COUNT = 5
-
-        private const val WINNING_FIRST_PLACE = 2000000000
-        private const val WINNING_SECOND_PLACE = 30000000
-        private const val WINNING_THIRD_PLACE = 1500000
-        private const val WINNING_FOURTH_PLACE = 50000
-        private const val WINNING_FIFTH_PLACE = 5000
-
-        private const val ROUND_TO_TWO_DECIMALS = "%.1f"
-        private const val PERCENTAGE = "%"
     }
 }
