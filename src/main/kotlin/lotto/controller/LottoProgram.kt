@@ -33,7 +33,7 @@ class LottoProgram {
         val lottoResult = lotto.checkLottoWinning(bonusNum, lottoPublisher.publishedLottoList)
 
         val lottoResultAnalyzer = LottoResultAnalyzer()
-        
+
         lottoResultAnalyzer.analyzeLottoResults(lottoResult)
         lottoResultAnalyzer.calculateProfitRate(userInput.toInt())
 

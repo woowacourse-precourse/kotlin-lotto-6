@@ -1,6 +1,7 @@
 package lotto.model
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.util.Constants.LOTTO_SIZE
 
 class LottoPublisher {
 
@@ -23,7 +24,6 @@ class LottoPublisher {
     }
 
     companion object {
-        const val LOTTO_SIZE = 6
         const val ZERO_NUM = 0
         const val LOTTO_RANGE_START = 1
         const val LOTTO_RANGE_END = 45
