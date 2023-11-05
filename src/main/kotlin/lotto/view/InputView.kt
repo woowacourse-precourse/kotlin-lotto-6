@@ -16,7 +16,21 @@ object InputView {
     fun getWinningNumber(): List<Int> {
         println("\n$WINNING_NUMBER_MESSAGE")
 
-        return Console.readLine().split(",").map { it.toInt() }
+        val inputWinningNumbers = Console.readLine().split(",")
+        val winningNumbers = mutableListOf<Int>()
+
+        inputWinningNumbers.forEach {
+            winningNumbers.add(checkPositiveInteger(it))
+        }
+
+        return winningNumbers
+    }
+
+    private fun checkPositiveInteger(inputWinningNumber: String): Int {
+        val winningNumber = inputWinningNumber.toIntOrNull() ?: 0
+        require(winningNumber > 0)
+
+        return winningNumber
     }
 
 }
