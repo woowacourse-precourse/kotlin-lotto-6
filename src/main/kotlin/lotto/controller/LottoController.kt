@@ -89,8 +89,8 @@ class LottoController {
         outputView.printWinningStatisticsInstruction()
         val winningStatistics = mutableListOf<Pair<Int, Boolean>>()
         for (lotto in lottos) {
-            val matchedNumbers = lotto.getNumbers().intersect(winningNumbers).size
-            val bonusMatched = lotto.getNumbers().contains(bonusNumber)
+            val matchedNumbers = getMatchedNumbers(lotto, winningNumbers)
+            val bonusMatched = getBonusMatched(lotto, bonusNumber)
             winningStatistics.add(Pair(matchedNumbers, bonusMatched))
         }
         val winningRanks = judgementWinningRanks(winningStatistics)
@@ -98,15 +98,23 @@ class LottoController {
         return winningRanks
     }
 
-    fun judgementWinningRanks(winningResults: List<Pair<Int, Boolean>>): List<Int> {
+    fun getMatchedNumbers(lotto: Lotto, winningNumbers: List<Int>): Int {
+        return lotto.getNumbers().intersect(winningNumbers).size
+    }
+
+    fun getBonusMatched(lotto: Lotto, bonusNumber: Int): Boolean {
+        return lotto.getNumbers().contains(bonusNumber)
+    }
+
+    fun judgementWinningRanks(winningStatistics: List<Pair<Int, Boolean>>): List<Int> {
         val winningRanks = mutableListOf(0, 0, 0, 0, 0, 0)
-        for (winningResult in winningResults) {
+        for (winningStatistic in winningStatistics) {
             val winningRank = when {
-                winningResult.first == 6 -> 1
-                winningResult.first == 5 && winningResult.second -> 2
-                winningResult.first == 5 -> 3
-                winningResult.first == 4 -> 4
-                winningResult.first == 3 -> 5
+                winningStatistic.first == 6 -> 1
+                winningStatistic.first == 5 && winningStatistic.second -> 2
+                winningStatistic.first == 5 -> 3
+                winningStatistic.first == 4 -> 4
+                winningStatistic.first == 3 -> 5
                 else -> 0
             }
             winningRanks[winningRank] += 1
@@ -125,7 +133,7 @@ class LottoController {
     }
 
     fun calculateWinningAmount(winningRank: Int, numberOfWinningRank: Int): Int {
-        return when(winningRank) {
+        return when (winningRank) {
             1 -> FIRST_PRIZE_AMOUNT * numberOfWinningRank
             2 -> SECOND_PRIZE_AMOUNT * numberOfWinningRank
             3 -> THIRD_PRIZE_AMOUNT * numberOfWinningRank
