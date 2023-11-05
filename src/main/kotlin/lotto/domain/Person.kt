@@ -8,15 +8,18 @@ class Person(
         val tickets = doUntilSuccess { store.buyLotto() }
     }
 
-    private fun <T> doUntilSuccess(function: () -> T): T {
-        while (true) {
-            try {
-                return function()
-            } catch (e: IllegalArgumentException) {
-                val errorMessage = e.message ?: throw IllegalArgumentException(ERROR_SHOULD_CONTAIN_MESSAGE)
-                io.show(errorMessage, true)
-            }
+    private tailrec fun <T> doUntilSuccess(function: () -> T): T {
+        var result: T? = null
+        try {
+            result = function()
+        } catch (e: IllegalArgumentException) {
+            val errorMessage = e.message ?: throw IllegalArgumentException(ERROR_SHOULD_CONTAIN_MESSAGE)
+            io.show(errorMessage, true)
         }
+        if (result != null) {
+            return result
+        }
+        return doUntilSuccess(function)
     }
 
     companion object {
