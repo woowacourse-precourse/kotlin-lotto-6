@@ -1,4 +1,8 @@
-package lotto
+package lotto.model
+
+import lotto.util.isInLottoNumberRange
+import lotto.util.isUnique
+import lotto.util.lottoNumberRange
 
 class WinningNumber(
     private val normalNumbers: List<Int>,

@@ -1,6 +1,6 @@
-package lotto
+package lotto.model
 
-import lotto.Purchase.Companion.AMOUNT_UNIT_WON
+import lotto.model.Purchase.Companion.AMOUNT_UNIT_WON
 
 enum class Message(private val content: String) {
     ErrorPrefix(content = "[ERROR] "),

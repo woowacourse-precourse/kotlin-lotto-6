@@ -1,4 +1,4 @@
-package lotto
+package lotto.model
 
 class WinningStatics(
     winnings: List<Winning>,

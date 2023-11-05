@@ -1,4 +1,4 @@
-package lotto
+package lotto.util
 
 val lottoNumberRange = 1..45
 

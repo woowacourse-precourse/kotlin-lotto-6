@@ -1,5 +1,10 @@
-package lotto
+package lotto.controller
 
+import lotto.model.Message
+import lotto.view.Printer
+import lotto.model.Purchase
+import lotto.view.Reader
+import lotto.model.WinningNumber
 import kotlin.IllegalArgumentException
 
 class LottoController(
@@ -42,7 +47,7 @@ class LottoController(
     }
 
     private fun printInputError(message: String? = null) {
-        Printer.error(message ?: Message.InvalidInputError.toString())
+        printer.error(message ?: Message.InvalidInputError.toString())
     }
 
     private fun input(): Pair<Purchase, WinningNumber> {

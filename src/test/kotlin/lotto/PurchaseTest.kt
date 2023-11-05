@@ -1,6 +1,9 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest
+import lotto.model.Purchase
+import lotto.model.Winning
+import lotto.model.WinningNumber
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 

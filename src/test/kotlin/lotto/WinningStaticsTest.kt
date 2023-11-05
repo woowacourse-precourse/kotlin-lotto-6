@@ -1,5 +1,7 @@
 package lotto
 
+import lotto.model.Winning
+import lotto.model.WinningStatics
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 

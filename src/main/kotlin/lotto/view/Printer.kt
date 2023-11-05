@@ -1,5 +1,9 @@
-package lotto
+package lotto.view
 
+import lotto.model.Message
+import lotto.model.Purchase
+import lotto.model.Winning
+import lotto.model.WinningStatics
 import java.text.DecimalFormat
 
 object Printer {

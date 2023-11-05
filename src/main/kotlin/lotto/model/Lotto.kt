@@ -1,6 +1,9 @@
-package lotto
+package lotto.model
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.util.isInLottoNumberRange
+import lotto.util.isUnique
+import lotto.util.lottoNumberRange
 
 class Lotto(private val numbers: List<Int>) {
     init {

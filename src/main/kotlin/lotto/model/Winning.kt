@@ -1,4 +1,4 @@
-package lotto
+package lotto.model
 
 enum class Winning(val priceWon: Long, val matchCount: Int) {
     None(priceWon = 0, matchCount = 0),
