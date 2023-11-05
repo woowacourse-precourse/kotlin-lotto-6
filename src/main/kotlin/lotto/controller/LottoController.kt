@@ -2,7 +2,6 @@ package lotto.controller
 
 import lotto.model.*
 import lotto.util.Constants.LOTTO_PRICE
-import lotto.util.LottoGenerator
 import lotto.view.InputView
 import lotto.view.OutputView
 import java.lang.IllegalArgumentException
@@ -11,7 +10,6 @@ class LottoController(
     private val inputView: InputView,
     private val outputView: OutputView
 ) {
-    private val lottoGenerator = LottoGenerator()
     private val lottoTicket = LottoTicket()
     private lateinit var purchaseCount: PurchaseCount
     private lateinit var lotto: Lotto
@@ -28,8 +26,31 @@ class LottoController(
 
     private fun gameInit() {
         settingPurchaseCount()
-        publishLottoTicket()
+        lottoTicket.lottoTicketPublish(purchaseCount.count)
         printLottoTicket()
+    }
+
+    private fun settingWinningNumber() {
+        settingLotto()
+        settingBonusNumber()
+    }
+
+    private fun settingLotto() {
+        outputView.printLottoPurchaseInfoMessage()
+        lottoPublish()
+    }
+
+    private fun settingBonusNumber() {
+        outputView.printBonusLottoInfoMessage()
+        bonusNumberPublish()
+    }
+
+    private fun checkWinningNumbers() {
+        lottoResult = LottoResult(lotto.getWinningNumbers(), bonus.number)
+        repeat(purchaseCount.count) { round ->
+            val winning = lottoResult.calculateRanking(lottoTicket.numbers[round])
+            lottoRankings.addRanking(winning)
+        }
     }
 
     private fun settingPurchaseCount() {
@@ -47,31 +68,9 @@ class LottoController(
         }
     }
 
-    private fun publishLottoTicket() {
-        repeat(purchaseCount.count) {
-            val numbers = lottoGenerator.getSortedNumbers()
-            lottoTicket.addNumbers(numbers)
-        }
-    }
-
     private fun printLottoTicket() {
         outputView.printPurchaseCount(purchaseCount.count)
         outputView.printLottoTicket(lottoTicket)
-    }
-
-    private fun settingWinningNumber() {
-        settingLotto()
-        settingBonusNumber()
-    }
-
-    private fun settingLotto() {
-        outputView.printLottoPurchaseInfoMessage()
-        lottoPublish()
-    }
-
-    private fun settingBonusNumber() {
-        outputView.printBonusLottoInfoMessage()
-        bonusNumberPublish()
     }
 
     private fun lottoPublish() {
@@ -93,14 +92,6 @@ class LottoController(
         } catch (e: IllegalArgumentException) {
             println(e.message)
             bonusNumberPublish()
-        }
-    }
-
-    private fun checkWinningNumbers() {
-        lottoResult = LottoResult(lotto.getWinningNumbers(), bonus.number)
-        repeat(purchaseCount.count) { round ->
-            val winning = lottoResult.calculateRanking(lottoTicket.numbers[round])
-            lottoRankings.addRanking(winning)
         }
     }
 

@@ -1,6 +1,5 @@
 package lotto.model
 
-import lotto.util.LottoGenerator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -13,8 +12,7 @@ class LottoTicketTest {
     @BeforeEach
     fun setUp() {
         lottoTicket = LottoTicket()
-        lottoTicket.addNumbers(lottoGenerator.getSortedNumbers())
-        lottoTicket.addNumbers(lottoGenerator.getSortedNumbers())
+        lottoTicket.lottoTicketPublish(2)
     }
 
     @Test
