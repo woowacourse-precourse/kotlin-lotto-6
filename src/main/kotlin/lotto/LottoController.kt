@@ -1,52 +1,39 @@
 package lotto
 
-import lotto.constants.WinningResult
 import lotto.io.input.Input
 import lotto.io.output.Output
 import lotto.model.*
 import lotto.model.lotto.Lotto
-import lotto.model.lotto.LottoSupplier
+import lotto.service.LottoSupplier
 import lotto.model.lotto.Lottos
 import lotto.model.lotto.WinningLotto
+import lotto.service.WinningCalculator
 import lotto.utils.retryWhileNoException
 
 class LottoController(
     private val input: Input,
     private val output: Output,
-    private val lottoSupplier: LottoSupplier
+    private val lottoSupplier: LottoSupplier,
+    private val winningCalculator: WinningCalculator
 ) {
-    private var totalWinningAmount: Long = 0
 
-    private val winningCounts: MutableMap<WinningResult, Int> by lazy { readyWinningCounts() }
-    private val purchaseCount: PurchaseCount by lazy { readyPurchaseCount() }
+    private val purchaseInfo: PurchaseInfo by lazy { readyPurchaseInfo() }
     private val purchaseLottos: Lottos by lazy { readyPurchaseLottos() }
     private val winningLotto: WinningLotto by lazy { readyWinningLotto() }
 
-    private fun readyWinningCounts(): MutableMap<WinningResult, Int> =
-        mutableMapOf<WinningResult, Int>().apply {
-            WinningResult.entries.forEach { winningResult ->
-                if (winningResult == WinningResult.NOT_WINNING) {
-                    return@forEach
-                }
+    private fun readyPurchaseInfo(): PurchaseInfo {
+        val purchaseInfo = retryWhileNoException {
+            output.printInputPurchaseAmount()
+            val purchaseInfo = input.inputPurchaseAmount()
+            PurchaseInfo(purchaseInfo.amount)
+        } as PurchaseInfo
 
-                this[winningResult] = 0
-            }
-        }
-
-    private fun readyPurchaseCount(): PurchaseCount {
-        val purchaseCount = retryWhileNoException {
-            output.printInputAmount()
-            val purchaseAmount = input.inputPurchaseAmount()
-            PurchaseCount(purchaseAmount.amount)
-        } as PurchaseCount
-
-        return purchaseCount.also {
-            output.printPurchaseCount(it)
-        }
+        output.printPurchaseCount(purchaseInfo.count)
+        return purchaseInfo
     }
 
     private fun readyPurchaseLottos() =
-        lottoSupplier.supplyLottos(purchaseCount).also {
+        lottoSupplier.supplyLottos(purchaseInfo.count).also {
             output.printLottos(it)
         }
 
@@ -63,44 +50,9 @@ class LottoController(
         } as WinningLotto
     }
 
-    fun run() {
-        calculateWinningCounts(purchaseLottos, winningLotto)
-
-        val totalReturn = getTotalReturn(totalWinningAmount, purchaseCount)
-        output.printWinningStat(winningCounts, totalReturn)
-    }
-
-    fun calculateWinningCounts(lottos: Lottos, winningLotto: WinningLotto) {
-        lottos.forEach { lotto ->
-            val winningResult = getWinningResult(lotto, winningLotto)
-
-            if (winningCounts.containsKey(winningResult)) {
-                winningCounts[winningResult] = winningCounts[winningResult]!! + 1
-            }
-
-            totalWinningAmount += winningResult.amount
+    fun run() =
+        winningCalculator.calculateWinningResult(purchaseLottos, winningLotto).let { winningResult ->
+            val totalReturn = winningCalculator.calculateTotalReturn(winningResult.winningAmount, purchaseInfo.amount)
+            output.printWinningStat(winningResult.winningCounts, totalReturn)
         }
-    }
-
-    fun getWinningResult(lotto: Lotto, winningLotto: WinningLotto): WinningResult {
-        val count = lotto.countMatchingNumber(winningLotto.lotto)
-
-        return when (count) {
-            3 -> WinningResult.THREE
-            4 -> WinningResult.FOUR
-            5 -> {
-                if (lotto.isMatchingBonus(winningLotto.bonus)) {
-                    WinningResult.FIVE_BONUS
-                } else {
-                    WinningResult.FIVE
-                }
-            }
-
-            6 -> WinningResult.SIX
-            else -> WinningResult.NOT_WINNING
-        }
-    }
-
-    fun getTotalReturn(totalWinningAmount: Long, purchaseCount: PurchaseCount) =
-        totalWinningAmount.toDouble() / purchaseCount.count / 10
 }
