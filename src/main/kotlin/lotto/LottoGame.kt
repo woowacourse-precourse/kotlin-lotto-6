@@ -9,19 +9,47 @@ class LottoGame {
     private val numbers = mutableListOf<Int>()
     private var bonus = 0
     private val buyNumbers = mutableListOf<List<Int>>()
+    private val ranking = IntArray(8)
     fun start(){
         inputPrice()
         inputPrizeNumber()
         inputBonusNumber()
+        for(number in buyNumbers){
+            checkLotto(number)
+        }
         showResult()
     }
-    private fun showResult(){
+    private fun checkLotto(number: List<Int>) {
+        var correctNumber = 0
+        for(i in number.indices){
+            if(number.contains(numbers[i]))  {
+                correctNumber++
+            }
+        }
+
+        if(correctNumber == 3){
+            ranking[0]++
+        }
+        if(correctNumber == 4){
+            ranking[1]++
+        }
+        if(correctNumber == 5){
+            ranking[2]++
+        }
+        if(correctNumber == 5 && number.contains(bonus)){
+            ranking[3]++
+        }
+        if(correctNumber == 6){
+            ranking[4]++
+        }
+    }
+    private fun showResult() {
         showText()
-        println("3개 일치 (5,000원) - ${bonus}개")
-        println("4개 일치 (50,000원) - ${bonus}개")
-        println("5개 일치 (1,500,000원) - ${bonus}개")
-        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${bonus}개")
-        println("6개 일치 (2,000,000,000원) - ${bonus}개")
+        println("3개 일치 (5,000원) - ${ranking[0]}개")
+        println("4개 일치 (50,000원) - ${ranking[1]}개")
+        println("5개 일치 (1,500,000원) - ${ranking[2]}개")
+        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${ranking[3]}개")
+        println("6개 일치 (2,000,000,000원) - ${ranking[4]}개")
         showProfit(62.5)
     }
     private fun showProfit(profit: Double){
