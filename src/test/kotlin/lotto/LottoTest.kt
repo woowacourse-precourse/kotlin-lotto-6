@@ -82,6 +82,14 @@ class LottoTest {
     }
 
     @Test
+    fun `당첨 번호에 공백이 존재할 경우`() {
+        val validateSplit = ValidateSplit()
+        assertThrows<IllegalArgumentException> {
+            validateSplit.validateSplitMyNumbers(listOf(" ","3","7"))
+        }
+    }
+
+    @Test
     fun `당첨번호가 입력 범위를 벗어난 경우`() {
         val validateSplit = ValidateSplit()
         assertThrows<IllegalArgumentException> {
