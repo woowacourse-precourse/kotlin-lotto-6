@@ -23,4 +23,23 @@ class LottoGame {
             }
         }
     }
+
+    private fun inputWinningNumbers(): List<Int> {
+        while (true) {
+            try {
+                val input = Console.readLine()
+                return GameUtils.parseToInt(Exceptions.validateWinningNumbers(input) ?: continue)
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+    }
+
+    private fun inputBonusNumber(winningNumbers: List<Int>): Int {
+        while (true) {
+            val input = Console.readLine()
+            return Exceptions.validateBonusNumber(input, winningNumbers) ?: continue
+        }
+    }
+
 }
