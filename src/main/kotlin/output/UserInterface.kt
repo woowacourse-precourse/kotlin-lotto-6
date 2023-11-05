@@ -1,4 +1,4 @@
-package ui
+package output
 
 enum class UserInterface (
     val mention : String

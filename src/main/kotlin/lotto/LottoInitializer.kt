@@ -1,8 +1,8 @@
 package lotto
 
-import ui.UserInterface
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import output.UserInterface
 
 class LottoInitializer {
     companion object{
@@ -14,7 +14,7 @@ class LottoInitializer {
     fun makeLottoNumber(): List<Int>{
         var lotto = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER,
             LOTTO_SIZE)
-        return lotto
+        return lotto.sorted()
     }
 
 
