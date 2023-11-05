@@ -2,6 +2,7 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import java.text.DecimalFormat
 import lotto.LottoPrize as LottoPrize
 
 var MONEY: Int? = null
@@ -22,6 +23,8 @@ fun main() {
     }
     countMatchedNumbers()
     countJackpot()
+    showJackpotCount()
+    showReturn()
 }
 
 fun inputMoney() {
@@ -136,6 +139,30 @@ fun checkJackpot(item: Lotto) {
         matchedCount == LottoPrize.MATCHED5_AND_BONUS.matchedNumbers && matchedBonus == LottoPrize.MATCHED5_AND_BONUS.matchedBonus -> LottoPrize.MATCHED5_AND_BONUS.incrementCount()
         matchedCount == LottoPrize.MATCHED6.matchedNumbers -> LottoPrize.MATCHED6.incrementCount()
     }
+}
+
+// 숫자를 천 단위로 끊어 주어 보여주는 함수
+fun formatNumber(number: Int): String {
+    return DecimalFormat("#,###").format(number)
+}
+
+// 당첨 횟수 출력
+fun showJackpotCount() {
+    println("당첨 통계")
+    println("---")
+    for (item in LottoPrize.entries) {
+        println("${item.matchedNumbers}개 일치${if (item.matchedBonus) ", 보너스 볼 일치" else ""} (${formatNumber(item.prize)}원) - ${item.jackpot}개")
+    }
+}
+
+// 수익률 출력
+fun showReturn() {
+    var prize = 0
+    for (item in LottoPrize.entries) {
+        prize += item.prize * item.jackpot
+    }
+    val roundedPercentage = (Math.round((((prize - MONEY!!) / MONEY!!) * 100).toDouble() * 10) / 10).toDouble()
+    println("총 수익률은 ${roundedPercentage}%입니다.")
 }
 
 fun throwErrorMessage(text: String) {
