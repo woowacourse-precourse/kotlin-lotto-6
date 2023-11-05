@@ -5,8 +5,9 @@ import kotlin.math.roundToInt
 
 class LottoProfit {
     private var _rate = 0.0
-    val rate: Double
-        get() = _rate
+    val rate: String
+        get() = String.format("%.1f%%", _rate)
+
 
     private fun getTotalGain(rankings: List<Int>): Int {
         return rankings[0] * Winnings.RANKING_1ST.price +

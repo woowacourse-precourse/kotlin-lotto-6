@@ -11,13 +11,6 @@ class LottoRankings {
         _rank = MutableList(LOTTO_SIZE - 1) { 0 }
     }
 
-    fun addRanking(ranking: Int) {
-        when (ranking) {
-            6 -> _rank[0]++
-            -1 -> _rank[1]++
-            5 -> _rank[2]++
-            4 -> _rank[3]++
-            3 -> _rank[4]++
-        }
-    }
+    fun addRanking(ranking: Int) = _rank[ranking]++
+
 }

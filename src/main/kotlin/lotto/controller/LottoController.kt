@@ -7,7 +7,10 @@ import lotto.view.InputView
 import lotto.view.OutputView
 import java.lang.IllegalArgumentException
 
-class LottoController(private val inputView: InputView, private val outputView: OutputView) {
+class LottoController(
+    private val inputView: InputView,
+    private val outputView: OutputView
+) {
     private val lottoGenerator = LottoGenerator()
     private val lottoTicket = LottoTicket()
     private lateinit var purchaseCount: PurchaseCount
@@ -19,8 +22,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
 
     fun run() {
         gameInit()
-        settingLotto()
-        settingBonusNumber()
+        settingWinningNumber()
         checkWinningNumbers()
         showLottoStatistics()
     }
@@ -29,13 +31,11 @@ class LottoController(private val inputView: InputView, private val outputView: 
         settingPurchaseCount()
         publishLottoTicket()
         printLottoTicket()
-        println() //예제 출력과 같게 하기 위해 공백 추가
     }
 
     private fun settingPurchaseCount() {
         outputView.printGameStartMessage()
         getPurchaseCount()
-        println() //예제 출력과 같게 하기 위해 공백 추가
     }
 
     private fun getPurchaseCount() {
@@ -60,10 +60,19 @@ class LottoController(private val inputView: InputView, private val outputView: 
         outputView.printLottoTicket(lottoTicket)
     }
 
+    private fun settingWinningNumber() {
+        settingLotto()
+        settingBonusNumber()
+    }
+
     private fun settingLotto() {
         outputView.printLottoPurchaseInfoMessage()
         lottoPublish()
-        println() //예제 출력과 같게 하기 위해 공백 추가
+    }
+
+    private fun settingBonusNumber() {
+        outputView.printBonusLottoInfoMessage()
+        bonusNumberPublish()
     }
 
     private fun lottoPublish() {
@@ -74,11 +83,6 @@ class LottoController(private val inputView: InputView, private val outputView: 
             println(e.message)
             lottoPublish()
         }
-    }
-
-    private fun settingBonusNumber() {
-        outputView.printBonusLottoInfoMessage()
-        bonusNumberPublish()
     }
 
     private fun bonusNumberPublish() {

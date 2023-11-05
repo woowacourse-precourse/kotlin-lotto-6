@@ -10,6 +10,7 @@ class OutputView {
     }
 
     fun printPurchaseCount(purchaseCount: Int) {
+        println() //예제 출력과 같게 하기 위해 공백 추가
         println("${purchaseCount}개를 구매했습니다.")
     }
 
@@ -21,10 +22,12 @@ class OutputView {
     }
 
     fun printLottoPurchaseInfoMessage() {
+        println() //예제 출력과 같게 하기 위해 공백 추가
         println("당첨 번호를 입력해 주세요.")
     }
 
     fun printBonusLottoInfoMessage() {
+        println() //예제 출력과 같게 하기 위해 공백 추가
         println("보너스 번호를 입력해 주세요.")
     }
 
@@ -42,6 +45,6 @@ class OutputView {
 
     fun printLottoProfitRate(lottoProfit: LottoProfit) {
         val profitRate = lottoProfit.rate
-        println("총 수익률은 ${profitRate}%입니다.")
+        println("총 수익률은 ${profitRate}입니다.")
     }
 }
