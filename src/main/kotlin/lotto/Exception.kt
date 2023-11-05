@@ -21,4 +21,14 @@ object Exception {
             throw IllegalArgumentException("[ERROR] 올바른 당첨 번호를 입력해주세요.")
         }
     }
+
+    fun enterBonusNumberException(input: String?, winningNumbers: List<Int>): Int {
+        val number = input?.toIntOrNull()
+        if (number != null && number in 1..45 && number !in winningNumbers) {
+            return number
+        } else {
+            throw IllegalArgumentException("[ERROR] 1에서 45 사이의 숫자 중에서 당첨 번호와 중복되지 않게 입력해주세요.")
+        }
+    }
+
 }

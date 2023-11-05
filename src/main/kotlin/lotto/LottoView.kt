@@ -36,4 +36,16 @@ class LottoView {
         }
     }
 
+    fun getBonusNumberFromUser(winningNumbers: List<Int>): Int {
+        while (true) {
+            try {
+                println("보너스 번호를 입력해 주세요. (1~45까지의 숫자)")
+                val input = Console.readLine()
+                return Exception.enterBonusNumberException(input, winningNumbers)
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+    }
+
 }
