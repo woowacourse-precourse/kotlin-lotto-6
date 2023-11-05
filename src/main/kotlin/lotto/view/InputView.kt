@@ -29,8 +29,11 @@ object InputView {
     private fun checkPositiveInteger(inputWinningNumber: String): Int {
         val winningNumber = inputWinningNumber.toIntOrNull() ?: 0
         require(winningNumber > 0)
-
+        checkNumberRange(winningNumber)
         return winningNumber
     }
 
+    private fun checkNumberRange(winningNumber: Int) {
+        require(winningNumber <= 45)
+    }
 }
