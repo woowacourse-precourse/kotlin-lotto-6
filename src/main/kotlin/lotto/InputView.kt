@@ -76,8 +76,33 @@ class InputView {
         val set = HashSet<Int>()
         for (element in lottoNumbers) {
             if (!set.add(element)) {
-                throw IllegalArgumentException("중복되지 않은 로또 번호를 입력해주세요.")
+                throw IllegalArgumentException("[ERROR] 중복되지 않은 로또 번호를 입력해주세요.")
             }
+        }
+    }
+
+    fun validateBonusNumberInput(): String {
+        println("보너스 번호를 입력해 주세요.")
+        val bonusNumber = Console.readLine()
+        if (bonusNumber.isEmpty()) {
+            throw IllegalArgumentException("[ERROR] 보너스 번호를 입력해주세요.")
+        }
+        return bonusNumber
+    }
+
+    fun validateBonusNumber(inputNumber: String): Int {
+        return inputNumber.toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 정수를 입력해주세요.")
+    }
+
+    fun validateBonusNumberRange(inputNumber: Int) {
+        if (inputNumber !in 1..45) {
+            throw IllegalArgumentException("[ERROR] 1에서 45사이의 정수를 입력해주세요. ")
+        }
+    }
+
+    fun validateBonusRepeat(inputNumber: Int, lottoNumbers: List<Int>) {
+        if (inputNumber in lottoNumbers) {
+            throw IllegalArgumentException("[ERROR] 당첨 번호와 중복되지 않은 수를 입력해주세요.")
         }
     }
 }

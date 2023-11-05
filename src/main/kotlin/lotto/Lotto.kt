@@ -8,6 +8,4 @@ class Lotto(private val numbers: List<Int>) {
     fun sortNumbers(): List<Int> {
         return numbers.sorted()
     }
-
-    // TODO:  구현
 }
