@@ -4,10 +4,6 @@
 - [x] 로또 게임 시작 기능 - startLottoGame() O
 - [x] 당첨 번호 및 보너스 번호를 생성하는 기능() O
 - [x] 구매한 로또를 출력하는 기능 - printLotto() O
-- [x] 당첨 통계를 구하는 기능 -getLottoStatistics() O
-- [x] 당첨 통계를 출력하는 기능 - printLottoStatistics() O
-- [x] 구매한 로또의 총 당첨 금액을 반환하는 기능 - getTotalPrize() O
-- [x] 수익률을 반환하는 기능 - getRateReturn()
 
 ### 로또: Lotto
 - [x] 로또 번호 출력 - printNumbers() O
@@ -34,9 +30,11 @@
 - [x] 로또의 등수를 결정하는 기능 - decideGrade() O
 - [x] 등급 당 당첨된 로또의 개수를 세는 기능 - countGrad() O
 
-### 수익률
-- [x] 수익률 비교
-- [x] 수익률 출력
+### 로또 결과 화면 - LottoResultView - O
+- [x] 당첨 통계를 구하는 기능 -getLottoStatistics() O
+- [x] 당첨 통계를 출력하는 기능 - printLottoStatistics() O
+- [x] 구매한 로또의 총 당첨 금액을 반환하는 기능 - getTotalPrize() O
+- [x] 수익률을 반환하는 기능 - getRateReturn()
 
 ### 예외 처리
 - [x] 입력 예외 상황
