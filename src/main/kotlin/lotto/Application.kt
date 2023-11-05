@@ -1,5 +1,12 @@
 package lotto
 
+import ui.UserInput
+import ui.UserOutput
+
 fun main() {
-    TODO("프로그램 구현")
+    val lottoGenerator = LottoGenerator(UserInput.readMoney())
+    val lottos = lottoGenerator.create()
+    UserOutput.printPurchaseResult(lottos.size)
+    for (lotto in lottos) println(lotto.toAscendingList())
+
 }
