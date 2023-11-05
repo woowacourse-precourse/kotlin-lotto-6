@@ -88,14 +88,15 @@
 
 ### 생각해볼 항목들
 -[ ] 프로그래밍 요구 사항에 만족하도록 노력하였는가? 
--[ ] Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickNumberInRange()을 활용하였는가?
--[ ] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용하였는가?
--[ ] 기능 단위로 커밋하였는가?
+-[x] Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickNumberInRange()을 활용하였는가?
+-[x] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용하였는가?
+-[x] 기능 단위로 커밋하였는가?
 -[ ] 커밋 메시지 컨벤션을 최대한 지키려고 노력하였는가?
--[ ] Enum 클래스를 적용해 프로그래밍을 구현하였는가?
+-[x] Enum 클래스를 적용해 프로그래밍을 구현하였는가?
 -[ ] 하드 코딩한 값은 없는가?
--[ ] 변수 이름에 자료형을 사용하지 않았는가?
--[ ] else를 지양했는가?
+-[x] 변수 이름에 자료형을 사용하지 않았는가?
+-[x] else를 지양했는가?
+  - [x] 사용한 경우라면 충분히 고민하고 사용했는가?
 -[ ] indent depth가 3 미만인가?
 -[ ] 함수의 길이가 15라인을 넘어기지 않는가?
 -[ ] 함수를 한 가지 일만 하도록 최대한 분리하였는가?
