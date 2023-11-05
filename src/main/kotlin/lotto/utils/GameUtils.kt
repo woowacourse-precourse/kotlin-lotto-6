@@ -10,6 +10,29 @@ object GameUtils {
     private fun Double.multiplyByHundred() = this.times(100)
     fun parseToInt(num: String) = num.split(",").map { it.trim().toInt() }
 
+    // 최종 통계
+    fun totalStatistics(lottoState: UserLottoState, winningNumber: LottoWinningNumber): UserLottoState {
+        lottoState.lottoTickets.forEach { lottoTicket ->
+            val matchedNumbers = lottoTicket intersect winningNumber.lottoNumbers.toSet()
+            val bonusMatched = winningNumber.bonusNumber in lottoTicket
+            when (matchedNumbers.size) {
+                6 -> lottoState.firstPrizeCount++
+                5 -> if (bonusMatched) lottoState.secondPrizeCount++ else lottoState.thirdPrizeCount++
+                4 -> lottoState.fourthPrizeCount++
+                3 -> lottoState.fifthPrizeCount++
+            }
+        }
+        return calculateTotalPrizeRate(lottoState)
+    }
+
+
+    private fun calculateTotalPrizeRate(lottoState: UserLottoState): UserLottoState {
+        return lottoState.apply {
+            this.totalPrizeAmount = calculateTotalPrize(lottoState)
+            this.totalPrizeRate = parseToRate(totalPrizeAmount.toDouble(), lottoState.lottoTickets.size)
+        }
+    }
+
     private fun calculateTotalPrize(lottoState: UserLottoState) =
         (lottoState.firstPrizeCount * PrizeType.getPrice(PrizeType.FIRST.name)
                 + lottoState.secondPrizeCount * PrizeType.getPrice(PrizeType.SECOND.name)
