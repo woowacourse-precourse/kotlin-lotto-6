@@ -10,7 +10,7 @@ class LottoGame {
             commandByGameState()
         }
     }
-    
+
     private fun commandByGameState() {
         when (gameState) {
             INITIALIZED -> {
