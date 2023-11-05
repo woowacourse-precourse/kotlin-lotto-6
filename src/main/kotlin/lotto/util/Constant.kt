@@ -2,6 +2,8 @@ package lotto.util
 
 object Constant {
     const val LOTTO_NUMBER_ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."
+    const val LOTTO_NUMBER_NUMBER_LENGTH_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개의 숫자입니다."
+    const val LOTTO_NUMBER_OVERLAP_ERROR_MESSAGE = "[ERROR] 로또 번호는 겹치면 안됩니다."
     const val LOTTO_MIN_RANDOM_NUMBER = 1
     const val LOTTO_MAX_RANDOM_NUMBER = 45
     const val LOTTO_NUMBER_SIZE = 6
