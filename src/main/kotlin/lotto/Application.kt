@@ -16,7 +16,14 @@ fun main() {
     val results = lottos.map { it.calculateResult(winningNumbers, bonusNumber) }
     // TODO: results를 이용해 당첨 통계를 출력.
 }
-
+fun getBonusNumber(): Int {
+    println("보너스 번호를 입력해 주세요.")
+    return readLine()!!.toInt()
+}
+fun getWinningNumbers(): List<Int> {
+    println("당첨 번호를 입력해 주세요.")
+    return readLine()!!.split(",").map { it.trim().toInt() }
+}
 fun getInputMoney(): Int {//구입금액 입력 받기
     var money = 0
     while (money == 0) {
