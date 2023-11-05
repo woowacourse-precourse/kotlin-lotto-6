@@ -27,10 +27,21 @@ class UserInputReader {
         return userInput.toInt()
     }
 
-    fun getWinningNumbers() {
-        println(ENTER_WINNING_NUMBERS_MSG)
-        val userInput = Console.readLine()
-        userInput.split(DELIMITER)
+    fun getWinningNumbers(): List<Int> {
+        var userInput: List<String>
+        var isValid: Boolean
+
+        do {
+            println(ENTER_WINNING_NUMBERS_MSG)
+            userInput = Console.readLine().split(DELIMITER)
+            isValid = try {
+                winningNumbersValidator.checkInputValidation(userInput)
+            } catch (e: IllegalArgumentException) {
+                println(createErrMsg(e.message ?: "Unknown error"))
+                false
+            }
+        } while (!isValid)
+        return userInput.map { it.toInt() }
     }
 
     companion object {
