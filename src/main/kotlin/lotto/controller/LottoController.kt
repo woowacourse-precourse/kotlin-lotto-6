@@ -2,31 +2,27 @@ package lotto.controller
 
 import lotto.domain.RandomLottoGenerator
 import lotto.model.Lotto
+import lotto.model.LottoPrize
+import lotto.model.LottoResults
 import lotto.model.Lottos
 import lotto.view.InputView
 import lotto.view.OutputView
 
 class LottoController {
-
+    private var purchaseMoney = 0
     private lateinit var randomLottos: Lottos
+    private lateinit var lottoPrizes: List<LottoPrize?>
 
     fun playGame() {
 
         buyLotto()
-
-        val winningNumbers = InputView.getWinningNumber()
-        val bonusLottoNumber = InputView.getBonusNumber(winningNumbers)
-
-        val lottoPrizes = randomLottos.getLottoPrizes(Lotto(winningNumbers), bonusLottoNumber)
-        val lottoResults = randomLottos.getLottoResult(lottoPrizes)
-        OutputView.printResult()
-        lottoResults.forEach {
-            OutputView.printLottoWin(it.prize.prizeCount, it.prize.money, it.prize.bonus, it.resultCount)
-        }
+        receiveWinningNumbers()
+        gameEnd()
     }
 
     private fun buyLotto() {
-        val purchaseCount = InputView.getPurchaseMoney() / 1000
+        purchaseMoney = InputView.getPurchaseMoney()
+        val purchaseCount = purchaseMoney / 1000
         randomLottos = Lottos(purchaseCount, RandomLottoGenerator())
 
         val lottoState = randomLottos.getLottoState()
@@ -36,5 +32,23 @@ class LottoController {
         }
     }
 
+    private fun receiveWinningNumbers() {
+        val winningNumbers = InputView.getWinningNumber()
+        val bonusLottoNumber = InputView.getBonusNumber(winningNumbers)
+        lottoPrizes = randomLottos.getLottoPrizes(Lotto(winningNumbers), bonusLottoNumber)
+    }
+
+    fun gameEnd() {
+        val lottoResults = LottoResults()
+        lottoResults.makeLottoResults(lottoPrizes)
+
+        val lottoResultsState = lottoResults.getResultState()
+        OutputView.printResult()
+        lottoResultsState.forEach {
+            OutputView.printLottoWin(it.prizeCount, it.money, it.bonus, it.resultCount)
+        }
+        OutputView.printResultRate(lottoResults.getTotalMoney(), purchaseMoney)
+
+    }
 
 }
