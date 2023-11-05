@@ -10,11 +10,11 @@ class LottoResult(
         var myTotalPrize = 0
         checkPrize.forEachIndexed { index, prize ->
             myTotalPrize += when (index) {
-                0 -> WINNING_FIRST_PLACE * prize
-                1 -> WINNING_SECOND_PLACE * prize
+                0 -> WINNING_FIFTH_PLACE * prize
+                1 -> WINNING_FOURTH_PLACE * prize
                 2 -> WINNING_THIRD_PLACE * prize
-                3 -> WINNING_FOURTH_PLACE * prize
-                else -> WINNING_FIFTH_PLACE * prize
+                3 -> WINNING_SECOND_PLACE * prize
+                else -> WINNING_FIRST_PLACE * prize
             }
         }
         return myTotalPrize
