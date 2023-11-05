@@ -39,8 +39,7 @@ class LottoController {
     fun getPurchaseAmount(): Int {
         outputView.printPurchaseAmountInstruction()
         return try {
-            val purchaseAmount = inputView.inputPurchaseAmount()
-            purchaseAmount
+            inputView.inputPurchaseAmount()
         } catch (illegalArgumentException: IllegalArgumentException) {
             outputView.printErrorMessage(illegalArgumentException.message.toString())
             getPurchaseAmount()
@@ -73,8 +72,7 @@ class LottoController {
     fun getWinningNumbers(): List<Int> {
         outputView.printWinningNumbersInstruction()
         return try {
-            val winnerNumbers = inputView.inputWinningNumbers()
-            winnerNumbers
+            inputView.inputWinningNumbers()
         } catch (illegalArgumentException: IllegalArgumentException) {
             outputView.printErrorMessage(illegalArgumentException.message.toString())
             getWinningNumbers()
@@ -84,8 +82,7 @@ class LottoController {
     fun getBonusNumber(winningNumbers: List<Int>): Int {
         outputView.printBonusNumberInstruction()
         return try {
-            val bonusNumber = inputView.inputBonusNumber(winningNumbers)
-            bonusNumber
+            inputView.inputBonusNumber(winningNumbers)
         } catch (illegalArgumentException: IllegalArgumentException) {
             outputView.printErrorMessage(illegalArgumentException.message.toString())
             getBonusNumber(winningNumbers)
