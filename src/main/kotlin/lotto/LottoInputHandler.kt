@@ -10,12 +10,9 @@ object LottoInputHandler {
         try{
             LottoCostInputValidator.isValid(cost)
         } catch (e : IllegalArgumentException){
-            receiveLottoCost()
+            return receiveLottoCost()
         }
         return cost!!
     }
-
-
-
 
 }
