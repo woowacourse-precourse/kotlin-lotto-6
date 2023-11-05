@@ -1,17 +1,15 @@
 package domain
 
-import model.Winning
-
 class LottoPrizeCheck(
     private val jackpotNumbers: List<Int>,
     private val lotto: Lotto
 ) {
     fun checkPrize(): Int = when (jackpotNumbers.intersect(lotto.getNumbers()).size) {
-        MATCH_SIX_NUMBERS -> FIRST_PLACE_INDEX
-        MATCH_FIVE_NUMBERS -> if (containsBonusNumber()) SECOND_PLACE_INDEX else THIRD_PLACE_INDEX
-        MATCH_FOUR_NUMBERS -> FOURTH_PLACE_INDEX
-        MATCH_THREE_NUMBERS -> FOURTH_FIFTH
-        else -> NO_LUCK
+        MATCH_SIX_NUMBERS -> INDEX_OF_FOURTH
+        MATCH_FIVE_NUMBERS -> if (containsBonusNumber()) INDEX_OF_THIRD else INDEX_OF_SECOND
+        MATCH_FOUR_NUMBERS -> INDEX_OF_FIRST
+        MATCH_THREE_NUMBERS -> INDEX_OF_ZERO
+        else -> INDEX_NOTHING
     }
 
     private fun containsBonusNumber(): Boolean = lotto.getNumbers().contains(jackpotNumbers.last())
@@ -22,11 +20,11 @@ class LottoPrizeCheck(
         private const val MATCH_FIVE_NUMBERS = 5
         private const val MATCH_SIX_NUMBERS = 6
 
-        private const val FIRST_PLACE_INDEX = 0
-        private const val SECOND_PLACE_INDEX = 1
-        private const val THIRD_PLACE_INDEX = 2
-        private const val FOURTH_PLACE_INDEX = 3
-        private  const val FOURTH_FIFTH = 4
-        const val NO_LUCK = -1
+        private const val INDEX_OF_ZERO = 0
+        private const val INDEX_OF_FIRST = 1
+        private const val INDEX_OF_SECOND = 2
+        private const val INDEX_OF_THIRD = 3
+        private const val INDEX_OF_FOURTH = 4
+        const val INDEX_NOTHING = -1
     }
 }
