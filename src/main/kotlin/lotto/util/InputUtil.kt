@@ -1,12 +1,11 @@
 package lotto.util
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.constants.Error.EXCEPTION_MESSAGE_MONEY_NOT_DIVIDED_PRICE
 import lotto.constants.Error.EXCEPTION_MESSAGE_MONEY_NOT_NUMBER
-import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST
-import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_NOT_NUMBER
-import lotto.constants.LottoConstants
 import lotto.model.Lotto
+import lotto.util.LottoValidatorUtil.checkMoneyAvailable
+import lotto.util.LottoValidatorUtil.checkNumberOverlap
+import lotto.util.LottoValidatorUtil.checkWinningNumberAvailable
 
 object InputUtil {
 
@@ -25,32 +24,4 @@ object InputUtil {
         } catch (e: NumberFormatException) {
             throw IllegalArgumentException(EXCEPTION_MESSAGE_MONEY_NOT_NUMBER)
         }
-
-    private fun checkMoneyAvailable(moneyString: String): Int =
-        try {
-            val money = moneyString.toInt()
-            if (money % LottoConstants.LOTTO_PRICE != 0) {
-                throw IllegalArgumentException(EXCEPTION_MESSAGE_MONEY_NOT_DIVIDED_PRICE)
-            }
-            money
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException(EXCEPTION_MESSAGE_MONEY_NOT_NUMBER)
-        }
-
-    private fun checkWinningNumberAvailable(winningNumberString: String): Lotto =
-        try {
-            val winningNumber = Lotto(winningNumberString.split(",").map { _numberString ->
-                val number = _numberString.toInt()
-                number
-            })
-            winningNumber
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException(EXCEPTION_MESSAGE_WINNING_NUMBER_NOT_NUMBER)
-        }
-
-    private fun checkNumberOverlap(winningNumber: Lotto, number: Int) {
-        if (winningNumber.getNumbers().contains(number)) {
-            throw IllegalArgumentException(EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST)
-        }
-    }
 }
