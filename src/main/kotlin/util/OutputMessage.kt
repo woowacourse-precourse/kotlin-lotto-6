@@ -2,7 +2,7 @@ package util
 
 enum class OutputMessage(val message: String) {
     PURCHASE_AMOUNT_INSTRUCTION("구입금액을 입력해 주세요."),
-    ERROR_MESSAGE("[ERROR] %s"),
+    INPUT_ERROR("[ERROR] %s"),
     NUMBER_OF_PURCHASES("\n%d개를 구매했습니다."),
     WINNING_NUMBER_INSTRUCTION("\n당첨 번호를 입력해 주세요."),
     BONUS_NUMBER_INSTRUCTION("\n보너스 번호를 입력해 주세요."),

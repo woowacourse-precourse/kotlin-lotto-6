@@ -7,7 +7,7 @@ import util.Constants.FOURTH_RANK
 import util.Constants.SECOND_RANK
 import util.Constants.THIRD_RANK
 import util.OutputMessage.BONUS_NUMBER_INSTRUCTION
-import util.OutputMessage.ERROR_MESSAGE
+import util.OutputMessage.INPUT_ERROR
 import util.OutputMessage.NUMBER_OF_PURCHASES
 import util.OutputMessage.PURCHASE_AMOUNT_INSTRUCTION
 import util.OutputMessage.RATE_OF_RETURN
@@ -25,7 +25,7 @@ class OutputView {
     }
 
     fun printErrorMessage(errorMessage: String) {
-        println(ERROR_MESSAGE.message.format(errorMessage))
+        println(INPUT_ERROR.message.format(errorMessage))
     }
 
     fun printNumberOfPurchases(numberOfPurchase: Int) {
