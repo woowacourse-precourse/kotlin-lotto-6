@@ -306,8 +306,8 @@ class LottoTest {
     }
 
     @Test
-    fun `로또 총 당첨금액 일치`() {
-        val winningStatistics = listOf(0,0,0,0,1,1)
+    fun `로또 총 당첨 금액 일치`() {
+        val winningStatistics = listOf(0, 0, 0, 0, 1, 1)
         val expectTotalWinningAmount = 55000
 
         val actualTotalWinningAmount = lottoController.getTotalWinningAmount(winningStatistics)
@@ -316,12 +316,34 @@ class LottoTest {
     }
 
     @Test
-    fun `로또 총 당첨금액 불일치`() {
-        val winningStatistics = listOf(0,0,0,0,1,1)
+    fun `로또 총 당첨 금액 불일치`() {
+        val winningStatistics = listOf(0, 0, 0, 0, 1, 1)
         val expectTotalWinningAmount = 60000
 
         val actualTotalWinningAmount = lottoController.getTotalWinningAmount(winningStatistics)
 
         assertThat(expectTotalWinningAmount).isNotEqualTo(actualTotalWinningAmount)
+    }
+
+    @Test
+    fun `로또 당첨 금액 계산 일치`() {
+        val winningRank = 5
+        val numberOfWinningRank = 4
+        val expectWinningAmount = 20000
+
+        val actualWinningAmount = lottoController.calculateWinningAmount(winningRank, numberOfWinningRank)
+
+        assertThat(expectWinningAmount).isEqualTo(actualWinningAmount)
+    }
+
+    @Test
+    fun `로또 당첨 금액 계산 불일치`() {
+        val winningRank = 5
+        val numberOfWinningRank = 4
+        val expectWinningAmount = 25000
+
+        val actualWinningAmount = lottoController.calculateWinningAmount(winningRank, numberOfWinningRank)
+
+        assertThat(expectWinningAmount).isNotEqualTo(actualWinningAmount)
     }
 }
