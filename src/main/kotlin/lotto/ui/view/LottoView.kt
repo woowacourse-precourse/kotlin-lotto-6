@@ -1,6 +1,7 @@
 package lotto.ui.view
 
 import lotto.domain.model.Money
+import lotto.domain.model.WinningNumbers
 import lotto.ui.presenter.LottoPresenter
 
 interface LottoView {
@@ -10,4 +11,6 @@ interface LottoView {
     fun onStart()
     fun getMoney(): Money
     fun onGetMoneyDone()
+    fun onGetLottoesDone()
+    fun getWinningNumbers(): WinningNumbers
 }

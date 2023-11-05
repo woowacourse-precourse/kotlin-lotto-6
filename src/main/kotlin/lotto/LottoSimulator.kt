@@ -12,5 +12,6 @@ class LottoSimulator(
 
         view.onStart()
         view.onGetMoneyDone()
+        view.onGetLottoesDone()
     }
 }

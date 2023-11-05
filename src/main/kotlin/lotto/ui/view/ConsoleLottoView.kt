@@ -2,6 +2,7 @@ package lotto.ui.view
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.domain.model.Money
+import lotto.domain.model.WinningNumbers
 import lotto.ui.presenter.LottoPresenter
 
 class ConsoleLottoView : LottoView {
@@ -29,8 +30,18 @@ class ConsoleLottoView : LottoView {
         presenter.getLottoes()
     }
 
+    override fun onGetLottoesDone() {
+        presenter.getWinningNumbers()
+    }
+
+    override fun getWinningNumbers(): WinningNumbers {
+        val numbers = Console.readLine().split(NUMBER_DELIMITER).map(String::toInt)
+        return WinningNumbers(numbers = numbers)
+    }
+
     companion object {
         const val ERROR_MESSAGE_PREFIX = "[ERROR]"
         const val DEFAULT_ERROR_MESSAGE = "에러가 발생했습니다. 다시 시도해주세요."
+        const val NUMBER_DELIMITER = ','
     }
 }
