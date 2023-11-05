@@ -1,5 +1,7 @@
 package lotto
 
+import ui.UserOutput
+
 class LottoResult() {
 
     lateinit var winLotto: Lotto
@@ -12,7 +14,7 @@ class LottoResult() {
     }
     fun hasBonus(lotto: Lotto): Boolean = lotto.toAscendingList().contains(bonus)
 
-    fun calculateWinLottos(lottos: MutableList<Lotto>) {
+    fun calculateWinLottos(lottos: MutableList<Lotto>): LottoResult {
         for (lotto in lottos) {
             when (countWinNumbers(lotto)) {
                 LottoPrize.FIFTH_PRIZE.value -> LottoPrize.FIFTH_PRIZE.count++
@@ -21,6 +23,7 @@ class LottoResult() {
                 LottoPrize.JACKPOT.value -> LottoPrize.JACKPOT.count++
             }
         }
+        return this
     }
     private fun countSecondOrThird(lotto: Lotto) {
         if (hasBonus(lotto)) {
@@ -28,5 +31,12 @@ class LottoResult() {
             return
         }
         LottoPrize.THIRD_PRIZE.count++
+    }
+
+    fun showWinLottoData() {
+        UserOutput.printWinLottoResult()
+        for (element in LottoPrize.entries) element.printPrizeData()
+        val profit: Double = 0.0
+        UserOutput.printProfitResult(profit)
     }
 }

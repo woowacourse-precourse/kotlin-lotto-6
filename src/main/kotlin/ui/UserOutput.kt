@@ -8,5 +8,5 @@ object UserOutput {
 
     fun printWinLottoResult() = println(MSG_OUTPUT_WIN_LOTTO_RESULT)
 
-    fun printProfitResult(profit: Double) = println("총 수익률은 ${profit}입니다.")
+    fun printProfitResult(profit: Double) = println("총 수익률은 ${profit}%입니다.")
 }

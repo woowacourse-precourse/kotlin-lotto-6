@@ -1,5 +1,6 @@
 package lotto
 
+import ui.UserOutput
 import util.Validator
 
 class LottoGenerator(var money: Int = 0) {
@@ -10,12 +11,16 @@ class LottoGenerator(var money: Int = 0) {
       Validator.checkIsDivisibleByThousand(money)
     }
 
-    fun create() {
+    fun create(): LottoGenerator {
         for (i in 1..moneyToCountByThousand()) lottos.add(Lotto())
+        return this
     }
 
     fun printLotto() {
+        println()
+        UserOutput.printPurchaseResult(lottos.size)
         for (lotto in lottos) println(lotto.toAscendingList())
+        println()
     }
 
     private fun moneyToCountByThousand() = money / 1000

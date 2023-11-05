@@ -5,17 +5,17 @@ import ui.UserOutput
 
 fun main() {
     val lottoGenerator = LottoGenerator(UserInput.readMoney())
-    lottoGenerator.create()
-
-    UserOutput.printPurchaseResult(lottoGenerator.lottos.size)
-    lottoGenerator.printLotto()
+    lottoGenerator
+        .create()
+        .printLotto()
 
     val lottoResult = LottoResult().apply {
         this.winLotto = Lotto(UserInput.readWinNumbers())
         this.bonus = UserInput.readBonusNumber()
     }
 
-    lottoResult.calculateWinLottos(lottoGenerator.lottos)
-    UserOutput.printWinLottoResult()
+    lottoResult
+        .calculateWinLottos(lottoGenerator.lottos)
+        .showWinLottoData()
 
 }
