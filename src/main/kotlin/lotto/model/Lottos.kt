@@ -24,14 +24,4 @@ class Lottos(purchaseCount: Int, randomGenerator: RandomGenerator) {
             )
         }
     }
-
-    fun getLottoResult(lottoPrizes: List<LottoPrize?>): List<LottoResult> {
-        val lottoResults = LottoPrize.entries.map { LottoResult(it) }
-        lottoPrizes.forEach { lottoPrize ->
-            lottoResults.firstOrNull {
-                it.prize == lottoPrize
-            }?.increasePrizeCount()
-        }
-        return lottoResults
-    }
 }
