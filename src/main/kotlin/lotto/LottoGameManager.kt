@@ -1,15 +1,13 @@
 package lotto
 
-import camp.nextstep.edu.missionutils.Console
-
 object LottoGameManager {
-    private var lottoCost = 0
+    private var lottoAmount = 0
     fun startLottoGame(){
         println("구입금액을 입력해 주세요.")
-        getLottoCost()
+        getLottoAmount()
     }
 
-    fun getLottoCost(){
-        lottoCost = LottoInputHandler.receiveLottoCost()
+    fun getLottoAmount(){
+        lottoAmount = LottoInputHandler.receiveLottoCost() / 1000
     }
 }
