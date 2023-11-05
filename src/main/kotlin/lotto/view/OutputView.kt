@@ -10,7 +10,7 @@ private const val FIVE_MATCH_MSG = "5개 일치 (1,500,000원) - %d개"
 private const val FIVE_BONUS_MATCH_MSG = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"
 private const val SIX_MATCH_MSG = "6개 일치 (2,000,000,000원) - %d개"
 
-private const val WINNING_STATS_MSG = "당첨 통계\n" + "---"
+private const val WINNING_STATS_HEADER_MSG = "당첨 통계\n" + "---"
 
 class OutputView {
     fun printPurchaseAmount() {
@@ -46,7 +46,7 @@ class OutputView {
             println(String.format(format,result[index]))
         }
     }
-    fun printWinningStats(){
-        println(WINNING_STATS_MSG)
+    fun printWinningStatsHeader(){
+        println(WINNING_STATS_HEADER_MSG)
     }
 }
