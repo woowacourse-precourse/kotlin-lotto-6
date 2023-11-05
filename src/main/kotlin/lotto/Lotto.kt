@@ -11,10 +11,10 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 
+    val numberList: List<Int> = this.numbers
+
     var matchedNumbersCount = 0
     var matchedBonusNumber = false
-
-    val numberList: List<Int> = this.numbers
 
     fun matchingNumbers(list: Set<Int>) {
         for (number in numberList) {
@@ -22,7 +22,7 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 
-    fun isMatchedNumber(number: Int, list: Set<Int>) {
+    private fun isMatchedNumber(number: Int, list: Set<Int>) {
         if (list.contains(number)) matchedNumbersCount++
     }
 
