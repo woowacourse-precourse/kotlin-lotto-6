@@ -2,7 +2,7 @@ package lotto
 
 object LottoGenerator {
 
-    internal fun createByMoney(money: Int): MutableList<Lotto> {
+    fun createByMoney(money: Int): MutableList<Lotto> {
         val lottos: MutableList<Lotto> = mutableListOf()
         for (i in 1..moneyToCount(money)) lottos.add(Lotto())
 
@@ -15,5 +15,4 @@ object LottoGenerator {
 
         return money / 1000
     }
-
 }

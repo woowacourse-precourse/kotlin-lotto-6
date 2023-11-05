@@ -10,6 +10,5 @@ class Lotto(private val numbers: List<Int> = Randoms.pickUniqueNumbersInRange(1,
         )
         require(numbers.all { it in 1..45 })
     }
-
-    internal fun toAscendingList() = numbers.sorted()
+    fun toAscendingList() = numbers.sorted()
 }

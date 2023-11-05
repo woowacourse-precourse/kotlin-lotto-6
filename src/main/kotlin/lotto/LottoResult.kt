@@ -7,14 +7,12 @@ class LottoResult(val lottos: MutableList<Lotto> = mutableListOf()) {
     lateinit var winLotto: Lotto
     var bonus = 0
 
-    internal fun countWinNumbers(lotto: Lotto): Int {
+    fun countWinNumbers(lotto: Lotto): Int {
         return winLotto.toAscendingList()
             .intersect(lotto.toAscendingList().toSet())
             .size
     }
-
-    internal fun hasBonus(): Boolean = winLotto.toAscendingList().contains(bonus)
-
+    fun hasBonus(): Boolean = winLotto.toAscendingList().contains(bonus)
 
     enum class MatchNumber(val count: Int) {
         NO_MATCH(0),
