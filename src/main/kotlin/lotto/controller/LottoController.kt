@@ -4,22 +4,22 @@ import camp.nextstep.edu.missionutils.Randoms
 import lotto.model.Lotto
 import lotto.view.InputView
 import lotto.view.OutputView
-import util.NumberConstants.FIFTH_RANK
-import util.NumberConstants.FIFTH_PRIZE_AMOUNT
-import util.NumberConstants.FIRST_RANK
-import util.NumberConstants.FIRST_PRIZE_AMOUNT
-import util.NumberConstants.FOURTH_RANK
-import util.NumberConstants.FOURTH_PRIZE_AMOUNT
-import util.NumberConstants.LOTTO_AMOUNT_UNIT
-import util.NumberConstants.LOTTO_MAX_NUMBER
-import util.NumberConstants.LOTTO_MIN_NUMBER
-import util.NumberConstants.LOTTO_TOTAL_NUMBER
-import util.NumberConstants.NO_RANK
-import util.NumberConstants.NO_PRIZE_AMOUNT
-import util.NumberConstants.SECOND_RANK
-import util.NumberConstants.SECOND_PRIZE_AMOUNT
-import util.NumberConstants.THIRD_RANK
-import util.NumberConstants.THIRD_PRIZE_AMOUNT
+import util.Constants.FIFTH_RANK
+import util.Constants.FIFTH_PRIZE_AMOUNT
+import util.Constants.FIRST_RANK
+import util.Constants.FIRST_PRIZE_AMOUNT
+import util.Constants.FOURTH_RANK
+import util.Constants.FOURTH_PRIZE_AMOUNT
+import util.Constants.LOTTO_AMOUNT_UNIT
+import util.Constants.LOTTO_MAX_NUMBER
+import util.Constants.LOTTO_MIN_NUMBER
+import util.Constants.LOTTO_TOTAL_NUMBER
+import util.Constants.NO_RANK
+import util.Constants.NO_PRIZE_AMOUNT
+import util.Constants.SECOND_RANK
+import util.Constants.SECOND_PRIZE_AMOUNT
+import util.Constants.THIRD_RANK
+import util.Constants.THIRD_PRIZE_AMOUNT
 
 class LottoController {
     private val inputView = InputView()
