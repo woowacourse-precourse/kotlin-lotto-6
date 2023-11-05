@@ -1,4 +1,4 @@
-package lotto
+package lotto.modeltest
 
 import lotto.model.Lotto
 import org.junit.jupiter.api.Test
@@ -31,6 +31,12 @@ class LottoTest {
     fun `로또 번호가 양수가 아닐시 예외가 발생한다`(){
         assertThrows<IllegalArgumentException> {
             Lotto(listOf(4,7,-6,7,10,32))
+        }
+    }
+    @Test
+    fun `로또 번호를 입력하지 않을시 예외가 발생한다`(){
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf())
         }
     }
 }
