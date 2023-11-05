@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.model.Lotto
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -12,7 +13,6 @@ class LottoTest {
         }
     }
 
-    // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
     @Test
     fun `로또 번호에 중복된 숫자가 있으면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
@@ -20,5 +20,28 @@ class LottoTest {
         }
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test fun `로또 번호의 개수가 6개보다 적을 경우 예외가 발생한다`(){
+        val lottoLengthException = assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1,2,3,4,5))
+        }
+        println(lottoLengthException.message)
+    }
+    @Test
+    fun `로또 번호에 1~45 범위를 벗어나는 숫자가 있으면 예외가 발생한다`(){
+        val lowerRangeException = assertThrows<IllegalArgumentException> {
+            Lotto(listOf(0,1,2,3,4,5))
+        }
+        println(lowerRangeException.message)
+        val upperRangeException = assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1,2,3,4,5,47))
+        }
+        println(upperRangeException.message)
+    }
+    @Test
+    fun `로또 번호가 오름차순 정렬이 아니라면 예외가 발생한다`(){
+        val sortException = assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1,3,5,7,9,2))
+        }
+        println(sortException.message)
+    }
 }
