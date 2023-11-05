@@ -1,11 +1,9 @@
 package client
 
 import camp.nextstep.edu.missionutils.Console
-import constants.INPUT_BONUS_NUMBER_MESSAGE
-import constants.INPUT_BYE_MONEY_MESSAGE
-import constants.INPUT_WIN_NUMBER_MESSAGE
-import constants.OUTPUT_BYE_NUMBER_MESSAGE
+import constants.*
 import lotto.Lotto
+import lotto.WinState
 
 class Client {
     private val util = ClientUtil()
@@ -46,5 +44,13 @@ class Client {
         util.checkIsInteger(input)
         util.checkIsCorrectLottoNumber(input.toInt())
         return input.toInt()
+    }
+
+    fun outputWinPrize(winPrizeList: List<WinState>) {
+        println(OUTPUT_THREE_WIN_MESSAGE+ winPrizeList.count { it == WinState.THREE }+OUTPUT_COUNT)
+        println(OUTPUT_FOUR_WIN_MESSAGE+ winPrizeList.count { it == WinState.FOUR }+OUTPUT_COUNT)
+        println(OUTPUT_FIVE_WIN_MESSAGE+ winPrizeList.count { it == WinState.FIVE }+OUTPUT_COUNT)
+        println(OUTPUT_FIVE_WITH_BONUS_WIN_MESSAGE+ winPrizeList.count { it == WinState.FIVEPLUSBONUS }+OUTPUT_COUNT)
+        println(OUTPUT_SIX_WIN_MESSAGE+ winPrizeList.count { it == WinState.SIX }+OUTPUT_COUNT)
     }
 }

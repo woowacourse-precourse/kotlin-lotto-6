@@ -2,6 +2,7 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
 import client.Client
+import constants.*
 
 class LottoServer {
     private val client = Client()
@@ -13,12 +14,14 @@ class LottoServer {
         val winNumberList = client.inputWinNumberList()
         val bonusNumber = client.inputBonusNumber()
         val winPrizeList = computeWinPrize(winNumberList, bonusNumber)
-        println(winPrizeList)
+        client.outputWinPrize(winPrizeList)
     }
+
+
 
     private fun computeWinPrize(winNumberList: List<Int>, bonusNumber: Int): List<WinState> {
         return lottoList.map { lotto ->
-            lotto.computeWinState(winNumberList,bonusNumber)
+            lotto.computeWinState(winNumberList, bonusNumber)
         }
     }
 
