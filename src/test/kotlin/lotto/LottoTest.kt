@@ -2,8 +2,14 @@ package lotto
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class LottoTest {
     @Test
     fun `로또 번호의 개수가 6개가 넘어가면 예외가 발생한다`() {
@@ -37,5 +43,28 @@ class LottoTest {
         val userLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
         val winLotto = Lotto(listOf(9, 10, 11, 3, 1, 2))
         assertEquals((userLotto intersect winLotto).size, 3)
+    }
+
+    @ParameterizedTest
+    @MethodSource("lottoProvider")
+    fun `로또 등수 분류 테스트`(lottoNumberList: List<Int>, rightPosition: Position) {
+        val winLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val bonusNumber = 7
+        val lottoChecker = LottoChecker(winNumber = winLotto, bonusNumber = bonusNumber)
+        val userLotto = Lotto(lottoNumberList)
+        val result = lottoChecker.checkLotto(userLotto)
+        assertEquals(rightPosition, result)
+    }
+
+    companion object {
+        @JvmStatic
+        fun lottoProvider(): Stream<Arguments> = Stream.of(
+            Arguments.of(listOf(1, 2, 3, 4, 5, 6), Position.First),
+            Arguments.of(listOf(1, 2, 3, 4, 5, 7), Position.Second),
+            Arguments.of(listOf(1, 2, 3, 4, 5, 8), Position.Third),
+            Arguments.of(listOf(1, 2, 3, 4, 8, 9), Position.Fourth),
+            Arguments.of(listOf(1, 2, 3, 8, 9, 10), Position.Fifth),
+            Arguments.of(listOf(1, 2, 8, 9, 10, 11), Position.NoLuck),
+        )
     }
 }
