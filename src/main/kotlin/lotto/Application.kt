@@ -15,15 +15,35 @@ fun main() {
     printStatistics(results)
 }
 fun getBonusNumber(): Int {
-    println("보너스 번호를 입력해 주세요.")
-    return readLine()!!.toInt()
+    var bonusNumber: Int? = null
+    while (bonusNumber == null) {
+        try {
+            println("보너스 번호를 입력해 주세요.")
+            bonusNumber = readLine()!!.toInt()
+            if (bonusNumber !in 1..45) {
+                throw IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.")
+            }
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            bonusNumber = null
+        }
+    }
+    return bonusNumber
 }
 fun getWinningNumbers(): List<Int> {
-    println("당첨 번호를 입력해 주세요.")
-    val winningNumbers = readLine()!!.split(",").map { it.trim().toInt() }
-    validateWinningNumbers(winningNumbers)
-    if (winningNumbers.size != 6) {
-        throw IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.")
+    var winningNumbers: List<Int>? = null
+    while (winningNumbers == null) {
+        try {
+            println("당첨 번호를 입력해 주세요.")
+            winningNumbers = readLine()!!.split(",").map { it.trim().toInt() }
+            validateWinningNumbers(winningNumbers)
+            if (winningNumbers.size != 6) {
+                throw IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.")
+            }
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            winningNumbers = null
+        }
     }
     return winningNumbers
 }
