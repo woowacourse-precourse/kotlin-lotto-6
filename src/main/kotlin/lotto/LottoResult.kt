@@ -4,7 +4,6 @@ import java.util.*
 
 class LottoResult() {
 
-    var lottos: MutableList<Lotto> = mutableListOf()
     lateinit var winLotto: Lotto
     var bonus = 0
 

@@ -16,19 +16,22 @@ class LottoGeneratorTest {
     @Test
     fun `구입 금액만큼 로또를 발행한다_값 2000`() {
         val lottoGenerator = LottoGenerator(2000)
-        assertThat(lottoGenerator.create()).hasSize(2)
+        lottoGenerator.create()
+        assertThat(lottoGenerator.lottos).hasSize(2)
     }
 
     @Test
     fun `구입 금액만큼 로또를 발행한다_값 10_000`() {
         val lottoGenerator = LottoGenerator(10_000)
-        assertThat(lottoGenerator.create()).hasSize(10)
+        lottoGenerator.create()
+        assertThat(lottoGenerator.lottos).hasSize(10)
     }
 
     @Test
     fun `구입 금액만큼 로또를 발행한다_값 100_000`() {
         val lottoGenerator = LottoGenerator(100_000)
-        assertThat(lottoGenerator.create()).hasSize(100)
+        lottoGenerator.create()
+        assertThat(lottoGenerator.lottos).hasSize(100)
     }
 
     @Test
