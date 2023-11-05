@@ -2,11 +2,12 @@ package lotto.controller
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.Lotto
 import lotto.message.ErrorMessage
 import lotto.model.LottoModel
 import lotto.view.LottoView
 import org.mockito.internal.matchers.Null
-import java.lang.NumberFormatException
+import kotlin.NumberFormatException
 
 class LottoController(private val model: LottoModel, private val view : LottoView) {
     fun run(){
@@ -14,7 +15,6 @@ class LottoController(private val model: LottoModel, private val view : LottoVie
         view.showTicket(input_money.second)
         var buy_lotto_number = getRandomTicket(input_money)
         view.showTicketNumber(buy_lotto_number,input_money)
-        view.inputWinningNumber()
         var winning_number = setWinningNumber()
         view.inputBonusNumber()
         winning_number = setBonusNumber(winning_number)
@@ -61,13 +61,53 @@ class LottoController(private val model: LottoModel, private val view : LottoVie
         return buy_lotto_number
     }
 
-    fun setWinningNumber() : List<String>{
-        var winning_number = Console.readLine().split(",").toList()
-        return winning_number
+    fun setWinningNumber() : List<String> {
+        while (true) {
+            try {
+                view.inputWinningNumber()
+                var winning_number = Console.readLine().split(",").toList()
+                checkWinningNumberLength(winning_number)
+                checkWinningNumberDuplicated(winning_number)
+                checkWinningNumberTypeAndValue(winning_number)
+                return winning_number
+            } catch (e: IllegalArgumentException) {
+                print(e.message)
+            }
+        }
+    }
+
+
+
+    fun checkWinningNumberLength(winning_number: List<String>) {
+        if (winning_number.size >= 7) {
+            return throw IllegalArgumentException(ErrorMessage.ANSWER_NUMBER_AMOUNT_EXCEED)
+        } else if (winning_number.size <= 5) {
+            return throw IllegalArgumentException(ErrorMessage.ANSWER_NUMBER_AMOUNT_LITTLE)
+        }
+    }
+
+
+    fun checkWinningNumberDuplicated(winning_number: List<String>) {
+        var check_duplicated = ArrayList<String>()
+        for(idx in 0..winning_number.size-1){
+            if(check_duplicated.contains(winning_number.get(idx)))
+                return throw IllegalArgumentException(ErrorMessage.ANSWER_DUPLICATED_NUMBER)
+            else
+                check_duplicated.add(winning_number.get(idx))
+        }
+    }
+
+    fun checkWinningNumberTypeAndValue(winning_number: List<String>){
+        for(idx in 0..winning_number.size-1){
+            if(winning_number.get(idx).matches(Regex("[A-Za-z\\s]*")))
+                return throw IllegalArgumentException(ErrorMessage.ANSWER_NOT_A_NUMBER)
+            else if(winning_number.get(idx).toInt() > 45 || winning_number.get(idx).toInt() < 1)
+                return throw IllegalArgumentException(ErrorMessage.ANSWER_NUMBER_VALUE_EXCEED)
+        }
     }
 
     fun setBonusNumber(winning_number : List<String>) : List<String>{
         return winning_number + Console.readLine()
     }
-
 }
+
