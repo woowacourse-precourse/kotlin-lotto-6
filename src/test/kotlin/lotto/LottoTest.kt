@@ -96,4 +96,26 @@ class LottoTest {
 
         assertThat(expectMatchedNumbers).isNotEqualTo(actualMatchedNumbers)
     }
+
+    @Test
+    fun `로또 보너스 번호 일치`() {
+        val lotto = Lotto(listOf(1,2,3,4,5,6))
+        val bonusNumber = 4
+        val expectBonusMatched = true
+
+        val actualBonusMatched = lottoController.getBonusMatched(lotto, bonusNumber)
+
+        assertThat(expectBonusMatched).isEqualTo(actualBonusMatched)
+    }
+
+    @Test
+    fun `로또 보너스 번호 불일치`() {
+        val lotto = Lotto(listOf(1,2,3,4,5,6))
+        val bonusNumber = 7
+        val expectBonusMatched = true
+
+        val actualBonusMatched = lottoController.getBonusMatched(lotto, bonusNumber)
+
+        assertThat(expectBonusMatched).isNotEqualTo(actualBonusMatched)
+    }
 }
