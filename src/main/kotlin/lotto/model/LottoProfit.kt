@@ -1,5 +1,6 @@
 package lotto.model
 
+import lotto.util.Constants.FIRST_DECIMAL_PLACE
 import lotto.util.Winnings
 import kotlin.math.roundToInt
 
@@ -11,7 +12,7 @@ class LottoProfit(
 
     init {
         val profit = calculateRate(rankings, purchasePrice)
-        rate = String.format("%.1f", profit)
+        rate = String.format(FIRST_DECIMAL_PLACE, profit)
     }
 
 

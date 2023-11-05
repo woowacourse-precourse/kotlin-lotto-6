@@ -95,7 +95,7 @@ class LottoController(
 
     private fun showLottoStatistics() {
         val lottoProfit = LottoProfit(lottoRankings.rank, purchase.price)
-        outputView.printLottoRankings(lottoRankings)
+        outputView.printLottoStatistics(lottoRankings)
         outputView.printLottoProfitRate(lottoProfit)
     }
 }

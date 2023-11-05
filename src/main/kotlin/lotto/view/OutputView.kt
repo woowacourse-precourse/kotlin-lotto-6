@@ -32,7 +32,7 @@ class OutputView {
         println("보너스 번호를 입력해 주세요.")
     }
 
-    fun printLottoRankings(lottoRankings: LottoRankings) {
+    fun printLottoStatistics(lottoRankings: LottoRankings) {
         val rankings = lottoRankings.rank
         println() // 예제 출력과 같게하기 위하여 사용
         println("당첨 통계")

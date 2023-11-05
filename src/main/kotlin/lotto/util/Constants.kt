@@ -11,4 +11,5 @@ object Constants {
     const val RANKING_4ST_INDEX = 3
     const val RANKING_5ST_INDEX = 4
     const val RANKING_NOTHING = 5
+    const val FIRST_DECIMAL_PLACE = "%.1f"
 }

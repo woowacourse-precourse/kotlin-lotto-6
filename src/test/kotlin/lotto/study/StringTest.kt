@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 
 class StringTest {
     @Test
-    fun `"1,2"가 ","로 잘 분리되는지 테스트`() {
+    fun `'1,2'가 ','로 잘 분리되는지 테스트`() {
         val input = "1,2"
         val validation = input.split(",")
         val result = listOf("1", "2")
@@ -18,7 +18,7 @@ class StringTest {
     }
 
     @Test
-    fun `"1"을 split하면 1만 포함하는 배열인지 테스트`() {
+    fun `'1'을 split하면 1만 포함하는 배열인지 테스트`() {
         val input = "1"
         val validation = input.split(",")
         assertThat(validation).containsExactly("1")
