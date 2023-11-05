@@ -10,5 +10,23 @@ object OutputView {
         println("\n$purchaseCount$RESULT_AMOUNT_PURCHASE_MESSAGE")
     }
 
-    const val RESULT_AMOUNT_PURCHASE_MESSAGE = "개를 구매했습니다."
+    fun printLottoWin(winCount: Int, money: Int, bonus: Boolean, prizeCount: Int) {
+        if (bonus) {
+            println(LOTTO_WIN_BONUS_MESSAGE.format(winCount, money, prizeCount))
+        } else {
+            println(LOTTO_WIN_MESSAGE.format(winCount, money, prizeCount))
+        }
+    }
+
+    fun printResult() {
+        println("\n$RESULT_MESSAGE")
+        println(DIVIDE_LINE)
+    }
+
+    private const val RESULT_MESSAGE = "당첨 통계"
+    private const val DIVIDE_LINE = "---"
+    private const val LOTTO_WIN_MESSAGE = "%d개 일치(%d원) - %d개"
+    private const val LOTTO_WIN_BONUS_MESSAGE = "%d개 일치, 보너스 볼 일치(%d원) - %d개"
+    private const val RESULT_AMOUNT_PURCHASE_MESSAGE = "개를 구매했습니다."
+
 }

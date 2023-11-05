@@ -17,8 +17,12 @@ class LottoController {
         val winningNumbers = InputView.getWinningNumber()
         val bonusLottoNumber = InputView.getBonusNumber(winningNumbers)
 
-        val lottoPrizes = randomLottos.getLottoPrize(Lotto(winningNumbers), bonusLottoNumber)
-
+        val lottoPrizes = randomLottos.getLottoPrizes(Lotto(winningNumbers), bonusLottoNumber)
+        val lottoResults = randomLottos.getLottoResult(lottoPrizes)
+        OutputView.printResult()
+        lottoResults.forEach {
+            OutputView.printLottoWin(it.prize.prizeCount, it.prize.money, it.prize.bonus, it.resultCount)
+        }
     }
 
     private fun buyLotto() {
