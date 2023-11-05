@@ -8,4 +8,8 @@ class InputView {
         return Console.readLine().toInt()
     }
 
+    fun inputWinningNumbers(): List<Int> {
+        return Console.readLine().split(",").map { it.toInt() }
+    }
+
 }
