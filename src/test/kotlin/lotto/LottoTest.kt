@@ -250,4 +250,36 @@ class LottoTest {
 
         assertThat(expectWinningRank).isEqualTo(actualWinningRank)
     }
+
+    @Test
+    fun `당첨 내역 일치`() {
+        val lottos = listOf(
+            Lotto(listOf(1, 2, 3, 4, 5, 6)), Lotto(listOf(1, 2, 3, 4, 5, 7)),
+            Lotto(listOf(1, 2, 3, 4, 5, 8)), Lotto(listOf(1, 2, 3, 4, 7, 8)),
+            Lotto(listOf(1, 2, 3, 7, 8, 9)), Lotto(listOf(1, 2, 7, 8, 9, 10))
+        )
+        val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
+        val bonusNumber = 7
+        val expectWinningStatistics = listOf(1, 1, 1, 1, 1, 1)
+
+        val actualWinningStatistics = lottoController.getWinningStatistics(lottos, winningNumbers, bonusNumber)
+
+        assertThat(expectWinningStatistics).isEqualTo(actualWinningStatistics)
+    }
+
+    @Test
+    fun `당첨 내역 불일치`() {
+        val lottos = listOf(
+            Lotto(listOf(1, 2, 3, 4, 5, 6)), Lotto(listOf(1, 2, 3, 4, 5, 7)),
+            Lotto(listOf(1, 2, 3, 4, 5, 8)), Lotto(listOf(1, 2, 3, 4, 7, 8)),
+            Lotto(listOf(1, 2, 3, 7, 8, 9)), Lotto(listOf(1, 2, 7, 8, 9, 10))
+        )
+        val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
+        val bonusNumber = 7
+        val expectWinningStatistics = listOf(0,0,0,0,0,0)
+
+        val actualWinningStatistics = lottoController.getWinningStatistics(lottos, winningNumbers, bonusNumber)
+
+        assertThat(expectWinningStatistics).isNotEqualTo(actualWinningStatistics)
+    }
 }
