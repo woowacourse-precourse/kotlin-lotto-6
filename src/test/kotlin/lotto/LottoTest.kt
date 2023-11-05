@@ -64,4 +64,15 @@ class LottoTest {
             }
         }
     }
+
+    @Test
+    fun `로또 당첨 숫자 개수`() {
+        val lotto = Lotto(listOf(1,2,3,4,5,6))
+        val winningNumbers = listOf(3,4,5,6,7,8)
+        val expectMatchedNumbers = 4
+
+        val actualMatchedNumbers = lottoController.getMatchedNumbers(lotto, winningNumbers)
+
+        assertThat(expectMatchedNumbers).isEqualTo(actualMatchedNumbers)
+    }
 }
