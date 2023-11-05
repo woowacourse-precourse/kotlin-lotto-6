@@ -2,10 +2,7 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
-import lotto.control.LottoControl
 import lotto.service.LottoService
-import org.assertj.core.internal.Characters
-import kotlin.math.round
 
 
 fun main() {
@@ -32,13 +29,13 @@ fun main() {
 //        buy_lotto_number[i-1].sort()
 //    }
 //
-////    for(i in 1..case){
-////        print("[")
-////        for(j in 1..5){
-////            print("${buy_lotto_number[i-1][j-1]}, ")
-////        }
-////        println("${buy_lotto_number[i-1][5]}]")
-////    }
+//    for(i in 1..case){
+//        print("[")
+//        for(j in 1..5){
+//            print("${buy_lotto_number[i-1][j-1]}, ")
+//        }
+//        println("${buy_lotto_number[i-1][5]}]")
+//    }
 //
 //    println("\n당첨 번호를 입력해 주세요.")
 //    var win_number = Console.readLine().split(",")
