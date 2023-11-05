@@ -5,7 +5,7 @@ import lotto.Lotto
 
 class GenerateLotto() {
     fun issueLotto(): Lotto {
-        val numbers = generateNumbers()
+        val numbers = generateNumbers().sorted()
         return Lotto(numbers)
     }
 
