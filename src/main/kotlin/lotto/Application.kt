@@ -5,18 +5,16 @@ import camp.nextstep.edu.missionutils.Randoms
 
 var MONEY: Int? = null
 val LOTTOES = mutableListOf<Lotto>()
+val NUMBERS = mutableSetOf<Int>()
 
 fun main() {
-    initialize()
     while (MONEY == null) {
         inputMoney()
     }
     makeLottoes()
-}
-
-fun initialize() {
-    MONEY = null
-    LOTTOES.clear()
+    while (NUMBERS.size != 6) {
+        inputNumbers()
+    }
 }
 
 fun inputMoney() {
@@ -53,6 +51,39 @@ fun showLottoes() {
     for (item in LOTTOES) {
         println(item.numberList)
     }
+}
+
+fun inputNumbers() {
+    NUMBERS.clear()
+    println("당첨 번호를 입력해 주세요.")
+    val input = Console.readLine()
+    try {
+        val numbers = input.split(',').toSet()
+        checkNumbersFirst(numbers)
+        println()
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+    }
+}
+
+fun checkNumbersFirst(numbers: Set<String>) {
+    // 당첨번호가 서로 겹치지 않는지 확인
+    if (numbers.size != 6) {
+        throwErrorMessage("당첨번호는 겹치지 않는 번호 6개여야 합니다!")
+    }
+
+    numbers.map { number ->
+        checkNumbersSecond(number)
+    }
+}
+
+fun checkNumbersSecond(number: String) {
+    // 당첨번호가 1~45 사이인지 확인
+    if (number.toIntOrNull() == null || number.toInt() !in 1..45) {
+        throwErrorMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+    }
+
+    NUMBERS.add(number.toInt())
 }
 
 fun throwErrorMessage(text: String) {
