@@ -3,15 +3,16 @@ package lotto.view
 import lotto.model.LottoProfit
 import lotto.model.LottoRankings
 import lotto.model.LottoTicket
+import lotto.model.Purchase
 
 class OutputView {
     fun printGameStartMessage() {
         println("구입금액을 입력해 주세요.")
     }
 
-    fun printPurchaseCount(purchaseCount: Int) {
+    fun printPurchaseCount(purchase: Purchase) {
         println() //예제 출력과 같게 하기 위해 공백 추가
-        println("${purchaseCount}개를 구매했습니다.")
+        println("${purchase.count}개를 구매했습니다.")
     }
 
     fun printLottoTicket(lottoTicket: LottoTicket) {

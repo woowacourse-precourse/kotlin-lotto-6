@@ -13,7 +13,6 @@ class LottoController(
     private lateinit var purchase: Purchase
     private lateinit var lotto: Lotto
     private lateinit var bonus: Bonus
-    private lateinit var lottoResult: LottoResult
     private val lottoRankings = LottoRankings()
 
     fun run() {
@@ -45,7 +44,7 @@ class LottoController(
     }
 
     private fun checkWinningNumbers() {
-        lottoResult = LottoResult(lotto.getWinningNumbers(), bonus.number)
+        val lottoResult = LottoResult(lotto.getWinningNumbers(), bonus.number)
         repeat(purchase.count) { round ->
             val winning = lottoResult.calculateRanking(lottoTicket.numbers[round])
             lottoRankings.addRanking(winning)
@@ -68,7 +67,7 @@ class LottoController(
     }
 
     private fun printLottoTicket() {
-        outputView.printPurchaseCount(purchase.count)
+        outputView.printPurchaseCount(purchase)
         outputView.printLottoTicket(lottoTicket)
     }
 
