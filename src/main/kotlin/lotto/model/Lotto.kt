@@ -7,7 +7,7 @@ class Lotto(private val numbers: List<Int>) {
         Validator().isUserWinningNumbersCheck(numbers)
     }
 
-    val getNumber: List<Int>
+    val getNumbers: List<Int>
         get() {
             return numbers
         }

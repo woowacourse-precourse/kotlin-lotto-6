@@ -1,9 +1,9 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.Constants.Companion.INPUT_ENTER_BONUS_NUMBERS_MESSAGE
-import lotto.Constants.Companion.INPUT_ENTER_WINNING_NUMBERS_MESSAGE
-import lotto.Constants.Companion.INPUT_PURCHASE_AMOUNT_MESSAGE
+import lotto.Constants.INPUT_ENTER_BONUS_NUMBERS_MESSAGE
+import lotto.Constants.INPUT_ENTER_WINNING_NUMBERS_MESSAGE
+import lotto.Constants.INPUT_PURCHASE_AMOUNT_MESSAGE
 
 class InputView {
 

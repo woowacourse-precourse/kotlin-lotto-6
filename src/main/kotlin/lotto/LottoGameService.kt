@@ -1,14 +1,14 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
-import lotto.Constants.Companion.LOTTO_PRICE
-import lotto.Constants.Companion.MAX_LOTTO_NUMBER
-import lotto.Constants.Companion.MIN_LOTTO_NUMBER
-import lotto.Constants.Companion.THREE_MATCH_WINNING_AMOUNT
-import lotto.Constants.Companion.FORE_MATCH_WINNING_AMOUNT
-import lotto.Constants.Companion.FIVE_MATCH_WINNING_AMOUNT
-import lotto.Constants.Companion.FIVE_WITH_BONUS_MATCH_WINNING_AMOUNT
-import lotto.Constants.Companion.SIX_MATCH_WINNING_AMOUNT
+import lotto.Constants.LOTTO_PRICE
+import lotto.Constants.MAX_LOTTO_NUMBER
+import lotto.Constants.MIN_LOTTO_NUMBER
+import lotto.Constants.THREE_MATCH_WINNING_AMOUNT
+import lotto.Constants.FORE_MATCH_WINNING_AMOUNT
+import lotto.Constants.FIVE_MATCH_WINNING_AMOUNT
+import lotto.Constants.FIVE_WITH_BONUS_MATCH_WINNING_AMOUNT
+import lotto.Constants.SIX_MATCH_WINNING_AMOUNT
 import lotto.model.LottoRank
 
 class LottoGameService {
@@ -27,7 +27,6 @@ class LottoGameService {
         return purchaseLottoLists
     }
 
-    // 랜덤 로또 번호 리스트와 입력한 로또 번호를 비교해주는 함수
     fun calculateWinningStatistics(
         lotto: List<Int>,
         bonus: String,
@@ -41,7 +40,6 @@ class LottoGameService {
         }
     }
 
-    // 랜덤 로또 리스트에 입력한 로또 번호가 몇개 포함되어 있는지 확인하는 함수
     private fun checkWinningLottoNumber(
         lotto: List<Int>,
         randomLottoLists: MutableMap<Int, List<Int>>,
@@ -50,7 +48,6 @@ class LottoGameService {
         return randomLottoLists[ticketCheck]!!.intersect(lotto.toSet()).count()
     }
 
-    // 랜덤 로또 리스트에 보너스 번호가 포함되어 있는지 확인하는 함수
     private fun checkWinningBonusNumber(
         bonus: String,
         randomLottoLists: MutableMap<Int, List<Int>>,
@@ -59,7 +56,6 @@ class LottoGameService {
         return randomLottoLists[ticketCheck]!!.contains(bonus.toInt())
     }
 
-    // 당첨 통계를 저장하는 함수
     private fun saveWinningStatsToRank(winningLottoCheck: Int, bonusNumberCheck: Boolean, ticketCheck: Int) {
         if (winningLottoCheck == 3 || winningLottoCheck == 2 && bonusNumberCheck) {
             LottoRank.THREE_MATCH.increment()
@@ -78,7 +74,6 @@ class LottoGameService {
         }
     }
 
-    // 수익률 구하는 함수
     fun calculateProfitPercentage(purchaseAmount: Double): Double {
         val threeMatch = LottoRank.THREE_MATCH.getCount()
         val fourMatch = LottoRank.FOUR_MATCH.getCount()
@@ -90,7 +85,6 @@ class LottoGameService {
         return (totalMoney / purchaseAmount) * 100.00
     }
 
-    // 입력받은 로또의 번호를 리스트로 변환해주는 함수
     fun convertStringToList(enterWinningNumbers: String): List<Int> {
         return enterWinningNumbers.split(",").map { it.trim().toInt() }
     }

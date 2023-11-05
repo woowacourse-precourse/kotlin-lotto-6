@@ -1,13 +1,12 @@
 package lotto.controller
 
-import lotto.Constants.Companion.ERROR_EMPTY_WINNING_NUMBER_MESSAGE
+import lotto.Constants.ERROR_EMPTY_WINNING_NUMBER_MESSAGE
 import lotto.LottoGameService
 import lotto.model.Bonus
 import lotto.model.Lotto
 import lotto.view.InputView
 import lotto.view.OutputView
 import lotto.Validator
-import java.lang.NumberFormatException
 
 class LottoGameController {
     private val inputView = InputView()
@@ -15,47 +14,47 @@ class LottoGameController {
     private val lottoGameService = LottoGameService()
     private val validator = Validator()
 
-
     fun playGame() {
-        val purchaseAmount = getPurPurchaseAmount()
-        val ticket = getTicketNumber(purchaseAmount)
-        val randomLottoLists = getRandomLottoLists(ticket)
-        outputView.outputPurchaseCountMessage(ticket)
-        outputView.outputRandomLottoList(randomLottoLists)
+        val purchaseAmount = getPurchasedAmount()
+        val ticket = calculateTicketCount(purchaseAmount)
+        val randomLottoLists = generateRandomLottoLists(ticket)
+        outputView.ticketCountMessage(ticket)
+        outputView.randomLottoLists(randomLottoLists)
         val lotto = getWinningNumbers()
         val bonus = getBonusNumber(lotto)
         lottoGameService.calculateWinningStatistics(lotto, bonus, randomLottoLists, ticket)
-        outputView.outputWinningStatisticsMessage()
+        outputView.winningStatisticsMessage()
         val profit = lottoGameService.calculateProfitPercentage(purchaseAmount.toDouble())
-        outputView.outputProfitPercentageMessage(profit)
+        outputView.profitPercentageMessage(profit)
     }
 
-    private fun getPurPurchaseAmount(): Int {
+    private fun getPurchasedAmount(): Int {
         return try {
             val purchaseAmount = inputView.purchaseAmountMessage()
             validator.isUserPurchaseAmountCheck(purchaseAmount)
-            return purchaseAmount.toInt()
+            purchaseAmount.toInt()
         } catch (error: IllegalArgumentException) {
-            getPurPurchaseAmount()
+            getPurchasedAmount()
         }
     }
 
-    private fun getTicketNumber(purchaseAmount: Int): Int {
+    private fun calculateTicketCount(purchaseAmount: Int): Int {
         return lottoGameService.calculateLottoPurchaseQuantity(purchaseAmount)
     }
 
-    private fun getRandomLottoLists(ticket: Int): MutableMap<Int, List<Int>> {
+    private fun generateRandomLottoLists(ticket: Int): MutableMap<Int, List<Int>> {
         return lottoGameService.lottoNumberGenerator(ticket)
     }
 
     private fun getWinningNumbers(): List<Int> {
         return try {
-            val winningNumber = lottoGameService.convertStringToList(inputView.enterWinningNumbersMessage())
-            Lotto(winningNumber).getNumber
+            val winningNumbers = inputView.enterWinningNumbersMessage()
+            val winningNumber = lottoGameService.convertStringToList(winningNumbers)
+            Lotto(winningNumber).getNumbers
         } catch (error: NumberFormatException) {
             println(ERROR_EMPTY_WINNING_NUMBER_MESSAGE)
             getWinningNumbers()
-        }catch (error: IllegalArgumentException) {
+        } catch (error: IllegalArgumentException) {
             getWinningNumbers()
         }
     }
@@ -68,5 +67,4 @@ class LottoGameController {
             getBonusNumber(lotto)
         }
     }
-
 }
