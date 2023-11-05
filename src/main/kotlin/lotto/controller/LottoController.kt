@@ -55,11 +55,7 @@ class LottoController {
     }
 
     fun makeLottos(numberOfPurchase: Int): List<Lotto> {
-        val lottos = mutableListOf<Lotto>()
-        for (number in 0 until numberOfPurchase) {
-            lottos.add(Lotto(generateLottoNumbers()))
-        }
-        return lottos
+        return List(numberOfPurchase) { Lotto(generateLottoNumbers()) }
     }
 
     fun purchaseLottos(lottos: List<Lotto>) {
