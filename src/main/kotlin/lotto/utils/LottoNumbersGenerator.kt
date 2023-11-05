@@ -4,13 +4,13 @@ import camp.nextstep.edu.missionutils.Randoms
 
 object LottoNumbersGenerator {
     fun generateLottoNumbers() : List<Int>{
-        val lottoNunmbers = mutableListOf<Int>()
-        while (lottoNunmbers.size < 6) {
+        val lottoNumbers = mutableListOf<Int>()
+        while (lottoNumbers.size < 6) {
             val randomNumber = Randoms.pickNumberInRange(1, 45)
-            if (!lottoNunmbers.contains(randomNumber)) {
-                lottoNunmbers.add(randomNumber)
+            if (!lottoNumbers.contains(randomNumber)) {
+                lottoNumbers.add(randomNumber)
             }
         }
-        return lottoNunmbers.toList()
+        return lottoNumbers.toList()
     }
 }
