@@ -20,8 +20,7 @@ class LottoInitializer {
     private fun getWinningNumbers(): List<Int> {
         winningNumbersInputMessage()
         val winningNumbersInput = Console.readLine()
-        val winningNumbers = makeWinningNumbers(winningNumbersInput)
-        return winningNumbers
+        return makeWinningNumbers(winningNumbersInput)
     }
 
     private fun getBonusNumber(): Int {
