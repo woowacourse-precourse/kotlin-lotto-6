@@ -4,9 +4,10 @@ import camp.nextstep.edu.missionutils.Console
 
 class Store {
     private var cost: Int = 0
-    fun payToBuy() {
+    fun payToBuy(): Int {
         println("구입금액을 입력해 주세요.")
         cost = validatePayment()
+        return howManyLotto(cost)
     }
 
     private fun validatePayment(): Int {
