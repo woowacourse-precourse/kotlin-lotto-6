@@ -30,7 +30,7 @@ class WinningNumbersValidatorTest {
     @Test
     fun When_InClude_OutOfRange_Expect_InValid() {
         val input = "1,2,3,4,5,50".split(',').map { it.toInt() }
-        assertThrows<IllegalArgumentException> { winningNumbersValidator.validateOutOfRange(input) }
+        assertThrows<IllegalArgumentException> { winningNumbersValidator.validateOutOfRangeNumbers(input) }
     }
 
     @Test
