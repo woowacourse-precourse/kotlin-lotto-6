@@ -1,11 +1,13 @@
 package lotto.view
 
 import lotto.message.ControlMessage
+import lotto.message.ErrorMessage
 
 class LottoView {
     fun inputMoney(){
         println(ControlMessage.INPUT_MONEY)
     }
+
     fun showTicket(num : Int){
         println("\n${num}${ControlMessage.SHOW_TICKET}")
     }

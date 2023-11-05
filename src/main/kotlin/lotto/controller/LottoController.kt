@@ -2,13 +2,15 @@ package lotto.controller
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.message.ErrorMessage
 import lotto.model.LottoModel
 import lotto.view.LottoView
+import org.mockito.internal.matchers.Null
+import java.lang.NumberFormatException
 
 class LottoController(private val model: LottoModel, private val view : LottoView) {
     fun run(){
-        view.inputMoney()
-        val input_money = inputMoney()
+        var input_money = inputMoney()
         view.showTicket(input_money.second)
         var buy_lotto_number = getRandomTicket(input_money)
         view.showTicketNumber(buy_lotto_number,input_money)
@@ -23,8 +25,23 @@ class LottoController(private val model: LottoModel, private val view : LottoVie
     }
 
     fun inputMoney() : Pair<Int,Int>{
-        val input_money = Console.readLine().toInt()
-        return Pair(input_money,input_money/1000)
+        while(true){
+            try{
+                view.inputMoney()
+                var input_money = Console.readLine().toInt()
+                check_devide(input_money)
+                return Pair(input_money,input_money/1000)
+            }catch (e: NumberFormatException){
+                println(ErrorMessage.CHARACTER_IN_NUMBER)
+            }catch (e: IllegalArgumentException){
+                println(e.message)
+            }
+        }
+    }
+    fun check_devide(input_money: Int){
+        if((input_money % 1000) != 0){
+            return throw IllegalArgumentException(ErrorMessage.CAN_NOT_DIVIDE_NUMBER)
+        }
     }
 
     fun getRandomTicket(input_money : Pair<Int,Int>) : Array<Array<Int>> {
@@ -52,4 +69,5 @@ class LottoController(private val model: LottoModel, private val view : LottoVie
     fun setBonusNumber(winning_number : List<String>) : List<String>{
         return winning_number + Console.readLine()
     }
+
 }
