@@ -35,4 +35,11 @@ class BuyingPriceTest {
             isValidNumberFormat("000123")
         }
     }
+
+    @Test
+    fun `1회 최대 구매 가능 금액보다 높은 금액일 경우 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            require("120000".toInt() > 100000)
+        }
+    }
 }
