@@ -1,5 +1,7 @@
 package lotto.model
 
+import kotlin.math.round
+
 class Profit {
     fun calculateProfit(money: Int,jackpot: List<Int>):Float{
         var profit = 0
@@ -9,6 +11,6 @@ class Profit {
         profit += jackpot[3] * Constants.THIRTY_MILLION
         profit += jackpot[4] * Constants.TWO_BILLION
 
-        return profit/money.toFloat()*Constants.HUNDRED
+        return round(profit/money.toFloat()*Constants.HUNDRED)/10
     }
 }
