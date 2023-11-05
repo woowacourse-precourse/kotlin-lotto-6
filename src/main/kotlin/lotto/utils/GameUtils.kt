@@ -5,7 +5,10 @@ import lotto.data.model.LottoWinningNumber
 import lotto.data.model.UserLottoState
 
 object GameUtils {
-
+    fun divideByThousand(price: Int) = price.div(1000)
+    private fun Double.multiplyByThousand() = this.times(1000)
+    private fun Double.multiplyByHundred() = this.times(100)
+   
     // 로또 생성
     fun generateLotto(count: Int): List<List<Int>> {
         val lottoNumbersList = mutableListOf<List<Int>>()
