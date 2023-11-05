@@ -3,7 +3,15 @@ package lotto.domain
 import camp.nextstep.edu.missionutils.Randoms
 
 class LottoShop {
-    fun issueLotto(): Lotto {
+    fun purchaseLottos(inputMoney: Int) : List<Lotto> {
+        val lottos = mutableListOf<Lotto>()
+        repeat(inputMoney / 1000) {
+            lottos.add(issueLotto())
+        }
+        return lottos
+    }
+
+    private fun issueLotto(): Lotto {
         return Lotto(generateNumbers())
     }
 
