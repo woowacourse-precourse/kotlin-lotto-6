@@ -1,11 +1,17 @@
 package lotto
 
+import lotto.controller.LottoController
 import lotto.model.Lotto
+import lotto.view.InputView
+import lotto.view.OutputView
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-
 class LottoTest {
+    private val inputView = InputView()
+    private val outputView = OutputView()
+    private val lottoController = LottoController()
+
     @Test
     fun `로또 번호의 개수가 6개가 넘어가면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
