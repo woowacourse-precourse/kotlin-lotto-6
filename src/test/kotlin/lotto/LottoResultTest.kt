@@ -1,6 +1,7 @@
 package lotto
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -66,5 +67,13 @@ class LottoResultTest {
         val count = lottoResult.countWinNumbers(lotto)
 
         assertThat(count).isEqualTo(LottoResult.MatchNumber.NO_MATCH.count)
+    }
+
+    @Test
+    fun `당첨 번호에 보너스 번호가 있는지 확인한다`() {
+        lottoResult.bonus = 42
+        lottoResult.winLotto = Lotto(listOf(1, 2, 3, 4, 5, 42))
+
+        assertTrue(lottoResult.hasBonus())
     }
 }
