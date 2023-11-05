@@ -11,11 +11,11 @@ class InputManager {
     private val winningNumbersValidator = WinningNumbersValidator()
     private val bonusNumberValidator = BonusNumberValidator()
 
-    fun getInputMoney(): String {
+    fun getInputMoney(): Int {
         return try {
             val inputMoney = inputView.readInputMoneyFromUser()
             inputMoneyValidator.validate(inputMoney)
-            inputMoney
+            inputMoney.toInt()
         } catch (e: IllegalArgumentException) {
             println(e.message)
             getInputMoney()
@@ -24,9 +24,9 @@ class InputManager {
 
     fun getWinningNumbers(): List<Int> {
         return try {
-            val inputMoney = inputView.readWinningNumbersFromUser()
-            winningNumbersValidator.validate(inputMoney)
-            inputMoney.split(",").map { it.trim().toInt() }
+            val winningNumber = inputView.readWinningNumbersFromUser()
+            winningNumbersValidator.validate(winningNumber)
+            winningNumber.split(",").map { it.trim().toInt() }
         } catch (e: IllegalArgumentException) {
             println(e.message)
             getWinningNumbers()
