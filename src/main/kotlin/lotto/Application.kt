@@ -21,7 +21,15 @@ fun getBonusNumber(): Int {
 }
 fun getWinningNumbers(): List<Int> {
     println("당첨 번호를 입력해 주세요.")
-    return readLine()!!.split(",").map { it.trim().toInt() }
+    val winningNumbers = readLine()!!.split(",").map { it.trim().toInt() }
+    validateWinningNumbers(winningNumbers)
+    return winningNumbers
+}
+
+fun validateWinningNumbers(winningNumbers: List<Int>) {
+    if (winningNumbers.any { it !in 1..45 }) {
+        throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+    }
 }
 fun getInputMoney(): Int {//구입금액 입력 받기
     var money = 0
