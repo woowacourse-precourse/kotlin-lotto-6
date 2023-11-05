@@ -1,8 +1,9 @@
 package lotto.validator
 
-class PurchasePriceValidator : InputValidator() {
+class PurchasePriceValidator(value: String) : InputValidator() {
     init {
-        checkForDigit()
-        checkForValidAmount()
+        checkBlank(value)
+        checkForPositiveInteger(value)
+        checkForValidAmount(value)
     }
 }

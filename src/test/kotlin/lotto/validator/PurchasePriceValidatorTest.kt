@@ -1,0 +1,52 @@
+package lotto.validator
+
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
+
+class PurchasePriceValidatorTest {
+
+    @Test
+    fun `구입 금액으로 공백을 입력 시`() {
+        val exception = assertThrows<IllegalArgumentException> {
+            PurchasePriceValidator(" ")
+        }
+
+        Assertions.assertEquals("[ERROR] 공백이 아닌 값을 입력해 주세요", exception.message)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["abc", "-2000", "#421", "421#"])
+    fun `양의 정수가 아닌 문자 입력 시`(value: String) {
+        val exception = assertThrows<IllegalArgumentException> {
+            PurchasePriceValidator(value)
+        }
+
+        Assertions.assertEquals("[ERROR] 양의 정수를 입력해 주세요", exception.message)
+    }
+
+    @Test
+    fun `1000원 미만의 금액 입력 시`() {
+        val exception = assertThrows<IllegalArgumentException> {
+            PurchasePriceValidator("500")
+        }
+
+        Assertions.assertEquals("[ERROR] 최소 1,000원 이상을 입력해 주세요", exception.message)
+    }
+
+    @Test
+    fun `1000원 단위가 아닌 금액 입력 시`() {
+        val exception = assertThrows<IllegalArgumentException> {
+            PurchasePriceValidator("1100")
+        }
+
+        Assertions.assertEquals("[ERROR] 1,000원 단위로 입력해 주세요", exception.message)
+    }
+
+    @Test
+    fun `1000원 이상 입력 시`() {
+        Assertions.assertDoesNotThrow { PurchasePriceValidator("1000") }
+    }
+}
