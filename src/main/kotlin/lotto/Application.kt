@@ -15,5 +15,6 @@ fun main() {
         this.bonus = UserInput.readBonusNumber()
     }
 
+    lottoResult.calculateWinLottos(lottoGenerator.lottos)
 
 }
