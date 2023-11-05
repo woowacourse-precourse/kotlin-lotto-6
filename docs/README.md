@@ -47,6 +47,6 @@
 
 - [] 총 당첨 금액 대비 수익률 계산 : Calculator#calculateRateReturn()
 
-- [] 복권 클래스 Lotto#
+- [] 복권 클래스 package lotto#Lotto# 이미 존재
 
 - [] 당첨 숫자 클래스 WinningBonusNumber#
