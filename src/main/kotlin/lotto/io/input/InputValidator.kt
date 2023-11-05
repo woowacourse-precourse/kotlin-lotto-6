@@ -32,8 +32,4 @@ class InputValidator {
             Exception.LOTTO_COMMA
         }
     }
-
-    companion object {
-        private const val PURCHASE_AMOUNT_UNIT = 1000
-    }
 }

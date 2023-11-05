@@ -1,7 +1,6 @@
 package lotto.model.lotto
 
 import lotto.constants.Exception
-import lotto.model.Bonus
 
 class Lotto(private val numbers: List<Int>) {
     init {

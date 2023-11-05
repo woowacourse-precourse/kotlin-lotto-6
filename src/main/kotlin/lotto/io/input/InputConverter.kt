@@ -1,12 +1,12 @@
 package lotto.io.input
 
-import lotto.model.PurchaseAmount
-import lotto.model.Bonus
+import lotto.model.PurchaseInfo
+import lotto.model.lotto.Bonus
 import lotto.model.lotto.Lotto
 
 class InputConverter {
-    fun convertAmount(amount: String) =
-        PurchaseAmount(amount.toInt())
+    fun convertPurchaseInfo(amount: String) =
+        PurchaseInfo(amount.toInt())
 
     fun convertLotto(lottoWithComma: String) =
          Lotto(lottoWithComma.split(",").map { it.toInt() })

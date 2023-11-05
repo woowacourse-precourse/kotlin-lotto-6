@@ -1,18 +1,18 @@
 package lotto.io.input
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.model.PurchaseAmount
-import lotto.model.Bonus
+import lotto.model.PurchaseInfo
+import lotto.model.lotto.Bonus
 import lotto.model.lotto.Lotto
 
 class Input {
     private val validator = InputValidator()
     private val converter = InputConverter()
 
-    fun inputPurchaseAmount(): PurchaseAmount {
+    fun inputPurchaseAmount(): PurchaseInfo {
         val amount = Console.readLine()
         validator.checkAmount(amount)
-        return converter.convertAmount(amount)
+        return converter.convertPurchaseInfo(amount)
     }
 
     fun inputWinningNumbers(): Lotto {
