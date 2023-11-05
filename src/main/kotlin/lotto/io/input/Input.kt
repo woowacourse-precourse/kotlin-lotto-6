@@ -11,7 +11,7 @@ class Input {
 
     fun inputPurchaseAmount(): PurchaseInfo {
         val amount = Console.readLine()
-        validator.checkAmount(amount)
+        validator.checkInputDigit(amount)
         return converter.convertPurchaseInfo(amount)
     }
 
@@ -23,7 +23,7 @@ class Input {
 
     fun inputBonusNumber(): Bonus {
         val bonus = Console.readLine()
-        validator.checkBonusNumber(bonus)
+        validator.checkInputDigit(bonus)
         return converter.convertBonus(bonus)
     }
 }

@@ -3,7 +3,7 @@ package lotto.io.input
 import lotto.constants.Exception
 
 class InputValidator {
-    fun checkAmount(amount: String) {
+    fun checkInputDigit(amount: String) {
         validateEmpty(amount)
         validateNotDigit(amount)
     }
@@ -12,11 +12,6 @@ class InputValidator {
         validateEmpty(numbers)
         validateComma(numbers)
         numbers.split(",").forEach { number -> validateNotDigit(number) }
-    }
-
-    fun checkBonusNumber(bonus: String) {
-        validateEmpty(bonus)
-        validateNotDigit(bonus)
     }
 
     private fun validateEmpty(value: String) {

@@ -5,7 +5,7 @@ import lotto.io.output.Output
 import lotto.model.*
 import lotto.model.lotto.Lotto
 import lotto.service.LottoSupplier
-import lotto.model.lotto.Lottos
+import lotto.model.lotto.PurchaseLottos
 import lotto.model.lotto.WinningLotto
 import lotto.service.WinningCalculator
 import lotto.utils.retryWhileNoException
@@ -18,7 +18,7 @@ class LottoController(
 ) {
 
     private val purchaseInfo: PurchaseInfo by lazy { readyPurchaseInfo() }
-    private val purchaseLottos: Lottos by lazy { readyPurchaseLottos() }
+    private val purchaseLottos: PurchaseLottos by lazy { readyPurchaseLottos() }
     private val winningLotto: WinningLotto by lazy { readyWinningLotto() }
 
     private fun readyPurchaseInfo(): PurchaseInfo {
@@ -33,12 +33,12 @@ class LottoController(
     }
 
     private fun readyPurchaseLottos() =
-        lottoSupplier.supplyLottos(purchaseInfo.count).also {
+        lottoSupplier.supplyPurchaseLottos(purchaseInfo.count).also {
             output.printLottos(it)
         }
 
     private fun readyWinningLotto(): WinningLotto {
-        val winningNumbers = retryWhileNoException {
+        val winningLotto = retryWhileNoException {
             output.printInputWinningNumbers()
             input.inputWinningNumbers()
         } as Lotto
@@ -46,13 +46,15 @@ class LottoController(
         return retryWhileNoException {
             output.printInputBonusNumber()
             val bonus = input.inputBonusNumber()
-            WinningLotto(winningNumbers, bonus)
+            WinningLotto(winningLotto, bonus)
         } as WinningLotto
     }
 
-    fun run() =
-        winningCalculator.calculateWinningResult(purchaseLottos, winningLotto).let { winningResult ->
-            val totalReturn = winningCalculator.calculateTotalReturn(winningResult.winningAmount, purchaseInfo.amount)
-            output.printWinningStat(winningResult.winningCounts, totalReturn)
-        }
+    fun run() {
+        val winningResult = winningCalculator.calculateWinningResult(purchaseLottos, winningLotto)
+        val totalReturn = winningCalculator.calculateTotalReturn(
+            winningResult.winningAmount, purchaseInfo.amount)
+
+        output.printWinningStat(winningResult.winningCounts, totalReturn)
+    }
 }

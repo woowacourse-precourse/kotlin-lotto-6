@@ -1,9 +1,9 @@
 package lotto.model
 
 class WinningAmount {
-    var totalAmount: Long = 0
+    var amount: Long = 0
 
-    fun add(additionalValue: Int) {
-        totalAmount += additionalValue
+    fun add(addition: Int) {
+        amount += addition
     }
 }

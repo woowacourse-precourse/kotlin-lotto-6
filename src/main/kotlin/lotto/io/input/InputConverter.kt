@@ -9,7 +9,7 @@ class InputConverter {
         PurchaseInfo(amount.toInt())
 
     fun convertLotto(lottoWithComma: String) =
-         Lotto(lottoWithComma.split(",").map { it.toInt() })
+        Lotto(lottoWithComma.split(",").map { it.toInt() })
 
     fun convertBonus(bonus: String) =
         Bonus(bonus.toInt())

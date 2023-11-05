@@ -11,7 +11,7 @@ enum class WinningRank(private val matchingCount: Int, val amount: Int) {
     NOT_WINNING(0, 0);
 
     override fun toString(): String {
-        val bonusMessage = if (this == THIRD) ", 보너스 볼 일치" else ""
+        val bonusMessage = if (this == SECOND) ", 보너스 볼 일치" else ""
         val amountMessage = amount.convertWithDigitComma()
         return "${matchingCount}개 일치$bonusMessage (${amountMessage}원)"
     }

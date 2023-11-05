@@ -2,53 +2,53 @@ package lotto.service
 
 import lotto.constants.WinningRank
 import lotto.model.*
-import lotto.model.lotto.Bonus
-import lotto.model.lotto.Lotto
-import lotto.model.lotto.Lottos
-import lotto.model.lotto.WinningLotto
+import lotto.model.lotto.*
 
 class WinningCalculator {
-    fun calculateWinningResult(lottos: Lottos, winningLotto: WinningLotto): WinningResult {
+    fun calculateWinningResult(purchaseLottos: PurchaseLottos, winningLotto: WinningLotto): WinningResult {
         val winningCounts = WinningCounts()
         val winningAmount = WinningAmount()
 
-        lottos.forEach { lotto ->
-            val winningResult = getWinningResult(lotto, winningLotto)
-            updateWinningCountsAndAmount(winningCounts, winningAmount, winningResult)
+        purchaseLottos.forEach { lotto ->
+            val winningRank = getWinningRank(lotto, winningLotto)
+            updateWinningCountsAndAmount(winningCounts, winningAmount, winningRank)
         }
 
         return WinningResult(winningCounts, winningAmount)
     }
 
-    private fun getWinningResult(lotto: Lotto, winningLotto: WinningLotto): WinningRank {
+    private fun getWinningRank(lotto: Lotto, winningLotto: WinningLotto): WinningRank {
         val count = lotto.countMatchingNumber(winningLotto.lotto)
 
         return when (count) {
             6 -> WinningRank.FIRST
-            5 -> getWinningResultWhenFIVE(lotto, winningLotto.bonus)
+            5 -> getWinningRankWhenFIVE(lotto, winningLotto.bonus)
             4 -> WinningRank.FOURTH
             3 -> WinningRank.FIFTH
             else -> WinningRank.NOT_WINNING
         }
     }
 
-    private fun getWinningResultWhenFIVE(lotto: Lotto, bonus: Bonus): WinningRank {
+    private fun getWinningRankWhenFIVE(lotto: Lotto, bonus: Bonus): WinningRank {
         if (lotto.isMatchingBonus(bonus)) {
             return WinningRank.SECOND
         }
-
         return WinningRank.THIRD
     }
 
-    private fun updateWinningCountsAndAmount(winningCounts: WinningCounts, winningAmount: WinningAmount, winningResult: WinningRank) {
-        if (isWinning(winningResult)) {
-            winningCounts.addCount(winningResult)
-            winningAmount.add(winningResult.amount)
+    private fun updateWinningCountsAndAmount(
+        winningCounts: WinningCounts,
+        winningAmount: WinningAmount,
+        winningRank: WinningRank
+    ) {
+        if (isWinning(winningRank)) {
+            winningCounts.addCount(winningRank)
+            winningAmount.add(winningRank.amount)
         }
     }
 
-    private fun isWinning(winningResult: WinningRank) = winningResult != WinningRank.NOT_WINNING
+    private fun isWinning(winningRank: WinningRank) = winningRank != WinningRank.NOT_WINNING
 
     fun calculateTotalReturn(winningAmount: WinningAmount, purchaseAmount: Int) =
-        winningAmount.totalAmount.toDouble() / purchaseAmount * 100
+        winningAmount.amount.toDouble() / purchaseAmount * 100
 }

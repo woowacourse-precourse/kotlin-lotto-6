@@ -3,7 +3,7 @@ package lotto.io.output
 import lotto.constants.Print
 import lotto.constants.WinningRank
 import lotto.utils.convertWithRound
-import lotto.model.lotto.Lottos
+import lotto.model.lotto.PurchaseLottos
 import lotto.model.WinningCounts
 
 class Output {
@@ -14,8 +14,8 @@ class Output {
         println(Print.PURCHASE_COUNT.toString().format(purchaseCount))
     }
 
-    fun printLottos(lottos: Lottos) {
-        lottos.forEach { lotto -> println(lotto) }
+    fun printLottos(purchaseLottos: PurchaseLottos) {
+        purchaseLottos.forEach { lotto -> println(lotto) }
         lineBreak()
     }
 
@@ -31,11 +31,11 @@ class Output {
         println(Print.WINNING_STAT)
         println(Print.DIVIDE_LINE)
 
-        printWinningResult(winningCounts)
+        printWinningCounts(winningCounts)
         printTotalReturn(totalReturn)
     }
 
-    private fun printWinningResult(winningCounts: WinningCounts) {
+    private fun printWinningCounts(winningCounts: WinningCounts) {
         WinningRank.entries.forEach { winningRank ->
             if (winningRank == WinningRank.NOT_WINNING) {
                 return@forEach

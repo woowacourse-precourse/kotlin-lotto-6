@@ -5,11 +5,11 @@ import lotto.constants.Constants.LOTTO_START
 import lotto.constants.Constants.LOTTO_END
 import lotto.constants.Constants.LOTTO_SIZE
 import lotto.model.lotto.Lotto
-import lotto.model.lotto.Lottos
+import lotto.model.lotto.PurchaseLottos
 
 class LottoSupplier {
-    fun supplyLottos(purchaseCount: Int): Lottos {
-        val lottos = Lottos()
+    fun supplyPurchaseLottos(purchaseCount: Int): PurchaseLottos {
+        val lottos = PurchaseLottos()
 
         repeat(purchaseCount) {
             lottos.add(supplyLotto())
