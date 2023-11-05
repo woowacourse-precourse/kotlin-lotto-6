@@ -1,14 +1,16 @@
 package lotto.util
 
+import lotto.constants.Error.EXCEPTION_MESSAGE_NOT_IN_RANGE
 import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST
 import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_SIZE_INVALID
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ValueSource
 import java.util.stream.Stream
 
 internal class LottoValidatorUtilTest {
@@ -24,7 +26,7 @@ internal class LottoValidatorUtilTest {
         // when
         val expectedExceptionMessage = EXCEPTION_MESSAGE_WINNING_NUMBER_SIZE_INVALID
         // then
-        Assertions.assertEquals(expectedExceptionMessage, exception.message)
+        assertEquals(expectedExceptionMessage, exception.message)
     }
 
     @DisplayName("중복되는 수 입력 검증")
@@ -38,11 +40,21 @@ internal class LottoValidatorUtilTest {
         // when
         val expectedExceptionMessage = EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST
         // then
-        Assertions.assertEquals(expectedExceptionMessage, exception.message)
+        assertEquals(expectedExceptionMessage, exception.message)
     }
 
-    @Test
-    fun checkNumberInRange() {
+    @DisplayName("로또 번호 범위 검증")
+    @ParameterizedTest
+    @ValueSource(ints = [0, -1, 46, 323, 77])
+    fun `checkNumberInRange - 로또 번호는 1 ~ 45 사이의 숫자여야한다`(number: Int) {
+        // given
+        val exception = assertThrows<java.lang.IllegalArgumentException> {
+            LottoValidatorUtil.checkNumberInRange(number)
+        }
+        // when
+        val expectedExceptionMessage = EXCEPTION_MESSAGE_NOT_IN_RANGE
+        // then
+        assertEquals(expectedExceptionMessage, exception.message)
     }
 
     @Test
