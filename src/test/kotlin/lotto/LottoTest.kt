@@ -32,4 +32,10 @@ class LottoTest {
         Assertions.assertThat(LOTTO_NUMBER_SIZE.equals(numbers.size))
     }
 
+    @Test
+    fun `발행된 숫자는 서로 다른 숫자여야 한다`() {
+        val numbers = NumberIssuer.issueNumbers()
+        Assertions.assertThat(numbers.size.equals(numbers.toSet().size))
+    }
+
 }
