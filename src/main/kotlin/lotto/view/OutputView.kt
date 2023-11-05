@@ -3,7 +3,7 @@ package lotto.view
 object OutputView {
 
     fun printLottoNumbers(lottoNumbers: List<Int>) {
-        println("[${lottoNumbers.joinToString(", ")}]")
+        println("[${lottoNumbers.sorted().joinToString(", ")}]")
     }
 
     fun printLottoCount(purchaseCount: Int) {
