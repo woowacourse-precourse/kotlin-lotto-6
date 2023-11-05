@@ -2,18 +2,29 @@ package lotto
 import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 class User {
+    val ticket = mutableListOf<List<Int>>()
     fun buyLotto(): Int {
         var input = readLine()!!.toInt()
         if (input % ONE_PRICE_LOTTO != 0) throw IllegalArgumentException("[ERROR]")
         return input
     }
     fun buyLottoCount(money : Int): Int{
-        var count = money % ONE_PRICE_LOTTO
+        var count = money / ONE_PRICE_LOTTO
 
         println("${count}개를 구매했습니다.")
         return count
     }
-    fun Numbers(): List<Int> {
+    fun saveTicket(count: Int){
+        for(i in 1..count){
+            ticket.add(numbers())
+        }
+    }
+    fun printTicket(): MutableList<List<Int>> {
+        ticket.forEach { println(it) }
+        return ticket
+    }
+
+    fun numbers(): List<Int> {
         return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, HOW_MANY_NUMBER).sorted()
     }
 
@@ -24,5 +35,3 @@ class User {
         const val ONE_PRICE_LOTTO = 1000
     }
 }
-
-//if (input !in MIN_NUMBER..MAX_NUMBER) throw IllegalArgumentException("[ERROR]")
