@@ -1,14 +1,16 @@
 package lotto.controller
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.Lotto
+import camp.nextstep.edu.missionutils.Randoms
+import lotto.model.Lotto
 import lotto.Messages
 import lotto.Validation.validateMoneyUnit
 import lotto.Validation.validateOutOfRange
+import lotto.model.Lotteries
 
 class LottoController {
 
-    private lateinit var lotto: Lotto
+    private lateinit var lotteries: Lotteries
 
     fun startLotto() {
         println(Messages.TEXT_INPUT_LOTTO_AMOUNT.message)
@@ -19,7 +21,8 @@ class LottoController {
         while (true) {
             try {
                 val amount = Console.readLine()
-                validateLottoAmount(amount)
+                val num = validateLottoAmount(amount)
+                createLotteries(num)
                 break
             } catch (e: IllegalArgumentException) {
                 println(e.message)
@@ -27,8 +30,18 @@ class LottoController {
         }
     }
 
-    fun validateLottoAmount(amount: String) {
+    fun validateLottoAmount(amount: String): Long {
         val num = validateOutOfRange(amount)
         validateMoneyUnit(num)
+        return num
+    }
+
+    private fun createLotteries(num: Long) {
+        val randomLotteries = mutableListOf<Lotto>()
+        for (i in 1..num) {
+            val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+            randomLotteries.add(Lotto(numbers))
+        }
+        lotteries = Lotteries(randomLotteries)
     }
 }
