@@ -10,8 +10,6 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.all { number -> number in 1..45 }) { Exception.RANGE }
     }
 
-    fun notContains(bonus: Bonus) = !numbers.contains(bonus.number)
-
     fun countMatchingNumber(otherLotto: Lotto) =
         otherLotto.numbers.filter { otherNumber ->
             this.numbers.contains(otherNumber)
