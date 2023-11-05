@@ -12,9 +12,8 @@ fun main() {
 
     val winningNumbers = getWinningNumbers()
     val bonusNumber = getBonusNumber()
-
     val results = lottos.map { it.calculateResult(winningNumbers, bonusNumber) }
-    // TODO: results를 이용해 당첨 통계를 출력.
+    printStatistics(results)
 }
 fun getBonusNumber(): Int {
     println("보너스 번호를 입력해 주세요.")
@@ -44,4 +43,20 @@ fun validateMoney(input: String): Int {//입력값 검증
         throw IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.")
     }
     return money
+}
+
+fun printStatistics(results: List<Rank>) {//당첨 통계 출력
+    val statistics = results.groupingBy { it }.eachCount()
+
+    println("\n당첨 통계")
+    println("---------")
+    Rank.values().forEach { rank ->
+        println("${rank.matchCount}개 일치${if (rank.needBonus) ", 보너스 볼 일치" else ""}(${rank.prizeMoney}원) - ${statistics[rank] ?: 0}개")
+    }
+
+    val totalPrizeMoney = results.sumOf { it.prizeMoney.toLong() }
+    val purchaseMoney = results.size * 1000L
+    val profitRate = totalPrizeMoney / purchaseMoney.toDouble()
+
+    println("총 수익률은 ${String.format("%.2f", profitRate)}입니다.")
 }
