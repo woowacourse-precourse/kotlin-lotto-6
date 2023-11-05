@@ -23,7 +23,7 @@ class InputManager(private val validationManager: ValidationManager = Validation
         }
     }
 
-    fun bonusNumber(jackpotNumbers: ArrayList<Int>, errorMessage: () -> Unit): Int {
+    fun bonusNumber(jackpotNumbers: List<Int>, errorMessage: () -> Unit): Int {
         return try {
             validationManager.validBonusNumber(bonusNumber = Console.readLine().toInt(), jackpotNumbers = jackpotNumbers)
         } catch (exception: IllegalArgumentException) {
