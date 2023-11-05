@@ -19,6 +19,7 @@ fun main() {
     while (BONUS_NUMBER == null) {
         inputBonusNumber()
     }
+    countMatchedNumbers()
 }
 
 fun inputMoney() {
@@ -106,6 +107,13 @@ fun checkBonusNumber(number: String) {
     // Int형이거나, 1부터 45까지의 사이인지, 당첨번호와 겹치지 않는지
     if (number.toIntOrNull() == null || number.toInt() !in 1..45 || NUMBERS.contains(number.toInt())) {
         throwErrorMessage("보너스 번호는 1에서 45까지 당첨번호와 겹치지 말아야 합니다.")
+    }
+}
+
+fun countMatchedNumbers() {
+    for (item in LOTTOES) {
+        item.matchingNumbers(NUMBERS)
+        item.matchingBonusNumber(BONUS_NUMBER!!)
     }
 }
 
