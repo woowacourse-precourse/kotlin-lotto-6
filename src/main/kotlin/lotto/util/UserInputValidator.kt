@@ -1,6 +1,7 @@
 package lotto.util
 
 import lotto.constant.ErrorMessage
+import java.util.regex.Pattern
 
 class UserInputValidator {
 
@@ -22,8 +23,13 @@ class UserInputValidator {
         userInput.forEach { require(it.none { char -> !char.isDigit() }) { ErrorMessage.NOT_NUMBER_WINNING_NUMBER.message } }
     }
 
+    fun isContainBlank(userInput: String) {
+        require(NUMBER_PATTERN.matcher(userInput).matches()) { ErrorMessage.NOT_WINNING_NUMBER_PATTERN.message }
+    }
+
     companion object {
         private const val MIN_PURCHASE_AMOUNT = 1000
         private const val PURCHASE_AMOUNT_CHANGES = 0
+        private val NUMBER_PATTERN = Pattern.compile("^([0-9]+(,[0-9]+)+)\$")
     }
 }
