@@ -103,7 +103,7 @@ fun validateMoney(input: String): Int {
     return money
 }
 
-fun printStatistics(results: List<Rank>) {//당첨 통계 출력
+fun printStatistics(results: List<Rank>) {//당첨 통계 출력 및 수익율 계산식
     val statistics = results.groupingBy { it }.eachCount()
 
     println("\n당첨 통계")
@@ -114,7 +114,7 @@ fun printStatistics(results: List<Rank>) {//당첨 통계 출력
 
     val totalPrizeMoney = results.sumOf { it.prizeMoney.toLong() }
     val purchaseMoney = results.size * 1000L
-    val profitRate = totalPrizeMoney / purchaseMoney.toDouble()
-
-    println("총 수익률은 ${String.format("%.2f", profitRate * 100)}%입니다.")
+    val profit = totalPrizeMoney - purchaseMoney
+    val profitRate = profit / purchaseMoney.toDouble() * 100
+    println("총 수익률은 ${String.format("%.2f", profitRate)}%입니다.")
 }
