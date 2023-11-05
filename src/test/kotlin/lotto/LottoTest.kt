@@ -1,11 +1,13 @@
 package lotto
 
 import lotto.domain.Purchase
+import lotto.validate.ValidateNumbers
 import lotto.validate.ValidatePrice
 import lotto.validate.ValidateSplit
 import lotto.validate.validateBonus
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Validate
 
 
 class LottoTest {
@@ -44,6 +46,14 @@ class LottoTest {
         val validatePrice = ValidatePrice()
         assertThrows<IllegalArgumentException> {
             validatePrice.validateInputPrice("wooteco")
+        }
+    }
+
+    @Test
+    fun `당첨 번호에서 쉼표가 없는경우`() {
+        val validate = ValidateNumbers()
+        assertThrows<IllegalArgumentException> {
+            validate.validateInputNumbers("1.2.3.4.5.6")
         }
     }
 
