@@ -8,10 +8,10 @@ import UI.UserInterface
 fun main() {
     val lotto = LottoInitializer()
 
-    println(UserInterface.INPUT_USER_PURCHASE_AMOUNT.mention)
 
-    var price = Console.readLine().toInt()
-    var amountOfLotto = lotto.dividePriceByThousand(price)
+
+    val price = lotto.inputPriceOfLotto()
+    val amountOfLotto = price/1000
 
     for(amount in 0 until amountOfLotto) {
         val numbers = lotto.makeLottoNumber()
