@@ -8,7 +8,7 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-
+private const val OUT_RANGE_NUMBER = 46
 class LottoTest {
     @Test
     fun `로또 번호의 개수가 6개가 넘어가면 예외가 발생한다`() {
@@ -28,22 +28,9 @@ class LottoTest {
     // 아래에 추가 테스트 작성 가능
 
     @Test
-    fun `발행된 숫자 List의 size는 6이어야 한다`() {
-        val numbers = NumberIssuer.issueNumbers()
-        Assertions.assertThat(LOTTO_NUMBER_SIZE.equals(numbers.size))
-    }
-
-    @Test
-    fun `발행된 숫자는 서로 다른 숫자여야 한다`() {
-        val numbers = NumberIssuer.issueNumbers()
-        Assertions.assertThat(numbers.size.equals(numbers.toSet().size))
-    }
-
-    @Test
     fun `발행된 로또 숫자의 범위가 1~45 사이가 아니면 예외가 발생한다`() {
-        val outRangeNumber = 46
         assertThrows<IllegalArgumentException> {
-            LottoNumber(outRangeNumber)
+            LottoNumber(OUT_RANGE_NUMBER)
         }
     }
 
