@@ -6,8 +6,8 @@ import lotto.utils.Constant.MAX_LOTTO_NUMBER
 import lotto.utils.Constant.MIN_LOTTO_NUMBER
 
 object NumberIssuer {
-    fun issueNumbers(): List<Int> {
-        val numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_SIZE)
+    fun issueNumbers(): List<LottoNumber> {
+        val numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_SIZE).map {it -> LottoNumber(it)}
         return numbers
     }
 }
