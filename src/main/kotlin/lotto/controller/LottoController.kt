@@ -27,13 +27,13 @@ class LottoController {
 
     fun run() {
         val purchaseAmount = getPurchaseAmount()
-        val numberOfPurchases = getNumberOfPurchase(purchaseAmount)
-        val lottos = makeLottos(numberOfPurchases)
+        val lottos = makeLottos(getNumberOfPurchase(purchaseAmount))
         purchaseLottos(lottos)
         val winningNumbers = getWinningNumbers()
         val bonusNumber = getBonusNumber(winningNumbers)
         val winningRanks = getWinningRanks(lottos, winningNumbers, bonusNumber)
-        getRateOfReturn(purchaseAmount, winningRanks)
+        getWinningStatistics(winningRanks)
+        getRateOfReturn(purchaseAmount, getTotalWinningAmount(winningRanks))
     }
 
     fun getPurchaseAmount(): Int {
@@ -60,9 +60,7 @@ class LottoController {
 
     fun purchaseLottos(lottos: List<Lotto>) {
         outputView.printNumberOfPurchases(lottos.size)
-        for (lotto in lottos) {
-            outputView.printLotto(lotto)
-        }
+        lottos.forEach { lotto -> outputView.printLotto(lotto) }
     }
 
     fun getWinningNumbers(): List<Int> {
@@ -85,19 +83,6 @@ class LottoController {
         }
     }
 
-    fun getWinningRanks(lottos: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): List<Int> {
-        outputView.printWinningStatisticsInstruction()
-        val winningStatistics = mutableListOf<Pair<Int, Boolean>>()
-        for (lotto in lottos) {
-            val matchedNumbers = getMatchedNumbers(lotto, winningNumbers)
-            val bonusMatched = getBonusMatched(lotto, bonusNumber)
-            winningStatistics.add(Pair(matchedNumbers, bonusMatched))
-        }
-        val winningRanks = judgementWinningRanks(winningStatistics)
-        outputView.printWinningStatistics(winningRanks)
-        return winningRanks
-    }
-
     fun getMatchedNumbers(lotto: Lotto, winningNumbers: List<Int>): Int {
         return lotto.getNumbers().intersect(winningNumbers).size
     }
@@ -106,39 +91,57 @@ class LottoController {
         return lotto.getNumbers().contains(bonusNumber)
     }
 
-    fun judgementWinningRanks(winningStatistics: List<Pair<Int, Boolean>>): List<Int> {
-        val winningRanks = mutableListOf(0, 0, 0, 0, 0, 0)
-        for (winningStatistic in winningStatistics) {
-            val winningRank = when {
-                winningStatistic.first == 6 -> FIRST_RANK
-                winningStatistic.first == 5 && winningStatistic.second -> SECOND_RANK
-                winningStatistic.first == 5 -> THIRD_RANK
-                winningStatistic.first == 4 -> FOURTH_RANK
-                winningStatistic.first == 3 -> FIFTH_RANK
-                else -> NO_RANK
-            }
+    fun getWinningRanks(
+        lottos: List<Lotto>,
+        winningNumbers: List<Int>,
+        bonusNumber: Int
+    ): List<Int> {
+        val winningRanks = MutableList(6) { 0 }
+        lottos.forEach { lotto ->
+            val matchedNumbers = getMatchedNumbers(lotto, winningNumbers)
+            val bonusMatched = getBonusMatched(lotto, bonusNumber)
+            val winningRank = judgeWinningRank(Pair(matchedNumbers, bonusMatched))
             winningRanks[winningRank] += 1
         }
         return winningRanks
     }
 
-    fun getRateOfReturn(purchaseAmount: Int, winningRanks: List<Int>) {
-        var winningAmount = 0.0
-        for (winningRank in FIRST_RANK..FIFTH_RANK) {
-            winningAmount += calculateWinningAmount(winningRank, winningRanks[winningRank])
+    fun judgeWinningRank(winningStatistic: Pair<Int, Boolean>): Int {
+        return when {
+            winningStatistic.first == 6 -> FIRST_RANK
+            winningStatistic.first == 5 && winningStatistic.second -> SECOND_RANK
+            winningStatistic.first == 5 -> THIRD_RANK
+            winningStatistic.first == 4 -> FOURTH_RANK
+            winningStatistic.first == 3 -> FIFTH_RANK
+            else -> NO_RANK
         }
-        val rateOfReturn = (winningAmount / purchaseAmount) * 100
+    }
+
+    fun getWinningStatistics(winningRanks: List<Int>) {
+        outputView.printWinningStatisticsInstruction()
+        outputView.printWinningStatistics(winningRanks)
+    }
+
+    fun getRateOfReturn(purchaseAmount: Int, totalWinningAmount: Int) {
+        val rateOfReturn = (totalWinningAmount * 100.0 / purchaseAmount)
         outputView.printRateOfReturn(rateOfReturn)
+    }
+
+    fun getTotalWinningAmount(winningRanks: List<Int>): Int {
+        val totalWinningAmount = (FIRST_RANK..FIFTH_RANK).sumOf { winningRank ->
+            calculateWinningAmount(winningRank, winningRanks[winningRank])
+        }
+        return totalWinningAmount
     }
 
     fun calculateWinningAmount(winningRank: Int, numberOfWinningRank: Int): Int {
         return when (winningRank) {
-            FIRST_RANK -> FIRST_PRIZE_AMOUNT * numberOfWinningRank
-            SECOND_RANK -> SECOND_PRIZE_AMOUNT * numberOfWinningRank
-            THIRD_RANK -> THIRD_PRIZE_AMOUNT * numberOfWinningRank
-            FOURTH_RANK -> FOURTH_PRIZE_AMOUNT * numberOfWinningRank
-            FIFTH_RANK -> FIFTH_PRIZE_AMOUNT * numberOfWinningRank
+            FIRST_RANK -> FIRST_PRIZE_AMOUNT
+            SECOND_RANK -> SECOND_PRIZE_AMOUNT
+            THIRD_RANK -> THIRD_PRIZE_AMOUNT
+            FOURTH_RANK -> FOURTH_PRIZE_AMOUNT
+            FIFTH_RANK -> FIFTH_PRIZE_AMOUNT
             else -> NO_PRIZE_AMOUNT
-        }
+        } * numberOfWinningRank
     }
 }
