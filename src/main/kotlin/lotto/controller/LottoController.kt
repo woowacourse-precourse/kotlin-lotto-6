@@ -19,24 +19,29 @@ class LottoController {
     private val outputView = OutputView()
 
     fun run() {
-        val numberOfPurchases = getNumberOfPurchases()
+        val purchaseAmount = getPurchaseAmount()
+        val numberOfPurchases = getNumberOfPurchase(purchaseAmount)
         val lottos = makeLottos(numberOfPurchases)
         purchaseLottos(lottos)
         val winningNumbers = getWinningNumbers()
         val bonusNumber = getBonusNumber(winningNumbers)
         val winningRanks = getWinningRanks(lottos, winningNumbers, bonusNumber)
-        getRateOfReturn(numberOfPurchases, winningRanks)
+        getRateOfReturn(purchaseAmount, winningRanks)
     }
 
-    fun getNumberOfPurchases(): Int {
+    fun getPurchaseAmount(): Int {
         outputView.printPurchaseAmountInstruction()
         return try {
             val purchaseAmount = inputView.inputPurchaseAmount()
-            purchaseAmount / LOTTO_AMOUNT_UNIT
+            purchaseAmount
         } catch (illegalArgumentException: IllegalArgumentException) {
             outputView.printErrorMessage(illegalArgumentException.message.toString())
-            getNumberOfPurchases()
+            getPurchaseAmount()
         }
+    }
+
+    fun getNumberOfPurchase(purchaseAmount: Int): Int {
+        return purchaseAmount / LOTTO_AMOUNT_UNIT
     }
 
     fun generateLottoNumbers(): List<Int> {
@@ -109,8 +114,7 @@ class LottoController {
         return winningRanks
     }
 
-    fun getRateOfReturn(numberOfPurchases: Int, winningRanks: List<Int>) {
-        val purchaseAmount = numberOfPurchases * LOTTO_AMOUNT_UNIT
+    fun getRateOfReturn(purchaseAmount: Int, winningRanks: List<Int>) {
         var winningAmount = 0.0
 
         for (winningRank in 1..5) {
