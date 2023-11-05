@@ -26,24 +26,52 @@ class LottoController {
     private val outputView = OutputView()
 
     fun run() {
-        val purchaseAmount = getPurchaseAmount()
-        val lottos = makeLottos(getNumberOfPurchase(purchaseAmount))
-        purchaseLottos(lottos)
-        val winningNumbers = getWinningNumbers()
-        val bonusNumber = getBonusNumber(winningNumbers)
-        val winningRanks = getWinningRanks(lottos, winningNumbers, bonusNumber)
-        getWinningStatistics(winningRanks)
-        getRateOfReturn(purchaseAmount, getTotalWinningAmount(winningRanks))
-    }
+        var purchaseAmount: Int
+        var winningNumbers: List<Int>
+        var bonusNumber: Int
 
-    fun getPurchaseAmount(): Int {
-        outputView.printPurchaseAmountInstruction()
-        return try {
-            inputView.inputPurchaseAmount()
-        } catch (illegalArgumentException: IllegalArgumentException) {
-            outputView.printErrorMessage(illegalArgumentException.message.toString())
-            getPurchaseAmount()
+        while (true) {
+            try {
+                outputView.printPurchaseAmountInstruction()
+                purchaseAmount = inputView.inputPurchaseAmount()
+                break
+            } catch (illegalArgumentException: IllegalArgumentException) {
+                outputView.printErrorMessage(illegalArgumentException.message.toString())
+            }
         }
+
+        val numberOfPurchase = getNumberOfPurchase(purchaseAmount)
+        val lottos: List<Lotto> = makeLottos(numberOfPurchase)
+        outputView.printNumberOfPurchases(lottos.size)
+        lottos.forEach { lotto -> outputView.printLotto(lotto) }
+
+        while (true) {
+            try {
+                outputView.printWinningNumbersInstruction()
+                winningNumbers = inputView.inputWinningNumbers()
+                break
+            } catch (illegalArgumentException: IllegalArgumentException) {
+                outputView.printErrorMessage(illegalArgumentException.message.toString())
+            }
+        }
+
+        while (true) {
+            try {
+                outputView.printBonusNumberInstruction()
+                bonusNumber = inputView.inputBonusNumber(winningNumbers)
+                break
+            } catch (illegalArgumentException: IllegalArgumentException) {
+                outputView.printErrorMessage(illegalArgumentException.message.toString())
+            }
+        }
+
+        val winningStatistics = getWinningStatistics(lottos, winningNumbers, bonusNumber)
+        outputView.printWinningStatisticsInstruction()
+        outputView.printWinningStatistics(winningStatistics)
+
+        val totalWinningAmount = getTotalWinningAmount(winningStatistics)
+        val rateOfReturn = getRateOfReturn(purchaseAmount, totalWinningAmount)
+        outputView.printRateOfReturn(rateOfReturn)
     }
 
     fun getNumberOfPurchase(purchaseAmount: Int): Int {
@@ -58,31 +86,6 @@ class LottoController {
         return List(numberOfPurchase) { Lotto(generateLottoNumbers()) }
     }
 
-    fun purchaseLottos(lottos: List<Lotto>) {
-        outputView.printNumberOfPurchases(lottos.size)
-        lottos.forEach { lotto -> outputView.printLotto(lotto) }
-    }
-
-    fun getWinningNumbers(): List<Int> {
-        outputView.printWinningNumbersInstruction()
-        return try {
-            inputView.inputWinningNumbers()
-        } catch (illegalArgumentException: IllegalArgumentException) {
-            outputView.printErrorMessage(illegalArgumentException.message.toString())
-            getWinningNumbers()
-        }
-    }
-
-    fun getBonusNumber(winningNumbers: List<Int>): Int {
-        outputView.printBonusNumberInstruction()
-        return try {
-            inputView.inputBonusNumber(winningNumbers)
-        } catch (illegalArgumentException: IllegalArgumentException) {
-            outputView.printErrorMessage(illegalArgumentException.message.toString())
-            getBonusNumber(winningNumbers)
-        }
-    }
-
     fun getMatchedNumbers(lotto: Lotto, winningNumbers: List<Int>): Int {
         return lotto.getNumbers().intersect(winningNumbers).size
     }
@@ -91,47 +94,40 @@ class LottoController {
         return lotto.getNumbers().contains(bonusNumber)
     }
 
-    fun getWinningRanks(
-        lottos: List<Lotto>,
-        winningNumbers: List<Int>,
-        bonusNumber: Int
-    ): List<Int> {
-        val winningRanks = MutableList(6) { 0 }
-        lottos.forEach { lotto ->
-            val matchedNumbers = getMatchedNumbers(lotto, winningNumbers)
-            val bonusMatched = getBonusMatched(lotto, bonusNumber)
-            val winningRank = judgeWinningRank(Pair(matchedNumbers, bonusMatched))
-            winningRanks[winningRank] += 1
-        }
-        return winningRanks
-    }
-
-    fun judgeWinningRank(winningStatistic: Pair<Int, Boolean>): Int {
+    fun judgeWinningRank(matchedNumbers: Int, bonusMatched: Boolean): Int {
         return when {
-            winningStatistic.first == 6 -> FIRST_RANK
-            winningStatistic.first == 5 && winningStatistic.second -> SECOND_RANK
-            winningStatistic.first == 5 -> THIRD_RANK
-            winningStatistic.first == 4 -> FOURTH_RANK
-            winningStatistic.first == 3 -> FIFTH_RANK
+            matchedNumbers == 6 -> FIRST_RANK
+            matchedNumbers == 5 && bonusMatched -> SECOND_RANK
+            matchedNumbers == 5 -> THIRD_RANK
+            matchedNumbers == 4 -> FOURTH_RANK
+            matchedNumbers == 3 -> FIFTH_RANK
             else -> NO_RANK
         }
     }
 
-    fun getWinningStatistics(winningRanks: List<Int>) {
-        outputView.printWinningStatisticsInstruction()
-        outputView.printWinningStatistics(winningRanks)
-    }
-
-    fun getRateOfReturn(purchaseAmount: Int, totalWinningAmount: Int) {
-        val rateOfReturn = (totalWinningAmount * 100.0 / purchaseAmount)
-        outputView.printRateOfReturn(rateOfReturn)
-    }
-
-    fun getTotalWinningAmount(winningRanks: List<Int>): Int {
-        val totalWinningAmount = (FIRST_RANK..FIFTH_RANK).sumOf { winningRank ->
-            calculateWinningAmount(winningRank, winningRanks[winningRank])
+    fun getWinningStatistics(
+        lottos: List<Lotto>,
+        winningNumbers: List<Int>,
+        bonusNumber: Int
+    ): List<Int> {
+        val winningStatistics = MutableList(6) { 0 }
+        lottos.forEach { lotto ->
+            val matchedNumbers = getMatchedNumbers(lotto, winningNumbers)
+            val bonusMatched = getBonusMatched(lotto, bonusNumber)
+            val winningRank = judgeWinningRank(matchedNumbers, bonusMatched)
+            winningStatistics[winningRank] += 1
         }
-        return totalWinningAmount
+        return winningStatistics
+    }
+
+    fun getRateOfReturn(purchaseAmount: Int, totalWinningAmount: Int): Double {
+        return (totalWinningAmount * 100.0) / purchaseAmount
+    }
+
+    fun getTotalWinningAmount(winningStatistics: List<Int>): Int {
+        return (FIRST_RANK..FIFTH_RANK).sumOf { winningRank ->
+            calculateWinningAmount(winningRank, winningStatistics[winningRank])
+        }
     }
 
     fun calculateWinningAmount(winningRank: Int, numberOfWinningRank: Int): Int {
