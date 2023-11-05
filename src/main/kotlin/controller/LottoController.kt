@@ -19,5 +19,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
             }
             break
         } while (true)
+
+        outputView.printPurchasedItemCount(money.getPurchasableLottoTicketCount())
     }
 }

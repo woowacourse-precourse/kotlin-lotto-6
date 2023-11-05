@@ -14,4 +14,6 @@ class Money(private val price: String) {
         isAmountInThousandWon(price)
         isAmountOverMaxLimit(price)
     }
+
+    fun getPurchasableLottoTicketCount() = price.toInt() / 1000
 }
