@@ -12,7 +12,7 @@ import lotto.domain.Rank
 
 class Output {
 
-    private val grossProfitMessage = "총 수익률은 %.1f%%입니다."
+    private val grossProfitMessage = "총 수익률은 %f입니다."
     private val hitMessage = "%d개 일치"
     private val prizeMessage = " - (%s원)"
     private val hitCountMessage = " - %d개"
@@ -43,7 +43,7 @@ class Output {
         }
     }
 
-    fun printGrossProfit(profit: Float) {
+    fun printGrossProfit(profit: Double) {
         println(grossProfitMessage.format(profit))
     }
     private fun printRankMessage(rank: Rank, count:Int){
