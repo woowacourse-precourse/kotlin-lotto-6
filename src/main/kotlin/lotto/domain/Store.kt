@@ -11,14 +11,19 @@ class Store {
 
     private fun validatePayment(): Int {
         while (true) {
-            val payMoney = Console.readLine()
-            val validationResult = ValidatorPayment.checkMoney(payMoney)
-            if (validationResult.isValid) {
-                return payMoney.toInt().also {
+            try {
+                val paymentCheck = Console.readLine().toIntOrNull()
+                require(paymentCheck != null) { ValidatorPayment.INVALID_FORMAT.message }
+                require(paymentCheck >= 0) { ValidatorPayment.INVALID_RANGE.message }
+                require(paymentCheck % 1000 == 0) { ValidatorPayment.INVALID_AMOUNT.message }
+
+                return paymentCheck.also {
                     printSuccessMessage(howManyLotto(it))
                 }
+
+            } catch (e: IllegalArgumentException) {
+                printErrorMessage(e.message ?: "[ERROR] Invalid input")
             }
-            printErrorMessage(validationResult.message)
         }
     }
 
