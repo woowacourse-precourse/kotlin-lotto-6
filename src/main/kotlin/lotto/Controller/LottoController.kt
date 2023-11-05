@@ -1,6 +1,5 @@
 package lotto.controller
 
-import lotto.domain.LottoRank
 import lotto.view.Input
 import lotto.view.Output
 

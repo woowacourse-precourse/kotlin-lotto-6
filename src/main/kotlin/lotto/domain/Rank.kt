@@ -6,7 +6,7 @@ import lotto.constants.fourthPrize
 import lotto.constants.secondPrize
 import lotto.constants.thirdPrize
 
-enum class Rank(val hit: Int, val bonusHit: Boolean, val reward: Int) {
+enum class Rank(val hit: Int, val bonusHit: Boolean, val prize: Int) {
     FIRST(6, false, firstPrize),
     SECOND(5, true, secondPrize),
     THIRD(5, false, thirdPrize),
@@ -15,8 +15,8 @@ enum class Rank(val hit: Int, val bonusHit: Boolean, val reward: Int) {
     NOTHING(0, false, 0);
 
     companion object {
-        fun of(hit: Int, hasBonusHit: Boolean): Rank {
-            return values().firstOrNull { it.hit == hit && it.bonusHit == hasBonusHit } ?: NOTHING
+        fun of(hit: Int, bonusHit: Boolean): Rank {
+            return values().firstOrNull { it.hit == hit && it.bonusHit == bonusHit } ?: NOTHING
         }
     }
 }
