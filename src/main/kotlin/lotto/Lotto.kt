@@ -1,9 +1,15 @@
 package lotto
 
+import exception.Exception
+
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6)
+        require(numbers.size == 6){Exception.EXCEPTION_INVALID_SIZE}
+        require(numbers.all { it in 1..45 }){Exception.EXCEPTION_INVALID_NUMBER}
+        require(numbers.distinct().size == 6){Exception.EXCEPTION_DUPLICATE_NUMBER}
     }
 
-    // TODO: 추가 기능 구현
+    fun getNumbers(): List<Int> {
+        return numbers
+    }
 }
