@@ -5,5 +5,7 @@ enum class Constants(val value: Int) {
     LOTTO_SIZE(6),
     LOTTO_START(1),
     LOTTO_END(45),
-    LOTTO_MAX_COUNT(20)
+    LOTTO_MAX_COUNT(20);
+
+    override fun toString() = value.toString()
 }
