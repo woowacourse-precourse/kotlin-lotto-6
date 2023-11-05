@@ -10,16 +10,38 @@ class Validator {
         return amount.toInt()
     }
 
+    fun validateDrawNumber(drawNumber: String): List<Int> {
+        require(isNotEmpty(drawNumber)) { NOT_EMPTY }
+        require(isNotBlank(drawNumber)) { NOT_BLANK }
+        val split = drawNumber.split(SEPARATOR)
+        require(hasSixValue(split)) { MUST_SIX_VALUE }
+        require(hasSixNumber(split)) { MUST_SIX_NUMBER }
+        require(isDrawNumber(split)) { MUST_1_TO_45 }
+        require(isDuplicate(split)) { NOT_DUPLICATE }
+        return split.map { it.toInt() }
+    }
+
     companion object {
         // 사용자를 혼내는 게 아니다. 에러 메시지를 보고 제대로 입력할 수 있도록 유도해야 한다.
         const val NOT_EMPTY = "아무것도 입력하지 않았어요."
-        const val NOT_BLANK = "공    백    만    있    어    요."
-        const val ONLY_INT = "숫자만 입력해 주세요. (설마 21억 4748만 3647원보다 많이 사려는 부자는 아니겠죠?)"
-        const val ONLY_POSITIVE_INT = "제 돈을 뺏어갈 속셈인가요..?"
-        const val MUST_DIVISIBLE_BY_1000 = "동전은 필요 없어요. 지폐만 주세요."
+        const val NOT_BLANK = "공    백만 있어요."
 
-        private const val ZERO = 0
-        private const val THOUSAND = 1000
+        // validateAmount
+        const val ONLY_INT = "숫자만 입력해 주세요. 입력 예시 -> 8000 (설마 21억 4748만 3647원보다 많이 사려는 부자는 아니겠죠?)"
+        const val ONLY_POSITIVE_INT = "제 돈을 뺏어갈 속셈인가요..? 입력 예시 -> 8000"
+        const val MUST_DIVISIBLE_BY_1000 = "동전은 필요 없어요. 지폐만 주세요. 입력 예시 -> 8000"
+        const val ZERO = 0
+        const val THOUSAND = 1000
+
+        // validateDrawNumber
+        const val MUST_SIX_VALUE = "6개의 숫자를 입력해주세요. 입력 예시 -> 1,6,11,23,37,45"
+        const val MUST_SIX_NUMBER = "입력값중 숫자가 아닌게 있어요. 입력 예시 -> 1,6,11,23,37,45"
+        const val MUST_1_TO_45 = "1~45사이의 숫자가 아닌게 있어요. 입력 예시 -> 1,6,11,23,37,45"
+        const val NOT_DUPLICATE = "중복된 숫자가 있어요"
+        const val SIX = 6
+        const val SEPARATOR = ","
+        const val START_NUMBER = 1
+        const val END_NUMBER = 45
 
         fun isNotEmpty(input: String): Boolean {
             return input.isNotEmpty()
@@ -39,6 +61,22 @@ class Validator {
 
         fun isDivisibleByThousand(input: String): Boolean {
             return input.toInt().rem(THOUSAND) == ZERO
+        }
+
+        fun hasSixValue(input: List<String>): Boolean {
+            return input.size == SIX
+        }
+
+        fun hasSixNumber(input: List<String>): Boolean {
+            return input.map { it.toIntOrNull() }.all { it != null }
+        }
+
+        fun isDrawNumber(input: List<String>): Boolean {
+            return input.map { it.toInt() }.all { it in START_NUMBER..END_NUMBER }
+        }
+
+        fun isDuplicate(input: List<String>): Boolean {
+            return input.toSet().size == SIX
         }
     }
 }
