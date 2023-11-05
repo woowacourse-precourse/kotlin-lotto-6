@@ -1,7 +1,7 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.util.DELIMITER
+import lotto.util.Constants.DELIMITER
 import lotto.util.Validator.isValidBonusNum
 import lotto.util.Validator.isValidPurchaseAmount
 import lotto.util.Validator.isValidWinningNums

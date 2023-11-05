@@ -39,8 +39,4 @@ class LottoProgram {
 
         outputView.printWinningStats(lottoResultAnalyzer.analyzedLottoResults,lottoResultAnalyzer.profitRate)
     }
-
-    companion object {
-        const val LOTTO_PURCHASE_COST = 1000
-    }
 }

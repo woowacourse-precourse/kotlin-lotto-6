@@ -1,14 +1,14 @@
 package lotto.util
 
-import lotto.controller.LottoProgram.Companion.LOTTO_PURCHASE_COST
-import lotto.model.LottoPublisher.Companion.ZERO_NUM
-import lotto.model.LottoPublisher.Companion.LOTTO_RANGE_END
-import lotto.model.LottoPublisher.Companion.LOTTO_RANGE_START
+import lotto.util.Constants.DELIMITER
+import lotto.util.Constants.LOTTO_PURCHASE_COST
+import lotto.util.Constants.LOTTO_RANGE_END
+import lotto.util.Constants.LOTTO_RANGE_START
 import lotto.util.Constants.LOTTO_SIZE
+import lotto.util.Constants.ZERO_NUM
 
 
 private const val POSITIVE_NUM = 1
- const val DELIMITER = ','
 
 object Validator {
     private fun isItInteger(input: String) {

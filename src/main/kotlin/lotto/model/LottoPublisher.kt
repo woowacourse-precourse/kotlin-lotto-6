@@ -1,7 +1,10 @@
 package lotto.model
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.util.Constants.LOTTO_RANGE_END
+import lotto.util.Constants.LOTTO_RANGE_START
 import lotto.util.Constants.LOTTO_SIZE
+import lotto.util.Constants.ZERO_NUM
 
 class LottoPublisher {
 
@@ -21,11 +24,5 @@ class LottoPublisher {
         _publishedLottoList = MutableList(times) { _publishedLotto }
         repeat(times) { _publishedLottoList[it] = publishLotto() }
         return _publishedLottoList
-    }
-
-    companion object {
-        const val ZERO_NUM = 0
-        const val LOTTO_RANGE_START = 1
-        const val LOTTO_RANGE_END = 45
     }
 }
