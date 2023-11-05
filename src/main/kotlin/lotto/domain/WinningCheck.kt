@@ -1,14 +1,13 @@
 package lotto.domain
 
 class WinningCheck {
-
-    fun numbersCheck(myLotto: List<Lotto>, winningNumber: List<Int>, bonusNumber: Int) : List<WIN> {
-        val WINList = mutableListOf<WIN>()
+    fun numbersCheck(myLotto: List<Lotto>, winningNumber: List<Int>, bonusNumber: Int) : List<Grade> {
+        val GradeList = mutableListOf<Grade>()
         for (lotto in myLotto) {
             val result = compareNumbers(lotto.getNumbers(),winningNumber,bonusNumber)
-            WINList.add(winCheck(result))
+            GradeList.add(winCheck(result))
         }
-        return WINList
+        return GradeList
     }
 
     private fun compareNumbers(lotto: List<Int>, winningNumber: List<Int>, bonusNumber: Int) :Pair<Int,Boolean>{
@@ -17,21 +16,18 @@ class WinningCheck {
         return Pair(correct, hasBonusNumber)
     }
 
-    private fun winCheck(lottoResult : Pair<Int,Boolean>): WIN {
+    private fun winCheck(lottoResult : Pair<Int,Boolean>): Grade {
         when(lottoResult.first){
-            WIN.FIRST.correct->return WIN.FIRST
-            WIN.FOURTH.correct->return WIN.FOURTH
-            WIN.FIFTH.correct->return WIN.FIFTH
+            Grade.FIRST.correct->return Grade.FIRST
+            Grade.FOURTH.correct->return Grade.FOURTH
+            Grade.FIFTH.correct->return Grade.FIFTH
         }
-        if(lottoResult.first== WIN.SECOND.correct&&lottoResult.second){
-            return WIN.SECOND
+        if(lottoResult.first== Grade.SECOND.correct&&lottoResult.second){
+            return Grade.SECOND
         }
-        if(lottoResult.first== WIN.THIRD.correct&&!lottoResult.second){
-            return WIN.THIRD
+        if(lottoResult.first== Grade.THIRD.correct&&!lottoResult.second){
+            return Grade.THIRD
         }
-        return WIN.MISS
+        return Grade.MISS
     }
-
-
-
 }
