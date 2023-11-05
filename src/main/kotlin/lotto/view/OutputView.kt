@@ -7,7 +7,7 @@ object OutputView {
     }
 
     fun printLottoCount(purchaseCount: Int) {
-        println("$purchaseCount$RESULT_AMOUNT_PURCHASE_MESSAGE")
+        println("\n$purchaseCount$RESULT_AMOUNT_PURCHASE_MESSAGE")
     }
 
     const val RESULT_AMOUNT_PURCHASE_MESSAGE = "개를 구매했습니다."
