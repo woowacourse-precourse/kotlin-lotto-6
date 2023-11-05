@@ -80,6 +80,7 @@ class ApplicationTest : NsTest() {
             runException("8000", "1,2,3,4,5,6", "46")
             assertThat(output()).contains(ERROR_MESSAGE)
         }
+
     }
 
     @Test
