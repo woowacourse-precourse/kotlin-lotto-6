@@ -10,5 +10,5 @@ object Constants {
     const val RANKING_3ST_INDEX = 2
     const val RANKING_4ST_INDEX = 3
     const val RANKING_5ST_INDEX = 4
-    const val RANKING_NOTHING = -1
+    const val RANKING_NOTHING = 5
 }

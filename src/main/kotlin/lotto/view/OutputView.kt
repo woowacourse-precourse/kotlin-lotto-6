@@ -45,6 +45,6 @@ class OutputView {
 
     fun printLottoProfitRate(lottoProfit: LottoProfit) {
         val profitRate = lottoProfit.rate
-        println("총 수익률은 ${profitRate}입니다.")
+        println("총 수익률은 ${profitRate}%입니다.")
     }
 }

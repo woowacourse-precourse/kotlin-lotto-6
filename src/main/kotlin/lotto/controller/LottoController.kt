@@ -18,7 +18,6 @@ class LottoController(
     private lateinit var bonus: Bonus
     private lateinit var lottoResult: LottoResult
     private val lottoRankings = LottoRankings()
-    private val lottoProfit = LottoProfit()
 
     fun run() {
         gameInit()
@@ -106,8 +105,8 @@ class LottoController(
     }
 
     private fun showLottoStatistics() {
+        val lottoProfit = LottoProfit(lottoRankings.rank, purchaseCount.count * LOTTO_PRICE)
         outputView.printLottoRankings(lottoRankings)
-        lottoProfit.calculateRate(lottoRankings.rank, purchaseCount.count * LOTTO_PRICE)
         outputView.printLottoProfitRate(lottoProfit)
     }
 }

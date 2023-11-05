@@ -12,7 +12,7 @@ class LottoResult(
     private val bonus: Int
 ) {
     fun calculateRanking(lottoNumbers: List<Int>): Int {
-        var matchingCount = lottoNumbers.intersect(winningNumbers.toSet()).count()
+        val matchingCount = lottoNumbers.intersect(winningNumbers.toSet()).count()
         return when (matchingCount) {
             6 -> RANKING_1ST_INDEX
             5 -> if (lottoNumbers.contains(bonus)) RANKING_2ST_INDEX else RANKING_3ST_INDEX
