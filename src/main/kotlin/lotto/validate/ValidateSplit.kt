@@ -20,7 +20,7 @@ class ValidateSplit {
     }
 
     private fun validateInputEmpty(myNumbers: String) {
-        require(myNumbers.isEmpty()) { "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_INPUT_EMPTY}" }
+        require(myNumbers.isNotEmpty()) { "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_INPUT_EMPTY}" }
     }
 
     private fun validateInputZero(myNumbers: String) {
