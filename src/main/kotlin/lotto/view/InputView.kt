@@ -8,7 +8,8 @@ class InputView {
         return Console.readLine().trim()
     }
 
-    fun readgetWinningNumbersFromUser() {
+    fun readWinningNumbersFromUser(): String {
         println("당첨 번호를 입력해 주세요.")
+        return Console.readLine()
     }
 }
