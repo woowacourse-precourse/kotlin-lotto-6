@@ -1,5 +1,6 @@
 package lotto.model
 
+import lotto.util.Constant
 import lotto.util.Constant.UNIT_PRICE
 
 class User {
@@ -11,6 +12,7 @@ class User {
     val price get() = _price
 
     fun setPrice(price: Int){
+        require(price % UNIT_PRICE == 0) { Constant.INPUT_PRICE_UNIT_ERROR_MESSAGE }
         _price = price
     }
     fun buyLotto() {
