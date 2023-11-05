@@ -35,7 +35,13 @@ fun getWinningNumbers(): List<Int> {
     while (winningNumbers == null) {
         try {
             println("당첨 번호를 입력해 주세요.")
-            winningNumbers = readLine()!!.split(",").map { it.trim().toInt() }
+            winningNumbers = readLine()!!.split(",").map {
+                try {
+                    it.trim().toInt()
+                } catch (e: NumberFormatException) {
+                    throw IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.")
+                }
+            }
             validateWinningNumbers(winningNumbers)
             if (winningNumbers.size != 6) {
                 throw IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.")
@@ -60,6 +66,9 @@ fun printLottos(lottos: List<Lotto>) {
 fun validateWinningNumbers(winningNumbers: List<Int>) {
     if (winningNumbers.any { it !in 1..45 }) {
         throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+    }
+    if (winningNumbers.distinct().size != winningNumbers.size) {
+        throw IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.")
     }
 }
 fun getInputMoney(): Int {
