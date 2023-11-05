@@ -1,5 +1,7 @@
 package utils
 
+import lotto.LottoMachine.Companion.WON_PER_LOTTO
+
 class LottoPurchaseValidator : IntegerInputValidator() {
 
     fun checkInputValidation(input: String): Boolean {
@@ -11,11 +13,6 @@ class LottoPurchaseValidator : IntegerInputValidator() {
     }
 
     fun validateInvalidPurchaseAmount(input: String) {
-        require(((input.toInt()) % WON_PER_LOTTO) == 0) { INPUT_INVALID_AMOUNT_ERR_MSG }
-    }
-
-    companion object {
-        const val WON_PER_LOTTO = 1000
-        const val INPUT_INVALID_AMOUNT_ERR_MSG = "로또의 구입 금액 단위는 1,000원 입니다."
+        require(((input.toInt()) % WON_PER_LOTTO) == 0) { getInvalidAmountErrMsg() }
     }
 }
