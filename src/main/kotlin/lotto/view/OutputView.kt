@@ -45,7 +45,7 @@ class OutputView {
     }
 
     fun printRateOfReturn(rateOfReturn: Double) {
-        val roundedRateOfReturn = Math.round(rateOfReturn * 100.0) / 100.0
-        println("총 수익률은 ${roundedRateOfReturn}%입니다.")
+        val formattedRateOfReturn = String.format("%.1f", rateOfReturn)
+        println("총 수익률은 ${formattedRateOfReturn}%입니다.")
     }
 }
