@@ -12,37 +12,56 @@ class LottoGameController {
     private val outputView = OutputView()
     private val lottoGameService = LottoGameService()
     private val validator = Validator()
-    private var ticket = 0
-    private var randomLottoLists = mutableMapOf<Int,List<Int>>()
 
-    fun playGame(){
-        val purchaseAmount= getPurchaseAmount()
-        getTicketNumber(purchaseAmount)
-        getRandomLottoLists()
+
+    fun playGame() {
+        val purchaseAmount = getPurPurchaseAmount()
+        val ticket = getTicketNumber(purchaseAmount)
+        val randomLottoLists = getRandomLottoLists(ticket)
         outputView.outputPurchaseCountMessage(ticket)
         outputView.outputRandomLottoList(randomLottoLists)
-        val lotto = Lotto(getWinningNumbers()).getNumber
-        val bonus =  Bonus(getBonusNumber(lotto)).getBonusNumber
-        lottoGameService.calculateWinningStatistics(lotto,bonus,randomLottoLists,ticket)
+        val lotto = getWinningNumbers()
+        val bonus = getBonusNumber(lotto)
+        lottoGameService.calculateWinningStatistics(lotto, bonus, randomLottoLists, ticket)
         outputView.outputWinningStatisticsMessage()
         val profit = lottoGameService.calculateProfitPercentage(purchaseAmount.toDouble())
         outputView.outputProfitPercentageMessage(profit)
     }
-    private fun getPurchaseAmount(): Int {
-        return inputView.inputPurchaseAmountMessage().toInt()
+
+    private fun getPurPurchaseAmount(): Int {
+        return try {
+            val purchaseAmount = inputView.purchaseAmountMessage()
+            validator.isUserPurchaseAmountCheck(purchaseAmount)
+            return purchaseAmount.toInt()
+        } catch (error: IllegalArgumentException) {
+            getPurPurchaseAmount()
+        }
     }
 
-    private fun getTicketNumber(purchaseAmount: Int) {
-        ticket = lottoGameService.calculateLottoPurchaseQuantity(purchaseAmount)
+    private fun getTicketNumber(purchaseAmount: Int): Int {
+        return lottoGameService.calculateLottoPurchaseQuantity(purchaseAmount)
     }
-    private fun getRandomLottoLists(){
-        randomLottoLists=lottoGameService.lottoNumberGenerator(ticket)
+
+    private fun getRandomLottoLists(ticket: Int): MutableMap<Int, List<Int>> {
+        return lottoGameService.lottoNumberGenerator(ticket)
     }
+
     private fun getWinningNumbers(): List<Int> {
-        return inputView.inputEnterWinningNumbersMessage()
+        return try {
+            val winningNumber = lottoGameService.convertStringToList(inputView.enterWinningNumbersMessage())
+            Lotto(winningNumber).getNumber
+        } catch (error: IllegalArgumentException) {
+            getWinningNumbers()
+        }
     }
-    private fun getBonusNumber(lotto: List<Int>): Int {
-        return inputView.inputEnterBonusNumbersMessage(lotto).toInt()
+
+    private fun getBonusNumber(lotto: List<Int>): String {
+        return try {
+            val bonusNumber = inputView.enterBonusNumbersMessage()
+            Bonus(lotto, bonusNumber).getBonusNumber
+        } catch (error: IllegalArgumentException) {
+            getBonusNumber(lotto)
+        }
     }
 
 }

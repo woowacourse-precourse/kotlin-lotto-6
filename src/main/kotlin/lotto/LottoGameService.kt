@@ -27,7 +27,7 @@ class LottoGameService {
     // 랜덤 로또 번호 리스트와 입력한 로또 번호를 비교해주는 함수
     fun calculateWinningStatistics(
         lotto: List<Int>,
-        bonus: Int,
+        bonus: String,
         randomLottoLists: MutableMap<Int, List<Int>>,
         ticket: Int
     ) {
@@ -42,8 +42,8 @@ class LottoGameService {
         return randomLottoLists[ticketCheck]!!.intersect(lotto.toSet()).count()
     }
     // 랜덤 로또 리스트에 보너스 번호가 포함되어 있는지 확인하는 함수
-    private fun checkWinningBonusNumber(bonus: Int, randomLottoLists: MutableMap<Int, List<Int>>, ticketCheck: Int): Boolean {
-        return randomLottoLists[ticketCheck]!!.contains(bonus)
+    private fun checkWinningBonusNumber(bonus: String, randomLottoLists: MutableMap<Int, List<Int>>, ticketCheck: Int): Boolean {
+        return randomLottoLists[ticketCheck]!!.contains(bonus.toInt())
     }
     // 당첨 통계를 저장하는 함수
     private fun saveWinningStatsToRank(winningLottoCheck: Int, bonusNumberCheck: Boolean, ticketCheck: Int) {

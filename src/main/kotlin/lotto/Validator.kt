@@ -15,14 +15,15 @@ import lotto.Constants.Companion.MIN_NUMBER
 
 class Validator {
 
-    fun isUserPurchaseAmountCheck(purchaseAmount: String): Boolean {
+    fun isUserPurchaseAmountCheck(purchaseAmount: String) {
         if (isNumeric(purchaseAmount)) {
             println(ERROR_INVALID_NOT_NUMBER_LOTTO_AMOUNT_MESSAGE)
+            throw IllegalArgumentException()
         }
         if (isDivisibleBy1000(purchaseAmount)) {
             println(ERROR_INVALID_LOTTO_AMOUNT_1000_EXCEPTION_MESSAGE)
+            throw IllegalArgumentException()
         }
-        return !isDivisibleBy1000(purchaseAmount) && !isNumeric(purchaseAmount)
     }
     private fun isDivisibleBy1000(purchaseAmount: String): Boolean {
         return purchaseAmount.toInt() % LOTTO_PRICE != MIN_NUMBER
@@ -31,20 +32,23 @@ class Validator {
         return number.toIntOrNull() == null
     }
 
-    fun isUserWinningNumbersCheck(winningNumbers: List<Int>):Boolean {
+    fun isUserWinningNumbersCheck(winningNumbers: List<Int>){
         if (isTooManyWinningNumbers(winningNumbers)) {
             println(ERROR_INVALID_NUMBER_COUNT_MESSAGE)
+            throw IllegalArgumentException()
         }
         if(isOutOfRangeWinningNumbers(winningNumbers)) {
             println(ERROR_OUT_OF_RANGE_NUMBER_MESSAGE)
+            throw IllegalArgumentException()
         }
         if (isDuplicateLottoNumbers(winningNumbers)) {
             println(ERROR_DUPLICATE_WINNING_NUMBER_MESSAGE)
+            throw IllegalArgumentException()
         }
         if (isPositiveWinningNumbers(winningNumbers)) {
             println(ERROR_INVALID_WINNING_NUMBER_NEGATIVE_MESSAGE)
+            throw IllegalArgumentException()
         }
-        return !isTooManyWinningNumbers(winningNumbers) && !isOutOfRangeWinningNumbers(winningNumbers) && !isDuplicateLottoNumbers(winningNumbers) && !isPositiveWinningNumbers(winningNumbers)
     }
 
     private fun isTooManyWinningNumbers(winningNumbers: List<Int>): Boolean {
@@ -60,20 +64,23 @@ class Validator {
         return !winningNumbers.all { it > 0 }
     }
 
-    fun isUserBonusNumberCheck(lotto: List<Int>, bonus: String): Boolean {
+    fun isUserBonusNumberCheck(lotto: List<Int>, bonus: String) {
         if (isNumeric(bonus)) {
             println(ERROR_INVALID_NOT_NUMBER_LOTTO_AMOUNT_MESSAGE)
+            throw IllegalArgumentException()
         }
         if (isLottoAndBonusDuplicates(lotto,bonus)) {
             println(ERROR_DUPLICATE_WINNING_AND_BONUS_NUMBER_MESSAGE)
+            throw IllegalArgumentException()
         }
         if (isPositiveBonusNumber(bonus)) {
             println(ERROR_INVALID_WINNING_NUMBER_NEGATIVE_MESSAGE)
+            throw IllegalArgumentException()
         }
         if (isOutOfRangeBonusNumber(bonus)) {
             println(ERROR_OUT_OF_RANGE_NUMBER_MESSAGE)
+            throw IllegalArgumentException()
         }
-        return !isNumeric(bonus) && !isLottoAndBonusDuplicates(lotto,bonus) && !isPositiveBonusNumber(bonus) && !isOutOfRangeBonusNumber(bonus)
     }
     private fun isLottoAndBonusDuplicates(lotto: List<Int>, bonus: String): Boolean {
         return lotto.contains(bonus.toInt())

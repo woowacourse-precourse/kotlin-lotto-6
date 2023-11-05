@@ -1,13 +1,13 @@
 package lotto.model
 
-import lotto.Constants.Companion.MAX_LOTTO_NUMBER
-import lotto.Constants.Companion.MIN_LOTTO_NUMBER
+import lotto.Validator
 
-class Bonus(private val bonusNumber: Int) {
+class Bonus(lotto: List<Int>, private val bonusNumber: String) {
     init {
-        require(bonusNumber in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER)
+        Validator().isUserBonusNumberCheck(lotto, bonusNumber)
     }
-    val getBonusNumber: Int
+
+    val getBonusNumber: String
         get() = bonusNumber
 
 }

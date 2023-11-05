@@ -1,22 +1,21 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.Constants
 import lotto.Constants.Companion.INPUT_ENTER_BONUS_NUMBERS_MESSAGE
 import lotto.Constants.Companion.INPUT_ENTER_WINNING_NUMBERS_MESSAGE
 import lotto.Constants.Companion.INPUT_PURCHASE_AMOUNT_MESSAGE
 
 class InputView {
 
-    fun inputPurchaseAmountMessage(): String {
+    fun purchaseAmountMessage(): String {
         println(INPUT_PURCHASE_AMOUNT_MESSAGE)
         return Console.readLine()
     }
-    fun inputEnterWinningNumbersMessage(): String {
+    fun enterWinningNumbersMessage(): String {
         println("\n"+ INPUT_ENTER_WINNING_NUMBERS_MESSAGE)
         return Console.readLine()
     }
-    fun inputEnterBonusNumbersMessage(): String {
+    fun enterBonusNumbersMessage(): String {
         println("\n"+ INPUT_ENTER_BONUS_NUMBERS_MESSAGE)
         return Console.readLine()
     }
