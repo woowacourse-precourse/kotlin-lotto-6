@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import util.Validator.containsOnlyDigits
 import util.Validator.isAmountInThousandWon
+import util.Validator.isAmountOverMaxLimit
 import util.Validator.isEmptyValue
 import util.Validator.isValidNumberFormat
 
@@ -39,7 +40,7 @@ class BuyingPriceTest {
     @Test
     fun `1회 최대 구매 가능 금액보다 높은 금액일 경우 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
-            require("120000".toInt() > 100000)
+            isAmountOverMaxLimit("120000")
         }
     }
 }
