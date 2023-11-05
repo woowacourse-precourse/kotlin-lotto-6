@@ -52,10 +52,6 @@ class Validator {
             println(ERROR_DUPLICATE_WINNING_NUMBER_MESSAGE)
             throw IllegalArgumentException()
         }
-        if (isPositiveWinningNumbers(winningNumbers)) {
-            println(ERROR_INVALID_WINNING_NUMBER_NEGATIVE_MESSAGE)
-            throw IllegalArgumentException()
-        }
     }
     private fun isCountWinningNumbers(winningNumbers: List<Int>): Boolean {
         return winningNumbers.size > MAX_NUMBER || winningNumbers.size < MAX_NUMBER
@@ -67,10 +63,6 @@ class Validator {
 
     private fun isDuplicateLottoNumbers(winningNumbers: List<Int>): Boolean {
         return winningNumbers.size != winningNumbers.toSet().size
-    }
-
-    private fun isPositiveWinningNumbers(winningNumbers: List<Int>): Boolean {
-        return winningNumbers.all { it > 0 }
     }
 
 
