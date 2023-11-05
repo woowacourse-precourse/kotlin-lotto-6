@@ -1,17 +1,17 @@
 package lotto.io.output
 
 import lotto.constants.Print
-import lotto.constants.WinningResult
+import lotto.constants.WinningRank
 import lotto.utils.convertWithRound
 import lotto.model.lotto.Lottos
-import lotto.model.PurchaseCount
+import lotto.model.WinningCounts
 
 class Output {
-    fun printInputAmount() = println(Print.INPUT_AMOUNT)
+    fun printInputPurchaseAmount() = println(Print.INPUT_PURCHASE_AMOUNT)
 
-    fun printPurchaseCount(purchaseCount: PurchaseCount) {
+    fun printPurchaseCount(purchaseCount: Int) {
         lineBreak()
-        println(Print.PURCHASE_COUNT.toString().format(purchaseCount.count))
+        println(Print.PURCHASE_COUNT.toString().format(purchaseCount))
     }
 
     fun printLottos(lottos: Lottos) {
@@ -26,30 +26,23 @@ class Output {
         println(Print.INPUT_BONUS_NUMBERS)
     }
 
-    fun printWinningStat(winningCounts: Map<WinningResult, Int>, totalReturn: Double) {
+    fun printWinningStat(winningCounts: WinningCounts, totalReturn: Double) {
         lineBreak()
         println(Print.WINNING_STAT)
         println(Print.DIVIDE_LINE)
 
-        printWinningSituation(winningCounts)
+        printWinningResult(winningCounts)
         printTotalReturn(totalReturn)
     }
 
-    private fun printWinningSituation(winningCounts: Map<WinningResult, Int>) {
-        winningCounts.forEach { result ->
-            val winningResult = result.key
-            val winningCount = result.value
-            val bonusMessage = run {
-                if (winningResult == WinningResult.FIVE_BONUS) {
-                    Print.BONUS.toString()
-                } else ""
+    private fun printWinningResult(winningCounts: WinningCounts) {
+        WinningRank.entries.forEach { winningRank ->
+            if (winningRank == WinningRank.NOT_WINNING) {
+                return@forEach
             }
 
             println(Print.MATCHING_NUMBER.toString().format(
-                winningResult.matchingCount,
-                bonusMessage,
-                winningResult.toString(),
-                winningCount))
+                winningRank.toString(), winningCounts[winningRank]))
         }
     }
 
