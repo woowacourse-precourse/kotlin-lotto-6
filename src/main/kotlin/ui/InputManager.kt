@@ -1,10 +1,11 @@
 package ui
 
 import camp.nextstep.edu.missionutils.Console
+import model.PurchaseLottoInfo
 import validation.ValidationManager
 
 class InputManager(private val validationManager: ValidationManager = ValidationManager()) {
-    fun lottoPurchaseAmount(errorMessage: () -> Unit): Int {
+    fun lottoPurchaseAmount(errorMessage: () -> Unit): PurchaseLottoInfo {
         return try {
             validationManager.validAmount(Console.readLine().toInt())
         } catch (exception: IllegalArgumentException) {

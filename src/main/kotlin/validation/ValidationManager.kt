@@ -1,10 +1,14 @@
 package validation
 
+import extensions.toPurchaseLottoCount
 import extensions.withCommaToList
+import model.PurchaseLottoInfo
 
 class ValidationManager {
-    fun validAmount(lottoPurchaseAmount: Int): Int =
-        lottoPurchaseAmount.lessThanZero().modulusLottoPrice()
+    fun validAmount(lottoPurchaseAmount: Int): PurchaseLottoInfo {
+        val amount = lottoPurchaseAmount.lessThanZero().modulusLottoPrice()
+        return PurchaseLottoInfo(amount = amount, lottoCount = amount.toPurchaseLottoCount())
+    }
 
     fun validJackpotNumbers(numbers: String): ArrayList<Int> {
         val jackpotNumbers: ArrayList<Int> = arrayListOf()
