@@ -45,10 +45,10 @@ class LottoResultTest {
         assertThat(count).isEqualTo(LottoResult.MatchNumber.THREE_MATCH.value)
     }
     @Test
-    fun `당첨 번호에 보너스 번호가 있는지 확인한다`() {
+    fun `구입한 로또 번호에 보너스 번호가 있는지 확인한다`() {
         lottoResult.bonus = 42
-        lottoResult.winLotto = Lotto(listOf(1, 2, 3, 4, 5, 42))
+        val lotto = Lotto(listOf(1, 2, 3, 7, 8, 42))
 
-        assertTrue(lottoResult.hasBonus())
+        assertTrue(lottoResult.hasBonus(lotto))
     }
 }
