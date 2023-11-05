@@ -1,4 +1,4 @@
-package lotto
+package ui
 
 import camp.nextstep.edu.missionutils.Console
 import utils.BonusNumberValidator
@@ -46,14 +46,14 @@ class UserInputReader {
         return userInput.map { it.toInt() }
     }
 
-    fun getBonusNumber(): Int {
+    fun getBonusNumber(winningNumbers: List<Int>): Int {
         var isValid: Boolean
         var userInput: String
         do {
             println(ENTER_BONUS_NUM_MSG)
             userInput = Console.readLine()
             isValid = try {
-                bonusNumberValidator.checkInputValidation(userInput)
+                bonusNumberValidator.checkInputValidation(userInput, winningNumbers)
             } catch (e: IllegalArgumentException) {
                 println(createErrMsg(e.message ?: "Unknown error"))
                 false
