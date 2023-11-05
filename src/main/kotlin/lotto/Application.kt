@@ -2,7 +2,7 @@ package lotto
 
 import lotto.domain.Consumer
 import lotto.domain.WinningCheck
-import lotto.domain.prizeCheck
+import lotto.domain.Prize
 import lotto.views.InputView
 import lotto.views.OutputView
 fun enterMoney() :Int{
@@ -31,9 +31,9 @@ fun main() {
     val bonusNumber = enterBonusNumber(winningNumber)
     val winningChecker = WinningCheck()
     val reward = winningChecker.numbersCheck(manage.getLotto(),winningNumber,bonusNumber)
-    val prizeChecker = prizeCheck()
+    val prizeChecker = Prize()
     OutputView.printReward(reward)
-    println(prizeChecker.checkPrize(reward,myMoney))
+    OutputView.printYield(prizeChecker.checkPrize(reward,myMoney))
 
 
 }
