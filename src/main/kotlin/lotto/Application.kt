@@ -10,11 +10,11 @@ fun main() {
     printLottos(lottos)
 
     val winningNumbers = getWinningNumbers()
-    val bonusNumber = getBonusNumber()
+    val bonusNumber = getBonusNumber(winningNumbers)
     val results = lottos.map { it.calculateResult(winningNumbers, bonusNumber) }
     printStatistics(results)
 }
-fun getBonusNumber(): Int {
+fun getBonusNumber(winningNumbers: List<Int>): Int {
     var bonusNumber: Int? = null
     while (bonusNumber == null) {
         try {
@@ -26,6 +26,9 @@ fun getBonusNumber(): Int {
             bonusNumber = input.toInt()
             if (bonusNumber !in 1..45) {
                 throw IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.")
+            }
+            if (bonusNumber in winningNumbers) {
+                throw IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 다른 숫자여야 합니다.")
             }
         } catch (e: NumberFormatException) {
             println("[ERROR] 보너스 번호는 숫자여야 합니다.")
