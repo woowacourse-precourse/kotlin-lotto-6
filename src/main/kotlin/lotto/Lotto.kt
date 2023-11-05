@@ -9,9 +9,9 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == LOTTO_COUNT)
         require(numbersSet.size == LOTTO_COUNT)
     }
-
+    private fun sorted() = numbers.sorted()
     override fun toString(): String {
-        return numbers.joinToString(", ", "[", "]")
+        return sorted().joinToString(", ", "[", "]")
     }
     companion object {
         fun getHowMuchNumbersIntersect(a: Lotto, b: Lotto): Int {
