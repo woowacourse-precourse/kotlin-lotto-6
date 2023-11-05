@@ -33,7 +33,7 @@ class LottoGame {
         if(correctNumber == 4){
             ranking[1]++
         }
-        if(correctNumber == 5){
+        if(correctNumber == 5 && !number.contains(bonus)){
             ranking[2]++
         }
         if(correctNumber == 5 && number.contains(bonus)){
