@@ -3,19 +3,19 @@ package lotto
 class PrintResults {
     fun printResults(prizeCounts: IntArray, rateOfReturn: Double) {
         val prizeDescriptions = listOf(
-                "3개 일치 (5,000원)",
-                "4개 일치 (50,000원)",
-                "5개 일치 (1,500,000원)",
-                "5개 일치, 보너스 볼 일치 (30,000,000원)",
-                "6개 일치 (2,000,000,000원)"
+                MessageConstants.THREE_MATCHES,
+                MessageConstants.FOUR_MATCHES,
+                MessageConstants.FIVE_MATCHES,
+                MessageConstants.FIVE_MATCHES_AND_BONUS_NUMBER_MATCH,
+                MessageConstants.SIX_MATCHES
         )
 
-        println("\n당첨 통계\n---")
+        println(MessageConstants.WINNING_STATISTICS)
         for (i in 0 until prizeCounts.size) {
-            println("${prizeDescriptions[i]} - ${prizeCounts[i]}개")
+            println("${prizeDescriptions[i]} - ${prizeCounts[i]}${MessageConstants.UNIT}")
         }
 
-        println("총 수익률은 ${roundDigit(rateOfReturn, 1)}%입니다.")
+        println("${MessageConstants.YIELD_MESSAGE_START}${roundDigit(rateOfReturn, 1)}${MessageConstants.YIELD_MESSAGE_END}")
     }
 
     fun roundDigit(number: Double, digits: Int): Double {

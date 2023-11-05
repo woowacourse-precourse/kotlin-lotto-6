@@ -6,5 +6,5 @@ fun main() {
     LottoGame().play()
 }
 
-data class Tuple(val amount: Int, val lottoPurchaseCount: Int, val prizeCounts: IntArray, val totalPrize: Int, val rateOfReturn: Double)
+data class Tuple(val amount: Int, val lottoPurchaseCount: Int, val prizeCounts: IntArray)
 

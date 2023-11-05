@@ -9,7 +9,7 @@ class LottoGame {
     private val printResults = PrintResults()
 
     fun play() {
-        val (amount, lottoPurchaseCount, prizeCounts, totalPrize, rateOfReturn) = lottoInitializer.initializeLotto()
+        val (amount, lottoPurchaseCount, prizeCounts) = lottoInitializer.initializeLotto()
         val lottoPurchaseCounts = lottoTicketPurchase.purchaseLottoTickets(lottoPurchaseCount)
         val winningLotteryNumbers = lottoWinningNumbers.inputWinningNumbers()
         val bonusNumber = lottoWinningNumbers.inputBonusNumber(winningLotteryNumbers)
@@ -18,5 +18,4 @@ class LottoGame {
         printResults.printResults(prizeCounts, updatedRateOfReturn)
     }
 
-    //data class Tuple(val amount: Int, val lottoPurchaseCount: Int, val prizeCounts: IntArray, val totalPrize: Int, val rateOfReturn: Double)
 }

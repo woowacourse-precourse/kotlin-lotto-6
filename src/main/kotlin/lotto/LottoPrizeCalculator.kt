@@ -10,7 +10,7 @@ class LottoPrizeCalculator {
             var lottoNumberMatch = intersection.size
             val bonusNumberMatch = lottoPurchaseCounts[i].contains(bonusNumber)
 
-            if (bonusNumberMatch) {
+            if (bonusNumberMatch && lottoNumberMatch != 5) {
                 lottoNumberMatch++
             }
 
@@ -20,6 +20,8 @@ class LottoPrizeCalculator {
                     totalPrize += 2000000000
                 }
 
+                // 수정할 것: 당첨 번호에서 4개 맞추고 보너스 번호를 맞춘 경우엔 5개 일치가 나와야 하는데
+                // 5개 일치, 보너스 볼 일치가 나옴..
                 5 -> {
                     if (bonusNumberMatch) {
                         prizeCounts[3]++

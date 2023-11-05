@@ -8,14 +8,14 @@ class LottoWinningNumbers {
         var validWinningNumbers = false
 
         while (!validWinningNumbers) {
-            println("\n당첨 번호를 입력해 주세요.")
+            println(MessageConstants.INPUT_WINNING_NUMBER)
             val input = Console.readLine()
             try {
                 winningLotteryNumbers = input.split(',').map { it.trim().toInt() }
                 val lotto = Lotto(winningLotteryNumbers)
                 validWinningNumbers = true
             } catch (e: NumberFormatException) {
-                println("[ERROR] 당첨 번호는 모두 숫자여야 합니다.")
+                println(MessageConstants.ERROR_NOT_ALL_NUMBERS)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
@@ -28,19 +28,19 @@ class LottoWinningNumbers {
         var validBonusNumber = false
 
         while (!validBonusNumber) {
-            println("\n보너스 번호를 입력해 주세요.")
+            println(MessageConstants.INPUT_BONUS_NUMBER)
             val bonusInput = Console.readLine()
             try {
                 bonusNumber = bonusInput.trim().toInt()
                 if (bonusNumber < 1 || bonusNumber > 45) {
-                    throw IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자만 입력하세요.")
+                    throw IllegalArgumentException(MessageConstants.ERROR_LESS_THAN_1_OR_MORE_THAN_45)
                 }
                 if (winningLotteryNumbers.contains(bonusNumber)) {
-                    throw IllegalArgumentException("[ERROR] 기존 당첨 번호에 이미 같은 값이 있습니다.")
+                    throw IllegalArgumentException(MessageConstants.DUPLICATE_WINNING_AND_BONUS_NUMBER)
                 }
                 validBonusNumber = true
             } catch (e: NumberFormatException) {
-                println("[ERROR] 보너스 번호는 숫자여야 합니다.")
+                println(MessageConstants.BONUS_NUMBER_IS_NOT_A_NUMBER)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
