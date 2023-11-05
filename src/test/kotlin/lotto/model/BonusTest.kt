@@ -11,15 +11,15 @@ class BonusTest {
     fun bonusConstructTest(){
         assertSimpleTest {
             assertThrows<IllegalArgumentException> {
-                val bonus = Bonus(-1)
+                Bonus(-1)
             }
 
             assertThrows<IllegalArgumentException> {
-                val bonus = Bonus(46)
+                Bonus(46)
             }
 
             assertThrows<IllegalArgumentException> {
-                val purchase = Purchase(0)
+                Bonus(0)
             }
         }
     }

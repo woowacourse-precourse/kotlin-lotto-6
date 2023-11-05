@@ -1,5 +1,6 @@
 package lotto.model
 
+import lotto.util.Constants.RANKING_4ST_INDEX
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -14,7 +15,7 @@ class LottoResultTest {
     fun calculateRankingTest() {
         val input = listOf(1, 2, 3, 4, 10, 11)
         val validation = lottoResult.calculateRanking(input)
-        val result = 4
+        val result = RANKING_4ST_INDEX
         assertThat(validation).isEqualTo(result)
     }
 }

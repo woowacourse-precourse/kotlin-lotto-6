@@ -1,26 +1,26 @@
 package lotto.model
 
-import camp.nextstep.edu.missionutils.test.Assertions
+import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class PurchaseCountTest {
+class PurchaseTest {
     @Test
     @DisplayName("유효하지 않은 값이 들어가면 예외가 발생한다.")
     fun constructorTest() {
-        Assertions.assertSimpleTest {
+        assertSimpleTest {
             assertThrows<IllegalArgumentException> {
-                val purchase = Purchase(3021)
+                Purchase(3021)
             }
 
             assertThrows<IllegalArgumentException> {
-                val purchase = Purchase(1001)
+                Purchase(1001)
             }
 
             assertThrows<IllegalArgumentException> {
-                val purchase = Purchase(-1000)
+                Purchase(-1000)
             }
         }
     }
