@@ -8,7 +8,7 @@ import lotto.Constants.Companion.OUTPUT_PURCHASE_COUNT_MESSAGE
 import lotto.Constants.Companion.OUTPUT_SIX_MATCH_MESSAGE
 import lotto.Constants.Companion.OUTPUT_THREE_MATCH_MESSAGE
 import lotto.Constants.Companion.OUTPUT_WINNING_STATISTICS_MESSAGE
-import lotto.model.LottoRank
+import lotto.modle.LottoRank
 
 class OutputView {
 

@@ -18,42 +18,33 @@ class LottoGameController {
     private var purchaseAmount = 0
 
     fun playGame(){
-        getPurchaseAmount()
+        val purchaseAmount= getPurchaseAmount()
         getTicketNumber(purchaseAmount)
         getRandomLottoLists()
         outputView.outputPurchaseCountMessage(ticket)
         outputView.outputRandomLottoList(randomLottoLists)
-        val enterWinningNumbers = getEnterWinningNumbers()
-        val lotto = Lotto(convertStringToList(enterWinningNumbers)).getNumber
-        val bonus = Bonus(getBonusNumber()).getBonusNumber
-        validator.checkForDuplicates(lotto,bonus)
+        val lotto = Lotto(getWinningNumbers()).getNumber
+        val bonus =  Bonus(getBonusNumber(lotto)).getBonusNumber
         lottoGameService.calculateWinningStatistics(lotto,bonus,randomLottoLists,ticket)
         outputView.outputWinningStatisticsMessage()
         val profit = lottoGameService.calculateProfitPercentage(purchaseAmount.toDouble())
         outputView.outputProfitPercentageMessage(profit)
     }
-    private fun getPurchaseAmount(){
-        try {
-            purchaseAmount = inputView.inputPurchaseAmountMessage().toInt()
-        } catch (error: IllegalArgumentException){
-            println(ERROR_INVALID_LOTTO_AMOUNT_EXCEPTION)
-            getPurchaseAmount()
-        }
+    private fun getPurchaseAmount(): Int {
+        return inputView.inputPurchaseAmountMessage().toInt()
     }
+
     private fun getTicketNumber(purchaseAmount: Int) {
         ticket = lottoGameService.calculateLottoPurchaseQuantity(purchaseAmount)
     }
     private fun getRandomLottoLists(){
         randomLottoLists=lottoGameService.lottoNumberGenerator(ticket)
     }
-    private fun getEnterWinningNumbers(): String {
+    private fun getWinningNumbers(): List<Int> {
         return inputView.inputEnterWinningNumbersMessage()
     }
-    private fun convertStringToList(enterWinningNumbers: String): List<Int> {
-         return enterWinningNumbers.split(",").map { it.trim().toInt() }
-    }
-    private fun getBonusNumber(): Int {
-        return inputView.inputEnterBonusNumbersMessage().toInt()
+    private fun getBonusNumber(lotto: List<Int>): Int {
+        return inputView.inputEnterBonusNumbersMessage(lotto).toInt()
     }
 
 }
