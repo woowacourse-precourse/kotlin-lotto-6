@@ -17,4 +17,5 @@ class Lotto(private val numbers: List<Int>) {
         val otherSet = other.numbersSet
         return numbersSet intersect otherSet
     }
+    fun contains(number: Int) = numbersSet.contains(number)
 }
