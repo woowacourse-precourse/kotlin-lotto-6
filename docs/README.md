@@ -70,5 +70,6 @@
 
 ## 단위 테스트 목록
 - [x] PurchasePriceValidator(구입 금액) 테스트
+- [x] LottoPrice(티켓 수 반환) 테스트
 - [] WinNumbersValidator 테스트
 - [] BonusNumberValidator 테스트
