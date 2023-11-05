@@ -1,11 +1,13 @@
 package lotto.controller
 
+import lotto.Constants.Companion.ERROR_EMPTY_WINNING_NUMBER_MESSAGE
 import lotto.LottoGameService
 import lotto.model.Bonus
 import lotto.model.Lotto
 import lotto.view.InputView
 import lotto.view.OutputView
 import lotto.Validator
+import java.lang.NumberFormatException
 
 class LottoGameController {
     private val inputView = InputView()
@@ -21,9 +23,7 @@ class LottoGameController {
         outputView.outputPurchaseCountMessage(ticket)
         outputView.outputRandomLottoList(randomLottoLists)
         val lotto = getWinningNumbers()
-        println(lotto)
         val bonus = getBonusNumber(lotto)
-        println(bonus)
         lottoGameService.calculateWinningStatistics(lotto, bonus, randomLottoLists, ticket)
         outputView.outputWinningStatisticsMessage()
         val profit = lottoGameService.calculateProfitPercentage(purchaseAmount.toDouble())
@@ -52,7 +52,10 @@ class LottoGameController {
         return try {
             val winningNumber = lottoGameService.convertStringToList(inputView.enterWinningNumbersMessage())
             Lotto(winningNumber).getNumber
-        } catch (error: IllegalArgumentException) {
+        } catch (error: NumberFormatException) {
+            println(ERROR_EMPTY_WINNING_NUMBER_MESSAGE)
+            getWinningNumbers()
+        }catch (error: IllegalArgumentException) {
             getWinningNumbers()
         }
     }

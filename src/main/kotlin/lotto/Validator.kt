@@ -40,11 +40,7 @@ class Validator {
     }
 
     fun isUserWinningNumbersCheck(winningNumbers: List<Int>) {
-        if (isEmptyWinningNumbers(winningNumbers)) {
-            println(ERROR_EMPTY_WINNING_NUMBER_MESSAGE)
-            throw IllegalArgumentException()
-        }
-        if (isTooManyWinningNumbers(winningNumbers)) {
+        if (isCountWinningNumbers(winningNumbers)) {
             println(ERROR_INVALID_NUMBER_COUNT_MESSAGE)
             throw IllegalArgumentException()
         }
@@ -61,9 +57,8 @@ class Validator {
             throw IllegalArgumentException()
         }
     }
-
-    private fun isTooManyWinningNumbers(winningNumbers: List<Int>): Boolean {
-        return winningNumbers.size > MAX_NUMBER
+    private fun isCountWinningNumbers(winningNumbers: List<Int>): Boolean {
+        return winningNumbers.size > MAX_NUMBER || winningNumbers.size < MAX_NUMBER
     }
 
     private fun isOutOfRangeWinningNumbers(winningNumbers: List<Int>): Boolean {
@@ -75,12 +70,9 @@ class Validator {
     }
 
     private fun isPositiveWinningNumbers(winningNumbers: List<Int>): Boolean {
-        return !winningNumbers.all { it > 0 }
+        return winningNumbers.all { it > 0 }
     }
 
-    private fun isEmptyWinningNumbers(winningNumbers: List<Int>): Boolean {
-        return winningNumbers.isEmpty()
-    }
 
     fun isUserBonusNumberCheck(lotto: List<Int>, bonus: String) {
         if (isEmptyNumber(bonus)) {
