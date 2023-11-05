@@ -1,5 +1,6 @@
 package lotto.model
 
+import lotto.controller.LottoMachine
 import java.lang.NumberFormatException
 
 
@@ -9,7 +10,8 @@ class Money {
         try {
             money.toInt()
         } catch (e: NumberFormatException) {
-            error(Constants.ERROR_MONEY_FORMAT)
+            println(Constants.ERROR_MONEY_FORMAT)
+            LottoMachine().moneyInput()
         }
     }
 
