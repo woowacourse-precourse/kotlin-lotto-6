@@ -11,7 +11,7 @@ class LottoProgram {
     private val inputView = InputView()
     private val outputView = OutputView()
     private val lottoPublisher = LottoPublisher()
-    
+
     fun run() {
         outputView.printPurchaseAmount()
         val userInput = inputView.getValidPurchaseAmount()
@@ -30,10 +30,11 @@ class LottoProgram {
 
         outputView.printRequireBonusNums()
         val bonusNum = inputView.getValidBonusNum(winningNums)
-        val lottoResult =  lotto.checkLottoWinning(bonusNum,lottoPublisher.publishedLottoList)
+        val lottoResult = lotto.checkLottoWinning(bonusNum, lottoPublisher.publishedLottoList)
         val lottoResultAnalyzer = LottoResultAnalyzer()
         lottoResultAnalyzer.analyzeLottoResults(lottoResult)
-        val analyzedResult = lottoResultAnalyzer.analyzedLottoResults
+        val analyzedResult = lottoResultAnalyzer.getAnalyzedLottoResults()
+        println(analyzedResult)
     }
 
     companion object {
