@@ -76,7 +76,40 @@ class LottoTest {
     }
 
     @Test
-    fun `로또 당첨 번호 개수 일치`() {
+    fun `로또 당첨 번호 1개 일치`() {
+        val lotto = Lotto(listOf(1,2,3,4,5,6))
+        val winningNumbers = listOf(6,7,8,9,10,11)
+        val expectMatchedNumbers = 1
+
+        val actualMatchedNumbers = lottoController.getMatchedNumbers(lotto, winningNumbers)
+
+        assertThat(expectMatchedNumbers).isEqualTo(actualMatchedNumbers)
+    }
+
+    @Test
+    fun `로또 당첨 번호 2개 일치`() {
+        val lotto = Lotto(listOf(1,2,3,4,5,6))
+        val winningNumbers = listOf(5,6,7,8,9,10)
+        val expectMatchedNumbers = 2
+
+        val actualMatchedNumbers = lottoController.getMatchedNumbers(lotto, winningNumbers)
+
+        assertThat(expectMatchedNumbers).isEqualTo(actualMatchedNumbers)
+    }
+
+    @Test
+    fun `로또 당첨 번호 3개 일치`() {
+        val lotto = Lotto(listOf(1,2,3,4,5,6))
+        val winningNumbers = listOf(4,5,6,7,8,9)
+        val expectMatchedNumbers = 3
+
+        val actualMatchedNumbers = lottoController.getMatchedNumbers(lotto, winningNumbers)
+
+        assertThat(expectMatchedNumbers).isEqualTo(actualMatchedNumbers)
+    }
+
+    @Test
+    fun `로또 당첨 번호 4개 일치`() {
         val lotto = Lotto(listOf(1,2,3,4,5,6))
         val winningNumbers = listOf(3,4,5,6,7,8)
         val expectMatchedNumbers = 4
@@ -87,14 +120,36 @@ class LottoTest {
     }
 
     @Test
-    fun `로또 당첨 번호 개수 불일치`() {
+    fun `로또 당첨 번호 5개 일치`() {
         val lotto = Lotto(listOf(1,2,3,4,5,6))
-        val winningNumbers = listOf(3,4,5,6,7,8)
+        val winningNumbers = listOf(2,3,4,5,6,7)
         val expectMatchedNumbers = 5
 
         val actualMatchedNumbers = lottoController.getMatchedNumbers(lotto, winningNumbers)
 
-        assertThat(expectMatchedNumbers).isNotEqualTo(actualMatchedNumbers)
+        assertThat(expectMatchedNumbers).isEqualTo(actualMatchedNumbers)
+    }
+
+    @Test
+    fun `로또 당첨 번호 6개 일치`() {
+        val lotto = Lotto(listOf(1,2,3,4,5,6))
+        val winningNumbers = listOf(1,2,3,4,5,6)
+        val expectMatchedNumbers = 6
+
+        val actualMatchedNumbers = lottoController.getMatchedNumbers(lotto, winningNumbers)
+
+        assertThat(expectMatchedNumbers).isEqualTo(actualMatchedNumbers)
+    }
+
+    @Test
+    fun `로또 당첨 번호 불일치`() {
+        val lotto = Lotto(listOf(1,2,3,4,5,6))
+        val winningNumbers = listOf(7,8,9,10,11,12)
+        val expectMatchedNumbers = 0
+
+        val actualMatchedNumbers = lottoController.getMatchedNumbers(lotto, winningNumbers)
+
+        assertThat(expectMatchedNumbers).isEqualTo(actualMatchedNumbers)
     }
 
     @Test
