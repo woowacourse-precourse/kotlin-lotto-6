@@ -1,6 +1,6 @@
 package lotto
 
-import lotto.model.Purchase
+import lotto.domain.model.Purchase
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

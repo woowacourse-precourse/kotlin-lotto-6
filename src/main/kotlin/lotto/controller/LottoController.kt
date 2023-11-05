@@ -1,7 +1,7 @@
 package lotto.controller
 
 import lotto.exception.IllegalPurchaseAmountException
-import lotto.model.Purchase
+import lotto.domain.model.Purchase
 import lotto.view.InputView
 
 class LottoController() {
