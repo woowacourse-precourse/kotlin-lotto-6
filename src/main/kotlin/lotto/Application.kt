@@ -16,8 +16,13 @@ fun main() {
     var winNumber = lottoMachine.inputWinNum()
 
     println(MessageManager.COMMENTS_SUB_NUMBER.mes)
-    var sunNumber = lottoMachine.inputSubNum()
+    var bonusNumber = lottoMachine.inputSubNum()
 
     println(MessageManager.COMMENTS_LOTTO_RESULT.mes)
 
+    var lotto = Lotto(winNumber)
+    lotto.compare(bonusNumber)
+    val prize = Prize(lotto.count3, lotto.count4, lotto.count5, lotto.count5_2, lotto.count6, buyLottoMount)
+    prize.printResult()
+    prize.yieldRateOfReturn()
 }
