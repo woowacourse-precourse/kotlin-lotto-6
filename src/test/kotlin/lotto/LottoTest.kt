@@ -47,8 +47,25 @@ class LottoTest {
 
         val lottoNumbers = lottoController.generateLottoNumbers()
         val actualLottoSize = lottoNumbers.size
+        val actualLottoSetSize = lottoNumbers.toSet().size
 
         assertThat(expectLottoSize).isEqualTo(actualLottoSize)
+        assertThat(expectLottoSize).isEqualTo(actualLottoSetSize)
         lottoNumbers.forEach { lottoNumber -> assertThat(lottoNumber).isBetween(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER) }
+    }
+
+    @Test
+    fun `로또 리스트 생성`() {
+        val expectNumberOfPurchase = 8
+
+        val lottos = lottoController.makeLottos(expectNumberOfPurchase)
+        val actualNumberOfPurchase = lottos.size
+
+        assertThat(expectNumberOfPurchase).isEqualTo(actualNumberOfPurchase)
+        lottos.forEach { lotto ->
+            lotto.getNumbers().forEach { lottoNumber ->
+                assertThat(lottoNumber).isBetween(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER)
+            }
+        }
     }
 }
