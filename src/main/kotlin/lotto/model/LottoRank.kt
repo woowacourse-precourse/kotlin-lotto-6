@@ -1,4 +1,4 @@
-package lotto.modle
+package lotto.model
 
 enum class LottoRank() {
     THREE_MATCH,
