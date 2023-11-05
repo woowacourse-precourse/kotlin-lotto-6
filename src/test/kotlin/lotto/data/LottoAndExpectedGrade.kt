@@ -1,4 +1,4 @@
-package lotto
+package lotto.data
 
 import lotto.data.GRADE
 import lotto.data.Lotto
