@@ -6,6 +6,9 @@ import lotto.data.Lotto
 class PointOfSales {
 
     fun issueLotto(quantity: Int): List<Lotto> {
+        require(quantity > 0) {
+            QUANTITY_SHOULD_BE_MORE_THEN_0
+        }
         val tickets = mutableListOf<Lotto>()
         repeat(quantity) {
             tickets.add(Lotto(getRandomLottoNum()))
