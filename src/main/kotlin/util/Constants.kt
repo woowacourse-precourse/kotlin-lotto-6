@@ -6,6 +6,7 @@ object Constants {
     const val MSG_INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요."
 
     const val MSG_OUTPUT_PURCHASE_RESULT = "개를 구매했습니다."
+    const val MSG_OUTPUT_WIN_LOTTO_RESULT = "당첨 통계\n---\n"
 
     const val MONEY_JACKPOT = "2,000,000,000원"
     const val MONEY_SECOND_PRIZE = "30,000,000원"
