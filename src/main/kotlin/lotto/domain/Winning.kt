@@ -93,6 +93,10 @@ object Winning {
         return count
     }
 
+    fun publicCompareNumberWithWinningNumber(lotto: Lotto): Int {
+        return compareNumberWithWinningNumber(lotto)
+    }
+
     private fun compareNumberWithBonusNumber(lotto: Lotto): Boolean {
         if(lotto.getNumberPerLotto().contains(BonusNumber.getBonusNumber()))
             return true

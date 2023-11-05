@@ -27,6 +27,10 @@ object BonusNumber {
         }
     }
 
+    fun publicCheckValidationBonusNumber(bonusNumber: String) {
+        checkValidationBonusNumber(bonusNumber)
+    }
+
     private fun checkValidationBonusNumber(bonusNumber: String) {
         checkDigitBonusNumber(bonusNumber)
         checkRangeBonusNumber(bonusNumber)

@@ -78,4 +78,8 @@ object WinningNumber {
     fun publicCheckValidationWinningNumber(winningNumbers: List<Int>) {
         checkValidationWinningNumber(winningNumbers)
     }
+
+    fun testSetWinningIntNumber(testWinningNumbers: MutableList<Int>) {
+        winningIntNumbers = testWinningNumbers
+    }
 }

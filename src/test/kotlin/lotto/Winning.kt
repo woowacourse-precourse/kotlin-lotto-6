@@ -2,6 +2,7 @@ package lotto
 
 import lotto.domain.WinningNumber
 import lotto.domain.Winning
+import lotto.domain.Lotto
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.assertj.core.api.Assertions.assertThat
@@ -28,6 +29,14 @@ class Winning {
             WinningNumber.publicCheckValidationWinningNumber(listOf(1,2,3,4,5,46))
             WinningNumber.publicCheckValidationWinningNumber(listOf(0,2,3,4,5,6))
         }
+    }
+
+    @Test
+    fun `당첨 번호와 로또 번호의 당첨개수 확인`() {
+        val testWinningNumber = mutableListOf(1,2,3,11,12,13)
+        WinningNumber.testSetWinningIntNumber(testWinningNumber)
+        assertThat(Winning.publicCompareNumberWithWinningNumber(Lotto(listOf(1,2,3,4,5,6)))).isEqualTo(3)
+        assertThat(Winning.publicCompareNumberWithWinningNumber(Lotto(listOf(1,2,4,5,6,7)))).isEqualTo(2)
     }
 
     @Test
