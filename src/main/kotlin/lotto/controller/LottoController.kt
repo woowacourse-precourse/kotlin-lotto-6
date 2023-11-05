@@ -1,14 +1,11 @@
 package lotto.controller
 
-import lotto.model.User
-import lotto.model.WinResult
-import lotto.model.WinningLotto
+import lotto.domain.User
+import lotto.domain.WinResult
+import lotto.domain.WinningLotto
 import lotto.service.UserService
 import lotto.service.WinResultService
 import lotto.service.WinningLottoService
-import lotto.view.InputView
-import lotto.view.OutputView
-import net.bytebuddy.asm.Advice.OffsetMapping.Factory.Illegal
 
 class LottoController(
     private val userService: UserService = UserService(),

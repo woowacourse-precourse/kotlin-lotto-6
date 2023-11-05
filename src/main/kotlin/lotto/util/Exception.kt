@@ -1,12 +1,10 @@
 package lotto.util
 
 import lotto.util.Constant.INPUT_BONUS_NUMBER_NOT_NUMBER_ERROR_MESSAGE
-import lotto.util.Constant.INPUT_BONUS_NUMBER_OVERLAP_ERROR_MESSAGE
 import lotto.util.Constant.INPUT_LUCKY_NUMBER_LENGTH_ERROR_MESSAGE
 import lotto.util.Constant.INPUT_LUCKY_NUMBER_NOT_NUMBER_ERROR_MESSAGE
 import lotto.util.Constant.INPUT_LUCKY_NUMBER_OVERLAP_ERROR_MESSAGE
 import lotto.util.Constant.INPUT_PRICE_NOT_NUMBER_ERROR_MESSAGE
-import lotto.util.Constant.INPUT_PRICE_UNIT_ERROR_MESSAGE
 import lotto.util.Constant.LOTTO_MAX_RANDOM_NUMBER
 import lotto.util.Constant.LOTTO_MIN_RANDOM_NUMBER
 import lotto.util.Constant.LOTTO_NUMBER_ERROR_MESSAGE
@@ -14,8 +12,6 @@ import lotto.util.Constant.LOTTO_NUMBER_NUMBER_LENGTH_ERROR_MESSAGE
 import lotto.util.Constant.LOTTO_NUMBER_OVERLAP_ERROR_MESSAGE
 import lotto.util.Constant.LOTTO_NUMBER_SIZE
 import lotto.util.Constant.LOTTO_NUMBER_SORT_ERROR_MESSAGE
-import lotto.util.Constant.UNIT_PRICE
-import java.lang.IllegalArgumentException
 
 object Exception {
 

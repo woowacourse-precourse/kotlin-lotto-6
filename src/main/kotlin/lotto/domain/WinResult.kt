@@ -1,4 +1,4 @@
-package lotto.model
+package lotto.domain
 
 class WinResult(private val placeResult: HashMap<Place, Int>, private val earningRate: Double) {
 

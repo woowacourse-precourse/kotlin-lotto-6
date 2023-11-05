@@ -1,6 +1,6 @@
-package lotto
+package lotto.domain
 
-import lotto.model.WinningLotto
+import lotto.domain.WinningLotto
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

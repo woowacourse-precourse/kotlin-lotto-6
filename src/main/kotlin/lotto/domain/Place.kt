@@ -1,4 +1,4 @@
-package lotto.model
+package lotto.domain
 
 sealed class Place(val correct: Int, val price: Int, val bonus: Boolean) {
     data object First : Place(6, 2000000000, false)

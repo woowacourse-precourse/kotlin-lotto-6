@@ -1,6 +1,6 @@
-package lotto
+package lotto.domain
 
-import lotto.model.*
+import lotto.domain.*
 import lotto.service.WinResultService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals

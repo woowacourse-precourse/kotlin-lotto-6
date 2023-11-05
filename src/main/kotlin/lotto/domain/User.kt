@@ -1,6 +1,5 @@
-package lotto.model
+package lotto.domain
 
-import lotto.util.Constant
 import lotto.util.Constant.INPUT_PRICE_UNIT_ERROR_MESSAGE
 import lotto.util.Constant.LOTTO_BUY_ERROR_MESSAGE
 import lotto.util.Constant.UNIT_PRICE

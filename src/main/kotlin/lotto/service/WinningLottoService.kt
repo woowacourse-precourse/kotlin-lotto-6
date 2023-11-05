@@ -1,7 +1,6 @@
 package lotto.service
 
-import lotto.model.WinningLotto
-import lotto.util.Constant
+import lotto.domain.WinningLotto
 import lotto.util.Constant.INPUT_BONUS_NUMBER_OVERLAP_ERROR_MESSAGE
 import lotto.util.Exception
 import lotto.view.InputView

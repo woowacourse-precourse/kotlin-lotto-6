@@ -1,11 +1,7 @@
-package lotto
+package lotto.`model`
 
-import lotto.model.Lotto
-import lotto.model.User
-import lotto.service.UserService
-import lotto.util.Constant.UNIT_PRICE
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeAll
+import lotto.domain.Lotto
+import lotto.domain.User
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 

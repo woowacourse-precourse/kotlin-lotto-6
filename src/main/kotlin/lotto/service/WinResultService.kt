@@ -1,6 +1,6 @@
 package lotto.service
 
-import lotto.model.*
+import lotto.domain.*
 import lotto.view.OutputView
 
 class WinResultService(

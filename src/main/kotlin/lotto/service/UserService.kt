@@ -1,8 +1,7 @@
 package lotto.service
 
-import lotto.model.Lotto
-import lotto.model.LottoNumberGenerator
-import lotto.model.User
+import lotto.domain.Lotto
+import lotto.domain.User
 import lotto.util.Constant.INPUT_PRICE_UNIT_ERROR_MESSAGE
 import lotto.util.Constant.UNIT_PRICE
 import lotto.view.InputView
@@ -34,7 +33,7 @@ class UserService(private val inputView: InputView = InputView(), private val ou
 
     private fun buyLotto() {
         repeat(price / UNIT_PRICE) {
-            lottoes.add(Lotto(LottoNumberGenerator.makeLottoNumber()))
+            lottoes.add(Lotto(LottoService.makeLottoNumber()))
         }
     }
 

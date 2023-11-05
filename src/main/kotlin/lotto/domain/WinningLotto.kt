@@ -1,4 +1,4 @@
-package lotto.model
+package lotto.domain
 
 
 import lotto.util.Constant.INPUT_BONUS_NUMBER_OVERLAP_ERROR_MESSAGE

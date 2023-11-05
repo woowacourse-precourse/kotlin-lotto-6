@@ -1,7 +1,7 @@
 package lotto.view
 
-import lotto.model.Lotto
-import lotto.model.Place
+import lotto.domain.Lotto
+import lotto.domain.Place
 import lotto.util.Constant.FIFTH_PLACE_MESSAGE
 import lotto.util.Constant.FIRST_PLACE_MESSAGE
 import lotto.util.Constant.FOURTH_PLACE_MESSAGE
