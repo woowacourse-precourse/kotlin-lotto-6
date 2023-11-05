@@ -39,4 +39,11 @@ class MoneyTest {
             Money("120000")
         }
     }
+
+    @Test
+    fun `로또 금액보다 낮은 금액을 입력하였을 경우 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            Money("500")
+        }
+    }
 }
