@@ -30,6 +30,6 @@ class LottoTest {
     fun `로또번호 겹치는 개수 알아내기 테스트`() {
         val userLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
         val winLotto = Lotto(listOf(9, 10, 11, 3, 1, 2))
-        assertEquals(Lotto.getHowMuchNumbersIntersect(userLotto, winLotto), 3)
+        assertEquals((userLotto intersect winLotto).size, 3)
     }
 }
