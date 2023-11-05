@@ -19,4 +19,11 @@ class BuyingPriceTest {
             isAmountInThousandWon("28800")
         }
     }
+
+    @Test
+    fun `값을 입력하지 않을 경우 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            require("".isEmpty())
+        }
+    }
 }
