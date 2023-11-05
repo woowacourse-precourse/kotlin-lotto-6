@@ -12,6 +12,14 @@ class LottoGame {
     private val repository: LottoRepository = LottoRepositoryImpl()
     private val viewModel = LottoViewModel(repository)
 
+    
+    private fun generateRandomLotto(amount: Int) {
+        viewModel.generateRandomLotto(amount).also {
+            for (lotto in it) {
+                println("[${lotto.joinToString(", ")}]")
+            }
+        }
+    }
 
     private fun inputPurchaseAmount(): Int {
         while (true) {
