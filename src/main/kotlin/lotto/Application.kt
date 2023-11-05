@@ -10,7 +10,7 @@ fun main() {
     var buyLottoMount = user.buyLottoCount(buy)
 
     user.saveTicket(buyLottoMount)
-    user.printTicket()
+    var ticket = user.printTicket()
 
     println(MessageManager.COMMENTS_MAIN_NUMBER.mes)
     var winNumber = lottoMachine.inputWinNum()
@@ -21,8 +21,8 @@ fun main() {
     println(MessageManager.COMMENTS_LOTTO_RESULT.mes)
 
     var lotto = Lotto(winNumber)
-    lotto.compare(bonusNumber)
-    val prize = Prize(lotto.count3, lotto.count4, lotto.count5, lotto.count5_2, lotto.count6, buyLottoMount)
+    lotto.compare(ticket, bonusNumber)
+    val prize = Prize(lotto.count3, lotto.count4, lotto.count5, lotto.count5_2, lotto.count6, buy)
     prize.printResult()
     prize.yieldRateOfReturn()
 }

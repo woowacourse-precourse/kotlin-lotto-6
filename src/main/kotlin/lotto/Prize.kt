@@ -6,12 +6,12 @@ class Prize(
     var count5: Int,
     var count5_2: Int,
     var count6: Int,
-    var buyLottoMount: Int,
+    var buy: Int,
 ) {
 
     fun printResult() {
         println(
-                    "3개 일치 (5,000원) - ${count3}개\n" +
+            "3개 일치 (5,000원) - ${count3}개\n" +
                     "4개 일치 (50,000원) - ${count4}개\n" +
                     "5개 일치 (1,500,000원) - ${count5}개\n" +
                     "5개 일치, 보너스 볼 일치 (30,000,000원) - ${count5_2}개\n" +
@@ -22,8 +22,9 @@ class Prize(
     fun yieldRateOfReturn() {
         val totalPrize =
             MATCH_3 * count3 + MATCH_4 * count4 + MATCH_5 * count5 + MATCH_5_2 * count5_2 + MATCH_6 * count6
-        val yieldRate = totalPrize.toDouble() / buyLottoMount
-        println("총 수익률은 $yieldRate 입니다.")
+        val yieldRate = (totalPrize.toDouble() / buy) * 100
+        val formattedYieldRate = "%.1f".format(yieldRate)
+        println("총 수익률은 ${formattedYieldRate}%입니다.")
     }
 
     companion object {
