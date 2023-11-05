@@ -10,6 +10,7 @@ class Lotto(private val numbers: List<Int>) {
         checkValidationLottoNumber()
     }
 
+    // TODO: 추가 기능 구현
     private fun checkValidationLottoNumber() {
         checkDuplicateLottoNumber()
         checkRangeLottoNumber()
@@ -30,5 +31,4 @@ class Lotto(private val numbers: List<Int>) {
     fun getNumberPerLotto(): List<Int> {
         return numbers
     }
-    // TODO: 추가 기능 구현
 }

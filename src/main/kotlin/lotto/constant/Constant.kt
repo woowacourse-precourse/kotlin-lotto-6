@@ -17,6 +17,7 @@ class Constant {
         const val EMPTY_STRING = ""
         const val AMOUNT_IS_ZERO = 0
         const val NO_EARNING_RATE = "0.0"
+        const val NO_EARNING_PRICE = 0
         const val BONUS_NUMBER_INIT = 0
     }
 }

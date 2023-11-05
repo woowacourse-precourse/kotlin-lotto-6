@@ -15,6 +15,7 @@ object BonusNumber {
     fun getBonusNumber(): Int{
         return bonusNumber
     }
+
     fun inputBonusNumber() {
         var validCheck = false
         while(!validCheck) {

@@ -73,7 +73,7 @@ object Winning {
         for(winningInfor in winningRateInfor) {
             sum += winningInfor.price
         }
-        if(sum == 0) return Constant.NO_EARNING_RATE
+        if(sum == Constant.NO_EARNING_PRICE) return Constant.NO_EARNING_RATE
         val result = (sum.toDouble() / (Constant.PRICE_PER_LOTTO * lottoCount)) * 100
         return String.format("%,.1f",result)
     }
