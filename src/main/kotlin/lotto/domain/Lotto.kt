@@ -12,5 +12,4 @@ class Lotto(private val numbers: List<Int>) {
     override fun toString(): String {
         return numbers.sorted().toString()
     }
-    // TODO: 추가 기능 구현
 }

@@ -1,6 +1,6 @@
 package lotto.validator
 
-class InputMoneyValidator() {
+class InputMoneyValidator {
     fun validate(inputMoney: String) {
         requireNumericString(inputMoney)
         requireAmountDivisibleBy1000(inputMoney)
