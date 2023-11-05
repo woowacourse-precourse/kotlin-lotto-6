@@ -12,4 +12,7 @@ class InputView {
         return Console.readLine().split(",").map { it.toInt() }
     }
 
+    fun inputBonusNumber(): Int {
+        return Console.readLine().toInt()
+    }
 }
