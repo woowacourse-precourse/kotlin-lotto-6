@@ -12,4 +12,8 @@ class Player(private var money: Int) {
         return lottoNumbers
     }
 
+    fun getReturnMoney(returnMoney: Int) {
+        money += returnMoney
+    }
+
 }
