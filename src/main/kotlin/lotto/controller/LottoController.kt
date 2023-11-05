@@ -41,8 +41,10 @@ class LottoController {
         val randomLotteries = mutableListOf<Lotto>()
         for (i in 1..num) {
             val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+            numbers.sort()
             randomLotteries.add(Lotto(numbers))
         }
         lotteries = Lotteries(randomLotteries)
+        lotteries.printLotteries()
     }
 }
