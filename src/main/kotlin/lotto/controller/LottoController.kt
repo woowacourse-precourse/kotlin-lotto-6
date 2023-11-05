@@ -2,10 +2,10 @@ package lotto.controller
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
-import lotto.model.LottoAllocate
+import lotto.model.LottoModel
 import lotto.view.LottoView
 
-class LottoController(private val model: LottoAllocate, private val view : LottoView) {
+class LottoController(private val model: LottoModel, private val view : LottoView) {
     fun run(){
         view.inputMoney()
         val input_money = inputMoney()
@@ -16,6 +16,10 @@ class LottoController(private val model: LottoAllocate, private val view : Lotto
         var winning_number = setWinningNumber()
         view.inputBonusNumber()
         winning_number = setBonusNumber(winning_number)
+        var choose_result = model.check(buy_lotto_number,winning_number,input_money.second)
+        view.showWinning(choose_result)
+        var rate_of_return = model.getRateOfReturn(choose_result,input_money.first)
+        view.showRateOfReturn(rate_of_return)
     }
 
     fun inputMoney() : Pair<Int,Int>{
@@ -48,6 +52,4 @@ class LottoController(private val model: LottoAllocate, private val view : Lotto
     fun setBonusNumber(winning_number : List<String>) : List<String>{
         return winning_number + Console.readLine()
     }
-
-
 }
