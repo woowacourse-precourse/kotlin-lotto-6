@@ -16,7 +16,7 @@ class OutputView {
         println("${numberOfPurchase}개를 구매했습니다.")
     }
 
-    fun printLottoNumbers(lotto: Lotto) {
+    fun printLotto(lotto: Lotto) {
         println(lotto)
     }
 

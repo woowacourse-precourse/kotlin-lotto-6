@@ -59,7 +59,7 @@ class LottoController {
     fun purchaseLottos(lottos: List<Lotto>) {
         outputView.printNumberOfPurchases(lottos.size)
         for (lotto in lottos) {
-            outputView.printLottoNumbers(lotto)
+            outputView.printLotto(lotto)
         }
     }
 
