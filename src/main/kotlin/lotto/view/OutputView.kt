@@ -21,8 +21,9 @@ class OutputView {
     fun outputPurchaseCountMessage(ticket: Int) {
         println("\n" + String.format(OUTPUT_PURCHASE_COUNT_MESSAGE, ticket))
     }
+
     fun outputWinningStatisticsMessage() {
-        println("\n"+OUTPUT_WINNING_STATISTICS_MESSAGE)
+        println("\n" + OUTPUT_WINNING_STATISTICS_MESSAGE)
         println("---")
         println(String.format(OUTPUT_THREE_MATCH_MESSAGE, lottoThreeMatch.getCount()))
         println(String.format(OUTPUT_FOUR_MATCH_MESSAGE, lottoFourMatch.getCount()))
@@ -30,11 +31,13 @@ class OutputView {
         println(String.format(OUTPUT_FIVE_WITH_BONUS_MATCH_MESSAGE, lottoFiveWithBonusMatch.getCount()))
         println(String.format(OUTPUT_SIX_MATCH_MESSAGE, lottoSixMatch.getCount()))
     }
+
     fun outputProfitPercentageMessage(profitPercentage: Double) {
         println(String.format(OUTPUT_PROFIT_PERCENTAGE_MESSAGE, profitPercentage))
     }
+
     fun outputRandomLottoList(lottoList: MutableMap<Int, List<Int>>) {
-        lottoList.values.forEach{ value ->
+        lottoList.values.forEach { value ->
             println(value)
         }
     }

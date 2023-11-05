@@ -15,15 +15,18 @@ class LottoGameService {
     fun calculateLottoPurchaseQuantity(purchaseAmount: Int): Int {
         return purchaseAmount / LOTTO_PRICE
     }
+
     fun lottoNumberGenerator(ticket: Int): MutableMap<Int, List<Int>> {
-        val purchaseLottoLists = mutableMapOf<Int,List<Int>>()
+        val purchaseLottoLists = mutableMapOf<Int, List<Int>>()
         for (ticketCheck in 0 until ticket) {
             purchaseLottoLists[ticketCheck] = Randoms.pickUniqueNumbersInRange(
                 MIN_LOTTO_NUMBER,
-                MAX_LOTTO_NUMBER, 6).sorted()
+                MAX_LOTTO_NUMBER, 6
+            ).sorted()
         }
         return purchaseLottoLists
     }
+
     // 랜덤 로또 번호 리스트와 입력한 로또 번호를 비교해주는 함수
     fun calculateWinningStatistics(
         lotto: List<Int>,
@@ -31,38 +34,50 @@ class LottoGameService {
         randomLottoLists: MutableMap<Int, List<Int>>,
         ticket: Int
     ) {
-        for (ticketCheck in 0 until ticket){
+        for (ticketCheck in 0 until ticket) {
             val winningLottoCheck = checkWinningLottoNumber(lotto, randomLottoLists, ticketCheck)
             val bonusNumberCheck = checkWinningBonusNumber(bonus, randomLottoLists, ticketCheck)
-            saveWinningStatsToRank(winningLottoCheck,bonusNumberCheck,ticketCheck)
+            saveWinningStatsToRank(winningLottoCheck, bonusNumberCheck, ticketCheck)
         }
     }
+
     // 랜덤 로또 리스트에 입력한 로또 번호가 몇개 포함되어 있는지 확인하는 함수
-    private fun checkWinningLottoNumber(lotto: List<Int>, randomLottoLists: MutableMap<Int, List<Int>>, ticketCheck: Int): Int {
+    private fun checkWinningLottoNumber(
+        lotto: List<Int>,
+        randomLottoLists: MutableMap<Int, List<Int>>,
+        ticketCheck: Int
+    ): Int {
         return randomLottoLists[ticketCheck]!!.intersect(lotto.toSet()).count()
     }
+
     // 랜덤 로또 리스트에 보너스 번호가 포함되어 있는지 확인하는 함수
-    private fun checkWinningBonusNumber(bonus: String, randomLottoLists: MutableMap<Int, List<Int>>, ticketCheck: Int): Boolean {
+    private fun checkWinningBonusNumber(
+        bonus: String,
+        randomLottoLists: MutableMap<Int, List<Int>>,
+        ticketCheck: Int
+    ): Boolean {
         return randomLottoLists[ticketCheck]!!.contains(bonus.toInt())
     }
+
     // 당첨 통계를 저장하는 함수
     private fun saveWinningStatsToRank(winningLottoCheck: Int, bonusNumberCheck: Boolean, ticketCheck: Int) {
-        if (winningLottoCheck == 3 || winningLottoCheck == 2 && bonusNumberCheck){
+        if (winningLottoCheck == 3 || winningLottoCheck == 2 && bonusNumberCheck) {
             LottoRank.THREE_MATCH.increment()
         }
-        if (winningLottoCheck == 4 || winningLottoCheck == 3 && bonusNumberCheck){
+        if (winningLottoCheck == 4 || winningLottoCheck == 3 && bonusNumberCheck) {
             LottoRank.FOUR_MATCH.increment()
         }
-        if (winningLottoCheck == 5 ){
+        if (winningLottoCheck == 5) {
             LottoRank.FIVE_MATCH.increment()
         }
-        if (winningLottoCheck == 5 && bonusNumberCheck){
+        if (winningLottoCheck == 5 && bonusNumberCheck) {
             LottoRank.FIVE_MATCH_WITH_BONUS.increment()
         }
-        if (winningLottoCheck == 6 ){
+        if (winningLottoCheck == 6) {
             LottoRank.SIX_MATCH.increment()
         }
     }
+
     // 수익률 구하는 함수
     fun calculateProfitPercentage(purchaseAmount: Double): Double {
         val threeMatch = LottoRank.THREE_MATCH.getCount()
@@ -72,8 +87,9 @@ class LottoGameService {
         val sixMatch = LottoRank.SIX_MATCH.getCount()
         val totalMoney =
             (threeMatch * THREE_MATCH_WINNING_AMOUNT) + (fourMatch * FORE_MATCH_WINNING_AMOUNT) + (fiveMatch * FIVE_MATCH_WINNING_AMOUNT) + (fiveWithBonusMatch * FIVE_WITH_BONUS_MATCH_WINNING_AMOUNT) + (sixMatch * SIX_MATCH_WINNING_AMOUNT).toDouble()
-        return (totalMoney/purchaseAmount)*100.00
+        return (totalMoney / purchaseAmount) * 100.00
     }
+
     // 입력받은 로또의 번호를 리스트로 변환해주는 함수
     fun convertStringToList(enterWinningNumbers: String): List<Int> {
         return enterWinningNumbers.split(",").map { it.trim().toInt() }

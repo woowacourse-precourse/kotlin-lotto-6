@@ -11,12 +11,14 @@ class InputView {
         println(INPUT_PURCHASE_AMOUNT_MESSAGE)
         return Console.readLine()
     }
+
     fun enterWinningNumbersMessage(): String {
-        println("\n"+ INPUT_ENTER_WINNING_NUMBERS_MESSAGE)
+        println("\n" + INPUT_ENTER_WINNING_NUMBERS_MESSAGE)
         return Console.readLine()
     }
+
     fun enterBonusNumbersMessage(): String {
-        println("\n"+ INPUT_ENTER_BONUS_NUMBERS_MESSAGE)
+        println("\n" + INPUT_ENTER_BONUS_NUMBERS_MESSAGE)
         return Console.readLine()
     }
 }
