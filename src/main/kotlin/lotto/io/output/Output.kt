@@ -3,7 +3,7 @@ package lotto.io.output
 import lotto.constants.Print
 import lotto.constants.WinningResult
 import lotto.utils.convertWithRound
-import lotto.model.Lottos
+import lotto.model.lotto.Lottos
 import lotto.model.PurchaseCount
 
 class Output {

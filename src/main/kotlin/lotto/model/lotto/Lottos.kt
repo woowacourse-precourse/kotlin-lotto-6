@@ -1,4 +1,4 @@
-package lotto.model
+package lotto.model.lotto
 
 class Lottos {
     private val lottos = mutableListOf<Lotto>()

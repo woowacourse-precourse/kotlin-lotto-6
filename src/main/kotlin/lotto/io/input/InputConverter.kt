@@ -2,7 +2,7 @@ package lotto.io.input
 
 import lotto.model.PurchaseAmount
 import lotto.model.Bonus
-import lotto.model.Lotto
+import lotto.model.lotto.Lotto
 
 class InputConverter {
     fun convertAmount(amount: String) =

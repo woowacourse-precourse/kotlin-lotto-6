@@ -3,7 +3,7 @@ package lotto.io.input
 import camp.nextstep.edu.missionutils.Console
 import lotto.model.PurchaseAmount
 import lotto.model.Bonus
-import lotto.model.Lotto
+import lotto.model.lotto.Lotto
 
 class Input {
     private val validator = InputValidator()

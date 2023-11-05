@@ -1,6 +1,6 @@
 package lotto.constants
 
-import lotto.convertWithDigitComma
+import lotto.utils.convertWithDigitComma
 
 enum class WinningResult(val matchingCount: Int, val amount: Int) {
     NOT_WINNING(0, 0),
