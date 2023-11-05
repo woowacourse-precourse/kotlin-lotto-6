@@ -3,6 +3,7 @@ package lotto
 enum class Messages(val message: String) {
     // TEXT
     TEXT_INPUT_LOTTO_AMOUNT("구입 금액을 입력해 주세요."),
+    TEXT_PRINT_LOTTO_NUM("개를 구매했습니다."),
 
     // EXCEPTION
     EXCEPTION_WRONG_FORMAT("[ERROR] 구입 금액의 형식이 잘못되었습니다."),

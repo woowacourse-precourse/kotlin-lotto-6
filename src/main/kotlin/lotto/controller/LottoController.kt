@@ -33,10 +33,11 @@ class LottoController {
     fun validateLottoAmount(amount: String): Long {
         val num = validateOutOfRange(amount)
         validateMoneyUnit(num)
-        return num
+        return num / 1000L
     }
 
     private fun createLotteries(num: Long) {
+        println("$num" + Messages.TEXT_PRINT_LOTTO_NUM.message)
         val randomLotteries = mutableListOf<Lotto>()
         for (i in 1..num) {
             val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
