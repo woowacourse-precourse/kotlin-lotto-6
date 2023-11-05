@@ -1,6 +1,5 @@
 package lotto
 
-import ui.UserInput
 import ui.UserOutput
 
 class LottoResult(val winLotto: Lotto, val bonus: Int) {
@@ -30,10 +29,21 @@ class LottoResult(val winLotto: Lotto, val bonus: Int) {
         LottoPrize.THIRD_PRIZE.count++
     }
 
-    fun showWinLottoData() {
+    fun showWinLottoData(): LottoResult {
         UserOutput.printWinLottoResult()
         for (element in LottoPrize.entries) element.printPrizeData()
-        val profit: Double = 0.0
+        return this
+    }
+    fun showProfitData(money: Int) {
+        val profit: Double = (sumTotalPrizeMoney().toDouble() / money * 100)
         UserOutput.printProfitResult(profit)
+    }
+
+    private fun sumTotalPrizeMoney(): Long {
+        var totalPrizeMoney: Long = 0
+        for (element in LottoPrize.entries)
+            totalPrizeMoney += element.calculatePrizeMoney()
+
+        return totalPrizeMoney
     }
 }
