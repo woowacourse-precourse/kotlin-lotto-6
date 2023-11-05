@@ -7,6 +7,12 @@ object Constants {
 
     const val MSG_OUTPUT_PURCHASE_RESULT = "개를 구매했습니다."
 
+    const val MONEY_JACKPOT = "2,000,000,000원"
+    const val MONEY_SECOND_PRIZE = "30,000,000원"
+    const val MONEY_THIRD_PRIZE = "1,500,000원"
+    const val MONEY_FOURTH_PRIZE = "50,000원"
+    const val MONEY_FIFTH_PRIZE = "5,000원"
+
     const val MIN_PURCHASE_MONEY = 1000
     const val MAX_PURCHASE_MONEY = 100_000
     const val MIN_LOTTO_RANGE = 1

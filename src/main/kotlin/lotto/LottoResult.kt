@@ -16,7 +16,7 @@ class LottoResult() {
         for (lotto in lottos) {
             when (countWinNumbers(lotto)) {
                 LottoPrize.FIFTH_PRIZE.value -> LottoPrize.FIFTH_PRIZE.count++
-                LottoPrize.FOUTRH_PRIZE.value -> LottoPrize.FOUTRH_PRIZE.count++
+                LottoPrize.FOURTH_PRIZE.value -> LottoPrize.FOURTH_PRIZE.count++
                 LottoPrize.THIRD_PRIZE.value -> countSecondOrThird(lotto)
                 LottoPrize.JACKPOT.value -> LottoPrize.JACKPOT.count++
             }
