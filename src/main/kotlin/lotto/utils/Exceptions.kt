@@ -34,6 +34,22 @@ object Exceptions {
         return input
     }
 
+    // 보너스 번호 예외처리
+    fun validateBonusNumber(input: String?, winningNumbers: List<Int>): Int? {
+        when {
+            input == null || input.length != 1 -> {
+                throwIllegalArgumentException(CommonConst.ILLEGAL_ARGUMENT_EXCEPTION_BONUS_NUMBER)
+            }
+            !input[0].isDigit() -> {
+                throwIllegalArgumentException(CommonConst.ILLEGAL_ARGUMENT_EXCEPTION_BONUS_NUMBER_IS_NOT_DIGIT)
+            }
+            winningNumbers.contains(input.toInt()) -> {
+                throwIllegalArgumentException(CommonConst.ILLEGAL_ARGUMENT_EXCEPTION_BONUS_NUMBER_CONTAIN_WINNING_NUMBER)
+            }
+        }
+        return input?.toInt()
+    }
+
     private fun throwIllegalArgumentException(message: String) {
         throw IllegalArgumentException(message)
     }
