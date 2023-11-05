@@ -11,4 +11,8 @@ object Validation {
     fun validateMoneyUnit(num: Long) {
         require(num % 1000L == 0L) { Messages.EXCEPTION_WRONG_MONEY_UNIT.message }
     }
+
+    fun validateDuplicateNumber(numbers: List<Int>) {
+        require(numbers.toSet().size == numbers.size) { Messages.EXCEPTION_DUPLICATE_NUMBER.message }
+    }
 }
