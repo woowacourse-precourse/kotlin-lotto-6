@@ -1,13 +1,13 @@
-package lotto
+package lotto.domain
 
 import camp.nextstep.edu.missionutils.Randoms
 
 class LottoManager {
     private val myLotto = mutableListOf<Lotto>()
 
-    private fun generateNewLotto():Lotto{
+    private fun generateNewLotto(): Lotto {
         val numbers  = generateRandomNumbers()
-        return Lotto(numbers)
+        return Lotto(numbers.sorted())
     }
 
     private fun generateRandomNumbers() : List<Int>{
@@ -15,8 +15,8 @@ class LottoManager {
     }
 
 
-    fun getLotto(index : Int) : Lotto{
-        return myLotto[index]
+    fun getLotto() : List<Lotto>{
+        return myLotto
     }
 
     fun generateLotto(){
