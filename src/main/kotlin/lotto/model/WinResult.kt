@@ -14,8 +14,8 @@ class WinResult(private val user : User, private val winningLotto : WinningLotto
     }
     private fun compareLottoNumber(lotto: Lotto , winningLotto: WinningLotto) : Place{
         val lottoNumbers = lotto.getLottoNumbers()
-        val luckyNumbers = winningLotto.luckyNumbers
-        val bonusNumber = winningLotto.bonusNumber
+        val luckyNumbers = winningLotto.getLuckyNumbers()
+        val bonusNumber = winningLotto.getBonusNumber()
         val matchNumbers = lottoNumbers.count{lottoNumber -> lottoNumber in luckyNumbers}
         val matchBonus = lottoNumbers.contains(bonusNumber)
         return Place.decidePlace(matchNumbers,matchBonus)
