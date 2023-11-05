@@ -3,16 +3,13 @@ package lotto
 import lotto.utils.LottoNumbersGenerator
 
 object LottoGameManager {
-    private var lottoAmount = 0
+    private lateinit var lottoGame: LottoGame
     fun startLottoGame(){
         println("구입금액을 입력해 주세요.")
-        getLottoAmount()
-        repeat(lottoAmount){
-            Lotto(LottoNumbersGenerator.generateLottoNumbers())
-        }
+        val lottoAmount = getLottoAmount()
+        lottoGame = LottoGame(lottoAmount)
     }
 
-    fun getLottoAmount(){
-        lottoAmount = LottoInputHandler.receiveLottoCost() / 1000
-    }
+    fun getLottoAmount() : Int = LottoInputHandler.receiveLottoCost() / 1000
+
 }
