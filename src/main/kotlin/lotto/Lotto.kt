@@ -1,11 +1,13 @@
 package lotto
 
+import lotto.Constants.LOTTO_COUNT
+
 class Lotto(private val numbers: List<Int>) {
 
     private val numbersSet = numbers.toSet()
     init {
-        require(numbers.size == 6)
-        require(numbersSet.size == 6)
+        require(numbers.size == LOTTO_COUNT)
+        require(numbersSet.size == LOTTO_COUNT)
     }
 
     override fun toString(): String {
