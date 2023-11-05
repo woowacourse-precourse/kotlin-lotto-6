@@ -15,9 +15,6 @@ class LottoResult() {
     fun hasBonus(): Boolean = winLotto.toAscendingList().contains(bonus)
 
     enum class MatchNumber(val count: Int) {
-        NO_MATCH(0),
-        ONE_MATCH(1),
-        TWO_MATCH(2),
         THREE_MATCH(3),
         FOUR_MATCH(4),
         FIVE_MATCH(5),
