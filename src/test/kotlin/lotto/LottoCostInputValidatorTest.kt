@@ -9,13 +9,13 @@ class LottoCostInputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["1400","1","234","1005","1010"])
     fun `로또 구입 금액이 1000원 단위가 아닌 경우`(string : String){
-        assertThrows<IllegalArgumentException> { LottoCostInputValidator.isValid(string.toIntOrNull())}
+        assertThrows<IllegalArgumentException> { LottoCostInputValidator.validate(string.toIntOrNull())}
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["c","c12","-1","-1c","0"])
     fun `로또 구입 금액이 자연수가 아닌 경우`(string : String){
-        assertThrows<IllegalArgumentException> { LottoCostInputValidator.isValid(string.toIntOrNull())}
+        assertThrows<IllegalArgumentException> { LottoCostInputValidator.validate(string.toIntOrNull())}
     }
 
 }

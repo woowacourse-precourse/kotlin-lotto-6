@@ -2,9 +2,9 @@ package lotto.utils.validator
 
 import lotto.LottoOutputHandler
 
-object LottoCostInputValidator {
-    fun isValid(cost: Int?) : LottoCostInputState {
-        val inputState = validate(cost)
+object LottoCostInputValidator{
+    fun validate(cost: Int?) : LottoCostInputState {
+        val inputState = getState(cost)
         if (inputState != LottoCostInputState.SUCCESSFUL){
             LottoOutputHandler.displayLottoCostErrorMessage(inputState)
             throw IllegalArgumentException()
@@ -12,7 +12,7 @@ object LottoCostInputValidator {
        return inputState
     }
 
-    private fun validate(cost: Int?): LottoCostInputState {
+    private fun getState(cost: Int?): LottoCostInputState {
         return when {
             cost == null -> LottoCostInputState.IS_NULL
             cost % 1000 != 0 -> LottoCostInputState.NOT_DIVISIBLE_BY_1000

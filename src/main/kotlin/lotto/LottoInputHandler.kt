@@ -8,11 +8,12 @@ object LottoInputHandler {
     fun receiveLottoCost() : Int{
         val cost = Console.readLine().toIntOrNull()
         try{
-            LottoCostInputValidator.isValid(cost)
+            LottoCostInputValidator.validate(cost)
         } catch (e : IllegalArgumentException){
             return receiveLottoCost()
         }
         return cost!!
     }
+
 
 }
