@@ -19,10 +19,17 @@ fun getBonusNumber(): Int {
     while (bonusNumber == null) {
         try {
             println("보너스 번호를 입력해 주세요.")
-            bonusNumber = readLine()!!.toInt()
+            val input = readLine()!!
+            if (input.contains(",")) {
+                throw IllegalArgumentException("[ERROR] 보너스 번호는 한 개의 숫자만 입력해야 합니다.")
+            }
+            bonusNumber = input.toInt()
             if (bonusNumber !in 1..45) {
                 throw IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.")
             }
+        } catch (e: NumberFormatException) {
+            println("[ERROR] 보너스 번호는 숫자여야 합니다.")
+            bonusNumber = null
         } catch (e: IllegalArgumentException) {
             println(e.message)
             bonusNumber = null
