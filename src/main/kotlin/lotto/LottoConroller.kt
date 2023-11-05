@@ -7,8 +7,8 @@ import lottoViewModel.ValidInput
 class LottoConroller {
     val lottoOutput = LottoOutPut()
     fun printDefaultMent() {
-        val validInput = ValidInput()
         lottoOutput.startMent()
+        val validInput = ValidInput()
         val purchaseAmount = try {
             validInput.validInputPurchase()
         } catch (e: IllegalArgumentException) {
@@ -22,12 +22,14 @@ class LottoConroller {
     }
     fun printWinningMents(){
         try{
+            val winningNumbers = ValidInput().validWinningNumbers(ValidInput().convertWinningNumbers())
+            val bonusNumber = ValidInput().bringBonusNumber(winningNumbers)
             lottoOutput.printlnWinningNumber()
+            lottoOutput.printlnBonusNumberMent()
         }
         catch (e:IllegalArgumentException){
             println(e.message)
             return printWinningMents()
         }
-        lottoOutput.printlnBonusNumberMent()
     }
 }
