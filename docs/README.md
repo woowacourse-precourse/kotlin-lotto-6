@@ -2,34 +2,35 @@
 
 - 게임 시작 전
     - [x]  구입 안내 메세지 출력한다. - OutputView#printGameStartMessage()
-    - [x]  로또 구매 가격을 입력한다. - InputView#getUserInput()
+    - [x]  로또 구매 가격을 입력한다. - InputView#getValidIntegerInput()
         - [x]  숫자가 아니면 예외처리한다. - Validator#validateInteger()
+        - [x]  입력이 널값이면 예외처리한다. - Validator#validateNotNull()
         - [x]  로또 가격의 범위가 유효하지 않다면 예외처리한다. - Validator#validateRange()
         - [x]  로또 가격이 1000원 단위가 아니면 예외처리한다. - Validator#validate1000Unit()
 - 로또 시작
     - [x]  로또 발행 안내 메세지를 출력한다. - OutputView#printPurchaseCount()
-    - [x]  구매 가격만큼 로또를 발행한다. - LottoGenerator#getSortedNumbers()
+    - [x]  구매 가격만큼 로또를 발행한다. - LottoTicket#lottoTicketPublish()
     - [x]  로또를 구매한 개수만큼 출력한다. - OutputView#printLottoTicket()
         - [x]  각 숫자는 중복이 없어야 한다.
         - [x]  각 숫자는 1부터 45까지의 숫자여야 한다.
         - [x]  번호는 오름차순으로 보여줘야 한다.
 - 당첨 번호 입력
-    - [x]  당첨 번호 입력 안내 메세지를 출력한다. - Validator#printLottoPurchaseInfoMessage()
+    - [x]  당첨 번호 입력 안내 메세지를 출력한다. - OutputView#printLottoPurchaseInfoMessage()
     - [x]  당첨 번호를 입력한다. - InputView#getValidLottoInput()
         - [x]  당첨 번호는 6자리를 입력한다. - Validator#validateLottoLength()
         - [x]  당첨 번호에 공백 또는 널값이 들어오면 예외처리한다. - Validator#validateNotNull()
         - [x]  숫자가 아닐 시 예외처리한다. - Validator#validateInteger()
-        - [x]  각 번호가 1부터 45까지의 번호가 아닐 시 예외처리한다. - Validator#validateNumberRange()
+        - [x]  각 번호가 1부터 45까지의 번호가 아닐 시 예외처리한다. - Validator#validateLottoRange()
         - [x]  중복된 숫자가 존재할 시 예외처리 한다. - Validator#validateLottoUnique()
     - [x]  보너스 번호를 입력 안내 메세지를 출력한다. - OutputView#printBonusLottoInfoMessage()
-    - [x]  보너스 번호를 입력한다. - UserInput#getUserInput()
+    - [x]  보너스 번호를 입력한다. - UserInput#getValidIntegerInput()
         - [x]  숫자가 아닐 시 예외처리한다. - Validator#validateInteger()
         - [x]  당첨 번호와 중복된 숫자를 입력할 시 예외처리한다. - Validator#validateContain()
         - [x]  1부터 45까지의 숫자가 아닐 시 예외처리한다. - Validator#validateNumberRange()
         - [x]  당첨 번호에 공백 또는 널값이 들어오면 예외처리한다. - Validator#validateNotNull()
 - 로또 종료
     - [x]  로또 등수를 구한다. - LottoResult#calculateRanking()
-    - [x]  당첨 통걔를 출력한다. - OutputView#printLottoRankings()
+    - [x]  당첨 통걔를 출력한다. - OutputView#printLottoStatistics()
         - [x]  3개부터 6개까지 내림차순으로 출력한다.
     - [x]  로또 수익률을 구한다. - LottoProfit#calculateRate()
     - [x]  로또 수익률을 출력한다. - OutputView#printLottoProfitRate()
@@ -42,13 +43,13 @@
 - [x]  예외 처리는 IllegalArgumentException을 발생시키고 "[ERROR]”로 시작하는 에러 메세지를 출력한다.
 - [x]  에러메세지를 출력하고 그 부분부터 다시 입력받는다.
 - [x]  게임 종료 시 `System.exit()` 를 호출하지 않는다.
-- [ ]  indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
+- [x]  indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
 - [ ]  함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어야한다.
 - [ ]  함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
 - [ ]  else를 지양한다.
 - [x]  Enum 클래스를 적용해 프로그래밍을 구현한다.
 - [x]  핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
-- [ ]  `Lotto` 클래스에 필드를 추가할 수 없다.
+- [x]  `Lotto` 클래스에 필드를 추가할 수 없다.
 - [x]  랜덤값 추출 `camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange` 사용한다.
 - [x]  사용자 입력은 `camp.nextstep.edu.missionutils.Console.readLine()` 을 이용한다.
 
@@ -57,6 +58,9 @@
 ## 고민인 부분
 
 1. 재 입력을 받을 때에는 입력 안내 메세지도 같이 출력해야할까??
+
+   🌟최종 : 입력 안내 메세지를 같이 출력할 필요는 없어보인다. 요구사항이 에러 메세지를 출력 후 그 부분이라 했기에 입력 부분으로 판단.
+
 2. 검증은 어디서 하는 것이 적당할까?
 
    → 현재 inputView와 model에서 나눠서 진행하고 있다.
@@ -72,6 +76,8 @@
 
    → 그렇다는 것은 Lotto 내부에서 당첨 확인을 하라는 의도인 것인가?
 
+   🌟최종 : `getWinningNumbers()` 를 통하여 받아온다. 아직 정확한 의도를 판단하지는 못하였으나 모델 init 부분에서 검증하는 것으로 검증을 모델에서 하라는 의미로 생각.
+
 4. 검증 부분은 Validator 클래스로 관리하고 있다.
 
    → 하지만 이렇게 하는 방식이 맞을까?
@@ -79,15 +85,19 @@
    → 모델 클래스 생성자를 통해 받아온 값을 init 에서 검증하는 부분이 있는데 그럼 테스트케이스를 작성할 때
    Validator 클래스에서 테스트를 진행해야할까 Lotto 클래스에서 테스트를 해야할까
 
-   🌟최종 : ValidatorTest에서도 테스트를 수행하고 모델에서도 검증 테스트를 한다.
+   🌟최종 : ValidatorTest 에서도 테스트를 수행하고 모델에서도 검증 테스트를 한다.
 
 5. 보너스번호를 관리하는 좋은 방법이 없을까?
 
-   🌟 최종 : Bonus 클래스를 만들어 보너스 번호를 관리한다. (검증 또한 Bonus 클래스에서)
+   🌟 최종 : Bonus 클래스를 만들어 보너스 번호를 관리한다. 당첨번호와 보너스번호를 동시에 관리하는 모델 생성을 고려하였으나 모델끼리 의존을 피하고 싶었기에 패스.
 
-6. 현재 MainController에 너무 많은 로직이 모였다. 어떤식으로 분리하면 좋을까?
+6. 현재 MainController 에 너무 많은 로직이 모였다. 어떤식으로 분리하면 좋을까?
+
+   🌟 최종 : Controller 에서 충분히 모델에 있어도 될 로직은 모델로 이동시킴.
+
 7. 2등을 판단할 때 효과적인 방법이 있을까?
 
+   🌟 최종 : `when`문을 통하여 맞힌 개수가 5일때만 if문을 수행. if문에서 보너스번호가 맞으면 1을, 틀리면 2를 반환하도록 구현.
 
 <br>
 
@@ -135,18 +145,20 @@
     - `calculateRate()` : 수익률을 계산한다.
 - `LottoRankings` : 등수 관련 리스트를 관리한다(순위 리스트)
     - `addRanking()` : 등수에 맞는 인덱스의 값에 1을 추가한다.
-- `LottoResult` : 등수를 구한다 (LottoRankings랑 겹쳐서 둘이 합쳐야 할 것 같다.)
+- `LottoResult` : 등수를 구한다.
     - `calculateRanking()` : 등수를 구하여 반환한다.
 - `LottoTicket` : 발행된 번호들을 2차원 배열로 관리한다.
     - `addNumbers()` : 발행 번호 관리 리스트에 발행된 번호를 추가한다.
-- `PurchaseCount` : 발행 횟수 값을 관리한다.
+    - `publicOneTicket()` : 로또 한장을 발행한다.
+    - `lottoTicketPublish()` : 로또를 구매 가격만큼 발행한다. 
+- `Purchase` : 로또 구매 가격과 로또 발행 횟수를 관리한다.
 
 ### util
 
 - `Exception` : 예외 처리 메세지를 관리한다.
-- `LottoGenerator` : 번호를 발행하여 관리한다.
-    - `getSortedNumbers()` : 번호를 발행하여 반환한다.
+- `Constants` : 불변값을 관리한다.
 - `Validator` : 검증 부분을 담당한다.
+- `Winnings` : 로또 당첨금을 관리한다.
 
 ### view
 
