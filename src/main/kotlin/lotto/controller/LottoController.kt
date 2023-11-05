@@ -2,10 +2,12 @@ package lotto.controller
 
 import lotto.domain.LottoPrice
 import lotto.view.InputView
+import lotto.view.OutputView
 
 class LottoController {
     fun run() {
         val numberOfTickets = inputPrice()
+        printTickets(numberOfTickets)
     }
 
     private fun inputPrice(): Int {
@@ -21,5 +23,9 @@ class LottoController {
         }
 
         throw IllegalArgumentException("가격 입력에 여러 차례 실패했습니다. 프로그램을 종료합니다.")
+    }
+
+    private fun printTickets(numberOfTickets: Int) {
+        OutputView.printPurchaseCount(numberOfTickets)
     }
 }
