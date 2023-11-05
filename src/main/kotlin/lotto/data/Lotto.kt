@@ -18,6 +18,8 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     companion object {
-        private const val LENGTH_OF_NUM = 6
+        const val LENGTH_OF_NUM = 6
+        const val START_NUM = 1
+        const val END_NUM = 45
     }
 }
