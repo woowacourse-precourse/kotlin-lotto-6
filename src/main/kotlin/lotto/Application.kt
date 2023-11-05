@@ -1,5 +1,11 @@
 package lotto
 
+import lotto.ui.presenter.LottoPresenter
+import lotto.ui.view.ConsoleLottoView
+
 fun main() {
-    TODO("프로그램 구현")
+    val view = ConsoleLottoView()
+    val presenter = LottoPresenter(view = view)
+
+    LottoSimulator(view = view, presenter = presenter).start()
 }
