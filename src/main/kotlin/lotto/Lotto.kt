@@ -26,7 +26,7 @@ class Lotto(private val numbers: List<Int>) {
             LottoOutPut().printlnWiningNumberMent()
         }
         catch (e:IllegalArgumentException){
-            print(e.message)
+            println(e.message)
         }
     }
 }

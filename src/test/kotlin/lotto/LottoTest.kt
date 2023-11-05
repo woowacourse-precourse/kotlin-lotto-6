@@ -1,5 +1,6 @@
 package lotto
 
+import lottoViewModel.ValidInput
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -18,6 +19,12 @@ class LottoTest {
     fun `로또 번호에 중복된 숫자가 있으면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
             Lotto(listOf(1, 2, 3, 4, 5, 5))
+        }
+    }
+    @Test
+    fun `당첨 번호에 중복이 있으면 에러 발생`(){
+        assertThrows<IllegalArgumentException>{
+            ValidInput().validWinningNumbers(listOf("1","2","3","4","5","5"))
         }
     }
     // 아래에 추가 테스트 작성 가능
