@@ -1,10 +1,9 @@
 package lotto
 
-import ui.UserInput
 import ui.UserOutput
 import util.Validator
 
-class LottoGenerator(var money: Int = UserInput.readMoney()) {
+class LottoGenerator(var money: Int) {
 
     val lottos: MutableList<Lotto> = mutableListOf()
 
@@ -14,6 +13,7 @@ class LottoGenerator(var money: Int = UserInput.readMoney()) {
 
     fun create(): LottoGenerator {
         for (i in 1..moneyToCountByThousand()) lottos.add(Lotto())
+
         return this
     }
 

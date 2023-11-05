@@ -35,6 +35,7 @@ class LottoResult(val winLotto: Lotto, val bonus: Int) {
     fun showWinLottoData(): LottoResult {
         UserOutput.printWinLottoResult()
         for (element in LottoPrize.entries) element.printPrizeData()
+
         return this
     }
     fun showProfitData(money: Int) {

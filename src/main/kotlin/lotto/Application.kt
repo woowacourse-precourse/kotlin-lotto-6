@@ -1,7 +1,6 @@
 package lotto
 
 import ui.UserInput
-import ui.UserOutput
 
 fun main() {
     val lottoGenerator = LottoGenerator(money = UserInput.readMoney())
