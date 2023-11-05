@@ -2,8 +2,9 @@ package lotto
 
 import java.util.*
 
-class LottoResult(val lottos: MutableList<Lotto> = mutableListOf()) {
+class LottoResult() {
 
+    var lottos: MutableList<Lotto> = mutableListOf()
     lateinit var winLotto: Lotto
     var bonus = 0
 

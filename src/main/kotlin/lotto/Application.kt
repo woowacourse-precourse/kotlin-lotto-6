@@ -10,8 +10,11 @@ fun main() {
     UserOutput.printPurchaseResult(lottos.size)
     for (lotto in lottos) println(lotto.toAscendingList())
 
-    val lottoResult = LottoResult(lottos)
-    lottoResult.winLotto = Lotto(UserInput.readWinNumbers())
-    lottoResult.bonus = UserInput.readBonusNumber()
+    val lottoResult = LottoResult().apply {
+        this.lottos = lottos
+        this.winLotto = Lotto(UserInput.readWinNumbers())
+        this.bonus = UserInput.readBonusNumber()
+    }
+
 
 }
