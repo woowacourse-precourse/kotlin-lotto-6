@@ -4,7 +4,7 @@ import lotto.validate.validateBonus
 import lotto.view.InputView.inputBonusNumber
 import lotto.view.OutputView.showInputBonusNumberMessage
 
-class Bonus {
+class LottoBonus {
     init {
         showInputBonusNumberMessage()
     }

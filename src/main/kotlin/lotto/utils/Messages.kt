@@ -6,6 +6,9 @@ object Messages {
     const val INPUT_MY_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요."
     const val BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요."
 
+    const val WINNING_STATISTICS_MESSAGE = "당첨 통계"
+    const val DIVIDER = "---------"
+
     const val ERROR_MESSAGE = "[ERROR]"
     const val INVALID_INPUT = "유효한 값이 아닙니다."
     const val VALIDATE_INPUT_EMPTY = "입력값이 없습니다."
