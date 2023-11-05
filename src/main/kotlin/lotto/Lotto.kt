@@ -11,19 +11,19 @@ class Lotto(private val numbers: List<Int>) {
         val bonusMatch = numbers.contains(bonusNumber)
         return Rank.findRank(matchCount, bonusMatch)
     }
-        fun getSortedNumbers(): List<Int> {
-            return numbers.sorted()
+    fun getSortedNumbers(): List<Int> {
+        return numbers.sorted()
         }
 
-        fun matchCount(winningNumbers: List<Int>): Int {
-            return getSortedNumbers().intersect(winningNumbers).size
+    fun matchCount(winningNumbers: List<Int>): Int {
+        return getSortedNumbers().intersect(winningNumbers).size
         }
     }
 
-enum class Rank(
-        val matchCount: Int,
-        val prizeMoney: Int,
-        val needBonus: Boolean = false
+enum class Rank(//등수 조건 설정
+    val matchCount: Int,
+    val prizeMoney: Int,
+    val needBonus: Boolean = false
     ) {
         FIRST(6, 2_000_000_000),
         SECOND(5, 30_000_000, true),
@@ -32,11 +32,11 @@ enum class Rank(
         FIFTH(3, 5_000),
         MISS(0, 0);
 
-        companion object {
-            fun findRank(matchCount: Int, bonusMatch: Boolean): Rank {
-                return values().find { it.matchCount == matchCount && it.needBonus == bonusMatch }
-                    ?: values().find { it.matchCount == matchCount }
-                    ?: MISS
+    companion object {//등수
+        fun findRank(matchCount: Int, bonusMatch: Boolean): Rank {
+            return values().find { it.matchCount == matchCount && it.needBonus == bonusMatch }
+                ?: values().find { it.matchCount == matchCount }
+                ?: MISS
             }
         }
     }
