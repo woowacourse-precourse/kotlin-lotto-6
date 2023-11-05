@@ -13,7 +13,7 @@ enum class LottoPrize(val value: Int, var count: Int) {
     },
     SECOND_PRIZE(5, 0){
         override fun printPrizeData() =
-            println("${SECOND_PRIZE.value}개 일치 (${MONEY_SECOND_PRIZE}) - ${SECOND_PRIZE.count}개")
+            println("${SECOND_PRIZE.value}개 일치, 보너스 볼 일치 (${MONEY_SECOND_PRIZE}) - ${SECOND_PRIZE.count}개")
     },
     THIRD_PRIZE(5, 0){
         override fun printPrizeData() =

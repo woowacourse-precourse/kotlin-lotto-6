@@ -16,5 +16,10 @@ fun main() {
     }
 
     lottoResult.calculateWinLottos(lottoGenerator.lottos)
+    LottoPrize.JACKPOT.printPrizeData()
+    LottoPrize.SECOND_PRIZE.printPrizeData()
+    LottoPrize.THIRD_PRIZE.printPrizeData()
+    LottoPrize.FOURTH_PRIZE.printPrizeData()
+    LottoPrize.FIFTH_PRIZE.printPrizeData()
 
 }
