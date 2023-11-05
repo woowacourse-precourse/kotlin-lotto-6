@@ -1,13 +1,15 @@
 package lotto.controller
 
-import lotto.exception.IllegalPurchaseAmountException
 import lotto.domain.model.Purchase
+import lotto.exception.IllegalPurchaseAmountException
 import lotto.view.InputView
+import lotto.view.OutputView
 
 class LottoController() {
 
     fun make() {
         val purchase = Purchase(getPurchaseAmount())
+        OutputView.printLottos(purchase)
     }
 
     private fun getPurchaseAmount(): Int {

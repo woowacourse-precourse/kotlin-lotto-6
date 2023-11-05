@@ -6,6 +6,18 @@ import lotto.util.Constants
 
 object OutputView {
 
+    private const val PRINT_REPORT = "당첨 통계"
+    private const val DIVISION_STR = "---"
+    fun printLottos(purchase: Purchase) {
+        val lottoGenerator = LottoGenerator(purchase)
+        val lottos = lottoGenerator.getLotto(purchase)
+        print(Constants.SPACING)
+        println("${purchase.getLottoCount()}개를 구매했습니다.")
+        for (lotto in lottos) {
+            println(lotto.getNumbers())
+        }
+    }
+
     fun printReport() {
         print(Constants.SPACING)
         println(PRINT_REPORT)
