@@ -5,5 +5,9 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
     }
 
-    // TODO: 추가 기능 구현
+    fun sortNumbers(): List<Int> {
+        return numbers.sorted()
+    }
+
+    // TODO:  구현
 }
