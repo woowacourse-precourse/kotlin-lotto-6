@@ -1,6 +1,6 @@
 package lotto
 
-import UI.UserInterface
+import ui.UserInterface
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
