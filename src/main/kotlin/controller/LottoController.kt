@@ -31,7 +31,6 @@ class LottoController(private val inputView: InputView, private val outputView: 
                 e.printStackTrace()
                 continue
             }
-            break
         } while (purchasedLottoTickets.size != money.getPurchasableLottoTicketCount())
 
     }
