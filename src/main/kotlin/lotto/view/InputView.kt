@@ -6,6 +6,8 @@ object InputView {
 
     private const val PURCHASE_MONEY_MESSAGE = "구입금액을 입력해 주세요."
     private const val WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요."
+    private const val BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요."
+
     fun getPurchaseMoney(): Int {
         println(PURCHASE_MONEY_MESSAGE)
         val inputPurchaseMoney = Console.readLine()
@@ -29,7 +31,7 @@ object InputView {
     }
 
     fun getBonusNumber(winningNumbers: List<Int>): Int {
-        println("\n$WINNING_NUMBER_MESSAGE")
+        println("\n$BONUS_NUMBER_MESSAGE")
         val bonusNumber = checkPositiveInteger(Console.readLine())
         checkDuplicateNumbersAndBonusNumber(winningNumbers, bonusNumber)
 
