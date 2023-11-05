@@ -28,10 +28,12 @@ object InputView {
         return winningNumbers
     }
 
-    fun getBonusNumber(): Int {
+    fun getBonusNumber(winningNumbers: List<Int>): Int {
         println("\n$WINNING_NUMBER_MESSAGE")
-        val bonusNumber = Console.readLine()
-        return checkPositiveInteger(bonusNumber)
+        val bonusNumber = checkPositiveInteger(Console.readLine())
+        checkDuplicateNumbersAndBonusNumber(winningNumbers, bonusNumber)
+
+        return bonusNumber
     }
 
     private fun checkPositiveInteger(inputWinningNumber: String): Int {
@@ -47,6 +49,10 @@ object InputView {
 
     private fun checkDuplicateNumber(winningNumbers: List<Int>) {
         require(winningNumbers.toSet().size == winningNumbers.size)
+    }
+
+    private fun checkDuplicateNumbersAndBonusNumber(winningNumbers: List<Int>, bonusNumber: Int) {
+        require(!winningNumbers.contains(bonusNumber))
     }
 
     private fun checkNumbersSize(winningNumbers: List<Int>) {
