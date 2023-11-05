@@ -13,6 +13,7 @@ class LottoGame(private val lottoAmount : Int) {
         println("${lottoAmount}개를 구매했습니다.")
         repeat(lottoAmount){
             val lotto = Lotto(LottoNumbersGenerator.generateLottoNumbers())
+            lotto.printNumbers()
             lottos.add(lotto)
         }
     }
