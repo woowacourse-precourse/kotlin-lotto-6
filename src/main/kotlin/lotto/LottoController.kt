@@ -2,7 +2,7 @@ package lotto
 
 import kotlin.IllegalArgumentException
 
-class View(
+class LottoController(
     private val printer: Printer = Printer,
     private val reader: Reader = Reader
 ) {
