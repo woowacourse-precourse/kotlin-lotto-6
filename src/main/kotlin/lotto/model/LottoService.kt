@@ -1,5 +1,6 @@
 package lotto.model
 
+import camp.nextstep.edu.missionutils.Randoms
 import lotto.constants.LottoConstants.LOTTO_PRICE
 import lotto.constants.LottoConstants.LOTTO_SIZE
 import lotto.constants.LottoConstants.MAXIMUM_NUMBER
@@ -39,7 +40,7 @@ object LottoService {
     }
 
     private fun generateLotto(): Lotto {
-        val lottoNumbers = (MINIMUM_NUMBER..MAXIMUM_NUMBER).shuffled().take(LOTTO_SIZE)
+        val lottoNumbers = Randoms.pickUniqueNumbersInRange(MINIMUM_NUMBER, MAXIMUM_NUMBER, LOTTO_SIZE)
         return Lotto(lottoNumbers.toList())
     }
 
