@@ -42,7 +42,7 @@ class Client {
             }
             input.split(",").map { it.toInt() }
         } catch (e: IllegalArgumentException) {
-            winNumberToList(input)
+            inputWinNumberList()
         }
 
     }
