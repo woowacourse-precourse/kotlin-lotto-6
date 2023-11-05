@@ -4,15 +4,14 @@ import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     println("구입금액을 입력해 주세요.")
-    val money = getInputMoney()
+    val money = getInputMoney { readLine() }
     val lottoCount = money / 1000
     val lottos = purchaseLottos(lottoCount)
     printLottos(lottos)
-
-    val winningNumbers = getWinningNumbers()
+    val winningNumbers = getWinningNumbers { "1,2,3,4,5,6" }
     val bonusNumber = getBonusNumber(winningNumbers)
     val results = lottos.map { it.calculateResult(winningNumbers, bonusNumber) }
-    printStatistics(results)
+    printStatistics(results, lottoCount)
 }
 fun getBonusNumber(winningNumbers: List<Int>): Int {
     var bonusNumber: Int? = null
@@ -40,7 +39,7 @@ fun getBonusNumber(winningNumbers: List<Int>): Int {
     }
     return bonusNumber
 }
-fun getWinningNumbers(): List<Int> {
+fun getWinningNumbers(readInput: () -> String?): List<Int> {
     var winningNumbers: List<Int>? = null
     while (winningNumbers == null) {
         try {
@@ -81,11 +80,11 @@ fun validateWinningNumbers(winningNumbers: List<Int>) {
         throw IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.")
     }
 }
-fun getInputMoney(): Int {
+fun getInputMoney(readInput: () -> String?): Int {
     var money = 0
     while (money == 0) {
+        val input = readInput() ?: throw IllegalArgumentException("구입 금액을 입력해야 합니다.")
         money = try {
-            val input = readLine() ?: throw IllegalArgumentException("구입 금액을 입력해야 합니다.")
             validateMoney(input)
         } catch (e: IllegalArgumentException) {
             println("[ERROR] ${e.message}")
@@ -103,7 +102,7 @@ fun validateMoney(input: String): Int {
     return money
 }
 
-fun printStatistics(results: List<Rank>) {//당첨 통계 출력 및 수익율 계산식
+fun printStatistics(results: List<Rank>, lottoCount: Int) {//당첨 통계 출력 및 수익율 계산식
     val statistics = results.groupingBy { it }.eachCount()
 
     println("\n당첨 통계")
@@ -113,7 +112,7 @@ fun printStatistics(results: List<Rank>) {//당첨 통계 출력 및 수익율 �
     }
 
     val totalPrizeMoney = results.sumOf { it.prizeMoney.toLong() }
-    val purchaseMoney = results.size * 1000L
+    val purchaseMoney = lottoCount * 1000L
     val netProfit = totalPrizeMoney - purchaseMoney
     val profitRate = (netProfit.toDouble() / purchaseMoney) * 100
     println("총 수익률은 ${String.format("%.1f", profitRate)}%입니다.")
