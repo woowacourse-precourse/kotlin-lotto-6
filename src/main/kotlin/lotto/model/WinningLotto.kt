@@ -9,6 +9,7 @@ class WinningLotto(private val luckyNumbers: List<Int>, private val bonusNumber:
     init{
         Exception.validateInputLuckyNumber(luckyNumbers)
         Exception.validateInputBonusNumber(bonusNumber)
+        require(!luckyNumbers.contains(bonusNumber)) { INPUT_BONUS_NUMBER_OVERLAP_ERROR_MESSAGE}
     }
 
     fun getLuckyNumbers() = luckyNumbers
