@@ -22,7 +22,7 @@ object InputView {
         inputWinningNumbers.forEach {
             winningNumbers.add(checkPositiveInteger(it))
         }
-
+        checkDuplicateNumber(winningNumbers)
         return winningNumbers
     }
 
@@ -35,5 +35,9 @@ object InputView {
 
     private fun checkNumberRange(winningNumber: Int) {
         require(winningNumber <= 45)
+    }
+
+    private fun checkDuplicateNumber(winningNumbers: List<Int>) {
+        require(winningNumbers.toSet().size == winningNumbers.size)
     }
 }
