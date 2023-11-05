@@ -5,8 +5,8 @@ class LottoController {
 
     fun run() {
         val priceAmount = inputPriceAmount()
-        val lottoCount = priceAmount / 1000
-        println(lottoCount)
+        println()
+        val lottoCount = inputView.calculateCount(priceAmount)
     }
 
     private fun inputPriceAmount(): Int {

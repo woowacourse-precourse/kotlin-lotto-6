@@ -29,4 +29,9 @@ class InputView {
         }
         return priceAmount
     }
+
+    fun calculateCount(priceAmount: Int): Int {
+        println("${priceAmount / 1000}개를 구매했습니다.")
+        return priceAmount / 1000
+    }
 }
