@@ -15,7 +15,7 @@ internal class LottoValidatorUtilTest {
     @DisplayName("중복되는 수 입력 검증")
     @ParameterizedTest
     @MethodSource("winningNumberSizeInvalidProvider")
-    fun `checkWinningNumberSize - 중복되는 수가 입력될 시 예외가 발생한다`(winningNumber: List<Int>) {
+    fun `checkWinningNumberSize - 당첨번호의 갯수가 유효하지 않으면 예외가 발생한다`(winningNumber: List<Int>) {
         // given
         val exception = assertThrows<java.lang.IllegalArgumentException> {
             LottoValidatorUtil.checkWinningNumberSize(winningNumber)
