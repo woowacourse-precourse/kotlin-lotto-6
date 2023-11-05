@@ -6,24 +6,26 @@ import lotto.constants.askPurchaseAmountMessage
 import lotto.constants.askWinningLottoNumberMessage
 import lotto.constants.indivisibleBy1000ErrorMessage
 import lotto.constants.isBlankErrorMessage
+import lotto.constants.isNegativeErrorMessage
 import lotto.constants.isNotIntErrorMessage
 import lotto.constants.isNotSize6ErrorMessage
 
 
 class Input {
+    private val output = Output()
 
     fun askPurchaseAmount(): Int {
-        println(askPurchaseAmountMessage)
+        output.askPurchaseAmount()
         return validatePurchaseAmount(Console.readLine())
     }
 
     fun askWinningLottoNumber(): List<Int> {
-        println(askWinningLottoNumberMessage)
+        output.askWinningLottoNumber()
         return validateWinningLottoNumber(Console.readLine())
     }
 
     fun askBonusNumber(): Int {
-        println(askBonusNumberMessage)
+        output.askBonusNumber()
         return validateBonusNumber(Console.readLine())
     }
 
@@ -58,6 +60,8 @@ class Input {
             throw IllegalArgumentException(isNotIntErrorMessage)
         } else if (input.isBlank()) {
             throw IllegalArgumentException(isBlankErrorMessage)
+        } else if (input.toInt() < 0){
+            throw IllegalArgumentException(isNegativeErrorMessage)
         }
         return input.toInt()
     }
