@@ -5,16 +5,16 @@ import javax.security.auth.kerberos.KerberosTicket
 
 class LottoModel {
 
-    fun check(buy_lotto_number : Array<Array<Int>>,winning_number : List<String>,size : Int) : IntArray{
+    fun check(buy_lotto_number : Array<Array<Int>>,winning_number : List<String>,bonus_number : Int,size : Int) : IntArray{
         var choose_result = IntArray(6)
-        choose_result = chooseWinning(buy_lotto_number,winning_number,size,choose_result)
+        choose_result = chooseWinning(buy_lotto_number,winning_number,bonus_number,size,choose_result)
         return choose_result
     }
-    fun chooseWinning(buy_lotto_number : Array<Array<Int>>,winning_number : List<String>,size : Int,choose_result : IntArray) : IntArray{
+    fun chooseWinning(buy_lotto_number : Array<Array<Int>>,winning_number : List<String>,bonus_number: Int,size : Int,choose_result : IntArray) : IntArray{
         for (ticket in 0..size - 1) {
             var get_ticket_line = getTicketLine(buy_lotto_number,ticket)//선택된 로또의 번호들을 저장하는 함수
             var winning_lotto_num = checkLottoWinningAgreement(get_ticket_line,winning_number)//당첨과 같은 번호와 갯수를 저장하는 PAIR 생성
-            winning_lotto_num = checkLottoBonusAgreement(get_ticket_line,winning_number,winning_lotto_num)
+            winning_lotto_num = checkLottoBonusAgreement(get_ticket_line,bonus_number,winning_lotto_num)
             choose_result[getWinningStatistics(winning_lotto_num)] += 1
         }
         return choose_result
@@ -38,9 +38,9 @@ class LottoModel {
         return winning_lotto_number
     }
 
-    fun checkLottoBonusAgreement(get_ticket_line : ArrayList<Int>,winning_number : List<String>,winning_lotto_num : Int) : Int{
+    fun checkLottoBonusAgreement(get_ticket_line : ArrayList<Int>,bonus_number: Int,winning_lotto_num : Int) : Int{
         var winning_bonus_number = 0
-        if(get_ticket_line.contains(winning_number.get(6).toInt()) && winning_lotto_num == 5){
+        if(get_ticket_line.contains(bonus_number) && winning_lotto_num == 5){
             winning_bonus_number += 2
         }
         return winning_lotto_num + winning_bonus_number

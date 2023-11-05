@@ -16,9 +16,8 @@ class LottoController(private val model: LottoModel, private val view : LottoVie
         var buy_lotto_number = getRandomTicket(input_money)
         view.showTicketNumber(buy_lotto_number,input_money)
         var winning_number = setWinningNumber()
-        view.inputBonusNumber()
-        winning_number = setBonusNumber(winning_number)
-        var choose_result = model.check(buy_lotto_number,winning_number,input_money.second)
+        var bonus_number = setBonusNumber(winning_number)
+        var choose_result = model.check(buy_lotto_number,winning_number,bonus_number,input_money.second)
         view.showWinning(choose_result)
         var rate_of_return = model.getRateOfReturn(choose_result,input_money.first)
         view.showRateOfReturn(rate_of_return)
@@ -65,7 +64,7 @@ class LottoController(private val model: LottoModel, private val view : LottoVie
         while (true) {
             try {
                 view.inputWinningNumber()
-                var winning_number = Console.readLine().split(",").toList()
+                var winning_number = Console.readLine().split(",").toMutableList()
                 checkWinningNumberLength(winning_number)
                 checkWinningNumberDuplicated(winning_number)
                 checkWinningNumberTypeAndValue(winning_number)
@@ -106,8 +105,33 @@ class LottoController(private val model: LottoModel, private val view : LottoVie
         }
     }
 
-    fun setBonusNumber(winning_number : List<String>) : List<String>{
-        return winning_number + Console.readLine()
+    fun setBonusNumber(winning_number: List<String>) : Int{
+        while(true){
+            try{
+                view.inputBonusNumber()
+                var bonus_number = Console.readLine().toInt()
+                checkBonusNumberValue(bonus_number)
+                checkBonusNumberDuplicated(winning_number,bonus_number)
+                return bonus_number
+            }catch (e: NumberFormatException){
+                print(ErrorMessage.BONUS_NUMBER_NOT_A_NUMBER)
+            }catch (e: IllegalArgumentException){
+                print(e.message)
+            }
+        }
+    }
+
+    fun checkBonusNumberValue(bonus_number : Int){
+        if(bonus_number > 45 || bonus_number < 1){
+            return throw IllegalArgumentException(ErrorMessage.BONUS_NUMBER_VALUE_OVER)
+        }
+    }
+
+    fun checkBonusNumberDuplicated(winning_number: List<String>, bonus_number: Int){
+        var bonus = bonus_number.toString()
+        if(winning_number.contains(bonus)){
+            return throw IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATED_IN_ANSWER_NUMBER)
+        }
     }
 }
 

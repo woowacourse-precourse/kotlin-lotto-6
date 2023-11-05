@@ -12,7 +12,7 @@ object ErrorMessage {
     const val ANSWER_NOT_A_NUMBER = "[ERROR] 당첨 숫자 입력에서 문자 감지\n"
 
     const val BONUS_NUMBER_VALUE_OVER = "[ERROR] 보너스 숫자 범위 초과\n"
-    const val BONUS_NUMBER_AMOUNT_OVER = "[ERROR] 보너스 숫자 최대 입력 갯수 초과\n"
     const val BONUS_NUMBER_NOT_A_NUMBER = "[ERROR] 보너스 숫자 입력에서 문자 감지\n"
+    const val BONUS_NUMBER_DUPLICATED_IN_ANSWER_NUMBER = "[ERROR] 중복된 숫자 감지\n"
 
 }
