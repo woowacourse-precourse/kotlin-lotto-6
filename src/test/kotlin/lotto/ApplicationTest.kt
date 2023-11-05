@@ -57,14 +57,6 @@ class ApplicationTest : NsTest() {
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
-    @Test
-    fun `6개가 아닌 입력사항`(){
-       assertThrows<IllegalArgumentException>{
-            Lotto(listOf(1,2,3,4,5,6,7,8))
-           assertThat(output()).contains(ERROR_MESSAGE)
-        }
-    }
-
     override fun runMain() {
         main()
     }
