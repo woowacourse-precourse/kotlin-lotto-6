@@ -3,7 +3,7 @@ package lotto
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
-        require(hasDuplicates())
+        require(hasNumberDuplicates())
     }
-    private fun hasDuplicates() : Boolean = numbers.toSet().size == numbers.size
+    private fun hasNumberDuplicates() : Boolean = numbers.toSet().size == numbers.size
 }
