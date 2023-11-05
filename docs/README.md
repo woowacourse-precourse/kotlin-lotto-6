@@ -17,22 +17,24 @@
       사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
       Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
-
 ## 기능 목록
-- [] 로또 구매 금액을 입력
-  - <> 1000원으로 나누어 떨어지지 않으면 오류
-- [] 당첨 번호를 입력
-  - <> 당첨 번호가 중복될 경우 오류
-  - <> 1~45 이외의 숫자 혹은 문자가 입력될 경우 오류
-  - <> 6개의 숫자를 입력하지 않을 경우 오류
-- [] 보너스 번호를 입력
-  - <> 보너스 번호와 당첨 번호가 중복될 경우 오류
-  - <> 1~45 이외의 숫자 혹은 문자가 입력될 경우 오류
-  - <> 1개의 숫자를 입력하지 않을 경우 오류
-- [] 구매 금액에 맞는 복권의 개수를 출력
-- [] 각 복권마다 중복되지 않는 번호 6개 생성
-- [] 출력된 번호 6개 오름차순으로 출력
-- [] 각 로또마다 당첨 번호 및 보너스 번호 일치 개수 확인
-- [] 일치 개수 만큼 당첨 금액 계산
-- [] 총 당첨 금액 대비 수익률 계산
-
+- [] 로또 구매 금액을 입력 : inputLottoMoney()
+  - <> 1000원으로 나누어 떨어지지 않으면 오류 : checkCanDivide1000
+- [] 당첨 번호를 입력 : inputWinningNumder()
+  - <> 당첨 번호가 중복될 경우 오류 : checkNotOverlapNumber() 
+  - <> 1~45 이외의 숫자 혹은 문자가 입력될 경우 오류 : checkOnlyNumber1to45()
+  - <> 6개의 숫자를 입력하지 않을 경우 오류 : checkInputSixNumbers()
+- [] 보너스 번호를 입력 : inputBonusNumber()
+  - <> 보너스 번호와 당첨 번호가 중복될 경우 오류 : checkNotDuplicateNumber() 중복 사용
+  - <> 1~45 이외의 숫자 혹은 문자가 입력될 경우 오류 : checkOnlyNumber1to45() 중복 사용
+  - <> 1개의 숫자를 입력하지 않을 경우 오류 : checkInputOneNumbers()
+- [] 구매 금액에 맞는 복권의 개수 계산 : calculateCountingLotto()
+- [] 각 복권마다 중복되지 않는 번호 6개 생성 : createNonOverlapSixNumbers()
+- [] 생성된 복권 번호 오름차순으로 변경 : changeAscendingLottoNumbers()
+- [] 로또 클래스 생성 : main 함수에서 별도 코드 작성
+- [] 각 로또마다 당첨 번호 일치 개수 확인 : compareCountingMatchedWinningNumber()
+- [] 각 로또마다 보너스 번호 일치 확인 : compareCountingMatchedBonusNumber()
+- [] 일치 개수 만큼 당첨 금액 계산 : calculateWinningAmount()
+- [] 총 당첨 금액 대비 수익률 계산 : calculateRateReturn()
+- [] 복권 클래스 Lotto#
+- [] 당첨 숫자 클래스 WinningBonusNumber#
