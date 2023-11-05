@@ -8,8 +8,8 @@ import util.Constants.FIFTH_PRIZE_AMOUNT
 import util.Constants.FIRST_PRIZE_AMOUNT
 import util.Constants.FOURTH_PRIZE_AMOUNT
 import util.Constants.LOTTO_AMOUNT_UNIT
-import util.Constants.LOTTO_NUMBER_END
-import util.Constants.LOTTO_NUMBER_START
+import util.Constants.LOTTO_MAX_NUMBER
+import util.Constants.LOTTO_MIN_NUMBER
 import util.Constants.LOTTO_TOTAL_NUMBER
 import util.Constants.SECOND_PRIZE_AMOUNT
 import util.Constants.THIRD_PRIZE_AMOUNT
@@ -40,7 +40,7 @@ class LottoController {
     }
 
     fun generateLottoNumbers(): List<Int> {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_START, LOTTO_NUMBER_END, LOTTO_TOTAL_NUMBER)
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_TOTAL_NUMBER)
     }
 
     fun makeLottos(numberOfPurchase: Int): List<Lotto> {
