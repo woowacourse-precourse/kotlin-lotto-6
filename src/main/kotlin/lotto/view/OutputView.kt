@@ -1,6 +1,6 @@
 package lotto.view
 
-class OutputView {
+object OutputView {
 
     fun printReport() {
         println("당첨 통계")
