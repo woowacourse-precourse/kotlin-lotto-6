@@ -13,11 +13,8 @@ class Lotto(private val numbers: List<Int>) {
     override fun toString(): String {
         return sorted().joinToString(", ", "[", "]")
     }
-    companion object {
-        fun getHowMuchNumbersIntersect(a: Lotto, b: Lotto): Int {
-            val aSet = a.numbersSet
-            val bSet = b.numbersSet
-            return (aSet intersect bSet).size
-        }
+    infix fun intersect(other: Lotto): Set<Int> {
+        val otherSet = other.numbersSet
+        return numbersSet intersect otherSet
     }
 }
