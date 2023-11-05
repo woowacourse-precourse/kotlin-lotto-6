@@ -9,7 +9,7 @@ enum class LottoMatchNum(val matchingNum: Int) {
 }
 
 class LottoPrize {
-    val winningsPrizeMap = mapOf(
+    val winningsPrizeMap: Map<LottoMatchNum, Int> = mapOf(
         LottoMatchNum.THREE_MATCH to 5000,
         LottoMatchNum.FOUR_MATCH to 50000,
         LottoMatchNum.FIVE_MATCH to 1500000,
