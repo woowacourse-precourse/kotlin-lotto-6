@@ -1,4 +1,4 @@
-package lotto.util
+package lotto.domain.util
 
 class Validator {
     fun validateAmount(amount: String): Int {

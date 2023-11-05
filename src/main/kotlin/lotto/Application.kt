@@ -6,6 +6,3 @@ fun main() {
     val lottoTicketCount = game.calculating(amount)
     val lottoTickets = game.buying(lottoTicketCount)
 }
-
-
-

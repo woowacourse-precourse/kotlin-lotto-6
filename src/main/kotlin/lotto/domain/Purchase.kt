@@ -1,6 +1,6 @@
 package lotto.domain
 
-import lotto.util.Validator
+import lotto.domain.util.Validator
 
 class Purchase {
     fun payMoney(amount: String): Int {
