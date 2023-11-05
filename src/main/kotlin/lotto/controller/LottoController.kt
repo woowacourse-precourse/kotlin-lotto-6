@@ -13,12 +13,12 @@ class LottoController(
     private val winResultService: WinResultService = WinResultService()
 ) {
 
-    private lateinit var user : User
-    private lateinit var winningLotto : WinningLotto
-    private lateinit var winResult :WinResult
+    private lateinit var user: User
+    private lateinit var winningLotto: WinningLotto
+    private lateinit var winResult: WinResult
     fun run() {
         user = userService.makeUser()
         winningLotto = winningLottoService.makeWinningLotto()
-        winResult = winResultService.makeWinResult(user,winningLotto)
+        winResult = winResultService.makeWinResult(user, winningLotto)
     }
 }

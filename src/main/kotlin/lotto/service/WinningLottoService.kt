@@ -6,17 +6,20 @@ import lotto.util.Exception
 import lotto.view.InputView
 import lotto.view.OutputView
 
-class WinningLottoService(private val inputView: InputView = InputView(), private val outputView: OutputView = OutputView()){
+class WinningLottoService(
+    private val inputView: InputView = InputView(),
+    private val outputView: OutputView = OutputView()
+) {
 
     private var luckyNumbers = listOf<Int>()
     private var bonusNumber = 0
 
-    fun makeWinningLotto()  : WinningLotto {
+    fun makeWinningLotto(): WinningLotto {
         outputView.printInputLuckyNumber()
         inputLuckyNumber()
         outputView.printInputBonusNumber()
         inputBonusNumber()
-        return WinningLotto(luckyNumbers,bonusNumber)
+        return WinningLotto(luckyNumbers, bonusNumber)
     }
 
     private fun inputLuckyNumber() {
@@ -33,7 +36,7 @@ class WinningLottoService(private val inputView: InputView = InputView(), privat
         try {
             bonusNumber = inputView.inputBonusNumber()
             Exception.validateInputBonusNumber(bonusNumber)
-            require(!luckyNumbers.contains(bonusNumber)) { INPUT_BONUS_NUMBER_OVERLAP_ERROR_MESSAGE}
+            require(!luckyNumbers.contains(bonusNumber)) { INPUT_BONUS_NUMBER_OVERLAP_ERROR_MESSAGE }
         } catch (e: IllegalArgumentException) {
             println(e.message)
             inputBonusNumber()

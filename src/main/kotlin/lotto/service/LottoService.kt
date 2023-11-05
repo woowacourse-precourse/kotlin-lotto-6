@@ -7,5 +7,6 @@ import lotto.util.Constant.LOTTO_NUMBER_SIZE
 
 object LottoService {
 
-    fun makeLottoNumber(): List<Int> = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_RANDOM_NUMBER,LOTTO_MAX_RANDOM_NUMBER,LOTTO_NUMBER_SIZE).sorted()
+    fun makeLottoNumber(): List<Int> =
+        Randoms.pickUniqueNumbersInRange(LOTTO_MIN_RANDOM_NUMBER, LOTTO_MAX_RANDOM_NUMBER, LOTTO_NUMBER_SIZE).sorted()
 }
