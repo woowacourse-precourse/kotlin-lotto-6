@@ -31,8 +31,13 @@ object Validator {
         return this
     }
 
-    fun checkNumbersInRange(numbers: List<Int>): Validator {
-        require(numbers.all { it in MIN_LOTTO_RANGE..MAX_LOTTO_RANGE })
+    fun checkNumberListInRange(numbers: List<Int>): Validator {
+        for(number in numbers) checkNumberInRange(number)
+        return this
+    }
+
+    fun checkNumberInRange(number: Int): Validator {
+        require(number in MIN_LOTTO_RANGE..MAX_LOTTO_RANGE)
         return this
     }
 

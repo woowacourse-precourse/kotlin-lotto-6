@@ -7,7 +7,7 @@ class Lotto(private val numbers: List<Int> = Randoms.pickUniqueNumbersInRange(1,
     init {
         Validator
             .checkProperNumbersSize(numbers)
-            .checkNumbersInRange(numbers)
+            .checkNumberListInRange(numbers)
     }
     fun toAscendingList() = numbers.sorted()
 }
