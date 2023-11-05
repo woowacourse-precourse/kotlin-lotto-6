@@ -3,7 +3,7 @@ package lotto
 import camp.nextstep.edu.missionutils.Randoms
 
 //로또 번호를 생성하고, 입력된 로또 번호와 당첨 번호를 비교하여 당첨 정보를 반환하는 역할을 합니다.
-class Lotto(private val numbers: List<Int>) {
+class Lotto(val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
     }

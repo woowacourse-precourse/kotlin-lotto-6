@@ -11,5 +11,6 @@ class LottoController(private val lottoView: LottoView, private val lotto: Lotto
             val lottoTicket = Lotto(numbers)
             lottoTickets.add(lottoTicket)
         }
+        lottoView.displayGeneratedLottoTickets(numOfTickets,lottoTickets)
     }
 }
