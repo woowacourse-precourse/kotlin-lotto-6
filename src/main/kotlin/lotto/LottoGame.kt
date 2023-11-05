@@ -3,33 +3,24 @@ package lotto
 import lotto.LottoGameState.*
 
 class LottoGame {
-    private var gameState: LottoGameState = INITIALIZED
+    private var gameState = BUYING
+    private val gameManager = LottoGameManager()
+    private val gameViewer = LottoGameViewer()
 
     fun run() {
         while (gameState != FINISHED) {
-            commandByGameState()
+            gameManager.set(gameState)
+            gameViewer.set(gameState, gameManager.getViewerState())
+            updateGameState()
         }
     }
 
-    private fun commandByGameState() {
+    private fun updateGameState() {
         when (gameState) {
-            INITIALIZED -> {
-                print("initialized")
-                gameState = PURCHASING
-            }
-            PURCHASING -> {
-                print("purchasing")
-                gameState = DRAWING
-            }
-            DRAWING -> {
-                print("drawing")
-                gameState = WINNING
-            }
-            WINNING -> {
-                print("winning")
-                gameState = FINISHED
-            }
-            else -> {}
+            BUYING -> gameState = PICKING
+            PICKING -> gameState = WINNING
+            WINNING -> gameState = FINISHED
+            FINISHED -> {}
         }
     }
 }
