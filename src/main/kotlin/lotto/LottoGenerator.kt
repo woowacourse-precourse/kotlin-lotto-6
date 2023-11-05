@@ -1,18 +1,20 @@
 package lotto
 
-object LottoGenerator {
+class LottoGenerator(var money: Int = 0) {
 
-    fun createByMoney(money: Int): MutableList<Lotto> {
+    init {
+        require(
+            money >= 1000 &&
+            money % 1000 == 0
+        )
+    }
+
+    fun create(): MutableList<Lotto> {
         val lottos: MutableList<Lotto> = mutableListOf()
-        for (i in 1..moneyToCount(money)) lottos.add(Lotto())
+        for (i in 1..moneyToCount()) lottos.add(Lotto())
 
         return lottos
     }
 
-    private fun moneyToCount(money: Int): Int {
-        require(money >= 1000 &&
-            money % 1000 == 0)
-
-        return money / 1000
-    }
+    private fun moneyToCount() = money / 1000
 }
