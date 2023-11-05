@@ -12,14 +12,23 @@ class LottoController {
 
     fun startLotto() {
         println(Messages.TEXT_INPUT_LOTTO_AMOUNT.message)
-        do {
-            val amount = Console.readLine()
-        } while (inputLottoAmount(amount))
+        inputLottoAmount()
     }
 
-    fun inputLottoAmount(amount: String): Boolean {
+    private fun inputLottoAmount() {
+        while (true) {
+            try {
+                val amount = Console.readLine()
+                validateLottoAmount(amount)
+                break
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+    }
+
+    fun validateLottoAmount(amount: String) {
         val num = validateOutOfRange(amount)
         validateMoneyUnit(num)
-        return true
     }
 }

@@ -17,21 +17,21 @@ class LottoControllerTest {
     @Test
     fun `정상 범위 내의 1000원 단위인 로또 구입 금액 입력`() {
         assertDoesNotThrow {
-            controller.inputLottoAmount("14000")
+            controller.validateLottoAmount("14000")
         }
     }
 
     @Test
     fun `정상 범위 내의 1000원 단위가 아닌 로또 구입 금액 입력`() {
         assertThrows<IllegalArgumentException> {
-            controller.inputLottoAmount("14500")
+            controller.validateLottoAmount("14500")
         }
     }
 
     @Test
     fun `정상 범위 밖의 1000원 단위인 로또 구입 금액 입력`() {
         assertThrows<IllegalArgumentException> {
-            controller.inputLottoAmount("4611686019000")
+            controller.validateLottoAmount("4611686019000")
         }
     }
 }
