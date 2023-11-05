@@ -1,9 +1,9 @@
-package lotto.validator
+package lotto.utils.validator
 
 import lotto.LottoOutputHandler
 
 object LottoCostInputValidator {
-    fun isValidCost(cost: Int?) : LottoCostInputState{
+    fun isValidCost(cost: Int?) : LottoCostInputState {
         val inputState = validateCost(cost)
         if (inputState != LottoCostInputState.SUCCESSFUL){
             LottoOutputHandler.displayLottoCostErrorMessage(inputState)

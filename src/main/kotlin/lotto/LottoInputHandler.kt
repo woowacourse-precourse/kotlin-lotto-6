@@ -1,8 +1,8 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.validator.LottoCostInputState
-import lotto.validator.LottoCostInputValidator
+import lotto.utils.validator.LottoCostInputState
+import lotto.utils.validator.LottoCostInputValidator
 
 object LottoInputHandler {
     fun receiveLottoCost() : Int{

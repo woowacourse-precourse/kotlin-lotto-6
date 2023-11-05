@@ -1,6 +1,6 @@
 package lotto
 
-import lotto.validator.LottoCostInputState
+import lotto.utils.validator.LottoCostInputState
 
 object LottoOutputHandler {
     fun displayLottoCostErrorMessage(error: LottoCostInputState){
