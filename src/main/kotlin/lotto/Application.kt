@@ -6,5 +6,10 @@ import lotto.view.OutputView
 
 fun main() {
     val lottoMng = LottoManager(InputView, OutputView)
-    lottoMng.run()
+
+    runCatching {
+        lottoMng.run()
+    }.onFailure {e ->
+        println(e.message)
+    }
 }
