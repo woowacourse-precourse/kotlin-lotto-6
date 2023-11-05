@@ -7,6 +7,8 @@ import lotto.view.OutputView
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import util.Constants.LOTTO_MAX_NUMBER
+import util.Constants.LOTTO_MIN_NUMBER
 
 class LottoTest {
     private val inputView = InputView()
@@ -37,5 +39,16 @@ class LottoTest {
         val actualNumberOfPurchase = lottoController.getNumberOfPurchase(purchaseAmount)
 
         assertThat(expectNumberOfPurchase).isEqualTo(actualNumberOfPurchase)
+    }
+
+    @Test
+    fun `로또 번호 생성`() {
+        val expectLottoSize = 6
+
+        val lottoNumbers = lottoController.generateLottoNumbers()
+        val actualLottoSize = lottoNumbers.size
+
+        assertThat(expectLottoSize).isEqualTo(actualLottoSize)
+        lottoNumbers.forEach { lottoNumber -> assertThat(lottoNumber).isBetween(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER) }
     }
 }
