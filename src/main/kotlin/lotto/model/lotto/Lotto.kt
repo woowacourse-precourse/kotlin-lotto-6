@@ -1,13 +1,14 @@
-package lotto.model
+package lotto.model.lotto
 
 import lotto.constants.Exception
+import lotto.model.Bonus
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6) { Exception.SIZE }
-        require(numbers.size == numbers.distinct().size) { Exception.DUPLICATION }
-        require(numbers == numbers.sorted()) { Exception.SORT }
-        require(numbers.all { number -> number in 1..45 }) { Exception.RANGE }
+        require(numbers.size == 6) { Exception.LOTTO_SIZE }
+        require(numbers.size == numbers.distinct().size) { Exception.LOTTO_DUPLICATION }
+        require(numbers == numbers.sorted()) { Exception.LOTTO_SORT }
+        require(numbers.all { number -> number in 1..45 }) { Exception.LOTTO_RANGE }
     }
 
     fun countMatchingNumber(otherLotto: Lotto) =

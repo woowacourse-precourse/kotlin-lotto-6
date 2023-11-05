@@ -3,10 +3,12 @@ package lotto
 import lotto.constants.Exception
 import lotto.io.input.InputConverter
 import lotto.io.input.InputValidator
-import lotto.model.Amount
+import lotto.model.PurchaseAmount
 import lotto.model.Bonus
-import lotto.model.Lotto
-import lotto.model.WinningLotto
+import lotto.model.lotto.Lotto
+import lotto.model.lotto.WinningLotto
+import lotto.utils.convertWithDigitComma
+import lotto.utils.convertWithRound
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -43,7 +45,7 @@ class LottoTest {
     fun `로또 번호가 범위 1~45를 벗어나면 예외가 발생한다`() {
         assertThatThrownBy { Lotto(listOf(1, 3, 5, 35, 60, 90)) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(Exception.RANGE.toString())
+            .hasMessage(Exception.LOTTO_RANGE.toString())
     }
 
     @Test
@@ -61,9 +63,9 @@ class LottoTest {
 
     @Test
     fun `구매 금액이 1000으로 나누어 떨어지지 않으면 예외가 발생한다`() {
-        assertThatThrownBy { Amount(1200) }
+        assertThatThrownBy { PurchaseAmount(1200) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(Exception.DIVISIBLE.toString())
+            .hasMessage(Exception.PURCHASE_DIVISIBLE.toString())
     }
 
 
@@ -73,7 +75,7 @@ class LottoTest {
 
         assertThatCode {
             validator.checkAmount(구매금액)
-            Amount(구매금액.toInt())
+            PurchaseAmount(구매금액.toInt())
         }
             .doesNotThrowAnyException()
     }
@@ -97,7 +99,7 @@ class LottoTest {
     fun `입력받은 당첨 번호의 쉼표가 잘못 입력되면 예외가 발생한다`(numbers: String) {
         assertThatThrownBy { validator.checkWinningLotto(numbers) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(Exception.COMMA.toString())
+            .hasMessage(Exception.LOTTO_COMMA.toString())
     }
 
     @ParameterizedTest
@@ -127,7 +129,7 @@ class LottoTest {
     fun `보너스 번호가 범위 1~45를 벗어나면 예외가 발생한다`() {
         assertThatThrownBy { Bonus(50) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(Exception.RANGE.toString())
+            .hasMessage(Exception.LOTTO_RANGE.toString())
     }
 
     @Test
@@ -139,7 +141,7 @@ class LottoTest {
         // when, then
         assertThatThrownBy { WinningLotto(당첨번호, 보너스번호) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(Exception.RANGE.toString())
+            .hasMessage(Exception.LOTTO_RANGE.toString())
     }
 
     @ParameterizedTest

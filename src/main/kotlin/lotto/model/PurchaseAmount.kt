@@ -6,6 +6,6 @@ import lotto.constants.Exception
 
 class PurchaseAmount(val amount: Int) {
     init {
-        require(amount % PURCHASE_AMOUNT_UNIT.value == 0) { Exception.DIVISIBLE }
+        require(amount % PURCHASE_AMOUNT_UNIT.value == 0) { Exception.PURCHASE_DIVISIBLE }
     }
 }

@@ -4,32 +4,32 @@ import lotto.constants.Exception
 
 class InputValidator {
     fun checkAmount(amount: String) {
-        checkEmpty(amount)
-        checkNotDigit(amount)
+        validateEmpty(amount)
+        validateNotDigit(amount)
     }
 
     fun checkWinningLotto(numbers: String) {
-        checkEmpty(numbers)
-        checkComma(numbers)
-        numbers.split(",").forEach { number -> checkNotDigit(number) }
+        validateEmpty(numbers)
+        validateComma(numbers)
+        numbers.split(",").forEach { number -> validateNotDigit(number) }
     }
 
     fun checkBonusNumber(bonus: String) {
-        checkEmpty(bonus)
-        checkNotDigit(bonus)
+        validateEmpty(bonus)
+        validateNotDigit(bonus)
     }
 
-    private fun checkEmpty(value: String) {
+    private fun validateEmpty(value: String) {
         require(value.isNotEmpty()) { Exception.EMPTY }
     }
 
-    private fun checkNotDigit(value: String) {
+    private fun validateNotDigit(value: String) {
         require(value.all { it.isDigit() }) { Exception.DIGIT }
     }
 
-    private fun checkComma(value: String) {
+    private fun validateComma(value: String) {
         require(!(value.startsWith(",") || value.endsWith(",") || value.contains(",,"))) {
-            Exception.COMMA
+            Exception.LOTTO_COMMA
         }
     }
 
