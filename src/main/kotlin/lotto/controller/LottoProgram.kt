@@ -34,7 +34,6 @@ class LottoProgram {
         val lottoResultAnalyzer = LottoResultAnalyzer()
         lottoResultAnalyzer.analyzeLottoResults(lottoResult)
         val analyzedResult = lottoResultAnalyzer.getAnalyzedLottoResults()
-        println(analyzedResult)
     }
 
     companion object {
