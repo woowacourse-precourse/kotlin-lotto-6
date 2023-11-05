@@ -4,6 +4,7 @@ import lotto.controller.LottoController
 import lotto.model.Lotto
 import lotto.view.InputView
 import lotto.view.OutputView
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -28,4 +29,12 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `로또 구매 개수`() {
+        val purchaseAmount = 8000
+
+        val numberOfPurchase = lottoController.getNumberOfPurchase(purchaseAmount)
+
+        assertThat(numberOfPurchase).isEqualTo(8)
+    }
 }
