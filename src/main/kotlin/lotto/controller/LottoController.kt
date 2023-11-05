@@ -11,35 +11,27 @@ class LottoController(
     private val printer: Printer = Printer,
     private val reader: Reader = Reader
 ) {
-    private fun inputPurchase(): Purchase {
-        while (true) {
-            try {
-                val amount = reader.inputInt()
-                return Purchase(amountWon = amount)
-            } catch (e: IllegalArgumentException) {
-                printInputError(e.message)
-            }
-        }
+    private fun inputPurchase(): Purchase = inputUntilValid {
+        val amount = inputInt()
+        return@inputUntilValid Purchase(amountWon = amount)
     }
 
-    private fun inputNormalWinningNumbers(): List<Int> {
-        while (true) {
-            try {
-                val numbers = reader.inputIntList(WINNING_NUMBER_DELIMITER)
-                WinningNumber.validate(normalNumbers = numbers)
-                return numbers
-            } catch (e: IllegalArgumentException) {
-                printInputError(e.message)
-            }
-        }
+    private fun inputNormalWinningNumbers(): List<Int> = inputUntilValid {
+        val numbers = reader.inputIntList(WINNING_NUMBER_DELIMITER)
+        WinningNumber.validate(normalNumbers = numbers)
+        return@inputUntilValid numbers
     }
 
-    private fun inputBonusWinningNumber(normalNumbers: List<Int>): Int {
+    private fun inputBonusWinningNumber(normalNumbers: List<Int>): Int = inputUntilValid {
+        val bonus = reader.inputInt()
+        WinningNumber.validate(normalNumbers = normalNumbers, bonusNumber = bonus)
+        return@inputUntilValid bonus
+    }
+
+    private fun <T> inputUntilValid(block: Reader.() -> T): T {
         while (true) {
             try {
-                val bonus = reader.inputInt()
-                WinningNumber.validate(normalNumbers = normalNumbers, bonusNumber = bonus)
-                return bonus
+                return reader.block()
             } catch (e: IllegalArgumentException) {
                 printInputError(e.message)
             }
