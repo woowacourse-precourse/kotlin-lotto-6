@@ -282,4 +282,26 @@ class LottoTest {
 
         assertThat(expectWinningStatistics).isNotEqualTo(actualWinningStatistics)
     }
+
+    @Test
+    fun `수익률 일치`() {
+        val purchaseAmount = 8000
+        val totalWinningAmount = 5000
+        val expectRateOfReturn = 62.5
+
+        val actualRateOfReturn = lottoController.getRateOfReturn(purchaseAmount, totalWinningAmount)
+
+        assertThat(expectRateOfReturn).isEqualTo(actualRateOfReturn)
+    }
+
+    @Test
+    fun `수익률 불일치`() {
+        val purchaseAmount = 8000
+        val totalWinningAmount = 5000
+        val expectRateOfReturn = 72.5
+
+        val actualRateOfReturn = lottoController.getRateOfReturn(purchaseAmount, totalWinningAmount)
+
+        assertThat(expectRateOfReturn).isNotEqualTo(actualRateOfReturn)
+    }
 }
