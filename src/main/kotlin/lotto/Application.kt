@@ -15,9 +15,16 @@ enum class MatchCount {
 
 
 fun main() {
+    var numoflotto = 0
+    var winningnumber = listOf<Int>()
+    var bonus = 0
     println("구입금액을 입력해 주세요")
 
-    val numoflotto = moneycheck()
+    try {
+        numoflotto = moneycheck()
+    } catch (e: IllegalArgumentException){
+        println("[ERROR]")
+    }
 
     val mynumber = mutableListOf<List<Int>>()
     val match = mutableListOf<MatchCount>()
@@ -31,10 +38,18 @@ fun main() {
         Lotto(numbers).printnumbers()
     }
     println("당첨 번호를 입력해 주세요.")
-    val winningnumber = winningnumbercheck()
+    try {
+        winningnumber = winningnumbercheck()
+    } catch (e: IllegalArgumentException){
+        println("[ERROR]")
+    }
 
     println("보너스 번호를 입력해 주세요.")
-    val bonus = bonuscheck()
+    try {
+        bonus = bonuscheck()
+    } catch (e: IllegalArgumentException){
+        println("[ERROR]")
+    }
 
     for (i in 0 until numoflotto)
     {
@@ -45,48 +60,21 @@ fun main() {
 }
 
 fun moneycheck(): Int {
-    while (true)
-    {
-        try {
-            val input = readlnOrNull()
-            val money = input?.toInt() ?: throw IllegalArgumentException()
-            val price = 1000
-            require(money % price == 0)
-            return money / price
-        } catch (e: IllegalArgumentException)
-        {
-            println("[ERROR]")
-        }
-
-    }
+    val input = readlnOrNull()
+    val money = input?.toInt() ?: throw IllegalArgumentException()
+    val price = 1000
+    require(money % price == 0)
+    return money / price
 }
 
 fun winningnumbercheck(): List<Int> {
-    while (true)
-    {
-        try {
-            val input = readlnOrNull()
-            return input?.split(",")?.map { it.toInt() } ?: throw IllegalArgumentException("[ERROR]")
-        } catch (e: IllegalArgumentException)
-        {
-            print("[ERROR]")
-        }
-
-    }
+    val input = readlnOrNull()
+    return input?.split(",")?.map { it.toInt() } ?: throw IllegalArgumentException()
 }
 
 fun bonuscheck(): Int {
-    while (true)
-    {
-        try {
-            val input = readlnOrNull()
-            return input?.toInt() ?: throw IllegalArgumentException("[Error]")
-        } catch (e: IllegalArgumentException)
-        {
-            print("[Error]")
-        }
-
-    }
+    val input = readlnOrNull()
+    return input?.toInt() ?: throw IllegalArgumentException("[Error]")
 }
 
 fun printtotal(matchnum: List<MatchCount>, money: Int) {
