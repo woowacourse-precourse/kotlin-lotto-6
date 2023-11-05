@@ -6,12 +6,13 @@ import lotto.constants.Constants.LOTTO_END
 import lotto.constants.Constants.LOTTO_SIZE
 import lotto.model.Lotto
 import lotto.model.Lottos
+import lotto.model.PurchaseCount
 
 class LottoSupplier {
-    fun supplyLottos(count: Int): Lottos {
+    fun supplyLottos(purchaseCount: PurchaseCount): Lottos {
         val lottos = Lottos()
 
-        repeat(count) {
+        repeat(purchaseCount.count) {
             lottos.add(supplyLotto())
         }
 

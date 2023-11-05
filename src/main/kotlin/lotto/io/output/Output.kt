@@ -2,15 +2,16 @@ package lotto.io.output
 
 import lotto.constants.Print
 import lotto.constants.WinningResult
-import lotto.convertWithRound
+import lotto.utils.convertWithRound
 import lotto.model.Lottos
+import lotto.model.PurchaseCount
 
 class Output {
     fun printInputAmount() = println(Print.INPUT_AMOUNT)
 
-    fun printPurchaseCount(purchaseCount: Int) {
+    fun printPurchaseCount(purchaseCount: PurchaseCount) {
         lineBreak()
-        println(Print.PURCHASE_COUNT.toString().format(purchaseCount))
+        println(Print.PURCHASE_COUNT.toString().format(purchaseCount.count))
     }
 
     fun printLottos(lottos: Lottos) {
