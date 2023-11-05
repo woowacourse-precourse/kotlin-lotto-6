@@ -32,6 +32,10 @@ class GameConsole {
         println("(${String.format("%,d", winningResult.prize)}원) - ${count}개")
     }
 
+    fun showEarningRate(earningRate: Double) {
+        println("총 수익률은 ${String.format("%.1f", earningRate)}%입니다.")
+    }
+
     companion object {
         const val PURCHASE_RESULT_MSG = "개를 구매했습니다."
         const val WINNING_STATISTIC_RESULT_MSG = "\n당첨 통계" + "\n---"
