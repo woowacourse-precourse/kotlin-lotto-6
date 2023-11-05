@@ -28,13 +28,23 @@ class LottoTest {
 
     // 아래에 추가 테스트 작성 가능
     @Test
-    fun `로또 구매 개수`() {
+    fun `로또 구매 개수 일치`() {
         val purchaseAmount = 8000
         val expectNumberOfPurchase = 8
 
         val actualNumberOfPurchase = lottoController.getNumberOfPurchase(purchaseAmount)
 
         assertThat(expectNumberOfPurchase).isEqualTo(actualNumberOfPurchase)
+    }
+
+    @Test
+    fun `로또 구매 개수 불일치`() {
+        val purchaseAmount = 8000
+        val expectNumberOfPurchase = 9
+
+        val actualNumberOfPurchase = lottoController.getNumberOfPurchase(purchaseAmount)
+
+        assertThat(expectNumberOfPurchase).isNotEqualTo(actualNumberOfPurchase)
     }
 
     @Test
@@ -66,7 +76,7 @@ class LottoTest {
     }
 
     @Test
-    fun `로또 당첨 숫자 개수`() {
+    fun `로또 당첨 번호 개수`() {
         val lotto = Lotto(listOf(1,2,3,4,5,6))
         val winningNumbers = listOf(3,4,5,6,7,8)
         val expectMatchedNumbers = 4
