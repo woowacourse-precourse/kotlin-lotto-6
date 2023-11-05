@@ -167,10 +167,10 @@ class LottoTest {
     fun `로또 보너스 번호 불일치`() {
         val lotto = Lotto(listOf(1,2,3,4,5,6))
         val bonusNumber = 7
-        val expectBonusMatched = true
+        val expectBonusMatched = false
 
         val actualBonusMatched = lottoController.getBonusMatched(lotto, bonusNumber)
 
-        assertThat(expectBonusMatched).isNotEqualTo(actualBonusMatched)
+        assertThat(expectBonusMatched).isEqualTo(actualBonusMatched)
     }
 }
