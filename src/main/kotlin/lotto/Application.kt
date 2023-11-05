@@ -3,6 +3,7 @@ package lotto
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
+    println("구입금액을 입력해 주세요.")
     val money = getInputMoney()
     val lottoCount = money / 1000
     println("${lottoCount}개를 구매했습니다.")
@@ -31,11 +32,11 @@ fun validateWinningNumbers(winningNumbers: List<Int>) {
         throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
     }
 }
-fun getInputMoney(): Int {//구입금액 입력 받기
+fun getInputMoney(): Int {
     var money = 0
     while (money == 0) {
         money = try {
-            val input = readLine()!!
+            val input = readLine() ?: throw IllegalArgumentException("구입 금액을 입력해야 합니다.")
             validateMoney(input)
         } catch (e: Exception) {
             println("[ERROR] ${e.message}")
@@ -45,8 +46,8 @@ fun getInputMoney(): Int {//구입금액 입력 받기
     return money
 }
 
-fun validateMoney(input: String): Int {//입력값 검증
-    val money = input.toInt()
+fun validateMoney(input: String): Int {
+    val money = input.toIntOrNull() ?: throw IllegalArgumentException("구입 금액은 숫자여야 합니다.")
     if (money % 1000 != 0) {
         throw IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.")
     }
@@ -66,5 +67,5 @@ fun printStatistics(results: List<Rank>) {//당첨 통계 출력
     val purchaseMoney = results.size * 1000L
     val profitRate = totalPrizeMoney / purchaseMoney.toDouble()
 
-    println("총 수익률은 ${String.format("%.2f", profitRate)}입니다.")
+    println("총 수익률은 ${String.format("%.2f", profitRate * 100)}%입니다.")
 }
