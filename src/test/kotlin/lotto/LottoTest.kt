@@ -252,7 +252,7 @@ class LottoTest {
     }
 
     @Test
-    fun `당첨 내역 일치`() {
+    fun `로또 당첨 내역 일치`() {
         val lottos = listOf(
             Lotto(listOf(1, 2, 3, 4, 5, 6)), Lotto(listOf(1, 2, 3, 4, 5, 7)),
             Lotto(listOf(1, 2, 3, 4, 5, 8)), Lotto(listOf(1, 2, 3, 4, 7, 8)),
@@ -268,7 +268,7 @@ class LottoTest {
     }
 
     @Test
-    fun `당첨 내역 불일치`() {
+    fun `로또 당첨 내역 불일치`() {
         val lottos = listOf(
             Lotto(listOf(1, 2, 3, 4, 5, 6)), Lotto(listOf(1, 2, 3, 4, 5, 7)),
             Lotto(listOf(1, 2, 3, 4, 5, 8)), Lotto(listOf(1, 2, 3, 4, 7, 8)),
@@ -276,7 +276,7 @@ class LottoTest {
         )
         val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
         val bonusNumber = 7
-        val expectWinningStatistics = listOf(0,0,0,0,0,0)
+        val expectWinningStatistics = listOf(0, 0, 0, 0, 0, 0)
 
         val actualWinningStatistics = lottoController.getWinningStatistics(lottos, winningNumbers, bonusNumber)
 
@@ -284,7 +284,7 @@ class LottoTest {
     }
 
     @Test
-    fun `수익률 일치`() {
+    fun `로또 수익률 일치`() {
         val purchaseAmount = 8000
         val totalWinningAmount = 5000
         val expectRateOfReturn = 62.5
@@ -295,7 +295,7 @@ class LottoTest {
     }
 
     @Test
-    fun `수익률 불일치`() {
+    fun `로또 수익률 불일치`() {
         val purchaseAmount = 8000
         val totalWinningAmount = 5000
         val expectRateOfReturn = 72.5
@@ -303,5 +303,25 @@ class LottoTest {
         val actualRateOfReturn = lottoController.getRateOfReturn(purchaseAmount, totalWinningAmount)
 
         assertThat(expectRateOfReturn).isNotEqualTo(actualRateOfReturn)
+    }
+
+    @Test
+    fun `로또 총 당첨금액 일치`() {
+        val winningStatistics = listOf(0,0,0,0,1,1)
+        val expectTotalWinningAmount = 55000
+
+        val actualTotalWinningAmount = lottoController.getTotalWinningAmount(winningStatistics)
+
+        assertThat(expectTotalWinningAmount).isEqualTo(actualTotalWinningAmount)
+    }
+
+    @Test
+    fun `로또 총 당첨금액 불일치`() {
+        val winningStatistics = listOf(0,0,0,0,1,1)
+        val expectTotalWinningAmount = 60000
+
+        val actualTotalWinningAmount = lottoController.getTotalWinningAmount(winningStatistics)
+
+        assertThat(expectTotalWinningAmount).isNotEqualTo(actualTotalWinningAmount)
     }
 }
