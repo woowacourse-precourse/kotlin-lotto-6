@@ -1,0 +1,27 @@
+package lotto
+
+import ui.GameConsole
+import ui.UserInputReader
+
+class LottoGame(
+    private val userInputReader: UserInputReader,
+    private val lottoMachine: LottoMachine,
+    private val gameConsole: GameConsole,
+    private val lottoResultChecker: LottoResultChecker
+) {
+    fun startGame() {
+        val price = userInputReader.getPrice()
+
+        val numOfLotto = lottoMachine.calculateNumberOfLotto(price)
+        val lottoTickets = lottoMachine.getLottoTickets(numOfLotto)
+        gameConsole.showLottoTickets(lottoTickets, numOfLotto)
+
+        val winningNumbers = userInputReader.getWinningNumbers()
+        val bonusNum = userInputReader.getBonusNumber(winningNumbers)
+
+        val winningResult =
+            lottoResultChecker.compareLottoTicketsWithWinningNumbers(lottoTickets, winningNumbers, bonusNum)
+        gameConsole.showWinningStatistic(winningResult)
+
+    }
+}

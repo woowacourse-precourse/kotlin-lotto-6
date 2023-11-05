@@ -7,20 +7,19 @@ class LottoResultChecker {
         WinningCriteria.SECOND to 0,
         WinningCriteria.THIRD to 0,
         WinningCriteria.FOURTH to 0,
-        WinningCriteria.FIFTH to 0,
-        WinningCriteria.NONE to 0
+        WinningCriteria.FIFTH to 0
     )
 
     fun compareLottoTicketsWithWinningNumbers(
         lottoTickets: List<Lotto>,
         winningNumbers: List<Int>,
         bonusNumber: Int
-    ): MutableMap<WinningCriteria, Int> {
+    ): Map<WinningCriteria, Int> {
         lottoTickets.forEach { lotto ->
             val result = setWinningResult(lotto.countSameNumber(winningNumbers), lotto.hasBonusNumber(bonusNumber))
-            winningResult[result] = winningResult.getOrDefault(result, 0) + 1
+            if (result != WinningCriteria.NONE) winningResult[result] = winningResult.getOrDefault(result, 0) + 1
         }
-        return winningResult
+        return winningResult.toMap()
     }
 
     fun setWinningResult(matchingNumber: Int, hasBonusNumber: Boolean): WinningCriteria {
