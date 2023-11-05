@@ -7,7 +7,9 @@ import camp.nextstep.edu.missionutils.Randoms
 class LottoGame {
     private val error = Error()
     private val numbers = mutableListOf<Int>()
+    private var buyPrice = 0
     private var bonus = 0
+    private var prize = 0
     private val buyNumbers = mutableListOf<List<Int>>()
     private val ranking = IntArray(8)
     fun start(){
@@ -29,18 +31,23 @@ class LottoGame {
 
         if(correctNumber == 3){
             ranking[0]++
+            prize += 5000
         }
         if(correctNumber == 4){
             ranking[1]++
+            prize += 50000
         }
         if(correctNumber == 5 && !number.contains(bonus)){
             ranking[2]++
+            prize += 1500000
         }
         if(correctNumber == 5 && number.contains(bonus)){
             ranking[3]++
+            prize += 30000000
         }
         if(correctNumber == 6){
             ranking[4]++
+            prize += 2000000000
         }
     }
     private fun showResult() {
@@ -50,10 +57,11 @@ class LottoGame {
         println("5개 일치 (1,500,000원) - ${ranking[2]}개")
         println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${ranking[3]}개")
         println("6개 일치 (2,000,000,000원) - ${ranking[4]}개")
-        showProfit(62.5)
+        showProfit()
     }
-    private fun showProfit(profit: Double){
-        println("총 수익률은 ${profit}%입니다.")
+    private fun showProfit(){
+        var result = prize.toDouble() / buyPrice.toDouble() * 100.0
+        println("총 수익률은 ${String.format("%.1f",result)}%입니다.")
     }
     private fun showText(){
         println("\n당첨 통계")
@@ -78,6 +86,7 @@ class LottoGame {
     private fun inputPrice(){
         println("구입금액을 입력해 주세요.")
         val price = Console.readLine().toInt()
+        buyPrice = price
         error.checkPrice(price)
         printLotto(price)
     }
