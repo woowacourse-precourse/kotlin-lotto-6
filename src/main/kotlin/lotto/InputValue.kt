@@ -30,6 +30,7 @@ class InputValue {
 
         val winningNumber = readln().split(",")
         check.checkOnlyNumber(winningNumber)
+        check.checkNumber1to45(winningNumber)
 
         return listOf(0)
     }

@@ -55,10 +55,13 @@ class CheckError {
     fun checkNumber1to45(winningSixNumbers: List<String>): Boolean {
 
         for (number in winningSixNumbers) {
+
+            val numberInt = number.toInt()
+
             try {
-                number.toUInt()
+                require(numberInt in 1..45) { }
             } catch (e: IllegalArgumentException) {
-                println("[ERROR] : 자연수가 아닌 값을 입력했습니다. 다시 입력해주세요")
+                println("[ERROR] : 1보다 작거나 45보다 큰 수를 입력했습니다. 다시 입력해주세요")
 
                 return false
             }
