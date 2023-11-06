@@ -11,9 +11,21 @@ object InputView {
     fun getPurchaseMoney(): Int {
         println(PURCHASE_MONEY_MESSAGE)
         val inputPurchaseMoney = Console.readLine()
-
-        return inputPurchaseMoney.toInt()
+        return checkPurchaseMoney(inputPurchaseMoney)
     }
+
+    private fun checkPurchaseMoney(inputPurchaseMoney: String): Int {
+        val purchaseMoneyNum = checkNumber(inputPurchaseMoney)
+
+        return purchaseMoneyNum
+    }
+
+    private fun checkNumber(purchaseMoney: String): Int {
+        val purchaseMoneyNum = purchaseMoney.toIntOrNull() ?: 0
+        require(purchaseMoneyNum > 0)
+        return purchaseMoneyNum
+    }
+
 
     fun getWinningNumbers(): List<Int> {
         println("\n$WINNING_NUMBER_MESSAGE")
