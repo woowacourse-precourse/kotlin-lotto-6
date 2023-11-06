@@ -1,7 +1,5 @@
 package lotto.model.validation
 
-import lotto.model.LottoNumValidation
-
 class InputValidation {
     fun validateLottoPurchaseAmount(amount: Int) {
         isLottoPurchaseAmountDivisibleByThousand(amount)
@@ -22,12 +20,12 @@ class InputValidation {
     }
 
     fun validateInputLottoNum(inputNumbers: String) {
-        var trimmedInputNum = trimInput(inputNumbers)
+        var trimmedInputNum = removeSpaces(inputNumbers)
         validateCommaSeparatedNumbers(trimmedInputNum)
     }
 
-    private fun trimInput(input: String): String {
-        return input.trim()
+    private fun removeSpaces(input: String): String {
+        return input.replace(" ", "")
     }
 
     private fun validateCommaSeparatedNumbers(inputNumbers: String) {

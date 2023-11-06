@@ -1,4 +1,6 @@
-package lotto.model
+package lotto.model.validation
+
+import lotto.model.LottoNumbersFactory
 
 class LottoNumValidation {
     fun validateLottoNum(input: List<Int>) {
@@ -16,7 +18,7 @@ class LottoNumValidation {
     }
 
     private fun checkLottoNumRange(input: List<Int>) {
-        require(input.all { it in LottoNumbersFactory.LOTTO_START_NUM..LottoNumbersFactory.LOTTO_START_NUM }) { LOTTO_NUM_RANGE_ERROR }
+        require(input.all { it in LottoNumbersFactory.LOTTO_START_NUM..LottoNumbersFactory.LOTTO_LAST_NUM }) { LOTTO_NUM_RANGE_ERROR }
     }
 
     companion object {

@@ -1,6 +1,6 @@
 package lotto.ModuleTest
 
-import lotto.model.LottoNumValidation
+import lotto.model.validation.LottoNumValidation
 import lotto.model.validation.InputValidation
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
@@ -54,9 +54,16 @@ class ValidationTest {
 
     @Test
     fun `유효한 로또 당첨 번호 입력`() {
-        var inputLottoNum = "1,2 ,4,6,7,8"
+        var inputLottoNum = "1,2,4,6,7,8"
         inputValidation.validateInputLottoNum(inputLottoNum)
     }
+
+    @Test
+    fun `로또 당첨 번호 중 공백 입력`() {
+        var inputLottoNum = "1,2,4,  6,7,8"
+        inputValidation.validateInputLottoNum(inputLottoNum)
+    }
+
 
     @Test
     fun `로또 당첨 번호 중 맨 앞에 쉼표 입력 시 예외 처리`() {
@@ -74,5 +81,56 @@ class ValidationTest {
             inputValidation.validateInputLottoNum(inputLottoNum)
         }
         assertEquals(InputValidation.SEPARATE_BY_COMMA_ERROR, exception.message)
+    }
+
+    @Test
+    fun `유효한 로또 당첨 숫자 리스트 입력`() {
+        var inputLottoNum: List<Int> = mutableListOf(1, 2, 4, 5, 6, 7)
+        lottoNumValidation.validateLottoNum(inputLottoNum)
+    }
+
+    @Test
+    fun `7개의 로또 번호 입력`() {
+        var inputLottoNum: List<Int> = mutableListOf(1, 2, 3, 4, 5, 6, 7)
+        val exception: Exception = assertThrows<IllegalArgumentException> {
+            lottoNumValidation.validateLottoNum(inputLottoNum)
+        }
+        assertEquals(LottoNumValidation.LOTTO_NUM_SIZE_ERROR, exception.message)
+    }
+
+    @Test
+    fun `5개의 로또 번호 입력`() {
+        var inputLottoNum: List<Int> = mutableListOf(1, 2, 3, 4, 5)
+        val exception: Exception = assertThrows<IllegalArgumentException> {
+            lottoNumValidation.validateLottoNum(inputLottoNum)
+        }
+        assertEquals(LottoNumValidation.LOTTO_NUM_SIZE_ERROR, exception.message)
+    }
+
+    @Test
+    fun `중복된 로또 번호 입력`() {
+        var inputLottoNum: List<Int> = mutableListOf(1, 2, 3, 4, 5, 5)
+        val exception: Exception = assertThrows<IllegalArgumentException> {
+            lottoNumValidation.validateLottoNum(inputLottoNum)
+        }
+        assertEquals(LottoNumValidation.DUPLICATE_LOTTO_NUM_ERROR, exception.message)
+    }
+
+    @Test
+    fun `45보다 큰 범위 외의 숫자 입력`() {
+        var inputLottoNum: List<Int> = mutableListOf(1, 2, 46, 5, 6, 7)
+        val exception: Exception = assertThrows<IllegalArgumentException> {
+            lottoNumValidation.validateLottoNum(inputLottoNum)
+        }
+        assertEquals(LottoNumValidation.LOTTO_NUM_RANGE_ERROR, exception.message)
+    }
+
+    @Test
+    fun `1보다 작은 범위 외의 숫자 입력`() {
+        var inputLottoNum: List<Int> = mutableListOf(1, 2, 0, 5, 6, 7)
+        val exception: Exception = assertThrows<IllegalArgumentException> {
+            lottoNumValidation.validateLottoNum(inputLottoNum)
+        }
+        assertEquals(LottoNumValidation.LOTTO_NUM_RANGE_ERROR, exception.message)
     }
 }
