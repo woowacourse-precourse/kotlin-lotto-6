@@ -22,8 +22,7 @@ class LottoStore(private val purchasePrice: String) {
     }
 
     private fun generateNumbers(): List<Int> {
-        val numbers = ArrayList<Int>()
-        Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT)
+        val numbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT)
         return numbers.sorted()
     }
 
