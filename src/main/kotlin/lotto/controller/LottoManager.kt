@@ -23,7 +23,7 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         val lotto = Lotto(winningNumbers)
 
         val bonus = LottoBonus()
-        val bonusNumber = bonus.createBonusNumber(lottoList)
+        val bonusNumber = bonus.createBonusNumber(winningNumbers)
 
 
         outputView.showWinningStatisticsMessages()

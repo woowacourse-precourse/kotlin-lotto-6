@@ -1,6 +1,5 @@
 package lotto.domain
 
-import lotto.Lotto
 import lotto.validate.validateBonus
 import lotto.view.InputView.inputBonusNumber
 import lotto.view.OutputView.showInputBonusNumberMessage
@@ -10,7 +9,7 @@ class LottoBonus {
         showInputBonusNumberMessage()
     }
 
-    fun createBonusNumber(winningNumbers: MutableList<Lotto>): Boolean {
+    fun createBonusNumber(winningNumbers: List<Int>): Boolean {
         val bonus = inputBonusNumber()
         val validateBonus = validateBonus()
         validateBonus.validateBonus(bonus, winningNumbers)
@@ -18,9 +17,9 @@ class LottoBonus {
         return checkBonusWithWinningNumbers(bonus, winningNumbers)
     }
 
-    fun checkBonusWithWinningNumbers(bonus: Int, lottoList: MutableList<Lotto>): Boolean {
+    fun checkBonusWithWinningNumbers(bonus: Int, lottoList: List<Int>): Boolean {
         lottoList.forEach {
-            if (it.getLotto().contains(bonus)) {
+            if (it == bonus) {
                 return true
             }
         }
