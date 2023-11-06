@@ -1,6 +1,6 @@
 package lotto
 
-object InputValidator {
+object Validator {
     val MIN_RANGE = 1
     val MAX_RANGE = 45
     val LOTTO_PRICE = 1000
