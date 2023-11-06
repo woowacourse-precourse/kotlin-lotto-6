@@ -21,32 +21,30 @@
 - [] 로또 구매 금액을 입력 : InputValue#inputLottoMoney()
   - <> 1000원으로 나누어 떨어지지 않으면 오류 : CheckError#checkCanDivide1000
   
-- [] 당첨 번호를 입력 : InputValue#inputWinningNumder()
-  - <> 당첨 번호가 중복될 경우 오류 : CheckError#checkNotOverlapNumber() 
+- [] 당첨 번호를 입력 : InputValue#inputWinningNumber()
+  - <> 당첨 번호가 중복될 경우 오류 : CheckError#checkNonOverlapNumber() 
   - <> 1~45 이외의 숫자 혹은 문자가 입력될 경우 오류 : CheckError#checkOnlyNumber1to45()
   - <> 6개의 숫자를 입력하지 않을 경우 오류 : CheckError#checkInputSixNumbers()
   
 - [] 보너스 번호를 입력 : InputValue#inputBonusNumber()
-  - <> 보너스 번호와 당첨 번호가 중복될 경우 오류 : CheckError#checkNotDuplicateNumber() 중복 사용
+  - <> 보너스 번호와 당첨 번호가 중복될 경우 오류 : CheckError#checkNotOverlapNumber() 중복 사용
   - <> 1~45 이외의 숫자 혹은 문자가 입력될 경우 오류 : CheckError#checkOnlyNumber1to45() 중복 사용
   - <> 1개의 숫자를 입력하지 않을 경우 오류 : CheckError#checkInputOneNumbers()
   
 - [] 구매 금액에 맞는 복권의 개수 계산 : MakeLotto#calculateCountingLotto()
-
 - [] 각 복권마다 중복되지 않는 번호 6개 생성 : MakeLotto#createNonOverlapSixNumbers()
-
 - [] 생성된 복권 번호 오름차순으로 변경 : MakeLotto#changeAscendingLottoNumbers()
 
-- [] 로또 클래스 생성 : main 함수에서 MakeLotto클래스를 통해 생성
-
 - [] 각 로또마다 당첨 번호 일치 개수 확인 : Calculator#compareCountingMatchedWinningNumber()
-
 - [] 각 로또마다 보너스 번호 일치 확인 : Calculator#compareCountingMatchedBonusNumber()
-
-- [] 일치 개수 만큼 당첨 금액 계산 : Calculator#calculateWinningAmount()
-
 - [] 총 당첨 금액 대비 수익률 계산 : Calculator#calculateRateReturn()
+- 
+- [] 당첨 1등 ~ 6등 까지 계산하는 기능을 Enum으로 구현한다. DivideStandard1to6 클래스 활용
+- [] 일치 개수 만큼 당첨 금액 계산 : DivideStandard1to6#calculateWinningAmount()
 
+- [] 로또 클래스 생성 : main 함수에서 MakeLotto클래스를 통해 생성
 - [] 복권 클래스 package lotto#Lotto# 이미 존재
 
-- [] 당첨 숫자 클래스 WinningBonusNumber#
+- [] 당첨 숫자 클래스 WinningAndBonusNumber#
+
+
