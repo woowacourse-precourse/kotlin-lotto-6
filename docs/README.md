@@ -1,39 +1,39 @@
 ## 기능 목록
 
 - 게임 시작 전
-    - [x]  구입 안내 메세지 출력한다. - OutputView#printGameStartMessage()
-    - [x]  로또 구매 가격을 입력한다. - InputView#getValidIntegerInput()
-        - [x]  숫자가 아니면 예외처리한다. - Validator#validateInteger()
-        - [x]  입력이 널값이면 예외처리한다. - Validator#validateNotNull()
-        - [x]  로또 가격의 범위가 유효하지 않다면 예외처리한다. - Validator#validateRange()
-        - [x]  로또 가격이 1000원 단위가 아니면 예외처리한다. - Validator#validate1000Unit()
+    - [x]  구입 안내 메세지 출력한다. -`OutputView#printGameStartMessage()`
+    - [x]  로또 구매 가격을 입력한다. - `InputView#getValidIntegerInput()`
+        - [x]  숫자가 아니면 예외처리한다. - `Validator#validateInteger()`
+        - [x]  입력이 널값이면 예외처리한다. - `Validator#validateNotNull()`
+        - [x]  로또 가격의 범위가 유효하지 않다면 예외처리한다. - `Validator#validateRange()`
+        - [x]  로또 가격이 1000원 단위가 아니면 예외처리한다. - `Validator#validate1000Unit()`
 - 로또 시작
-    - [x]  로또 발행 안내 메세지를 출력한다. - OutputView#printPurchaseCount()
-    - [x]  구매 가격만큼 로또를 발행한다. - LottoTicket#lottoTicketPublish()
-    - [x]  로또를 구매한 개수만큼 출력한다. - OutputView#printLottoTicket()
+    - [x]  로또 발행 안내 메세지를 출력한다. - `OutputView#printPurchaseCount()`
+    - [x]  구매 가격만큼 로또를 발행한다. - `LottoTicket#lottoTicketPublish()`
+    - [x]  로또를 구매한 개수만큼 출력한다. - `OutputView#printLottoTicket()`
         - [x]  각 숫자는 중복이 없어야 한다.
         - [x]  각 숫자는 1부터 45까지의 숫자여야 한다.
         - [x]  번호는 오름차순으로 보여줘야 한다.
 - 당첨 번호 입력
-    - [x]  당첨 번호 입력 안내 메세지를 출력한다. - OutputView#printLottoPurchaseInfoMessage()
-    - [x]  당첨 번호를 입력한다. - InputView#getValidLottoInput()
-        - [x]  당첨 번호는 6자리를 입력한다. - Validator#validateLottoLength()
-        - [x]  당첨 번호에 공백 또는 널값이 들어오면 예외처리한다. - Validator#validateNotNull()
-        - [x]  숫자가 아닐 시 예외처리한다. - Validator#validateInteger()
-        - [x]  각 번호가 1부터 45까지의 번호가 아닐 시 예외처리한다. - Validator#validateLottoRange()
-        - [x]  중복된 숫자가 존재할 시 예외처리 한다. - Validator#validateLottoUnique()
-    - [x]  보너스 번호를 입력 안내 메세지를 출력한다. - OutputView#printBonusLottoInfoMessage()
-    - [x]  보너스 번호를 입력한다. - UserInput#getValidIntegerInput()
-        - [x]  숫자가 아닐 시 예외처리한다. - Validator#validateInteger()
-        - [x]  당첨 번호와 중복된 숫자를 입력할 시 예외처리한다. - Validator#validateContain()
-        - [x]  1부터 45까지의 숫자가 아닐 시 예외처리한다. - Validator#validateNumberRange()
-        - [x]  당첨 번호에 공백 또는 널값이 들어오면 예외처리한다. - Validator#validateNotNull()
+    - [x]  당첨 번호 입력 안내 메세지를 출력한다. - `OutputView#printLottoPurchaseInfoMessage()`
+    - [x]  당첨 번호를 입력한다. - `InputView#getValidLottoInput()`
+        - [x]  당첨 번호는 6자리를 입력한다. - `Validator#validateLottoLength()`
+        - [x]  당첨 번호에 공백 또는 널값이 들어오면 예외처리한다. - `Validator#validateNotNull()`
+        - [x]  숫자가 아닐 시 예외처리한다. - `Validator#validateInteger()`
+        - [x]  각 번호가 1부터 45까지의 번호가 아닐 시 예외처리한다. - `Validator#validateLottoRange()`
+        - [x]  중복된 숫자가 존재할 시 예외처리 한다. - `Validator#validateLottoUnique()`
+    - [x]  보너스 번호를 입력 안내 메세지를 출력한다. - `OutputView#printBonusLottoInfoMessage()`
+    - [x]  보너스 번호를 입력한다. - `UserInput#getValidIntegerInput()`
+        - [x]  숫자가 아닐 시 예외처리한다. - `Validator#validateInteger()`
+        - [x]  당첨 번호와 중복된 숫자를 입력할 시 예외처리한다. - `Validator#validateContain()`
+        - [x]  1부터 45까지의 숫자가 아닐 시 예외처리한다. - `Validator#validateNumberRange()`
+        - [x]  당첨 번호에 공백 또는 널값이 들어오면 예외처리한다. - `Validator#validateNotNull()`
 - 로또 종료
-    - [x]  로또 등수를 구한다. - LottoResult#calculateRanking()
-    - [x]  당첨 통걔를 출력한다. - OutputView#printLottoStatistics()
+    - [x]  로또 등수를 구한다. - `LottoResult#calculateRanking()`
+    - [x]  당첨 통걔를 출력한다. - `OutputView#printLottoStatistics()`
         - [x]  3개부터 6개까지 내림차순으로 출력한다.
-    - [x]  로또 수익률을 구한다. - LottoProfit#calculateRate()
-    - [x]  로또 수익률을 출력한다. - OutputView#printLottoProfitRate()
+    - [x]  로또 수익률을 구한다. - `LottoProfit#calculateRate()`
+    - [x]  로또 수익률을 출력한다. - `OutputView#printLottoProfitRate()`
         - [x]  수익률은 소수점 둘째자리에서 반올림한다.(ex 100.0%, 51.5%)
 
 <br>
