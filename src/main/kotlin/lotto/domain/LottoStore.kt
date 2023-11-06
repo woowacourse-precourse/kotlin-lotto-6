@@ -3,9 +3,9 @@ package lotto.domain
 import lotto.validator.PurchasePriceValidator
 import camp.nextstep.edu.missionutils.Randoms
 
-class LottoStore(private val value: String) {
+class LottoStore(private val purchasePrice: String) {
     init {
-        PurchasePriceValidator(value)
+        PurchasePriceValidator(purchasePrice)
     }
 
     fun sellTickets(): List<Lotto> {
@@ -18,7 +18,7 @@ class LottoStore(private val value: String) {
     }
 
     fun getNumberOfTickets(): Int {
-        return value.toInt() / 1000
+        return purchasePrice.toInt() / 1000
     }
 
     private fun generateNumbers(): List<Int> {
