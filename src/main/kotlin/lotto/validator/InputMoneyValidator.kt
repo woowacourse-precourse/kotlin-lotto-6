@@ -2,8 +2,13 @@ package lotto.validator
 
 class InputMoneyValidator {
     fun validate(inputMoney: String) {
+        requireNoBlank(inputMoney)
         requireNumericString(inputMoney)
         requireAmountDivisibleBy1000(inputMoney)
+    }
+
+    private fun requireNoBlank(money: String) {
+        require(money.isNotBlank()) { "[ERROR] 공백을 입력할 수 없습니다." }
     }
 
     private fun requireNumericString(money: String) {
