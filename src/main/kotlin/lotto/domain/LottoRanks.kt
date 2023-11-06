@@ -16,13 +16,12 @@ class LottoRanks {
     init {
         Prize.entries.forEach { results[it] = 0 }
     }
-    fun rank(lottoList: List<Int>, lotto: Lotto, bonusNumber: Boolean): MutableMap<Prize, Int> {
-        val winningNumbers = lottoList // 예시로 고정된 당첨 번호
-        val bonusNumber = bonusNumber // 예시로 고정된 보너스 번호
-        val userNumbers = lotto.getLotto() // 예시로 고정된 참가자 번호
-
+    fun rank(lottoList: List<Int>, lotto: Lotto, bonusNumber: Int): MutableMap<Prize, Int> {
+        val winningNumbers = lottoList
+        val userNumbers = lotto.getLotto()
+        val bonusMatch =  bonusMatched(bonusNumber, winningNumbers)
         val matchedNumbers = checkMatchingNumbers(winningNumbers, userNumbers)
-        winningResultsUpdate(matchedNumbers, results)
+        winningResultsUpdate(matchedNumbers, results, bonusMatch)
 
 
         return results
@@ -38,13 +37,22 @@ class LottoRanks {
         return matchedNumbers
     }
 
-    private fun winningResultsUpdate(matchedNumbers: Int, results: MutableMap<Prize, Int>) {
+    private fun bonusMatched(bonusNumber: Int, winningNumbers: List<Int>): Boolean {
+        return winningNumbers.contains(bonusNumber)
+    }
+    private fun winningResultsUpdate(matchedNumbers: Int, results: MutableMap<Prize, Int>, bonusMatch: Boolean) {
         when (matchedNumbers) {
             3 -> results[Prize.THREE_MATCH] = results.getOrDefault(Prize.THREE_MATCH, 0) + 1
             4 -> results[Prize.FOUR_MATCH] = results.getOrDefault(Prize.FOUR_MATCH, 0) + 1
-            5 -> results[Prize.FIVE_MATCH] = results.getOrDefault(Prize.FIVE_MATCH, 0) + 1
+            5 -> {
+                if (bonusMatch) {
+                    results[Prize.FIVE_MATCH_WITH_BONUS] = results.getOrDefault(Prize.FIVE_MATCH_WITH_BONUS, 0) + 1
+                } else {
+                    results[Prize.FIVE_MATCH] = results.getOrDefault(Prize.FIVE_MATCH, 0) + 1
+                }
+            }
+
             6 -> results[Prize.SIX_MATCH] = results.getOrDefault(Prize.SIX_MATCH, 0) + 1
         }
     }
-
 }

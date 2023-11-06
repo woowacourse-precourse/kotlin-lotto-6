@@ -9,18 +9,11 @@ class LottoBonus {
         showInputBonusNumberMessage()
     }
 
-    fun createBonusNumber(winningNumbers: List<Int>): Boolean {
+    fun createBonusNumber(winningNumbers: List<Int>): Int {
         val bonus = inputBonusNumber()
         val validateBonus = validateBonus()
         validateBonus.validateBonus(bonus, winningNumbers)
 
-        return checkBonusWithWinningNumbers(bonus, winningNumbers)
+        return bonus
     }
-
-    fun checkBonusWithWinningNumbers(bonus: Int, lottoList: List<Int>): Boolean {
-        lottoList.forEach { if (it == bonus) return true }
-        return false
-    }
-
-
 }
