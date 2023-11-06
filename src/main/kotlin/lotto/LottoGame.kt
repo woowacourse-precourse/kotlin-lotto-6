@@ -11,26 +11,25 @@ class LottoGame(
 ) {
     fun startGame() {
         val price = userInputReader.getPrice()
-        val lottoTickets = generateLottoTickets(price)
+        val (numOfLotto, lottoTickets) = generateLottoTickets(price)
+        gameConsole.showLottoTickets(lottoTickets, numOfLotto)
 
-        determineWiningResult(lottoTickets)
+        val winningResult = determineWiningResult(lottoTickets)
+        gameConsole.showWinningStatistic(winningResult)
         gameConsole.showEarningRate(lottoResultChecker.calculateEarningRate(price))
     }
 
-    private fun generateLottoTickets(price: Int): List<Lotto> {
+    fun generateLottoTickets(price: Int): Pair<Int, List<Lotto>> {
         val numOfLotto = lottoMachine.calculateNumberOfLotto(price)
         val lottoTickets = lottoMachine.getLottoTickets(numOfLotto)
 
-        gameConsole.showLottoTickets(lottoTickets, numOfLotto)
-        return lottoTickets
+        return Pair(numOfLotto, lottoTickets)
     }
 
-    private fun determineWiningResult(lottoTickets: List<Lotto>) {
+    private fun determineWiningResult(lottoTickets: List<Lotto>): Map<WinningCriteria, Int> {
         val winningNumbers = userInputReader.getWinningNumbers()
         val bonusNum = userInputReader.getBonusNumber(winningNumbers)
-        val winningResult =
-            lottoResultChecker.compareLottoTicketsWithWinningNumbers(lottoTickets, winningNumbers, bonusNum)
 
-        gameConsole.showWinningStatistic(winningResult)
+        return lottoResultChecker.compareLottoTicketsWithWinningNumbers(lottoTickets, winningNumbers, bonusNum)
     }
 }
