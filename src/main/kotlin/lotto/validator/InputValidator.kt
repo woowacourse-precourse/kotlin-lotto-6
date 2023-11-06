@@ -9,9 +9,20 @@ object InputValidator {
         checkInteger(input)
     }
 
+    fun validateInputWinningLotto(input: List<String>) {
+        checkStringListBlank(input)
+        checkIntegers(input)
+    }
+
     private fun checkStringBlank(input: String) =
         require(input.isNotBlank()) { InputException.STRING_BLANK.message }
 
     private fun checkInteger(input: String) =
         requireNotNull(input.toIntOrNull()) { InputException.NOT_INTEGER.message }
+
+    private fun checkStringListBlank(input: List<String>) =
+        require(input.all { it.isNotBlank() }) { InputException.STRING_BLANK.message }
+
+    private fun checkIntegers(input: List<String>) =
+        require(input.all { it.toIntOrNull() != null }) { InputException.NOT_INTEGER.message }
 }
