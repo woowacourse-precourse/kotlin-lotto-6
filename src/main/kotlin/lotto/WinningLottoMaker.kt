@@ -2,12 +2,12 @@ package lotto
 
 import lotto.io.UserInterface
 
-class WinningLottoMaker(private val ui:UserInterface) {
+class WinningLottoMaker(private val ui: UserInterface) {
 
-    fun setWinningLotto():WinningLotto {
+    fun setWinningLotto(): WinningLotto {
         val winnerNumbers = ui.askWinningNumbers()
         val bonusNumber = ui.askBonusNumber(winnerNumbers)
 
-        return WinningLotto(winnerNumbers,bonusNumber)
+        return WinningLotto(Lotto(winnerNumbers), bonusNumber)
     }
 }

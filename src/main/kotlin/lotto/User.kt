@@ -18,4 +18,10 @@ class User(
         val ui = UserInterface()
         ui.printLottoCounts(lottoCounts)
     }
+
+    fun compareToWinningLotto(winningNumber:Lotto, bonusNumber:Int) {
+        for(myLotto in myLottoTickets) {
+            myLotto.compareToWinningLotto(winningNumber)
+        }
+    }
 }

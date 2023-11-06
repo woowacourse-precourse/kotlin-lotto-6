@@ -1,7 +1,6 @@
 package lotto
 
-class WinningLotto(
-    private val numbers:List<Int>,
-    private val bonusNumber:Int
-) {
-}
+data class WinningLotto(
+    val numbers:Lotto,
+    val bonusNumber:Int
+)

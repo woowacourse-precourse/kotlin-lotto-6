@@ -13,6 +13,16 @@ class Lotto(private val numbers: List<Int>) {
         ui.printLotto(numbers)
     }
 
+    fun compareToWinningLotto(winningLotto: Lotto):Int {
+        var matchedCount = 0
+        for(number in numbers) {
+            if(winningLotto.numbers.contains(number)) {
+                matchedCount++
+            }
+        }
+        return matchedCount
+    }
+
 
 
 
