@@ -2,7 +2,11 @@
 
 1. 요구사항 정리 및 계획짜기.
 2. 라이브러리 사용 조건 확인 val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+<<<<<<< HEAD
 3. 로또 클래스 활class Lotto(private val numbers: List<Int>) {
+=======
+3. 로또 클래스 활용class Lotto(private val numbers: List<Int>) {
+>>>>>>> 4fb4d98ef03b63390929ff9d8e25cd16c326957b
     init {
         require(numbers.size == 6)
     }
