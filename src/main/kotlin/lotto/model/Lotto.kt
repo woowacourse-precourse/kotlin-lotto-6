@@ -3,13 +3,11 @@ package lotto.model
 class Lotto(private val numbers: List<Int>) {
 
     init {
-        require(numbers.size == 6)
-    }
-
-    fun duplicationValidate() {
-        if (numbers.size != numbers.toSet().size){
-            println(Constants.ERROR_LOTTO_DUPlICATION)
-            throw IllegalArgumentException(Constants.ERROR_LOTTO_DUPlICATION)
+        require(numbers.size == 6){
+            Constants.ERROR_LOTTO_SIZE
+        }
+        require(numbers.size == numbers.toSet().size){
+            Constants.ERROR_LOTTO_DUPlICATION
         }
     }
 

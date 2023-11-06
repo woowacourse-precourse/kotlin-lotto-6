@@ -21,11 +21,4 @@ class UserLottoNumber {
             throw IllegalArgumentException(Constants.ERROR_LOTTO_FORMAT)
         }
     }
-    fun sizeValidate(userLottoAnswer:List<Int>) {
-        println(userLottoAnswer.size)
-        if (userLottoAnswer.size != Constants.SIX){
-            println(Constants.ERROR_LOTTO_SIZE)
-            throw IllegalArgumentException(Constants.ERROR_LOTTO_SIZE)
-        }
-    }
 }
