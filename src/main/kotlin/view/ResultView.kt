@@ -10,4 +10,9 @@ object ResultView {
         println("$number$RESULT_PURCHASED_LOTTIES")
     }
 
+    fun printPurchasedLotties(lotties: List<List<Int>>) {
+        lotties.onEach { numbers ->
+            println(numbers)
+        }
+    }
 }

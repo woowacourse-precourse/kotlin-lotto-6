@@ -23,7 +23,11 @@ object LottoController {
         ResultView.printNumberOfLottiesPurchased(chance)
 
         val pickedLotties = numberPicker.getRandomNumbers()
-        val sortedLotties = pickedLotties.map { Lotto(it) }
+        val sortedLotties = pickedLotties.map {
+            Lotto(it).getSortedNumbers()
+        }
+
+
     }
 
     private fun getUserAmount(): Money = Money(InputView.inputPurchaseAmount())
