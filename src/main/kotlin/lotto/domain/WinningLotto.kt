@@ -4,11 +4,11 @@ class WinningLotto(
     private val winningNumbers: Lotto,
     private val bonusNumber: Int,
 ) {
-    fun calculateMatchingCount(lotto: Lotto): Int {
+    fun checkCountMatched(lotto: Lotto): Int {
         return winningNumbers.getNumbers().count { lotto.hasNumber(it) }
     }
 
-    fun calculateBonusMatch(lotto: Lotto): Boolean {
+    fun checkBonusMatch(lotto: Lotto): Boolean {
         return lotto.hasNumber(bonusNumber)
     }
 }

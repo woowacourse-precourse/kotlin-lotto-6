@@ -13,7 +13,7 @@ class LottoProgram {
     private lateinit var lottoResult: LottoResult
     private var inputMoney = 0
 
-    fun startProgram() {
+    fun run() {
         purchaseLottos()
         drawWinningLotto()
         displayResult()

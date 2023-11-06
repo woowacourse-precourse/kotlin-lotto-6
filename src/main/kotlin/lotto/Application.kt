@@ -4,5 +4,5 @@ import lotto.domain.LottoProgram
 
 fun main() {
     val lottoProgram = LottoProgram()
-    lottoProgram.startProgram()
+    lottoProgram.run()
 }
