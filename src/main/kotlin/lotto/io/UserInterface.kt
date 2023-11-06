@@ -34,5 +34,19 @@ class UserInterface(
         }
     }
 
+    fun askBonusNumber(winningNumbers: List<Int>): Int {
+        while(true) {
+            val bonusNumber: Int
+            try {
+                output.printBonusNumberMsg()
+                bonusNumber = input.enterBonusNumber(winningNumbers)
+
+                return bonusNumber
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+    }
+
 
 }

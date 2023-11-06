@@ -17,5 +17,12 @@ class Input(private val checker: ExceptionChecker = ExceptionChecker()) {
         return winningNumbers.map { it.toInt() }
     }
 
+    fun enterBonusNumber(winningNumbers: List<Int>): Int {
+        val bonusNumber = Console.readLine()
+        checker.checkBonusNumber(winningNumbers, bonusNumber)
+
+        return bonusNumber.toInt()
+    }
+
 
 }

@@ -60,5 +60,20 @@ class ExceptionChecker {
         }
     }
 
+    private fun isInRange(number: Int) {
+        if (number < 1 || number > 45) throw IllegalArgumentException("[ERROR] 1부터 45 사이의 수를 입력해주세요")
+
+    }
+
+    fun checkBonusNumber(winningNumbers: List<Int>, bonusNumber: String) {
+        isDigitNumber(bonusNumber)
+        isDuplicate(winningNumbers, bonusNumber.toInt())
+        isInRange(bonusNumber.toInt())
+    }
+
+    private fun isDuplicate(winningNumbers:List<Int>, bonusNumber: Int) {
+        if(winningNumbers.contains(bonusNumber)) throw IllegalArgumentException("[ERROR] 중복된 수가 존재합니다.")
+    }
+
 
 }
