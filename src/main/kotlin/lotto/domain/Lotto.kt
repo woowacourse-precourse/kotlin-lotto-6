@@ -13,7 +13,7 @@ class Lotto(private val numbers: List<LottoNumber>) {
     }
 
     private fun checkLottoSize(numbers: List<LottoNumber>) =
-        require(numbers.size == LOTTO_SIZE) { LottoException.NUMBER_SIZE_NOT_MATCH.message }
+        require(numbers.size == LOTTO_SIZE) { LottoException.NUMBER_SIZE_NOT_MATCH.getLottoSize(LOTTO_SIZE) }
 
     private fun checkNumberDuplicate(numbers: List<LottoNumber>) =
         require(numbers.toSet().size == numbers.size) { LottoException.DUPLICATE_NUMBER_EXIST.message }
