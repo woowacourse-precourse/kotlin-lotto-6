@@ -19,8 +19,8 @@ class Buy {
         }
     }
 
-    fun generateLottos(count: Int): UserLotto{
-        val lottos = UserLotto()
+    fun generateLottos(count: Int): Lottos{
+        val lottos = Lottos()
         for (i in 1..count) {
             val lotto = Lotto(createWinningLotto())
             lottos.addUserLotto(lotto)

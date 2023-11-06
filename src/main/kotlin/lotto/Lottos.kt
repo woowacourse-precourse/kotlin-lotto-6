@@ -1,6 +1,6 @@
 package lotto
 
-class UserLotto {
+class Lottos {
     private val UserLotto: MutableList<Lotto> = mutableListOf()
 
     fun getUserLotto(): List<Lotto> {

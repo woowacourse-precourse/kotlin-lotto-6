@@ -28,7 +28,7 @@ class BuyTest {
         val lotto5 = Lotto(listOf(41, 42, 43, 44, 45, 40))
 
 
-        val lottos = UserLotto()
+        val lottos = Lottos()
         lottos.addUserLotto(lotto1)
         lottos.addUserLotto(lotto2)
         lottos.addUserLotto(lotto3)
