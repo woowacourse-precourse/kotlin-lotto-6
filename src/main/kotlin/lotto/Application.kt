@@ -101,7 +101,7 @@ fun gameRank(lottoNumber: Lotto, winningNumber: Pair<List<Int>, Int>): Int {
         normalNumberMatch == 5 -> 3
         normalNumberMatch == 4 -> 4
         normalNumberMatch == 3 -> 5
-        else -> -1
+        else -> 0
     }
 }
 
@@ -129,15 +129,17 @@ fun calculateTotalReward(rankCounts:Map<Int, Int>):Long{
     return reward
 }
 
-fun calculateRankCount(lottoTickets:List<Lotto>, winningNumber: Pair<List<Int>, Int>): Map<Int, Int> {
-    val rankCounts:MutableMap<Int, Int> = mutableMapOf()
+fun calculateRankCount(lottoTickets: List<Lotto>, winningNumber: Pair<List<Int>, Int>): Map<Int, Int> {
+    val rankCounts: MutableMap<Int, Int> = mutableMapOf()
+    for (rank in 0..5) {
+        rankCounts[rank] = 0
+    }
     lottoTickets.forEach {
         val rank = gameRank(it, winningNumber)
         rankCounts[rank] = rankCounts.getOrDefault(rank, 0) + 1
     }
     return rankCounts
 }
-
 fun main() {
     println(lottoPayment())
 }
