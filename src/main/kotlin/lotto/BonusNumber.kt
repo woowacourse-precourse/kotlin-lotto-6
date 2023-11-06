@@ -14,6 +14,7 @@ class BonusNumber {
     fun createBonusNumber(userLotto: Lotto): Int {
         val bonusNumber = Input.inputBonusNumber()
         checkValidBonusNumber(bonusNumber)
+        checkDuplicateBonusNumber(userLotto, bonusNumber.toInt())
         return bonusNumber.toInt()
     }
 
