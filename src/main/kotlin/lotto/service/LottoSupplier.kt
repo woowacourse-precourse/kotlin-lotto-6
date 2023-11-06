@@ -9,13 +9,13 @@ import lotto.model.lotto.PurchaseLottos
 
 class LottoSupplier {
     fun supplyPurchaseLottos(purchaseCount: Int): PurchaseLottos {
-        val lottos = PurchaseLottos()
+        val lottos = mutableListOf<Lotto>()
 
         repeat(purchaseCount) {
             lottos.add(supplyLotto())
         }
 
-        return lottos
+        return PurchaseLottos(lottos)
     }
 
     private fun supplyLotto(): Lotto {
