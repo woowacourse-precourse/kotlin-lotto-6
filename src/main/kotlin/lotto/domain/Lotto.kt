@@ -18,7 +18,5 @@ class Lotto(private val numbers: List<LottoNumber>) {
     private fun checkNumberDuplicate(numbers: List<LottoNumber>) =
         require(numbers.toSet().size == numbers.size) { LottoException.DUPLICATE_NUMBER_EXIST.message }
 
-    override fun toString(): String {
-        return numbers.toString()
-    }
+    override fun toString(): String = numbers.toString()
 }
