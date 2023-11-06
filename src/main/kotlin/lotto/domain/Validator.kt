@@ -23,6 +23,7 @@ class Validator {
     fun validateLottoNum(lottoNum: List<String>) {
         validateLottoNumEmpty(lottoNum)
         validateLottoNumCount(lottoNum)
+        validateLottoNumRange(lottoNum)
     }
 
     private fun validateLottoNumEmpty(lottoNum: List<String>) {
@@ -31,5 +32,11 @@ class Validator {
 
     private fun validateLottoNumCount(lottoNum: List<String>) {
         require(lottoNum.size == 6)
+    }
+
+    private fun validateLottoNumRange(lottoNum: List<String>) {
+        for (element in lottoNum) {
+            require(element.toInt() in 1..45)
+        }
     }
 }
