@@ -10,6 +10,7 @@ import util.Validator
 
 
 object UserInput {
+    private lateinit var duplicateNumbers: List<Int> // 당첨 번호들을 담아 두기 위한 변수(보너스 번호 중복 체크 용도)
 
     private fun readOnlyDigitAndToInt(): Int {
         while (true) {
@@ -54,6 +55,7 @@ object UserInput {
                 Validator
                     .checkProperNumbersSize(winNumbers)
                     .checkNumberListInRange(winNumbers)
+                duplicateNumbers = winNumbers // 입력 받은 당첨 번호를 중복 숫자 리스트에 담는다.(보너스 번호 중복 체크 용도)
 
                 return winNumbers
             } catch (e: NumberFormatException) {
@@ -69,7 +71,9 @@ object UserInput {
         while (true) {
             try {
                 val bonus = readOnlyDigitAndToInt()
-                Validator.checkNumberInRange(bonus)
+                Validator
+                    .checkNumberInRange(bonus)
+                    .checkIsDuplicateNumber(bonus, duplicateNumbers)
 
                 return bonus
             } catch (e: NumberFormatException) {

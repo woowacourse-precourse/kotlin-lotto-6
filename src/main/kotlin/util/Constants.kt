@@ -15,6 +15,7 @@ object Constants {
     const val MSG_ERR_SIX_DISTINCT_NUMBER = "[ERROR] 로또 번호는 서로 다른 6자리 수만 가능합니다."
     const val MSG_ERR_LOTTO_NUMBER_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."
     const val MSG_ERR_LOTTO_NUMBER_BY_COMMA = "숫자가 여러 개인 경우 쉼표(,)로 구분해주세요. 예) 1,2,3,4,5,6"
+    const val MSG_ERR_BONUS_NOT_DUPLICATE = "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."
 
     const val MONEY_JACKPOT = "2,000,000,000원"
     const val MONEY_SECOND_PRIZE = "30,000,000원"

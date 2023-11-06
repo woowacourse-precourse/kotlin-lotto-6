@@ -4,6 +4,7 @@ import util.Constants.MAX_LOTTO_RANGE
 import util.Constants.MAX_PURCHASE_MONEY
 import util.Constants.MIN_LOTTO_RANGE
 import util.Constants.MIN_PURCHASE_MONEY
+import util.Constants.MSG_ERR_BONUS_NOT_DUPLICATE
 import util.Constants.MSG_ERR_DIVISIBLE_BY_THOUSAND
 import util.Constants.MSG_ERR_INVALIDATE_INPUT
 import util.Constants.MSG_ERR_LOTTO_NUMBER_RANGE
@@ -62,4 +63,9 @@ object Validator {
         return this
     }
 
+    fun checkIsDuplicateNumber(number: Int, duplicateNumbers: List<Int>):Validator {
+        require(!(duplicateNumbers.contains(number))) { MSG_ERR_BONUS_NOT_DUPLICATE }
+
+        return this
+    }
 }
