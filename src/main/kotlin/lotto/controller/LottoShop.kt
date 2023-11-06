@@ -30,5 +30,6 @@ class LottoShop {
         val lottoNum = lottoMC.pickLottoNum()
         validator.validateLottoNum(lottoNum)
         val bonusNum = lottoMC.pickBonusNum()
+        validator.validateBonusNum(bonusNum)
     }
 }

@@ -44,4 +44,12 @@ class Validator {
     private fun validateLottoNumDuplicate(lottoNum: List<String>) {
         require(lottoNum.size != lottoNum.distinct().count())
     }
+
+    fun validateBonusNum(bonusNum: String) {
+        validateBonusNumIsBlank(bonusNum)
+    }
+
+    private fun validateBonusNumIsBlank(bonusNum: String) {
+        require(bonusNum.isBlank())
+    }
 }
