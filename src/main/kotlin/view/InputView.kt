@@ -2,11 +2,10 @@ package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
 import constants.ExceptionMessages.EXCEPTION_PURCHASE_DIVISION
-import constants.ExceptionMessages.EXCEPTION_PURCHASE_MINUS
+import constants.ExceptionMessages.EXCEPTION_PURCHASE_NO_MORE_THAN_ZERO
 import constants.ExceptionMessages.EXCEPTION_PURCHASE_STRING
 import constants.ExceptionMessages.EXCEPTION_UNEXPECTED
 import lotto.constants.Constants.INPUT_PURCHASE_AMOUNT
-import lotto.utils.InputViewValidation
 
 object InputView {
 
@@ -27,8 +26,9 @@ object InputView {
     private fun validateUserAmount(userInput: String) {
         try {
             val amount = userInput.toInt()
+
+            if (amount <= 0) throw IllegalArgumentException(EXCEPTION_PURCHASE_NO_MORE_THAN_ZERO)
             if (amount % 1000 != 0) throw IllegalArgumentException(EXCEPTION_PURCHASE_DIVISION)
-            if (amount < 0) throw IllegalArgumentException(EXCEPTION_PURCHASE_MINUS)
         } catch (e: NumberFormatException) {
             throw IllegalArgumentException(EXCEPTION_PURCHASE_STRING)
         }

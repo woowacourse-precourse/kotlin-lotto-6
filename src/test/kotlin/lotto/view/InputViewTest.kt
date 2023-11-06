@@ -15,8 +15,8 @@ class InputViewTest {
     }
 
     @Test
-    fun `사용자로부터 입력받은 금액이 음수 형태인 경우 예외 발생`() {
-        val amount = "-1000"
+    fun `사용자로부터 입력받은 금액이 0 이하인 경우 예외 발생`() {
+        val amount = "0"
         assertThrows<IllegalArgumentException> {
             Money(amount)
         }
