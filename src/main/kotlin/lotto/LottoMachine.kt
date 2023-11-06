@@ -16,8 +16,8 @@ class LottoMachine {
     }
 
     fun showStaticsResult() {
-        val winningResult = lottoTickets.findWinningResult(winningLotto)
-        println(winningResult)
+        val lottoResult = LottoResult(lottoTickets, winningLotto)
+        lottoResult.findWinningResult()
     }
 
 }
