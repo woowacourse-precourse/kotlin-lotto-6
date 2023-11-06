@@ -17,6 +17,9 @@ object InputView {
     private fun getUserAmount(): Int = try {
         val userInput = Console.readLine()
         validateUserAmount(userInput)
+
+        printStepMessage()
+
         userInput.toInt()
     } catch (e: IllegalArgumentException) {
         printErrorMessage(e.message ?: EXCEPTION_UNEXPECTED)
@@ -34,8 +37,10 @@ object InputView {
         }
     }
 
-    private fun printStepMessage(message: String) {
-        println(message)
+    private fun printStepMessage(message: String? = null) {
+        message?.let {
+            println(message)
+        } ?: println()
     }
 
     private fun printErrorMessage(message: String) {

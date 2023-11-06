@@ -13,4 +13,5 @@ object LottoController {
 
     private fun getUserAmount(): Money = Money(InputView.inputPurchaseAmount())
 
+
 }
