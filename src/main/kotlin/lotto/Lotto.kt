@@ -8,7 +8,7 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
         checkDuplicate(numbers)
         for(i in numbers.indices){
-            checkNumber(numbers[i].toInt())
+            checkNumber(numbers[i])
         }
     }
     private fun checkDuplicate(number: List<Int>) {

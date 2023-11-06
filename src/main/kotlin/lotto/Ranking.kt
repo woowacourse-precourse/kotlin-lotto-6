@@ -9,7 +9,6 @@ enum class Ranking(val match: Int, val rank: Int) {
 
     companion object{
         private val ranking = IntArray(8)
-        private var prize = 0
         private val array = enumValues<Ranking>()
 
         fun check(match: Int, bonus: Int) {

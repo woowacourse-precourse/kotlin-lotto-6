@@ -11,7 +11,6 @@ class LottoGame {
     private var bonus = 0
     private var prize = 0
     private val buyNumbers = mutableListOf<List<Int>>()
-    private val ranking = IntArray(8)
     fun start(){
         try{
             inputPrice()
@@ -77,7 +76,6 @@ class LottoGame {
             numbers.add(number[i].toInt())
         }
         Lotto(numbers)
-
     }
 
     private fun inputPrice(){
