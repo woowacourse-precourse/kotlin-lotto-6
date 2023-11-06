@@ -1,10 +1,15 @@
 package lotto
 
+import lotto.util.Messages
+import lotto.util.Values
+
 object Validation {
 
     fun validateOutOfRange(amount: String): Long {
         val num = amount.toLongOrNull() ?: throw IllegalArgumentException(Messages.EXCEPTION_WRONG_FORMAT.message)
-        require(num in 1000..4_611_686_018_000) { Messages.EXCEPTION_WRONG_RANGE.message }
+        require(num in Values.VALUE_LOTTO.value..Values.VALUE_MAX_LOTTO_AMOUNT.value) {
+            Messages.EXCEPTION_WRONG_RANGE.message
+        }
         return num
     }
 
@@ -18,12 +23,16 @@ object Validation {
 
     fun validateLottoNumber(str: String): Int {
         val num = str.trim().toIntOrNull() ?: throw IllegalArgumentException(Messages.EXCEPTION_WRONG_FORMAT.message)
-        require(num in 1..45) { Messages.EXCEPTION_WRONG_RANGE_NUMBER.message }
+        require(num in Values.VALUE_MIN_LOTTO_NUMBER.value..Values.VALUE_MAX_LOTTO_NUMBER.value) {
+            Messages.EXCEPTION_WRONG_RANGE_NUMBER.message
+        }
         return num
     }
 
     fun validateWrongLengthNumber(numbers: List<Int>) {
-        require(numbers.size == 6) { Messages.EXCEPTION_WRONG_LENGTH_NUMBER.message }
+        require(numbers.size == Values.VALUE_LOTTO_LENGTH.value.toInt()) {
+            Messages.EXCEPTION_WRONG_LENGTH_NUMBER.message
+        }
     }
 
     fun validateDuplicateBonusNumber(bonusNumber: Int, winningNumbers: List<Int>) {

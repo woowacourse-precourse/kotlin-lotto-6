@@ -16,4 +16,8 @@ class Lotteries(private val _lotteries: List<Lotto>) {
         }
         return compareResult
     }
+
+    fun size(): Long {
+        return _lotteries.size.toLong()
+    }
 }

@@ -2,8 +2,9 @@ package lotto.controller
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.util.Values
 import lotto.model.Lotto
-import lotto.Messages
+import lotto.util.Messages
 import lotto.Validation.validateDuplicateBonusNumber
 import lotto.Validation.validateDuplicateNumber
 import lotto.Validation.validateWrongLengthNumber
@@ -11,6 +12,8 @@ import lotto.Validation.validateLottoNumber
 import lotto.Validation.validateMoneyUnit
 import lotto.Validation.validateOutOfRange
 import lotto.model.Lotteries
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 class LottoController {
 
@@ -50,7 +53,11 @@ class LottoController {
         println("\n$num" + Messages.TEXT_PRINT_LOTTO_NUM.message)
         val randomLotteries = mutableListOf<Lotto>()
         for (i in 1..num) {
-            val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+            val numbers = Randoms.pickUniqueNumbersInRange(
+                Values.VALUE_MIN_LOTTO_NUMBER.value.toInt(),
+                Values.VALUE_MAX_LOTTO_NUMBER.value.toInt(),
+                Values.VALUE_LOTTO_LENGTH.value.toInt()
+            )
             numbers.sort()
             randomLotteries.add(Lotto(numbers))
         }
@@ -92,11 +99,27 @@ class LottoController {
 
     private fun printLottoResult() {
         println("\n" + Messages.TEXT_LOTTO_RESULT.message)
+
         val lottoResult = lotteries.compareLotteries(winningLotto, bonusLottoNumber)
         println(Messages.TEXT_LOTTO_MATCH_3.message + "${lottoResult[3] ?: 0}개")
         println(Messages.TEXT_LOTTO_MATCH_4.message + "${lottoResult[4] ?: 0}개")
         println(Messages.TEXT_LOTTO_MATCH_5.message + "${lottoResult[5] ?: 0}개")
         println(Messages.TEXT_LOTTO_MATCH_5_BONUS.message + "${lottoResult[50] ?: 0}개")
         println(Messages.TEXT_LOTTO_MATCH_6.message + "${lottoResult[6] ?: 0}개")
+
+        val profit = calculatePrize(lottoResult)
+        val roundedProfit = profit.setScale(1, RoundingMode.HALF_EVEN)
+        println("총 수익률은 ${roundedProfit}%입니다.")
+    }
+
+    private fun calculatePrize(lottoResult: Map<Int, Int>): BigDecimal {
+        var prizeSum: Long = 0
+        prizeSum += (lottoResult[3] ?: 0) * Values.VALUE_MATCH_THREE.value
+        prizeSum += (lottoResult[4] ?: 0) * Values.VALUE_MATCH_FOUR.value
+        prizeSum += (lottoResult[5] ?: 0) * Values.VALUE_MATCH_FIVE.value
+        prizeSum += (lottoResult[50] ?: 0) * Values.VALUE_MATCH_FIVE_AND_BONUS.value
+        prizeSum += (lottoResult[6] ?: 0) * Values.VALUE_MATCH_SIX.value
+        return (prizeSum * Values.VALUE_PERCENT.value).toBigDecimal()
+            .divide((lotteries.size() * Values.VALUE_LOTTO.value).toBigDecimal(), 1, RoundingMode.HALF_EVEN)
     }
 }

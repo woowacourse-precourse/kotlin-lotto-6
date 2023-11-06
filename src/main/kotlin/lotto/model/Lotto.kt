@@ -2,10 +2,11 @@ package lotto.model
 
 import lotto.Validation.validateDuplicateNumber
 import lotto.Validation.validateLottoNumber
+import lotto.util.Values
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6)
+        require(numbers.size == Values.VALUE_LOTTO_LENGTH.value.toInt())
         validateDuplicateNumber(numbers)
         numbers.forEach { validateLottoNumber(it.toString()) }
     }

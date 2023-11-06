@@ -1,4 +1,4 @@
-package lotto
+package lotto.util
 
 enum class Messages(val message: String) {
     // TEXT
