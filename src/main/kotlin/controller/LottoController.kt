@@ -57,7 +57,17 @@ class LottoController(private val inputView: InputView, private val outputView: 
 
         outputView.printAppendLine()
 
-        outputView.printEnterBonusNumberMessage()
-        val inputBonusNumber = inputView.getValue()
+        do {
+            outputView.printEnterBonusNumberMessage()
+            val inputBonusNumber = inputView.getValue()
+            try {
+                winningNumbersManager.isBonusNumberValid(inputBonusNumber)
+            } catch (e: IllegalArgumentException) {
+                e.printStackTrace()
+                continue
+            }
+            winningNumbersManager.setBonusNumber(inputBonusNumber)
+            break
+        } while (true)
     }
 }
