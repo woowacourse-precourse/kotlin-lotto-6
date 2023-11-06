@@ -4,6 +4,7 @@ class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6) { "[ERROR] 로또에는 6개의 숫자가 필요합니다." }
         require(numbers.distinct().size == 6) { "[ERROR] 중복되지 않은 6개의 숫자가 필요합니다." }
+        require(numbers.all { it in 1 .. 45 }) { "[ERROR] 6개의 숫자는 1~45 사이의 숫자여야 합니다. " }
     }
 
     fun getLottoNumberString() : String {
