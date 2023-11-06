@@ -21,5 +21,6 @@ class WinningNumbersManager(private val numbers: List<String>) {
     }
 
     fun isBonusNumberValid(number: String) {
+        require(!winningNumbers.contains(number.toInt())) { "[ERROR] 당첨 번호에 포함된 번호는 보너스 번호로 지정할 수 없습니다." }
     }
 }
