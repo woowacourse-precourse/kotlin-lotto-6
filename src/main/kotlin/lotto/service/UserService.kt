@@ -2,36 +2,19 @@ package lotto.service
 
 import lotto.domain.Lotto
 import lotto.domain.User
-import lotto.util.Constant.INPUT_PRICE_UNIT_ERROR_MESSAGE
 import lotto.util.Constant.UNIT_PRICE
-import lotto.view.InputView
-import lotto.view.OutputView
 
-class UserService(private val inputView: InputView = InputView(), private val outputView: OutputView = OutputView()) {
+class UserService() {
 
     private val lottoes: MutableList<Lotto> = mutableListOf()
-    private var price = 0
 
-    fun makeUser(): User {
-        outputView.printInputPrice()
-        inputPrice()
-        outputView.printBuyLotto(price)
-        buyLotto()
-        outputView.printUserLotto(lottoes)
+
+    fun makeUser(price : Int): User {
+        buyLotto(price)
         return User(price, lottoes)
     }
 
-    private fun inputPrice() {
-        try {
-            price = inputView.inputPrice()
-            require(price % UNIT_PRICE == 0) { INPUT_PRICE_UNIT_ERROR_MESSAGE }
-        } catch (e: IllegalArgumentException) {
-            println(e.message)
-            inputPrice()
-        }
-    }
-
-    private fun buyLotto() {
+    private fun buyLotto(price : Int) {
         repeat(price / UNIT_PRICE) {
             lottoes.add(Lotto(LottoService.makeLottoNumber()))
         }
