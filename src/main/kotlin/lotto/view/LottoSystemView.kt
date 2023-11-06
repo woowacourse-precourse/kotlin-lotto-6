@@ -30,17 +30,24 @@ class LottoSystemView {
     }
 
     fun printWinningStatistics(lottoResult: LottoResult) {
-        var matchNumCount = lottoResult.getMatchingLottoResult()
         var lottoMatchNum = LottoMatchNum.values()
 
         println(WINNING_STATISTICS_MESSAGE)
         println(DIVIDER_LINE)
 
         lottoMatchNum.forEach { matchNum ->
-            if (matchNum == LottoMatchNum.FIVE_PLUS_BONUS){
-                printBonusPrize(lottoResult, LottoMatchNum.FIVE_PLUS_BONUS)
-            }
-            print("$matchNum$COINCIDE_NUM_MESSAGE${printLottoPrizes(matchNum)} - ")
+            printMatchingPrizeByNumber(lottoResult, matchNum)
+        }
+    }
+
+    private fun printMatchingPrizeByNumber(lottoResult: LottoResult, matchNum: LottoMatchNum) {
+        var matchNumCount = lottoResult.getMatchingLottoResult()
+
+        if (matchNum == LottoMatchNum.FIVE_PLUS_BONUS) {
+            print("${matchNum.matchingNum}$COINCIDE_NUM_MESSAGE, $COINCIDE_BONUS_NUM_MESSAGE ${printLottoPrizes(matchNum)} - ")
+            println("${matchNumCount[matchNum]}개")
+        } else {
+            print("${matchNum.matchingNum}$COINCIDE_NUM_MESSAGE ${printLottoPrizes(matchNum)} - ")
             println("${matchNumCount[matchNum]}개")
         }
     }
@@ -51,18 +58,11 @@ class LottoSystemView {
                 it
             )
         }
-        return RATE_OF_RETURN_MESSAGE.replace("winningPrice", "$matchNumPrize")
+        return WINNING_INFO_MESSAGE.replace("winningPrice", "$matchNumPrize")
     }
 
     private fun formatNumberWithThousandSeparators(amount: Int): String {
         return String.format("%,d", amount)
-    }
-
-    private fun printBonusPrize(lottoResult: LottoResult, matchNum: LottoMatchNum) {
-        var matchNumCount = lottoResult.getMatchingLottoResult()
-
-        println("$matchNum$COINCIDE_NUM_MESSAGE, $COINCIDE_BONUS_NUM_MESSAGE ${printLottoPrizes(matchNum)} - ")
-        println("${matchNumCount[matchNum]}개")
     }
 
     fun printRateOfReturn(profitPercentage: Double) {
@@ -75,9 +75,9 @@ class LottoSystemView {
         const val REQUEST_WINNING_LOTTO_NUM_MESSAGE = "당첨 번호를 입력해 주세요."
         const val REQUEST_BONUS_LOTTO_NUM_MESSAGE = "보너스 번호를 입력해 주세요."
         const val WINNING_STATISTICS_MESSAGE = "당첨 통계"
-        const val COINCIDE_NUM_MESSAGE = "개 일치 "
+        const val COINCIDE_NUM_MESSAGE = "개 일치"
         const val COINCIDE_BONUS_NUM_MESSAGE = "보너스 볼 일치"
-        const val WINNING_INFO_MESSAGE = "(winningPrice)원"
+        const val WINNING_INFO_MESSAGE = "(winningPrice원)"
         const val DIVIDER_LINE = "---"
         const val RATE_OF_RETURN_MESSAGE = "총 수익률은 profitPercentage%입니다"
 
