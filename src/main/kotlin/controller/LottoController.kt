@@ -19,7 +19,9 @@ class LottoController(private val inputView: InputView, private val outputView: 
             try {
                 money = Money(inputPrice)
             } catch (e: IllegalArgumentException) {
+                outputView.printError(e)
                 e.printStackTrace()
+                Thread.sleep(100)
                 continue
             }
             break
@@ -31,7 +33,9 @@ class LottoController(private val inputView: InputView, private val outputView: 
             try {
                 purchasedLottoTickets.add(generateLottoTickets())
             } catch (e: IllegalArgumentException) {
+                outputView.printError(e)
                 e.printStackTrace()
+                Thread.sleep(100)
                 continue
             }
         } while (purchasedLottoTickets.size != money.getPurchasableLottoTicketCount())
@@ -41,33 +45,37 @@ class LottoController(private val inputView: InputView, private val outputView: 
             outputView.printLottoInfo(lotto.getLottoNumberInfo())
         }
 
-        outputView.printAppendLine()
-
         do {
+            outputView.printAppendLine()
             outputView.printEnterWinningNumberMessage()
             try {
                 val inputWinningNumber = inputView.getValue()
                 winningNumbersManager = WinningNumbersManager(inputWinningNumber.split(","))
             } catch (e: IllegalArgumentException) {
+                outputView.printError(e)
                 e.printStackTrace()
+                Thread.sleep(100)
                 continue
             }
             break
         } while (true)
 
-        outputView.printAppendLine()
-
         do {
+            outputView.printAppendLine()
             outputView.printEnterBonusNumberMessage()
             val inputBonusNumber = inputView.getValue()
             try {
                 winningNumbersManager.isBonusNumberValid(inputBonusNumber)
             } catch (e: IllegalArgumentException) {
+                outputView.printError(e)
                 e.printStackTrace()
+                Thread.sleep(100)
                 continue
             }
             winningNumbersManager.setBonusNumber(inputBonusNumber)
             break
         } while (true)
+
+        outputView.printAppendLine()
     }
 }

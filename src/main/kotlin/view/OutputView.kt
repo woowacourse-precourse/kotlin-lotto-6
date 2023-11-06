@@ -2,6 +2,8 @@ package view
 
 class OutputView {
 
+    fun printError(exception: Exception) = println(exception.message)
+
     fun printPurchaseAmount() = println(RequestType.ENTER_PURCHASE_AMOUNT.message)
 
     fun printPurchasedItemCount(count: Int) = println("${count}${RequestType.PURCHASED_N_ITEMS.message}")
