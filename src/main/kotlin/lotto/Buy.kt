@@ -12,14 +12,17 @@ class Buy {
     }
     fun buyLotto(): Int {
         val inputMoney = inputMoney()
+        validateMoney(inputMoney.toString())
         return inputMoney / 1000
     }
 
     fun validateMoney(money: String) {
         if (money.toInt() % 1000 != 0) {
+            println(Exception.EXCEPTION_INVALID_MONEY)
             throw IllegalArgumentException(Exception.EXCEPTION_INVALID_MONEY)
         }
         if (!money.all { Character.isDigit(it) }) {
+            println(Exception.EXCEPTION_INVALID_MONEY_TYPE)
             throw IllegalArgumentException(Exception.EXCEPTION_INVALID_MONEY_TYPE)
         }
     }
