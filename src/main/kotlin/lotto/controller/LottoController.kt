@@ -1,5 +1,6 @@
 package lotto.controller
 
+import lotto.DIVIDE_MONEY_NUMBER
 import lotto.domain.RandomLottoGenerator
 import lotto.model.Lotto
 import lotto.model.LottoPrize
@@ -21,7 +22,7 @@ class LottoController {
 
     private fun buyLotto() {
         purchaseMoney = InputView.getPurchaseMoney()
-        val purchaseCount = purchaseMoney / 1000
+        val purchaseCount = purchaseMoney / DIVIDE_MONEY_NUMBER
         randomLottos = Lottos(purchaseCount, RandomLottoGenerator())
 
         val lottosState = randomLottos.getLottosState()
@@ -48,5 +49,4 @@ class LottoController {
         }
         OutputView.printResultRate(lottoResults.totalMoney, purchaseMoney)
     }
-
 }

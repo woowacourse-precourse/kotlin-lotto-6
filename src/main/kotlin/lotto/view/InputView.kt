@@ -1,12 +1,15 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.DIVIDE_MONEY_NUMBER
+import lotto.MAX_LOTTO_RANGE
+import lotto.MAX_LOTTO_SIZE
 
 object InputView {
-
     private const val PURCHASE_MONEY_MESSAGE = "구입금액을 입력해 주세요."
-    private const val WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요."
-    private const val BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요."
+    private const val WINNING_NUMBER_MESSAGE = "\n당첨 번호를 입력해 주세요."
+    private const val BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요."
+    private const val DELIMITER_COMMA = ","
 
     fun getPurchaseMoney(): Int {
         println(PURCHASE_MONEY_MESSAGE)
@@ -21,13 +24,13 @@ object InputView {
     }
 
     private fun checkDivideMoney(userMoney: Int) {
-        require(userMoney % 1000 == 0)
+        require(userMoney % DIVIDE_MONEY_NUMBER == 0)
     }
 
     fun getWinningNumbers(): List<Int> {
-        println("\n$WINNING_NUMBER_MESSAGE")
+        println(WINNING_NUMBER_MESSAGE)
 
-        val inputWinningNumbers = Console.readLine().split(",")
+        val inputWinningNumbers = Console.readLine().split(DELIMITER_COMMA)
         val winningNumbers = inputWinningNumbers.map {
             checkPositiveInteger(it)
         }
@@ -42,7 +45,7 @@ object InputView {
     }
 
     fun getBonusNumber(winningNumbers: List<Int>): Int {
-        println("\n$BONUS_NUMBER_MESSAGE")
+        println(BONUS_NUMBER_MESSAGE)
         val bonusNumber = checkPositiveInteger(Console.readLine())
         checkNumberRange(bonusNumber)
         checkDuplicateNumbersAndBonusNumber(winningNumbers, bonusNumber)
@@ -58,7 +61,7 @@ object InputView {
     }
 
     private fun checkNumberRange(winningNumber: Int) {
-        require(winningNumber <= 45)
+        require(winningNumber <= MAX_LOTTO_RANGE)
     }
 
     private fun checkDuplicateNumber(winningNumbers: List<Int>) {
@@ -70,6 +73,6 @@ object InputView {
     }
 
     private fun checkNumbersSize(winningNumbers: List<Int>) {
-        require(winningNumbers.size == 6)
+        require(winningNumbers.size == MAX_LOTTO_SIZE)
     }
 }

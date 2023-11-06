@@ -1,10 +1,13 @@
 package lotto.model
 
+import lotto.MAX_LOTTO_RANGE
+import lotto.MAX_LOTTO_SIZE
+import lotto.MIN_LOTTO_RANGE
 import lotto.domain.RandomGenerator
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6)
+        require(numbers.size == MAX_LOTTO_SIZE)
     }
 
     fun getLottoState(): List<LottoState> {
@@ -20,9 +23,9 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun confirmBonusNumber(winningCount: Int, bonusNumber: Int): Boolean {
-        if (winningCount == 5) {
+        if (winningCount == LottoPrize.SECOND.prizeCount) {
             return numbers.contains(bonusNumber)
-        }//이걸 여기서 하는게 맞을까?
+        }
         return false
     }
 
@@ -36,7 +39,7 @@ class Lotto(private val numbers: List<Int>) {
 
     companion object {
         fun makeLotto(randomLottoGenerator: RandomGenerator): Lotto {
-            return Lotto(randomLottoGenerator.pickNumberInRange(1, 45, 6))
+            return Lotto(randomLottoGenerator.pickNumberInRange(MIN_LOTTO_RANGE, MAX_LOTTO_RANGE, MAX_LOTTO_SIZE))
         }
     }
 }
