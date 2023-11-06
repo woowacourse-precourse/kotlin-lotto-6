@@ -9,6 +9,7 @@ object Constants {
     const val ERROR_FORMAT_MESSAGE = "값의 형태가 올바르지 않습니다."
     const val ERROR_SEPARATOR_MESSAGE = "구분자 형태가 올바르지 않습니다."
     const val ERROR_BOUNDARY_MESSAGE = "값이 주어진 범위를 벗어났습니다."
+    const val ERROR_COUNT_MESSAGE = "입력 개수가 올바르지 않습니다."
     const val ERROR_DISTINCTION_MESSAGE = "동일한 값이 이미 존재합니다."
     const val ERROR = "[ERROR] "
     const val COMMA = ","

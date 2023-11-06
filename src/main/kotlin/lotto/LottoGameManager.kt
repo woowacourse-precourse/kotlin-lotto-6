@@ -133,6 +133,7 @@ class LottoGameManager {
 
     private fun validatedNumbersAsWinning(input: String): List<Int> {
         InputValidator.checkHasSeparator(input, Constants.COMMA)
+        InputValidator.checkCountsOf(input.split(Constants.COMMA), Constants.LOTTO_NUMBER_COUNT)
         input.split(Constants.COMMA).map { validateAsLottoNumber(it) }
 
         return input.split(Constants.COMMA).map { it.toInt() }

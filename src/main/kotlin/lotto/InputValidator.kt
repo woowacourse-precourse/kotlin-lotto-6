@@ -29,6 +29,10 @@ object InputValidator {
         if (!input.contains(separator)) throw IllegalArgumentException(Constants.ERROR_SEPARATOR_MESSAGE)
     }
 
+    fun <T> checkCountsOf(items: List<T>, count: Int) {
+        if (items.size != count) throw IllegalArgumentException(Constants.ERROR_COUNT_MESSAGE)
+    }
+
     fun <T> checkIsNotContained(input: T, items: List<T>) {
         if (items.contains(input)) throw IllegalArgumentException(Constants.ERROR_DISTINCTION_MESSAGE)
     }
