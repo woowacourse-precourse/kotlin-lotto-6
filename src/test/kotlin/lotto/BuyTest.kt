@@ -20,7 +20,6 @@ class BuyTest {
 
     @Test
     fun `구매한 로또를 출력하는지 확인`() {
-        val buy = Buy()
         val lotto1 = Lotto(listOf(1, 2, 3, 4, 5, 6))
         val lotto2 = Lotto(listOf(11, 12, 13, 14, 15, 16))
         val lotto3 = Lotto(listOf(21, 22, 23, 24, 25, 26))
