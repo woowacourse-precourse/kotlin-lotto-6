@@ -1,16 +1,15 @@
 package lotto
 
+import lotto.domain.*
 import lotto.view.InputView
 import lotto.view.OutputView
 import lotto.validator.InputValidator
 
-import lotto.domain.LottoShop
-import lotto.domain.Lottos
-import lotto.domain.Money
-
 fun main() {
     val lottos = generateLottos()
     OutputView.outputLottos(lottos)
+
+    val winningLotto = getWinningLotto()
 }
 
 private fun generateLottos(): Lottos {
@@ -31,5 +30,16 @@ private fun getInputPurchaseAmount(): Money {
     } catch (e: IllegalArgumentException) {
         println(e.message)
         getInputPurchaseAmount()
+    }
+}
+
+private fun getWinningLotto(): Lotto {
+    return try {
+        val input = InputView.inputWinningLotto()
+        InputValidator.validateInputWinningLotto(input)
+        Lotto(input.map { LottoNumber(it.toInt()) })
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+        getWinningLotto()
     }
 }
