@@ -76,9 +76,9 @@ class LottoGame(private val user: User) {
     private fun generateLottoNumbers(): List<Int> =
         Randoms.pickUniqueNumbersInRange(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER, Lotto.NUMBER_COUNT)
 
-    private fun makeLottoNumbersMessage(lotto: Lotto): String = LOTTO_NUMBERS_MESSAGE.format(parseLottoNumbers(lotto))
+    private fun makeLottoNumbersMessage(lotto: Lotto): String = LOTTO_NUMBERS_MESSAGE.format(formatLottoNumbers(lotto))
 
-    private fun parseLottoNumbers(lotto: Lotto): String = lotto.getSortedNumbers().joinToString(LOTTO_NUMBER_SEPARATOR)
+    private fun formatLottoNumbers(lotto: Lotto): String = lotto.getSortedNumbers().joinToString(LOTTO_NUMBER_SEPARATOR)
 
     private fun showMessage(message: String) = println(message)
 
