@@ -7,6 +7,9 @@ import lotto.view.LottoView
 
 class LottoController(private val lottoModel: LottoModel, private val lottoView: LottoView) {
 
+    val MIN_LOTTO_NUMBER = 1
+    val MAX_LOTTO_NUMBER = 45
+
     fun startLotto() {
         lottoView.printEnterPurchaseMessage()
         inputPurchaseAmount()
@@ -15,8 +18,8 @@ class LottoController(private val lottoModel: LottoModel, private val lottoView:
     private fun inputPurchaseAmount() {
         while (true) {
             try {
-                val lottoNumbers = lottoModel.generateLottoNumbers(checkPurchaseAmount(readLine()))
-                lottoView.displayLottoNumbers(lottoNumbers)
+                lottoModel.generateLottoNumbers(checkPurchaseAmount(readLine()))
+                lottoView.displayLottoNumbers(lottoModel.getLottoNumbers())
                 lottoView.printEnterWinningNumberMessage()
                 inputWinningNumbers()
                 break
@@ -45,6 +48,8 @@ class LottoController(private val lottoModel: LottoModel, private val lottoView:
         while (true) {
             try {
                 checkBonusNumber(readLine())
+                lottoView.displayResults(lottoModel.calculateLotto())
+                lottoView.displayProfit(lottoModel.calculatorProfit())
                 break
             } catch (e: IllegalArgumentException) {
                 println("${Exception.ERROR_HEADER.message} ${e.message}")
@@ -68,7 +73,7 @@ class LottoController(private val lottoModel: LottoModel, private val lottoView:
         require(splitWinningNumbers.all { it.isNotBlank() && it.isNotEmpty() }) { Exception.INPUT_IS_BLANK.message }
         require(splitWinningNumbers.all { it.isDigit() }) { Exception.NOT_NUMBER.message }
         require(splitWinningNumbers.toSet().size == 6) { Exception.DUPLICATED_NUMBER.message }
-        require(splitWinningNumbers.all { it.toInt() in 1..45 }) { Exception.INVALID_RANGE_NUMBER.message }
+        require(splitWinningNumbers.all { it.toInt() in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER }) { Exception.INVALID_RANGE_NUMBER.message }
 
         return winningNumbers
     }
@@ -76,7 +81,7 @@ class LottoController(private val lottoModel: LottoModel, private val lottoView:
     private fun checkBonusNumber(bonusNumber: String) {
         require(bonusNumber.isNotBlank() && bonusNumber.isNotEmpty()) { Exception.INPUT_IS_BLANK.message }
         require(bonusNumber.isDigit()) { Exception.NOT_NUMBER.message }
-        require(bonusNumber.toInt() in 1..45 ) { Exception.INVALID_RANGE_NUMBER.message }
+        require(bonusNumber.toInt() in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER ) { Exception.INVALID_RANGE_NUMBER.message }
         require(lottoModel.getWinningNumber().none() { it == bonusNumber }) { Exception.DUPLICATED_BONUS_NUMBER.message }
 
         lottoModel.setBonusNumbers(bonusNumber)
