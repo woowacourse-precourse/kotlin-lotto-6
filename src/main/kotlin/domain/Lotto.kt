@@ -1,10 +1,11 @@
 package domain
 
-class Lotto(private val numbers: Set<Int>) {
+class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == LOTTO_COUNT)
         require(numbers.distinct().size == LOTTO_COUNT)
     }
+
     fun getNumbers() = numbers.sorted()
 
     companion object {

@@ -3,8 +3,8 @@ package domain
 import camp.nextstep.edu.missionutils.Randoms
 
 class LottoGenerator {
-    fun createLottoNumber(): Set<Int> =
-        Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_COUNT).toSet()
+    fun createLottoNumber(): List<Int> =
+        Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_COUNT).toSet().toList()
 
     companion object {
         private const val MIN_LOTTO_NUMBER = 1
