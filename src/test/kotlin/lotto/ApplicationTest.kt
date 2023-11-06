@@ -73,13 +73,17 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun `로또 개수가 일치하지 않으면 예외가 발생한다`() {
+    fun `로또 숫자가 올바르지 않으면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
             ValidationManager().apply {
-                listOf(1, 2, 3, 4, 5).isCorrectLottoCount()
+                listOf(1, 2, 3, 4, 5, 46).forEach { number ->
+                    number.validLottoNumber()
+                }
             }
         }
     }
+
+
 
     override fun runMain() {
         main()
