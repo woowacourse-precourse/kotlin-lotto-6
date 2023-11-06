@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms
 import lotto.Constants
 import lotto.model.BonusNumber
 import lotto.model.Lotto
+import lotto.model.LottoNumber
 import lotto.model.Lottos
 import lotto.model.PurchaseAmount
 import lotto.model.WinningNumbers
@@ -23,6 +24,7 @@ class GameController {
     private val inputView = InputView()
     private val outputView = OutputView()
     private val task = Task()
+    private var result = mutableMapOf(3 to 0, 4 to 0, 50 to 0, 51 to 0, 6 to 0)
     lateinit var lottos: Lottos
     // lateinit var winningAndBonusNumberPair: Pair<WinningNumbers, BonusNumber>
 
@@ -84,6 +86,40 @@ class GameController {
         WinningValidation(winningNumbers.numbers, bonusNumber.number)
         task.inputState = Task.State.DONE
 
-        // lottos
+
+        lottos.map outer@{
+            val data = calculateLotto(it.numbers, winningNumbers.numbers, bonusNumber.number)
+            updateLottoResults(data)
+        }
+        println(result)
+        outputView.printWinnigResults(result)
+    }
+
+    private fun updateLottoResults(data: Pair<Int, Int>) {
+        if (data.first == 5) {
+            val key = data.first * 10 + data.second
+            result[key] = result.getOrDefault(key, 0) + 1
+            return
+        }
+        if (data.first in 0..2) {
+            return
+        }
+        result[data.first] = result.getOrDefault(data.first, 0) + 1
+    }
+
+    private fun calculateLotto(
+        lottoNumbers: List<LottoNumber>,
+        winningnumbers: List<LottoNumber>,
+        bonusNumber: LottoNumber
+    ): Pair<Int, Int> {
+        var winningMatch = 0
+        val bonusMatch = lottoNumbers.count { it == bonusNumber }
+
+        for (num in lottoNumbers) {
+            if (winningnumbers.contains(num)) {
+                winningMatch += 1
+            }
+        }
+        return Pair(winningMatch, bonusMatch)
     }
 }
