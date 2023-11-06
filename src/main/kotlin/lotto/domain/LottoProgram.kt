@@ -7,9 +7,11 @@ class LottoProgram {
     private val inputService = InputService()
     private val outputView = OutputView()
     private val lottoMachine = LottoMachine()
-    private lateinit var lottos: Lottos
+    private lateinit var lottos: List<Lotto>
     private lateinit var winningLotto: WinningLotto
+    private lateinit var resultCalculator: ResultCalculator
     private lateinit var lottoResult: LottoResult
+    private var inputMoney = 0
 
     fun startProgram() {
         purchaseLottos()
@@ -18,8 +20,8 @@ class LottoProgram {
     }
 
     private fun purchaseLottos() {
-        val inputMoney = inputService.getInputMoney()
-        lottos = Lottos(lottoMachine.issueLottos(inputMoney))
+        inputMoney = inputService.getInputMoney()
+        lottos = lottoMachine.issueLottos(inputMoney)
         outputView.printLottoPurchaseReceipt(lottos)
     }
 
@@ -30,7 +32,9 @@ class LottoProgram {
     }
 
     private fun displayResult() {
-        lottoResult = LottoResult(lottos, winningLotto)
-        outputView.printResults(lottoResult)
+        resultCalculator = ResultCalculator(lottos, winningLotto)
+        lottoResult = resultCalculator.calculateResult()
+        outputView.printWinningStatistics(lottoResult)
+        outputView.printRateOfReturn(lottoResult.getRateOfReturn(inputMoney))
     }
 }

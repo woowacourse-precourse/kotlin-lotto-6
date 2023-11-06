@@ -1,33 +1,27 @@
 package lotto.view
 
+import lotto.domain.Lotto
 import lotto.domain.LottoResult
-import lotto.domain.Lottos
 
 class OutputView {
-    fun printLottoPurchaseReceipt(lottos: Lottos) {
-        printNumberOfLottos(lottos)
+    fun printLottoPurchaseReceipt(lottos: List<Lotto>) {
+        println("\n${lottos.size}개를 구매했습니다.")
         printLottoNumbers(lottos)
     }
-    private fun printNumberOfLottos(lottos: Lottos) {
-        println("\n${lottos.getLottos().size}개를 구매했습니다.")
+
+    private fun printLottoNumbers(lottos: List<Lotto>) {
+        lottos.forEach { lotto ->
+            println(lotto)
+        }
     }
 
-    private fun printLottoNumbers(lottos: Lottos) {
-        println(lottos)
-    }
-
-    fun printResults(lottoResult: LottoResult) {
-        printWinningStatistics(lottoResult)
-        printRateOfReturn(lottoResult.getRateOfReturn())
-    }
-
-    private fun printWinningStatistics(lottoResult: LottoResult) {
+    fun printWinningStatistics(lottoResult: LottoResult) {
         println("당첨 통계")
         println("---")
         print(lottoResult)
     }
 
-    private fun printRateOfReturn(rateOfReturn: Double) {
+    fun printRateOfReturn(rateOfReturn: Double) {
         println("총 수익률은 %.1f%%입니다.".format(rateOfReturn))
     }
 }
