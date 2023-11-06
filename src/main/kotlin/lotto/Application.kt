@@ -39,7 +39,7 @@ fun makeLottoTicket(): Lotto {
     return Lotto(pickLottoNumbers())
 }
 
-fun lottoGame(price: Int): List<Lotto> {
+fun buyLottoTickets(price: Int): List<Lotto> {
     val lottoGameTicketCount = price / 1000
     println("${lottoGameTicketCount}개를 구매했습니다.")
     val tickets: MutableList<Lotto> = mutableListOf()
@@ -70,9 +70,9 @@ fun isUniqueWithBonusNumber(numbers: List<Int>, bonusNumber: Int): Boolean {
 }
 
 fun parseWinningNumber(): Pair<List<Int>, Int> {
-    val numbers = Console.readLine().split(",").map { it.toInt() }
+    val normalNumbers = Console.readLine().split(",").map { it.toInt() }
     val bonusNumber = Console.readLine().toInt()
-    return numbers to bonusNumber
+    return normalNumbers to bonusNumber
 }
 
 fun validateWinningNumber(winningNumber: Pair<List<Int>, Int>) {
@@ -83,30 +83,29 @@ fun validateWinningNumber(winningNumber: Pair<List<Int>, Int>) {
     require(isUniqueWithBonusNumber(numbers, bonusNumber))
 }
 
-fun normalNumberMatch(lottoNumber: Lotto, normalNumber: List<Int>): Int {
-    val a = hashSetOf(lottoNumber)
-    return (hashSetOf(lottoNumber).intersect(hashSetOf(normalNumber))).size
+fun normalNumberMatch(lottoNumber: Lotto, normalNumbers: List<Int>): Int {
+    return lottoNumber.count{it in normalNumbers}
 }
 
 fun bonusNumberMatch(lottoNumber: Lotto, bonusNumber: Int): Boolean {
-    return hashSetOf(lottoNumber).contains(bonusNumber)
+    return bonusNumber in lottoNumber
 }
 
 fun gameRank(lottoNumber: Lotto, winningNumber: Pair<List<Int>, Int>): Int {
-    val (normalNumber, bonusNumber) = winningNumber
-    val numberMatch = normalNumberMatch(lottoNumber, normalNumber)
+    val (normalNumbers, bonusNumber) = winningNumber
+    val normalNumberMatch = normalNumberMatch(lottoNumber, normalNumbers)
     val isBonusNumberMatch = bonusNumberMatch(lottoNumber, bonusNumber)
     return when {
-        numberMatch == 6 -> 1
-        (numberMatch == 5) and isBonusNumberMatch -> 2
-        numberMatch == 5 -> 3
-        numberMatch == 4 -> 4
-        numberMatch == 3 -> 5
+        normalNumberMatch == 6 -> 1
+        (normalNumberMatch == 5) and isBonusNumberMatch -> 2
+        normalNumberMatch == 5 -> 3
+        normalNumberMatch == 4 -> 4
+        normalNumberMatch == 3 -> 5
         else -> -1
     }
 }
 
-fun moneyRewardCalculate(rank: Int): Int {
+fun rankReward(rank: Int): Int {
     return when (rank) {
         1 -> 2_000_000_000
         2 -> 30_000_000
@@ -119,6 +118,24 @@ fun moneyRewardCalculate(rank: Int): Int {
 
 fun rewardRateCalculate(reward: Int, price: Int): Double {
     return reward.toDouble() * 100 / price.toDouble()
+}
+
+fun calculateTotalReward(rankCounts:Map<Int, Int>):Long{
+    var reward:Long = 0
+    rankCounts.forEach{
+        val (rank, count) = it
+        reward += rankReward(rank) * count
+    }
+    return reward
+}
+
+fun calculateRankCount(lottoTickets:List<Lotto>, winningNumber: Pair<List<Int>, Int>): Map<Int, Int> {
+    val rankCounts:MutableMap<Int, Int> = mutableMapOf()
+    lottoTickets.forEach {
+        val rank = gameRank(it, winningNumber)
+        rankCounts[rank] = rankCounts.getOrDefault(rank, 0) + 1
+    }
+    return rankCounts
 }
 
 fun main() {
