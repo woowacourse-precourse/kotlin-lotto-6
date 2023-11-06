@@ -11,11 +11,16 @@ val NUMBERS = mutableSetOf<Int>()
 var BONUS_NUMBER: Int? = null
 
 fun main() {
-    while (MONEY == null) inputMoney()
+    while (MONEY == null) {
+        inputMoney()
+    }
     makeLottoes()
-    while (NUMBERS.size != 6) inputNumbers()
-    while (BONUS_NUMBER == null) inputBonusNumber()
-    countMatchedNumbers()
+    while (NUMBERS.size != 6) {
+        inputNumbers()
+    }
+    while (BONUS_NUMBER == null) {
+        inputBonusNumber()
+    }
     countJackpot()
     showJackpotCount()
     showReturn()
@@ -45,16 +50,10 @@ fun makeLottoes() {
     for (i in 0 until (MONEY!! / 1000)) {
         val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
         val lotto = Lotto(numbers)
+        println(numbers)
         LOTTOES.add(lotto)
     }
-    showLottoes()
     println()
-}
-
-fun showLottoes() {
-    for (item in LOTTOES) {
-        println(item.numberList)
-    }
 }
 
 fun inputNumbers() {
@@ -109,23 +108,16 @@ fun checkBonusNumber(number: String) {
     }
 }
 
-fun countMatchedNumbers() {
-    for (item in LOTTOES) {
-        item.matchingNumbers(NUMBERS)
-        item.matchingBonusNumber(BONUS_NUMBER!!)
-    }
-}
-
 // 당첨금 계산
 fun countJackpot() {
     for (item in LOTTOES) {
-        checkJackpot(item)
+        val matchedCount = item.matchingNumbers(NUMBERS)
+        val matchedBonus = item.matchingBonusNumber(BONUS_NUMBER!!)
+        checkJackpot(matchedCount, matchedBonus)
     }
 }
 
-fun checkJackpot(item: Lotto) {
-    val matchedCount = item.matchedNumbersCount
-    val matchedBonus = item.matchedBonusNumber
+fun checkJackpot(matchedCount: Int, matchedBonus: Boolean) {
     when {
         matchedCount == LottoPrize.MATCHED3.matchedNumbers -> LottoPrize.MATCHED3.incrementCount()
         matchedCount == LottoPrize.MATCHED4.matchedNumbers -> LottoPrize.MATCHED4.incrementCount()
@@ -157,7 +149,9 @@ fun showReturn() {
     }
 
     var roundedPercentage = (prize - MONEY!!) / MONEY!!.toDouble() * 100
-    if (roundedPercentage < 0) roundedPercentage += 100
+    if (roundedPercentage < 0) {
+        roundedPercentage += 100
+    }
 
     println("총 수익률은 ${String.format("%.1f", roundedPercentage)}%입니다.")
 }

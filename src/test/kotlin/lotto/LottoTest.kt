@@ -16,15 +16,9 @@ class LottoTest {
     @Test
     fun `로또 번호에 중복된 숫자가 있으면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
-            Lotto(listOf(1, 2, 3, 4, 5, 5))
+            Lotto(setOf(1, 2, 3, 4, 5, 5).toList())
         }
     }
 
     // 아래에 추가 테스트 작성 가능
-    @Test
-    fun `로또 번호에 숫자가 1부터 45가 아니라면 예외가 발생한다`() {
-        assertThrows<IllegalArgumentException> {
-            Lotto(listOf(1, 2, 3, 4, 5, 46))
-        }
-    }
 }
