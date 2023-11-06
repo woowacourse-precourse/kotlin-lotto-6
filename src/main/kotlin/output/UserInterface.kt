@@ -4,7 +4,7 @@ enum class UserInterface (
     val mention : String
 ){
     //예외 처리 노출 문구
-    UNDER_AND_OVER_NUMBER_EXCEPTION("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다."),
+    UNDER_AND_OVER_NUMBER_EXCEPTION("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     NOT_INPUT_SAME_NUMBER_EXCEPTION("[ERROR] 당첨 번호에 동일한 숫자를 입력할 수 없습니다."),
     NOT_INPUT_SPACE_EXCEPTION("[ERROR] 당첨 번호는 공백이 입력될 수 없습니다."),
     INPUT_IN_UNIT_OF_THOUSANDS_EXCEPTION("[ERROR] 로또 구매 금액은 1,000원 단위로 입력 되어야 합니다."),

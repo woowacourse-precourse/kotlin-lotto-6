@@ -2,12 +2,14 @@ package app
 
 import lotto.Lotto
 import lotto.LottoInitializer
+import winningNumber.BonusNumber
 import winningNumber.WinningNumber
 
 fun main() {
     val lotto = LottoInitializer()
     val lottos = mutableListOf<Lotto>()
     val winningNumber = WinningNumber()
+    val bonusNumber = BonusNumber()
 
     val price = lotto.inputPriceOfLotto()
     val amountOfLotto = price/1000
@@ -18,6 +20,6 @@ fun main() {
     }
     print(lottos[0].getNumbers())
 
-    winningNumber.inputWinningNumber()
-    winningNumber.inputBonusNumber()
+    var onlyWinningNumber = winningNumber.inputWinningNumber()
+    bonusNumber.inputBonusNumber(onlyWinningNumber)
 }

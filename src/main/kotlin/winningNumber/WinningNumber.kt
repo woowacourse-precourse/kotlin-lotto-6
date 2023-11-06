@@ -4,12 +4,12 @@ import camp.nextstep.edu.missionutils.Console
 import output.UserInterface
 
 class WinningNumber {
-    var winningNumber = listOf<String>()
-    fun inputWinningNumber(): List<String>{
+    fun inputWinningNumber(): MutableList<String>{
+        var winningNumber = mutableListOf<String>()
         while (true) {
             println(UserInterface.INPUT_WINNING_NUMBERS.mention)
             try {
-                winningNumber = Console.readLine().split(",")
+                winningNumber = Console.readLine().split(",").toMutableList()
                 WinningNumberCheck().checkWinningNumber(winningNumber)
                 return winningNumber
             }catch (message: IllegalArgumentException){
@@ -17,12 +17,5 @@ class WinningNumber {
             }
             println("WinningNumber : $winningNumber")
         }
-    }
-
-    fun inputBonusNumber(){
-        println(UserInterface.INPUT_BONUS_NUMBERS.mention)
-        var bonusNumber = Console.readLine()
-        winningNumber += bonusNumber
-        println("add bonusNumber : $winningNumber")
     }
 }
