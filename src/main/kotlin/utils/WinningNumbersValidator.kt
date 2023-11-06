@@ -4,11 +4,12 @@ import lotto.LottoMachine.Companion.LOTTO_NUMBER_COUNT
 
 class WinningNumbersValidator : IntegerInputValidator() {
 
-    fun checkInputValidation(userInput: List<String>): Boolean {
-        validateNumbersCount(userInput)
-        validateEmptySpace(userInput)
+    fun checkInputValidation(userInput: String): Boolean {
+        val input = userInput.split(DELIMITER)
+        validateNumbersCount(input)
+        validateEmptySpace(input)
 
-        val numbers = userInput.map { input -> input.toInt() }
+        val numbers = input.map { it.toInt() }
         validateOutOfRangeNumbers(numbers)
         validateDuplicateNumbers(numbers)
         return true
@@ -32,5 +33,6 @@ class WinningNumbersValidator : IntegerInputValidator() {
 
     companion object {
         const val INPUT_DUPLICATE_NUMBERS_ERR_MSG = "중복된 숫자를 입력하실 수 없습니다."
+        const val DELIMITER = ","
     }
 }

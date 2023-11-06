@@ -41,7 +41,7 @@ class WinningNumbersValidatorTest {
 
     @Test
     fun When_6Numbers_InValidRange_Expect_Valid() {
-        val input = "1,2,3,4,5,6".split(',')
+        val input = "1,2,3,4,5,6"
         assert(winningNumbersValidator.checkInputValidation(input))
     }
 }
