@@ -26,4 +26,11 @@ class WinningNumbersManagerTest {
             WinningNumbersManager(listOf("1", "2", "3", "33", "test", "4"))
         }
     }
+
+    @Test
+    fun `당첨 번호 내 올바르지 못한 숫자 형식을 갖고 있는 숫자가 있을 경우`() {
+        assertThrows<IllegalArgumentException> {
+            WinningNumbersManager(listOf("1", "2", "3", "4", "5", "06"))
+        }
+    }
 }
