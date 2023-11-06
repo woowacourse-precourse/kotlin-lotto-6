@@ -17,6 +17,7 @@ fun main() {
     doLogic { getUserBonusLottoNumber() }
     checkWinning()
     showWinningResult()
+    showRateOfReturn()
 }
 
 fun showLottoWinningNumbers() {
@@ -29,11 +30,17 @@ fun getLottoPurchaseAmount() {
     println("구입금액을 입력해 주세요.")
     val lottoPurchaseAmount = Console.readLine()
     println()
-    val lottoTickets = lottoPurchaseAmount.toInt()
-    if (lottoTickets % 1000 == 0) {
-        println("${lottoTickets / 1000}개를 구매했습니다.")
-        numberOfLottoTickets = lottoTickets / 1000
-    } else throw IllegalArgumentException("$errorPrefix 구입금액은 1000원 단위의 숫자 여야합니다.")
+    val lottoTickets = lottoPurchaseAmount.toIntOrNull()
+    lottoTickets?.let {
+        if (lottoTickets % 1000 == 0) {
+            println("${lottoTickets / 1000}개를 구매했습니다.")
+            numberOfLottoTickets = lottoTickets / 1000
+        } else {
+            throw IllegalArgumentException("$errorPrefix 구입금액은 1000원 단위의 숫자 여야합니다.")
+        }
+        return
+    }
+    throw IllegalArgumentException("$errorPrefix 구입금액은 1000원 단위의 숫자 여야합니다.")
 }
 
 fun getLottoWinningNumbers() {
@@ -90,11 +97,11 @@ fun validateUserBonusLottoNumber(userBonusInput: String): Int {
 fun checkWinning() {
     lottos.forEach {
         when (it.checkWinning(userLottoNumbers, userLottoBonusNumber)) {
-            Winning.matchingThreeCount -> winnings[0].winningCnt++
-            Winning.matchingFourCount -> winnings[1].winningCnt++
-            Winning.matchingFiveCount -> winnings[2].winningCnt++
-            Winning.matchingFiveCountWithBonus -> winnings[3].winningCnt++
-            Winning.matchingSixCount -> winnings[4].winningCnt++
+            Winning.MatchingThreeCount -> winnings[0].winningCnt++
+            Winning.MatchingFourCount -> winnings[1].winningCnt++
+            Winning.MatchingFiveCount -> winnings[2].winningCnt++
+            Winning.MatchingFiveCountWithBonus -> winnings[3].winningCnt++
+            Winning.MatchingSixCount -> winnings[4].winningCnt++
             else -> {}
         }
     }
@@ -107,4 +114,13 @@ fun showWinningResult() {
     winnings.forEach {
         println("${it.msg} (${PriceUtil.decimal.format(it.winningPrice)}원) - ${it.winningCnt}개")
     }
+}
+
+fun showRateOfReturn() {
+    val totalWinningPrice = winnings.fold(0) { acc, winning ->
+        acc + winning.winningPrice * winning.winningCnt
+    }
+    val rateOfReturn = totalWinningPrice.toDouble() / (numberOfLottoTickets * 1000) * 100
+    val roundedRateOfReturn = String.format("%.1f", rateOfReturn.toDouble())
+    println("총 수익률은 ${roundedRateOfReturn}%입니다.")
 }

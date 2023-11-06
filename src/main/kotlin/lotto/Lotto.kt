@@ -13,14 +13,14 @@ class Lotto(private val numbers: List<Int>) {
         val intersectCnt = userInputNumbers.intersect(numbers).size
         val isBonusNumberMatched = numbers.contains(userInputBonusNumber)
         return when (intersectCnt) {
-            3 -> Winning.matchingThreeCount
-            4 -> Winning.matchingFourCount
+            3 -> Winning.MatchingThreeCount
+            4 -> Winning.MatchingFourCount
             5 -> {
-                if (isBonusNumberMatched) Winning.matchingFiveCountWithBonus
-                Winning.matchingFiveCount
+                if (isBonusNumberMatched) Winning.MatchingFiveCountWithBonus
+                Winning.MatchingFiveCount
             }
 
-            6 -> Winning.matchingSixCount
+            6 -> Winning.MatchingSixCount
             else -> null
         }
     }
