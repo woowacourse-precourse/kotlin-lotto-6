@@ -21,16 +21,20 @@ class LottoMachine {
 
     fun moneyInput(): Int {
         Output().printWriteMoney()
-        val money = Input().write()
-        Money().inputMoneyValidate(money)
-        println(money)
+        var money = Input().write()
+        try {
+            Money().moneyFormatValidate(money)
+            Money().moneyRangeValidate(money)
+            Money().moneyChangesValidate(money)
+        } catch (e: IllegalArgumentException) {
+            money = Input().write()
+        }
         return money.toInt()
     }
 
     fun purchaseNumberLotto(count: Int): List<List<Int>> {
         Output().printPurchase(count)
         val userLotto: MutableList<List<Int>> = mutableListOf()
-
         repeat(count) {
             val lotto = Random().lottoGenerator().sorted()
             userLotto.add(Lotto(lotto).serve())
@@ -42,8 +46,7 @@ class LottoMachine {
     fun userAnswer(): List<Int> {
         Output().printWriteAnswer()
         val answers = Input().write()
-        val userAnswerInput = UserLottoNumber().convert(answers)
-        return userAnswerInput
+        return Lotto(UserLottoNumber().convert(answers)).serve()
     }
 
     fun userBonus(answers: List<Int>): Int {
