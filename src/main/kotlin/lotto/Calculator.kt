@@ -2,9 +2,7 @@ package lotto
 
 class Calculator() {
 
-    fun calculateLottoAvailableForPurchase(cost: String): Int {
-        val number = cost.toIntOrNull() ?: throw IllegalArgumentException()
-        require(number > 0)
+    fun calculateLottoAvailableForPurchase(number: Int): Int {
         return (number / 1000)
     }
 
