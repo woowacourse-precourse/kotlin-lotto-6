@@ -12,11 +12,21 @@ class WinningLotto {
     val bonusNumber: Int
         get() = _bonusNumber
 
-    fun initializeWinningNumbers() {
+    fun createWinningNumbers() {
+        println(INPUT_WINNING_NUMBERS)
+        initializeWinningNumbers()
+    }
+
+    private fun initializeWinningNumbers() {
         _winningNumbers = readWinningNumbers()
     }
 
-    fun initializeBonusNumber() {
+    fun createBonusNumber() {
+        println(INPUT_BONUS_NUMBER)
+        initializeBonusNumber()
+    }
+
+    private fun initializeBonusNumber() {
         _bonusNumber = readBonusNumber()
     }
 
@@ -27,6 +37,11 @@ class WinningLotto {
 
     private fun readBonusNumber(): Int {
         return Console.readLine().toInt()
+    }
+
+    companion object {
+        const val INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요."
+        const val INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요."
     }
 
 }

@@ -1,5 +1,6 @@
+package lotto
+
 import camp.nextstep.edu.missionutils.Randoms
-import lotto.Lotto
 
 class LottoTicketGenerator {
     fun createAutoTicket() = Lotto(

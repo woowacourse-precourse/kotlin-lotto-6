@@ -1,6 +1,5 @@
 package lotto
 
-import LottoTicketGenerator
 import camp.nextstep.edu.missionutils.Console
 
 class Player {
