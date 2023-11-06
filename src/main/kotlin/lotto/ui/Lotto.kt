@@ -12,6 +12,7 @@ class Lotto(private val numbers: List<Int>) {
 
     fun startLottoDraw(bonusNumber: Int, viewModel: LottoViewModel) {
         //사용자에게 최종 통계 출력
+        println(CommonConst.MESSAGE_WINNING_STATISTICS)
         viewModel.checkLottoStatistics(numbers, bonusNumber).also {
             println(CommonConst.MESSAGE_LOTTO_WINNING_DETAILS_3_MATCHES.format(it.fifthPrizeCount))
             println(CommonConst.MESSAGE_LOTTO_WINNING_DETAILS_4_MATCHES.format(it.fourthPrizeCount))

@@ -13,6 +13,7 @@ class LottoGame {
     private val viewModel = LottoViewModel(repository)
 
     fun start() {
+        println(CommonConst.MESSAGE_START_LOTTO_GAME)
 
         //구입금액 입력
         println(CommonConst.MESSAGE_INPUT_PURCHASE_AMOUNT)
