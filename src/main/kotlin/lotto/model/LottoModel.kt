@@ -1,5 +1,6 @@
 package lotto.model
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.utils.ErrorMessage
 import lotto.utils.Values
@@ -8,6 +9,7 @@ import kotlin.properties.Delegates
 class LottoModel {
     private var lotteryAmount by Delegates.notNull<Int>()
     private var lotteryNumbers: ArrayList<List<Int>> = ArrayList()
+    private lateinit var lotto: Lotto
     fun isPurchaseMoneyValueValid(moneyValue: String): Boolean {
         return try {
             if ((moneyValue.toInt() % Values.LOTTERY_PRICE) != 0) {
@@ -36,5 +38,14 @@ class LottoModel {
     }
     private fun setRandomLottery() {
         lotteryNumbers.add(Randoms.pickUniqueNumbersInRange(Values.MINIMUM_LOTTERY_NUMBER, Values.MAXIMUM_LOTTERY_NUMBER, Values.LOTTERY_NUMBER_AMOUNT).sorted())
+    }
+    fun setLotto(winningNumbers: List<String>): Boolean {
+        return try {
+            lotto = Lotto(winningNumbers.map { it.toInt() }.map { it.toInt() })
+            lotto.isLottoValid()
+            false
+        } catch (e: IllegalArgumentException) {
+            true
+        }
     }
 }

@@ -14,8 +14,13 @@ class LottoController(private val view: LottoView, private val model: LottoModel
         model.setLotteryNumbers()
         view.displayLotteryNumbers(model.getLotteryNumbers())
         view.requestWinningNumbersMessage()
+        while (model.setLotto(setWinningNumbers())) {
+        }
     }
     private fun setPurchaseMoneyValue(): String {
         return Console.readLine()
+    }
+    private fun setWinningNumbers(): List<String> {
+        return listOf(*Console.readLine().split(",").toTypedArray<String>())
     }
 }
