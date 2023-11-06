@@ -78,5 +78,22 @@ class LottoController(private val inputView: InputView, private val outputView: 
 
         outputView.printAppendLine()
         outputView.printResultMessage()
+
+        val resultMap = HashMap<Int, Int>()
+        for (lotto in purchasedLottoTickets) {
+            val rank = winningNumbersManager.getRank(lotto.getLottoNumberInfo())
+            if (resultMap.containsKey(rank)) {
+                resultMap[rank] = resultMap[rank]!! + 1
+                continue
+            }
+            resultMap[rank] = 1
+        }
+        for (rank in 6 downTo 1) {
+            if (resultMap.containsKey(rank)) {
+                outputView.printWinningStatistics(rank, resultMap[rank]!!)
+                continue
+            }
+            outputView.printWinningStatistics(rank, 0)
+        }
     }
 }
