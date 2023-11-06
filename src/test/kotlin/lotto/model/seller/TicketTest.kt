@@ -1,5 +1,6 @@
-package lotto.model
+package lotto.model.seller
 
+import lotto.model.Lotto
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

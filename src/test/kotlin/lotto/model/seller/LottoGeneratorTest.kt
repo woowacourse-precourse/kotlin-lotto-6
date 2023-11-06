@@ -1,4 +1,4 @@
-package lotto.model
+package lotto.model.seller
 
 import lotto.model.seller.LottoGenerator
 import org.assertj.core.api.Assertions.assertThat

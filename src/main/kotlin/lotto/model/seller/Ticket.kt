@@ -1,4 +1,6 @@
-package lotto.model
+package lotto.model.seller
+
+import lotto.model.Lotto
 
 class Ticket {
 
