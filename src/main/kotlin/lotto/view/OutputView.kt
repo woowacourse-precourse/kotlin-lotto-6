@@ -34,9 +34,11 @@ object OutputView {
     }
 
     fun printResults(results: MutableMap<Prize, Int>) {
-        results.forEach { (prize, count) ->
-            println("${prize.matchingNumbers}개 일치 (${prize.prizeAmount}원) -  ${count}개")
+            println("3개 일치 (5,000원) - ${results[Prize.THREE_MATCH] ?: 0}개")
+            println("4개 일치 (50,000원) - ${results[Prize.FOUR_MATCH] ?: 0}개")
+            println("5개 일치 (1,500,000원) - ${results[Prize.FIVE_MATCH] ?: 0}개")
+            println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${results[Prize.FIVE_MATCH_WITH_BONUS] ?: 0}개")
+            println("6개 일치 (2,000,000,000원) - ${results[Prize.SIX_MATCH] ?: 0}개")
         }
-    }
 
-}
+    }
