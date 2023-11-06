@@ -11,7 +11,7 @@ import lotto.view.OutputView
 class LottoController {
     private var purchaseMoney = 0
     private lateinit var randomLottos: Lottos
-    private lateinit var lottoPrizes: List<LottoPrize?>
+    private lateinit var lottoPrizes: List<LottoPrize>
 
     fun playGame() {
 

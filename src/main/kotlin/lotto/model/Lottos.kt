@@ -15,7 +15,7 @@ class Lottos(purchaseCount: Int, randomGenerator: RandomGenerator) {
         return lottos.map { LottosState(it.getLottoState()) }
     }
 
-    fun getLottoPrizes(winningLotto: Lotto, bonusNumber: Int): List<LottoPrize?> {
+    fun getLottoPrizes(winningLotto: Lotto, bonusNumber: Int): List<LottoPrize> {
         return lottos.map {
             val winningCount = it.getWinningCount(winningLotto)
             LottoPrize.getLottoPrize(
