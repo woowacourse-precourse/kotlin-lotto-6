@@ -15,14 +15,31 @@ object LottoShop {
         return Lottos(lottos)
     }
 
+    fun getWinningResult(winningLotto: Lotto, bonusNumber: LottoNumber, purchasedLottos: Lottos): WinningResult {
+        val result = mutableMapOf<WinningRank, MatchCount>()
+        WinningRank.entries.forEach { result[it] = MatchCount(0) }
+
+        purchasedLottos.forEach {
+            val numberMatchCount = it.getLottoMatchCount(winningLotto)
+            val isBonusNumberMatched = it.isContainLottoNumber(bonusNumber)
+            val rank = WinningRank.getRank(numberMatchCount, isBonusNumberMatched)
+            result[rank]!!.count++
+        }
+
+        val totalRevenue = result.entries.sumOf { it.key.prize.amount * it.value.count }
+        val totalPurchasePrice = purchasedLottos.size() * LOTTO_PRICE.amount
+        val rateOfReturn = RateOfReturn(totalRevenue.toDouble() / totalPurchasePrice.toDouble() * 100)
+        return WinningResult(result, rateOfReturn)
+    }
+
     private fun checkDivisibleByLottoPrice(money: Money) =
         require(money.amount % LOTTO_PRICE.amount == 0) {
-            LottoShopException.NOT_DIVISIBLE_WITH_LOTTO_PRICE.getLottoPrice(LOTTO_PRICE.amount)
+            LottoShopException.NOT_DIVISIBLE_WITH_LOTTO_PRICE.getLottoPrice(LOTTO_PRICE)
         }
 
     private fun checkHasEnoughMoney(money: Money) =
         require(money.amount >= LOTTO_PRICE.amount) {
-            LottoShopException.NOT_ENOUGH_MONEY.getLottoPrice(LOTTO_PRICE.amount)
+            LottoShopException.NOT_ENOUGH_MONEY.getLottoPrice(LOTTO_PRICE)
         }
 
     private fun generateLotto(): Lotto {
