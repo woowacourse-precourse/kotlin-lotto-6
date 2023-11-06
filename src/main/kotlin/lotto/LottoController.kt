@@ -29,6 +29,4 @@ class LottoController {
         }
         return count
     }
-
-
 }
