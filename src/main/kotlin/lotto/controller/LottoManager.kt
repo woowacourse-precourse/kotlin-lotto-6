@@ -27,5 +27,9 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
 
         outputView.showWinningStatisticsMessages()
         val ranks = LottoRanks()
+
+        lottoList.forEach { it ->
+            ranks.rank(it.getLotto(), lotto, bonusNumber)
+        }
     }
 }

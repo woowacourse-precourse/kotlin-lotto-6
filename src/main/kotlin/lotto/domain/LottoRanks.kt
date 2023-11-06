@@ -12,4 +12,27 @@ enum class Prize(val matchingNumbers: Int, val prizeAmount: Int) {
 
 class LottoRanks {
 
+    val results = mutableMapOf<Prize, Int>()
+    init {
+        Prize.entries.forEach { results[it] = 0 }
+    }
+    fun rank(lottoList: List<Int>, lotto: Lotto, bonusNumber: Int): MutableMap<Prize, Int> {
+        val winningNumbers = lottoList // 예시로 고정된 당첨 번호
+        val bonusNumber = bonusNumber // 예시로 고정된 보너스 번호
+        val userNumbers = lotto.getLotto() // 예시로 고정된 참가자 번호
+
+        val matchedNumbers = checkMatchingNumbers(winningNumbers, userNumbers)
+
+        return results
+    }
+
+    private fun checkMatchingNumbers(winningNumbers: List<Int>, userNumbers: List<Int>): Int{
+        var matchedNumbers = 0
+        userNumbers.forEach {
+            if (it in winningNumbers) {
+                matchedNumbers++
+            }
+        }
+        return matchedNumbers
+    }
 }
