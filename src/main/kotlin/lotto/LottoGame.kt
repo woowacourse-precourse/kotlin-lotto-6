@@ -16,6 +16,7 @@ class LottoGame {
         try{
             inputPrice()
             inputPrizeNumber()
+            val input = Lotto(numbers)
             inputBonusNumber()
             for(number in buyNumbers){
                 checkLotto(number)
@@ -24,7 +25,6 @@ class LottoGame {
         }catch (e: IllegalArgumentException){
             println(e.message)
         }
-
     }
     private fun checkLotto(number: List<Int>) {
         var correctNumber = 0
@@ -33,7 +33,6 @@ class LottoGame {
                 correctNumber++
             }
         }
-
         if(correctNumber == 3){
             ranking[0]++
             prize += 5000
@@ -86,6 +85,7 @@ class LottoGame {
             numbers.add(number[i].toInt())
         }
         Lotto(numbers)
+
     }
 
     private fun inputPrice(){

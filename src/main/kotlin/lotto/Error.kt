@@ -18,15 +18,5 @@ class Error {
             throw IllegalArgumentException("[ERROR] 구입 금액이 1000원 단위가 아닙니다.")
         }
     }
-    fun checkDuplicate(number: List<Int>) {
-        if (number.toSet().size != 6) {
-            throw IllegalArgumentException("[ERROR] 중복된 수가 있습니다.")
-        }
-    }
-    fun checkNumber(input: Int) {
-        if(input < 1 || input > 45){
-            throw IllegalArgumentException("[ERROR] 숫자가 1이나 45 사이에 있지 않습니다.")
-        }
-    }
 
 }
