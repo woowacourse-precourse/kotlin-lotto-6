@@ -22,4 +22,13 @@ class AmountTest {
             Amount(amount)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1500", "239450"])
+    fun `1000원 단위로 나누어 떨어지지 않을 때`(amount: String) {
+        assertThrows<IllegalArgumentException> {
+            Amount(amount)
+        }
+    }
+
 }
