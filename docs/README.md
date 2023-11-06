@@ -67,6 +67,6 @@
 
 ## 단위 테스트 목록
 - [x] PurchasePriceValidator 테스트
+- [x] WinNumbersValidator 테스트
 - [] LottoStore 테스트
-- [] WinNumbersValidator 테스트
 - [] BonusNumberValidator 테스트

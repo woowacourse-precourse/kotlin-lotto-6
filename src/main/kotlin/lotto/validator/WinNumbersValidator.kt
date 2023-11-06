@@ -1,9 +1,14 @@
 package lotto.validator
 
-class WinNumbersValidator : InputValidator() {
+class WinNumbersValidator(winNumbers: List<String>) : InputValidator() {
     init {
-        checkForLength()
-        checkForDigit()
-        checkForNumberRange()
+        winNumbers.forEach {
+            checkBlank(it)
+            checkForPositiveInteger(it)
+            checkForNumberRange(it)
+        }
+        checkForWinNumbersLength(winNumbers)
+        checkForDuplicates(winNumbers)
+
     }
 }
