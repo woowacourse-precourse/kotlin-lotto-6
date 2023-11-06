@@ -13,4 +13,8 @@ data class LottoNumber(private val value: Int) {
             LottoNumberException.OUT_RANGE.getLottoNumberRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER)
         }
     }
+
+    override fun toString(): String {
+        return value.toString()
+    }
 }
