@@ -2,7 +2,7 @@ package lotto
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6)
+        require(numbers.size == Constant.LOTTO_NUMBER_SIZE)
         validateRepeat()
     }
 

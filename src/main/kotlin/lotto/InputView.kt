@@ -2,45 +2,63 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 
+enum class InputErrorMessage(val errorMessage: String) {
+    PURCHASE_AMOUNT_EMPTY("[ERROR] 구입금액을 입력해주세요."),
+    PURCHASE_AMOUNT_TYPE("[ERROR] 정수를 입력해주세요."),
+    PURCHASE_AMOUNT_VALUE("[ERROR] 1000원 이상의 금액을 입력해주세요."),
+    PURCHASE_AMOUNT_UNIT("[ERROR] 1000원 단위로 입력해주세요."),
+    LOTTO_NUMBER_EMPTY("[ERROR] 당첨 번호를 입력해 주세요."),
+    LOTTO_NUMBER_TYPE("[ERROR] 정수를 입력해주세요."),
+    LOTTO_NUMBER_SIZE("[ERROR] 6개의 번호를 입력해주세요."),
+    LOTTO_NUMBER_RANGE("[ERROR] 1에서 45사이의 정수를 입력해주세요."),
+    LOTTO_NUMBER_REPEAT("[ERROR] 중복되지 않은 로또 번호를 입력해주세요."),
+    BONUS_NUMBER_EMPTY("[ERROR] 보너스 번호를 입력해주세요."),
+    BONUS_NUMBER_TYPE("[ERROR] 정수를 입력해주세요."),
+    BONUS_NUMBER_RANGE("[ERROR] 1에서 45사이의 정수를 입력해주세요."),
+    BONUS_NUMBER_REPEAT("[ERROR] 당첨 번호와 중복되지 않은 수를 입력해주세요.")
+}
+
 class InputView {
-    fun validatePriceAmount(): String {
-        println("구입금액을 입력해 주세요.")
-        val priceAmount = Console.readLine()
-        if (priceAmount.isEmpty()) {
-            throw IllegalArgumentException("[ERROR] 구입금액을 입력해주세요.")
+    fun validatePurchaseAmount(): String {
+        println(PURCHASE_AMOUNT_INPUT_STRING)
+        val purchaseAmount = Console.readLine()
+        if (purchaseAmount.isEmpty()) {
+            throw IllegalArgumentException(InputErrorMessage.PURCHASE_AMOUNT_EMPTY.errorMessage)
         }
         println()
-        return priceAmount
+        return purchaseAmount
     }
 
-    fun validatePriceInt(priceAmount: String): Int {
-        return priceAmount.toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 정수를 입력해주세요.")
+    fun validatePurchaseInt(purchaseAmount: String): Int {
+        return purchaseAmount.toIntOrNull()
+            ?: throw IllegalArgumentException(InputErrorMessage.PURCHASE_AMOUNT_TYPE.errorMessage)
     }
 
-    fun validatePriceRange(priceAmount: Int): Int {
-        if (priceAmount < 1000) {
-            throw IllegalArgumentException("[ERROR] 1000원 이상의 금액을 입력해주세요.")
+    fun validatePurchaseRange(purchaseAmount: Int): Int {
+        if (purchaseAmount < PURCHASE_AMOUNT_UNIT) {
+            throw IllegalArgumentException(InputErrorMessage.PURCHASE_AMOUNT_VALUE.errorMessage)
         }
-        return priceAmount
+        return purchaseAmount
     }
 
-    fun validatePriceUnit(priceAmount: Int): Int {
-        if (priceAmount % 1000 != 0) {
-            throw IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.")
+    fun validatePriceUnit(purchaseAmount: Int): Int {
+        if (purchaseAmount % PURCHASE_AMOUNT_UNIT != 0) {
+            throw IllegalArgumentException(InputErrorMessage.PURCHASE_AMOUNT_UNIT.errorMessage)
         }
-        return priceAmount
+        return purchaseAmount
     }
 
-    fun calculateCount(priceAmount: Int): Int {
-        println("${priceAmount / 1000}개를 구매했습니다.")
-        return priceAmount / 1000
+    fun calculateCount(purchaseAmount: Int): Int {
+        val count = purchaseAmount / PURCHASE_AMOUNT_UNIT
+        println(LOTTO_COUNT_STRING.format(count))
+        return count
     }
 
     fun validateLottoNumberInput(): String {
-        println("당첨 번호를 입력해 주세요.")
+        println(LOTTO_NUMBERS_INPUT_STRING)
         val lottoNumber = Console.readLine()
         if (lottoNumber.isEmpty()) {
-            throw IllegalArgumentException("[ERROR] 당첨 번호를 입력해 주세요.")
+            throw IllegalArgumentException(InputErrorMessage.LOTTO_NUMBER_EMPTY.errorMessage)
         }
         println()
         return lottoNumber
@@ -50,15 +68,15 @@ class InputView {
         val numberList = lottoNumbers.split(',').map { it.trim() }
         for (element in numberList) {
             if (element.toIntOrNull() == null) {
-                throw IllegalArgumentException("[ERROR] 정수를 입력해주세요.")
+                throw IllegalArgumentException(InputErrorMessage.LOTTO_NUMBER_TYPE.errorMessage)
             }
         }
         return numberList
     }
 
     fun validateLottoSize(lottoNumbers: List<String>) {
-        if (lottoNumbers.size != 6) {
-            throw IllegalArgumentException("[ERROR] 6개의 번호를 입력해주세요.")
+        if (lottoNumbers.size != Constant.LOTTO_NUMBER_SIZE) {
+            throw IllegalArgumentException(InputErrorMessage.LOTTO_NUMBER_SIZE.errorMessage)
         }
     }
 
@@ -66,8 +84,8 @@ class InputView {
         val intLottoNumbers = mutableListOf<Int>()
         for (element in lottoNumbers) {
             val currentNumber = element.toInt()
-            if (currentNumber !in 1..45) {
-                throw IllegalArgumentException("[ERROR] 1에서 45사이의 정수를 입력해주세요.")
+            if (currentNumber !in Constant.LOTTO_NUMBER_START..Constant.LOTTO_NUMBER_END) {
+                throw IllegalArgumentException(InputErrorMessage.LOTTO_NUMBER_RANGE.errorMessage)
             }
             intLottoNumbers.add(currentNumber)
         }
@@ -78,34 +96,43 @@ class InputView {
         val set = HashSet<Int>()
         for (element in lottoNumbers) {
             if (!set.add(element)) {
-                throw IllegalArgumentException("[ERROR] 중복되지 않은 로또 번호를 입력해주세요.")
+                throw IllegalArgumentException(InputErrorMessage.LOTTO_NUMBER_REPEAT.errorMessage)
             }
         }
     }
 
     fun validateBonusNumberInput(): String {
-        println("보너스 번호를 입력해 주세요.")
+        println(BONUS_NUMBERS_INPUT_STRING)
         val bonusNumber = Console.readLine()
         if (bonusNumber.isEmpty()) {
-            throw IllegalArgumentException("[ERROR] 보너스 번호를 입력해주세요.")
+            throw IllegalArgumentException(InputErrorMessage.BONUS_NUMBER_EMPTY.errorMessage)
         }
         println()
         return bonusNumber
     }
 
     fun validateBonusNumber(inputNumber: String): Int {
-        return inputNumber.toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 정수를 입력해주세요.")
+        return inputNumber.toIntOrNull()
+            ?: throw IllegalArgumentException(InputErrorMessage.BONUS_NUMBER_TYPE.errorMessage)
     }
 
     fun validateBonusNumberRange(inputNumber: Int) {
-        if (inputNumber !in 1..45) {
-            throw IllegalArgumentException("[ERROR] 1에서 45사이의 정수를 입력해주세요. ")
+        if (inputNumber !in Constant.LOTTO_NUMBER_START..Constant.LOTTO_NUMBER_END) {
+            throw IllegalArgumentException(InputErrorMessage.BONUS_NUMBER_RANGE.errorMessage)
         }
     }
 
     fun validateBonusRepeat(inputNumber: Int, lottoNumbers: List<Int>) {
         if (inputNumber in lottoNumbers) {
-            throw IllegalArgumentException("[ERROR] 당첨 번호와 중복되지 않은 수를 입력해주세요.")
+            throw IllegalArgumentException(InputErrorMessage.BONUS_NUMBER_REPEAT.errorMessage)
         }
+    }
+
+    companion object {
+        const val PURCHASE_AMOUNT_INPUT_STRING = "구입금액을 입력해 주세요."
+        const val LOTTO_NUMBERS_INPUT_STRING = "당첨 번호를 입력해 주세요."
+        const val BONUS_NUMBERS_INPUT_STRING = "보너스 번호를 입력해 주세요."
+        const val PURCHASE_AMOUNT_UNIT = 1000
+        const val LOTTO_COUNT_STRING = "%d개를 구매했습니다."
     }
 }

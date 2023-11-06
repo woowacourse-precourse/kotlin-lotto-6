@@ -14,8 +14,8 @@ class OutputView {
     }
 
     fun printLottoResult(lottoResult: List<Int>) {
-        println("당첨 통계")
-        println("---")
+        println(PRINT_RESULT_STRING)
+        println(PRINT_TRIPLE_MINUS)
         for (i in 3..7) {
             val result = when (i) {
                 3 -> LottoResultPrize.THREE_MATCH
@@ -35,6 +35,12 @@ class OutputView {
     fun printTotalProfit(priceAmount: Int, totalPrize: Long) {
         val profit = (totalPrize.toDouble() / priceAmount.toDouble())
         val result = (Math.round(profit * 1000) / 10.0)
-        print("총 수익률은 $result%입니다.")
+        print(PRINT_PROFIT_STRING.format(result))
+    }
+
+    companion object {
+        const val PRINT_PROFIT_STRING = "총 수익률은 %.1f%%입니다."
+        const val PRINT_RESULT_STRING = "당첨 통계"
+        const val PRINT_TRIPLE_MINUS = "---"
     }
 }

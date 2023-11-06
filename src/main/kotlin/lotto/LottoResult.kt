@@ -6,7 +6,7 @@ class LottoResult() {
         val lottoSize = lottoLists.size
         for (i in 0 until lottoSize) {
             val result = calculateResultOnce(lottoLists[i], lottoNumber, bonusNumber)
-            if (result[0] == 6) {
+            if (result[0] == Constant.LOTTO_NUMBER_SIZE) {
                 resultList[7]++
             } else if (result[0] == 5 && result[1] == 1) {
                 resultList[6]++

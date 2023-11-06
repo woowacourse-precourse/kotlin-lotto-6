@@ -9,8 +9,8 @@ class LottoController {
     private val lottoResult = LottoResult()
 
     fun run() {
-        val priceAmount = inputPriceAmount()
-        val lottoCount = inputView.calculateCount(priceAmount)
+        val purchaseAmount = inputPurchaseAmount()
+        val lottoCount = inputView.calculateCount(purchaseAmount)
         generateAllLotto(lottoCount)
         val lottoNumberInput = inputLottoNumber()
         //println(lottoNumberInput) 결과 확인용
@@ -20,16 +20,16 @@ class LottoController {
         //println(lottoResult) 결과 확인용
         outView.printLottoResult(lottoResultList)
         val totalPrize = lottoResult.calculateTotalPrize(lottoResultList)
-        outView.printTotalProfit(priceAmount, totalPrize)
+        outView.printTotalProfit(purchaseAmount, totalPrize)
     }
 
-    private fun inputPriceAmount(): Int {
+    private fun inputPurchaseAmount(): Int {
         while (true) {
             try {
-                val priceAmountInput = inputView.validatePriceAmount()
-                val intPriceAmount = inputView.validatePriceInt(priceAmountInput)
-                val priceAmount = inputView.validatePriceRange(intPriceAmount)
-                return inputView.validatePriceUnit(priceAmount)
+                val purchaseAmountInput = inputView.validatePurchaseAmount()
+                val intPurchaseAmount = inputView.validatePurchaseInt(purchaseAmountInput)
+                val purchaseAmount = inputView.validatePurchaseRange(intPurchaseAmount)
+                return inputView.validatePriceUnit(purchaseAmount)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
@@ -48,7 +48,11 @@ class LottoController {
     }
 
     private fun generateOneLotto(): List<Int> {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        return Randoms.pickUniqueNumbersInRange(
+            Constant.LOTTO_NUMBER_START,
+            Constant.LOTTO_NUMBER_END,
+            Constant.LOTTO_NUMBER_SIZE
+        )
     }
 
     private fun addLotto(oneLotto: List<Int>) {
