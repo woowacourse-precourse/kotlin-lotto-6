@@ -92,6 +92,16 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `당첨 번호에 보너스 번호가 포함되어 있다면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            val bonusNumber = 1
+            ValidationManager().apply {
+                arrayListOf(1, 2, 3, 4, 5, 6).containBonusNumber(bonusNumber)
+            }
+        }
+    }
+
     override fun runMain() {
         main()
     }

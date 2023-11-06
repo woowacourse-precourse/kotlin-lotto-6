@@ -24,8 +24,8 @@ class ValidationManager {
     internal fun Int.lessThanZero(): Int = require(this >= 0).let { return this }
     internal fun Int.modulusLottoPrice(): Int = require(this % LOTTO_PRICE == 0).let { return this }
     internal fun ArrayList<Int>.isCorrectLottoCount(): ArrayList<Int> = require(size == LOTTO_COUNT).let { return this }
-    fun Int.validLottoNumber(): Int = require(this in VALID_LOTTO_NUMBER).let { return this }
-    fun List<Int>.containBonusNumber(bonusNumber: Int): Int = require(!contains(bonusNumber)).let { return bonusNumber }
+    internal fun Int.validLottoNumber(): Int = require(this in VALID_LOTTO_NUMBER).let { return this }
+    internal fun List<Int>.containBonusNumber(bonusNumber: Int): Int = require(!contains(bonusNumber)).let { return bonusNumber }
 
     companion object {
         private const val LOTTO_PRICE = 1000
