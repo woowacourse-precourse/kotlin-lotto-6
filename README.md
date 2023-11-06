@@ -6,7 +6,7 @@
 - [ ] 로또를 구매한다.
   - [x] 구매 금액을 입력한다. - LottoGameManager#getMoneyFromUser()
   - [x] 값이 올바르지 않은 형태인 경우, 예외가 발생하여 재입력받는다. LottoGameManager#validatedInputAsMoney()
-  - [ ] 금액만큼의 로또를 발행한다.
+  - [x] 금액만큼의 로또를 발행한다. - LottoGenerator#get()
   - [ ] 금액만큼의 로또 발행 결과를 출력한다.
 - [ ] 추첨을 진행한다.
   - [ ] 당첨 번호와 보너스 번호를 입력한다.
