@@ -8,7 +8,7 @@ class LottoMachine {
     fun init() {
         generateLottoTickets()
         generateWinningNumbers()
-        showStaticsResult()
+        showResult()
     }
 
     private fun generateLottoTickets() {
@@ -21,9 +21,8 @@ class LottoMachine {
         winningLotto.createBonusNumber().also { println() }
     }
 
-    private fun showStaticsResult() {
-        val lottoResult = LottoResult(lottoTickets, winningLotto)
-        lottoResult.findWinningResult()
+    private fun showResult() {
+        LottoResult(lottoTickets, winningLotto).printResult()
     }
 
 }

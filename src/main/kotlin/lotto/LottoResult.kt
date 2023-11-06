@@ -1,10 +1,60 @@
 package lotto
 
+import java.text.DecimalFormat
+
 class LottoResult(private val lottoTickets: LottoTickets, private val winningLotto: WinningLotto) {
-    fun findWinningResult(): List<Prize> {
+
+    private var winningResult: List<Prize> = listOf()
+
+    init {
+        findWinningResult()
+    }
+
+    fun printResult() {
+        printWinningResults()
+        printWinningProfitRate()
+    }
+
+    private fun printWinningResults() {
+        println(WIN_STATICS)
+        println(STATICS_DIVIDER)
+        Prize.values().filterNot { it == Prize.Nothing }.reversed().forEach { displayWinningResult(it) }
+    }
+
+    private fun displayWinningResult(prize: Prize) {
+        val winCount = findWindCount(prize)
+        val matchedNumberCount = findMatchedNumberCount(prize)
+        val winningPrizeMoney = prize.amount.toWonFormat()
+        val bonusInfo = if (prize == Prize.Second) "보너스 볼 일치 " else ""
+        val message = winCountMessage(matchedNumberCount, bonusInfo, winningPrizeMoney, winCount)
+        println(message)
+    }
+
+    private fun findWindCount(prize: Prize) = winningResult.count { it == prize }
+    private fun findMatchedNumberCount(prize: Prize) = Prize.findPrizeMatchNumberCount(prize)
+    private fun Int.toWonFormat(): String = DecimalFormat("#,###").format(this)
+
+    private fun winCountMessage(
+        matchedNumberCount: Int,
+        bonusInfo: String,
+        winningPrizeMoney: String,
+        winCount: Int
+    ): String {
+        return "${matchedNumberCount}개 일치, ${bonusInfo}(${winningPrizeMoney})원 - ${winCount}개"
+    }
+
+    private fun printWinningProfitRate() {
+        println(TOTAL_PROFIT.format(calculateTotalStaticResult()))
+    }
+
+    private fun calculateTotalStaticResult(): Float {
+        return 12.7F
+    }
+
+    private fun findWinningResult() {
         val matchedNumbersCounts = calculateMatchedNumberCounts(winningLotto)
         val bonusNumberExists = checkForBonusNumber(winningLotto)
-        return List(lottoTickets.tickets.size) { index ->
+        winningResult = List(lottoTickets.tickets.size) { index ->
             Prize.findPrizeResult(matchedNumbersCounts[index], bonusNumberExists[index])
         }
     }
@@ -15,5 +65,11 @@ class LottoResult(private val lottoTickets: LottoTickets, private val winningLot
 
     private fun checkForBonusNumber(winningLotto: WinningLotto): List<Boolean> {
         return lottoTickets.tickets.map { it.hasBonusNumber(winningLotto.bonusNumber) }
+    }
+
+    companion object {
+        const val WIN_STATICS = "당첨 통계"
+        const val STATICS_DIVIDER = "---"
+        const val TOTAL_PROFIT = "총 수익률은 %.1f%%입니다."
     }
 }
