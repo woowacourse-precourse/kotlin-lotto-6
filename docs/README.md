@@ -20,6 +20,10 @@
   - 출력 문자열: "당첨 번호를 입력해 주세요."
   - 사용 라이브러리: camp.nextstep.edu.missionutils.Console의 readLine()
   - 입력 예: "$숫자1,$숫자2,$숫자3"
+  - 예외처리 - 입력이 6개가 아닐 경우
+    - IllegalArgumentException 발생
+    - `[ERROR] 로또 당첨 번호는 6개의 정수여야 합니다.` 출력
+    - 입력 다시 받기
   - 예외처리 - 1~45 범위의 정수가 아닌 입력시
     - IllegalArgumentException 발생
     - `[ERROR] 로또 당첨 번호는 1~45사이의 정수여야 합니다.` 출력
