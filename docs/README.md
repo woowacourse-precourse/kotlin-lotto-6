@@ -20,7 +20,7 @@
 ## 기능 목록
 - [O] 로또 구매 금액을 입력 : InputValue#inputLottoMoney()
   - [O] 양의 정수를 입력하지 않으면 오류 : CheckError#checkInputPositiveInt()
-  - [] 1000원으로 나누어 떨어지지 않으면 오류 : CheckError#checkCanDivide1000()
+  - [O] 1000원으로 나누어 떨어지지 않으면 오류 : CheckError#checkCanDivide1000()
   
   
 - [] 당첨 번호를 입력 : InputValue#inputWinningNumber()

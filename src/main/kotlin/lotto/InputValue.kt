@@ -16,6 +16,7 @@ class InputValue {
             val money = readln()
 
             if (!check.checkInputPositiveInt(money)) continue
+            if (!check.checkCanDivide1000(money.toInt())) continue
 
             break
         }
