@@ -120,7 +120,11 @@ fun showRateOfReturn() {
     val totalWinningPrice = winnings.fold(0) { acc, winning ->
         acc + winning.winningPrice * winning.winningCnt
     }
+    val totalRateOfReturn = calculateRateOfReturn(totalWinningPrice)
+    println("총 수익률은 ${totalRateOfReturn}%입니다.")
+}
+
+fun calculateRateOfReturn(totalWinningPrice:Int): String{
     val rateOfReturn = totalWinningPrice.toDouble() / (numberOfLottoTickets * 1000) * 100
-    val roundedRateOfReturn = String.format("%.1f", rateOfReturn.toDouble())
-    println("총 수익률은 ${roundedRateOfReturn}%입니다.")
+    return String.format("%.1f", rateOfReturn)
 }

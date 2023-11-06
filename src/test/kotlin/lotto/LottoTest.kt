@@ -21,4 +21,28 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `로또 번호의 개수가 6개 미만이면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1, 2, 3, 4, 5))
+        }
+    }
+
+    @Test
+    fun `총 수익률이 100 일 때`() {
+        numberOfLottoTickets =5
+        assert(calculateRateOfReturn(5000)=="100.0")
+    }
+
+    @Test
+    fun `총 수익률이 100보다 클 때`() {
+        numberOfLottoTickets =1
+        assert(calculateRateOfReturn(5000)=="500.0")
+    }
+
+    @Test
+    fun `총 수익률이 100보다 작을 때`() {
+        numberOfLottoTickets =30
+        assert(calculateRateOfReturn(5000)=="16.7")
+    }
 }
