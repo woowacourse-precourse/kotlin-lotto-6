@@ -10,7 +10,7 @@
     - [ ] 사용자가 구입할 금액을 입력한다. (`InputView.purchaseAmount`)
         - [ ] 구입할 금액은 1,000 원 단위여야 한다.
 
-- [ ] 로또 수량을 계산한다.구입할 금액이 10,000 원이면 10 개이다. (`Lottoes.calculateQuantity`)
+- [x] 로또 수량을 계산한다.구입할 금액이 10,000 원이면 10 개이다. (`Lottoes.calculateQuantity`)
 
 - [ ] 구입한 로또에 대한 정보를 출력한다.
     - [ ] 발행한 로또 수량을 가지고 안내 메시지를 출력한다. (`OutputuView.lottoQuantityPrompt`)
