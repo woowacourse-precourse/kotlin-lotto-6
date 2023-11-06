@@ -13,8 +13,8 @@ class LottoController(private val view: LottoView, private val model: LottoModel
         view.displayPurchasedLotteryAmountMessage(model.getLotteryAmount())
         model.setLotteryNumbers()
         view.displayLotteryNumbers(model.getLotteryNumbers())
+        view.requestWinningNumbersMessage()
     }
-
     private fun setPurchaseMoneyValue(): String {
         return Console.readLine()
     }

@@ -7,6 +7,9 @@ class LottoView {
     fun requestPurchaseMoneyValueMessage() {
         println(ConsoleMessage.REQUEST_PURCHASE_MONEY_VALUE)
     }
+    fun requestWinningNumbersMessage() {
+        println(ConsoleMessage.REQUEST_WINNING_NUMBERS)
+    }
     fun displayInappropriateValueError() {
         println("${ErrorMessage.ERRORMESSAGE_TITLE} ${ErrorMessage.INAPPROPRIATE_VALUE}")
     }
