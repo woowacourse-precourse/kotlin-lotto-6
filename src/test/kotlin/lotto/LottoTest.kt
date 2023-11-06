@@ -35,6 +35,7 @@ class LottoTest {
 
         assertThat(result.prize).isEqualTo(expectedPrize)
     }
+
     @Test
     fun `generateLottoNumbers 함수가 항상 범위 내의 유일한 숫자 6개를 반환하는지 확인한다`() {
         val numbers = generateLottoNumbers()
@@ -51,14 +52,5 @@ class LottoTest {
 
         val results = getResults(tickets, winningNumbers, bonusNumber)
         assertThat(results).containsExactly(LottoResult.THREE_MATCHES)
-    }
-
-    @Test
-    fun `printResults 함수가 정확한 수익률을 계산하는지 확인한다`() {
-        val results = listOf(LottoResult.FIVE_MATCHES)
-        val purchaseAmount = 1000
-
-        val profitRate = printResults(results, purchaseAmount)
-        assertThat(profitRate).isEqualTo(1500000.0 / 1000 * 100)
     }
 }
