@@ -5,13 +5,14 @@
 - [x] 로또 게임 진행 과정에 따라 state 를 정의한다. - LottoGameState
 - [x] 로또를 구매한다.
   - [x] 구매 금액을 입력한다. - LottoGameManager#getMoneyFromUser()
-  - [x] 값이 올바르지 않은 형태인 경우, 예외가 발생하여 재입력받는다. LottoGameManager#validatedInputAsMoney()
+  - [x] 값이 올바르지 않은 형태인 경우, 예외가 발생하여 재입력받는다. LottoGameManager#validatedNumberAsMoney()
   - [x] 금액만큼의 로또를 발행한다. - LottoGenerator#get()
   - [x] 로또 발행 결과를 출력한다. - LottoGameViewer#printResultOfBuyingLotto()
-- [ ] 추첨을 진행한다.
-  - [ ] 당첨 번호를 입력한다.
-  - [ ] 보너스 번호를 입력한다.
-  - [ ] 값이 올바르지 않은 형태인 경우, 예외가 발생하여 재입력받는다.
+- [x] 추첨을 진행한다.
+  - [x] 당첨 번호를 입력한다. - LottoGameManager#pickWinningNumbers()
+  - [x] 값이 올바르지 않은 형태인 경우, 예외가 발생하여 재입력받는다. - LottoGameManager#validatedNumbersAsWinning()
+  - [x] 보너스 번호를 입력한다. - LottoGameManager#pickBonusNumber()
+  - [x] 값이 올바르지 않은 형태인 경우, 예외가 발생하여 재입력받는다. - LottoGameManager#validatedNumberAsBonus()
 - [ ] 당첨 결과가 나온다.
   - [ ] 당첨 기준별로 내역을 구분해 출력한다.
   - [ ] 총 수익률을 출력한다.
@@ -45,9 +46,12 @@
 - 구매 금액
   - 금액이 0 인 경우
   - 금액이 1000 으로 나누어 떨어지지 않는 경우
-- 로또
-  - 로또 번호가 6개를 초과할 경우
-  - 로또 번호가 중복된 숫자일 경우
-  - 로또 번호에 1 부터 45 이외의 숫자가 존재할 경우
-- 당첨 번호(보너스 번호 포함)
-  - 로또의 조건을 만족하지 못 한 경우
+- 로또 번호
+  - 1 부터 45 이외의 숫자인 경우
+- 당첨 번호
+  - 로또 번호에 해당하지 않는 경우
+  - 구분자 쉼표(',') 로 구분되어있지 않은 경우
+  - 번호의 개수가 6 개가 아닌 경우
+- 보너스 번호
+  - 로또 번호에 해당하지 않는 경우
+  - 당첨 번호와 중복되는 경우
