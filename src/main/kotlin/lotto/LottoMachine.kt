@@ -2,7 +2,7 @@ package lotto
 
 class LottoMachine {
 
-    private var lottoTickets: List<Lotto> = listOf()
+    private var lottoTickets = LottoTickets()
     private var winningLotto = WinningLotto()
 
     fun generateLottoTickets() {
@@ -12,13 +12,14 @@ class LottoMachine {
 
     private fun createLottoTickets() {
         println(PURCHASE_INSTRUCTION)
-        lottoTickets = Player().purchaseLottoTickets()
+        lottoTickets.initializeLottoTickets()
     }
 
     private fun displayLottoTickets() {
-        println("${lottoTickets.size}${PURCHASE_TICKET_COUNT}")
-        lottoTickets.forEach { println(it) }
+        println("${lottoTickets.tickets.size}${PURCHASE_TICKET_COUNT}")
+        lottoTickets.tickets.forEach { println(it) }
     }
+
 
     fun generateWinningNumbers() {
         createWinningNumbers().also { println() }
