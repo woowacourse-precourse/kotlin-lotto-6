@@ -10,4 +10,7 @@ class LottoView {
     fun displayInappropriateValueError() {
         println("${ErrorMessage.ERRORMESSAGE_TITLE} ${ErrorMessage.INAPPROPRIATE_VALUE}")
     }
+    fun displayPurchasedLotteryAmountMessage(lotteryAmount: Int) {
+        println("\n${lotteryAmount}${ConsoleMessage.INDICATE_PURCHASED_AMOUNT}")
+    }
 }
