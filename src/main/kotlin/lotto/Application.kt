@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.domain.Consumer
+import lotto.domain.Grade
 import lotto.domain.WinningCheck
 import lotto.domain.Prize
 import lotto.views.InputView
@@ -22,6 +23,12 @@ fun enterBonusNumber(winningNumber: List<Int>): Int {
     return InputView.enterBonusNumber(winningNumber)
 }
 
+fun printPrize(reward : List<Grade>,myMoney : Int){
+    val prizeChecker = Prize()
+    OutputView.printPrize(reward)
+    OutputView.printYield(prizeChecker.getPrizeRatio(reward, myMoney))
+}
+
 fun playLotto(){
     val consumer = Consumer()
     val manage = consumer.getManager()
@@ -32,9 +39,7 @@ fun playLotto(){
     val bonusNumber = enterBonusNumber(winningNumber)
     val winningChecker = WinningCheck()
     val reward = winningChecker.numbersCheck(manage.getLotto(), winningNumber, bonusNumber)
-    val prizeChecker = Prize()
-    OutputView.printPrize(reward)
-    OutputView.printYield(prizeChecker.getPrizeRatio(reward, myMoney))
+    printPrize(reward,myMoney)
 }
 
 fun main() {
