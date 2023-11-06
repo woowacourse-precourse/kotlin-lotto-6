@@ -11,7 +11,7 @@ class LottoPurchase {
     fun inputAmount(): Int {
         val amount = Input.inputPurchaseAmount()
         validateAmount(amount)
-        return amount.toInt()
+        return amount.toInt() / AMOUNT_UNIT
     }
 
     private fun validateAmount(amount: String) {

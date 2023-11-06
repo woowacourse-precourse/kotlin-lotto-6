@@ -8,5 +8,5 @@ fun main() {
 
 fun startLotto() {
     val purchaseLotto = LottoPurchase()
-    val amount = purchaseLotto.inputAmount()
+    val lotteryNumber = purchaseLotto.inputAmount()
 }
