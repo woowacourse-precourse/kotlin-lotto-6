@@ -12,6 +12,9 @@ class LottoGameManager {
     private var data: Any = ""
     private var userMoney = 0
     private var userLotteryTickets = listOf<Lotto>()
+    private var winningNumbers = listOf<Int>()
+    private var bonusNumber = 0
+
 
     fun getState() = this.gameManagerState
 
@@ -24,20 +27,36 @@ class LottoGameManager {
     }
 
     private fun commandByGameState() {
-        if (gameState == BUYING) commandBuyingState()
-        // TODO: 나머지 state 구현
+        when (gameState) {
+            BUYING -> commandBuyingState()
+            PICKING_WINNING -> commandPickingWinningState()
+            PICKING_BONUS -> commandPickingBonusState()
+            else -> {}
+        }
     }
 
     private fun commandBuyingState() {
         when (gameManagerState) {
-            NORMAL, REQUEST_ERROR -> requestBuyingLotto()
+            NORMAL, REQUEST_ERROR -> gameManagerState = REQUEST
             REQUEST -> buyLotto()
-            RESULT -> finishBuyingLotto()
+            RESULT -> gameManagerState = NORMAL
         }
     }
 
-    private fun requestBuyingLotto() {
-        gameManagerState = REQUEST
+    private fun commandPickingWinningState() {
+        when (gameManagerState) {
+            NORMAL, REQUEST_ERROR -> gameManagerState = REQUEST
+            REQUEST -> pickWinningNumbers()
+            RESULT -> {}
+        }
+    }
+
+    private fun commandPickingBonusState() {
+        when (gameManagerState) {
+            NORMAL, REQUEST_ERROR -> gameManagerState = REQUEST
+            REQUEST -> pickBonusNumber()
+            RESULT -> {}
+        }
     }
 
     private fun buyLotto() {
@@ -49,15 +68,11 @@ class LottoGameManager {
         }
     }
 
-    private fun finishBuyingLotto() {
-        gameManagerState = NORMAL
-    }
-
     private fun getMoneyFromUser() {
         val input = Console.readLine()
 
         try {
-            userMoney = validatedInputAsMoney(input)
+            userMoney = validatedNumberAsMoney(input)
         } catch (e: IllegalArgumentException) {
             data = e
             gameManagerState = REQUEST_ERROR
@@ -75,12 +90,67 @@ class LottoGameManager {
         this.userLotteryTickets = userLotteryTickets
     }
 
-    private fun validatedInputAsMoney(input: String): Int {
+    private fun pickWinningNumbers() {
+        getWinningNumbersFromUser()
+        if (gameManagerState != REQUEST_ERROR) gameManagerState = NORMAL
+    }
+
+    private fun getWinningNumbersFromUser() {
+        val input = Console.readLine()
+
+        try {
+            winningNumbers = validatedNumbersAsWinning(input)
+        } catch (e: IllegalArgumentException) {
+            data = e
+            gameManagerState = REQUEST_ERROR
+        }
+    }
+
+    private fun pickBonusNumber() {
+        getBonusNumberFromUser()
+        if (gameManagerState != REQUEST_ERROR) gameManagerState = NORMAL
+    }
+
+    private fun getBonusNumberFromUser() {
+        val input = Console.readLine()
+
+        try {
+            bonusNumber = validatedNumberAsBonus(input)
+        } catch (e: IllegalArgumentException) {
+            data = e
+            gameManagerState = REQUEST_ERROR
+        }
+    }
+
+    private fun validatedNumberAsMoney(input: String): Int {
         InputValidator.checkIsNotBlank(input)
-        InputValidator.checkIsNumeric(input)
+        InputValidator.checkIsDigit(input)
         InputValidator.checkDividedAsThousand(input)
-        InputValidator.checkIsNotZero(input)
+        InputValidator.checkIsOverZero(input)
 
         return input.toInt()
+    }
+
+    private fun validatedNumbersAsWinning(input: String): List<Int> {
+        InputValidator.checkHasSeparator(input, Constants.COMMA)
+        input.split(Constants.COMMA).map { validateAsLottoNumber(it) }
+
+        return input.split(Constants.COMMA).map { it.toInt() }
+    }
+
+    private fun validatedNumberAsBonus(input: String): Int {
+        validateAsLottoNumber(input)
+        InputValidator.checkIsNotContained(input.toInt(), winningNumbers)
+
+        return input.toInt()
+    }
+
+    private fun validateAsLottoNumber(input: String) {
+        InputValidator.checkIsNotBlank(input)
+        InputValidator.checkIsDigit(input)
+        InputValidator.checkIsInBoundary(
+            Integer.valueOf(input),
+            Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER
+        )
     }
 }

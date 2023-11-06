@@ -17,8 +17,12 @@ class LottoGame {
     }
 
     private fun updateState() {
-        if (gameState == BUYING) gameState = PICKING
-        if (gameState == PICKING) gameState = WINNING
-        if (gameState == WINNING) gameState = FINISHED
+        when (gameState) {
+            BUYING -> gameState = PICKING_WINNING
+            PICKING_WINNING -> gameState = PICKING_BONUS
+            PICKING_BONUS -> gameState = WINNING
+            WINNING -> gameState = FINISHED
+            FINISHED -> {}
+        }
     }
 }

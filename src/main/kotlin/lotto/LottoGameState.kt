@@ -2,7 +2,8 @@ package lotto
 
 enum class LottoGameState {
     BUYING,
-    PICKING,
+    PICKING_WINNING,
+    PICKING_BONUS,
     WINNING,
     FINISHED
 }

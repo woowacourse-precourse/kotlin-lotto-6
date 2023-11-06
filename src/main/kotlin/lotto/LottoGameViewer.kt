@@ -16,13 +16,21 @@ class LottoGameViewer {
     }
 
     private fun commandByManagerState(data: Any) {
-        if (gameManagerState == REQUEST) printRequestMessageByGameState()
-        if (gameManagerState == REQUEST_ERROR) printError(data)
-        if (gameManagerState == RESULT) printDataByGameState(data)
+        when (gameManagerState) {
+            REQUEST -> printRequestMessageByGameState()
+            REQUEST_ERROR -> printError(data)
+            RESULT -> printDataByGameState(data)
+            NORMAL -> {}
+        }
     }
 
     private fun printRequestMessageByGameState() {
-        if (gameState == BUYING) println(Constants.REQUEST_BUYING_MESSAGE)
+        when (gameState) {
+            BUYING -> println(Constants.REQUEST_BUYING_MESSAGE)
+            PICKING_WINNING -> println(Constants.REQUEST_PICKING_WINNING_MESSAGE)
+            PICKING_BONUS -> println(Constants.REQUEST_PICKING_BONUS_MESSAGE)
+            else -> {}
+        }
         // TODO: 나머지 state 구현
     }
 

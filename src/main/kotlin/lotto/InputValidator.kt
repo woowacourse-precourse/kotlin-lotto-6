@@ -8,16 +8,28 @@ object InputValidator {
         if (input.isEmpty()) throw IllegalArgumentException(Constants.ERROR_BLANK_MESSAGE)
     }
 
-    fun checkIsNumeric(input: String) {
+    fun checkIsDigit(input: String) {
         if (input.map { Character.isDigit(it) }.contains(false))
             throw IllegalArgumentException(Constants.ERROR_FORMAT_MESSAGE)
     }
 
     fun checkDividedAsThousand(input: String) {
-        if (input.toInt() % 1000 != 0) throw IllegalArgumentException(Constants.ERROR_MONEY_FORMAT_MESSAGE)
+        if (input.toInt() % 1000 != 0) throw IllegalArgumentException(Constants.ERROR_FORMAT_MESSAGE)
     }
 
-    fun checkIsNotZero(input: String) {
-        if (input.toInt() == 0) throw IllegalArgumentException(Constants.ERROR_MONEY_FORMAT_MESSAGE)
+    fun checkIsOverZero(input: String) {
+        if (input.toInt() <= 0) throw IllegalArgumentException(Constants.ERROR_FORMAT_MESSAGE)
+    }
+
+    fun checkIsInBoundary(number: Int, minNumber: Int, maxNumber: Int) {
+        if (number !in minNumber..maxNumber) throw IllegalArgumentException(Constants.ERROR_BOUNDARY_MESSAGE)
+    }
+
+    fun checkHasSeparator(input: String, separator: String) {
+        if (!input.contains(separator)) throw IllegalArgumentException(Constants.ERROR_SEPARATOR_MESSAGE)
+    }
+
+    fun <T> checkIsNotContained(input: T, items: List<T>) {
+        if (items.contains(input)) throw IllegalArgumentException(Constants.ERROR_DISTINCTION_MESSAGE)
     }
 }
