@@ -23,6 +23,6 @@ enum class InputValidation(val message: String, val isValid: (String) -> Unit) {
     ),
     NUMBER_RANGE(
         "[ERROR] 1 부터 45까지만 입력이 가능합니다.",
-        fun(value: String) = require(value.toInt() in 1..45) { PURCHASE_IN_THOUSAND_WON.message },
+        fun(value: String) = require(value.toInt() in 1..45) { NUMBER_RANGE.message },
     ),
 }
