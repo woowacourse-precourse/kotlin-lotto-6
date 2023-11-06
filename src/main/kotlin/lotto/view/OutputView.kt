@@ -1,6 +1,7 @@
 package lotto.view
 
 import lotto.domain.Lotto
+import lotto.domain.WinningRank
 
 class OutputView {
 
@@ -15,6 +16,12 @@ class OutputView {
     fun printLotto(lotto: List<Lotto>) {
         lotto.forEach {
             println("[${it.joinToString(", ")}]")
+        }
+    }
+
+    fun printRank(rank: Map<WinningRank, Int>) {
+        rank.forEach {
+            println("${it.key.message} (${it.key.winningPrize}원) - ${it.value}개")
         }
     }
 
