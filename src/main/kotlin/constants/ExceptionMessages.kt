@@ -12,6 +12,8 @@ object ExceptionMessages {
     const val EXCEPTION_WINNING_NUMBERS_RANGE = "당첨 번호는 1부터 45까지입니다."
     const val EXCEPTION_WINNING_NUMBERS_TYPE = "당첨 번호로 문자열을 입력할 수 없습니다."
 
+    const val EXCEPTION_BONUS_NUMBERS_RANGE = "보너스 번호는 1부터 45까지입니다."
+    const val EXCEPTION_BONUS_NUMBERS_TYPE = "보너스 번호로 문자열을 입력할 수 없습니다."
 
     const val EXCEPTION_UNEXPECTED = "알 수 없는 에러가 발생하였습니다."
 }
