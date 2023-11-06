@@ -24,6 +24,7 @@ class WinningNumbersManager(private val numbers: List<String>) {
         InputValidation.NUMBER_EMPTY.isValid(number)
         InputValidation.ONLY_NUMBER.isValid(number)
         InputValidation.NUMBER_FORMAT.isValid(number)
+        InputValidation.NUMBER_RANGE.isValid(number)
         require(!winningNumbers.contains(number.toInt())) { "[ERROR] 당첨 번호에 포함된 번호는 보너스 번호로 지정할 수 없습니다." }
     }
 }
