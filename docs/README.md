@@ -36,7 +36,7 @@
 - [x] 로또 번호를 오름차순 출력한다
 
 
-- [] 당첨 번호를 쉼표 기준으로 6개 입력받는다.
+- [x] 당첨 번호를 쉼표 기준으로 6개 입력받는다.
   - [x] 양의 정수와 쉼표 외 문자를 제거한다.
   - [x] `ERROR` : 아무런 값을 입력하지 않았을 시  `IllegalArgumentException` 발생
   - [x] `ERROR` : 1~45 범위의 숫자가 아닐 시 `IllegalArgumentException` 발생
