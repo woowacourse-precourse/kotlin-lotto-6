@@ -79,4 +79,28 @@ class InputViewTest {
             InputView.getWinningNumbersList(numbers)
         }
     }
+
+    @Test
+    fun `사용자로부터 입력받은 보너스 번호가 유효한 경우`() {
+        val bonusNumber = "45"
+        assertDoesNotThrow {
+            InputView.validateBonusNum(bonusNumber)
+        }
+    }
+
+    @Test
+    fun `사용자로부터 입력받은 보너스 번호가 문자열 형태인 경우`() {
+        val bonusNumber = "k"
+        assertThrows<IllegalArgumentException> {
+            InputView.validateBonusNum(bonusNumber)
+        }
+    }
+
+    @Test
+    fun `사용자로부터 입력받은 보너스 번호가 허용 범위를 벗어난 경우`() {
+        val bonusNumber = 46
+        assertThrows<IllegalArgumentException> {
+            InputView.validateBonusNum(bonusNumber)
+        }
+    }
 }
