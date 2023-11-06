@@ -9,7 +9,7 @@ class OutputManager {
     fun invalidLottoNumbers() = println("${OutputMessages.INVALID_LOTTO_NUMBERS} ${OutputMessages.RE_TRY}")
     fun invalidBonusNumber() = println("${OutputMessages.INVALID_BONUS_NUMBER} ${OutputMessages.RE_TRY}")
     fun purchaseLottoCount(lottoCount: Int) = println(OutputMessages.PURCHASE_LOTTO_COUNT.toString().format(lottoCount))
-    fun lottoNumbers(lottoNumber: List<Lotto>) { lottoNumber.forEach { println(it.getNumbers()) } }
+    fun lottoNumbers(lottoNumber: List<Lotto>) { lottoNumber.forEach { println(it.getSortedNumbers()) } }
     fun promptJackpotNumbers() = println(OutputMessages.PROMPT_JACKPOT_NUMBERS)
     fun promptBonusNumber() = println(OutputMessages.PROMPT_BONUS_NUMBER)
     fun prizeResult(prize: Array<Int>) {
