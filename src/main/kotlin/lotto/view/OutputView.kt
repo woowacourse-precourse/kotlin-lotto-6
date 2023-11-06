@@ -13,7 +13,7 @@ object OutputView {
     fun printLottoWin(winCount: Int, money: Int, bonus: Boolean, prizeCount: Int) {
         if (bonus) {
             println(LOTTO_WIN_BONUS_MESSAGE.format(winCount, money.addCommas(), prizeCount))
-        } else {
+        } else if (winCount != 0) {
             println(LOTTO_WIN_MESSAGE.format(winCount, money.addCommas(), prizeCount))
         }
     }

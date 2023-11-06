@@ -21,7 +21,7 @@ object InputView {
     }
 
     private fun checkDivideMoney(userMoney: Int) {
-        require(userMoney % 1000 != 0)
+        require(userMoney % 1000 == 0)
     }
 
     fun getWinningNumbers(): List<Int> {
