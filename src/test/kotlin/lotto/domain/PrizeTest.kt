@@ -11,7 +11,7 @@ class PrizeTest {
         testList.add(Grade.FIFTH)
         val testMoney = 1000
         val testResult = testPrize.getPrizeRatio(testList, testMoney)
-        Assertions.assertThat(testResult).isEqualTo(500.0)
+        Assertions.assertThat(testResult).isEqualTo("500.0")
     }
 
     @Test
@@ -22,7 +22,7 @@ class PrizeTest {
         testList.add(Grade.FOURTH)
         val testMoney = 3000
         val testResult = testPrize.getPrizeRatio(testList, testMoney)
-        Assertions.assertThat(testResult).isEqualTo(1833.3)
+        Assertions.assertThat(testResult).isEqualTo("1833.3")
     }
 
     @Test
@@ -33,6 +33,17 @@ class PrizeTest {
         testList.add(Grade.FOURTH)
         val testMoney = 6000
         val testResult = testPrize.getPrizeRatio(testList, testMoney)
-        Assertions.assertThat(testResult).isEqualTo(916.7)
+        Assertions.assertThat(testResult).isEqualTo("916.7")
+    }
+
+    @Test
+    fun prizeSumTest() {
+        val testPrize = Prize()
+        val testList = mutableListOf<Grade>()
+        testList.add(Grade.FIRST)
+        testList.add(Grade.FIRST)
+        val testMoney = 2000
+        val testResult = testPrize.getPrizeRatio(testList,testMoney)
+        Assertions.assertThat(testResult).isEqualTo("200000000.0")
     }
 }
