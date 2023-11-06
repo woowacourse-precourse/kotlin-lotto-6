@@ -5,12 +5,23 @@ import org.junit.jupiter.api.Test
 
 class PrizeTest {
     @Test
-    fun prizeTest(){
+    fun prizeTest() {
         val testPrize = Prize()
         val testList = mutableListOf<Grade>()
         testList.add(Grade.FIFTH)
         val testMoney = 1000
-        val testResult = testPrize.getPrizeRatio(testList,testMoney)
+        val testResult = testPrize.getPrizeRatio(testList, testMoney)
         Assertions.assertThat(testResult).isEqualTo(500.0)
+    }
+
+    @Test
+    fun prizeRatioTest() {
+        val testPrize = Prize()
+        val testList = mutableListOf<Grade>()
+        testList.add(Grade.FIFTH)
+        testList.add(Grade.FOURTH)
+        val testMoney = 3000
+        val testResult = testPrize.getPrizeRatio(testList, testMoney)
+        Assertions.assertThat(testResult).isEqualTo(1833.3)
     }
 }
