@@ -7,21 +7,18 @@ class LottoGame(private val user: User) {
     fun start() {
         showMessage(INPUT_AMOUNT_MESSAGE)
         val amount = inputAmountFromUser()
-        println(amount)
-
-        showMessage(INPUT_WINNING_NUMBERS_MESSAGE)
-        val winningNumbers = inputWinningNumbersFromUser()
-        println(winningNumbers)
-
-        showMessage(INPUT_BONUS_NUMBER_MESSAGE)
-        val bonusNumber = inputBonusNumberFromUser()
-        println(bonusNumber)
 
         val lottoCount = calculateLottoCount(amount)
         showMessage(PURCHASED_LOTTO_COUNT_MESSAGE.format(lottoCount))
 
         val lottos = publishLottos(lottoCount)
         lottos.forEach { showMessage(makeLottoNumbersMessage(it)) }
+
+        showMessage(INPUT_WINNING_NUMBERS_MESSAGE)
+        val winningNumbers = inputWinningNumbersFromUser()
+
+        showMessage(INPUT_BONUS_NUMBER_MESSAGE)
+        val bonusNumber = inputBonusNumberFromUser()
     }
 
     private fun inputAmountFromUser(): Int {
