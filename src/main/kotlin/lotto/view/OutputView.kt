@@ -6,7 +6,7 @@ import lotto.util.Constant.FIFTH_PLACE_MESSAGE
 import lotto.util.Constant.FIRST_PLACE_MESSAGE
 import lotto.util.Constant.FOURTH_PLACE_MESSAGE
 import lotto.util.Constant.INPUT_BONUS_NUMBER_MESSAGE
-import lotto.util.Constant.INPUT_LUCKY_NUMBER_MESSAGE
+import lotto.util.Constant.INPUT_WINNING_NUMBER_MESSAGE
 import lotto.util.Constant.INPUT_PRICE_MESSAGE
 import lotto.util.Constant.LOTTO_BUY_MESSAGE
 import lotto.util.Constant.SECOND_PLACE_MESSAGE
@@ -21,7 +21,7 @@ class OutputView {
     fun printBuyLotto(price: Int) = println("\n${LOTTO_BUY_MESSAGE.format(price / UNIT_PRICE)}")
     fun printUserLotto(lottoes: List<Lotto>) = lottoes.forEach { lotto -> println(lotto.getLottoNumbers()) }
 
-    fun printInputLuckyNumber() = println("\n${INPUT_LUCKY_NUMBER_MESSAGE}")
+    fun printInputLuckyNumber() = println("\n${INPUT_WINNING_NUMBER_MESSAGE}")
     fun printInputBonusNumber() = println("\n${INPUT_BONUS_NUMBER_MESSAGE}")
     fun printWinStatisticsMessage() = println("\n${WINNING_STATISTICS_MESSAGE}")
     fun printWinStatisticsResult(map: Map<Place, Int>) {

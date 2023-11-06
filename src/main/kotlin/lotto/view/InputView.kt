@@ -15,7 +15,7 @@ class InputView {
     fun inputLuckyNumber(): List<Int> {
         val luckyNumbers = Console.readLine().split(",")
         for (luckyNumber in luckyNumbers) {
-            requireNotNull(luckyNumber.toIntOrNull()) { Constant.INPUT_LUCKY_NUMBER_NOT_NUMBER_ERROR_MESSAGE }
+            requireNotNull(luckyNumber.toIntOrNull()) { Constant.INPUT_WINNING_NUMBER_NOT_NUMBER_ERROR_MESSAGE }
         }
         return luckyNumbers.map { it.toInt() }
     }

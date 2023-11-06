@@ -30,7 +30,7 @@ class WinResultService(
 
     private fun compareLottoNumber(lotto: Lotto, winningLotto: WinningLotto): Place {
         val lottoNumbers = lotto.getLottoNumbers()
-        val luckyNumbers = winningLotto.getLuckyNumbers()
+        val luckyNumbers = winningLotto.getWinningNumbers()
         val bonusNumber = winningLotto.getBonusNumber()
         val matchNumbers = lottoNumbers.count { lottoNumber -> lottoNumber in luckyNumbers }
         val matchBonus = lottoNumbers.contains(bonusNumber)
@@ -44,5 +44,4 @@ class WinResultService(
         }
         earningRate = (earnMoney / user.getPrice().toDouble()) * 100
     }
-
 }

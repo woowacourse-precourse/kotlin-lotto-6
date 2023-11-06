@@ -1,9 +1,9 @@
 package lotto.util
 
 import lotto.util.Constant.INPUT_BONUS_NUMBER_NOT_NUMBER_ERROR_MESSAGE
-import lotto.util.Constant.INPUT_LUCKY_NUMBER_LENGTH_ERROR_MESSAGE
-import lotto.util.Constant.INPUT_LUCKY_NUMBER_NOT_NUMBER_ERROR_MESSAGE
-import lotto.util.Constant.INPUT_LUCKY_NUMBER_OVERLAP_ERROR_MESSAGE
+import lotto.util.Constant.INPUT_WINNING_NUMBER_LENGTH_ERROR_MESSAGE
+import lotto.util.Constant.INPUT_WINNING_NUMBER_NOT_NUMBER_ERROR_MESSAGE
+import lotto.util.Constant.INPUT_WINNING_NUMBER_OVERLAP_ERROR_MESSAGE
 import lotto.util.Constant.INPUT_PRICE_NOT_NUMBER_ERROR_MESSAGE
 import lotto.util.Constant.LOTTO_MAX_RANDOM_NUMBER
 import lotto.util.Constant.LOTTO_MIN_RANDOM_NUMBER
@@ -28,12 +28,12 @@ object Exception {
         require(numbers == numbers.sorted()) { LOTTO_NUMBER_SORT_ERROR_MESSAGE }
     }
 
-    fun validateInputLuckyNumber(numbers: List<Int>) {
-        require(numbers.size == LOTTO_NUMBER_SIZE) { INPUT_LUCKY_NUMBER_LENGTH_ERROR_MESSAGE }
-        for (luckyNumber in numbers) {
-            require(luckyNumber in LOTTO_MIN_RANDOM_NUMBER..LOTTO_MAX_RANDOM_NUMBER) { INPUT_LUCKY_NUMBER_NOT_NUMBER_ERROR_MESSAGE }
+    fun validateInputWinningNumber(numbers: List<Int>) {
+        require(numbers.size == LOTTO_NUMBER_SIZE) { INPUT_WINNING_NUMBER_LENGTH_ERROR_MESSAGE }
+        for (winningNumber in numbers) {
+            require(winningNumber in LOTTO_MIN_RANDOM_NUMBER..LOTTO_MAX_RANDOM_NUMBER) { INPUT_WINNING_NUMBER_NOT_NUMBER_ERROR_MESSAGE }
         }
-        require(numbers.toSet().size == LOTTO_NUMBER_SIZE) { INPUT_LUCKY_NUMBER_OVERLAP_ERROR_MESSAGE }
+        require(numbers.toSet().size == LOTTO_NUMBER_SIZE) { INPUT_WINNING_NUMBER_OVERLAP_ERROR_MESSAGE }
     }
 
     fun validateInputBonusNumber(number: Int) {
