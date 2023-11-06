@@ -13,35 +13,26 @@ private const val POSITIVE_NUM = 1
 object Validator {
     private fun isItInteger(input: String) {
         val value = input.toIntOrNull()
-        require(value != null) { ErrorMessage.NOT_NOT_INTEGER.msg}
+        require(value != null) { ErrorMessage.NOT_NOT_INTEGER.msg }
     }
 
-    private fun isItPositive(input: Int) {
-        require(input >= POSITIVE_NUM) { ErrorMessage.NOT_POSITIVE_INTEGER .msg}
-    }
+    private fun isItPositive(input: Int) = require(input >= POSITIVE_NUM) { ErrorMessage.NOT_POSITIVE_INTEGER.msg }
 
-    private fun isItNotEmpty(input: String) {
-        require(input.trim().isNotEmpty()) { ErrorMessage.EMPTY_INPUT.msg}
-    }
+    private fun isItNotEmpty(input: String) = require(input.trim().isNotEmpty()) { ErrorMessage.EMPTY_INPUT.msg }
 
-    private fun isDivisibleByThousand(input: Int) {
-        require(input % LOTTO_PURCHASE_COST == ZERO_NUM) {  ErrorMessage.NOT_DIVISIBLE.msg }
-    }
+    private fun isDivisibleByThousand(input: Int) =
+        require(input % LOTTO_PURCHASE_COST == ZERO_NUM) { ErrorMessage.NOT_DIVISIBLE.msg }
 
-    private fun isNumInRange(input: Int) {
-        require(input in LOTTO_RANGE_START..LOTTO_RANGE_END) { ErrorMessage.NOT_IN_RANGE.msg}
-    }
+    private fun isNumInRange(input: Int) =
+        require(input in LOTTO_RANGE_START..LOTTO_RANGE_END) { ErrorMessage.NOT_IN_RANGE.msg }
 
-    private fun isNumsDuplicated(input: List<String>) {
-        require(input.size == input.toSet().size) { ErrorMessage.DUPLICATE_VALUES.msg}
-    }
+    private fun isNumsDuplicated(input: List<String>) =
+        require(input.size == input.toSet().size) { ErrorMessage.DUPLICATE_VALUES.msg }
 
-    private fun isProperSize(input:List<String>) {
-        require(input.size == LOTTO_SIZE){ErrorMessage.INVALID_SIZE.msg}
-    }
-    private fun isNumExist(input: Int,winningNums: List<Int>){
-        require(!winningNums.contains(input)){ErrorMessage.ALREADY_EXISTS.msg}
-    }
+    private fun isProperSize(input: List<String>) = require(input.size == LOTTO_SIZE) { ErrorMessage.INVALID_SIZE.msg }
+
+    private fun isNumExist(input: Int, winningNums: List<Int>) =
+        require(!winningNums.contains(input)) { ErrorMessage.ALREADY_EXISTS.msg }
 
     fun isValidPurchaseAmount(input: String) {
         isItNotEmpty(input)
@@ -62,10 +53,10 @@ object Validator {
         isProperSize(userInput)
     }
 
-    fun isValidBonusNum(input: String,winningNums:List<Int>){
+    fun isValidBonusNum(input: String, winningNums: List<Int>) {
         isItNotEmpty(input)
         isItInteger(input)
         isNumInRange(input.toInt())
-        isNumExist(input.toInt(),winningNums)
+        isNumExist(input.toInt(), winningNums)
     }
 }

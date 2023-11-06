@@ -10,16 +10,16 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 
 class LottoResultAnalyzer {
+
     val analyzedLottoResults: List<Int>
         get() = _analyzedLottoResults
-
     private var _analyzedLottoResults = MutableList(5) { 0 }
-
-    private var _profit = 0
 
     val profitRate: Double
         get() = _profitRate
     private var _profitRate: Double = 0.0
+
+    private var _profit = 0
 
     fun analyzeLottoResults(result: List<Int>) {
         result.forEach { analyzeNumber(it) }

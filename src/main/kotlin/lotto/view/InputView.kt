@@ -20,10 +20,7 @@ class InputView {
         }
     }
 
-    fun getValidPurchaseAmount(): String {
-        return getInputValidation(::isValidPurchaseAmount)
-    }
-
+    fun getValidPurchaseAmount(): String = getInputValidation(::isValidPurchaseAmount)
 
     fun getValidWinningNums(): List<Int> {
         var winningNums = listOf<Int>()
@@ -33,8 +30,6 @@ class InputView {
         }
         return winningNums
     }
-
-
 
     fun getValidBonusNum(winningNums: List<Int>): Int {
         var bonusNum = 0

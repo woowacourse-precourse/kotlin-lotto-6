@@ -1,25 +1,15 @@
 package lotto.view
 
 class OutputView {
-    fun printPurchaseAmount() {
-        println(PURCHASE_AMOUNT_MSG)
-    }
+    fun printPurchaseAmount() = println(PURCHASE_AMOUNT_MSG)
 
-    fun printLottoCount(lottoCount: Int) {
-        println("\n${LOTTO_COUNT_MSG.format(lottoCount)}")
-    }
+    fun printLottoCount(lottoCount: Int) = println("\n${LOTTO_COUNT_MSG.format(lottoCount)}")
 
-    fun printLottoList(lottoList: List<List<Int>>) {
-        repeat(lottoList.size) { println(lottoList[it]) }
-    }
+    fun printLottoList(lottoList: List<List<Int>>) = repeat(lottoList.size) { println(lottoList[it]) }
 
-    fun printRequireWinningNums() {
-        println("\n$LOTTO_WINNING_NUMS_MSG")
-    }
+    fun printRequireWinningNums() = println("\n$LOTTO_WINNING_NUMS_MSG")
 
-    fun printRequireBonusNums() {
-        println("\n$LOTTO_BONUS_NUM_MSG")
-    }
+    fun printRequireBonusNums() = println("\n$LOTTO_BONUS_NUM_MSG")
 
     private fun printWinningResult(result: List<Int>) {
         val formats = listOf(
@@ -35,13 +25,9 @@ class OutputView {
         }
     }
 
-    private fun printWinningStatsHeader() {
-        println(WINNING_STATS_HEADER_MSG)
-    }
+    private fun printWinningStatsHeader() = println(WINNING_STATS_HEADER_MSG)
 
-    private fun printProfitRate(profitRate: Double) {
-        println(PROFIT_RATE_MSG.format(profitRate))
-    }
+    private fun printProfitRate(profitRate: Double) = println(PROFIT_RATE_MSG.format(profitRate))
 
     fun printWinningStats(result: List<Int>, profitRate: Double) {
         printWinningStatsHeader()

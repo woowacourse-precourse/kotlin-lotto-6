@@ -14,7 +14,6 @@ class LottoPublisher {
     private lateinit var _publishedLottoList: MutableList<List<Int>>
     private var _publishedLotto = List<Int>(LOTTO_SIZE) { ZERO_NUM }
 
-
     private fun publishLotto(): List<Int> {
         _publishedLotto = Randoms.pickUniqueNumbersInRange(LOTTO_RANGE_START, LOTTO_RANGE_END, LOTTO_SIZE).sorted()
         return _publishedLotto
