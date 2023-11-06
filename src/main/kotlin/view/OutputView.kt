@@ -1,6 +1,6 @@
 package view
 
-import lotto.Lotto
+import model.Lotto
 
 class OutputView {
 

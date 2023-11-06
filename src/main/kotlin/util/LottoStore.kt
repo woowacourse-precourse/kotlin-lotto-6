@@ -1,7 +1,7 @@
 package util
 
 import camp.nextstep.edu.missionutils.Randoms
-import lotto.Lotto
+import model.Lotto
 
 object LottoStore {
     fun generateLottoTickets(): Lotto {
