@@ -21,7 +21,7 @@ class Lotto(private val numbers: List<Int>) {
     }
     private fun lottoNumberRangeCheck() {
         numbers.forEach {
-            if (it !in (MINIMUM_LOTTO_NUMBER)..<MAXIMUM_LOTTO_NUMBER) {
+            if (it !in (MINIMUM_LOTTO_NUMBER)..MAXIMUM_LOTTO_NUMBER) {
                 throw IllegalArgumentException(LOTTO_RANGE_ERROR)
             }
         }
@@ -31,4 +31,6 @@ class Lotto(private val numbers: List<Int>) {
             throw IllegalArgumentException(DUPLICATE_VALUES)
         }
     }
+
+
 }
