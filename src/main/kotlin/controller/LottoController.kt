@@ -38,7 +38,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
 
         outputView.printPurchasedItemCount(money.getPurchasableLottoTicketCount())
         purchasedLottoTickets.forEach { lotto ->
-            outputView.printLottoInfo(lotto)
+            outputView.printLottoInfo(lotto.getLottoNumberInfo())
         }
 
         outputView.printAppendLine()
