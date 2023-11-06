@@ -28,7 +28,7 @@ object InputView {
     }
 
     fun inputBonusNumber(): Int {
-        printBonusNumberMessage(INPUT_BONUS_NUMBER)
+        printStepMessage(INPUT_BONUS_NUMBER)
         return getBonusNumber()
     }
 
@@ -101,7 +101,7 @@ object InputView {
         getBonusNumber()
     }
 
-    private fun getValidatedBonusNumber(bonus: String): Int = try {
+    fun getValidatedBonusNumber(bonus: String): Int = try {
         val bonusNum = bonus.toInt()
         if (bonusNum !in 1..45) throw IllegalArgumentException(EXCEPTION_BONUS_NUMBERS_RANGE)
         bonusNum
