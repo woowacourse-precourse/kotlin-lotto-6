@@ -61,15 +61,14 @@ object Validator {
         return budget
     }
 
-    fun validateWinningNumber(input: String): List<Int> {
-        val winningNumbers = mapToWinningNumber(input)
-        isAvailableLength(winningNumbers.size)
-        isDuplicatedNumber(winningNumbers)
-        winningNumbers.map {
+    fun validateNumbers(input: List<Int>): List<Int> {
+        isAvailableLength(input.size)
+        isDuplicatedNumber(input)
+        input.map {
             isAvailableRange(it)
         }
 
-        return winningNumbers
+        return input
     }
 
     fun mapToWinningNumber(input: String): List<Int> {
