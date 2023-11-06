@@ -112,4 +112,38 @@ class IoTest {
             checker.checkWinningNumbers(listOf("0","1","2","3","4","5"))
         }
     }
+
+    @Test
+    fun`보너스 번호 입력이 숫자가 아닐 때`() {
+        assertThrows<IllegalArgumentException> {
+            checker.checkBonusNumber(listOf(1,2,3,4,5,6),"")
+        }
+    }
+    @Test
+    fun`보너스 번호 입력이 숫자가 아닐 때2`() {
+        assertThrows<IllegalArgumentException> {
+            checker.checkBonusNumber(listOf(1,2,3,4,5,6),"a")
+        }
+    }
+
+    @Test
+    fun`보너스 번호 입력이 당첨번호와 중복이 있을 때`() {
+        assertThrows<IllegalArgumentException> {
+            checker.checkBonusNumber(listOf(1,2,3,4,5,6),"1")
+        }
+    }
+
+    @Test
+    fun`보너스 번호 입력이 범위 밖일 때1`() {
+        assertThrows<IllegalArgumentException> {
+            checker.checkBonusNumber(listOf(1,2,3,4,5,6),"0")
+        }
+    }
+
+    @Test
+    fun`보너스 번호 입력이 범위 밖일 때2`() {
+        assertThrows<IllegalArgumentException> {
+            checker.checkBonusNumber(listOf(1,2,3,4,5,6),"46")
+        }
+    }
 }
