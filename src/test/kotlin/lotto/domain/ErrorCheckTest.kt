@@ -49,14 +49,14 @@ class ErrorCheckTest {
     @Test
     fun winValidNumberCheckTest(){
         assertThrows<IllegalArgumentException> {
-            winValidNumberCheck(listOf(1,2,3,4,5,46))
+            winNumberRangeCheck(listOf(1,2,3,4,5,46))
         }
     }
 
     @Test
     fun winChangeNumberCheck(){
         assertThrows<IllegalArgumentException> {
-            winChangeNumberCheck(listOf(1,1,2,3,4,5))
+            winNumberDistinctCheck(listOf(1,1,2,3,4,5))
         }
     }
 

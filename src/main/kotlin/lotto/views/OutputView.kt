@@ -24,7 +24,7 @@ object OutputView {
         }
     }
 
-    fun printReward(reward: List<Grade>) {
+    fun printPrize(reward: List<Grade>) {
         val countMap = reward.groupingBy { it }.eachCount()
         val correctNumber = mutableListOf<Int>()
 

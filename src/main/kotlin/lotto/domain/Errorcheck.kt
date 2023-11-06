@@ -31,8 +31,8 @@ fun winningNumberErrorCheck(input: String, splitInput: List<String>): List<Int> 
     winNumberCheck(splitInput)
     winNumberIndexCheck(splitInput)
     val changeNumbers = input.split(",").map { it.toInt() }
-    winChangeNumberCheck(changeNumbers)
-    winValidNumberCheck(changeNumbers)
+    winNumberDistinctCheck(changeNumbers)
+    winNumberRangeCheck(changeNumbers)
     return changeNumbers.filter { it in 1..45 }
 }
 
@@ -57,7 +57,7 @@ fun winNumberIndexCheck(splitInput: List<String>) {
     }
 }
 
-fun winValidNumberCheck(changeNumbers: List<Int>) {
+fun winNumberRangeCheck(changeNumbers: List<Int>) {
     val validNumber = changeNumbers.filter { it in 1..45 }
     if (validNumber.size != 6) {
         throw IllegalArgumentException(RANGE_ERROR)
@@ -65,7 +65,7 @@ fun winValidNumberCheck(changeNumbers: List<Int>) {
     }
 }
 
-fun winChangeNumberCheck(changeNumbers: List<Int>) {
+fun winNumberDistinctCheck(changeNumbers: List<Int>) {
     if (changeNumbers.distinct().size != changeNumbers.size) {
         throw IllegalArgumentException(DUPLICATE_ERROR)
     }

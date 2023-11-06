@@ -2,12 +2,12 @@ package lotto.domain
 
 class WinningCheck {
     fun numbersCheck(myLotto: List<Lotto>, winningNumber: List<Int>, bonusNumber: Int): List<Grade> {
-        val GradeList = mutableListOf<Grade>()
+        val gradeList = mutableListOf<Grade>()
         for (lotto in myLotto) {
             val result = compareNumbers(lotto.getNumbers(), winningNumber, bonusNumber)
-            GradeList.add(winCheck(result))
+            gradeList.add(winCheck(result))
         }
-        return GradeList
+        return gradeList
     }
 
     private fun compareNumbers(lotto: List<Int>, winningNumber: List<Int>, bonusNumber: Int): Pair<Int, Boolean> {
