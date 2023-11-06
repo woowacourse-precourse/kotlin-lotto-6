@@ -16,7 +16,7 @@ object InputView {
 
     private fun checkPurchaseMoney(inputPurchaseMoney: String): Int {
         val purchaseMoneyNum = checkNumber(inputPurchaseMoney)
-
+        checkDivideMoney(purchaseMoneyNum)
         return purchaseMoneyNum
     }
 
@@ -26,6 +26,9 @@ object InputView {
         return purchaseMoneyNum
     }
 
+    private fun checkDivideMoney(userMoney: Int) {
+        require(userMoney % 1000 != 0)
+    }
 
     fun getWinningNumbers(): List<Int> {
         println("\n$WINNING_NUMBER_MESSAGE")
