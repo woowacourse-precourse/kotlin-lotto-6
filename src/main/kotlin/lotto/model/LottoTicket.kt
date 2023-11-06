@@ -12,12 +12,12 @@ class LottoTicket {
 
     fun lottoTicketPublish(purchaseCount: Int) {
         repeat(purchaseCount) {
-            val publishTicket = publicOneTicket()
+            val publishTicket = publishOneTicket()
             addNumbers(publishTicket)
         }
     }
 
-    private fun publicOneTicket(): List<Int> = Randoms.pickUniqueNumbersInRange(
+    private fun publishOneTicket(): List<Int> = Randoms.pickUniqueNumbersInRange(
         LOTTO_MIN_NUMBER,
         LOTTO_MAX_NUMBER,
         LOTTO_SIZE

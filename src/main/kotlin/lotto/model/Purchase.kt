@@ -12,7 +12,6 @@ class Purchase(private val _price: Int) {
     val price: Int
         get() = _price
 
-
     init {
         validateRange(_price)
         validate1000Unit(_price)

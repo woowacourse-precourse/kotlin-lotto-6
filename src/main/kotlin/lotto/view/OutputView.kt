@@ -6,9 +6,8 @@ import lotto.model.LottoTicket
 import lotto.model.Purchase
 
 class OutputView {
-    fun printGameStartMessage() {
-        println("구입금액을 입력해 주세요.")
-    }
+    fun printGameStartMessage() = println("구입금액을 입력해 주세요.")
+
 
     fun printPurchaseCount(purchase: Purchase) {
         println() //예제 출력과 같게 하기 위해 공백 추가
@@ -16,8 +15,7 @@ class OutputView {
     }
 
     fun printLottoTicket(lottoTicket: LottoTicket) {
-        val numbers = lottoTicket.numbers
-        numbers.forEach {
+        lottoTicket.numbers.forEach {
             println(it)
         }
     }
@@ -44,8 +42,6 @@ class OutputView {
         println("6개 일치 (2,000,000,000원) - ${rankings[0]}개")
     }
 
-    fun printLottoProfitRate(lottoProfit: LottoProfit) {
-        val profitRate = lottoProfit.rate
-        println("총 수익률은 ${profitRate}%입니다.")
-    }
+    fun printLottoProfitRate(lottoProfit: LottoProfit) = println("총 수익률은 ${lottoProfit.rate}%입니다.")
+
 }

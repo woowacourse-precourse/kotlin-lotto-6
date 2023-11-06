@@ -1,5 +1,6 @@
 package lotto.util
 
+import lotto.util.Constants.DELIMITER
 import lotto.util.Constants.LOTTO_MAX_NUMBER
 import lotto.util.Constants.LOTTO_MIN_NUMBER
 import lotto.util.Constants.LOTTO_PRICE
@@ -19,7 +20,7 @@ object Validator {
     }
 
     fun validateLottoInteger(input: String) {
-        val validation = input.split(",")
+        val validation = input.split(DELIMITER)
         validation.forEach {
             validateInteger(it)
         }

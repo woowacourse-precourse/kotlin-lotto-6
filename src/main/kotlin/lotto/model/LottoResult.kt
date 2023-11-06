@@ -15,10 +15,17 @@ class LottoResult(
         val matchingCount = lottoNumbers.intersect(winningNumbers.toSet()).count()
         return when (matchingCount) {
             6 -> RANKING_1ST_INDEX
-            5 -> if (lottoNumbers.contains(bonus)) RANKING_2ST_INDEX else RANKING_3ST_INDEX
+            5 -> containBonusNumber(lottoNumbers)
             4 -> RANKING_4ST_INDEX
             3 -> RANKING_5ST_INDEX
             else -> RANKING_NOTHING
+        }
+    }
+
+    private fun containBonusNumber(lottoNumbers: List<Int>): Int {
+        return when (lottoNumbers.contains(bonus)) {
+            true -> RANKING_2ST_INDEX
+            false -> RANKING_3ST_INDEX
         }
     }
 }

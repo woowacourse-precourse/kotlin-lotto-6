@@ -27,6 +27,7 @@ class LottoProfit(
     private fun calculateRate(rankings: List<Int>, purchasePrice: Int): Double {
         val totalGain = getTotalGain(rankings)
         val profit = (totalGain / purchasePrice.toDouble()) * 100
-        return (profit * 10).roundToInt() / 10.0
+        val roundProfit = (profit * 10).roundToInt() / 10.0
+        return roundProfit
     }
 }
