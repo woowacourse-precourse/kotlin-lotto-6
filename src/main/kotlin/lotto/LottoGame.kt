@@ -16,4 +16,6 @@ class LottoGame() {
             Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6))
         }
     }
+
+
 }

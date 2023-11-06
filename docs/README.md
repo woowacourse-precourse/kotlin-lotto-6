@@ -29,6 +29,7 @@
 
    - [x] Lotto.kt - Lotto 객체 선언
      - [x] numbers 유효성 검사
+     - [x] 정렬된 로또 번호 출력
    - [x] LottaGame.kt - LottaGame 객체 선언
      -  [x] count값에 맞는 Lottos 객체 생성
 
