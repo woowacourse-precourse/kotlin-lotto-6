@@ -2,6 +2,7 @@ package lotto.controller
 
 import LottoView.inputPurchaseAmountOfLotto
 import LottoView.printPurchaseAmountOfLotto
+import LottoView.printPurchaseLottoCount
 import lotto.model.LottoModel
 import java.util.*
 
@@ -11,6 +12,8 @@ class LottoController() {
         try {
             printPurchaseAmountOfLotto()
             val purchaseAmount = inputPurchaseAmountOfLotto()
+
+            printPurchaseLottoCount(purchaseAmount)
         } catch (e: IllegalArgumentException) {
             println(e.message)
             start()

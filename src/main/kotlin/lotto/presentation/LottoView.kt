@@ -14,4 +14,8 @@ object LottoView {
 
         return purchaseAmount.toInt()
     }
+
+    fun printPurchaseLottoCount(amount: Int) {
+        println(PURCHASE_LOTTO_COUNT_MESSAGE.format(amount / LOTTO_PRICE))
+    }
 }
