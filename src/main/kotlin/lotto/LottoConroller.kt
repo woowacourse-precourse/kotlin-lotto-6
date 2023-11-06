@@ -23,7 +23,7 @@ class LottoConroller {
     fun printWinningMents(){
         try{
             val winningNumbers = ValidInput().validWinningNumbers(ValidInput().convertWinningNumbers())
-            val bonusNumber = ValidInput().bringBonusNumber(winningNumbers)
+            ValidInput().bringBonusNumber(winningNumbers)
             lottoOutput.printlnWinningNumber()
             lottoOutput.printlnBonusNumberMent()
         }

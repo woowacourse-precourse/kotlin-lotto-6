@@ -47,7 +47,11 @@ class ValidInput {
             if(bonusNumber.toIntOrNull()==null){
                 throw IllegalArgumentException("[ERROR]보너스 번호는 숫자로 입력해야합니다.")
             }
+            if(bonusNumber.toInt()<1||bonusNumber.toInt()>45){
+                throw IllegalArgumentException("[ERROR]보너스 번호는 숫자로 입력해야합니다.")
+            }
             LottoOutPut().printlnOutPutMent()
+            LottoOutPut().printlnThreeBar()
         } catch (e: IllegalArgumentException) {
             println(e.message)
             return bringBonusNumber(winningNumbers)

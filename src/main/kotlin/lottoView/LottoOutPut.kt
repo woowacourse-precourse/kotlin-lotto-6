@@ -10,7 +10,8 @@ class LottoOutPut {
        PURCHASE_DETAIL("개를 구매했습니다."),
        WINNING_NUMBER("당첨 번호를 입력해 주세요."),
        BONUS_NUMBER("보너스 번호를 입력해주세요."),
-        WINNING_STATISTICS("당첨 통계")
+        WINNING_STATISTICS("당첨 통계"),
+        THREE_BAR("---")
    }
     fun startMent()=println(LottoMent.INPUT_PURCHASE.message)
     fun purchaseDetailPrint(purchaseAmount:Int) {
@@ -36,5 +37,8 @@ class LottoOutPut {
     }
     fun printlnOutPutMent(){
         println(LottoMent.WINNING_STATISTICS.message)
+    }
+    fun printlnThreeBar(){
+        println(LottoMent.THREE_BAR.message)
     }
 }
