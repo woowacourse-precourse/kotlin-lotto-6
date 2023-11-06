@@ -21,5 +21,11 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
-
+    @Test
+    fun `로또 구입 금액이 1,000원 단위가 아니면 예외가 발생한다`() {
+        val price = 1234
+        assertThrows<IllegalArgumentException>("[ERROR] 로또 구매 금액은 1,000원 단위로 입력 되어야 합니다.") {
+            require(price % 1000 != 0)
+        }
+    }
 }

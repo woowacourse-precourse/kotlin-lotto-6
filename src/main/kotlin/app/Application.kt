@@ -2,12 +2,12 @@ package app
 
 import lotto.Lotto
 import lotto.LottoInitializer
-import winningNumber.WinnigNumber
+import winningNumber.WinningNumber
 
 fun main() {
     val lotto = LottoInitializer()
     val lottos = mutableListOf<Lotto>()
-    val winningNumber = WinnigNumber()
+    val winningNumber = WinningNumber()
 
     val price = lotto.inputPriceOfLotto()
     val amountOfLotto = price/1000

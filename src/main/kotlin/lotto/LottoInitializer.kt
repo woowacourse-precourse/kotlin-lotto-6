@@ -17,7 +17,6 @@ class LottoInitializer {
         return lotto.sorted()
     }
 
-
     fun inputPriceOfLotto(): Int{
         while (true){
             println(UserInterface.INPUT_USER_PURCHASE_AMOUNT.mention)
@@ -26,12 +25,12 @@ class LottoInitializer {
                 checkPriceMultipleOfThousands(price)
                 return price
             }catch (message: IllegalArgumentException){
-                println("[ERROR] 로또 구매 금액은 1,000원 단위로 입력 되어야 합니다.")
+                message.printStackTrace()
             }
         }
     }
 
     fun checkPriceMultipleOfThousands(input: Int){
-        if(input % 1000 != 0) throw IllegalArgumentException()
+        if(input % 1000 != 0) throw IllegalArgumentException(UserInterface.INPUT_IN_UNIT_OF_THOUSANDS_EXCEPTION.mention)
     }
 }

@@ -8,6 +8,8 @@ enum class UserInterface (
     NOT_INPUT_SAME_NUMBER_EXCEPTION("[ERROR] 당첨 번호에 동일한 숫자를 입력할 수 없습니다."),
     NOT_INPUT_SPACE_EXCEPTION("[ERROR] 당첨 번호는 공백이 입력될 수 없습니다."),
     INPUT_IN_UNIT_OF_THOUSANDS_EXCEPTION("[ERROR] 로또 구매 금액은 1,000원 단위로 입력 되어야 합니다."),
+    INPUT_WINNING_NUMBER_SIZE_NOT_6_EXCEPTION("[ERROR] 당첨 번호는 6개만 입력할 수 있습니다."),
+    INPUT_BONUS_NUMBER_SIZE_NOT_1_EXCEPTION("[ERROR] 보너스 번호는 1개만 입력할 수 있습니디."),
 
     //UI
     INPUT_USER_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
