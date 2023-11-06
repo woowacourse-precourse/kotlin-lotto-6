@@ -3,8 +3,11 @@ package lotto
 import camp.nextstep.edu.missionutils.Randoms
 fun main() {
     val (tickets, purchaseAmount) = buyTickets()
+    println("${tickets.size}개를 구매했습니다.")
     val (winningNumbers, bonusNumber) = getWinningNumbersAndBonus()
     val results = getResults(tickets, winningNumbers, bonusNumber)
+    println("당첨 통계")
+    println("---")
     printResults(results, purchaseAmount)
 }
 
@@ -41,7 +44,9 @@ fun buyLottoTickets(purchaseAmount: Int): List<Lotto> {
     val ticketCount = purchaseAmount / 1000
     return List(ticketCount) {
         val numbers = generateLottoNumbers()
-        Lotto(numbers)
+        val lotto = Lotto(numbers)
+        println(lotto.toString())
+        lotto
     }
 }
 fun inputPurchaseAmount(): String {
@@ -100,6 +105,8 @@ fun inputBonusNumber(): String {
     return readLine().orEmpty()
 }
 
+
+
 fun getValidBonusNumber(): Int {
     while (true) {
         val input = inputBonusNumber()
@@ -109,4 +116,6 @@ fun getValidBonusNumber(): Int {
             println("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.")
         }
     }
+
 }
+
