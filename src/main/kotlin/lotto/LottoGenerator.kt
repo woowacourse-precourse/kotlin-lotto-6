@@ -9,7 +9,7 @@ class LottoGenerator {
     }
 
     fun generateLotto(): List<Int> {
-        val numbers = lottoGenerator()
+        val numbers = lottoGenerator().sorted()
         Lotto(numbers)
         return numbers
     }
