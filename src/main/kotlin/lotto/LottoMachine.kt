@@ -2,11 +2,19 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 
+private const val MIN_LOTTO_NUMBER = 1
+private const val MAX_LOTTO_NUMBER = 45
+
 class LottoMachine {
 
     fun inputWinningNumbers(): List<Int> {
         println("당첨 번호를 입력해 주세요.")
-        val winningNumbers = Console.readLine()
-        return winningNumbers.split(",").map { it.toInt() }.toList()
+        val winningNumbers = Console.readLine().split(",").map { it.toInt() }.toList()
+        validateWinningNumbers(winningNumbers)
+        return winningNumbers
+    }
+
+    private fun validateWinningNumbers(winningNumbers: List<Int>) {
+        require(winningNumbers.all { it in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER }) { throw IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.") }
     }
 }
