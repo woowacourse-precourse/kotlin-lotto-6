@@ -54,5 +54,9 @@ class LottoController(private val inputView: InputView, private val outputView: 
             }
             break
         } while (true)
+
+        outputView.printAppendLine()
+
+        outputView.printEnterBonusNumberMessage()
     }
 }
