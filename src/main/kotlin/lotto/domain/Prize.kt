@@ -1,12 +1,12 @@
 package lotto.domain
 
-import kotlin.math.roundToInt
+import kotlin.math.round
 
 class Prize {
     fun getPrizeRatio(grades: List<Grade>, money: Int): Double {
         val totalPrize = countPrize(grades)
         val ratio = calculateRatio(totalPrize,money)
-        return (ratio * 100).roundToInt() / 100.0
+        return round(ratio*10)/10
     }
 
     private fun countPrize(grades: List<Grade>): Long {
