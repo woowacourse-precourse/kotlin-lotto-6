@@ -25,7 +25,7 @@ class LottoResult(private val lottoTickets: LottoTickets, private val winningLot
         val winCount = findWindCount(prize)
         val matchedNumberCount = findMatchedNumberCount(prize)
         val winningPrizeMoney = prize.amount.toWonFormat()
-        val bonusInfo = if (prize == Prize.Second) "보너스 볼 일치 " else ""
+        val bonusInfo = if (prize == Prize.Second) BONUS_NUMBER_MATCH else ""
         val message = winCountMessage(matchedNumberCount, bonusInfo, winningPrizeMoney, winCount)
         println(message)
     }
@@ -73,6 +73,7 @@ class LottoResult(private val lottoTickets: LottoTickets, private val winningLot
     companion object {
         const val WIN_STATICS = "당첨 통계"
         const val STATICS_DIVIDER = "---"
+        const val BONUS_NUMBER_MATCH = "보너스 볼 일치 "
         const val TOTAL_PROFIT = "총 수익률은 %.1f%%입니다."
     }
 }
