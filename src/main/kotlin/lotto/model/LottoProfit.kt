@@ -2,7 +2,6 @@ package lotto.model
 
 import lotto.util.Constants.FIRST_DECIMAL_PLACE
 import lotto.util.Winnings
-import kotlin.math.roundToInt
 
 class LottoProfit(
     private val rankings: List<Int>,
@@ -27,7 +26,6 @@ class LottoProfit(
     private fun calculateRate(rankings: List<Int>, purchasePrice: Int): Double {
         val totalGain = getTotalGain(rankings)
         val profit = (totalGain / purchasePrice.toDouble()) * 100
-        val roundProfit = (profit * 10).roundToInt() / 10.0
-        return roundProfit
+        return profit
     }
 }
