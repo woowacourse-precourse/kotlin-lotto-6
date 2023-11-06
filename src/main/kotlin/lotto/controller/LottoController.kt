@@ -1,7 +1,10 @@
 package lotto.controller
 
+import lotto.domain.WinningLotto
+import lotto.domain.model.Lotto
 import lotto.domain.model.Purchase
 import lotto.exception.IllegalPurchaseAmountException
+import lotto.exception.IllegalWinningNumberException
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -9,6 +12,7 @@ class LottoController() {
 
     fun make() {
         val purchase = Purchase(getPurchaseAmount())
+        val lotto = Lotto(getWinningNumber())
         OutputView.printLottos(purchase)
     }
 
@@ -20,8 +24,12 @@ class LottoController() {
         }
     }
 
-    private fun setWinningNumber() {
-        val winningNumber = inputView.inputWinningNumber()
+    private fun getWinningNumber(): List<Int> {
+        try {
+            return InputView.inputWinningNumber()
+        } catch (e: IllegalArgumentException) {
+            throw IllegalWinningNumberException()
+        }
     }
 
     private fun setBonusNumber() {

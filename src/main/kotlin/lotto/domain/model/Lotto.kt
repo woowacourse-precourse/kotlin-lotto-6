@@ -4,7 +4,7 @@ import lotto.util.Constants
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6) {
+        require(numbers.size == Constants.LOTTO_NUM_CNT) {
             LOTTO_CNT_ERROR
         }
         require(numbers.distinct().size == Constants.LOTTO_NUM_CNT) {
@@ -13,6 +13,8 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun getNumbers() = numbers.toString()
+
+    fun contains(lottoNumber: Int) = numbers.contains(lottoNumber)
 
     companion object {
         private const val LOTTO_CNT_ERROR = "[ERROR] 로또 숫자의 개수는 ${Constants.LOTTO_NUM_CNT}개여야 합니다."
