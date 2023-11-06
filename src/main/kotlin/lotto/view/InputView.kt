@@ -4,7 +4,7 @@ import lotto.util.Reader
 
 class InputView(private val reader: Reader) {
 
-    private fun inputMoney() {
+    fun readInputMoney() {
         reader.readLottoPrice()
     }
 }
