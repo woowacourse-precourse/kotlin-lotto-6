@@ -12,8 +12,23 @@ class UserInterface(
             try{
                 output.printAmountMsg()
                 purchaseAmount = input.enterPurchaseAmount()
+
                 return purchaseAmount
             } catch (e:IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+    }
+
+    fun askWinningNumbers(): List<Int> {
+        while(true) {
+            val winningNumbers: List<Int>
+            try {
+                output.printWinningNumbersMsg()
+                winningNumbers = input.enterWinningNumbers()
+
+                return winningNumbers
+            } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }

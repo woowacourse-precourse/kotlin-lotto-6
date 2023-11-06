@@ -5,9 +5,17 @@ import lotto.exception.ExceptionChecker
 
 class Input(private val checker: ExceptionChecker = ExceptionChecker()) {
 
-    fun enterPurchaseAmount():Int {
+    fun enterPurchaseAmount(): Int {
         val purchaseAmount = Console.readLine()
         checker.checkAmount(purchaseAmount)
         return purchaseAmount.toInt()
     }
+
+    fun enterWinningNumbers(): List<Int> {
+        val winningNumbers = Console.readLine().split(",")
+        checker.checkWinningNumbers(winningNumbers)
+        return winningNumbers.map { it.toInt() }
+    }
+
+
 }
