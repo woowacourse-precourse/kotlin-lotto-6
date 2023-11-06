@@ -10,4 +10,6 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     private fun isDuplicate() = numbers.distinct().size != numbers.size
+
+    fun getLottoNumbers(): List<Int> = numbers
 }

@@ -1,13 +1,15 @@
 package lotto.controller
 
 import lotto.model.LottoNumber
+import lotto.model.LottoWinningRankCalculator
 import lotto.view.InputView
 import lotto.view.OutputView
 
 class LottoController(
     private val outputView: OutputView,
     private val inputView: InputView,
-    private val lottoNumber: LottoNumber
+    private val lottoNumber: LottoNumber,
+    private val lottoWinningRankCalculator: LottoWinningRankCalculator
 ) {
     fun run() {
         outputView.printInputPriceMessage()
@@ -15,9 +17,13 @@ class LottoController(
         outputView.printPurchaseNumberMessage(number)
         val lotteryTickets = lottoNumber.generateLotto(number)
         outputView.printInputWinNumberMessage()
-        inputView.inputWinNumber()
+        val winNumber = inputView.inputWinNumber()
         outputView.printInputBonusNumberMessage()
-        inputView.inputBonusNumber()
+        val bonusNumber = inputView.inputBonusNumber()
+        outputView.printWinStaticsMessage()
+        val wonLotto = lottoWinningRankCalculator.calculateRank(lotteryTickets,winNumber,bonusNumber)
+        outputView.printWinStats(wonLotto)
+
     }
 
 }

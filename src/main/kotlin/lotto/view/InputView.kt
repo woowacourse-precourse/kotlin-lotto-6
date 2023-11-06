@@ -16,18 +16,20 @@ class InputView {
         return amount.toInt() / 1000
     }
 
-    fun inputWinNumber() {
+    fun inputWinNumber(): List<Int> {
         val winNumber = Console.readLine().trim().split(",")
         winNumber.checkLottoSize()
         winNumber.forEach { number ->
             number.isLottoNumber()
         }
         winNumber.isDuplicateNumber()
+        return winNumber.map { it.toInt() }
     }
 
-    fun inputBonusNumber() {
+    fun inputBonusNumber(): Int {
         val bonusNumber = Console.readLine()
         bonusNumber.isDigit()
         bonusNumber.isLottoNumber()
+        return bonusNumber.toInt()
     }
 }

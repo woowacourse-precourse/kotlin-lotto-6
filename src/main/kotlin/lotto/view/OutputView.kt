@@ -1,10 +1,13 @@
 package lotto.view
 
 import lotto.Lotto
+import lotto.model.LottoRank
 import lotto.view.Constant.INPUT_BONUS_NUMBER_MESSAGE
 import lotto.view.Constant.INPUT_PRICE_MESSAGE
 import lotto.view.Constant.INPUT_WIN_NUMBER_MESSAGE
 import lotto.view.Constant.PURCHASE_NUMBER_MESSAGE
+import lotto.view.Constant.WIN_STATICS_MESSAGE
+import java.text.DecimalFormat
 
 class OutputView {
     fun printInputPriceMessage() = println("$INPUT_PRICE_MESSAGE")
@@ -16,6 +19,21 @@ class OutputView {
     fun printInputWinNumberMessage() = println("\n$INPUT_WIN_NUMBER_MESSAGE")
 
     fun printInputBonusNumberMessage() = println("\n$INPUT_BONUS_NUMBER_MESSAGE")
+
+    fun printWinStaticsMessage(){
+        println("\n$WIN_STATICS_MESSAGE")
+        println("---")
+    }
+
+    fun printWinStats(wonLotto: MutableMap<LottoRank, Int>) {
+        val dec = DecimalFormat("#,###")
+        for (rank in LottoRank.values()) {
+            if (rank != LottoRank.NONE) {
+                val wonCount = wonLotto[rank] ?: 0
+                println("${rank.matchCount}개 일치${rank.bonusNumber} (${dec.format(rank.prize)}원) - ${wonCount}개")
+            }
+        }
+    }
 }
 
 object Constant {
@@ -23,4 +41,5 @@ object Constant {
     const val PURCHASE_NUMBER_MESSAGE = "개를 구매했습니다."
     const val INPUT_WIN_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요."
     const val INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요."
+    const val WIN_STATICS_MESSAGE = "당첨 통계"
 }
