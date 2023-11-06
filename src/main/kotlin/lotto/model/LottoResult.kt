@@ -3,7 +3,7 @@ package lotto.model
 
 class LottoResult {
     private var totalLottoPrize: Int = 0
-    private var matchingLottoResult: Map<LottoMatchNum, Int> = mapOf(
+    private var matchingLottoResult: MutableMap<LottoMatchNum, Int> = mutableMapOf(
         LottoMatchNum.THREE_MATCH to 0,
         LottoMatchNum.FOUR_MATCH to 0,
         LottoMatchNum.FIVE_MATCH to 0,
@@ -15,8 +15,16 @@ class LottoResult {
         return totalLottoPrize
     }
 
-    fun getMatchingLottoResult(): Map<LottoMatchNum, Int> {
+    fun getMatchingLottoResult(): MutableMap<LottoMatchNum, Int> {
         return matchingLottoResult
+    }
+
+    fun setMatchingLottoResult(matchingLottoNumCount: List<Int>) {
+        val matchingLottoMatchNum = LottoMatchNum.values()
+
+        matchingLottoMatchNum.forEachIndexed { index, lottoMatchNum ->
+            matchingLottoResult[lottoMatchNum] = matchingLottoNumCount[index]
+        }
     }
 
     fun calculateTotalLottoPrize() {
