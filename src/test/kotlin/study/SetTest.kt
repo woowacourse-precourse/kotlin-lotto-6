@@ -32,4 +32,18 @@ class SetTest {
     fun contains(input: Int) {
         assertThat(numbers.contains(input)).isTrue()
     }
+
+    @ParameterizedTest
+    @CsvSource(
+        "1, true",
+        "2, true",
+        "3, true",
+        "4, false",
+        "5, false",
+    )
+    fun contains(input: Int, expected: Boolean) {
+        val result = numbers.contains(input)
+
+        assertEquals(expected, result)
+    }
 }
