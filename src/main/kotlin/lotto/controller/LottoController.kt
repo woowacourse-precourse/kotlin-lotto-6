@@ -1,7 +1,6 @@
 package lotto.controller
 
 import camp.nextstep.edu.missionutils.Console.readLine
-import camp.nextstep.edu.missionutils.Randoms
 import lotto.model.LottoModel
 import lotto.enums.Exception
 import lotto.view.LottoView
@@ -11,7 +10,6 @@ class LottoController(private val lottoModel: LottoModel, private val lottoView:
     fun startLotto() {
         lottoView.printEnterPurchaseMessage()
         inputPurchaseAmount()
-        inputWinningNumbers()
     }
 
     private fun inputPurchaseAmount() {
@@ -19,6 +17,8 @@ class LottoController(private val lottoModel: LottoModel, private val lottoView:
             try {
                 val lottoNumbers = lottoModel.generateLottoNumbers(checkPurchaseAmount(readLine()))
                 lottoView.displayLottoNumbers(lottoNumbers)
+                lottoView.printEnterWinningNumberMessage()
+                inputWinningNumbers()
                 break
             } catch (e: IllegalArgumentException) {
                 println("${Exception.ERROR_HEADER.message} ${e.message}")
@@ -31,10 +31,24 @@ class LottoController(private val lottoModel: LottoModel, private val lottoView:
         while (true) {
             try {
                 lottoModel.setWinningNumbers(checkWinningNumbers(readLine()))
+                lottoView.printEnterBonusNumberMessage()
+                inputBonusNumber()
                 break
             } catch (e: IllegalArgumentException) {
                 println("${Exception.ERROR_HEADER.message} ${e.message}")
-                lottoView.printEnterPurchaseMessage()
+                lottoView.printEnterWinningNumberMessage()
+            }
+        }
+    }
+
+    private fun inputBonusNumber() {
+        while (true) {
+            try {
+                checkBonusNumber(readLine())
+                break
+            } catch (e: IllegalArgumentException) {
+                println("${Exception.ERROR_HEADER.message} ${e.message}")
+                lottoView.printEnterBonusNumberMessage()
             }
         }
     }
@@ -54,9 +68,18 @@ class LottoController(private val lottoModel: LottoModel, private val lottoView:
         require(splitWinningNumbers.all { it.isNotBlank() && it.isNotEmpty() }) { Exception.INPUT_IS_BLANK.message }
         require(splitWinningNumbers.all { it.isDigit() }) { Exception.NOT_NUMBER.message }
         require(splitWinningNumbers.toSet().size == 6) { Exception.DUPLICATED_NUMBER.message }
-        require(splitWinningNumbers.all { it.toInt() in 1..44 }) { Exception.INVALID_RANGE_NUMBER.message }
+        require(splitWinningNumbers.all { it.toInt() in 1..45 }) { Exception.INVALID_RANGE_NUMBER.message }
 
         return winningNumbers
+    }
+
+    private fun checkBonusNumber(bonusNumber: String) {
+        require(bonusNumber.isNotBlank() && bonusNumber.isNotEmpty()) { Exception.INPUT_IS_BLANK.message }
+        require(bonusNumber.isDigit()) { Exception.NOT_NUMBER.message }
+        require(bonusNumber.toInt() in 1..45 ) { Exception.INVALID_RANGE_NUMBER.message }
+        require(lottoModel.getWinningNumber().none() { it == bonusNumber }) { Exception.DUPLICATED_BONUS_NUMBER.message }
+
+        lottoModel.setBonusNumbers(bonusNumber)
     }
 
     private fun String.isDigit(): Boolean {

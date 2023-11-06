@@ -1,10 +1,9 @@
 package lotto.model
 
 import camp.nextstep.edu.missionutils.Randoms
-import java.lang.NumberFormatException
 
 class LottoModel {
-    private val winningAndBounsNumbers = mutableListOf<String>()
+    private val winningAndBonusNumbers = mutableListOf<String>()
 
     fun generateLottoNumbers(amount: Int): MutableList<List<Int>> {
         val lottoNumbers = mutableListOf<List<Int>>()
@@ -16,7 +15,15 @@ class LottoModel {
     fun setWinningNumbers(winningNumbers: String) {
         winningNumbers
             .split(",")
-            .forEach { winningAndBounsNumbers.add(it) }
+            .forEach { winningAndBonusNumbers.add(it) }
+    }
+
+    fun setBonusNumbers(winningBonusNumbers: String) {
+        winningAndBonusNumbers.add(winningBonusNumbers)
+    }
+
+    fun getWinningNumber(): List<String> {
+        return winningAndBonusNumbers
     }
 
     private fun createRandomNumber(): List<Int> {
