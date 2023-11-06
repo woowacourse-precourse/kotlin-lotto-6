@@ -6,13 +6,13 @@ import lotto.utils.validator.LottoWinningNumberInputValidator
 
 object LottoInputHandler {
     fun receiveLottoCost() : Int{
-        val cost = Console.readLine().toIntOrNull()
+        val cost = Console.readLine()
         try{
             LottoCostInputValidator.validate(cost)
         } catch (e : IllegalArgumentException){
             return receiveLottoCost()
         }
-        return cost!!
+        return cost.toInt()
     }
 
     fun receiveLottoWinningNumbers() : List<Int>{

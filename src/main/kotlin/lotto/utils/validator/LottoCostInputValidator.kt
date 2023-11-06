@@ -3,8 +3,8 @@ package lotto.utils.validator
 import lotto.LottoOutputHandler
 
 object LottoCostInputValidator{
-    fun validate(cost: Int?) : LottoCostInputState {
-        val inputState = getState(cost)
+    fun validate(input: String) : LottoCostInputState {
+        val inputState = getState(input.toIntOrNull())
         if (inputState != LottoCostInputState.SUCCESSFUL){
             LottoOutputHandler.displayLottoCostErrorMessage(inputState)
             throw IllegalArgumentException()
