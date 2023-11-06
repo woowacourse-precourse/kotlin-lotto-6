@@ -28,6 +28,8 @@ class LottoController(private val model: LottoModel, private val view : LottoVie
                 view.inputMoney()
                 var input_money = Console.readLine().toInt()
                 checkDevide(input_money)
+                var test_complete_input_money = InputMoneyTest(input_money)
+                input_money = test_complete_input_money.getInputNumber()
                 return Pair(input_money,input_money/1000)
             }catch (e: NumberFormatException){
                 println(ErrorMessage.CHARACTER_IN_NUMBER)
@@ -46,17 +48,22 @@ class LottoController(private val model: LottoModel, private val view : LottoVie
             try {
                 view.inputWinningNumber()
                 var winning_number = Console.readLine().split(",").toList()
-                checkWinningNumberLength(winning_number)
-                checkWinningNumberDuplicated(winning_number)
-                checkWinningNumberType(winning_number)
-                checkWinningNumberValue(winning_number)
-                return winning_number
+                checkWinningNumberException(winning_number)
+                var test_complete_winning_number = WinningNumberTest(winning_number)
+                return test_complete_winning_number.getWinningNumber()
             } catch (e: IllegalArgumentException) {
                 print(e.message)
             } catch (e: NumberFormatException){
                 println(e.message)
             }
         }
+    }
+
+    fun checkWinningNumberException(winning_number: List<String>){
+        checkWinningNumberLength(winning_number)
+        checkWinningNumberDuplicated(winning_number)
+        checkWinningNumberType(winning_number)
+        checkWinningNumberValue(winning_number)
     }
 
     fun checkWinningNumberLength(winning_number: List<String>) {
@@ -98,6 +105,7 @@ class LottoController(private val model: LottoModel, private val view : LottoVie
                 var bonus_number = Console.readLine().toInt()
                 checkBonusNumberValue(bonus_number)
                 checkBonusNumberDuplicated(winning_number,bonus_number)
+                bonus_number = BonusNumberTest(winning_number,bonus_number).getBonusNumber()
                 return bonus_number
             }catch (e: NumberFormatException){
                 print(ErrorMessage.BONUS_NUMBER_NOT_A_NUMBER)
