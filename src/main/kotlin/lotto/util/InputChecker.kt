@@ -5,6 +5,7 @@ import lotto.exception.IllegalBonusException
 import lotto.exception.IllegalMoneyException
 import lotto.exception.IllegalNumbersException
 import lotto.model.Lotto
+import java.lang.NumberFormatException
 
 object InputChecker {
 
@@ -14,6 +15,8 @@ object InputChecker {
             money = inputString.toLong()
         } catch (e: IllegalMoneyException) {
             throw IllegalMoneyException.moneyNotNumber
+        } catch (e: NumberFormatException) {
+            throw IllegalMoneyException.moneyTooMuch
         }
         require(money >= LottoConstants.LOTTO_PRICE) {
             throw IllegalMoneyException.moneyUnderPrice

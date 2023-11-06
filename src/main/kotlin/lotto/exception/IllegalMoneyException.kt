@@ -13,6 +13,9 @@ class IllegalMoneyException(
         val moneyNotNumber = IllegalMoneyException(
             errorMessage = ErrorConstants.MONEY_NOT_NUMBER
         )
+        val moneyTooMuch = IllegalMoneyException(
+            errorMessage = ErrorConstants.MONEY_TOO_MUCH
+        )
         val moneyUnderPrice = IllegalMoneyException(
             errorMessage = ErrorConstants.MONEY_UNDER_PRICE
         )
