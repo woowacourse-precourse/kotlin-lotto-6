@@ -2,7 +2,8 @@ package lotto
 
 fun main() {
     val player = Player()
-    player.inputPurchaseAmount()
+    val amount = player.inputPurchaseAmount()
+    player.calculateLottoGenerateCount(amount)
 }
 
 
