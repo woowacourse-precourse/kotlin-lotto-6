@@ -6,6 +6,7 @@ import exception.Message
 import ui.Input
 
 
+
 class Buy {
     init {
         println(Message.MESSAGE_INPUT_MONEY)
@@ -13,26 +14,23 @@ class Buy {
 
     fun buyLotto(): Int {
         try {
-            val money = Input.inputMoney()
-            validateMoney(money.toString())
-            return money / 1000
-        } catch (e: IllegalArgumentException) {
-            println(Exception.EXCEPTION_INVALID_MONEY_TYPE)
+            val moneyStr = Input.inputMoney().toString()
+            val money = moneyStr.toInt()
+
+            if (money % 1000 == 0) {
+                return money / 1000
+            }
+            println("[ERROR] 로또 구입 금액은 1000의 배수여야 합니다.")
             return buyLotto()
         } catch (e: NumberFormatException) {
-            println(Exception.EXCEPTION_INVALID_MONEY)
+            println("[ERROR] 로또 구입 금액은 숫자로만 가능합니다.")
+            return buyLotto()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
             return buyLotto()
         }
     }
 
-    fun validateMoney(money: String) {
-        if (!money.matches(Regex("[0-9]+"))) {
-            throw NumberFormatException()
-        }
-        if (money.toInt() % 1000 != 0) {
-            throw IllegalArgumentException()
-        }
-    }
 
     fun generateLottos(count: Int): Lottos {
         val lottos = Lottos()
