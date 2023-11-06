@@ -14,7 +14,7 @@ class LottoController(
     private fun inputPurchase(): Purchase = inputUntilValid {
         printer.print(Message.InputMoneyAmount)
         val amount = inputInt()
-        return@inputUntilValid Purchase(amountWon = amount).also { printer.print(it) }
+        return Purchase(amountWon = amount).also { printer.print(it) }
     }
 
     private fun inputNormalWinningNumbers(): List<Int> = inputUntilValid {
@@ -22,7 +22,7 @@ class LottoController(
         val numbers = inputIntList(WINNING_NUMBER_DELIMITER)
         WinningNumber.validate(normalNumbers = numbers)
         printer.printEmptyLine()
-        return@inputUntilValid numbers
+        return numbers
     }
 
     private fun inputBonusWinningNumber(normalNumbers: List<Int>): Int = inputUntilValid {
@@ -30,10 +30,10 @@ class LottoController(
         val bonus = inputInt()
         WinningNumber.validate(normalNumbers = normalNumbers, bonusNumber = bonus)
         printer.printEmptyLine()
-        return@inputUntilValid bonus
+        return bonus
     }
 
-    private fun <T> inputUntilValid(block: Reader.() -> T): T {
+    private inline fun <T> inputUntilValid(block: Reader.() -> T): T {
         while (true) {
             try {
                 return reader.block()
