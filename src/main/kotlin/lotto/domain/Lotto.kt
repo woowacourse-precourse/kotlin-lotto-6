@@ -6,7 +6,7 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == numbers.toSet().size)
     }
 
-    fun matchCount(winNumbers: Set<Int>) {
+    fun matchCount(winNumbers: List<Int>) {
 //        winNumbers = numbers
     }
 
