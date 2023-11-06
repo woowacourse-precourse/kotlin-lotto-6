@@ -2,7 +2,7 @@ package util
 
 enum class LottoValidation(val message: String, val isValid: (List<Int>) -> Unit) {
     REQUIRED_LOTTO_NUMBER_COUNT(
-        "[ERROR] 6개의 번호가 정확히 입력되지 않았습니다.",
+        "[ERROR] 6개의 숫자만 당첨번호로 지정할 수 있습니다.",
         fun(numbers: List<Int>) = require(numbers.size == 6) { REQUIRED_LOTTO_NUMBER_COUNT.message },
     ),
     UNIQUE_LOTTO_NUMBERS(
@@ -10,7 +10,7 @@ enum class LottoValidation(val message: String, val isValid: (List<Int>) -> Unit
         fun(numbers: List<Int>) = require(numbers.toSet().size == 6) { UNIQUE_LOTTO_NUMBERS.message },
     ),
     LOTTO_NUMBER_RANGE(
-        "[ERROR] 1 ~ 45 범위에 포함되지 않는 숫자가 존재합니다.",
+        "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
         fun(numbers: List<Int>) = require(numbers.all { it in 1..45 }) { LOTTO_NUMBER_RANGE.message },
     ),
 }
