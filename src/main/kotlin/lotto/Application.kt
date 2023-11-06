@@ -9,8 +9,8 @@ fun main() {
     lottoGenerator.printRandomLotto()
 
     val lottoMachine = LottoMachine()
-    lottoMachine.inputWinningNumbers()
-    lottoMachine.inputBonusNumber()
+    val winningNumbers = lottoMachine.inputWinningNumbers()
+    lottoMachine.inputBonusNumber(winningNumbers)
 }
 
 

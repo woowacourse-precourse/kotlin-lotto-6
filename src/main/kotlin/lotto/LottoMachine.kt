@@ -15,10 +15,10 @@ class LottoMachine {
         return winningNumbers
     }
 
-    fun inputBonusNumber(): Int {
+    fun inputBonusNumber(winningNumbers: List<Int>): Int {
         println("보너스 번호를 입력해 주세요.")
         val bonusNumber = Console.readLine().toInt()
-        validateBonusNumber(bonusNumber)
+        validateBonusNumber(bonusNumber, winningNumbers)
         return bonusNumber
     }
 
@@ -28,7 +28,9 @@ class LottoMachine {
         require(winningNumbers.toSet().size == CNT_LOTTO_NUMBER) { throw IllegalArgumentException("[ERROR] 중복된 번호가 존재합니다.") }
     }
 
-    private fun validateBonusNumber(bonusNumber: Int) {
+    private fun validateBonusNumber(bonusNumber: Int, winningNumbers: List<Int>) {
         require(bonusNumber in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER) { throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.") }
+        require(bonusNumber !in winningNumbers) { throw IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.") }
     }
+
 }
