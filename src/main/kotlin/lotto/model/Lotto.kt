@@ -7,8 +7,8 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
     }
 
-    fun getLottoState(): List<Int> {
-        return numbers
+    fun getLottoState(): List<LottoState> {
+        return numbers.map { LottoState(it) }
     }
 
     fun getWinningCount(winningLotto: Lotto): Int {

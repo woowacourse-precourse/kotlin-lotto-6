@@ -1,3 +1,3 @@
 package lotto.model
 
-data class LottosState(val lotto: List<Int>)
+data class LottosState(val lotto: Lotto)

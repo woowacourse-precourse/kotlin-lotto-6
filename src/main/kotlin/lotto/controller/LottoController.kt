@@ -24,10 +24,10 @@ class LottoController {
         val purchaseCount = purchaseMoney / 1000
         randomLottos = Lottos(purchaseCount, RandomLottoGenerator())
 
-        val lottoState = randomLottos.getLottoState()
+        val lottosState = randomLottos.getLottosState()
         OutputView.printLottoCount(purchaseCount)
-        lottoState.forEach {
-            OutputView.printLottoNumbers(it.lotto)
+        lottosState.forEach { lottoState ->
+            OutputView.printLottoNumbers(lottoState.lotto.getLottoState().map { it.number })
         }
     }
 
@@ -46,8 +46,7 @@ class LottoController {
         lottoResultsState.forEach {
             OutputView.printLottoWin(it.prizeCount, it.money, it.bonus, it.resultCount)
         }
-        OutputView.printResultRate(lottoResults.getTotalMoney(), purchaseMoney)
-
+        OutputView.printResultRate(lottoResults.totalMoney, purchaseMoney)
     }
 
 }

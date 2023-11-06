@@ -11,8 +11,8 @@ class Lottos(purchaseCount: Int, randomGenerator: RandomGenerator) {
         }
     }
 
-    fun getLottoState(): List<LottosState> {
-        return lottos.map { LottosState(it.getLottoState()) }
+    fun getLottosState(): List<LottosState> {
+        return lottos.map { LottosState(it) }
     }
 
     fun getLottoPrizes(winningLotto: Lotto, bonusNumber: Int): List<LottoPrize> {
