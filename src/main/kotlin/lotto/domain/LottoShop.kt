@@ -7,7 +7,7 @@ object LottoShop {
 
     private val LOTTO_PRICE = Money(1000)
 
-    fun buyLottos(money: Money): Lottos {
+    fun purchaseLottos(money: Money): Lottos {
         checkHasEnoughMoney(money)
         checkDivisibleByLottoPrice(money)
         val quantity = money.amount / LOTTO_PRICE.amount
