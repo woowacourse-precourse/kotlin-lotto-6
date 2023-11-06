@@ -25,10 +25,17 @@ object LottoInputHandler {
                 return receiveLottoWinningNumbers()
             }
         }
-
-
         return numbers.map { it.toInt() }
     }
 
+    fun receiveLottoBonusNumber() : Int {
+        val bonusNumber = Console.readLine()
+        try{
+            LottoWinningNumberInputValidator.validate(bonusNumber)
+        } catch (e : IllegalArgumentException){
+            return receiveLottoBonusNumber()
+        }
+        return bonusNumber.toInt()
+    }
 
 }
