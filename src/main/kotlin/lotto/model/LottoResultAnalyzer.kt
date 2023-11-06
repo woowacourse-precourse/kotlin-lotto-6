@@ -38,14 +38,17 @@ class LottoResultAnalyzer {
 
     private fun sumProfit() {
         val (threeMatch, fourMatch, fiveMatch, fiveBonusMatch, sixMatch) = _analyzedLottoResults
-        _profit =
-            threeMatch * THREE_MATCH_PRIZE + fourMatch * FOUR_MATCH_PRIZE + fiveMatch * FIVE_MATCH_PRIZE + fiveBonusMatch * FIVE_BONUS_MATCH_PRIZE + sixMatch * SIX_MATCH_PRIZE
+        _profit = threeMatch * THREE_MATCH_PRIZE +
+                fourMatch * FOUR_MATCH_PRIZE +
+                fiveMatch * FIVE_MATCH_PRIZE +
+                fiveBonusMatch * FIVE_BONUS_MATCH_PRIZE +
+                sixMatch * SIX_MATCH_PRIZE
     }
 
     fun calculateProfitRate(purchaseAmount: Int) {
         sumProfit()
-        val divResult = _profit.toDouble().div(purchaseAmount)
-        val rate = BigDecimal(divResult).setScale(2, RoundingMode.HALF_DOWN).toDouble() * PERCENTAGE_MULTIPLIER
+        val divResult = _profit.toDouble().div(purchaseAmount.toDouble())
+        val rate = BigDecimal(divResult).setScale(3, RoundingMode.HALF_EVEN).toDouble() * PERCENTAGE_MULTIPLIER
         _profitRate = rate
     }
 
