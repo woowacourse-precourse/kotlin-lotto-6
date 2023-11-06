@@ -10,7 +10,7 @@ fun main() {
         val result = purchaseAmountEmpty(input)
         printPurchaseTotal(result)
         repeat(result/1000) {
-            println(makeLotto())
+            println(lottoSort(makeLotto()))
         }
     } catch (e: IllegalArgumentException) {
         println(e.message)
@@ -63,4 +63,8 @@ fun purchaseAmountEmpty(num: Int): Int {
 
 fun makeLotto(): List<Int> {
     return Randoms.pickUniqueNumbersInRange(1, 45, 6)
+}
+
+fun lottoSort(list: List<Int>): List<Int> {
+    return list.sorted()
 }
