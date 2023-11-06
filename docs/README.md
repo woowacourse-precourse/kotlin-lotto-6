@@ -38,17 +38,17 @@
 
 - [] 당첨 번호를 쉼표 기준으로 6개 입력받는다.
   - [x] 양의 정수와 쉼표 외 문자를 제거한다.
-  - [] `ERROR` : 아무런 값을 입력하지 않았을 시  `IllegalArgumentException` 발생
-  - [] `ERROR` : 1~45 범위의 숫자가 아닐 시 `IllegalArgumentException` 발생
-  - [] `ERROR` : 입력 개수가 6개가 아닐 시 `IllegalArgumentException` 발생
-  - [] `ERROR` : 중복된 값 입력 시 `IllegalArgumentException` 발생
+  - [x] `ERROR` : 아무런 값을 입력하지 않았을 시  `IllegalArgumentException` 발생
+  - [x] `ERROR` : 1~45 범위의 숫자가 아닐 시 `IllegalArgumentException` 발생
+  - [x] `ERROR` : 입력 개수가 6개가 아닐 시 `IllegalArgumentException` 발생
+  - [x] `ERROR` : 중복된 값 입력 시 `IllegalArgumentException` 발생
 
 
 - [] 보너스 번호를 1개 입력받는다
-  - [] 양의 정수 외 문자를 제거한다
+  - [x] 양의 정수 외 문자를 제거한다
   - [x] `ERROR` : 아무런 값을 입력하지 않았을 시  `IllegalArgumentException` 발생
-  - [] `ERROR` : 길이가 1 초과 시 `IllegalArgumentException` 발생
-  - [] `ERROR` : 1~45 범위의 숫자가 아닐 시 `IllegalArgumentException` 발생
+  - [x] `ERROR` : 입력 개수가 1개가 아닐 시 `IllegalArgumentException` 발생
+  - [x] `ERROR` : 1~45 범위의 숫자가 아닐 시 `IllegalArgumentException` 발생
 
 
 - [] 발행한 로또에서 당첨 번호와 몇 개가 일치 하는지 알 수 있다
