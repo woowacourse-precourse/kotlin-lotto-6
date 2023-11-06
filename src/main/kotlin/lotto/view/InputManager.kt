@@ -1,6 +1,7 @@
-package lotto
+package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.util.Error
 
 object InputManager {
 

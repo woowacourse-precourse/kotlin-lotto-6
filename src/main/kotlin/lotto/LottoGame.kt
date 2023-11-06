@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.domain.Purchaser
+import lotto.view.InputManager
 
 class LottoGame {
 

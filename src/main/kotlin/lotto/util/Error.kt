@@ -1,4 +1,4 @@
-package lotto
+package lotto.util
 
 enum class Error(val message: String) {
     NotNumber("[ERROR] 숫자를 입력해 주세요."),

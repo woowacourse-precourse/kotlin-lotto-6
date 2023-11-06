@@ -1,6 +1,6 @@
 package lotto.domain
 
-import lotto.Error
+import lotto.util.Error
 import lotto.util.LOTTO_PRICE
 
 class Purchaser(money: Int) {
