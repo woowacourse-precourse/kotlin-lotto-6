@@ -29,8 +29,4 @@ open class InputValidator {
     fun checkForWinNumbersLength(winNumbers: List<String>) {
         require(winNumbers.size == 6) { "[ERROR] 당첨 번호는 6개가 필요합니다" }
     }
-
-    fun checkForBonusNumberLength(bonusNumber: String) {
-        require(bonusNumber.toInt() == 1) { "[ERROR] 보너스 번호는 하나만 입력해 주세요" }
-    }
 }
