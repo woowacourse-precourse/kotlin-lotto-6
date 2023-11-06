@@ -5,6 +5,7 @@ class Constants {
         val HUNDRED = 100
         val THOUSAND = 1000
         val FIVE_THOUSAND = 5000
+        val TEN_THOUSAND = 10000
         val FIFTY_THOUSAND = 50000
         val ONE_MILLION_FIVE_HUNDRED_THOUSAND = 1500000
         val THIRTY_MILLION = 30000000

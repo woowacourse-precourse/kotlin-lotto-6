@@ -11,6 +11,6 @@ class Profit {
         profit += jackpot[3] * Constants.THIRTY_MILLION
         profit += jackpot[4] * Constants.TWO_BILLION
 
-        return round(profit/money.toFloat()*Constants.HUNDRED)/10
+        return round(profit/money.toFloat()*Constants.TEN_THOUSAND)/Constants.HUNDRED
     }
 }
