@@ -56,7 +56,6 @@ class User {
         require(isValidRangeNumber(input.toInt())) { INVALID_RANGE_NUMBER_ERROR_MESSAGE }
     }
 
-
     private fun isNotEmpty(input: String) = input.isNotEmpty()
 
     private fun isInputDigitsOnly(input: String) = input.all { it.isDigit() }
@@ -70,7 +69,6 @@ class User {
     private fun isValidRangeNumber(number: Int) = number in Lotto.MIN_NUMBER..Lotto.MAX_NUMBER
 
     private fun isValidDistinctNumber(numbers: List<Int>) = numbers.size == numbers.distinct().size
-
 
     companion object {
         const val AMOUNT_UNIT = 1000

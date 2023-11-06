@@ -134,6 +134,19 @@ class UserTest {
     }
 
     @Test
+    fun `보너스 번호의 범위가 1이상 45이하가 아니면 예외가 발생한다`() {
+        // given
+        val input = listOf(
+            "1, 2, 3, 4, 5, 45",
+            "0, 1, 2, 3, 4, 5"
+        )
+
+        // when
+
+        // then
+    }
+
+    @Test
     fun `보너스 번호 입력값에 숫자가 아닌 문자가 포함되면 예외를 발생한다`() {
         // given
         val input = listOf(
