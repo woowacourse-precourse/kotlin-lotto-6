@@ -26,13 +26,13 @@ object Printer {
     fun print(statics: WinningStatics) {
         print(Message.WinningResultHeader)
         val profitPercentage = statics.profitPercentage
-        val winningEnums = Winning.values()
-        winningEnums.forEach { winningEnum ->
-            if (winningEnum == Winning.None) {
+        val winnings = Winning.values()
+        winnings.forEach { winning ->
+            if (winning == Winning.None) {
                 return@forEach
             }
-            val count = statics.countOf(winningEnum)
-            winningEnum.print(count)
+            val count = statics.countOf(winning)
+            winning.print(count)
         }
         println(Message.ProfitPercentage.format(profitPercentage))
     }
