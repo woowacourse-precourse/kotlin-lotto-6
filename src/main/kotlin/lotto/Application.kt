@@ -5,8 +5,10 @@ fun main() {
     val purchaseAmount = getValidPurchaseAmount()
     val tickets = buyLottoTickets(purchaseAmount)
     val winningNumbers = getValidWinningNumbers()
-    val results = tickets.map { it.matchCount(winningNumbers) }
-    results.forEach { println(it) }
+    val results = tickets.map { it.getLottoResult(winningNumbers) }
+    results.groupingBy { it }.eachCount().forEach { (result, count) ->
+        println("${result.matchCount}개 일치 (${result.prize}원) - ${count}개")
+    }
 }
 
 fun buyLottoTickets(purchaseAmount: Int): List<Lotto> {
@@ -63,6 +65,22 @@ fun getValidWinningNumbers(): List<Int> {
             println("[ERROR] 로또 당첨 번호는 숫자로 입력해야 합니다.")
         } catch (e: IllegalArgumentException) {
             println(e.message)
+        }
+    }
+}
+
+fun inputBonusNumber(): String {
+    println("보너스 번호를 입력해 주세요.")
+    return readLine().orEmpty()
+}
+
+fun getValidBonusNumber(): Int {
+    while (true) {
+        val input = inputBonusNumber()
+        try {
+            return input.toInt()
+        } catch (e: NumberFormatException) {
+            println("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.")
         }
     }
 }
