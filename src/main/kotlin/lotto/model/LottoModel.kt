@@ -10,6 +10,7 @@ class LottoModel {
     private var lotteryAmount by Delegates.notNull<Int>()
     private var lotteryNumbers: ArrayList<List<Int>> = ArrayList()
     private lateinit var lotto: Lotto
+    private var bonusNumber by Delegates.notNull<Int>()
     fun isPurchaseMoneyValueValid(moneyValue: String): Boolean {
         return try {
             if ((moneyValue.toInt() % Values.LOTTERY_PRICE) != 0) {
@@ -25,6 +26,9 @@ class LottoModel {
     fun getLotteryAmount(): Int {
         return lotteryAmount
     }
+    private fun setLotteryAmount(moneyValue: String) {
+        lotteryAmount = moneyValue.toInt() / Values.LOTTERY_PRICE
+    }
     fun getLotteryNumbers(): ArrayList<List<Int>> {
         return lotteryNumbers
     }
@@ -32,9 +36,6 @@ class LottoModel {
         repeat(lotteryAmount) {
             setRandomLottery()
         }
-    }
-    private fun setLotteryAmount(moneyValue: String) {
-        lotteryAmount = moneyValue.toInt() / Values.LOTTERY_PRICE
     }
     private fun setRandomLottery() {
         lotteryNumbers.add(Randoms
@@ -51,5 +52,11 @@ class LottoModel {
         } catch (e: IllegalArgumentException) {
             true
         }
+    }
+    fun getBonusNumber(): Int {
+        return bonusNumber
+    }
+    fun setBonusNumber() {
+        bonusNumber = Console.readLine().toInt()
     }
 }

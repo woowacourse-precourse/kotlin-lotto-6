@@ -17,6 +17,7 @@ class LottoController(private val view: LottoView, private val model: LottoModel
         while (model.setLotto(setWinningNumbers())) {
             view.displayInappropriateLottoNumberError()
         }
+        model.setBonusNumber()
     }
     private fun setPurchaseMoneyValue(): String {
         return Console.readLine()
@@ -24,4 +25,5 @@ class LottoController(private val view: LottoView, private val model: LottoModel
     private fun setWinningNumbers(): List<String> {
         return listOf(*Console.readLine().split(",").toTypedArray<String>())
     }
+
 }
