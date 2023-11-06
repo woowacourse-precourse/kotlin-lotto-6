@@ -18,7 +18,6 @@ class OutputManager {
         }
     }
     fun lottoStats() = println(OutputMessages.LOTTO_STATS)
-    fun line() = println(OutputMessages.LINE)
     fun rateOfReturn(lottoRateOfReturn: String) = println(OutputMessages.RATE_OF_RETURN.toString().format(lottoRateOfReturn))
 }
 
@@ -32,8 +31,7 @@ enum class OutputMessages(private val message: String) {
     PROMPT_BONUS_NUMBER("\n보너스 번호를 입력해 주세요."),
     PURCHASE_LOTTO_COUNT("\n%d개를 구매했습니다."),
     RE_TRY("다시 입력해주세요."),
-    LINE("---"),
-    LOTTO_STATS("\n당첨 통계"),
+    LOTTO_STATS("\n당첨 통계\n---\n"),
     RATE_OF_RETURN("총 수익률은 %s입니다.");
 
     override fun toString(): String = message
