@@ -23,7 +23,7 @@ class LottoTest {
     @Test
     fun `로또 번호가 1부터 45 사이의 숫자가 아닐 때`() {
         assertThrows<IllegalArgumentException> {
-            Lotto(listOf(1, 2, 35, 50, 40, 6))
+            Lotto(listOf(1, 2, 6, 35, 40, 50))
         }
     }
 }
