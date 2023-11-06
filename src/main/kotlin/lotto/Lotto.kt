@@ -39,19 +39,13 @@ enum class LottoResult(val matchCount: Int, val prize: Int, val isBonus: Boolean
         }
     }
 
-    fun getFormattedPrize(): String {
-        return when (this) {
-            FIVE_MATCHES_AND_BONUS -> "${matchCount}개 일치, 보너스 볼 일치 (${
-                NumberFormat.getNumberInstance().format(prize)
-            }원)"
-
-            FIVE_MATCHES -> "${matchCount}개 일치 (${NumberFormat.getNumberInstance().format(prize)}원)"
-            FOUR_MATCHES -> "${matchCount}개 일치 (${NumberFormat.getNumberInstance().format(prize)}원)"
-            THREE_MATCHES -> "${matchCount}개 일치 (${
-                NumberFormat.getNumberInstance().format(prize)
-            }원)"
-
-            SIX_MATCHES -> "${matchCount}개 일치 (${NumberFormat.getNumberInstance().format(prize)}원)"
+    fun getFormattedResult(count: Int): String {
+        return when(this) {
+            FIVE_MATCHES_AND_BONUS -> "${matchCount}개 일치, 보너스 볼 일치 (${NumberFormat.getNumberInstance().format(prize)}원) - ${count}개"
+            FIVE_MATCHES -> "${matchCount}개 일치 (${NumberFormat.getNumberInstance().format(prize)}원) - ${count}개"
+            FOUR_MATCHES -> "${matchCount}개 일치 (${NumberFormat.getNumberInstance().format(prize)}원) - ${count}개"
+            THREE_MATCHES -> "${matchCount}개 일치 (${NumberFormat.getNumberInstance().format(prize)}원) - ${count}개"
+            SIX_MATCHES -> "${matchCount}개 일치 (${NumberFormat.getNumberInstance().format(prize)}원) - ${count}개"
             NONE -> ""
         }
     }

@@ -17,7 +17,7 @@ fun printResults(results: List<LottoResult>, purchaseAmount: Int) {
     for (result in LottoResult.values()) {
         if (result != LottoResult.NONE) {
             val count = resultCounts[result] ?: 0
-            println("${result.matchCount}개 일치 (${result.getFormattedPrize()}원) - ${count}개")
+            println(result.getFormattedResult(count))
         }
     }
     val totalPrize = results.sumOf { it.prize }
