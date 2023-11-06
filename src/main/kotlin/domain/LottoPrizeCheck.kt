@@ -1,7 +1,7 @@
 package domain
 
 class LottoPrizeCheck(private val jackpotNumbers: List<Int>) {
-    fun checkPrize(lotto: Lotto): Int = when (jackpotNumbers.intersect(lotto.getNumbers()).size) {
+    fun checkPrize(lotto: Lotto): Int = when (jackpotNumbers.intersect(lotto.getSortedNumbers()).size) {
         MATCH_SIX_NUMBERS -> INDEX_OF_FOURTH
         MATCH_FIVE_NUMBERS -> if (lotto.containsBonusNumber()) INDEX_OF_THIRD else INDEX_OF_SECOND
         MATCH_FOUR_NUMBERS -> INDEX_OF_FIRST
@@ -9,7 +9,7 @@ class LottoPrizeCheck(private val jackpotNumbers: List<Int>) {
         else -> INDEX_NOTHING
     }
 
-    private fun Lotto.containsBonusNumber(): Boolean = this.getNumbers().contains(jackpotNumbers.last())
+    private fun Lotto.containsBonusNumber(): Boolean = this.getSortedNumbers().contains(jackpotNumbers.last())
 
     companion object {
         private const val MATCH_THREE_NUMBERS = 3
