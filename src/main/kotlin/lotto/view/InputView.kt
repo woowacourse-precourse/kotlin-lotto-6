@@ -9,36 +9,39 @@ import lotto.util.Validator.isValidWinningNums
 class InputView {
     private fun getUserInput(): String = Console.readLine()
 
-    fun getValidPurchaseAmount(): String {
+    private fun getInputValidation(validationFunction: (String) -> Unit): String {
         return try {
             val userInput = getUserInput()
-            isValidPurchaseAmount(userInput)
+            validationFunction(userInput)
             userInput
         } catch (e: IllegalArgumentException) {
             println(e.message)
-            getValidPurchaseAmount()
+            getInputValidation(validationFunction)
         }
     }
+
+    fun getValidPurchaseAmount(): String {
+        return getInputValidation(::isValidPurchaseAmount)
+    }
+
 
     fun getValidWinningNums(): List<Int> {
-        return try {
-            val userInput = getUserInput()
-            isValidWinningNums(userInput)
-            userInput.split(DELIMITER).map { it.toInt() }
-        } catch (e: IllegalArgumentException) {
-            println(e.message)
-            getValidWinningNums()
+        var winningNums = listOf<Int>()
+        getInputValidation {
+            isValidWinningNums(it)
+            winningNums = it.split(DELIMITER).map { num -> num.toInt() }
         }
+        return winningNums
     }
 
-    fun getValidBonusNum(winningNums:List<Int>):Int{
-        return try {
-            val userInput = getUserInput()
-            isValidBonusNum(userInput,winningNums)
-            userInput.toInt()
-        }catch (e:IllegalArgumentException){
-            println(e.message)
-            getValidBonusNum(winningNums)
+
+
+    fun getValidBonusNum(winningNums: List<Int>): Int {
+        var bonusNum = 0
+        getInputValidation{
+            isValidBonusNum(it,winningNums)
+            bonusNum= it.toInt()
         }
+        return bonusNum
     }
 }
