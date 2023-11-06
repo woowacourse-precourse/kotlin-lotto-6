@@ -42,6 +42,12 @@ class Game(
         return input.toInt()
     }
 
+    fun checkWinningDetails(lottery: List<Int>, userPickNumbers: List<Int>, bonusNumber: Int): WinCount {
+        val matchingNumbers = userPickNumbers.intersect(lottery.toSet()).count()
+        val bonusMatch = userPickNumbers.contains(bonusNumber)
+        return WinCount(matchingNumbers, bonusMatch)
+    }
+
     fun checkLottoWinType(winCounts: List<WinCount>): Set<LottoWinType> {
         return winCounts.flatMap { winCount ->
             val count = if (winCount.bonusJudge) winCount.winningCount + 1 else winCount.winningCount
