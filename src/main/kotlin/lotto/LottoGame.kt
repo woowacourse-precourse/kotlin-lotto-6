@@ -1,5 +1,7 @@
 package lotto
 
+import camp.nextstep.edu.missionutils.Randoms
+
 class LottoGame(private val user: User) {
 
     fun start() {
@@ -17,6 +19,9 @@ class LottoGame(private val user: User) {
 
         val lottoCount = calculateLottoCount(amount)
         showMessage(PURCHASED_LOTTO_COUNT_MESSAGE.format(lottoCount))
+
+        val lottos = publishLottos(lottoCount)
+        lottos.forEach { showMessage(makeLottoNumbersMessage(it)) }
     }
 
     private fun inputAmountFromUser(): Int {
@@ -57,6 +62,24 @@ class LottoGame(private val user: User) {
 
     private fun calculateLottoCount(amount: Int): Int = amount / User.AMOUNT_UNIT
 
+    private fun publishLottos(lottoCount: Int): List<Lotto> {
+        val lottos = mutableListOf<Lotto>()
+
+        repeat(lottoCount) {
+            val lotto = Lotto(generateLottoNumbers())
+            lottos.add(lotto)
+        }
+
+        return lottos
+    }
+
+    private fun generateLottoNumbers(): List<Int> =
+        Randoms.pickUniqueNumbersInRange(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER, Lotto.NUMBER_COUNT)
+
+    private fun makeLottoNumbersMessage(lotto: Lotto): String = LOTTO_NUMBERS_MESSAGE.format(parseLottoNumbers(lotto))
+
+    private fun parseLottoNumbers(lotto: Lotto): String = lotto.getSortedNumbers().joinToString(LOTTO_NUMBER_SEPARATOR)
+
     private fun showMessage(message: String) = println(message)
 
     private fun showErrorMessage(errorMessage: String) = println("$PREFIX_ERROR_MESSAGE $errorMessage")
@@ -68,6 +91,9 @@ class LottoGame(private val user: User) {
         const val INPUT_AMOUNT_MESSAGE = "구입금액을 입력해 주세요."
         const val INPUT_WINNING_NUMBERS_MESSAGE = "\n당첨 번호를 입력해 주세요."
         const val INPUT_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요."
-        const val PURCHASED_LOTTO_COUNT_MESSAGE = "\n%d개를 구매했습니다. "
+        const val PURCHASED_LOTTO_COUNT_MESSAGE = "\n%d개를 구매했습니다."
+
+        const val LOTTO_NUMBERS_MESSAGE = "[%s]"
+        const val LOTTO_NUMBER_SEPARATOR = ", "
     }
 }
