@@ -1,5 +1,7 @@
 package lotto
 
 fun main() {
-    TODO("프로그램 구현")
+
+    Game().start() // start 함수 호출
 }
+
