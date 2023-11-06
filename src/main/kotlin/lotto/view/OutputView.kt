@@ -43,7 +43,8 @@ object OutputView {
 
 
     fun printProfitPercentage(profitPercentage: Double) {
-        println("총 수익률은 $profitPercentage%입니다.")
+        val profitFormat = "%.1f".format(profitPercentage)
+        println("총 수익률은 ${profitFormat}%입니다.")
     }
 
     }
