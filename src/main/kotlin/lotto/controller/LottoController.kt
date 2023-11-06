@@ -107,12 +107,12 @@ class LottoController {
         println(Messages.TEXT_LOTTO_MATCH_5_BONUS.message + "${lottoResult[50] ?: 0}개")
         println(Messages.TEXT_LOTTO_MATCH_6.message + "${lottoResult[6] ?: 0}개")
 
-        val profit = calculatePrize(lottoResult)
+        val profit = calculatePrize(lottoResult, lotteries.size() * Values.VALUE_LOTTO.value)
         val roundedProfit = profit.setScale(1, RoundingMode.HALF_EVEN)
         println("총 수익률은 ${roundedProfit}%입니다.")
     }
 
-    private fun calculatePrize(lottoResult: Map<Int, Int>): BigDecimal {
+    fun calculatePrize(lottoResult: Map<Int, Int>, expense: Long): BigDecimal {
         var prizeSum: Long = 0
         prizeSum += (lottoResult[3] ?: 0) * Values.VALUE_MATCH_THREE.value
         prizeSum += (lottoResult[4] ?: 0) * Values.VALUE_MATCH_FOUR.value
@@ -120,6 +120,6 @@ class LottoController {
         prizeSum += (lottoResult[50] ?: 0) * Values.VALUE_MATCH_FIVE_AND_BONUS.value
         prizeSum += (lottoResult[6] ?: 0) * Values.VALUE_MATCH_SIX.value
         return (prizeSum * Values.VALUE_PERCENT.value).toBigDecimal()
-            .divide((lotteries.size() * Values.VALUE_LOTTO.value).toBigDecimal(), 1, RoundingMode.HALF_EVEN)
+            .divide((expense).toBigDecimal(), 1, RoundingMode.HALF_EVEN)
     }
 }
