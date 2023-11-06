@@ -9,4 +9,9 @@ class LottoModel {
             return false
         }
     }
+
+    fun isPurchaseAmountPositive(value: Int): Boolean {
+        return value > 0
+    }
+
 }
