@@ -13,7 +13,6 @@ import java.util.Locale
 
 
 class Output {
-
     private val lottoAmountMessage = "%d개를 구매했습니다."
     private val grossProfitMessage = "총 수익률은 %.1f%%입니다."
     private val hitMessage = "%d개 일치"
@@ -31,9 +30,9 @@ class Output {
         println(askBonusNumberMessage)
     }
 
-    fun printLottos(lottos : Lottos) {
+    fun printLottos(lottos: Lottos) {
         println(lottoAmountMessage.format(lottos.getLottos().size))
-        for(lotto in lottos.getLottos()){
+        for (lotto in lottos.getLottos()) {
             println(lotto.toString())
         }
     }
@@ -42,30 +41,37 @@ class Output {
         println(winningStatisticsMessage)
         println(winningStatisticsDivider)
         for (rank in result.keys) {
-            if(rank!=Rank.NOTHING) {
+            if (rank != Rank.NOTHING) {
                 printRankMessage(rank, result[rank]!!)
             }
         }
     }
 
+    fun purchaseAmount(ticketCount: Int): Int {
+        return ticketCount * 1000
+    }
+
     fun printGrossProfit(profit: Double) {
         println(grossProfitMessage.format(profit))
     }
-    private fun printRankMessage(rank: Rank, count:Int){
+
+    private fun printRankMessage(rank: Rank, count: Int) {
         val rankMessage =
             if (rank == Rank.SECOND) "${hitMessage(rank.hit)}$bonusMessage"
             else hitMessage(rank.hit)
         println("$rankMessage${prizeMessage(rank.prize)}${hitCountMessage(count)}")
     }
-    private fun hitMessage(hit: Int):String {
+
+    private fun hitMessage(hit: Int): String {
         return hitMessage.format(hit)
     }
-    private fun prizeMessage(prize: Int):String{
+
+    private fun prizeMessage(prize: Int): String {
         val formatter = NumberFormat.getNumberInstance(Locale("en", "US"))
         return prizeMessage.format(formatter.format(prize))
     }
-    private fun hitCountMessage(count:Int):String{
+
+    private fun hitCountMessage(count: Int): String {
         return hitCountMessage.format(count)
     }
-
 }

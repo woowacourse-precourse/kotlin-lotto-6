@@ -32,9 +32,13 @@ class LottoTest {
     }
 
     @Test
-    fun `isDuplicate 메서드 사용시 중복된 숫자가 있다면 예외 발생`() {
-        assertThrows<IllegalArgumentException> {
-            Lotto(listOf(1, 2, 3, 4, 5, 1))
-        }
+    fun `getRank 메서드 사용시 당첨 번호와 보너스 번호를 비교해 Lotto의 당첨 결과를 출력`() {
+        //given
+        val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val winningNUmber = listOf(1, 2, 3, 4, 5, 6)
+        val bonusNumber = 7
+
+        //then
+        assertThat(lotto.getRank(winningNUmber,bonusNumber)).isEqualTo(Rank.FIRST)
     }
 }
