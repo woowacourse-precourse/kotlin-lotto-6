@@ -23,10 +23,12 @@ class LottoShop {
             val lotto: Lotto = Lotto(numbers.sorted())
             println(lotto)
         }
+        startLottoProgram()
     }
 
-    fun startLottoProgram() {
+    private fun startLottoProgram() {
         val lottoNum = lottoMC.pickLottoNum()
         validator.validateLottoNum(lottoNum)
+        val bonusNum = lottoMC.pickBonusNum()
     }
 }
