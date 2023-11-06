@@ -21,9 +21,9 @@ class LottoGame(
                 add(getBonusNumber(this))
             }
             lottoStats()
-            val lottoResult = LottoResult(purchaseLotto = publishLottoResult, lottoPrizeCheck = LottoPrizeCheck(jackpotNumbers))
-            prizeResult(lottoResult.prizeResult())
-            val totalResult = LottoRateOfReturn(amount = purchaseInfo.amount, checkPrize = lottoResult.prizeResult())
+            val lottoResult = LottoResult(purchaseLotto = publishLottoResult, lottoPrizeCheck = LottoPrizeCheck(jackpotNumbers)).prizeResult()
+            prizeResult(lottoResult)
+            val totalResult = LottoRateOfReturn(amount = purchaseInfo.amount, checkPrize = lottoResult)
             rateOfReturn(totalResult.rateOfReturn())
         }
     }
