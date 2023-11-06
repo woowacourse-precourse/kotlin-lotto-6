@@ -5,17 +5,23 @@ class LottoMachine {
     private var lottoTickets = LottoTickets()
     private var winningLotto = WinningLotto()
 
-    fun generateLottoTickets() {
+    fun init() {
+        generateLottoTickets()
+        generateWinningNumbers()
+        showStaticsResult()
+    }
+
+    private fun generateLottoTickets() {
         lottoTickets.createLottoTickets().also { println() }
         lottoTickets.displayLottoTickets().also { println() }
     }
 
-    fun generateWinningNumbers() {
+    private fun generateWinningNumbers() {
         winningLotto.createWinningNumbers().also { println() }
         winningLotto.createBonusNumber().also { println() }
     }
 
-    fun showStaticsResult() {
+    private fun showStaticsResult() {
         val lottoResult = LottoResult(lottoTickets, winningLotto)
         lottoResult.findWinningResult()
     }
