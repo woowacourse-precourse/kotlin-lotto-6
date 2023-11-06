@@ -2,7 +2,7 @@ package lotto.exception
 
 import lotto.constants.ErrorConstants
 
-class IllegalNumbersException (
+class IllegalNumbersException(
     private val errorMessage: String
 ) : IllegalArgumentException(errorMessage) {
 
@@ -12,6 +12,12 @@ class IllegalNumbersException (
     companion object {
         val numbersNotList = IllegalNumbersException(
             errorMessage = ErrorConstants.NUMBERS_NOT_LIST
+        )
+        val numbersNotRange = IllegalNumbersException(
+            errorMessage = ErrorConstants.NUMBERS_NOT_RANGE
+        )
+        val numbersDuplicate = IllegalNumbersException(
+            errorMessage = ErrorConstants.NUMBERS_DUPLICATE
         )
     }
 

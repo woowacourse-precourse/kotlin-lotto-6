@@ -15,7 +15,7 @@ class InputView {
         return reader.readLottoNumbers()
     }
 
-    fun readInputBonus(): Int {
-        return reader.readLottoBonus()
+    fun readInputBonus(lotto: Lotto): Int {
+        return reader.readLottoBonus(lotto)
     }
 }

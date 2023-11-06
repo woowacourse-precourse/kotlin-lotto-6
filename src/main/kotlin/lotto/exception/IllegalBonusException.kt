@@ -2,7 +2,7 @@ package lotto.exception
 
 import lotto.constants.ErrorConstants
 
-class IllegalBonusException (
+class IllegalBonusException(
     private val errorMessage: String
 ) : IllegalArgumentException(errorMessage) {
 
@@ -10,8 +10,11 @@ class IllegalBonusException (
         get() = "[ERROR] $errorMessage"
 
     companion object {
-        val bonusNotNumber = IllegalNumbersException(
-            errorMessage = ErrorConstants.BONUS_NOT_NUMBER
+        val bonusNotRange = IllegalBonusException(
+            errorMessage = ErrorConstants.BONUS_NOT_RANGE
+        )
+        val bonusDuplicate = IllegalBonusException(
+            errorMessage = ErrorConstants.BONUS_DUPLICATE
         )
     }
 

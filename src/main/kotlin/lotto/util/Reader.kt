@@ -12,7 +12,8 @@ object Reader {
     fun readLottoNumbers(): Lotto {
         return InputChecker.checkInputNumbers(readLine())
     }
-    fun readLottoBonus(): Int {
-        return InputChecker.checkInputBonus(readLine())
+
+    fun readLottoBonus(lotto: Lotto): Int {
+        return InputChecker.checkInputBonus(lotto, readLine())
     }
 }
