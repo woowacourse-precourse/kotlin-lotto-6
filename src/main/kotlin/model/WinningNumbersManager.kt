@@ -13,6 +13,7 @@ class WinningNumbersManager(numbers: List<String>) {
             InputValidation.NUMBER_EMPTY.isValid(it)
             InputValidation.ONLY_NUMBER.isValid(it)
             InputValidation.NUMBER_FORMAT.isValid(it)
+            InputValidation.NUMBER_RANGE.isValid(it)
         }
         winningNumbers = numbers.map { it.toInt() }
         LottoValidation.REQUIRED_LOTTO_NUMBER_COUNT.isValid(winningNumbers)
