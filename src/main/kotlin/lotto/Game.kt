@@ -54,7 +54,9 @@ class Game(
             when (count) {
                 3 -> listOf(LottoWinType.THREE_MATCH)
                 4 -> listOf(LottoWinType.FOUR_MATCH)
-                5 -> listOf(LottoWinType.FIVE_MATCH_WITH_BONUS)
+                5 -> if (winCount.bonusJudge) listOf(LottoWinType.FIVE_MATCH_WITH_BONUS)
+                else listOf(LottoWinType.FIVE_MATCH)
+
                 6, 7 -> listOf(LottoWinType.SIX_MATCH)
                 else -> emptyList()
             }
