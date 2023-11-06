@@ -42,6 +42,19 @@ class Game(
         return input.toInt()
     }
 
+    fun checkLottoWinType(winCounts: List<WinCount>): Set<LottoWinType> {
+        return winCounts.flatMap { winCount ->
+            val count = if (winCount.bonusJudge) winCount.winningCount + 1 else winCount.winningCount
+            when (count) {
+                3 -> listOf(LottoWinType.THREE_MATCH)
+                4 -> listOf(LottoWinType.FOUR_MATCH)
+                5 -> listOf(LottoWinType.FIVE_MATCH_WITH_BONUS)
+                6, 7 -> listOf(LottoWinType.SIX_MATCH)
+                else -> emptyList()
+            }
+        }.toSet()
+    }
+
     private fun requireIsInt(input: String) {
         val number = input.toIntOrNull() ?: throw IllegalArgumentException()
         require(number > 0)
