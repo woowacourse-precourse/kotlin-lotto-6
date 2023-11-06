@@ -3,7 +3,7 @@ package lotto.domain
 import lotto.constants.*
 import lotto.ui.Input
 
-class PurchaseLotto {
+class LottoPurchase {
     init {
         println(MESSAGE_PURCHASE_AMOUNT)
     }
