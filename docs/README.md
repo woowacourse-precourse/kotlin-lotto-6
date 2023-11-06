@@ -25,7 +25,7 @@
 
 ## 기능 목록
 - [x] 로또 구입 금액을 1000원 단위로 입력받는다
-  - [x] 공백 문자를 제거한다
+  - [x] 정수 외의 문자를 제거한다
   - [x] 쉼표를 제거한다
   - [x] `ERROR` : 아무런 값을 입력하지 않았을 시  `IllegalArgumentException` 발생
   - [x] `ERROR` : 숫자가 아닐 시 `IllegalArgumentException` 발생
@@ -38,7 +38,7 @@
 
 
 - [] 당첨 번호를 쉼표 기준으로 6개 입력받는다.
-  - [] 공백 문자를 제거한다.
+  - [x] 정수와 쉼표 외의 문자를 제거한다.
   - [] `ERROR` : 아무런 값을 입력하지 않았을 시  `IllegalArgumentException` 발생
   - [] `ERROR` : 숫자가 아닐 시 `IllegalArgumentException` 발생
   - [] `ERROR` : 1~45 범위의 숫자가 아닐 시 `IllegalArgumentException` 발생
@@ -46,8 +46,8 @@
 
 
 - [] 보너스 번호를 1개 입력받는다
-  - [] 공백 문자를 제거한다
-  - [] `ERROR` : 아무런 값을 입력하지 않았을 시  `IllegalArgumentException` 발생
+  - [] 정수 외의 문자를 제거한다
+  - [x] `ERROR` : 아무런 값을 입력하지 않았을 시  `IllegalArgumentException` 발생
   - [] `ERROR` : 길이가 1 초과 시 `IllegalArgumentException` 발생
   - [] `ERROR` : 숫자가 아닐 시 `IllegalArgumentException` 발생
   - [] `ERROR` : 양의 정수가 아닐 시 `IllegalArgumentException` 발생
