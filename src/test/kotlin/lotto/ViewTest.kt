@@ -21,4 +21,12 @@ class ViewTest {
             validation.checkInputPayment(input)
         }
     }
+
+    @Test
+    fun `당첨번호 입력값이 숫자 6개가 아닐 때`() {
+        val input = "1,2,3,4,5"
+        assertThrows<IllegalArgumentException> {
+            validation.checkInputLottoNumber(input)
+        }
+    }
 }
