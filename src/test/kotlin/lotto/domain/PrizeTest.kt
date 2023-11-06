@@ -40,10 +40,11 @@ class PrizeTest {
     fun prizeSumTest() {
         val testPrize = Prize()
         val testList = mutableListOf<Grade>()
-        testList.add(Grade.FIRST)
-        testList.add(Grade.FIRST)
-        val testMoney = 2000
+        for(i in 1..100){
+            testList.add(Grade.FIRST)
+        }
+        val testMoney = 3
         val testResult = testPrize.getPrizeRatio(testList,testMoney)
-        Assertions.assertThat(testResult).isEqualTo("200000000.0")
+        Assertions.assertThat(testResult).isEqualTo("6666666666666.7")
     }
 }
