@@ -14,7 +14,7 @@ class Lotto(private val numbers: List<Int>) {
         println(numbers.joinToString(", ", "[", "]"))
     }
 
-    fun compareLotto(winningLotto: MutableList<Int>, bonusNumber: Int): Int {
+    fun compareLotto(winningLotto: List<Int>, bonusNumber: Int): Int {
         var match = 0
         numbers.forEach {
             if (winningLotto.contains(it)) {

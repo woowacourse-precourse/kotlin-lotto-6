@@ -8,7 +8,7 @@ class Lotteries(private val _lotteries: List<Lotto>) {
         }
     }
 
-    fun compareLotteries(winningLotto: MutableList<Int>, bonusNumber: Int): Map<Int, Int> {
+    fun compareLotteries(winningLotto: List<Int>, bonusNumber: Int): Map<Int, Int> {
         val compareResult = hashMapOf<Int, Int>()
         _lotteries.forEach {
             val rank = it.compareLotto(winningLotto, bonusNumber)
