@@ -1,13 +1,14 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Console
 
-class LottoGame(private val purchaseAmount: Int) {
-    private val lottos: List<Lotto>
-    init {
+class LottoGame() {
+    private val purchaseAmount = Console.readLine().toInt()
+    fun start() {
         require(purchaseAmount % 1000 == 0) {"[ERROR]"}
         val lottoCount = purchaseAmount / 1000
-        lottos = generateLottos(lottoCount)
+        var lottos = generateLottos(lottoCount)
     }
 
     private fun generateLottos(count: Int) :List<Lotto>{
