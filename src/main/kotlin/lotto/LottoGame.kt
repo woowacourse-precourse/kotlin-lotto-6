@@ -10,13 +10,20 @@ class LottoGame {
 
     fun run() {
         while (gameState != FINISHED) {
-            gameManager.set(gameState)
-            gameViewer.set(gameState, gameManager.getState(), gameManager.getData())
-            if (gameManager.getState() == NORMAL) updateState()
+            setGameState()
+            if (isGameManagerOnReady()) updateGameState()
         }
     }
 
-    private fun updateState() {
+    private fun setGameState() {
+        val gameManagerState = gameManager.getState()
+        val stateData = gameManager.getData()
+
+        gameManager.set(gameState)
+        gameViewer.set(gameState, gameManagerState, stateData)
+    }
+
+    private fun updateGameState() {
         when (gameState) {
             BUYING -> gameState = PICKING_WINNING
             PICKING_WINNING -> gameState = PICKING_BONUS
@@ -25,4 +32,6 @@ class LottoGame {
             FINISHED -> {}
         }
     }
+
+    private fun isGameManagerOnReady() = gameManager.getState() == READY
 }

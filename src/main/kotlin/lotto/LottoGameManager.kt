@@ -3,18 +3,16 @@ package lotto
 import lotto.LottoGameState.*
 import lotto.LottoGameManagerState.*
 import camp.nextstep.edu.missionutils.Console
-import java.lang.IllegalArgumentException
 
 class LottoGameManager {
     private var gameState = BUYING
-    private var gameManagerState = NORMAL
+    private var gameManagerState = READY
     private val lottoGenerator = LottoGenerator()
     private var data: Any = ""
     private var userMoney = 0
     private var userLotteryTickets = listOf<Lotto>()
     private var winningNumbers = listOf<Int>()
     private var bonusNumber = 0
-
 
     fun getState() = this.gameManagerState
 
@@ -31,21 +29,22 @@ class LottoGameManager {
             BUYING -> commandBuyingState()
             PICKING_WINNING -> commandPickingWinningState()
             PICKING_BONUS -> commandPickingBonusState()
-            else -> {}
+            WINNING -> commandWinningState()
+            FINISHED -> {}
         }
     }
 
     private fun commandBuyingState() {
         when (gameManagerState) {
-            NORMAL, REQUEST_ERROR -> gameManagerState = REQUEST
+            READY, REQUEST_ERROR -> gameManagerState = REQUEST
             REQUEST -> buyLotto()
-            RESULT -> gameManagerState = NORMAL
+            RESULT -> gameManagerState = READY
         }
     }
 
     private fun commandPickingWinningState() {
         when (gameManagerState) {
-            NORMAL, REQUEST_ERROR -> gameManagerState = REQUEST
+            READY, REQUEST_ERROR -> gameManagerState = REQUEST
             REQUEST -> pickWinningNumbers()
             RESULT -> {}
         }
@@ -53,19 +52,22 @@ class LottoGameManager {
 
     private fun commandPickingBonusState() {
         when (gameManagerState) {
-            NORMAL, REQUEST_ERROR -> gameManagerState = REQUEST
+            READY, REQUEST_ERROR -> gameManagerState = REQUEST
             REQUEST -> pickBonusNumber()
             RESULT -> {}
         }
     }
 
+    private fun commandWinningState() {
+        when (gameManagerState) {
+            READY -> setWinningResult()
+            else -> {}
+        }
+    }
+
     private fun buyLotto() {
         getMoneyFromUser()
-        if (gameManagerState != REQUEST_ERROR) {
-            generateLotto()
-            data = userLotteryTickets
-            gameManagerState = RESULT
-        }
+        if (isGameManagerNotOnError()) generateLotto()
     }
 
     private fun getMoneyFromUser() {
@@ -74,12 +76,17 @@ class LottoGameManager {
         try {
             userMoney = validatedNumberAsMoney(input)
         } catch (e: IllegalArgumentException) {
-            data = e
-            gameManagerState = REQUEST_ERROR
+            whenGameManagerOnRequestError(e)
         }
     }
 
     private fun generateLotto() {
+        generateLottoAsMuchAsMoney()
+        data = userLotteryTickets
+        gameManagerState = RESULT
+    }
+
+    private fun generateLottoAsMuchAsMoney() {
         val userLotteryTickets = mutableListOf<Lotto>()
         val count = userMoney / 1000
 
@@ -92,7 +99,7 @@ class LottoGameManager {
 
     private fun pickWinningNumbers() {
         getWinningNumbersFromUser()
-        if (gameManagerState != REQUEST_ERROR) gameManagerState = NORMAL
+        if (isGameManagerNotOnError()) gameManagerState = READY
     }
 
     private fun getWinningNumbersFromUser() {
@@ -101,14 +108,13 @@ class LottoGameManager {
         try {
             winningNumbers = validatedNumbersAsWinning(input)
         } catch (e: IllegalArgumentException) {
-            data = e
-            gameManagerState = REQUEST_ERROR
+            whenGameManagerOnRequestError(e)
         }
     }
 
     private fun pickBonusNumber() {
         getBonusNumberFromUser()
-        if (gameManagerState != REQUEST_ERROR) gameManagerState = NORMAL
+        if (isGameManagerNotOnError()) gameManagerState = READY
     }
 
     private fun getBonusNumberFromUser() {
@@ -117,10 +123,11 @@ class LottoGameManager {
         try {
             bonusNumber = validatedNumberAsBonus(input)
         } catch (e: IllegalArgumentException) {
-            data = e
-            gameManagerState = REQUEST_ERROR
+            whenGameManagerOnRequestError(e)
         }
     }
+
+    private fun setWinningResult() {}
 
     private fun validatedNumberAsMoney(input: String): Int {
         InputValidator.checkIsNotBlank(input)
@@ -132,14 +139,16 @@ class LottoGameManager {
     }
 
     private fun validatedNumbersAsWinning(input: String): List<Int> {
+        InputValidator.checkIsNotBlank(input)
         InputValidator.checkHasSeparator(input, Constants.COMMA)
-        InputValidator.checkCountsOf(input.split(Constants.COMMA), Constants.LOTTO_NUMBER_COUNT)
         input.split(Constants.COMMA).map { validateAsLottoNumber(it) }
+        InputValidator.checkCountsOf(input.split(Constants.COMMA), Constants.LOTTO_NUMBER_COUNT)
 
         return input.split(Constants.COMMA).map { it.toInt() }
     }
 
     private fun validatedNumberAsBonus(input: String): Int {
+        InputValidator.checkIsNotBlank(input)
         validateAsLottoNumber(input)
         InputValidator.checkIsNotContained(input.toInt(), winningNumbers)
 
@@ -147,11 +156,17 @@ class LottoGameManager {
     }
 
     private fun validateAsLottoNumber(input: String) {
-        InputValidator.checkIsNotBlank(input)
         InputValidator.checkIsDigit(input)
         InputValidator.checkIsInBoundary(
             Integer.valueOf(input),
             Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER
         )
+    }
+
+    private fun isGameManagerNotOnError() = gameManagerState != REQUEST_ERROR
+
+    private fun whenGameManagerOnRequestError(error: IllegalArgumentException) {
+        data = error
+        gameManagerState = REQUEST_ERROR
     }
 }

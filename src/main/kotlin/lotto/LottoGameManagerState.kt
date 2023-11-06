@@ -1,7 +1,7 @@
 package lotto
 
 enum class LottoGameManagerState {
-    NORMAL,
+    READY,
     REQUEST,
     REQUEST_ERROR,
     RESULT
