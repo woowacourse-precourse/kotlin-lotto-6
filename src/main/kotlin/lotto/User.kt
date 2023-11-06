@@ -22,6 +22,11 @@ class User {
         _amount = input.toInt()
     }
 
+    private fun isValidAmount(input: String) =
+        isNotEmpty(input) && isInputDigitsOnly(input) && isAmountInUnit(input.toInt())
+
+    private fun isAmountInUnit(amount: Int) = amount >= AMOUNT_UNIT && amount % AMOUNT_UNIT == 0
+
     fun inputWinningNumbers() {
         val input = Console.readLine()
         setWinningNumbers(input.split(SEPARATOR))
@@ -30,12 +35,12 @@ class User {
     private fun setWinningNumbers(inputs: List<String>) {
         val trimmedInputs = inputs.map { it.trim() }
         trimmedInputs.forEach {
-            require(isValidNumber(it)) { INVALID_NUMBER_ERROR_MESSAGE }
+            require(isValidInputNumber(it)) { INVALID_NUMBER_ERROR_MESSAGE }
         }
 
         val numbers = trimmedInputs.map { it.toInt() }
         require(isValidWinningNumberCount(numbers)) { INVALID_WINNING_NUMBER_COUNT_ERROR_MESSAGE }
-        require(isValidRangeNumber(numbers)) { INVALID_RANGE_NUMBER_ERROR_MESSAGE }
+        require(isValidRangeNumbers(numbers)) { INVALID_RANGE_NUMBER_ERROR_MESSAGE }
         require(isValidDistinctNumber(numbers)) { INVALID_DISTINCT_NUMBER_ERROR_MESSAGE }
 
         _winningNumbers.addAll(numbers)
@@ -47,23 +52,22 @@ class User {
     }
 
     private fun setBonusNumber(input: String) {
-        require(isValidNumber(input)) { INVALID_NUMBER_ERROR_MESSAGE }
+        require(isValidInputNumber(input)) { INVALID_NUMBER_ERROR_MESSAGE }
+        require(isValidRangeNumber(input.toInt())) { INVALID_RANGE_NUMBER_ERROR_MESSAGE }
     }
 
-    private fun isValidAmount(input: String) =
-        isNotEmpty(input) && isInputDigitsOnly(input) && isAmountInUnit(input.toInt())
 
     private fun isNotEmpty(input: String) = input.isNotEmpty()
 
     private fun isInputDigitsOnly(input: String) = input.all { it.isDigit() }
 
-    private fun isAmountInUnit(amount: Int) = amount >= AMOUNT_UNIT && amount % AMOUNT_UNIT == 0
-
-    private fun isValidNumber(input: String) = isNotEmpty(input) && isInputDigitsOnly(input)
+    private fun isValidInputNumber(input: String) = isNotEmpty(input) && isInputDigitsOnly(input)
 
     private fun isValidWinningNumberCount(numbers: List<Int>) = numbers.size == WINNING_NUMBER_COUNT
 
-    private fun isValidRangeNumber(numbers: List<Int>) = numbers.all { it in Lotto.MIN_NUMBER..Lotto.MAX_NUMBER }
+    private fun isValidRangeNumbers(numbers: List<Int>) = numbers.all { isValidRangeNumber(it) }
+
+    private fun isValidRangeNumber(number: Int) = number in Lotto.MIN_NUMBER..Lotto.MAX_NUMBER
 
     private fun isValidDistinctNumber(numbers: List<Int>) = numbers.size == numbers.distinct().size
 
