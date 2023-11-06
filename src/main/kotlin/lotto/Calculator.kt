@@ -1,6 +1,6 @@
 package lotto
 
-class Calculator() {
+class Calculator {
 
     fun calculateLottoAvailableForPurchase(number: Int): Int {
         return (number / 1000)
