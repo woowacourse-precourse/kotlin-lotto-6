@@ -17,7 +17,8 @@ class WinNumbersValidatorTest : InputValidator(){
         val exception = assertThrows<IllegalArgumentException> {
             checkForPositiveInteger(value)
         }
-        assertEquals("[ERROR] 양의 정수를 입력해 주세요", exception.message)
+
+        assertEquals("[ERROR] 양의 정수 이외의 숫자를 입력하지 말아주세요", exception.message)
     }
 
     @ParameterizedTest
@@ -26,6 +27,7 @@ class WinNumbersValidatorTest : InputValidator(){
         val exception = assertThrows<IllegalArgumentException> {
             checkForNumberRange(value)
         }
+
         assertEquals("[ERROR] 로또 번호는 ${START_INCLUSIVE}부터 ${END_INCLUSIVE}사이만 가능합니다", exception.message)
     }
 
@@ -34,6 +36,7 @@ class WinNumbersValidatorTest : InputValidator(){
         val exception = assertThrows<IllegalArgumentException> {
             checkForDuplicates(listOf("1", "1", "2", "3", "4", "5"))
         }
+
         assertEquals("[ERROR] 중복된 값이 존재합니다", exception.message)
     }
 
@@ -42,6 +45,7 @@ class WinNumbersValidatorTest : InputValidator(){
         val exception = assertThrows<IllegalArgumentException> {
             checkForWinNumbersLength(listOf("1", "2", "3", "4", "5"))
         }
+
         assertEquals("[ERROR] 당첨 번호는 ${COUNT}개가 필요합니다", exception.message)
     }
 

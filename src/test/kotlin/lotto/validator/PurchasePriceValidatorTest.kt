@@ -1,7 +1,7 @@
 package lotto.validator
 
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertDoesNotThrow
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -15,7 +15,7 @@ class PurchasePriceValidatorTest {
             PurchasePriceValidator(" ")
         }
 
-        assertEquals("[ERROR] 공백이 아닌 값을 입력해 주세요", exception.message)
+        assertEquals("[ERROR] 공백을 제외한 값을 입력해 주세요", exception.message)
     }
 
     @ParameterizedTest
@@ -25,7 +25,7 @@ class PurchasePriceValidatorTest {
             PurchasePriceValidator(value)
         }
 
-        assertEquals("[ERROR] 양의 정수를 입력해 주세요", exception.message)
+        assertEquals("[ERROR] 양의 정수 이외의 숫자를 입력하지 말아주세요", exception.message)
     }
 
     @Test
