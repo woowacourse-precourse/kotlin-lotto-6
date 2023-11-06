@@ -1,6 +1,6 @@
 package lotto
 
-fun validateAndThrowExceptionIfError(tryLogic: () -> Unit) {
+fun doLogic(tryLogic: () -> Unit) {
     while (true) {
         try {
             tryLogic()
