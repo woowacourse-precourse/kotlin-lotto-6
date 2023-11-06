@@ -1,10 +1,10 @@
 package lotto.model
 
-import lotto.config.GameConfigValue.SIX_NUMBER_CORRECT
-import lotto.config.GameConfigValue.FIVE_NUMBER_CORRECT
-import lotto.config.GameConfigValue.FOUR_NUMBER_CORRECT
-import lotto.config.GameConfigValue.THREE_NUMBER_CORRECT
-import lotto.model.LottoNumber.*
+import lotto.config.GameConfigValue.SIX_NUMBER
+import lotto.config.GameConfigValue.FIVE_NUMBER
+import lotto.config.GameConfigValue.FOUR_NUMBER
+import lotto.config.GameConfigValue.THREE_NUMBER
+import lotto.view.OutputMessages
 
 class LottoCompare(
     private val bonusNumber: Int,
@@ -12,57 +12,44 @@ class LottoCompare(
     private val lottoNumbers: MutableList<List<Int>>
 ){
 
-    init {
-        calculateCorrect()
-    }
-
-    private fun calculateCorrect() {
+    fun calculateCorrect():MutableMap<OutputMessages, Int>{
         val lottoResults = mutableMapOf(
-            SIX_NUMBER to 0,
-            FIVE_AND_BONUS_NUMBER to 0,
-            FIVE_NUMBER to 0,
-            FOUR_NUMBER to 0,
-            THREE_NUMBER to 0
+            OutputMessages.SIX_NUMBER_CORRECT to 0,
+            OutputMessages.FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT to 0,
+            OutputMessages.FIVE_NUMBER_CORRECT to 0,
+            OutputMessages.FOUR_NUMBER_CORRECT to 0,
+            OutputMessages.THREE_NUMBER_CORRECT to 0
         )
 
         lottoNumbers.forEach { lottoNumber ->
             when (lottoNumber.intersect(correctLottoNumber.toSet()).count()) {
-                SIX_NUMBER_CORRECT -> sixNumberCorrect(lottoResults)
-                FIVE_NUMBER_CORRECT -> fiveNumberCorrect(lottoNumber, lottoResults)
-                FOUR_NUMBER_CORRECT -> fourNumberCorrect(lottoResults)
-                THREE_NUMBER_CORRECT -> threeNumberCorrect(lottoResults)
+                SIX_NUMBER -> sixNumberCorrect(lottoResults)
+                FIVE_NUMBER -> fiveNumberCorrect(lottoNumber, lottoResults)
+                FOUR_NUMBER -> fourNumberCorrect(lottoResults)
+                THREE_NUMBER -> threeNumberCorrect(lottoResults)
             }
         }
-
-        lottoResults.forEach { (result, count) ->
-            println("$result: $count 개")
-        }
+        return lottoResults
     }
 
-    private fun sixNumberCorrect(lottoResults: MutableMap<LottoNumber, Int>) {
-        lottoResults[SIX_NUMBER] = (lottoResults[SIX_NUMBER]!! + 1)
+    private fun sixNumberCorrect(lottoResults: MutableMap<OutputMessages, Int>) {
+        lottoResults[OutputMessages.SIX_NUMBER_CORRECT] = (lottoResults[OutputMessages.SIX_NUMBER_CORRECT]!! + 1)
     }
 
-    private fun fiveNumberCorrect(lottoNumber: List<Int>, lottoResults: MutableMap<LottoNumber, Int>) {
+    private fun fiveNumberCorrect(lottoNumber: List<Int>, lottoResults: MutableMap<OutputMessages, Int>) {
         if (lottoNumber.contains(bonusNumber)) {
-            lottoResults[FIVE_AND_BONUS_NUMBER] = (lottoResults[FIVE_AND_BONUS_NUMBER]!! + 1)
+            lottoResults[OutputMessages.FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT] = (lottoResults[OutputMessages.FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT]!! + 1)
         } else {
-            lottoResults[FIVE_NUMBER] = (lottoResults[FIVE_NUMBER]!! + 1)
+            lottoResults[OutputMessages.FIVE_NUMBER_CORRECT] = (lottoResults[OutputMessages.FIVE_NUMBER_CORRECT]!! + 1)
         }
     }
 
-    private fun fourNumberCorrect(lottoResults: MutableMap<LottoNumber, Int>) {
-        lottoResults[FOUR_NUMBER] = (lottoResults[FOUR_NUMBER]!! + 1)
+    private fun fourNumberCorrect(lottoResults: MutableMap<OutputMessages, Int>) {
+        lottoResults[OutputMessages.FOUR_NUMBER_CORRECT] = (lottoResults[OutputMessages.FOUR_NUMBER_CORRECT]!! + 1)
     }
 
-    private fun threeNumberCorrect(lottoResults: MutableMap<LottoNumber, Int>) {
-        lottoResults[THREE_NUMBER] = (lottoResults[THREE_NUMBER]!! + 1)
+    private fun threeNumberCorrect(lottoResults: MutableMap<OutputMessages, Int>) {
+        lottoResults[OutputMessages.THREE_NUMBER_CORRECT] = (lottoResults[OutputMessages.THREE_NUMBER_CORRECT]!! + 1)
     }
 }
-enum class LottoNumber {
-    SIX_NUMBER,
-    FIVE_NUMBER,
-    FIVE_AND_BONUS_NUMBER,
-    FOUR_NUMBER,
-    THREE_NUMBER
-}
+
