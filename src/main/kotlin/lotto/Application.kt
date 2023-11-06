@@ -10,6 +10,7 @@ fun main() {
 
     val lottoMachine = LottoMachine()
     lottoMachine.inputWinningNumbers()
+    lottoMachine.inputBonusNumber()
 }
 
 
