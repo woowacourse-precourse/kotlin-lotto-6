@@ -40,4 +40,11 @@ class WinningNumbersManagerTest {
             WinningNumbersManager(listOf("1", "2", "3", "4", "5"))
         }
     }
+
+    @Test
+    fun `입력되지 않은 번호가 있을 경우 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            WinningNumbersManager(listOf("1", "2", "3", "4", "5", ""))
+        }
+    }
 }
