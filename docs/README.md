@@ -21,12 +21,12 @@
 - [O] 로또 구매 금액을 입력 : InputValue#inputLottoMoney()
   - [O] 양의 정수를 입력하지 않으면 오류 : CheckError#checkInputPositiveInt()
   - [O] 1000원으로 나누어 떨어지지 않으면 오류 : CheckError#checkCanDivide1000()
-  
-  
+
 - [] 당첨 번호를 입력 : InputValue#inputWinningNumber()
-  - [] 당첨 번호가 중복될 경우 오류 : CheckError#checkNonOverlapNumber() 
-  - [] 1~45 이외의 숫자 혹은 문자가 입력될 경우 오류 : CheckError#checkOnlyNumber1to45()
+  - [O] 당첨 번호 숫자 모두가 양의 정수를 입력하지 않으면 오류 : CheckError#checkOnlyNumber()
+  - [] 당첨 번호 숫자 모두 1~45 사이를 입력하지 않으면 오류 : CheckError#checkNumber1to45()
   - [] 6개의 숫자를 입력하지 않을 경우 오류 : CheckError#checkInputSixNumbers()
+  - [] 당첨 번호가 중복될 경우 오류 : CheckError#checkNonOverlapNumber()
   
 - [] 보너스 번호를 입력 : InputValue#inputBonusNumber()
   - [] 보너스 번호와 당첨 번호가 중복될 경우 오류 : CheckError#checkNotOverlapNumber() 중복 사용

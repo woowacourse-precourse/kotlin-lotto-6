@@ -28,6 +28,9 @@ class InputValue {
 
     fun inputWinningNumber(): List<Int> {
 
+        val winningNumber = readln().split(",")
+        check.checkOnlyNumber(winningNumber)
+
         return listOf(0)
     }
 

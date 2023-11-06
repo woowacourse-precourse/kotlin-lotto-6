@@ -37,17 +37,42 @@ class CheckError {
         return true
     }
 
-    fun checkNonOverlapNumber(winningSixNumbers: List<Int>): Boolean {
+    fun checkOnlyNumber(winningSixNumbers: List<String>): Boolean {
+
+        for (number in winningSixNumbers) {
+            try {
+                number.toUInt()
+            } catch (e: IllegalArgumentException) {
+                println("[ERROR] : 자연수가 아닌 값을 입력했습니다. 다시 입력해주세요")
+
+                return false
+            }
+        }
 
         return true
     }
 
-    fun checkOnlyNumber1to45(winningSixNumbers: List<Int>): Boolean {
+    fun checkNumber1to45(winningSixNumbers: List<String>): Boolean {
+
+        for (number in winningSixNumbers) {
+            try {
+                number.toUInt()
+            } catch (e: IllegalArgumentException) {
+                println("[ERROR] : 자연수가 아닌 값을 입력했습니다. 다시 입력해주세요")
+
+                return false
+            }
+        }
 
         return true
     }
 
     fun checkInputSixNumbers(winningSixNumbers: List<Int>): Boolean {
+
+        return true
+    }
+
+    fun checkNonOverlapNumber(winningSixNumbers: List<Int>): Boolean {
 
         return true
     }
