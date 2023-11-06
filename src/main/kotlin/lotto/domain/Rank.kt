@@ -2,7 +2,7 @@ package lotto.domain
 
 enum class Rank(
     private val count: Int,
-    private val reward: Int,
+    private val prize: Int,
     private val message: String,
 ) {
     NONE(0, 0, ""),
@@ -16,8 +16,8 @@ enum class Rank(
         return "$message${count}개\n"
     }
 
-    fun getReward(rank: Rank): Int {
-        return rank.reward
+    fun getPrize(rank: Rank): Int {
+        return rank.prize
     }
 
     companion object {

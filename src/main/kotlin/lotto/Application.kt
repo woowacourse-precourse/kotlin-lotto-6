@@ -1,8 +1,8 @@
 package lotto
 
-import lotto.domain.LottoGame
+import lotto.domain.LottoProgram
 
 fun main() {
-    val lottoGame = LottoGame()
-    lottoGame.startGame()
+    val lottoProgram = LottoProgram()
+    lottoProgram.startProgram()
 }

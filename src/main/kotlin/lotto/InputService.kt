@@ -5,7 +5,7 @@ import lotto.validator.InputMoneyValidator
 import lotto.validator.WinningNumbersValidator
 import lotto.view.InputView
 
-class InputManager {
+class InputService {
     private val inputView = InputView()
     private val inputMoneyValidator = InputMoneyValidator()
     private val winningNumbersValidator = WinningNumbersValidator()
