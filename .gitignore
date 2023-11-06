@@ -5,6 +5,23 @@ build/
 !**/src/main/**
 !**/src/test/**
 
+### Local configuration file ###
+local.properties
+
+### Kotlin ###
+*.class
+
+### Log ###
+*.log
+
+### Android Studio ###
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+output.json
+*.hprof
+
 ### macOS ###
 .DS_Store
 
