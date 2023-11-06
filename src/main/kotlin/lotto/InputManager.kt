@@ -7,9 +7,9 @@ class InputManager {
         println("구입금액을 입력해 주세요.")
         return Console.readLine()
     }
-    fun inputWinningNumber(): String? {
+    fun inputWinningNumber(): List<String> {
         println("당첨 번호를 입력해 주세요.")
-        return Console.readLine()
+        return Console.readLine().split(",")
     }
     fun inputBonusNumber(): String? {
         println("보너스 번호를 입력해 주세요.")
