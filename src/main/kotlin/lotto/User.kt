@@ -54,6 +54,8 @@ class User {
     private fun setBonusNumber(input: String) {
         require(isValidInputNumber(input)) { INVALID_NUMBER_ERROR_MESSAGE }
         require(isValidRangeNumber(input.toInt())) { INVALID_RANGE_NUMBER_ERROR_MESSAGE }
+
+        _bonusNumber = input.toInt()
     }
 
     private fun isNotEmpty(input: String) = input.isNotEmpty()
