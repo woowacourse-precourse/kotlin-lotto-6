@@ -1,16 +1,15 @@
 package lotto.controller
 
+import lotto.domain.Lotto
 import lotto.domain.LottoMachine
 import lotto.domain.LottoStore
-import lotto.validator.BonusNumberValidator
-import lotto.validator.WinNumbersValidator
 import lotto.view.InputView
 import lotto.view.OutputView
 
 class LottoController {
     fun run() {
         val lottoStore: LottoStore = inputPrice()
-        printTickets(lottoStore)
+        val tickets : List<Lotto> = issueTickets(lottoStore)
         val winNumbers: List<String> = LottoMachine().drawWinNumbers()
         val bonusNumber: String = LottoMachine().drawBonusNumber()
     }
@@ -30,9 +29,10 @@ class LottoController {
         throw IllegalArgumentException("입력에 여러 차례 실패했습니다. 프로그램을 종료합니다.")
     }
 
-    private fun printTickets(lottoStore: LottoStore) {
+    private fun issueTickets(lottoStore: LottoStore): List<Lotto> {
         OutputView.printPurchaseCount(lottoStore.getNumberOfTickets())
         val tickets = lottoStore.sellTickets()
         OutputView.printTickets(tickets).also { println() }
+        return tickets
     }
 }
