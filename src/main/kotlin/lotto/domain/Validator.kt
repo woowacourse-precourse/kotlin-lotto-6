@@ -22,9 +22,14 @@ class Validator {
 
     fun validateLottoNum(lottoNum: List<String>) {
         validateLottoNumEmpty(lottoNum)
+        validateLottoNumCount(lottoNum)
     }
 
     private fun validateLottoNumEmpty(lottoNum: List<String>) {
         require(lottoNum.isNotEmpty())
+    }
+
+    private fun validateLottoNumCount(lottoNum: List<String>) {
+        require(lottoNum.size == 6)
     }
 }
