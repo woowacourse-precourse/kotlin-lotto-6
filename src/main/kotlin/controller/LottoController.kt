@@ -25,6 +25,8 @@ class LottoController(private val inputView: InputView, private val outputView: 
             break
         } while (true)
 
+        outputView.printAppendLine()
+
         do {
             try {
                 purchasedLottoTickets.add(generateLottoTickets())
