@@ -15,14 +15,8 @@ object InputView {
     }
 
     private fun checkPurchaseMoney(inputPurchaseMoney: String): Int {
-        val purchaseMoneyNum = checkNumber(inputPurchaseMoney)
+        val purchaseMoneyNum = checkPositiveInteger(inputPurchaseMoney)
         checkDivideMoney(purchaseMoneyNum)
-        return purchaseMoneyNum
-    }
-
-    private fun checkNumber(purchaseMoney: String): Int {
-        val purchaseMoneyNum = purchaseMoney.toIntOrNull() ?: 0
-        require(purchaseMoneyNum > 0)
         return purchaseMoneyNum
     }
 
@@ -37,6 +31,9 @@ object InputView {
         val winningNumbers = inputWinningNumbers.map {
             checkPositiveInteger(it)
         }
+        winningNumbers.forEach {
+            checkNumberRange(it)
+        }
 
         checkDuplicateNumber(winningNumbers)
         checkNumbersSize(winningNumbers)
@@ -47,6 +44,7 @@ object InputView {
     fun getBonusNumber(winningNumbers: List<Int>): Int {
         println("\n$BONUS_NUMBER_MESSAGE")
         val bonusNumber = checkPositiveInteger(Console.readLine())
+        checkNumberRange(bonusNumber)
         checkDuplicateNumbersAndBonusNumber(winningNumbers, bonusNumber)
 
         return bonusNumber
@@ -55,7 +53,7 @@ object InputView {
     private fun checkPositiveInteger(inputWinningNumber: String): Int {
         val winningNumber = inputWinningNumber.toIntOrNull() ?: 0
         require(winningNumber > 0)
-        checkNumberRange(winningNumber)
+
         return winningNumber
     }
 
