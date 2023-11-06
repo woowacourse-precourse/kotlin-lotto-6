@@ -29,7 +29,7 @@ object LottoController {
 
         ResultView.printPurchasedLotties(sortedLotties)
 
-        InputView.inputWinningNumberList()
+        // InputView.inputWinningNumberList()
     }
 
     private fun getUserAmount(): Money = Money(InputView.inputPurchaseAmount())
