@@ -12,6 +12,15 @@ enum class Prize(val matchCount: Int, val prize: Int, val bonus: Boolean) {
     MISS(0, 0, false);
 }
 
+fun getPrize(userLottos: Lottos, winningLotto: Lotto, bonusNumber: Int): MutableList<Prize> {
+    val prizeList = mutableListOf<Prize>()
+    for (userLotto in userLottos.getUserLotto()) {
+        val matchCount = getMatchCount(userLotto, winningLotto, bonusNumber)
+        val prize = getPrize(matchCount)
+        prizeList.add(prize)
+    }
+    return prizeList
+}
 
 
 fun getMatchCount(userLotto: Lotto, lotto: Lotto, bonusNumber: Int ): Pair<Int, Boolean> {
