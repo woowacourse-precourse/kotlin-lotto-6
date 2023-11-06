@@ -48,7 +48,7 @@ class Game(
         return WinCount(matchingNumbers, bonusMatch)
     }
 
-    fun checkLottoWinType(winCounts: List<WinCount>): Set<LottoWinType> {
+    fun checkLottoWinType(winCounts: List<WinCount>): List<LottoWinType> {
         return winCounts.flatMap { winCount ->
             val count = if (winCount.bonusJudge) winCount.winningCount + 1 else winCount.winningCount
             when (count) {
@@ -58,7 +58,7 @@ class Game(
                 6, 7 -> listOf(LottoWinType.SIX_MATCH)
                 else -> emptyList()
             }
-        }.toSet()
+        }.toList()
     }
 
     private fun requireIsInt(input: String) {
