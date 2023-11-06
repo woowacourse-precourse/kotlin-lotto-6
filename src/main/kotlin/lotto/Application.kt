@@ -78,7 +78,7 @@ fun generateLottoNumbers(): List<Int> {
 
 fun inputWinningNumbers(): String {
     println("당첨 번호를 입력해 주세요.")
-    return readLine().orEmpty()
+    return Console.readLine()
 }
 
 fun getValidWinningNumbers(): List<Int> {
@@ -103,7 +103,7 @@ fun getValidWinningNumbers(): List<Int> {
 
 fun inputBonusNumber(): String {
     println("보너스 번호를 입력해 주세요.")
-    return readLine().orEmpty()
+    return Console.readLine()
 }
 
 fun getValidBonusNumber(): Int {
