@@ -41,9 +41,9 @@ class LottoRanks {
     }
     private fun winningResultsUpdate(matchedNumbers: Int, results: MutableMap<Prize, Int>, bonusMatch: Boolean) {
         when (matchedNumbers) {
-            3 -> results[Prize.THREE_MATCH] = results.getOrDefault(Prize.THREE_MATCH, 0) + 1
-            4 -> results[Prize.FOUR_MATCH] = results.getOrDefault(Prize.FOUR_MATCH, 0) + 1
-            5 -> {
+            Prize.THREE_MATCH.matchingNumbers -> results[Prize.THREE_MATCH] = results.getOrDefault(Prize.THREE_MATCH, 0) + 1
+            Prize.FOUR_MATCH.matchingNumbers -> results[Prize.FOUR_MATCH] = results.getOrDefault(Prize.FOUR_MATCH, 0) + 1
+            Prize.FIVE_MATCH.matchingNumbers -> {
                 if (bonusMatch) {
                     results[Prize.FIVE_MATCH_WITH_BONUS] = results.getOrDefault(Prize.FIVE_MATCH_WITH_BONUS, 0) + 1
                 } else {
@@ -51,7 +51,7 @@ class LottoRanks {
                 }
             }
 
-            6 -> results[Prize.SIX_MATCH] = results.getOrDefault(Prize.SIX_MATCH, 0) + 1
+            Prize.SIX_MATCH.matchingNumbers -> results[Prize.SIX_MATCH] = results.getOrDefault(Prize.SIX_MATCH, 0) + 1
         }
     }
 }
