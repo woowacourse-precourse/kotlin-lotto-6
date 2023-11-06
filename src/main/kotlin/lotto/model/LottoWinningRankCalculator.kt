@@ -5,7 +5,7 @@ import lotto.Lotto
 class LottoWinningRankCalculator {
     var prize = 0
 
-    fun calculateRank(amount: Int, lotteryTickets: MutableList<Lotto>, winNumber: List<Int>, bonusNumber: Int): MutableMap<LottoRank, Int> {
+    fun calculateRank(lotteryTickets: List<Lotto>, winNumber: List<Int>, bonusNumber: Int): MutableMap<LottoRank, Int> {
         val wonLotto = mutableMapOf<LottoRank, Int>().withDefault { 0 }
 
         lotteryTickets.forEach { lotto ->
