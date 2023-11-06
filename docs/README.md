@@ -26,7 +26,7 @@
   - [O] 당첨 번호 숫자 모두가 양의 정수를 입력하지 않으면 오류 : CheckError#checkOnlyNumber()
   - [O] 당첨 번호 숫자 모두 1~45 사이를 입력하지 않으면 오류 : CheckError#checkNumber1to45()
   - [O] 6개의 숫자를 입력하지 않을 경우 오류 : CheckError#checkInputSixNumbers()
-  - [] 당첨 번호가 중복될 경우 오류 : CheckError#checkNonOverlapNumber()
+  - [O] 당첨 번호가 중복될 경우 오류 : CheckError#checkNonOverlapNumber()
   
 - [] 보너스 번호를 입력 : InputValue#inputBonusNumber()
   - [] 보너스 번호와 당첨 번호가 중복될 경우 오류 : CheckError#checkNotOverlapNumber() 중복 사용
