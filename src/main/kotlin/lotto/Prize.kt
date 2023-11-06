@@ -62,12 +62,13 @@ fun getPrizeList(prize:MutableList<Prize>): MutableList<Int> {
     }
     return prizeList
 }
-fun getEarningRate(prizeList: MutableList<Prize>, money: Int): Double {
+fun getEarningRate(prizeList: MutableList<Prize>, amount: Int): Double {
+    var totalPrize = 0
     var earningRate = 0.0
-    var money = 0
+    val totalAmount = amount * 1000
     for (prize in prizeList) {
-        money += prize.prize
+        totalPrize += prize.prize
     }
-    earningRate = money.toDouble() / money
-    return earningRate
+    earningRate = totalPrize.toDouble() / totalAmount.toDouble() * 100
+    return round(earningRate * 100) / 100
 }
