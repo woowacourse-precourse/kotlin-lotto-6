@@ -77,5 +77,6 @@ class LottoController(private val inputView: InputView, private val outputView: 
         } while (true)
 
         outputView.printAppendLine()
+        outputView.printResultMessage()
     }
 }
