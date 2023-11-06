@@ -6,6 +6,7 @@ import util.LottoValidation
 class WinningNumbersManager(private val numbers: List<String>) {
 
     private lateinit var winningNumbers: List<Int>
+    private var bonusNumber = 0
 
     init {
         numbers.forEach {
@@ -17,5 +18,8 @@ class WinningNumbersManager(private val numbers: List<String>) {
         LottoValidation.REQUIRED_LOTTO_NUMBER_COUNT.isValid(winningNumbers)
         LottoValidation.UNIQUE_LOTTO_NUMBERS.isValid(winningNumbers)
         LottoValidation.LOTTO_NUMBER_RANGE.isValid(winningNumbers)
+    }
+
+    fun isBonusNumberValid(number: String) {
     }
 }
