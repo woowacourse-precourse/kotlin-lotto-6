@@ -110,8 +110,8 @@ class LottoPrizeCalculator {
     private fun calculatePrizeForMatch(lottoNumberMatch: Int): Int {
         return when (lottoNumberMatch) {
             6 -> 2_000_000_000
-            5 -> 30_000_000
-            4 -> 1_500_000
+            5 -> if (bonusNumberMatch) 30_000_000 else 1_500_000
+            4 -> 50_000
             3 -> 5_000
             else -> 0
         }

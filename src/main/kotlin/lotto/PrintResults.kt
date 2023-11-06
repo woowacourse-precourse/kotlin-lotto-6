@@ -1,7 +1,9 @@
 package lotto
 
+import java.math.BigDecimal
+
 class PrintResults {
-    fun printResults(prizeCounts: IntArray, rateOfReturn: Double) {
+    fun printResults(prizeCounts: IntArray, rateOfReturn: BigDecimal) {
         val prizeDescriptions = listOf(
                 MessageConstants.THREE_MATCHES,
                 MessageConstants.FOUR_MATCHES,
@@ -18,7 +20,8 @@ class PrintResults {
         println("${MessageConstants.YIELD_MESSAGE_START}${roundDigit(rateOfReturn, 1)}${MessageConstants.YIELD_MESSAGE_END}")
     }
 
-    fun roundDigit(number: Double, digits: Int): Double {
-        return Math.round(number * Math.pow(10.0, digits.toDouble())) / Math.pow(10.0, digits.toDouble())
+    fun roundDigit(number: BigDecimal, digits: Int): BigDecimal {
+        //return Math.round(number * Math.pow(10.0, digits.toDouble())) / Math.pow(10.0, digits.toDouble())
+        return number.setScale(digits, BigDecimal.ROUND_HALF_UP)
     }
 }
