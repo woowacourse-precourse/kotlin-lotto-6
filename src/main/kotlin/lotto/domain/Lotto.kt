@@ -2,7 +2,7 @@ package lotto.domain
 
 import lotto.exception.LottoException
 
-class Lotto(private val numbers: List<LottoNumber>) : List<LottoNumber> by numbers {
+class Lotto(private val numbers: List<LottoNumber>) {
     companion object {
         const val LOTTO_SIZE = 6
     }
@@ -17,4 +17,8 @@ class Lotto(private val numbers: List<LottoNumber>) : List<LottoNumber> by numbe
 
     private fun checkNumberDuplicate(numbers: List<LottoNumber>) =
         require(numbers.toSet().size == numbers.size) { LottoException.DUPLICATE_NUMBER_EXIST.message }
+
+    override fun toString(): String {
+        return numbers.toString()
+    }
 }
