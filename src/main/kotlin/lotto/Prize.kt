@@ -1,5 +1,7 @@
 package lotto
 
+import kotlin.math.round
+
 
 enum class Prize(val matchCount: Int, val prize: Int, val bonus: Boolean) {
     FIRST(6, 2000000_000, false),
@@ -59,4 +61,13 @@ fun getPrizeList(prize:MutableList<Prize>): MutableList<Int> {
         }
     }
     return prizeList
+}
+fun getEarningRate(prizeList: MutableList<Prize>, money: Int): Double {
+    var earningRate = 0.0
+    var money = 0
+    for (prize in prizeList) {
+        money += prize.prize
+    }
+    earningRate = money.toDouble() / money
+    return earningRate
 }
