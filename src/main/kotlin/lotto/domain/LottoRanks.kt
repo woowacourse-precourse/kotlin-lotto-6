@@ -16,7 +16,7 @@ class LottoRanks {
     init {
         Prize.entries.forEach { results[it] = 0 }
     }
-    fun rank(lottoList: List<Int>, lotto: Lotto, bonusNumber: Int): MutableMap<Prize, Int> {
+    fun rank(lottoList: List<Int>, lotto: Lotto, bonusNumber: Boolean): MutableMap<Prize, Int> {
         val winningNumbers = lottoList // 예시로 고정된 당첨 번호
         val bonusNumber = bonusNumber // 예시로 고정된 보너스 번호
         val userNumbers = lotto.getLotto() // 예시로 고정된 참가자 번호
