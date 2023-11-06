@@ -13,27 +13,18 @@ object UserInput {
     private lateinit var duplicateNumbers: List<Int> // 당첨 번호들을 담아 두기 위한 변수(보너스 번호 중복 체크 용도)
 
     private fun readOnlyDigitAndToInt(): Int {
-        while (true) {
-            try {
-                val input = Console.readLine()
-                Validator
-                    .checkIsDigit(input)
-                    .checkIsEmptyString(input)
+            val input = Console.readLine()
+            Validator
+                .checkIsDigit(input)
+                .checkIsEmptyString(input)
 
-                return input.toInt()
-            } catch (ne: NumberFormatException) {
-                println(MSG_ERR_INVALIDATE_INPUT)
-            } catch (e: IllegalArgumentException) {
-                println(e.message)
-            }
+            return input.toInt()
         }
 
-    }
-
     fun readMoney(): Int {
-        println(MSG_INPUT_MONEY)
         while (true) {
             try {
+                println(MSG_INPUT_MONEY)
                 val money = readOnlyDigitAndToInt()
                 Validator.checkPurchaseRange(money)
                 Validator.checkIsDivisibleByThousand(money)
@@ -48,9 +39,9 @@ object UserInput {
     }
 
     fun readWinNumbers(): List<Int> {
-        println(MSG_INPUT_WIN_NUMBERS)
         while (true) {
             try {
+                println(MSG_INPUT_WIN_NUMBERS)
                 val winNumbers = inputToNumbersByComma(Console.readLine())
                 Validator
                     .checkProperNumbersSize(winNumbers)
@@ -67,9 +58,9 @@ object UserInput {
     }
 
     fun readBonusNumber(): Int {
-        println(MSG_INPUT_BONUS_NUMBER)
         while (true) {
             try {
+                println(MSG_INPUT_BONUS_NUMBER)
                 val bonus = readOnlyDigitAndToInt()
                 Validator
                     .checkNumberInRange(bonus)
