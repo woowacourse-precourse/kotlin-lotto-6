@@ -2,7 +2,6 @@ package game
 
 import domain.*
 import model.PurchaseLottoInfo
-import model.Winning
 import ui.InputManager
 import ui.OutputManager
 
@@ -12,22 +11,21 @@ class LottoGame(
     private val lottoGenerator: LottoGenerator = LottoGenerator()
 ) {
     fun startLottoGame() {
-        outputManager.promptPurchaseAmount()
-        val purchaseInfo: PurchaseLottoInfo = getPurchaseAmount().apply { outputManager.purchaseLottoCount(this.lottoCount) }
-
-        val purchaseLotto: List<Lotto> = getPurchaseLottoResult(purchaseInfo.lottoCount)
-        outputManager.lottoNumbers(purchaseLotto)
-
-        outputManager.promptJackpotNumbers()
-        val jackpotNumbers: ArrayList<Int> = getJackpotNumbers().apply {
-            outputManager.promptBonusNumber()
-            add(getBonusNumber(this))
+        with(outputManager) {
+            promptPurchaseAmount()
+            val purchaseInfo: PurchaseLottoInfo = getPurchaseAmount().apply { purchaseLottoCount(this.lottoCount) }
+            val purchaseLotto: List<Lotto> = getPurchaseLottoResult(purchaseInfo.lottoCount).apply { lottoNumbers(this) }
+            promptJackpotNumbers()
+            val jackpotNumbers: ArrayList<Int> = getJackpotNumbers().apply {
+                promptBonusNumber()
+                add(getBonusNumber(this))
+            }
+            lottoStats()
+            val lottoResult = LottoResult(purchaseLotto = purchaseLotto, lottoPrizeCheck = LottoPrizeCheck(jackpotNumbers))
+            prizeResult(lottoResult.prizeResult())
+            val totalResult = LottoRateOfReturn(amount = purchaseInfo.amount, checkPrize = lottoResult.prizeResult())
+            rateOfReturn(totalResult.rateOfReturn())
         }
-
-        val lottoPrize = LottoPrizeCheck(jackpotNumbers = jackpotNumbers)
-        val lottoResult = LottoResult(purchaseLotto = purchaseLotto, lottoPrizeCheck = lottoPrize).lottoResult()
-        val totalResult = LottoRateOfReturn(amount = purchaseInfo.amount, checkPrize = lottoResult)
-        test(totalResult)
     }
 
     private fun getPurchaseAmount() = inputManager.lottoPurchaseAmount { outputManager.invalidPurchaseAmount() }
@@ -43,11 +41,4 @@ class LottoGame(
 
     private fun getBonusNumber(jackpotNumbers: List<Int>): Int =
         inputManager.bonusNumber(jackpotNumbers) { outputManager.invalidBonusNumber() }
-
-    private fun test(totalResult: LottoRateOfReturn) {
-        Winning.values().forEachIndexed { index, winning ->
-            println("$winning ${totalResult.checkPrize[index]}개")
-        }
-        println(totalResult.rateOfReturn())
-    }
 }
