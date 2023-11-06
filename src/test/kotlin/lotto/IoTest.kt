@@ -73,4 +73,43 @@ class IoTest {
             checker.checkAmount("19999")
         }
     }
+
+    @Test
+    fun `당첨 번호 입력에 숫자가 아닌게 있을 때`() {
+        assertThrows<IllegalArgumentException> {
+            checker.checkWinningNumbers(listOf("a","1","2","3","4","5"))
+        }
+    }
+    @Test
+    fun`당첨 번호 입력이 6자리가 아닐 때1`() {
+        assertThrows<IllegalArgumentException> {
+            checker.checkWinningNumbers(listOf("2","3","4","5"))
+        }
+    }
+
+    @Test
+    fun`당첨 번호 입력이 6자리가 아닐 때2`() {
+        assertThrows<IllegalArgumentException> {
+            checker.checkWinningNumbers(listOf("1","33","2","3","4","5","6"))
+        }
+    }
+    @Test
+    fun `당첨 번호 입력에 중복이 있을 때`() {
+        assertThrows<IllegalArgumentException> {
+            checker.checkWinningNumbers(listOf("1","1","2","3","4","5"))
+        }
+    }
+    @Test
+    fun`당첨 번호 입력이 범위 밖에 있을 때1`() {
+        assertThrows<IllegalArgumentException> {
+            checker.checkWinningNumbers(listOf("46","1","2","3","4","5"))
+        }
+    }
+
+    @Test
+    fun`당첨 번호 입력이 범위 밖에 있을 때2`() {
+        assertThrows<IllegalArgumentException> {
+            checker.checkWinningNumbers(listOf("0","1","2","3","4","5"))
+        }
+    }
 }
