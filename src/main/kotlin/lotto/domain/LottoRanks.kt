@@ -22,6 +22,8 @@ class LottoRanks {
         val userNumbers = lotto.getLotto() // 예시로 고정된 참가자 번호
 
         val matchedNumbers = checkMatchingNumbers(winningNumbers, userNumbers)
+        winningResultsUpdate(matchedNumbers, results)
+
 
         return results
     }
@@ -35,4 +37,14 @@ class LottoRanks {
         }
         return matchedNumbers
     }
+
+    private fun winningResultsUpdate(matchedNumbers: Int, results: MutableMap<Prize, Int>) {
+        when (matchedNumbers) {
+            3 -> results[Prize.THREE_MATCH] = results.getOrDefault(Prize.THREE_MATCH, 0) + 1
+            4 -> results[Prize.FOUR_MATCH] = results.getOrDefault(Prize.FOUR_MATCH, 0) + 1
+            5 -> results[Prize.FIVE_MATCH] = results.getOrDefault(Prize.FIVE_MATCH, 0) + 1
+            6 -> results[Prize.SIX_MATCH] = results.getOrDefault(Prize.SIX_MATCH, 0) + 1
+        }
+    }
+
 }
