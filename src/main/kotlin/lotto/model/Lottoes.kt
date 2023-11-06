@@ -1,10 +1,8 @@
 package lotto.model
 
-class Lottoes(val lottoes: List<Lotto>, val inputLotto: Lotto) {
+class Lottoes(val lottoes: List<Lotto>, val inputLotto: String) {
 
-    fun calculateQuantity(amount: Int) {
-
-    }
+    fun calculateQuantity(inputPrice: String): Int = 0
 
     fun calculateWinningResult(winningRank: WinningRank) {
 
