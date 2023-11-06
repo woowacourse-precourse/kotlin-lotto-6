@@ -69,11 +69,11 @@ class InputValidatorTest {
 
         @Test
         @DisplayName("예외3")
-        fun `checkIsContained 메서드 사용 시 입력값이 주어진 배열 안에 존재하지 않을 때 예외 발생`() {
-            val input = "a"
-            val items = listOf("b", "c", "d")
+        fun `checkIsContained 메서드 사용 시 입력값이 주어진 배열 안에 존재할 때 예외 발생`() {
+            val input = "b"
+            val items = listOf("a", "b", "c")
 
-            assertThrows<IllegalArgumentException> { Validator.checkIsContained(input, items) }
+            assertThrows<IllegalArgumentException> { Validator.checkIsNotContained(input, items) }
         }
 
         companion object {
