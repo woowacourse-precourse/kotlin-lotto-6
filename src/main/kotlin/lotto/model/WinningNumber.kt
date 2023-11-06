@@ -13,18 +13,9 @@ class WinningNumber(
     }
 
     fun check(lotto: Lotto): Winning {
-        var matchCount = 0
-        normalNumbers.forEach { number ->
-            if (lotto.contains(number)) {
-                ++matchCount
-            }
-        }
-        val hasBonus = if (lotto.contains(bonusNumber)) {
-            ++matchCount
-            true
-        } else {
-            false
-        }
+        val totalNumbers = normalNumbers + bonusNumber
+        val matchCount = totalNumbers.count { it in lotto }
+        val hasBonus = bonusNumber in lotto
         return Winning.create(matchCount = matchCount, hasBonus = hasBonus)
     }
 

@@ -12,7 +12,7 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.isInLottoNumberRange())
     }
 
-    fun contains(number: Int): Boolean {
+    operator fun contains(number: Int): Boolean {
         return numbers.contains(number)
     }
 
