@@ -69,7 +69,7 @@
 - [] 총 수익률을 소수점 둘째 자리에서 반올림 해 알 수 있다
 
 ## 단위 테스트 목록
-- [x] PurchasePriceValidator(구입 금액) 테스트
-- [x] LottoPrice(티켓 수 반환) 테스트
+- [x] PurchasePriceValidator 테스트
+- [] LottoStore 테스트
 - [] WinNumbersValidator 테스트
 - [] BonusNumberValidator 테스트

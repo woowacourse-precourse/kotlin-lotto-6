@@ -1,11 +1,12 @@
 package lotto.domain
 
-class LottoStore {
-    fun sellTickets(price: Int): List<Lotto> {
-        return listOf()
-    }
+import lotto.validator.PurchasePriceValidator
 
-    private fun generateNumbers(): Set<Int> {
-        return setOf()
+class LottoStore(private val value: String) {
+    init {
+        PurchasePriceValidator(value)
+    }
+    fun getNumberOfTickets(): Int {
+        return value.toInt() / 1000
     }
 }

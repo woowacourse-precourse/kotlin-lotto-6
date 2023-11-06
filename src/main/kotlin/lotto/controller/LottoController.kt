@@ -1,6 +1,6 @@
 package lotto.controller
 
-import lotto.domain.LottoPrice
+import lotto.domain.LottoStore
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -15,7 +15,7 @@ class LottoController {
         while (attempts <= 5) {
             try {
                 val purchasePrice = InputView.promptForPurchasePrice().also { println() }
-                return LottoPrice(purchasePrice).getNumberOfTickets()
+                return LottoStore(purchasePrice).getNumberOfTickets()
             } catch (e: IllegalArgumentException) {
                 println(e.message)
                 attempts++
@@ -27,5 +27,6 @@ class LottoController {
 
     private fun printTickets(numberOfTickets: Int) {
         OutputView.printPurchaseCount(numberOfTickets)
+
     }
 }
