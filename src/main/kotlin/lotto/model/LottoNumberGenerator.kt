@@ -5,9 +5,9 @@ import lotto.config.GameConfigValue.MAXIMUM_LOTTO_NUMBER
 import lotto.config.GameConfigValue.LOTTO_DEFAULT_DIGIT
 import camp.nextstep.edu.missionutils.Randoms
 
-class LottoNumberGenerator(private val purchaseNumber:Int){
+class LottoNumberGenerator{
 
-    fun lottoNumberCreation():MutableList<List<Int>>{
+    fun lottoNumberCreation(purchaseNumber:Int):MutableList<List<Int>>{
         val lottoNumberList=mutableListOf<List<Int>>()
         repeat(purchaseNumber) {
             val lottoNumbers = randomSixNumberGenerator()
