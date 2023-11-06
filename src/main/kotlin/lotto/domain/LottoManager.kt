@@ -14,7 +14,7 @@ class LottoManager {
 
     companion object {
         const val LOTTO_START_INCLUSIVE = 1
-        const val LOTTO_END_INCLUSIVE = 1
-        const val LOTTO_COUNT = 1
+        const val LOTTO_END_INCLUSIVE = 45
+        const val LOTTO_COUNT = 6
     }
 }

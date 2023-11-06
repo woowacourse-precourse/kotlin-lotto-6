@@ -6,7 +6,7 @@ class WinningLotto(
     private val bonusNumber: Int
 ) {
 
-    fun checkBonusNumber(
+    fun checkWinningBonusNumber(
         lottoNumber: Set<Int>
     ): Boolean = getNotWinningNumbers(lottoNumber).contains(bonusNumber)
 
