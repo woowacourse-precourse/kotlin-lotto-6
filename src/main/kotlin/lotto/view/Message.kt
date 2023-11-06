@@ -17,7 +17,4 @@ enum class Message(val message: String) {
     ERROR_INT("[ERROR] 숫자를 입력해주세요."),
     ERROR_NUMBER_RANGE("[ERROR] ,를 기준으로 작성해주시고, 로또 번호의 숫자 범위는 1~45까지입니다."),
     ERROR_SIX_DIFFERENT_NUMBERS("[ERROR] ,를 기준으로 서로 다른 6개의 숫자를 넣어주셔야 합니다.")
-
-
-
 }
