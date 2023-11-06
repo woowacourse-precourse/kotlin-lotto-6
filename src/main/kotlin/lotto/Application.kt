@@ -8,17 +8,24 @@ fun main() {
         printStartMessage()
         val input = inputMessage().trim()
         val result = purchaseAmountEmpty(input)
-        printPurchaseTotal(result)
-        repeat(result/1000) {
-            println(lottoSort(makeLotto()))
-        }
 
+        printPurchaseTotal(result)
+
+//        repeat(result/1000) {
+//            lottoSort(makeLotto())
+//        }
+        var lotto = lottoSort(makeLotto())
         printWinningMessage()
         val winningNumber = inputMessage().trim()
-        println(parser(winningNumber))
+        val winningResult = parser(winningNumber)
 
         printBonusMessage()
         val BonusNumber = inputMessage().trim()
+
+        printWinningReport()
+
+        compareToLotto(lotto, winningResult)
+
 
     } catch (e: IllegalArgumentException) {
         println(e.message)
@@ -48,8 +55,7 @@ fun printBonusMessage() {
 }
 
 fun printWinningReport() {
-    println("당첨 통계")
-    println("---")
+    println("당첨 통계\n---")
 }
 
 // Validator
@@ -81,4 +87,11 @@ fun lottoSort(list: List<Int>): List<Int> {
 fun parser(s: String): List<Int> {
     val win = s.split(",")
     return win.map { it.toInt() }
+}
+
+// 당첨 번호와 로또 번호 비교
+fun compareToLotto(lotto: List<Int>, winningResult: List<Int>) {
+    val union = lotto + winningResult
+    val intersection = union.groupBy { it }.filter { it.value.size > 1 }.flatMap { it.value }
+    println(intersection.size)
 }
