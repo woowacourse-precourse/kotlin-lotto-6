@@ -4,16 +4,14 @@ import lotto.utils.ErrorMessage
 import lotto.utils.Values
 
 class LottoModel {
-    fun checkPurchaseMoneyValue(moneyValue: Int): Boolean {
-        try {
+    fun checkPurchaseMoneyValueValid(moneyValue: Int): Boolean {
+        return try {
             if ((moneyValue % Values.LOTTERY_PRICE) != 0) {
                 throw IllegalArgumentException("${ErrorMessage.ERRORMESSAGE_TITLE} ${ErrorMessage.INAPPROPRIATE_VALUE}")
             }
-            return false
+            false
         } catch (e: IllegalArgumentException) {
-            println("${ErrorMessage.ERRORMESSAGE_TITLE} ${ErrorMessage.INAPPROPRIATE_VALUE}")
+            true
         }
-        return true
     }
-
 }

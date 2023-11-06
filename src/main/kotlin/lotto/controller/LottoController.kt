@@ -9,7 +9,9 @@ import lotto.utils.Values
 class LottoController(private val view: LottoView, private val model: LottoModel) {
     fun run() {
         view.requestPurchaseMoneyValueMessage()
-        while(model.checkPurchaseMoneyValue(setPurchaseMoneyValue())) { }
+        while(model.checkPurchaseMoneyValueValid(setPurchaseMoneyValue())) {
+            view.displayInappropriateValueError()
+        }
     }
     private fun setPurchaseMoneyValue(): Int {
         return Console.readLine().toInt()
