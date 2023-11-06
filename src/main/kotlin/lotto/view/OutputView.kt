@@ -1,6 +1,5 @@
 package lotto.view
 
-import lotto.Lotto
 import lotto.model.LottoRank
 import lotto.view.Constant.INPUT_BONUS_NUMBER_MESSAGE
 import lotto.view.Constant.INPUT_PRICE_MESSAGE
@@ -34,6 +33,8 @@ class OutputView {
             }
         }
     }
+
+    fun printProfitRate(profitRate: String) = println("총 수익률은 ${profitRate}입니다.")
 }
 
 object Constant {

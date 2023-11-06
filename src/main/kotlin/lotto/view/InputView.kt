@@ -13,7 +13,7 @@ class InputView {
         amount.isDigit()
         amount.isLessThanThousand()
         amount.isAmountInThousand()
-        return amount.toInt() / 1000
+        return amount.toInt()
     }
 
     fun inputWinNumber(): List<Int> {

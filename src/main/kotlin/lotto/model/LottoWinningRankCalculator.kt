@@ -3,9 +3,10 @@ package lotto.model
 import lotto.Lotto
 
 class LottoWinningRankCalculator {
-    fun calculateRank(lotteryTickets: MutableList<Lotto>, winNumber: List<Int>, bonusNumber: Int): MutableMap<LottoRank, Int> {
+    var prize = 0
+
+    fun calculateRank(amount: Int, lotteryTickets: MutableList<Lotto>, winNumber: List<Int>, bonusNumber: Int): MutableMap<LottoRank, Int> {
         val wonLotto = mutableMapOf<LottoRank, Int>().withDefault { 0 }
-        var prize = 0
 
         lotteryTickets.forEach { lotto ->
             val rank = compareLottoNumbers(lotto.getLottoNumbers(), winNumber, bonusNumber)

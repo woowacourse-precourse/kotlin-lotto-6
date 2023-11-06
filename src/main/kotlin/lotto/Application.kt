@@ -3,6 +3,7 @@ package lotto
 import lotto.controller.LottoController
 import lotto.model.LottoNumber
 import lotto.model.LottoWinningRankCalculator
+import lotto.model.ProfitCalculator
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -11,6 +12,7 @@ fun main() {
         outputView = OutputView(),
         inputView = InputView(),
         lottoNumber = LottoNumber(),
-        lottoWinningRankCalculator = LottoWinningRankCalculator()
+        lottoWinningRankCalculator = LottoWinningRankCalculator(),
+        profitCalculator = ProfitCalculator()
     ).run()
 }
