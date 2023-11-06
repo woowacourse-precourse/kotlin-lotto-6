@@ -13,7 +13,7 @@ class LottoModel {
     fun isPurchaseMoneyValueValid(moneyValue: String): Boolean {
         return try {
             if ((moneyValue.toInt() % Values.LOTTERY_PRICE) != 0) {
-                throw IllegalArgumentException("${ErrorMessage.ERRORMESSAGE_TITLE} ${ErrorMessage.INAPPROPRIATE_VALUE}")
+                throw IllegalArgumentException("${ErrorMessage.TITLE} ${ErrorMessage.INAPPROPRIATE_MONEY_VALUE}")
             }
             setLotteryAmount(moneyValue)
             false
@@ -37,11 +37,15 @@ class LottoModel {
         lotteryAmount = moneyValue.toInt() / Values.LOTTERY_PRICE
     }
     private fun setRandomLottery() {
-        lotteryNumbers.add(Randoms.pickUniqueNumbersInRange(Values.MINIMUM_LOTTERY_NUMBER, Values.MAXIMUM_LOTTERY_NUMBER, Values.LOTTERY_NUMBER_AMOUNT).sorted())
+        lotteryNumbers.add(Randoms
+                .pickUniqueNumbersInRange(Values.MINIMUM_LOTTERY_NUMBER,
+                        Values.MAXIMUM_LOTTERY_NUMBER,
+                        Values.LOTTERY_NUMBER_AMOUNT)
+                .sorted())
     }
     fun setLotto(winningNumbers: List<String>): Boolean {
         return try {
-            lotto = Lotto(winningNumbers.map { it.toInt() }.map { it.toInt() })
+            lotto = Lotto(winningNumbers.map { it.toInt() }.map { it })
             lotto.isLottoValid()
             false
         } catch (e: IllegalArgumentException) {

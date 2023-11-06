@@ -15,6 +15,7 @@ class LottoController(private val view: LottoView, private val model: LottoModel
         view.displayLotteryNumbers(model.getLotteryNumbers())
         view.requestWinningNumbersMessage()
         while (model.setLotto(setWinningNumbers())) {
+            view.displayInappropriateLottoNumberError()
         }
     }
     private fun setPurchaseMoneyValue(): String {
