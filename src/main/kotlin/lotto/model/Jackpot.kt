@@ -19,7 +19,7 @@ class Jackpot {
             }
             if (count == Constants.THREE) {
                 rank[Constants.ZERO]++
-            } else if (count == Constants.FOUR && bonusCount == Constants.ONE) {
+            } else if (count == Constants.FIVE && bonusCount == Constants.ONE) {
                 rank[Constants.THREE]++
             } else if (count == Constants.FOUR) {
                 rank[Constants.ONE]++
