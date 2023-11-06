@@ -47,8 +47,11 @@ class LottoResult(private val lottoTickets: LottoTickets, private val winningLot
         println(TOTAL_PROFIT.format(calculateTotalStaticResult()))
     }
 
-    private fun calculateTotalStaticResult(): Float {
-        return 12.7F
+    private fun calculateTotalStaticResult(): Double {
+        val winnerCountMap = winningResult.groupingBy { it }.eachCount()
+        val totalProfit = winnerCountMap.map { it.key.amount * it.value }.sum()
+        val payment = lottoTickets.tickets.count() * 1_000
+        return (totalProfit.toDouble() / payment) * 100.0
     }
 
     private fun findWinningResult() {
