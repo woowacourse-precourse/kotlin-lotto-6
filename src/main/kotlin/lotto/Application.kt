@@ -4,7 +4,9 @@ import camp.nextstep.edu.missionutils.Randoms
 fun main() {
     val purchaseAmount = getValidPurchaseAmount()
     val tickets = buyLottoTickets(purchaseAmount)
-    tickets.forEach { println(it) }
+    val winningNumbers = getValidWinningNumbers()
+    val results = tickets.map { it.matchCount(winningNumbers) }
+    results.forEach { println(it) }
 }
 
 fun buyLottoTickets(purchaseAmount: Int): List<Lotto> {
@@ -38,4 +40,26 @@ fun getValidPurchaseAmount(): Int {
 
 fun generateLottoNumbers(): List<Int> {
     return Randoms.pickUniqueNumbersInRange(1, 45, 6)
+}
+
+fun inputWinningNumbers(): String {
+    println("당첨 번호를 입력해 주세요. (예시: 1,2,3,4,5,6)")
+    return readLine().orEmpty()
+}
+
+fun getValidWinningNumbers(): List<Int> {
+    while (true) {
+        val input = inputWinningNumbers()
+        try {
+            val numbers = input.split(",").map { it.toInt() }
+            if (numbers.size != 6) {
+                throw IllegalArgumentException("[ERROR] 로또 당첨 번호는 콤마로 구분된 6개의 숫자로 입력해야 합니다.")
+            }
+            return numbers
+        } catch (e: NumberFormatException) {
+            println("[ERROR] 로또 당첨 번호는 숫자로 입력해야 합니다.")
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+        }
+    }
 }
