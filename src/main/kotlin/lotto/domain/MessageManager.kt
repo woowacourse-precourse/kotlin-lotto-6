@@ -1,4 +1,4 @@
-package lotto.manager
+package lotto.domain
 
 class MessageManager {
 
