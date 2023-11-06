@@ -2,9 +2,14 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
 import exception.Exception
+import exception.Message
 import ui.Input.inputMoney
+import ui.Output
 
 class Buy {
+    init {
+        println(Message.MESSAGE_INPUT_MONEY)
+    }
     fun buyLotto(): Int {
         val inputMoney = inputMoney()
         return inputMoney / 1000
