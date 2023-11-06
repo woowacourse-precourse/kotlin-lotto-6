@@ -45,8 +45,17 @@ class LottoMachine {
 
     fun userAnswer(): List<Int> {
         Output().printWriteAnswer()
-        val answers = Input().write()
-        return Lotto(UserLottoNumber().convert(answers)).serve()
+        var answers = Input().write()
+        var userLottoAnswer = Lotto(UserLottoNumber().convert(answers)).serve()
+        try {
+            Lotto(userLottoAnswer).rangeValidate()
+            Lotto(userLottoAnswer).duplicationValidate()
+            Lotto(userLottoAnswer).sizeValidate()
+        } catch (e:IllegalArgumentException){
+            answers = Input().write()
+            userLottoAnswer = Lotto(UserLottoNumber().convert(answers)).serve()
+        }
+        return userLottoAnswer
     }
 
     fun userBonus(answers: List<Int>): Int {
