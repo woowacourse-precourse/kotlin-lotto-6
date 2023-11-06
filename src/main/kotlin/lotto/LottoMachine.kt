@@ -20,7 +20,6 @@ class LottoMachine {
         lottoTickets.tickets.forEach { println(it) }
     }
 
-
     fun generateWinningNumbers() {
         createWinningNumbers().also { println() }
         createBonusNumber().also { println() }
@@ -34,6 +33,10 @@ class LottoMachine {
     private fun createBonusNumber() {
         println(INPUT_BONUS_NUMBER)
         winningLotto.initializeBonusNumber()
+    }
+
+    fun showStaticsResult() {
+        val winningResult = lottoTickets.findWinningResult(winningLotto)
     }
 
 
