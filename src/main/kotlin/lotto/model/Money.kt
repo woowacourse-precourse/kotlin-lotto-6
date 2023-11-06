@@ -11,7 +11,7 @@ class Money {
             moneyRangeValidate(money)
             moneyChangesValidate(money)
         } catch (e: IllegalArgumentException) {
-            LottoMachine().moneyInput()
+            LottoMachine().start()
         }
     }
 

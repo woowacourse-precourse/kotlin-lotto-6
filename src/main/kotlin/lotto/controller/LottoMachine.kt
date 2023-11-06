@@ -9,9 +9,11 @@ class LottoMachine {
     fun start() {
         val money = moneyInput()
         val count = Count().calculate(money)
+
         val userLotto = purchaseNumberLotto(count)
         val answers = userAnswer()
         val bonus = userBonus(answers)
+
         val jackpot = Jackpot().discriminate(answers, bonus, userLotto)
         val profit = Profit().calculateProfit(money, jackpot)
         Output().printAnswerCompare(jackpot, profit)
