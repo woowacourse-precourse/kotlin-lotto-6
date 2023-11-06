@@ -6,15 +6,20 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
     }
 
+    fun contains(number: Int): Boolean {
+        return numbers.contains(number)
+    }
+
     fun matchCount(winningNumbers: List<Int>): Int {
         return numbers.intersect(winningNumbers).size
-
     }
+
     fun getLottoResult(winningNumbers: List<Int>, bonusNumber: Int): LottoResult {
         val matchCount = matchCount(winningNumbers)
-        val isBonus = numbers.contains(bonusNumber)
+        val isBonus = contains(bonusNumber)
         return LottoResult.fromMatchCount(matchCount, isBonus)
     }
+
     override fun toString(): String {
         return numbers.joinToString(separator = ", ", prefix = "[", postfix = "]")
     }
