@@ -1,15 +1,15 @@
 package lotto.view
 
 class OutputView {
-    fun printPurchaseAmount() = println(PURCHASE_AMOUNT_MSG)
+    fun printRequestPurchaseAmount() = println(PURCHASE_AMOUNT_MSG)
 
     fun printLottoCount(lottoCount: Int) = println("\n${LOTTO_COUNT_MSG.format(lottoCount)}")
 
     fun printLottoList(lottoList: List<List<Int>>) = repeat(lottoList.size) { println(lottoList[it]) }
 
-    fun printRequireWinningNums() = println("\n$LOTTO_WINNING_NUMS_MSG")
+    fun printRequestWinningNums() = println("\n$LOTTO_WINNING_NUMS_MSG")
 
-    fun printRequireBonusNums() = println("\n$LOTTO_BONUS_NUM_MSG")
+    fun printRequestBonusNums() = println("\n$LOTTO_BONUS_NUM_MSG")
 
     private fun printWinningResult(result: List<Int>) {
         val formats = listOf(

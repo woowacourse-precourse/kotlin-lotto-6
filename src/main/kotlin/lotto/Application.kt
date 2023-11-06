@@ -1,8 +1,8 @@
 package lotto
 
-import lotto.controller.LottoProgram
+import lotto.controller.LottoController
 
 fun main() {
-    val lottoProgram = LottoProgram()
-    lottoProgram.run()
+    val lottoController = LottoController()
+    lottoController.run()
 }
