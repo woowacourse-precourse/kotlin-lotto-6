@@ -1,6 +1,7 @@
 package lotto.validator
 
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -14,7 +15,7 @@ class PurchasePriceValidatorTest {
             PurchasePriceValidator(" ")
         }
 
-        Assertions.assertEquals("[ERROR] 공백이 아닌 값을 입력해 주세요", exception.message)
+        assertEquals("[ERROR] 공백이 아닌 값을 입력해 주세요", exception.message)
     }
 
     @ParameterizedTest
@@ -24,7 +25,7 @@ class PurchasePriceValidatorTest {
             PurchasePriceValidator(value)
         }
 
-        Assertions.assertEquals("[ERROR] 양의 정수를 입력해 주세요", exception.message)
+        assertEquals("[ERROR] 양의 정수를 입력해 주세요", exception.message)
     }
 
     @Test
@@ -33,7 +34,7 @@ class PurchasePriceValidatorTest {
             PurchasePriceValidator("500")
         }
 
-        Assertions.assertEquals("[ERROR] 최소 1,000원 이상을 입력해 주세요", exception.message)
+        assertEquals("[ERROR] 최소 1,000원 이상을 입력해 주세요", exception.message)
     }
 
     @Test
@@ -42,11 +43,11 @@ class PurchasePriceValidatorTest {
             PurchasePriceValidator("1100")
         }
 
-        Assertions.assertEquals("[ERROR] 1,000원 단위로 입력해 주세요", exception.message)
+        assertEquals("[ERROR] 1,000원 단위로 입력해 주세요", exception.message)
     }
 
     @Test
     fun `1000원 이상 입력 시`() {
-        Assertions.assertDoesNotThrow { PurchasePriceValidator("1000") }
+        assertDoesNotThrow { PurchasePriceValidator("1000") }
     }
 }
