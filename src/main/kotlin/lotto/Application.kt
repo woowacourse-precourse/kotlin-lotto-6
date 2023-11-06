@@ -43,7 +43,7 @@ fun generateLottoNumbers(): List<Int> {
 }
 
 fun inputWinningNumbers(): String {
-    println("당첨 번호를 입력해 주세요. (예시: 1,2,3,4,5,6)")
+    println("당첨 번호를 입력해 주세요.")
     return readLine().orEmpty()
 }
 
