@@ -1,8 +1,18 @@
 package lotto
 
+import ui.InputValidator
+import ui.UserInput
 import ui.UserOutput
 
 class LottoResult(val winLotto: Lotto, val bonus: Int) {
+
+    init {
+        InputValidator
+            .checkProperNumbersSize(winLotto.toAscendingList())
+            .checkNumberListInRange(winLotto.toAscendingList())
+            .checkNumberInRange(bonus)
+            .checkIsDuplicateNumber(bonus, winLotto.toAscendingList())
+    }
     fun countWinNumbers(lotto: Lotto): Int {
         return winLotto.toAscendingList()
             .intersect(lotto.toAscendingList().toSet())
