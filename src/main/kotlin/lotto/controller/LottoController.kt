@@ -6,8 +6,16 @@ import lotto.domain.WinningLotto
 import lotto.service.UserService
 import lotto.service.WinResultService
 import lotto.service.WinningLottoService
+import lotto.util.Constant
+import lotto.util.Constant.INPUT_BONUS_NUMBER_NOT_NUMBER_ERROR_MESSAGE
+import lotto.util.Constant.INPUT_BONUS_NUMBER_OVERLAP_ERROR_MESSAGE
 import lotto.util.Constant.INPUT_PRICE_UNIT_ERROR_MESSAGE
+import lotto.util.Constant.INPUT_WINNING_NUMBER_LENGTH_ERROR_MESSAGE
+import lotto.util.Constant.INPUT_WINNING_NUMBER_MESSAGE
+import lotto.util.Constant.INPUT_WINNING_NUMBER_NOT_NUMBER_ERROR_MESSAGE
+import lotto.util.Constant.INPUT_WINNING_NUMBER_OVERLAP_ERROR_MESSAGE
 import lotto.util.Constant.UNIT_PRICE
+import lotto.util.Exception
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -27,18 +35,39 @@ class LottoController(
         buyLotto()
         outputView.printBuyLotto(user.getPrice())
         outputView.printUserLotto(user.getLottoes())
-        winningLotto = winningLottoService.makeWinningLotto()
-        winResult = winResultService.makeWinResult(user, winningLotto)
+        outputView.printInputLuckyNumber()
+        inputWinningNumber()
+        outputView.printInputBonusNumber()
+        inputBonusNumber()
+        winResult = winResultService.makeWinResult(user,winningLotto)
     }
 
     private fun buyLotto() {
         try {
             val price = inputView.inputPrice()
-            require(price % UNIT_PRICE == 0) { INPUT_PRICE_UNIT_ERROR_MESSAGE }
             user = userService.makeUser(price)
         } catch (e:IllegalArgumentException){
             println(e.message)
             buyLotto()
+        }
+    }
+    private fun inputWinningNumber() {
+        try {
+            val winningNumbers = inputView.inputLuckyNumber()
+            winningLottoService.setWinningNumbers(winningNumbers)
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            inputWinningNumber()
+        }
+    }
+    private fun inputBonusNumber() {
+        try {
+            val bonusNumber = inputView.inputBonusNumber()
+            winningLottoService.setBonusNumber(bonusNumber)
+            winningLotto = winningLottoService.makeWinningLotto()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            inputBonusNumber()
         }
     }
 }
