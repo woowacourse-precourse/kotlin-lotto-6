@@ -71,33 +71,30 @@ class LottoService(private val user: User, private val ballMachine: BallMachine)
             val matchCount = lotto.getNumbers().count { it in ballMachine.winningNumbers }
             val hasBonusCount = lotto.getNumbers().contains(ballMachine.bonusNumber)
 
-            when (matchCount) {
-                3 -> user.setResult(THREE_MATCH)
-                4 -> user.setResult(FOUR_MATCH)
-                5 -> {
-                    if (hasBonusCount) user.setResult(FIVE_AND_BONUS_MATCH)
-                    if (!hasBonusCount) user.setResult(FIVE_MATCH)
-                }
-
-                6 -> user.setResult(SIX_MATCH)
-            }
+            setMatchResult(matchCount, hasBonusCount)
         }
     }
 
     fun setTotalPrize() {
         var totalPrize = 0
 
-        for ((match, count) in user.lottoResult) {
-            when (match) {
-                THREE_MATCH -> totalPrize += User.THREE_MATCH_REWARD * count
-                FOUR_MATCH -> totalPrize += User.FOUR_MATCH_REWARD * count
-                FIVE_MATCH -> totalPrize += User.FIVE_MATCH_REWARD * count
-                FIVE_AND_BONUS_MATCH -> totalPrize += User.FIVE_AND_BONUS_MATCH_REWARD * count
-                SIX_MATCH -> totalPrize += User.SIX_MATCH_REWARD * count
-            }
-        }
+        totalPrize = addAllPrize(totalPrize)
 
         user.totalPrize = totalPrize
+    }
+
+    private fun addAllPrize(totalPrize: Int): Int {
+        var currentTotalPrize = totalPrize
+        for ((matchString, count) in user.lottoResult) {
+            when (matchString) {
+                THREE_MATCH -> currentTotalPrize += User.THREE_MATCH_REWARD * count
+                FOUR_MATCH -> currentTotalPrize += User.FOUR_MATCH_REWARD * count
+                FIVE_MATCH -> currentTotalPrize += User.FIVE_MATCH_REWARD * count
+                FIVE_AND_BONUS_MATCH -> currentTotalPrize += User.FIVE_AND_BONUS_MATCH_REWARD * count
+                SIX_MATCH -> currentTotalPrize += User.SIX_MATCH_REWARD * count
+            }
+        }
+        return currentTotalPrize
     }
 
 
@@ -113,6 +110,19 @@ class LottoService(private val user: User, private val ballMachine: BallMachine)
         }
 
         return lottoTickets
+    }
+
+    private fun setMatchResult(matchCount: Int, hasBonusCount: Boolean) {
+        when (matchCount) {
+            3 -> user.setResult(THREE_MATCH)
+            4 -> user.setResult(FOUR_MATCH)
+            5 -> {
+                if (hasBonusCount) user.setResult(FIVE_AND_BONUS_MATCH)
+                if (!hasBonusCount) user.setResult(FIVE_MATCH)
+            }
+
+            6 -> user.setResult(SIX_MATCH)
+        }
     }
 
 

@@ -49,8 +49,8 @@ class Controller {
 
         lottoService.compareLottoNumber()
 
-        for ((key, value) in user.lottoResult) {
-            println("$key${value}개")
+        for ((matchString, count) in user.lottoResult) {
+            println("$matchString${count}개")
         }
 
         lottoService.setTotalPrize()

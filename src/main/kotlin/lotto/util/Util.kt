@@ -25,7 +25,11 @@ object Util {
 
         val input = Console.readLine()
 
-        val winningNumbersList = input.replace(" ", "").split(",").map { it.toIntOrNull() }.toMutableList()
+        val winningNumbersList = input
+            .replace(" ", "")
+            .split(",")
+            .map { it.toIntOrNull() }
+            .toMutableList()
 
         checkWinningNumbers(winningNumbersList)
 
