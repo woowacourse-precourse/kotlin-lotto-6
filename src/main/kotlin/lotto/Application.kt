@@ -70,9 +70,13 @@ fun isUniqueWithBonusNumber(numbers: List<Int>, bonusNumber: Int): Boolean {
 }
 
 fun parseWinningNumber(): Pair<List<Int>, Int> {
+    println("당첨 번호를 입력해 주세요.")
     val normalNumbers = Console.readLine().split(",").map { it.toInt() }
+    println("보너스 번호를 입력해 주세요.")
     val bonusNumber = Console.readLine().toInt()
-    return normalNumbers to bonusNumber
+    val winningNumber = normalNumbers to bonusNumber
+    validateWinningNumber(winningNumber)
+    return winningNumber
 }
 
 fun validateWinningNumber(winningNumber: Pair<List<Int>, Int>) {
@@ -84,7 +88,7 @@ fun validateWinningNumber(winningNumber: Pair<List<Int>, Int>) {
 }
 
 fun normalNumberMatch(lottoNumber: Lotto, normalNumbers: List<Int>): Int {
-    return lottoNumber.count{it in normalNumbers}
+    return lottoNumber.count { it in normalNumbers }
 }
 
 fun bonusNumberMatch(lottoNumber: Lotto, bonusNumber: Int): Boolean {
@@ -116,13 +120,13 @@ fun rankReward(rank: Int): Int {
     }
 }
 
-fun rewardRateCalculate(reward: Int, price: Int): Double {
+fun rewardRateCalculate(reward: Long, price: Int): Double {
     return reward.toDouble() * 100 / price.toDouble()
 }
 
-fun calculateTotalReward(rankCounts:Map<Int, Int>):Long{
-    var reward:Long = 0
-    rankCounts.forEach{
+fun calculateTotalReward(rankCounts: Map<Int, Int>): Long {
+    var reward: Long = 0
+    rankCounts.forEach {
         val (rank, count) = it
         reward += rankReward(rank) * count
     }
@@ -140,6 +144,21 @@ fun calculateRankCount(lottoTickets: List<Lotto>, winningNumber: Pair<List<Int>,
     }
     return rankCounts
 }
+
 fun main() {
-    println(lottoPayment())
+    val price = lottoPayment()
+    val lottoTickets = buyLottoTickets(price)
+    val winningNumber = parseWinningNumber()
+
+    val rankCounts = calculateRankCount(lottoTickets, winningNumber)
+    val totalReward = calculateTotalReward(rankCounts)
+    val rewardRate = rewardRateCalculate(totalReward, price)
+    println("당첨 통계")
+    println("---")
+    println("3개 일치 (5,000원) - ${rankCounts[5]}개")
+    println("4개 일치 (50,000원) - ${rankCounts[4]}개")
+    println("5개 일치 (1,500,000원) - ${rankCounts[3]}개")
+    println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankCounts[2]}개")
+    println("6개 일치 (2,000,000,000원) - ${rankCounts[1]}개")
+    println("총 수익률은 ${"%.1f".format(rewardRate)}%입니다.")
 }
