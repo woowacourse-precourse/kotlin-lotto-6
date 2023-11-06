@@ -16,6 +16,13 @@ class WinningNumbersManagerTest {
     }
 
     @Test
+    fun `보너스 번호가 올바른 숫자 형태가 아닐 경우 예외를 발생시킨다`() {
+        assertThrows<IllegalArgumentException> {
+            winningNumbersManager.isBonusNumberValid("003")
+        }
+    }
+
+    @Test
     fun `중복된 번호가 있을 경우 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
             WinningNumbersManager(listOf("1", "2", "3", "33", "33", "4"))
