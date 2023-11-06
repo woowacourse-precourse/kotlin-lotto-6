@@ -20,10 +20,6 @@ class LottoGenerator(val purchase: Purchase) {
 
     private fun getSortedNumber() = generateNumber().sorted()
 
-    private fun generateNumber(): List<Int> = Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, Constants.LOTTO_NUM_CNT)
-
-    companion object {
-        const val START_NUM = 1
-        const val END_NUM = 45
-    }
+    private fun generateNumber(): List<Int> =
+        Randoms.pickUniqueNumbersInRange(Constants.LOTTO_START_NUM, Constants.LOTTO_END_NUM, Constants.LOTTO_NUM_CNT)
 }
