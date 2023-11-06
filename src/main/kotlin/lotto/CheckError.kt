@@ -7,24 +7,18 @@ import java.lang.NumberFormatException
 
 class CheckError {
 
-    fun checkInputInt(money: String): Boolean {
+    fun checkInputPositiveInt(money: String): Boolean {
 
         try {
 
-            val moneyInt = money.toInt()
+            val moneyInt = money.toUInt()
 
         } catch (e: IllegalArgumentException) {
 
-            println("[ERROR] : 정수가 아닌 수 혹은 문자를 입력했습니다. 다시 입력해주세요")
+            println("[ERROR] : 자연수가 아닌 값을 입력했습니다. 다시 입력해주세요")
 
             return false
         }
-
-        return true
-    }
-
-    fun checkInputPositiveInt(money: Int): Boolean {
-
 
         return true
     }

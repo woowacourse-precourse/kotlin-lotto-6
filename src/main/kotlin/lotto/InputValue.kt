@@ -15,9 +15,8 @@ class InputValue {
 
             val money = readln()
 
-            if (!check.checkInputInt(money)) continue
+            if (!check.checkInputPositiveInt(money)) continue
 
-            println("통과")
             break
         }
 

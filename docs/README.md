@@ -18,21 +18,20 @@
       Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
 ## 기능 목록
-- [] 로또 구매 금액을 입력 : InputValue#inputLottoMoney()
-  - <> 정수를 입력하지 않으면 오류 : CheckError#checkInputInt()
-  - <> 양의 정수를 입력하지 않으면 오류 : CheckError#checkInputPositiveInt()
-  - <> 1000원으로 나누어 떨어지지 않으면 오류 : CheckError#checkCanDivide1000()
+- [O] 로또 구매 금액을 입력 : InputValue#inputLottoMoney()
+  - [O] 양의 정수를 입력하지 않으면 오류 : CheckError#checkInputPositiveInt()
+  - [] 1000원으로 나누어 떨어지지 않으면 오류 : CheckError#checkCanDivide1000()
   
   
 - [] 당첨 번호를 입력 : InputValue#inputWinningNumber()
-  - <> 당첨 번호가 중복될 경우 오류 : CheckError#checkNonOverlapNumber() 
-  - <> 1~45 이외의 숫자 혹은 문자가 입력될 경우 오류 : CheckError#checkOnlyNumber1to45()
-  - <> 6개의 숫자를 입력하지 않을 경우 오류 : CheckError#checkInputSixNumbers()
+  - [] 당첨 번호가 중복될 경우 오류 : CheckError#checkNonOverlapNumber() 
+  - [] 1~45 이외의 숫자 혹은 문자가 입력될 경우 오류 : CheckError#checkOnlyNumber1to45()
+  - [] 6개의 숫자를 입력하지 않을 경우 오류 : CheckError#checkInputSixNumbers()
   
 - [] 보너스 번호를 입력 : InputValue#inputBonusNumber()
-  - <> 보너스 번호와 당첨 번호가 중복될 경우 오류 : CheckError#checkNotOverlapNumber() 중복 사용
-  - <> 1~45 이외의 숫자 혹은 문자가 입력될 경우 오류 : CheckError#checkOnlyNumber1to45() 중복 사용
-  - <> 1개의 숫자를 입력하지 않을 경우 오류 : CheckError#checkInputOneNumbers()
+  - [] 보너스 번호와 당첨 번호가 중복될 경우 오류 : CheckError#checkNotOverlapNumber() 중복 사용
+  - [] 1~45 이외의 숫자 혹은 문자가 입력될 경우 오류 : CheckError#checkOnlyNumber1to45() 중복 사용
+  - [] 1개의 숫자를 입력하지 않을 경우 오류 : CheckError#checkInputOneNumbers()
   
 - [] 구매 금액에 맞는 복권의 개수 계산 : MakeLotto#calculateCountingLotto()
 - [] 각 복권마다 중복되지 않는 번호 6개 생성 : MakeLotto#createNonOverlapSixNumbers()
@@ -49,5 +48,3 @@
 - [] 복권 클래스 package lotto#Lotto# 이미 존재
 
 - [] 당첨 숫자 클래스 WinningAndBonusNumber#
-
-
