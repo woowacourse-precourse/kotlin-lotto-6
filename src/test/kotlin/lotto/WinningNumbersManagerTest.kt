@@ -9,6 +9,13 @@ class WinningNumbersManagerTest {
     private val winningNumbersManager = WinningNumbersManager(listOf("1", "2", "3", "33", "34", "45"))
 
     @Test
+    fun `보너스 번호에 공백을 전달받으면 예외를 발생시킨다`() {
+        assertThrows<IllegalArgumentException> {
+            winningNumbersManager.isBonusNumberValid("")
+        }
+    }
+
+    @Test
     fun `보너스 번호가 당첨번호에 포함되어 있을 경우 예외를 발생시킨다`() {
         assertThrows<IllegalArgumentException> {
             winningNumbersManager.isBonusNumberValid("33")
