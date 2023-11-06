@@ -4,6 +4,9 @@ import lotto.util.Constants
 
 class Lotto(private val numbers: List<Int>) {
     init {
+        require(numbers.all { it in Constants.LOTTO_START_NUM..Constants.LOTTO_END_NUM }) {
+            LOTTO_RANGE_ERROR
+        }
         require(numbers.size == Constants.LOTTO_NUM_CNT) {
             LOTTO_CNT_ERROR
         }
@@ -19,5 +22,7 @@ class Lotto(private val numbers: List<Int>) {
     companion object {
         private const val LOTTO_CNT_ERROR = "[ERROR] 로또 숫자의 개수는 ${Constants.LOTTO_NUM_CNT}개여야 합니다."
         private const val LOTTO_DISTINCT_ERROR = "[ERROR] 로또 숫자들 중 중복된 숫자가 있어서는 안됩니다."
+        private const val LOTTO_RANGE_ERROR =
+            "[ERROR] 로또 숫자는 ${Constants.LOTTO_START_NUM}~${Constants.LOTTO_END_NUM}사이의 숫자여야 합니다."
     }
 }
