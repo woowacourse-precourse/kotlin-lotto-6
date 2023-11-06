@@ -8,7 +8,7 @@ class Output {
         println("${num}" + OUTPUT_NUMBER)
     }
 
-    fun <T> outputTickets(ticket: List<T>) {
+    fun outputTickets(ticket: List<Int>) {
         println(ticket.joinToString(", ", "[", "]"))
     }
 }
