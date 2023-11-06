@@ -1,16 +1,17 @@
 import camp.nextstep.edu.missionutils.Console
+import lotto.controller.LottoController
 
 object LottoView {
     fun printPurchaseAmountOfLotto() {
         println(PURCHASE_LOTTO_MESSAGE)
     }
 
-    fun inputPurchaseAmountOfLotto(): String {
+    fun inputPurchaseAmountOfLotto(): Int {
         val purchaseAmount = Console.readLine()
-        return purchaseAmount
-    }
+        LottoController().validateInputNumeric(purchaseAmount)
+        LottoController().validateInputPositive(purchaseAmount.toInt())
+        LottoController().validateInputDivisionPrice(purchaseAmount.toInt())
 
-    fun printErrorMessage(message: String) {
-        println(message)
+        return purchaseAmount.toInt()
     }
 }
