@@ -2,9 +2,9 @@ package lotto
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
-import lotto.InputValidator as Validator
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import lotto.InputValidator as Validator
 
 class InputValidatorTest {
 
@@ -18,10 +18,10 @@ class InputValidatorTest {
 
     @Test
     @DisplayName("정수 여부")
-    fun `checkIsNumeric 메서드 사용 시 입력값이 정수의 형태가 아닐 때 예외 발생`() {
+    fun `checkIsDigit 메서드 사용 시 입력값이 정수의 형태가 아닐 때 예외 발생`() {
         val input = "11.5"
 
-        assertThrows<IllegalArgumentException> { Validator.checkIsNumeric(input) }
+        assertThrows<IllegalArgumentException> { Validator.checkIsDigit(input) }
     }
 
     @Nested
@@ -38,10 +38,48 @@ class InputValidatorTest {
 
         @Test
         @DisplayName("예외2")
-        fun `checkIsNotZero 메서드 사용 시 입력값이 0 일 때 예외 발생`() {
+        fun `checkIsOverZero 메서드 사용 시 입력값이 0 이하일 때 예외 발생`() {
             val input = "0"
 
-            assertThrows<IllegalArgumentException> { Validator.checkIsNotZero(input) }
+            assertThrows<IllegalArgumentException> { Validator.checkIsOverZero(input) }
+        }
+    }
+
+    @Nested
+    @DisplayName("당첨 번호")
+    class Winning {
+
+        @Test
+        @DisplayName("예외1")
+        fun `checkHasSeparator 메서드 사용 시 입력값이 주어진 구분자로 구분되어있지 않을 때 예외 발생`() {
+            val input = "0 1 2"
+
+            assertThrows<IllegalArgumentException> { Validator.checkHasSeparator(input, COMMA) }
+        }
+
+        @Test
+        @DisplayName("예외2")
+        fun `checkIsInBoundary 메서드 사용 시 입력값이 주어진 범위를 벗어났을 때 예외 발생`() {
+            val input = 31
+
+            assertThrows<IllegalArgumentException> {
+                Validator.checkIsInBoundary(input, MIN_NUMBER, MAX_NUMBER)
+            }
+        }
+
+        @Test
+        @DisplayName("예외3")
+        fun `checkIsContained 메서드 사용 시 입력값이 주어진 배열 안에 존재하지 않을 때 예외 발생`() {
+            val input = "a"
+            val items = listOf("b", "c", "d")
+
+            assertThrows<IllegalArgumentException> { Validator.checkIsContained(input, items) }
+        }
+
+        companion object {
+            private const val COMMA = ","
+            private const val MIN_NUMBER = 0
+            private const val MAX_NUMBER = 30
         }
     }
 }
