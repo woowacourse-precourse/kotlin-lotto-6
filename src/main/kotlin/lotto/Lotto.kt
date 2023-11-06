@@ -21,27 +21,27 @@ class Lotto(private val numbers: List<Int>) {
 
         return when (winning) {
             3 -> {
-                winningPrize = 5_000
+                winningPrize = PRIZE[5]
                 return 5
             }
 
             4 -> {
-                winningPrize = 50_000
+                winningPrize = PRIZE[4]
                 return 4
             }
 
             5 -> {
-                if (numbers.contains(bonusNumber)) {
-                    winningPrize = 30_000_000
-                    return 2
+                if (!numbers.contains(bonusNumber)) {
+                    winningPrize = PRIZE[3]
+                    return 3
                 } else {
-                    winningPrize = 1_500_000
-                    3
+                    winningPrize = PRIZE[2]
+                    2
                 }
             }
 
             6 -> {
-                winningPrize = 2_000_000_000
+                winningPrize = PRIZE[1]
                 return 1
             }
 

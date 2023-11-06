@@ -1,7 +1,11 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
+import java.util.Arrays
 import kotlin.math.round
+
+
+val PRIZE = arrayOf(0, 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000)
 
 /**
  * 복권 번호 생성
@@ -49,7 +53,7 @@ fun printLotteryResult(price: Int, winningPrize: Int, winning: Array<Int>) {
 
     println("당첨 통계")
     println("---")
-    println("3개 일치 (5,000원) - ${winning[5]}")
+    println("3개 일치 (5,000}원) - ${winning[5]}")
     println("4개 일치 (50,000원) - ${winning[4]}")
     println("5개 일치 (1,500,000원) - ${winning[3]}")
     println("5개 일치, 보너스 볼 일치 (30,000,000원)- ${winning[2]}")
