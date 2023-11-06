@@ -2,10 +2,9 @@ package lotto.controller
 
 import lotto.Lotto
 import lotto.domain.*
-import lotto.view.InputView
 import lotto.view.OutputView
 
-class LottoManager(private val inputView: InputView, private val outputView: OutputView) {
+class LottoManager(private val outputView: OutputView) {
     fun run() {
         val lottoPurchase = LottoPurchase()
         val amount = lottoPurchase.buyLotto()
@@ -13,7 +12,7 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         outputView.showBuyTicketMessage(ticket)
 
         val lottoWrapper = LottoWrapper()
-        val lottoList = lottoWrapper.reapeatLottoNumbers(ticket)
+        val lottoList = lottoWrapper.repeatLottoNumbers(ticket)
 
         outputView.showLottoNumbers(lottoList)
 
@@ -30,11 +29,11 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         val ranks = LottoRanks()
 
         var results = mutableMapOf<Prize, Int>()
-        lottoList.forEach { it ->
+        lottoList.forEach {
             results = ranks.rank(it.getLotto(), lotto, bonusNumber)
         }
         val yield = LottoYield()
-        val profitPercentage = yield.calcurateLottoYield(results, amount)
+        val profitPercentage = yield.calculateLottoYield(results, amount)
 
         outputView.printResults(results)
         outputView.printProfitPercentage(profitPercentage)

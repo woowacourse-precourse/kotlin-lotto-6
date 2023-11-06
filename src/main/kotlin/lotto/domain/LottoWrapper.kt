@@ -8,7 +8,7 @@ class LottoWrapper {
     private val lottoWrapper = mutableListOf<Lotto>()
 
 
-    fun reapeatLottoNumbers(ticket: Int): MutableList<Lotto> {
+    fun repeatLottoNumbers(ticket: Int): MutableList<Lotto> {
         repeat(ticket) {
             lottoWrapper.add(Lotto(generateLottoNumbers()))
         }

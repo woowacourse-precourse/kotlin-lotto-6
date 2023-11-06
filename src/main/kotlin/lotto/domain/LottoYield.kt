@@ -1,7 +1,7 @@
 package lotto.domain
 
 class LottoYield {
-    fun calcurateLottoYield(matchResult: Map<Prize, Int>, amount: Int): Double {
+    fun calculateLottoYield(matchResult: Map<Prize, Int>, amount: Int): Double {
         val income = calculateTotalProfit(matchResult)
         return (income / amount.toDouble() * 100)
     }

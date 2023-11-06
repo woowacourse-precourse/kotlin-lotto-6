@@ -9,16 +9,14 @@ object InputView {
         val validatePrice = ValidatePrice()
         val price = Console.readLine()
 
-        val validatedPrice = validatePrice.validateInputPrice(price)
-        return validatedPrice
+        return validatePrice.validateInputPrice(price)
     }
 
     fun inputMyNumbers(): String {
         val validateNumbers = ValidateNumbers()
         val myNumbers = Console.readLine()
 
-        val validatedNumbers = validateNumbers.validateInputNumbers(myNumbers)
-        return validatedNumbers
+        return validateNumbers.validateInputNumbers(myNumbers)
     }
 
     fun inputBonusNumber(): Int {

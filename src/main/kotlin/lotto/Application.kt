@@ -5,7 +5,7 @@ import lotto.view.InputView
 import lotto.view.OutputView
 
 fun main() {
-    val lottoMng = LottoManager(InputView, OutputView)
+    val lottoMng = LottoManager(OutputView)
 
     runCatching {
         lottoMng.run()

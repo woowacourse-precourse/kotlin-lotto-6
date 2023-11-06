@@ -6,7 +6,6 @@ import lotto.utils.Messages
 class ValidateSplit {
     fun validateSplitMyNumbers(myNumbers: List<String>): List<String> {
         myNumbers.forEach {
-            validateInputZero(it)
             validateInputNotNumber(it)
             validateInputEmpty(it)
         }
@@ -21,10 +20,6 @@ class ValidateSplit {
 
     private fun validateInputEmpty(myNumbers: String) {
         require(myNumbers.isNotEmpty()) { "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_INPUT_EMPTY}" }
-    }
-
-    private fun validateInputZero(myNumbers: String) {
-        require(myNumbers.toInt() != 0) { "0은 입력될 수 없습니다." }
     }
 
     private fun validateMyNumbersRange(x: List<String>) {

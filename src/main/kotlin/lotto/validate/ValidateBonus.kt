@@ -3,7 +3,7 @@ package lotto.validate
 import lotto.utils.Constants
 import lotto.utils.Messages
 
-class validateBonus {
+class ValidateBonus {
     fun validateBonus(bonusNumber: Int, winningNumbers: List<Int>) {
         validateDuplicateBonusNumber(bonusNumber, winningNumbers)
         validateInputIsEmpty(bonusNumber.toString())
@@ -13,7 +13,7 @@ class validateBonus {
     }
 
     private fun validateDuplicateBonusNumber(bonus: Int, winningNumbers: List<Int>) {
-        winningNumbers.forEach {
+        repeat(winningNumbers.size) {
             require(!winningNumbers.contains(bonus)) {
                 "${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_DUPLICATED_MESSAGE}"
             }

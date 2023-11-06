@@ -12,15 +12,14 @@ enum class Prize(val matchingNumbers: Int, val prizeAmount: Int) {
 
 class LottoRanks {
 
-    val results = mutableMapOf<Prize, Int>()
+    private val results = mutableMapOf<Prize, Int>()
     init {
         Prize.entries.forEach { results[it] = 0 }
     }
     fun rank(lottoList: List<Int>, lotto: Lotto, bonusNumber: Int): MutableMap<Prize, Int> {
-        val winningNumbers = lottoList
         val userNumbers = lotto.getLotto()
-        val bonusMatch =  bonusMatched(bonusNumber, winningNumbers)
-        val matchedNumbers = checkMatchingNumbers(winningNumbers, userNumbers)
+        val bonusMatch = bonusMatched(bonusNumber, lottoList)
+        val matchedNumbers = checkMatchingNumbers(lottoList, userNumbers)
         winningResultsUpdate(matchedNumbers, results, bonusMatch)
 
 

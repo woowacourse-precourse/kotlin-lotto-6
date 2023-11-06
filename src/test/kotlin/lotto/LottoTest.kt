@@ -4,7 +4,7 @@ import lotto.domain.LottoPurchase
 import lotto.validate.ValidateNumbers
 import lotto.validate.ValidatePrice
 import lotto.validate.ValidateSplit
-import lotto.validate.validateBonus
+import lotto.validate.ValidateBonus
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -65,7 +65,7 @@ class LottoTest {
     }
 
     @Test
-    fun `구입금액 입력이 1000원으로 안나눠지는 수일 경우`() {
+    fun `구입금액 입력이 1000원으로 안 나눠지는 수일 경우`() {
         val validatePrice = ValidatePrice()
         assertThrows<IllegalArgumentException> {
             validatePrice.validateInputPrice("1111")
@@ -106,7 +106,7 @@ class LottoTest {
 
     @Test
     fun `보너스번호와 당첨번호에 중복이 존재할 경우`() {
-        val validateBonus = validateBonus()
+        val validateBonus = ValidateBonus()
         val bonusNumber = 1
         assertThrows<IllegalArgumentException> {
             validateBonus.validateBonus(bonusNumber, listOf(1, 2, 3, 4, 5, 6))
