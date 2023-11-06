@@ -1,5 +1,9 @@
 package lotto
 
 fun main() {
-    TODO("프로그램 구현")
+    with(LottoMachine()) {
+        generateLottoTickets()
+        generateWinningNumbers()
+        showStaticsResult()
+    }
 }
