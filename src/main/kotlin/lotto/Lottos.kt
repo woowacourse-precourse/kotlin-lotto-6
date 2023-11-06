@@ -12,7 +12,7 @@ class Lottos {
 
         repeat(lottoNum){
             val lottoNumber = numberCreator.randoms()
-            println("$lottoNumber")
+            println("${lottoNumber.sorted()}")
             val lotto = Lotto(lottoNumber)
             lottos.add(lotto)
         }
