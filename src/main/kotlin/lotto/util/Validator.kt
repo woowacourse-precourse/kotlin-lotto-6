@@ -8,15 +8,15 @@ import lotto.util.Constants.LOTTO_SIZE
 
 object Validator {
     fun validateInteger(input: String) {
-        require(input.toIntOrNull() != null) { Exception.INVALID_INTEGER.getMessage() }
+        require(input.toIntOrNull() != null) { LottoException.INVALID_INTEGER.getMessage() }
     }
 
     fun validateRange(input: Int) {
-        require(input in LOTTO_PRICE..Int.MAX_VALUE) { Exception.INVALID_RANGE.getMessage() }
+        require(input in LOTTO_PRICE..Int.MAX_VALUE) { LottoException.INVALID_RANGE.getMessage() }
     }
 
     fun validate1000Unit(input: Int) {
-        require(input % LOTTO_PRICE == 0) { Exception.INVALID_1000_UNIT.getMessage() }
+        require(input % LOTTO_PRICE == 0) { LottoException.INVALID_1000_UNIT.getMessage() }
     }
 
     fun validateLottoInteger(input: String) {
@@ -33,22 +33,22 @@ object Validator {
     }
 
     fun validateLottoLength(input: List<Int>) {
-        require(input.size == LOTTO_SIZE) { Exception.INVALID_LOTTO_LENGTH.getMessage() }
+        require(input.size == LOTTO_SIZE) { LottoException.INVALID_LOTTO_LENGTH.getMessage() }
     }
 
     fun validateLottoUnique(input: List<Int>) {
-        require(input.distinct().size == LOTTO_SIZE) { Exception.INVALID_LOTTO_UNIQUE.getMessage() }
+        require(input.distinct().size == LOTTO_SIZE) { LottoException.INVALID_LOTTO_UNIQUE.getMessage() }
     }
 
     fun validateNumberRange(input: Int) {
-        require(input in LOTTO_MIN_NUMBER..LOTTO_MAX_NUMBER) { Exception.INVALID_LOTTO_RANGE.getMessage() }
+        require(input in LOTTO_MIN_NUMBER..LOTTO_MAX_NUMBER) { LottoException.INVALID_LOTTO_RANGE.getMessage() }
     }
 
     fun validateNotNull(input: String) {
-        require(input.trim().isNotEmpty()) { Exception.INVALID_NOT_NULL.getMessage() }
+        require(input.trim().isNotEmpty()) { LottoException.INVALID_NOT_NULL.getMessage() }
     }
 
     fun validateContain(numbers: List<Int>, validation: Int) {
-        require(!numbers.contains(validation)) { Exception.DUPLICATED_NUMBER.getMessage() }
+        require(!numbers.contains(validation)) { LottoException.DUPLICATED_NUMBER.getMessage() }
     }
 }
