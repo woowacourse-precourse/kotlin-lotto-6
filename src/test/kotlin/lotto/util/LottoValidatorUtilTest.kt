@@ -1,6 +1,7 @@
 package lotto.util
 
 import lotto.constants.Error.EXCEPTION_MESSAGE_MONEY_NOT_DIVIDED_PRICE
+import lotto.constants.Error.EXCEPTION_MESSAGE_MONEY_NOT_NUMBER
 import lotto.constants.Error.EXCEPTION_MESSAGE_NOT_IN_RANGE
 import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST
 import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_SIZE_INVALID
@@ -68,6 +69,20 @@ internal class LottoValidatorUtilTest {
         }
         // when
         val expectedExceptionMessage = EXCEPTION_MESSAGE_MONEY_NOT_DIVIDED_PRICE
+        // then
+        assertEquals(expectedExceptionMessage, exception.message)
+    }
+
+    @DisplayName("입력금액에 숫자가 아닌 문자가 입력 불가 검증")
+    @ParameterizedTest
+    @ValueSource(strings = ["숫자", "문자", "로또", "bamin0422"])
+    fun `checkMoneyAvailable - 입력금액은 숫자로만 입력되어야한다`(moneyString: String) {
+        // given
+        val exception = assertThrows<java.lang.IllegalArgumentException> {
+            LottoValidatorUtil.checkMoneyAvailable(moneyString)
+        }
+        // when
+        val expectedExceptionMessage = EXCEPTION_MESSAGE_MONEY_NOT_NUMBER
         // then
         assertEquals(expectedExceptionMessage, exception.message)
     }
