@@ -14,4 +14,8 @@ class LottoModel {
         return value > 0
     }
 
+    fun isDivisibleBy1000(value: Int): Boolean {
+        return value % 1000 == 0
+    }
+
 }

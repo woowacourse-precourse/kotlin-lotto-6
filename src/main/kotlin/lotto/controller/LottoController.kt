@@ -1,5 +1,6 @@
 package lotto.controller
 
+import INVALID_DIVISION_MESSAGE
 import INVALID_NUMERIC_MESSAGE
 import INVALID_POSITIVE_MESSAGE
 import LottoView
@@ -23,6 +24,9 @@ class LottoController() {
             start()
         } else if (!lottoModel.isPurchaseAmountPositive(input.toInt())) {
             LottoView.printErrorMessage(INVALID_POSITIVE_MESSAGE)
+            start()
+        } else if (!lottoModel.isDivisibleBy1000(input.toInt())) {
+            LottoView.printErrorMessage(INVALID_DIVISION_MESSAGE)
             start()
         }
     }
