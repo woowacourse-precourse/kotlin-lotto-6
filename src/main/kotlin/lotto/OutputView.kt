@@ -1,6 +1,7 @@
 package lotto
 
 import java.text.DecimalFormat
+import kotlin.math.roundToInt
 
 class OutputView {
 
@@ -12,11 +13,13 @@ class OutputView {
     fun printPurchaseNumberMention(purchaseNumber: Int) = println("\n${purchaseNumber}개를 구매했습니다.")
 
     fun printLottoList(purchaseNumber: Int, lottoList : List<Lotto>) {
-        val sb = StringBuilder()
+        //Thought using StringBuilder when it should be optimized.
+        //val sb = StringBuilder()
         for (i in 0 until purchaseNumber) {
-            sb.append(lottoList[i].getLottoNumberString()).append('\n')
+            //sb.append(lottoList[i].getLottoNumberString()).append('\n')
+            println(lottoList[i].getLottoNumberString())
         }
-        print(sb)
+        //print(sb)
     }
 
     fun printWinningNumberInputMention() = println("\n당첨 번호를 입력해 주세요.")
@@ -28,7 +31,7 @@ class OutputView {
         println("---")
     }
 
-    fun printProfitRate(rate: Double) = println("총 수익률은 ${String.format("%.1f", rate)}%입니다.")
+    fun printProfitRate(rate: Double) = println("총 수익률은 ${String.format("%.1f", (rate*10).roundToInt().toDouble()/10)}%입니다.")
 
     fun printWinningStatics(winningList : HashMap<Int, Int>) {
         for(i in 5 downTo 1){
@@ -36,7 +39,7 @@ class OutputView {
         }
     }
 
-    fun getWinningPrice(rank: Int): WinningPrice {
+    private fun getWinningPrice(rank: Int): WinningPrice {
         return when (rank) {
             5 -> WinningPrice.FIFTH
             4 -> WinningPrice.FOURTH
