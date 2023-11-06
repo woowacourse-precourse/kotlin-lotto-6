@@ -1,6 +1,7 @@
 package lotto.view
 
 import lotto.model.Lottos
+import lotto.model.Reward
 
 class OutputView {
     fun printPurchaseResults(lottos: Lottos) {
@@ -23,7 +24,10 @@ class OutputView {
                 6개 일치 (2,000,000,000원) - ${result[6]}개
             """.trimIndent()
         )
+    }
 
+    fun printRateOfReturn(reward: Reward) {
+        println("총 수익률은 ${reward.rateOfReturn}%입니다.")
     }
 
     fun printError(errorMessage: String) = println("$ERROR_TAG $errorMessage")

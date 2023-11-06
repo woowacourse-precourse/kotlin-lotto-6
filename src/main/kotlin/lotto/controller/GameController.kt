@@ -7,6 +7,7 @@ import lotto.model.Lotto
 import lotto.model.LottoNumber
 import lotto.model.Lottos
 import lotto.model.PurchaseAmount
+import lotto.model.Reward
 import lotto.model.WinningNumbers
 import lotto.model.WinningValidation
 import lotto.view.InputView
@@ -26,7 +27,7 @@ class GameController {
     private val task = Task()
     private var result = mutableMapOf(3 to 0, 4 to 0, 50 to 0, 51 to 0, 6 to 0)
     lateinit var lottos: Lottos
-    // lateinit var winningAndBonusNumberPair: Pair<WinningNumbers, BonusNumber>
+    lateinit var purchaseAmount: PurchaseAmount
 
     fun play() {
         while (task.inputState != Task.State.DONE) {
@@ -56,10 +57,10 @@ class GameController {
     }
 
     private fun processPurchaseAmount(): Lottos {
-        val purchaseAmount = inputProcess({ it.purchaseAmountPrompt() }, ::PurchaseAmount)
+        purchaseAmount = inputProcess({ it.purchaseAmountPrompt() }, ::PurchaseAmount)
         task.inputState = Task.State.INPUT_WINNING_AND_BONUS_NUMBERS
 
-        val lottoNumbers = createLottos(purchaseAmount.Count)
+        val lottoNumbers = createLottos(purchaseAmount.amount / 1000)
         val lottos = Lottos(lottoNumbers)
 
         outputView.printPurchaseResults(lottos)
@@ -92,7 +93,9 @@ class GameController {
             updateLottoResults(data)
         }
         println(result)
+        val reward = Reward(result, purchaseAmount.amount)
         outputView.printWinnigResults(result)
+        outputView.printRateOfReturn(reward)
     }
 
     private fun updateLottoResults(data: Pair<Int, Int>) {
@@ -112,14 +115,14 @@ class GameController {
         winningnumbers: List<LottoNumber>,
         bonusNumber: LottoNumber
     ): Pair<Int, Int> {
-        var winningMatch = 0
+        var winningMatchCount = 0
         val bonusMatch = lottoNumbers.count { it == bonusNumber }
 
         for (num in lottoNumbers) {
             if (winningnumbers.contains(num)) {
-                winningMatch += 1
+                winningMatchCount += 1
             }
         }
-        return Pair(winningMatch, bonusMatch)
+        return Pair(winningMatchCount, bonusMatch)
     }
 }
