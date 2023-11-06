@@ -14,7 +14,7 @@ class OutputManager {
     fun promptBonusNumber() = println(OutputMessages.PROMPT_BONUS_NUMBER)
     fun prizeResult(prize: Array<Int>) {
         Winning.values().forEachIndexed { index, winning ->
-            println("$winning ${prize[index]}개")
+            println("$winning${prize[index]}개")
         }
     }
     fun lottoStats() = println(OutputMessages.LOTTO_STATS)
@@ -31,7 +31,7 @@ enum class OutputMessages(private val message: String) {
     PROMPT_BONUS_NUMBER("\n보너스 번호를 입력해 주세요."),
     PURCHASE_LOTTO_COUNT("\n%d개를 구매했습니다."),
     RE_TRY("다시 입력해주세요."),
-    LOTTO_STATS("\n당첨 통계\n---\n"),
+    LOTTO_STATS("\n당첨 통계\n---"),
     RATE_OF_RETURN("총 수익률은 %s입니다.");
 
     override fun toString(): String = message
