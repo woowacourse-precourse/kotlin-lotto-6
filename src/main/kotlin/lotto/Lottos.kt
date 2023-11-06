@@ -1,7 +1,5 @@
 package lotto
 
-import com.sun.imageio.plugins.jpeg.JPEG.vendor
-
 class Lottos {
     private val vendor = Vendor()
     private val outputManager = OutputManager()
