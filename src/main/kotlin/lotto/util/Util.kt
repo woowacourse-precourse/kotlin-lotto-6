@@ -2,6 +2,9 @@ package lotto.util
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.util.Check.checkBonusNumber
+import lotto.util.Check.checkMoney
+import lotto.util.Check.checkWinningNumbers
 import lotto.view.Message
 import kotlin.math.roundToInt
 
@@ -11,7 +14,7 @@ object Util {
 
         val purchasePrice = Console.readLine().toIntOrNull()
 
-        //todo check하는 기능 추가
+        checkMoney(purchasePrice)
 
         return purchasePrice!!
 
@@ -24,7 +27,7 @@ object Util {
 
         val winningNumbersList = input.replace(" ", "").split(",").map { it.toIntOrNull() }.toMutableList()
 
-        //todo check하는 기능 추가
+        checkWinningNumbers(winningNumbersList)
 
         return winningNumbersList
     }
@@ -34,7 +37,7 @@ object Util {
 
         val bonusNumber = Console.readLine().toIntOrNull()
 
-        //todo check하는 기능 추가
+        checkBonusNumber(bonusNumber)
 
         return bonusNumber!!
     }
