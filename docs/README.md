@@ -44,9 +44,9 @@
 - [x]  에러메세지를 출력하고 그 부분부터 다시 입력받는다.
 - [x]  게임 종료 시 `System.exit()` 를 호출하지 않는다.
 - [x]  indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
-- [ ]  함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어야한다.
-- [ ]  함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-- [ ]  else를 지양한다.
+- [x]  함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어야한다.
+- [x]  함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
+- [x]  else를 지양한다.
 - [x]  Enum 클래스를 적용해 프로그래밍을 구현한다.
 - [x]  핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
 - [x]  `Lotto` 클래스에 필드를 추가할 수 없다.
@@ -82,10 +82,9 @@
 
    → 하지만 이렇게 하는 방식이 맞을까?
 
-   → 모델 클래스 생성자를 통해 받아온 값을 init 에서 검증하는 부분이 있는데 그럼 테스트케이스를 작성할 때
-   Validator 클래스에서 테스트를 진행해야할까 Lotto 클래스에서 테스트를 해야할까
+   → 모델에서 검증하는 부분은 되도록 모델 내부에서 함수를 사용하는 것이 맞지 않을까? 굳이 Validator 클래스로 또 관리해야할까?
 
-   🌟최종 : ValidatorTest 에서도 테스트를 수행하고 모델에서도 검증 테스트를 한다.
+   🌟최종 : 모든 검증 코드는 일단 Validator가 관리하며 Model과, View에서 역할에 맞는 검증을 호출하여 사용한다.
 
 5. 보너스번호를 관리하는 좋은 방법이 없을까?
 
@@ -100,6 +99,8 @@
    🌟 최종 : `when`문을 통하여 맞힌 개수가 5일때만 if문을 수행. if문에서 보너스번호가 맞으면 1을, 틀리면 2를 반환하도록 구현.
 
 8. 굳이 `print()` 문 안에 있는 문자열도 Constants 로 관리해야하나? (코드리뷰 피드백을 받은 적이 있기도 하고 그렇게 하는 분들이 꽤 많다.)
+
+   🌟 최종 : 상수화 하여 관리하는 것이 오히려 가독성을 해칠 것 같다 판단하였고 `print()` 자체에 변수랑 같이 사용되는 부분이 많아 따로 상수화하지 않음.
 
 <br>
 
@@ -117,11 +118,12 @@
 │   ├── LottoRankings.kt
 │   ├── LottoResult.kt
 │   ├── LottoTicket.kt
-│   └── PurchaseCount.kt
+│   └── Purchase.kt
 ├── util
-│   ├── Exception.kt
-│   ├── LottoGenerator.kt
-│   └── Validator.kt
+│   ├── Constants.kt
+│   ├── LottoException.kt
+│   ├── Validator.kt
+│   └── Winnings.kt
 └── view
     ├── InputView.kt
     └── OutputView.kt
@@ -138,22 +140,29 @@
 ### model
 
 - `Bonus` : 보너스 게임 숫자를 관리한다.
+    - `number: Int` : 보너스 번호를 가지고 있는 변수이다.
     - `checkUniqueNumber()` : 보너스 번호가 중복된 번호가 아닌지 확인한다.
-    - `getNumber()` : 보너스 번호 정수값으로 변환하여 가져온다.
 - `Lotto` : 당첨 번호(6개)를 관리한다.
+    - `numbers: List<Int>` : 당첨 번호를 가지고 있는 리스트이다.
     - `getWinningNumbers()` : 당첨 번호 리스트를 가져온다.
 - `LottoProfit` : 수익률을 계산하고 관리한다.
+    - `rate: String` : 소수점 2번째 자리에서 반올림하여 소수점 첫째 자리까지 구한 수익률을 가지고 있는 변수이다.
     - `getTotalGain()` : 총 당첨 금액을 구하여 반환한다.
     - `calculateRate()` : 수익률을 계산한다.
-- `LottoRankings` : 등수 관련 리스트를 관리한다(순위 리스트)
+- `LottoRankings` : 등수 관련 리스트를 관리한다
+    - `rank: List<Int>` : 랭크를 가지고 있는 리스트이다. (인덱스 0이 1등, 인덱스4가 5등)
     - `addRanking()` : 등수에 맞는 인덱스의 값에 1을 추가한다.
 - `LottoResult` : 등수를 구한다.
-    - `calculateRanking()` : 등수를 구하여 반환한다.
+    - `calculateRanking()` : 등수에 맞는 인덱스 번호를 반환한다.
+    - `containBonusNumber()` : 맞힌 갯수가 5일 시 보너스 번호를 확인하여 등수에 맞는 인덱스를 반환한다.
 - `LottoTicket` : 발행된 번호들을 2차원 배열로 관리한다.
+    - `numbers: List<List<Int>>` : 발행된 번호들을 가지고 있는 2차원 리스트이다.
     - `addNumbers()` : 발행 번호 관리 리스트에 발행된 번호를 추가한다.
     - `publicOneTicket()` : 로또 한장을 발행한다.
     - `lottoTicketPublish()` : 로또를 구매 가격만큼 발행한다.
 - `Purchase` : 로또 구매 가격과 로또 발행 횟수를 관리한다.
+    - `price: Int` : 로또 구매 가격을 가지고 있는 변수이다.
+    - `count: Int` : 로또 발행 횟수를 가지고 있는 변수이다.
 
 ### util
 
