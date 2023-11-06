@@ -13,13 +13,18 @@ class LottoGame {
     private val buyNumbers = mutableListOf<List<Int>>()
     private val ranking = IntArray(8)
     fun start(){
-        inputPrice()
-        inputPrizeNumber()
-        inputBonusNumber()
-        for(number in buyNumbers){
-            checkLotto(number)
+        try{
+            inputPrice()
+            inputPrizeNumber()
+            inputBonusNumber()
+            for(number in buyNumbers){
+                checkLotto(number)
+            }
+            showResult()
+        }catch (e: IllegalArgumentException){
+            println(e.message)
         }
-        showResult()
+
     }
     private fun checkLotto(number: List<Int>) {
         var correctNumber = 0

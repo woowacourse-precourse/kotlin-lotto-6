@@ -8,9 +8,8 @@ class Error {
     private fun checkInt(price: String) {
         try{
             price.toInt()
-            true
-        } catch (e: NumberFormatException){
-            throw IllegalArgumentException("[ERROR] 숫자가 아닙니다.")
+        } catch (e: IllegalArgumentException){
+            println("[ERROR] 숫자가 아닙니다.")
         }
     }
 

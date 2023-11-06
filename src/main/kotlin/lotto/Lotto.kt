@@ -10,7 +10,7 @@ class Lotto(private val numbers: List<Int>) {
             error.checkNumber(numbers[i].toInt())
         }
     }
-    fun getList(): List<Int> {
+    fun getNumbers(): List<Int> {
         return numbers
     }
 
