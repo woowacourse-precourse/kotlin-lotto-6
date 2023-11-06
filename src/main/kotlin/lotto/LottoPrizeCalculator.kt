@@ -93,7 +93,7 @@ class LottoPrizeCalculator {
     ): Int {
         val prizeIndex = when (lottoNumberMatch) {
             6 -> 4
-            5 -> if (prizeCounts[3] > 0) 3 else 2
+            5 -> if (bonusNumberMatch) 3 else 2
             4 -> 1
             3 -> 0
             else -> -1

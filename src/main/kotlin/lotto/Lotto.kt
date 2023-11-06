@@ -1,7 +1,7 @@
 package lotto
 import camp.nextstep.edu.missionutils.Randoms
 
-class Lotto(private val numbers: List<Int>) {
+class Lotto(numbers: List<Int>) {
     init {
         require(numbers.size == LOTTO_SIZE) { MessageConstants.ERROR_NOT_6_NUMBERS }
         validateLottoNumbers(numbers)
