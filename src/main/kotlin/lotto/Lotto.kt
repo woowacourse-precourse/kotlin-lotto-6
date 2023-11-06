@@ -28,6 +28,10 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 
+    fun formatNumbers(): String {
+        return numbers.joinToString(separator = ", ", prefix = "[", postfix = "]")
+    }
+
     companion object {
         private val VALID_RANGE = 1..46
     }
