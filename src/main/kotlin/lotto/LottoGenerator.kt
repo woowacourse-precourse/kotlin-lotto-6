@@ -1,21 +1,14 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
-import java.lang.IllegalArgumentException
 
 class LottoGenerator {
     private lateinit var lotto: Lotto
 
     fun get(): Lotto {
-        validateLotto()
+        generateLotto()
 
         return this.lotto
-    }
-
-    private fun validateLotto() {
-        try {
-            generateLotto()
-        } catch (e: IllegalArgumentException) { }
     }
 
     private fun generateLotto() {
