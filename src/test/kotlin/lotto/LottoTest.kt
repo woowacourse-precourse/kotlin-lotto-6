@@ -24,6 +24,6 @@ class LottoTest {
     @Test
     fun `로또 번호가 오름차순인지 확인`() {
         val sortedNumber = listOf(1, 2, 3, 4, 5, 6)
-        assertEquals(sortedNumber, Lotto(listOf(6, 5, 4, 3, 2, 1)).getNumbers())
+        assertEquals(sortedNumber, Lotto(listOf(6, 5, 4, 3, 2, 1)).getSortedNumbers())
     }
 }
