@@ -7,7 +7,8 @@ class Lottos {
         val lottos = mutableListOf<Lotto>()
 
         repeat(vendor.lottoNum()){
-            val lotto = Lotto(numberCreator.randoms())
+            val lottoNumber = numberCreator.randoms()
+            val lotto = Lotto(lottoNumber)
             lottos.add(lotto)
         }
 
