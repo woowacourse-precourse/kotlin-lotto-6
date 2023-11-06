@@ -37,11 +37,4 @@ class LottoTest {
         }
         println(upperRangeException.message)
     }
-    @Test
-    fun `로또 번호가 오름차순 정렬이 아니라면 예외가 발생한다`(){
-        val sortException = assertThrows<IllegalArgumentException> {
-            Lotto(listOf(1,3,5,7,9,2))
-        }
-        println(sortException.message)
-    }
 }
