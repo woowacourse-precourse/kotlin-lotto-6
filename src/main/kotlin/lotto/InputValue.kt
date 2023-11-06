@@ -29,8 +29,10 @@ class InputValue {
     fun inputWinningNumber(): List<Int> {
 
         val winningNumber = readln().split(",")
+
         check.checkOnlyNumber(winningNumber)
         check.checkNumber1to45(winningNumber)
+        check.checkInputSixNumbers(winningNumber)
 
         return listOf(0)
     }
