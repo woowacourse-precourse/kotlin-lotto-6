@@ -6,6 +6,7 @@ class WinningNumbers(numbers: List<Int>) {
     private var winningNumbers: List<Int>? = null
 
     init {
+        println(numbers)
         validateWinningNumbers(numbers)
         winningNumbers = numbers
     }
@@ -19,21 +20,15 @@ class WinningNumbers(numbers: List<Int>) {
     }
 
     private fun validateWinningNumbersRange(numbers: List<Int>) {
-        if (!numbers.all { it in WINNING_NUMBER_START..WINNING_NUMBER_END }) {
-            throw IllegalStateException(ErrorMessage.NOT_NUMBER_RANGE_WINNING_NUMBER.message)
-        }
+        require(numbers.all { it in WINNING_NUMBER_START..WINNING_NUMBER_END }) { ErrorMessage.NOT_NUMBER_RANGE_WINNING_NUMBER.message }
     }
 
     private fun validateWinningNumbersDuplicate(numbers: List<Int>) {
-        if (numbers.size != numbers.distinct().size) {
-            throw IllegalStateException(ErrorMessage.NOT_DUPLICATED_WINNING_NUMBER.message)
-        }
+        require(numbers.size == numbers.distinct().size) { ErrorMessage.NOT_DUPLICATED_WINNING_NUMBER.message }
     }
 
     private fun validateWinningNumbersSize(numbers: List<Int>) {
-        if (numbers!!.size != WINNING_NUMBER_SIZE) {
-            throw IllegalStateException(ErrorMessage.NOT_SIX_WINNING_NUMBER.message)
-        }
+        require(numbers.size == WINNING_NUMBER_SIZE) { ErrorMessage.NOT_SIX_WINNING_NUMBER.message }
     }
 
     companion object {
