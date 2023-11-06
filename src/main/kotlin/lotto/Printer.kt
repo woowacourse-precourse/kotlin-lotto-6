@@ -20,5 +20,12 @@ class Printer {
         }
     }
 
+    fun printWinningStatistics(types: List<LottoWinType>, yield: String) {
+        for (winType in LottoWinType.entries) {
+            val count = types.count { it == winType }
+            println("${winType.description} ( ${winType.prize}원) - ${count}개")
+        }
+        println("총 수익률은 ${yield}입니다.")
+    }
 
 }
