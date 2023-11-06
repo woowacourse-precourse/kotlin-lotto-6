@@ -19,7 +19,7 @@ object InputView {
     }
 
     fun inputBonusNumber(): String {
-        println(INPUT_BONUS_NUMBER)
+        println(System.lineSeparator() + INPUT_BONUS_NUMBER)
         return Console.readLine()
     }
 }
