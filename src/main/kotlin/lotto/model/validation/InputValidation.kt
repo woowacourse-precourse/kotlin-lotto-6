@@ -22,7 +22,12 @@ class InputValidation {
     }
 
     fun validateInputLottoNum(inputNumbers: String) {
-        validateCommaSeparatedNumbers(inputNumbers)
+        var trimmedInputNum = trimInput(inputNumbers)
+        validateCommaSeparatedNumbers(trimmedInputNum)
+    }
+
+    private fun trimInput(input: String): String {
+        return input.trim()
     }
 
     private fun validateCommaSeparatedNumbers(inputNumbers: String) {
