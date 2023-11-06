@@ -1,11 +1,12 @@
 package lotto.controller
 
 import camp.nextstep.edu.missionutils.Console.readLine
+import camp.nextstep.edu.missionutils.Randoms
 import lotto.model.LottoModel
 import lotto.enums.Exception
 import lotto.view.LottoView
 
-class LottoController(private val lottoModel: LottoModel,private val lottoView: LottoView) {
+class LottoController(private val lottoModel: LottoModel, private val lottoView: LottoView) {
 
     fun startLotto() {
         lottoView.printEnterPurchaseMessage()
@@ -15,7 +16,8 @@ class LottoController(private val lottoModel: LottoModel,private val lottoView: 
     private fun inputPurchaseAmount() {
         while (true) {
             try {
-                lottoModel.returnValue(checkPurchaseAmount(readLine()))
+                val lottoNumbers = lottoModel.generateLottoNumbers(checkPurchaseAmount(readLine()))
+                lottoView.displayLottoNumbers(lottoNumbers)
                 break
             } catch (e: IllegalArgumentException) {
                 println("${Exception.ERROR_HEADER.message} ${e.message}")
