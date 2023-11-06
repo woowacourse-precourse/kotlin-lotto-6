@@ -18,12 +18,7 @@ class NumberPicker(private val times: Int) {
             currentPurchasedLotties.add(numbers)
         }
 
-        return sortRandomNumbers(currentPurchasedLotties)
+        return currentPurchasedLotties
     }
 
-    fun sortRandomNumbers(purchasedLotties: MutableList<List<Int>>): List<List<Int>> {
-        return purchasedLotties.map {
-            it.sorted()
-        }
-    }
 }
