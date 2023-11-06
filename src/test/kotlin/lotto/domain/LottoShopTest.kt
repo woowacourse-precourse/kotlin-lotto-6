@@ -10,7 +10,7 @@ class LottoShopTest {
         // given
         val input = Money(5000)
         // when
-        val result = LottoShop.buyLottos(input)
+        val result = LottoShop.purchaseLottos(input)
         // then
         assertEquals(result.size(), 5)
     }
@@ -21,7 +21,7 @@ class LottoShopTest {
         val input = Money(1001)
         // when & then
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { LottoShop.buyLottos(input) }
+            .isThrownBy { LottoShop.purchaseLottos(input) }
             .withMessage("[ERROR] 구입금액은 1000원 단위로 입력해야 합니다.")
     }
 
@@ -31,7 +31,7 @@ class LottoShopTest {
         val input = Money(500)
         // when & then
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { LottoShop.buyLottos(input) }
+            .isThrownBy { LottoShop.purchaseLottos(input) }
             .withMessage("[ERROR] 구입금액은 최소 1000원 이상 입력해야 합니다.")
     }
 }
