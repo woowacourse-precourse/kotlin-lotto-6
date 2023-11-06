@@ -19,4 +19,16 @@ class LottoController {
     fun toAscending(unsorted: MutableList<Int>) {
         return unsorted.sort()
     }
+
+    fun countEqualNums(answer: MutableList<Int>, input: MutableList<Int>): Int {
+        var count = 0
+        input.forEach {
+            if (answer.contains(it)) {
+                count++
+            }
+        }
+        return count
+    }
+
+
 }
