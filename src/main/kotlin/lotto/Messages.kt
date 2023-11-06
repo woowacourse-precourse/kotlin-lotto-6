@@ -6,6 +6,12 @@ enum class Messages(val message: String) {
     TEXT_PRINT_LOTTO_NUM("개를 구매했습니다."),
     TEXT_INPUT_WINNING_LOTTO_NUMBER("당첨 번호를 입력해 주세요."),
     TEXT_INPUT_BONUS_LOTTO_NUMBER("보너스 번호를 입력해 주세요."),
+    TEXT_LOTTO_RESULT("당첨 통계\n---"),
+    TEXT_LOTTO_MATCH_3("3개 일치 (5,000원) - "),
+    TEXT_LOTTO_MATCH_4("4개 일치 (50,000원) - "),
+    TEXT_LOTTO_MATCH_5("5개 일치 (1,500,000원) - "),
+    TEXT_LOTTO_MATCH_5_BONUS("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
+    TEXT_LOTTO_MATCH_6("6개 일치 (2,000,000,000원) - "),
 
     // EXCEPTION
     EXCEPTION_WRONG_FORMAT("[ERROR] 입력 형식이 잘못되었습니다."),

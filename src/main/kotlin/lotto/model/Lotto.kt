@@ -13,4 +13,9 @@ class Lotto(private val numbers: List<Int>) {
     fun printLotto() {
         println(numbers.joinToString(", ", "[", "]"))
     }
+
+    fun compareLotto(winningLotto: MutableList<Int>, bonusNumber: Int): Int {
+        val i = 0
+        return i
+    }
 }

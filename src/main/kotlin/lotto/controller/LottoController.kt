@@ -24,6 +24,7 @@ class LottoController {
         inputLottoAmount()
         inputWinningLottoNumbers()
         inputBonusLottoNumber()
+        printLottoResult()
     }
 
     private fun inputLottoAmount() {
@@ -87,5 +88,15 @@ class LottoController {
                 println(e.message)
             }
         }
+    }
+
+    private fun printLottoResult() {
+        println("\n" + Messages.TEXT_LOTTO_RESULT.message)
+        val lottoResult = lotteries.compareLotteries(winningLotto, bonusLottoNumber)
+        println(Messages.TEXT_LOTTO_MATCH_3.message + "${lottoResult[3]}개")
+        println(Messages.TEXT_LOTTO_MATCH_4.message + "${lottoResult[4]}개")
+        println(Messages.TEXT_LOTTO_MATCH_5.message + "${lottoResult[5]}개")
+        println(Messages.TEXT_LOTTO_MATCH_5_BONUS.message + "${lottoResult[50]}개")
+        println(Messages.TEXT_LOTTO_MATCH_6.message + "${lottoResult[6]}개")
     }
 }
