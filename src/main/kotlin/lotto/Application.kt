@@ -19,7 +19,7 @@ fun printResults(results: List<LottoResult>, purchaseAmount: Int) {
             println("${result.matchCount}개 일치 (${result.getFormattedPrize()}원) - ${count}개")
         }
     }
-    val totalPrize = results.sumBy { it.prize }
+    val totalPrize = results.sumOf { it.prize }
     val profitRate = totalPrize.toDouble() / purchaseAmount * 100
     println("총 수익률은 ${profitRate}%입니다.")
 }
@@ -104,8 +104,6 @@ fun inputBonusNumber(): String {
     println("보너스 번호를 입력해 주세요.")
     return readLine().orEmpty()
 }
-
-
 
 fun getValidBonusNumber(): Int {
     while (true) {
