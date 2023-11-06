@@ -10,4 +10,10 @@ class View {
         val input = Console.readLine()
         return validation.checkInputPayment(input)
     }
+
+    fun printInputLottoNumber(): Lotto {
+        println("당첨 번호를 입력해 주세요.")
+        val input = Console.readLine()
+        return validation.checkInputLottoNumber(input)
+    }
 }

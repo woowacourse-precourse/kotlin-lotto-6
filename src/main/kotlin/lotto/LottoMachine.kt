@@ -8,6 +8,7 @@ class LottoMachine {
     fun start() {
         val payment = view.printInputPaymentMessage()
         val lotto = makeLotto(payment)
+        val inputLottoNumber = view.printInputLottoNumber()
     }
 
     private fun makeLotto(payment: Int): List<Lotto> {
@@ -27,5 +28,4 @@ class LottoMachine {
     private fun countLotto(payment: Int): Int {
         return payment / 1000
     }
-
 }
