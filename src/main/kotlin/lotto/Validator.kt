@@ -23,7 +23,7 @@ class Validator {
         return if (money % 1000 == 0) {
             true
         } else {
-            throw IllegalArgumentException("[ERROR] 구입 금액이 1000원으로 나누어 떨어지지 않습니다.")
+            throw IllegalArgumentException("구입 금액이 1000원으로 나누어 떨어지지 않습니다.")
         }
     }
 }
