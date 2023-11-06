@@ -21,6 +21,10 @@ class OutputView {
             println("${lotto.message} ${OutputMessages.DIVIDING_LINE_SMALL.message} ${count}${OutputMessages.LOTTO_COUNT.message}")
         }
     }
+
+    fun lottoProfit(lottoProfit:Double) {
+        println(OutputMessages.YIELD_RATE_OF_RETURN.message.format(lottoProfit))
+    }
 }
 
 enum class OutputMessages(val message: String) {
@@ -35,8 +39,8 @@ enum class OutputMessages(val message: String) {
     THREE_NUMBER_CORRECT("3개 일치 (5,000원)"),
     FOUR_NUMBER_CORRECT("4개 일치 (50,000원)"),
     FIVE_NUMBER_CORRECT("5개 일치 (1,500,000원)"),
-    FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT("5개 일치, 보너스 볼 일치 (30,500,000원)"),
+    FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT("5개 일치, 보너스 볼 일치 (30,000,000원)"),
     SIX_NUMBER_CORRECT("6개 일치 (2,000,000,000원)"),
-    YIELD_RATE_OF_RETURN("총 수익률은 %.2f%입니다.")
+    YIELD_RATE_OF_RETURN("총 수익률은 %.1f%%입니다.")
 
 }
