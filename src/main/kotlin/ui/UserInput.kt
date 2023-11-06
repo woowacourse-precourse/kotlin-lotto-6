@@ -2,6 +2,7 @@ package ui
 
 import camp.nextstep.edu.missionutils.Console
 import util.Constants.MSG_ERR_INVALIDATE_INPUT
+import util.Constants.MSG_ERR_LOTTO_NUMBER_BY_COMMA
 import util.Constants.MSG_INPUT_BONUS_NUMBER
 import util.Constants.MSG_INPUT_MONEY
 import util.Constants.MSG_INPUT_WIN_NUMBERS
@@ -58,7 +59,7 @@ object UserInput {
             } catch (e: NumberFormatException) {
                 println(MSG_ERR_INVALIDATE_INPUT)
             } catch (e: IllegalArgumentException) {
-                println(e.message)
+                println(e.message + " " + MSG_ERR_LOTTO_NUMBER_BY_COMMA)
             }
         }
     }
@@ -81,6 +82,7 @@ object UserInput {
 
     private fun inputToNumbersByComma(input: String): List<Int> {
         return input.split(",")
+            .filter { it.isNotBlank() || it.isNotEmpty() }
             .map {
                 val digit = it.trim()
                 Validator
