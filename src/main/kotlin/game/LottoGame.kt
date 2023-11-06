@@ -13,27 +13,27 @@ class LottoGame(
     fun startLottoGame() {
         with(outputManager) {
             promptPurchaseAmount()
-            val purchaseInfo: PurchaseLottoInfo = getPurchaseAmount().apply { purchaseLottoCount(this.lottoCount) }
-            val purchaseLotto: List<Lotto> = getPurchaseLottoResult(purchaseInfo.lottoCount).apply { lottoNumbers(this) }
+            val purchaseInfo: PurchaseLottoInfo = purchaseAmount().apply { purchaseLottoCount(this.lottoCount) }
+            val publishLottoResult: List<Lotto> = publishLotto(purchaseInfo.lottoCount).apply { lottoNumbers(this) }
             promptJackpotNumbers()
             val jackpotNumbers: ArrayList<Int> = getJackpotNumbers().apply {
                 promptBonusNumber()
                 add(getBonusNumber(this))
             }
             lottoStats()
-            val lottoResult = LottoResult(purchaseLotto = purchaseLotto, lottoPrizeCheck = LottoPrizeCheck(jackpotNumbers))
+            val lottoResult = LottoResult(purchaseLotto = publishLottoResult, lottoPrizeCheck = LottoPrizeCheck(jackpotNumbers))
             prizeResult(lottoResult.prizeResult())
             val totalResult = LottoRateOfReturn(amount = purchaseInfo.amount, checkPrize = lottoResult.prizeResult())
             rateOfReturn(totalResult.rateOfReturn())
         }
     }
 
-    private fun getPurchaseAmount() = inputManager.lottoPurchaseAmount { outputManager.invalidPurchaseAmount() }
+    private fun purchaseAmount() = inputManager.lottoPurchaseAmount { outputManager.invalidPurchaseAmount() }
 
-    private fun getPurchaseLottoResult(lottoCount: Int): ArrayList<Lotto> {
-        val purchaseLotto = arrayListOf<Lotto>()
-        repeat(lottoCount) { purchaseLotto.add(Lotto(lottoGenerator.createLottoNumber())) }
-        return purchaseLotto
+    private fun publishLotto(lottoCount: Int): ArrayList<Lotto> {
+        val publishLotto = arrayListOf<Lotto>()
+        repeat(lottoCount) { publishLotto.add(Lotto(lottoGenerator.createLottoNumber())) }
+        return publishLotto
     }
 
     private fun getJackpotNumbers(): ArrayList<Int> =
