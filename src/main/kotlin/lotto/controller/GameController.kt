@@ -2,46 +2,88 @@ package lotto.controller
 
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.Constants
+import lotto.model.BonusNumber
 import lotto.model.Lotto
 import lotto.model.Lottos
 import lotto.model.PurchaseAmount
+import lotto.model.WinningNumbers
+import lotto.model.WinningValidation
 import lotto.view.InputView
 import lotto.view.OutputView
+
+class Task {
+    var inputState: State = State.INPUT_PURCHASEA_MOUNT
+
+    enum class State {
+        INPUT_PURCHASEA_MOUNT, INPUT_WINNING_AND_BONUS_NUMBERS, DONE
+    }
+}
 
 class GameController {
     private val inputView = InputView()
     private val outputView = OutputView()
+    private val task = Task()
+    lateinit var lottos: Lottos
+    // lateinit var winningAndBonusNumberPair: Pair<WinningNumbers, BonusNumber>
 
     fun play() {
-        val purchaseAmount = inputPurchaseAmount(inputView)
-        val lottoNumbers = createLottos(purchaseAmount.Count)
-        outputView.printPurchaseResults(lottoNumbers)
-
-
-    }
-
-    private fun inputPurchaseAmount(inputView: InputView): PurchaseAmount {
-        val userInputData = inputView.purchaseAmountPrompt()
-        return PurchaseAmount(userInputData)
-    }
-
-    private fun createLottos(count: Int): Lottos {
-        return Lottos(
-            List(count) {
-                Lotto(createSortedUniqueNumbers())
+        while (task.inputState != Task.State.DONE) {
+            try {
+                mainProcess(task.inputState)
+            } catch (e: Exception) {
+                e.message?.let { outputView.printError(it) }
             }
-        )
+        }
+    }
+
+    private fun mainProcess(inputState: Task.State) {
+        when (inputState) {
+            Task.State.INPUT_PURCHASEA_MOUNT ->
+                lottos = processPurchaseAmount()
+
+            Task.State.INPUT_WINNING_AND_BONUS_NUMBERS ->
+                processWinningAndBonusNumbers(lottos.lottoNumbers)
+
+            else -> throw IllegalStateException("~~~~~~~~")
+        }
+    }
+
+    private fun <T> inputProcess(prompt: (InputView) -> String, className: (String) -> T): T {
+        val userInputData = prompt(inputView)
+        return className(userInputData)
+    }
+
+    private fun processPurchaseAmount(): Lottos {
+        val purchaseAmount = inputProcess({ it.purchaseAmountPrompt() }, ::PurchaseAmount)
+        task.inputState = Task.State.INPUT_WINNING_AND_BONUS_NUMBERS
+
+        val lottoNumbers = createLottos(purchaseAmount.Count)
+        val lottos = Lottos(lottoNumbers)
+
+        outputView.printPurchaseResults(lottos)
+        return lottos
+    }
+
+    private fun createLottos(count: Int): List<Lotto> {
+        return List(count) {
+            Lotto(createSortedUniqueNumbers())
+        }
     }
 
     private fun createSortedUniqueNumbers(): List<Int> {
         return Randoms.pickUniqueNumbersInRange(
-            LOTTO_RANGE_MIN_VALUE, LOTTO_RANGE_MAX_VALUE,
+            Constants.LOTTO_RANGE_MIN_VALUE,
+            Constants.LOTTO_RANGE_MAX_VALUE,
             Constants.LOTTO_NUMBER_SIZE
         ).sorted()
     }
 
-    companion object {
-        const val LOTTO_RANGE_MIN_VALUE = 1
-        const val LOTTO_RANGE_MAX_VALUE = 45
+    private fun processWinningAndBonusNumbers(lottos: List<Lotto>) {
+        val winningNumbers = inputProcess({ it.winningNumbersPrompt() }, ::WinningNumbers)
+        val bonusNumber = inputProcess({ it.bonusNumberPrompt() }, ::BonusNumber)
+        WinningValidation(winningNumbers.numbers, bonusNumber.number)
+        task.inputState = Task.State.DONE
+
+        // lottos
     }
 }

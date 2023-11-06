@@ -9,7 +9,7 @@ import lotto.Constants
     3. Lotto의 패키지 변경은 가능하다.
 */
 class Lotto(private val _numbers: List<Int>) {
-    val numbers: List<Int> get() = _numbers
+    val numbers: List<LottoNumber> get() = _numbers.map { LottoNumber(it.toString()) }
 
     init {
         validateSize()

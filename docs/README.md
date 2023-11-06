@@ -20,22 +20,20 @@ ___
           <br><br><br>
 
 - [ ] **2. 당첨 번호와 보너스 번호 입력 / 당첨 통계 계산 / 로또 당첨 통계 출력**
-    - [ ] **입력** - InputView
-        - `당첨 번호를 입력해 주세요.` - .winningLottoNumbersPrompt()
+    - [x] **입력** - InputView
+        - `당첨 번호를 입력해 주세요.`
             - `예외(전체)`
                 - ','가 5개 있는지?
                 - 중복된 값이 있는 경우
-            - `예외(요소)` - validatedNumber.`validate()`
-                - 길이가 1..2 이내가 아닌 경우 - `validate()` -> validateLength()
-                - 숫자가 아닌 경우 - `validate()` -> validateDigit()
-                - 1..45 범위가 아닌 경우 - `validate()` -> validateRange()
-        - `보너스 번호를 입력해 주세요.` - winningBonusNumberPrompt()
-            - `예외(전체=요소)` - validatedNumber.`validate()`
-                - 길이가 1..2 이내가 아닌 경우 - `validate()` -> validateLength()
-                - 숫자가 아닌 경우 - `validate()` -> validateDigit()
-                - 1..45 범위가 아닌 경우 - `validate()` -> validateRange()
+            - `예외(요소)` - LottoNumber
+                - 숫자가 아닌 경우
+                - 1..45 범위가 아닌 경우
+        - `보너스 번호를 입력해 주세요.`
+            - `예외(전체=요소)` - LottoNumber
+                - 숫자가 아닌 경우
+                - 1..45 범위가 아닌 경우
             - `예외(당첨 번호와 비교)`
-                - 보너스 번호가 당첨 번호에 속하는 경우 - ???.validateDuplicate()
+                - 보너스 번호가 당첨 번호에 속하는 경우
 
     - [ ] **처리** - ???
         - Lotto들을 순회하며, 일치하는 개수 계산하기
@@ -60,7 +58,7 @@ ___
         - `총 수익률은 00.0%입니다.` - .printRateOfReturn()
           <br><br><br>
 
-- [ ] **4. 오류 발생시, [ERROR]를 출력하고 그 부분 부터 다시 시작**
+- [x] **4. 오류 발생시, [ERROR]를 출력하고 그 부분 부터 다시 시작**
 
 <br><br>
 
