@@ -1,33 +1,52 @@
 package lotto.view
 
 import lotto.utils.*
-class LottoView {
-    fun printRequestCost(){
+
+class LottoView { // 출력 처리
+    fun printRequestCost() {
         println(PrintMessage.PRINT_REQUEST_COST)
     }
-    fun printRequestWinNumber(){
-        println(PrintMessage.PRINT_REQUEST_WIN_NUMBER)
+
+    fun printLottoCountCheck(input: Int) {
+        println("\n${input}${PrintMessage.PRINT_LOTTO_COUNT_CHECK}")
     }
-    fun printRequestBonusNumber(){
-        println(PrintMessage.PRINT_REQUEST_BONUS_NUMBER)
+
+    fun printLottoAllList(input: List<List<Int>>) {
+        for(i in 0 until input.size) {
+            println(input.get(i))
+        }
     }
-    fun printTotalResult(){
-        println(PrintMessage.PRINT_TOTAL_RESULT)
+
+    fun printRequestWinNumber() {
+        println("\n${PrintMessage.PRINT_REQUEST_WIN_NUMBER}")
     }
-    fun printTotalArea(){
+
+    fun printRequestBonusNumber() {
+        println("\n${PrintMessage.PRINT_REQUEST_BONUS_NUMBER}")
+    }
+
+    fun printTotalResult() {
+        println("\n${PrintMessage.PRINT_TOTAL_RESULT}")
+    }
+
+    fun printTotalArea() {
         println(PrintMessage.PRINT_TOTAL_AREA)
     }
-    fun printCount(){
-        print(PrintMessage.PRINT_COUNT)
+
+    fun printCount(input: Int) {
+        print("${input}${PrintMessage.PRINT_COUNT_MATCH}")
     }
-    fun printMatch(){
-        print(PrintMessage.PRINT_MATCH)
+
+    fun printTotalRate(input: Double) {
+        print("${PrintMessage.PRINT_TOTAL_RATE} ${input}${PrintMessage.PRINT_TOTAL_END_MESSAGE}")
     }
-    fun printTotalRate(){
-        print(PrintMessage.PRINT_TOTAL_RATE + " ")
+
+    fun printTotalLottoNumberList(input: MutableList<MutableList<Int>>) {
+        for ((index, lotto) in input.withIndex()) {
+            println(lotto)
+        }
     }
-    fun printTotalEndMessage(){
-        println(PrintMessage.PRINT_TOTAL_END_MESSAGE)
-    }
+
+
 
 }

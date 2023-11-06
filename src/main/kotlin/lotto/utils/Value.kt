@@ -2,7 +2,8 @@ package lotto.utils
 
 object Value {
     const val LOTTO_COST = 1000
-    const val LOTTO_NUMBER_COUNT = 6
+    const val MINIMUM_LOTTO_NUMBER_COUNT = 0
+    const val MAXIMUM_LOTTO_NUMBER_COUNT = 6
     const val MINIMUM_LOTTO_NUMBER_BOUNDARY = 1
     const val MAXIMUM_LOTTO_NUMBER_BOUNDARY = 45
     const val WINNER_CASE = 5
