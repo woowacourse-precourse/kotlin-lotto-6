@@ -1,6 +1,7 @@
 package ui
 
 import camp.nextstep.edu.missionutils.Console
+import util.Constants.MSG_ERR_INVALIDATE_INPUT
 import util.Constants.MSG_INPUT_BONUS_NUMBER
 import util.Constants.MSG_INPUT_MONEY
 import util.Constants.MSG_INPUT_WIN_NUMBERS
@@ -19,7 +20,7 @@ object UserInput {
 
                 return input.toInt()
             } catch (ne: NumberFormatException) {
-                println("[ERROR] 유효하지 않은 입력입니다.")
+                println(MSG_ERR_INVALIDATE_INPUT)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
@@ -36,7 +37,7 @@ object UserInput {
                 Validator.checkIsDivisibleByThousand(money)
                 return money
             } catch (e: NumberFormatException) {
-                println("[ERROR] 유효하지 않은 입력입니다.")
+                println(MSG_ERR_INVALIDATE_INPUT)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
@@ -55,7 +56,7 @@ object UserInput {
 
                 return winNumbers
             } catch (e: NumberFormatException) {
-                println("[ERROR] 유효하지 않은 입력입니다.")
+                println(MSG_ERR_INVALIDATE_INPUT)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
@@ -71,7 +72,7 @@ object UserInput {
 
                 return bonus
             } catch (e: NumberFormatException) {
-                println("[ERROR] 유효하지 않은 입력입니다.")
+                println(MSG_ERR_INVALIDATE_INPUT)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
