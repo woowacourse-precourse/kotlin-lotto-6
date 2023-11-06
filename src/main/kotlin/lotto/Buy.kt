@@ -17,17 +17,19 @@ class Buy {
                     println(Exception.EXCEPTION_INVALID_MONEY)
                     throw IllegalArgumentException()
                 }
-                if (!inputMoney.toString().all { Character.isDigit(it) }) {
+                if (!inputMoney.toString().trim().all { Character.isDigit(it) }) {
                     println(Exception.EXCEPTION_INVALID_MONEY_TYPE)
                     throw IllegalArgumentException()
                 }
                 break
             } catch (e: IllegalArgumentException) {
+
             }
         }
         return inputMoney / 1000
     }
-    fun generateLottos(count: Int): Lottos{
+
+    fun generateLottos(count: Int): Lottos {
         val lottos = Lottos()
         for (i in 1..count) {
             val lotto = Lotto(createWinningLotto())
