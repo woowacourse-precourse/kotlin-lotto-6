@@ -3,6 +3,7 @@ package lotto.model
 import INVALID_DIVISION_MESSAGE
 import INVALID_NUMERIC_MESSAGE
 import INVALID_POSITIVE_MESSAGE
+import ZERO
 
 class LottoModel {
     fun isPurchaseAmountNumeric(input: String) {
@@ -12,12 +13,12 @@ class LottoModel {
     }
 
     fun isPurchaseAmountPositive(value: Int) {
-        if (value < 0)
+        if (value < ZERO)
             throw IllegalArgumentException(INVALID_POSITIVE_MESSAGE)
     }
 
     fun isDivisibleBy1000(value: Int) {
-        if (value % 1000 != 0)
+        if (value % 1000 != ZERO)
             throw IllegalArgumentException(INVALID_DIVISION_MESSAGE)
     }
 }
