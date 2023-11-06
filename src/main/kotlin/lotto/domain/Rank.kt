@@ -22,18 +22,14 @@ enum class Rank(
 
     companion object {
         fun checkRank(count: Int, bonusMatch: Boolean): Rank {
-            if (count < 3) {
-                return NONE
+            return when {
+                count == FIRST.count -> FIRST
+                count == SECOND.count && bonusMatch -> SECOND
+                count == THIRD.count -> THIRD
+                count == FOURTH.count -> FOURTH
+                count == FIFTH.count -> FIFTH
+                else -> NONE
             }
-            if (count == 5 && bonusMatch) {
-                return SECOND
-            }
-            for (rank in entries) {
-                if (count == rank.count) {
-                    return rank
-                }
-            }
-            throw IllegalArgumentException()
         }
     }
 }
