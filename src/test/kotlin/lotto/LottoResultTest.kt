@@ -3,6 +3,7 @@ package lotto
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class LottoResultTest {
 
@@ -45,5 +46,15 @@ class LottoResultTest {
         val lotto = Lotto(listOf(1, 2, 3, 7, 8, 42))
 
         assertTrue(lottoResult.hasBonus(lotto))
+    }
+
+    @Test
+    fun `당첨 번호가 6개의 숫자가 아니면 예외 발생`() {
+        assertThrows<IllegalArgumentException> {
+            LottoResult(
+                winLotto = Lotto(listOf(1, 2, 3, 4, 5, 6, 7)),
+                bonus = 8
+            )
+        }
     }
 }
