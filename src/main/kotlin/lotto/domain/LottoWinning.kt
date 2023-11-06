@@ -11,8 +11,8 @@ class LottoWinning {
     }
 
     fun createWinningLotto(): List<Int> {
-        val winningNumbers = splitMyNumbers(inputMyNumbers())
-        return changeStringToInteger(winningNumbers)
+        val userWinningNumbers = splitMyNumbers(inputMyNumbers())
+        return changeStringToInteger(userWinningNumbers)
     }
 
     private fun splitMyNumbers(myNumbers: String): List<String> {

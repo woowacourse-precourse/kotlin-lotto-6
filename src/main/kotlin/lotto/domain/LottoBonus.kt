@@ -9,11 +9,11 @@ class LottoBonus {
         showInputBonusNumberMessage()
     }
 
-    fun createBonusNumber(winningNumbers: List<Int>): Int {
-        val bonus = inputBonusNumber()
+    fun createBonusNumber(userWinningNumbers: List<Int>): Int {
+        val bonusNumber = inputBonusNumber()
         val validateBonus = ValidateBonus()
-        validateBonus.validateBonus(bonus, winningNumbers)
+        validateBonus.validateBonus(bonusNumber, userWinningNumbers)
 
-        return bonus
+        return bonusNumber
     }
 }

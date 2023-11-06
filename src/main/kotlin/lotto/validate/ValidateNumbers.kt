@@ -10,8 +10,8 @@ class ValidateNumbers {
         return myNumbers
     }
 
-    private fun validateMyNumberDelimiter(x: String){
-        require(x.contains(Constants.DELIMITER)) {"${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_DELIMITER_MESSAGE}" }
+    private fun validateMyNumberDelimiter(myNumbers: String){
+        require(myNumbers.contains(Constants.DELIMITER)) {"${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_DELIMITER_MESSAGE}" }
     }
 
     private fun validateInputIsEmpty(myNumbers: String) {
@@ -19,6 +19,4 @@ class ValidateNumbers {
             "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_INPUT_EMPTY}"
         }
     }
-
-
 }

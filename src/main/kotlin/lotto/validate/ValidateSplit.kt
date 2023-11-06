@@ -22,13 +22,13 @@ class ValidateSplit {
         require(myNumbers.isNotEmpty()) { "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_INPUT_EMPTY}" }
     }
 
-    private fun validateMyNumbersRange(x: List<String>) {
-        require(x.all { it.toInt() in Constants.LOTTO_START_NUMBER..Constants.LOTTO_LAST_NUMBER })
+    private fun validateMyNumbersRange(myNumbers: List<String>) {
+        require(myNumbers.all { it.toInt() in Constants.LOTTO_START_NUMBER..Constants.LOTTO_LAST_NUMBER })
         { "${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_OVER_RANGE_MESSAGE}" }
     }
 
-    private fun validateDuplicateBonusNumber(x: List<String>) {
-        require(x.toSet().size == x.size) {
+    private fun validateDuplicateBonusNumber(myNumbers: List<String>) {
+        require(myNumbers.toSet().size == myNumbers.size) {
             "${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_DUPLICATED_MESSAGE}"
         }
     }

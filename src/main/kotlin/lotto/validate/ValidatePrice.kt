@@ -17,12 +17,12 @@ class ValidatePrice {
         require(price >= 1000) { "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_INPUT_UNDER_THOUSAND}" }
     }
 
-    private fun validateInputNotNumber(x: String) {
-        require(x.all { it.isDigit() }) {"${Messages.ERROR_MESSAGE} ${Messages.INVALID_INPUT}" }
+    private fun validateInputNotNumber(price: String) {
+        require(price.all { it.isDigit() }) {"${Messages.ERROR_MESSAGE} ${Messages.INVALID_INPUT}" }
     }
 
-    private fun validateInputIsEmpty(x: String) {
-        require(x.isNotEmpty()) { "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_INPUT_EMPTY}" }
+    private fun validateInputIsEmpty(price: String) {
+        require(price.isNotEmpty()) { "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_INPUT_EMPTY}" }
     }
 
     private fun validateNoRemainder(price: Int) {

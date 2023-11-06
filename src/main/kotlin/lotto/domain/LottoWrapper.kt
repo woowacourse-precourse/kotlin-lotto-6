@@ -7,7 +7,6 @@ import lotto.utils.Constants
 class LottoWrapper {
     private val lottoWrapper = mutableListOf<Lotto>()
 
-
     fun repeatLottoNumbers(ticket: Int): MutableList<Lotto> {
         repeat(ticket) {
             lottoWrapper.add(Lotto(generateLottoNumbers()))
@@ -15,11 +14,11 @@ class LottoWrapper {
         return lottoWrapper
     }
     private fun generateLottoNumbers(): List<Int> {
-        val lottoNumbers = Randoms.pickUniqueNumbersInRange(Constants.LOTTO_START_NUMBER, Constants.LOTTO_LAST_NUMBER, Constants.LOTTO_SIZE)
-        return sortLottoNumbers(lottoNumbers)
+        val answerLottoNumbers = Randoms.pickUniqueNumbersInRange(Constants.LOTTO_START_NUMBER, Constants.LOTTO_LAST_NUMBER, Constants.LOTTO_SIZE)
+        return sortLottoNumbers(answerLottoNumbers)
     }
 
-    private fun sortLottoNumbers(lottoNumbers: List<Int>): List<Int> {
-        return lottoNumbers.sorted()
+    private fun sortLottoNumbers(answerLottoNumbers: List<Int>): List<Int> {
+        return answerLottoNumbers.sorted()
     }
 }

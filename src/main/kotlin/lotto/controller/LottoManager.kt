@@ -8,11 +8,11 @@ import lotto.view.OutputView
 class LottoManager(private val outputView: OutputView) {
     fun run() {
         val ticket = purchaseLotto()
-        val lottoList = answerLotto(ticket)
-        val winningNumbers = userWinningLotto()
-        val bonusNumber = bonus(winningNumbers)
-        val lotto = Lotto(winningNumbers)
-        val results = rankOfLotto(lotto, lottoList, bonusNumber)
+        val answerLottoNumbers = answerLotto(ticket)
+        val userWinningNumbers = userWinningLotto()
+        val bonusNumber = bonus(userWinningNumbers)
+        val lottos = Lotto(userWinningNumbers)
+        val results = rankOfLotto(lottos, answerLottoNumbers, bonusNumber)
         val profitPercentage = yieldLotto(results, ticket)
         outputResults(results, profitPercentage)
     }
