@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.LottoGameState.*
+import lotto.LottoGameManagerState.*
 
 class LottoGame {
     private var gameState = BUYING
@@ -10,17 +11,14 @@ class LottoGame {
     fun run() {
         while (gameState != FINISHED) {
             gameManager.set(gameState)
-            gameViewer.set(gameState, gameManager.getViewerState())
-            updateGameState()
+            gameViewer.set(gameState, gameManager.getState(), gameManager.getData())
+            if (gameManager.getState() == NORMAL) updateState()
         }
     }
 
-    private fun updateGameState() {
-        when (gameState) {
-            BUYING -> gameState = PICKING
-            PICKING -> gameState = WINNING
-            WINNING -> gameState = FINISHED
-            FINISHED -> {}
-        }
+    private fun updateState() {
+        if (gameState == BUYING) gameState = PICKING
+        if (gameState == PICKING) gameState = WINNING
+        if (gameState == WINNING) gameState = FINISHED
     }
 }
