@@ -1,4 +1,4 @@
-package lotto.ModuleTest
+package lotto.model
 
 import lotto.model.validation.LottoNumValidation
 import lotto.model.validation.InputValidation
