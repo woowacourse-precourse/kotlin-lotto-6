@@ -7,6 +7,21 @@ class LottoMachine {
 
     fun start() {
         val payment = view.printInputPaymentMessage()
+        val lotto = makeLotto(payment)
+    }
+
+    private fun makeLotto(payment: Int): List<Lotto> {
+        val count = countLotto(payment)
+        val lotto = mutableListOf<Lotto>()
+        repeat(count) {
+            lotto.add(generateLotto())
+        }
+        return lotto
+    }
+
+    private fun generateLotto(): Lotto {
+        val num = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        return Lotto(num.sorted())
     }
 
     private fun countLotto(payment: Int): Int {
