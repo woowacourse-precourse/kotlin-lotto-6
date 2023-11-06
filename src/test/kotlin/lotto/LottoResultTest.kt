@@ -66,4 +66,14 @@ class LottoResultTest {
             )
         }
     }
+
+    @Test
+    fun `보너스 번호가 1 ~ 45 범위를 벗어나면 예외 발생`() {
+        assertThrows<IllegalArgumentException> {
+            LottoResult(
+                winLotto = Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                bonus = 0
+            )
+        }
+    }
 }
