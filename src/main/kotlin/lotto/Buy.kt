@@ -7,26 +7,31 @@ import ui.Input
 
 
 class Buy {
-    fun buyLotto(): Int {
-        var inputMoney: Int
-        while (true) {
-            println(Message.MESSAGE_INPUT_MONEY)
-            try {
-                inputMoney = Input.inputMoney()
-                if (inputMoney % 1000 != 0) {
-                    println(Exception.EXCEPTION_INVALID_MONEY)
-                    throw IllegalArgumentException()
-                }
-                if (!inputMoney.toString().trim().all { Character.isDigit(it) }) {
-                    println(Exception.EXCEPTION_INVALID_MONEY_TYPE)
-                    throw IllegalArgumentException()
-                }
-                break
-            } catch (e: IllegalArgumentException) {
+    init {
+        println(Message.MESSAGE_INPUT_MONEY)
+    }
 
-            }
+    fun buyLotto(): Int {
+        try {
+            val money = Input.inputMoney()
+            validateMoney(money.toString())
+            return money / 1000
+        } catch (e: IllegalArgumentException) {
+            println(Exception.EXCEPTION_INVALID_MONEY_TYPE)
+            return buyLotto()
+        } catch (e: NumberFormatException) {
+            println(Exception.EXCEPTION_INVALID_MONEY)
+            return buyLotto()
         }
-        return inputMoney / 1000
+    }
+
+    fun validateMoney(money: String) {
+        if (!money.matches(Regex("[0-9]+"))) {
+            throw NumberFormatException()
+        }
+        if (money.toInt() % 1000 != 0) {
+            throw IllegalArgumentException()
+        }
     }
 
     fun generateLottos(count: Int): Lottos {
