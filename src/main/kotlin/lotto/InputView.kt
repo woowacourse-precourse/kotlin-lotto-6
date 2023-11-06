@@ -20,7 +20,7 @@ class InputView {
         try {
             require(purchaseAmount.isNotEmpty()) { "[ERROR] 금액을 입력해주세요." }
             val validPurchaseAmount = purchaseAmount.toInt()
-            require(validPurchaseAmount >= 1000) { "[ERROR] 1,000원 이상이어야 구매가 가능합니다. (로또 1장 : 1,000원)"}
+            require(validPurchaseAmount >= 1000) { "[ERROR] 1,000원 이상이어야 구매가 가능합니다. (로또 1장 : 1,000원)" }
         } catch (exception: NumberFormatException) {
             throw IllegalArgumentException( "[ERROR] 금액은 숫자만 입력해주셔야하며, Int범위 이내여야합니다. (21억 이하 가능)" )
         }
@@ -69,6 +69,7 @@ class InputView {
             require(bonusNumber in 1 .. 45) { "[ERROR] 1~45 사이의 숫자를 입력하셔야 합니다." }
             require(!winningNumberList.contains(bonusNumber)) { "[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다." }
         } catch (exception: NumberFormatException){
+            //null case 포함
             throw IllegalArgumentException("[ERROR] 숫자를 입력하셔야 합니다.")
         }
         return bonusInput.toInt()
