@@ -11,13 +11,13 @@ object UserInput {
     private lateinit var duplicateNumbers: List<Int> // 당첨 번호들을 담아 두기 위한 변수(보너스 번호 중복 체크 용도)
 
     private fun readOnlyDigitAndToInt(): Int {
-            val input = Console.readLine()
-            InputValidator
-                .checkIsDigit(input)
-                .checkIsEmptyString(input)
+        val input = Console.readLine()
+        InputValidator
+            .checkIsDigit(input)
+            .checkIsEmptyString(input)
 
-            return input.toInt()
-        }
+        return input.toInt()
+    }
 
     fun readMoney(): Int {
         while (true) {

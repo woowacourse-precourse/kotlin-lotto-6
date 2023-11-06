@@ -1,7 +1,5 @@
 package ui
 
-
-
 const val MSG_ERR_ONLY_DIGIT = "[ERROR] 숫자를 입력해주세요."
 const val MSG_ERR_INVALIDATE_INPUT = "[ERROR] 유효하지 않은 입력입니다."
 const val MSG_ERR_PURCHASE_RANGE = "[ERROR] 구매 가능 금액은 1000원 ~ 10만원 입니다."
