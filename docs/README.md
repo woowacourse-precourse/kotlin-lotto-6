@@ -68,4 +68,4 @@
 - [x] PurchasePriceValidator 테스트
 - [x] WinNumbersValidator 테스트
 - [x] BonusNumberValidator 테스트
-- [] LottoStore 테스트
+- [x] LottoStore 테스트

@@ -2,6 +2,9 @@ package lotto.domain
 
 import lotto.validator.PurchasePriceValidator
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.constant.Constants.COUNT
+import lotto.constant.Constants.END_INCLUSIVE
+import lotto.constant.Constants.START_INCLUSIVE
 
 class LottoStore(private val purchasePrice: String) {
     init {
@@ -24,11 +27,5 @@ class LottoStore(private val purchasePrice: String) {
     private fun generateNumbers(): List<Int> {
         val numbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT)
         return numbers.sorted()
-    }
-
-    companion object {
-        const val START_INCLUSIVE = 1
-        const val END_INCLUSIVE = 45
-        const val COUNT = 6
     }
 }
