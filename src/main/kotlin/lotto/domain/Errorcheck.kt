@@ -2,6 +2,12 @@ package lotto.domain
 
 import lotto.constants.*
 
+fun moneyErrorCheck(moneyInput : String){
+    blankCheck(moneyInput)
+    numberCheck(moneyInput)
+    moneyCheck(moneyInput.toInt())
+}
+
 fun blankCheck(input: String) {
     if (input.isBlank()) {
         throw IllegalArgumentException(BLANK_ERROR)

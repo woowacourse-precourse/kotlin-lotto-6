@@ -7,16 +7,14 @@ object InputView {
     fun enterMoney(): Int {
         val input = Console.readLine()
         try{
-            blankCheck(input)
-            numberCheck(input)
-            val money = input.toInt()
-            moneyCheck(money)
-            return money
+            moneyErrorCheck(input)
+            return input.toInt()
         }catch(e:IllegalArgumentException){
             println("[ERROR] ${e.message}")
         }
         return enterMoney()
     }
+
     fun enterWinningNumber(): List<Int> {
         val input = Console.readLine()
         val splitInput = input.split(",")
