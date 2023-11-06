@@ -3,15 +3,20 @@ package lotto
 class Validator {
     fun validatePurchaseMoney(purchaseMoney: String): Boolean {
         return try {
-            isNumber(purchaseMoney) && isDividedUpThousand(purchaseMoney.toInt())
+            isNumberOverZero(purchaseMoney) && isDividedUpThousand(purchaseMoney.toInt())
         } catch (e: IllegalArgumentException) {
-            println("[ERROR] 구입 금액을 올바르게 입력해주세요.")
+            println("[ERROR] ${e}")
             false
         }
     }
 
-    fun isNumber(input: String): Boolean{
-        return input.toIntOrNull() != null
+    fun isNumberOverZero(input: String): Boolean{
+        val number = input.toIntOrNull()
+        return if (number != null && number > 0){
+            true
+        } else {
+            throw IllegalArgumentException("0보다 큰 정수를 입력해주세요.")
+        }
     }
 
     fun isDividedUpThousand(money: Int): Boolean{
