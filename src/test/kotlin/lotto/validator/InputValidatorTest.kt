@@ -33,4 +33,32 @@ class InputValidatorTest {
             .isThrownBy { InputValidator.validateInputPurchaseAmount(input) }
             .withMessage("[ERROR] 숫자를 입력해주세요.")
     }
+
+    @Test
+    fun `당첨 번호 입력 검증 - 정상 입력`() {
+        // given
+        val input = listOf("1", "2", "3")
+        // when & then
+        assertDoesNotThrow { InputValidator.validateInputWinningLotto(input) }
+    }
+
+    @Test
+    fun `당첨 번호 입력 검증 - 빈 값 포함`() {
+        // given
+        val input = listOf("1", "", "3")
+        // when & then
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
+            .isThrownBy { InputValidator.validateInputWinningLotto(input) }
+            .withMessage("[ERROR] 빈 값이 입력되었습니다.")
+    }
+
+    @Test
+    fun `당첨 번호 입력 검증 - Int 범위 초과 입력`() {
+        // given
+        val input = listOf("2147483648", "-2147483649", "abcdef")
+        // when & then
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
+            .isThrownBy { InputValidator.validateInputWinningLotto(input) }
+            .withMessage("[ERROR] 숫자를 입력해주세요.")
+    }
 }
