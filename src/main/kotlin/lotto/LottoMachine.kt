@@ -29,7 +29,7 @@ fun generateLotto(): List<Int> {
     val lottoTickets = mutableListOf<List<Int>>()
 
     repeat(countNumberOfTickets(numberOfTicket)) {
-        var sortedLotto = Randoms.pickUniqueNumbersInRange(1,45,6).sorted()
+        var sortedLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6).sorted()
         lottoTickets.add(lottoTickets) // class로 넣으면서 Type mismatch 해결하기
     }
     println(lottoTickets)
