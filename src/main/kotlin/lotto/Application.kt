@@ -1,6 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Console
 fun main() {
     val (tickets, purchaseAmount) = buyTickets()
     println("${tickets.size}개를 구매했습니다.")
@@ -51,7 +52,7 @@ fun buyLottoTickets(purchaseAmount: Int): List<Lotto> {
 }
 fun inputPurchaseAmount(): String {
     println("구입금액을 입력해 주세요.")
-    return readLine().orEmpty()
+    return Console.readLine()
 }
 
 fun getValidPurchaseAmount(): Int {
