@@ -1,14 +1,23 @@
 package lotto.model
 
-class LottoPaper(lottoNum: List<LottoNum>) {
-    private var lottoNum: List<LottoNum>
+class LottoPaper(lottoLineCount: Int) {
+    private var lottoNum: List<Lotto> = mutableListOf()
 
     init {
-        //예외처리
-        this.lottoNum = lottoNum
+        lottoNum = createLottoPaper(lottoLineCount)
     }
 
-    fun getLottoPaper(): List<LottoNum> {
+    private fun createLottoPaper(lottoLineCount: Int): List<Lotto> {
+        val createdLottoNum = mutableListOf<Lotto>()
+        val lottoNumbersFactory = LottoNumbersFactory()
+        for (i in 0 until lottoLineCount) {
+            val lottoNumbers = lottoNumbersFactory.createLottoNumbers()
+            createdLottoNum.add(lottoNumbers)
+        }
+        return createdLottoNum
+    }
+
+    fun getLottoPaper(): List<Lotto> {
         return lottoNum
     }
 }
