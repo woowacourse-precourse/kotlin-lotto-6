@@ -31,6 +31,18 @@ fun lottoPayment():Int{
     return digits.toInt()
 }
 
+fun lottoGame(price:Int):List<Lotto>{
+    val lottoGameTicketCount = price/1000
+    println("${lottoGameTicketCount}개를 구매했습니다.")
+    val tickets:List<Lotto> = listOf()
+    repeat(lottoGameTicketCount){
+        val ticket = pickLottoNumbers()
+        println(ticket)
+        tickets.add(ticket)
+    }
+    return tickets
+}
+
 fun main() {
     TODO("프로그램 구현")
 }
