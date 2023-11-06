@@ -3,9 +3,9 @@ package lotto
 class Amount(private val amount: String) {
 
     init {
-        require(isNumber()) { throw IllegalArgumentException("$ERROR $INPUT_ONLY_NUMBER") }
-        require(isBelowZero()) { throw IllegalArgumentException("$ERROR $INPUT_ONLY_MORE_THAN_ZERO") }
-        require(isDivideThousandUnit()) { throw IllegalArgumentException("$ERROR $INPUT_ONLY_UNIT_OF_THOUSAND") }
+        require(isNumber()) { "$ERROR $INPUT_ONLY_NUMBER" }
+        require(isBelowZero()) { "$ERROR $INPUT_ONLY_MORE_THAN_ZERO" }
+        require(isDivideThousandUnit()) { "$ERROR $INPUT_ONLY_UNIT_OF_THOUSAND" }
     }
 
     private fun isNumber(): Boolean {
