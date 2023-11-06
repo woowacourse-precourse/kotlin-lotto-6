@@ -9,4 +9,8 @@ object LottoView {
         val purchaseAmount = Console.readLine()
         return purchaseAmount
     }
+
+    fun printErrorMessage(message: String) {
+        println(message)
+    }
 }
