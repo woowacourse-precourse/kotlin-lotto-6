@@ -20,16 +20,12 @@ class Game private constructor(
 
         val lottery = mutableListOf<Lotto>()
         repeat(purchaseLottoNumber) {
-            val numbers = sortLotteryRandomNumber(Randoms.pickUniqueNumbersInRange(1, 45, 6))
+            val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
             lottery.add(Lotto(numbers))
         }
 
         printer.printLottoNumber(lottery)
         return lottery
-    }
-
-    fun sortLotteryRandomNumber(numbers: List<Int>): List<Int> {
-        return numbers.sorted()
     }
 
 }
