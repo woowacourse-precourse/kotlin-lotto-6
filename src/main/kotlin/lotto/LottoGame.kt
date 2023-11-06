@@ -77,7 +77,6 @@ class LottoGame {
     private fun inputPrizeNumber(){
         println("당첨 번호를 입력해 주세요.")
         val number = Console.readLine().split(',')
-        error.inputNumber(number)
         for(i in number.indices){
             numbers.add(number[i].toInt())
         }
