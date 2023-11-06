@@ -17,7 +17,15 @@ class UserLottoNumber {
         try {
             number.toInt()
         } catch (e: NumberFormatException) {
-            error(Constants.ERROR_LOTTO_FORMAT)
+            println(Constants.ERROR_LOTTO_FORMAT)
+            throw IllegalArgumentException(Constants.ERROR_LOTTO_FORMAT)
+        }
+    }
+    fun sizeValidate(userLottoAnswer:List<Int>) {
+        println(userLottoAnswer.size)
+        if (userLottoAnswer.size != Constants.SIX){
+            println(Constants.ERROR_LOTTO_SIZE)
+            throw IllegalArgumentException(Constants.ERROR_LOTTO_SIZE)
         }
     }
 }

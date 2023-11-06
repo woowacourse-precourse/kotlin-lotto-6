@@ -22,12 +22,16 @@ class LottoMachine {
     fun moneyInput(): Int {
         Output().printWriteMoney()
         var money = Input().write()
-        try {
-            Money().moneyFormatValidate(money)
-            Money().moneyRangeValidate(money)
-            Money().moneyChangesValidate(money)
-        } catch (e: IllegalArgumentException) {
-            money = Input().write()
+        var validFlag = true
+        while (validFlag) {
+            try {
+                Money().moneyFormatValidate(money)
+                Money().moneyRangeValidate(money)
+                Money().moneyChangesValidate(money)
+                validFlag = false
+            } catch (e: IllegalArgumentException) {
+                money = Input().write()
+            }
         }
         return money.toInt()
     }
@@ -46,23 +50,36 @@ class LottoMachine {
     fun userAnswer(): List<Int> {
         Output().printWriteAnswer()
         var answers = Input().write()
-        var userLottoAnswer = Lotto(UserLottoNumber().convert(answers)).serve()
-        try {
-            Lotto(userLottoAnswer).rangeValidate()
-            Lotto(userLottoAnswer).duplicationValidate()
-            Lotto(userLottoAnswer).sizeValidate()
-        } catch (e:IllegalArgumentException){
-            answers = Input().write()
-            userLottoAnswer = Lotto(UserLottoNumber().convert(answers)).serve()
+        var userLottoAnswer = UserLottoNumber().convert(answers)
+        var validFlag = true
+        while (validFlag) {
+            try {
+                Lotto(userLottoAnswer).rangeValidate()
+                Lotto(userLottoAnswer).duplicationValidate()
+                UserLottoNumber().sizeValidate(userLottoAnswer)
+                validFlag = false
+            } catch (e: IllegalArgumentException) {
+                answers = Input().write()
+                userLottoAnswer = UserLottoNumber().convert(answers)
+            }
         }
         return userLottoAnswer
     }
 
     fun userBonus(answers: List<Int>): Int {
         Output().printWriteBonus()
-        val bonus = Input().write()
-        Bonus().BonusFomatValidate(bonus)
-        Bonus().BonuDuplicationValidate(bonus.toInt(), answers)
+        var bonus = Input().write()
+        var validFlag = true
+        while (validFlag) {
+            try {
+                Bonus().BonusFomatValidate(bonus)
+                Bonus().BonuDuplicationValidate(bonus.toInt(), answers)
+                validFlag = false
+            } catch (e: IllegalArgumentException) {
+                bonus = Input().write()
+            }
+        }
+
         return bonus.toInt()
     }
 
