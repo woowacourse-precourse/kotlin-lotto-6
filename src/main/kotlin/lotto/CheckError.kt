@@ -93,7 +93,18 @@ class CheckError {
         return true
     }
 
-    fun checkNonOverlapNumber(winningSixNumbers: List<Int>): Boolean {
+    fun checkNonOverlapNumber(winningSixNumbers: List<String>): Boolean {
+
+        try {
+
+            require(winningSixNumbers.toSet().size == 6) { }
+
+        } catch (e: IllegalArgumentException) {
+
+            println("[ERROR] : 겹치는 숫자가 있습니다. 다시 입력해주세요")
+
+            return false
+        }
 
         return true
     }

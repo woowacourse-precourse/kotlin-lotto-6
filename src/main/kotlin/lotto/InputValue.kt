@@ -33,6 +33,7 @@ class InputValue {
         check.checkOnlyNumber(winningNumber)
         check.checkNumber1to45(winningNumber)
         check.checkInputSixNumbers(winningNumber)
+        check.checkNonOverlapNumber(winningNumber)
 
         return listOf(0)
     }
