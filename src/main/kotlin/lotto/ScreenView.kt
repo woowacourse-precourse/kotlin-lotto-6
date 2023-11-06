@@ -1,12 +1,16 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.LottoController
+
 class ScreenView {
     private val inputMoneyMessage = "구입금액을 입력해 주세요."
     private val inputLottoMessage = "당첨 번호를 입력해 주세요."
     private val inputBonusNumberMessage = "보너스 번호를 입력해 주세요."
 
-    fun inputMoney(): Int{
+    private val controller = LottoController()
+
+    fun inputMoney(): Int {
         println(inputMoneyMessage)
         val money: Int = Console.readLine().toInt()
         println()
@@ -14,15 +18,21 @@ class ScreenView {
         return money/1000
     }
 
-    fun inputLotto(): List<Int>{
+    fun inputLotto(): MutableList<Int> {
         println(inputLottoMessage)
-        val numbers = Console.readLine()?.toString()
-        val inputString = numbers?.split(",")
+        val numbers = Console.readLine()
+        val inputString = numbers?.split(",")?.toMutableList()
         val inputInt = convertStringsToInts(inputString)
         return inputInt
     }
 
-    fun convertStringsToInts(stringList: List<String>?): List<Int> {
+    fun inputBonusNum(): Int {
+        println(inputBonusNumberMessage)
+        val bonusNum = Console.readLine().toInt()
+        return bonusNum
+    }
+
+    fun convertStringsToInts(stringList: MutableList<String>?): MutableList<Int> {
         val intList = mutableListOf<Int>()
 
         if (stringList != null) {
@@ -35,7 +45,6 @@ class ScreenView {
                 }
             }
         }
-
         return intList
     }
 }
