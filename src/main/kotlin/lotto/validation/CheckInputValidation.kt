@@ -1,9 +1,10 @@
 package lotto.validation
 
-import lotto.model.WinningLotto
+import lotto.domain.LottoManager.Companion.LOTTO_END_INCLUSIVE
+import lotto.domain.LottoManager.Companion.LOTTO_START_INCLUSIVE
 import java.lang.NumberFormatException
 
-class CheckValidation {
+class CheckInputValidation {
 
     fun checkIsNumber(userInput: String): Boolean {
         return try {
@@ -31,10 +32,4 @@ class CheckValidation {
         numbers: List<Int>,
         bonusNumber: Int
     ): Boolean = numbers.contains(bonusNumber)
-
-
-    companion object {
-        const val LOTTO_START_INCLUSIVE = 1
-        const val LOTTO_END_INCLUSIVE = 45
-    }
 }
