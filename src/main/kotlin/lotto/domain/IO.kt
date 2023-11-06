@@ -19,7 +19,9 @@ class IO(private val validator: Validator) {
         show(INPUT_PURCHASE_AMOUNT, true)
 
         val input = getInput()
-        validator.checkInputOfPurchasingCorrect(input)
+        require(validator.checkInputOfPurchasingCorrect(input)) {
+            SHOULD_BE_POSITIVE_NUM
+        }
 
         return input.toUInt()
     }
@@ -33,6 +35,7 @@ class IO(private val validator: Validator) {
     companion object {
         private const val INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요."
         private const val ISSUED_N_TICKET = "%d개를 구매했습니다."
+        private const val SHOULD_BE_POSITIVE_NUM = "[ERROR] 0보다 큰 숫자를 입력해주세요."
         private const val LINE_BREAK = "\n"
         private const val EMPTY_TEXT_FOR_LINE_BREAK = ""
     }
