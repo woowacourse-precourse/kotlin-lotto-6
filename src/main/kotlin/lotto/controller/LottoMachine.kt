@@ -3,6 +3,7 @@ package lotto.controller
 import lotto.model.*
 import lotto.view.Input
 import lotto.view.Output
+import java.util.Scanner
 
 class LottoMachine {
     fun start() {
@@ -19,9 +20,8 @@ class LottoMachine {
     fun moneyInput(): Int {
         Output().printWriteMoney()
         val money = Input().write()
-        Money().MoneyFomatValidate(money)
-        Money().MoneyRangeValidate(money)
-        Money().MoneyChangesValidate(money)
+        Money().inputMoneyValidate(money)
+        println(money)
         return money.toInt()
     }
 
