@@ -5,13 +5,9 @@ enum class InputValidation(val message: String, val isValid: (String) -> Unit) {
         "[ERROR] 숫자만 입력이 가능합니다.",
         fun(value: String) = require(value.all { it.isDigit() }) { ONLY_NUMBER.message },
     ),
-    PURCHASE_AMOUNT_EMPTY(
-        "[ERROR] 구매 금액이 입력되지 않았습니다.",
-        fun(value: String) = require(value.isNotBlank()) { PURCHASE_AMOUNT_EMPTY.message },
-    ),
     NUMBER_EMPTY(
-        "[ERROR] 구매 금액이 입력되지 않았습니다.",
-        fun(value: String) = require(value.isNotBlank()) { PURCHASE_AMOUNT_EMPTY.message },
+        "[ERROR] 공백은 입력하실 수 없습니다.",
+        fun(value: String) = require(value.isNotBlank()) { NUMBER_EMPTY.message },
     ),
     NUMBER_FORMAT(
         "[ERROR] 올바른 숫자 형태가 아닙니다.",
