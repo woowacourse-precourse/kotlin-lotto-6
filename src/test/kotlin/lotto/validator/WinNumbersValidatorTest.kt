@@ -1,15 +1,16 @@
 package lotto.validator
 
-import org.junit.jupiter.api.assertThrows
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
 import lotto.constant.Constants.COUNT
 import lotto.constant.Constants.END_INCLUSIVE
 import lotto.constant.Constants.START_INCLUSIVE
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertDoesNotThrow
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
-class WinNumbersValidatorTest : InputValidator(){
+class WinNumbersValidatorTest : InputValidator() {
 
     @ParameterizedTest
     @ValueSource(strings = ["abc", "-2000", "#421", "421#", "가나다"])
