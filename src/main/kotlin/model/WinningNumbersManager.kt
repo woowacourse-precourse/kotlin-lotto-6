@@ -32,4 +32,19 @@ class WinningNumbersManager(numbers: List<String>) {
     fun setBonusNumber(number: String) {
         bonusNumber = number.toInt()
     }
+
+    fun getRank(numbers: List<Int>): Int {
+        when (winningNumbers.count { numbers.contains(it) }) {
+            3 -> return 5
+            4 -> return 4
+            5 -> {
+                if (numbers.contains(bonusNumber)) return 2
+                return 3
+            }
+
+            6 -> return 1
+        }
+        return 0
+    }
+
 }
