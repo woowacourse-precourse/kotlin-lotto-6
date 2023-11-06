@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.view.InputView
+import lotto.view.OutputView
 import lotto.validator.InputValidator
 
 import lotto.domain.LottoShop
@@ -9,6 +10,7 @@ import lotto.domain.Money
 
 fun main() {
     val lottos = generateLottos()
+    OutputView.outputLottos(lottos)
 }
 
 private fun generateLottos(): Lottos {
