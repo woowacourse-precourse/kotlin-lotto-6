@@ -1,9 +1,9 @@
 package lotto.domain
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.BeforeEach
-
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -14,7 +14,12 @@ class ValidatorTest {
 
     @BeforeEach
     fun setUp() {
-        validator = Validator()
+        validator = Validator.getInstance()
+    }
+
+    @AfterEach
+    fun tearDown() {
+        Validator.releaseInstance()
     }
 
     @ParameterizedTest(name = "check {0}")

@@ -3,7 +3,7 @@ package lotto.domain
 import camp.nextstep.edu.missionutils.Console
 import lotto.data.Lotto
 
-class IO(private val validator: Validator) {
+class IO private constructor(private val validator: Validator) {
 
     private fun getInput() = Console.readLine()
 
@@ -38,5 +38,23 @@ class IO(private val validator: Validator) {
         private const val SHOULD_BE_POSITIVE_NUM = "[ERROR] 0보다 큰 숫자를 입력해주세요."
         private const val LINE_BREAK = "\n"
         private const val EMPTY_TEXT_FOR_LINE_BREAK = ""
+
+        @Volatile
+        private var instance: IO? = null
+        fun getInstance(validator: Validator): IO {
+            val io = instance
+            if (io != null) {
+                return io
+            }
+            return synchronized(this) {
+                val ioForCheck = instance
+                if (ioForCheck != null) {
+                    return@synchronized ioForCheck
+                }
+                val createdIO = IO(validator)
+                instance = createdIO
+                createdIO
+            }
+        }
     }
 }
