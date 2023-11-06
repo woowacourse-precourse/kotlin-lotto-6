@@ -10,7 +10,6 @@ class Lotto(private val numbers: List<Int>) {
 
     private fun requireDuplicateLottoNumber() {
         val uniqueNumbers = HashSet<Int>()
-
         for (number in numbers) {
             require(uniqueNumbers.add(number))
         }
@@ -33,7 +32,7 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     companion object {
-        private val VALID_RANGE = 1..46
+        private val VALID_RANGE = 1..45
     }
 
 }
