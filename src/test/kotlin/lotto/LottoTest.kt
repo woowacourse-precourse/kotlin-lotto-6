@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.domain.Lotto
+import lotto.domain.LottoPurchase
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -22,4 +23,17 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `로또 구입 금액이 숫자가 아닌 경우 예외 처리`() {
+        assertThrows<IllegalArgumentException> {
+            LottoPurchase().validateAmount("abcd")
+        }
+    }
+
+    @Test
+    fun `로또 구입 금액이 1,000원 단위가 아닌 경우 예외 처리`() {
+        assertThrows<IllegalArgumentException> {
+            LottoPurchase().validateAmount("12001")
+        }
+    }
 }

@@ -14,10 +14,14 @@ class LottoPurchase {
         return amount.toInt() / AMOUNT_UNIT
     }
 
-    private fun validateAmount(amount: String) {
-        for(c in amount){
-            if(c !in MINIMUM_NUMBER until MAXIMUM_NUMBER) throw IllegalArgumentException(MESSAGE_ONLY_NUMBER)
+    fun validateAmount(amount: String) {
+        for (c in amount) {
+            if (c !in MINIMUM_NUMBER until MAXIMUM_NUMBER) throw IllegalArgumentException(
+                MESSAGE_ONLY_NUMBER
+            )
         }
-        if(amount.toInt() % AMOUNT_UNIT != 0) throw IllegalArgumentException(MESSAGE_NOT_FIT_UNIT_1000)
+        if (amount.toInt() % AMOUNT_UNIT != 0) throw IllegalArgumentException(
+            MESSAGE_NOT_FIT_UNIT_1000
+        )
     }
 }
