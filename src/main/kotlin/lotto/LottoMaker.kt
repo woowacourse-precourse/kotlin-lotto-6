@@ -7,14 +7,27 @@ class LottoMaker {
         val purchasedLotto = purchase / LOTTO_PRICE
         val issuedLotto = mutableListOf<Lotto>()
         for (i in 1..purchasedLotto) {
-            val randomLottoNumber = makeRandomLottoNumber()
-            val newLotto = Lotto(randomLottoNumber)
+            val newLotto = makeNewLotto()
             issuedLotto.add(newLotto)
         }
+        printIssuedLotto(issuedLotto)
         return issuedLotto
     }
 
-    fun makeRandomLottoNumber(): List<Int> {
+    private fun printIssuedLotto(issuedLotto: List<Lotto>) {
+        val purchasedLotto = issuedLotto.size
+        println("${purchasedLotto}개를 구매했습니다.")
+        for (lotto in issuedLotto) {
+            println(lotto.getLottoNumber())
+        }
+    }
+
+    private fun makeNewLotto(): Lotto {
+        val randomLottoNumber = makeRandomLottoNumber()
+        return Lotto(randomLottoNumber)
+    }
+
+    private fun makeRandomLottoNumber(): List<Int> {
         return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_COUNT)
     }
 

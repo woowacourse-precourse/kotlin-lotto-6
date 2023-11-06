@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console
 class LottoInitializer {
     fun playLotto() {
         val purchaseMoney = getPurchaseMoney()
-        //issueLotto(purchaseMoney)
+        val issuedLotto = LottoMaker().issueLotto(purchaseMoney)
         val winningNumbers = getWinningNumbers()
         val bonusNumber = getBonusNumber()
         //printLottoResult()
