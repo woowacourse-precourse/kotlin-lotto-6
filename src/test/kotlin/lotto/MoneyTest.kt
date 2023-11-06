@@ -46,4 +46,11 @@ class MoneyTest {
             Money("500")
         }
     }
+
+    @Test
+    fun `과도하게 큰 값을 입력하였을 경우 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            Money("100000000000000000")
+        }
+    }
 }
