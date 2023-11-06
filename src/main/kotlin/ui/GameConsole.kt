@@ -6,9 +6,7 @@ import lotto.WinningCriteria
 class GameConsole {
     fun showLottoTickets(lottoTickets: List<Lotto>, count: Int) {
         println("\n$count" + PURCHASE_RESULT_MSG)
-        for (lotto in lottoTickets) {
-            println(lotto)
-        }
+        lottoTickets.forEach { lotto -> println(lotto) }
     }
 
     fun showWinningStatistic(results: Map<WinningCriteria, Int>) {

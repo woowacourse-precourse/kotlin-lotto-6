@@ -1,7 +1,5 @@
 package utils
 
-import lotto.LottoMachine
-
 class BonusNumberValidator : IntegerInputValidator() {
 
     fun checkInputValidation(userInput: String, winningNumbers: List<Int>): Boolean {

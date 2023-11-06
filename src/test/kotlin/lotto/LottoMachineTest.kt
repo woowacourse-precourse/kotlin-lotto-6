@@ -33,7 +33,7 @@ class LottoMachineTest {
     fun When_GenerateRanDomNumbers_Expect_NoDuplicate() {
         repeat(100) {
             val numbers = lottoMachine.generateLottoNumbers()
-            assertEquals(numbers.size,numbers.toSet().size)
+            assertEquals(numbers.size, numbers.toSet().size)
         }
     }
 

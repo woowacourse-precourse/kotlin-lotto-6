@@ -28,7 +28,8 @@ class LottoGame(
     private fun determineWiningResult(lottoTickets: List<Lotto>) {
         val winningNumbers = userInputReader.getWinningNumbers()
         val bonusNum = userInputReader.getBonusNumber(winningNumbers)
-        val winningResult = lottoResultChecker.compareLottoTicketsWithWinningNumbers(lottoTickets, winningNumbers, bonusNum)
+        val winningResult =
+            lottoResultChecker.compareLottoTicketsWithWinningNumbers(lottoTickets, winningNumbers, bonusNum)
 
         gameConsole.showWinningStatistic(winningResult)
     }

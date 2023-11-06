@@ -10,7 +10,7 @@ class LottoMachine() {
         repeat(count) {
             lottoTickets.add(generateLotto(generateLottoNumbers()))
         }
-        return lottoTickets
+        return lottoTickets.toList()
     }
 
     fun generateLotto(numbers: List<Int>): Lotto = Lotto(numbers.sorted())
