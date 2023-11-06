@@ -10,7 +10,7 @@ open class InputValidator {
     }
 
     fun checkForPositiveInteger(value: String) {
-        require(value.matches("^[1-9]\\d*$".toRegex())) { "[ERROR] 양의 정수 이외의 숫자를 입력하지 말아주세요" }
+        require(value.matches("^[0-9]\\d*$".toRegex())) { "[ERROR] 양의 정수 이외의 숫자를 입력하지 말아주세요" }
     }
 
     fun checkForDuplicates(winNumbers: List<String>) {
