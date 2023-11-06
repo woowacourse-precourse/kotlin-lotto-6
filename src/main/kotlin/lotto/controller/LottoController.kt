@@ -1,11 +1,13 @@
 package lotto.controller
 
-import LottoView
-import camp.nextstep.edu.missionutils.Console
+import LottoView.inputPurchaseAmountOfLotto
+import LottoView.printPurchaseAmountOfLotto
+import lotto.model.LottoModel
 
-class LottoController {
+class LottoController() {
+    private val lottoModel = LottoModel()
     fun start() {
-        LottoView.printPurchaseAmountOfLotto()
-        val purchaseAmount = Console.readLine()
+        printPurchaseAmountOfLotto()
+        val purchaseAmount = inputPurchaseAmountOfLotto()
     }
 }
