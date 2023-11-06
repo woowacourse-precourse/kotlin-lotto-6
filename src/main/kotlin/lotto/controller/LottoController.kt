@@ -47,7 +47,6 @@ class LottoController(
                 LOTTO_END -> {
                     break
                 }
-
             }
         }
     }
@@ -78,7 +77,7 @@ class LottoController(
     private fun inputBonusNumber() {
         try {
             outputView.printInputBonusNumberMessage()
-            bonusNumber = inputView.inputBonusNumber()
+            bonusNumber = inputView.inputBonusNumber(winNumber)
             lottoStatus = LOTTO_CALCULATE
         } catch (e: IllegalArgumentException) {
             println("[ERROR] ${e.message}")

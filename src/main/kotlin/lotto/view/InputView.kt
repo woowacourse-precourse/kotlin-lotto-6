@@ -26,10 +26,11 @@ class InputView {
         return winNumber.map { it.toInt() }
     }
 
-    fun inputBonusNumber(): Int {
+    fun inputBonusNumber(winNumber: List<Int>): Int {
         val bonusNumber = Console.readLine()
         bonusNumber.isDigit()
         bonusNumber.isLottoNumber()
+        bonusNumber.hasNoDuplicateNumbers(winNumber)
         return bonusNumber.toInt()
     }
 }

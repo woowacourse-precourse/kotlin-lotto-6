@@ -13,5 +13,5 @@ class LottoNumber {
         return lotteryTickets
     }
 
-    fun generateRandomNumber() = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+    private fun generateRandomNumber() = Randoms.pickUniqueNumbersInRange(1, 45, 6)
 }
