@@ -5,7 +5,7 @@ class LottoResult(
     private val purchaseLotto: List<Lotto>,
     private val lottoPrizeCheck: LottoPrizeCheck
 ) {
-    fun lottoResult(): Array<Int> {
+    fun prizeResult(): Array<Int> {
         purchaseLotto.forEach { prize ->
             val prizeResultIndex = lottoPrizeCheck.checkPrize(prize)
             if(prizeResultIndex != LottoPrizeCheck.INDEX_NOTHING) checkPrize[prizeResultIndex]++
