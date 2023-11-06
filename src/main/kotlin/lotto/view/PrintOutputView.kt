@@ -2,7 +2,7 @@ package lotto.view
 
 import lotto.constant.PrintText
 import lotto.domain.LottoGameResult
-import lotto.domain.Lottoes
+import lotto.domain.Lottos
 
 class PrintOutputView {
 
@@ -20,8 +20,8 @@ class PrintOutputView {
         println(purchaseAmount.toString() + PrintText.PRINT_PURCHASE_AMOUNT.text)
     }
 
-    fun printRandomWinningNumbers(winningNumbers: Lottoes) {
-        println(winningNumbers.toLottesResult())
+    fun printRandomWinningNumbers(winningNumbers: Lottos) {
+        println(winningNumbers.toLottosResult())
         PrintText.SEPARATE_LOTTES
         println()
     }

@@ -5,6 +5,9 @@ import java.util.regex.Pattern
 
 class UserInputValidator {
 
+    fun isBlankInput(userInput: String) {
+        require(userInput.isNotEmpty()) { ErrorMessage.NOT_BLANK_INPUT.message }
+    }
 
     fun isPurchaseAmountFormat(userInput: String) {
         require(userInput.none { char -> !char.isDigit() }) { ErrorMessage.NOT_NUMBER_PURCHASE_AMOUNT.message }
@@ -23,7 +26,7 @@ class UserInputValidator {
         userInput.forEach { require(it.none { char -> !char.isDigit() }) { ErrorMessage.NOT_NUMBER_WINNING_NUMBER.message } }
     }
 
-    fun isContainBlank(userInput: String) {
+    fun isRightWinningNumberFormat(userInput: String) {
         require(NUMBER_PATTERN.matcher(userInput).matches()) { ErrorMessage.NOT_WINNING_NUMBER_PATTERN.message }
     }
 
