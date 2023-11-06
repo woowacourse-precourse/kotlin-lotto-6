@@ -29,7 +29,7 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     companion object {
-        val VALID_RANGE = 1..46
+        private val VALID_RANGE = 1..46
     }
 
 }
