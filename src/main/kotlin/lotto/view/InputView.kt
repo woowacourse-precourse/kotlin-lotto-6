@@ -4,12 +4,19 @@ import camp.nextstep.edu.missionutils.Console
 import lotto.DIVIDE_MONEY_NUMBER
 import lotto.MAX_LOTTO_RANGE
 import lotto.MAX_LOTTO_SIZE
+import lotto.errorMessageFormat
 
 object InputView {
     private const val PURCHASE_MONEY_MESSAGE = "구입금액을 입력해 주세요."
     private const val WINNING_NUMBER_MESSAGE = "\n당첨 번호를 입력해 주세요."
     private const val BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요."
     private const val DELIMITER_COMMA = ","
+    private const val ERROR_PURCHASE_DIVIDE_MESSAGE = "구입 금액은 1000으로 나누어 떨어지지 않습니다."
+    private const val ERROR_NUMBER_MESSAGE = "입력값이 숫자가 아닙니다."
+    private const val ERROR_PRIZE_RANGE_MESSAGE = "당첨 번호는 1~45입니다."
+    private const val ERROR_PRIZE_REPEAT_MESSAGE = "당첨 번호에 중복이 있으면 안됩니다."
+    private const val ERROR_BONUS_REPEAT_MESSAGE = "보너스 번호와 당첨 번호에 중복이 있으면 안됩니다."
+    const val ERROR_PRIZE_SIZE_MESSAGE = "당첨 번호 길이는 6입니다."
 
     fun getPurchaseMoney(): Int {
         println(PURCHASE_MONEY_MESSAGE)
@@ -24,7 +31,9 @@ object InputView {
     }
 
     private fun checkDivideMoney(userMoney: Int) {
-        require(userMoney % DIVIDE_MONEY_NUMBER == 0)
+        check(userMoney % DIVIDE_MONEY_NUMBER == 0) {
+            errorMessageFormat(ERROR_PURCHASE_DIVIDE_MESSAGE)
+        }
     }
 
     fun getWinningNumbers(): List<Int> {
@@ -55,24 +64,34 @@ object InputView {
 
     private fun checkPositiveInteger(inputWinningNumber: String): Int {
         val winningNumber = inputWinningNumber.toIntOrNull() ?: 0
-        require(winningNumber > 0)
+        require(winningNumber > 0) {
+            errorMessageFormat(ERROR_NUMBER_MESSAGE)
+        }
 
         return winningNumber
     }
 
     private fun checkNumberRange(winningNumber: Int) {
-        require(winningNumber <= MAX_LOTTO_RANGE)
+        check(winningNumber <= MAX_LOTTO_RANGE) {
+            errorMessageFormat(ERROR_PRIZE_RANGE_MESSAGE)
+        }
     }
 
     private fun checkDuplicateNumber(winningNumbers: List<Int>) {
-        require(winningNumbers.toSet().size == winningNumbers.size)
+        check(winningNumbers.toSet().size == winningNumbers.size) {
+            errorMessageFormat(ERROR_PRIZE_REPEAT_MESSAGE)
+        }
     }
 
     private fun checkDuplicateNumbersAndBonusNumber(winningNumbers: List<Int>, bonusNumber: Int) {
-        require(!winningNumbers.contains(bonusNumber))
+        check(!winningNumbers.contains(bonusNumber)) {
+            errorMessageFormat(ERROR_BONUS_REPEAT_MESSAGE)
+        }
     }
 
     private fun checkNumbersSize(winningNumbers: List<Int>) {
-        require(winningNumbers.size == MAX_LOTTO_SIZE)
+        check(winningNumbers.size == MAX_LOTTO_SIZE){
+            errorMessageFormat(ERROR_PRIZE_SIZE_MESSAGE )
+        }
     }
 }

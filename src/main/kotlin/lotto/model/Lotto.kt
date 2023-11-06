@@ -4,10 +4,14 @@ import lotto.MAX_LOTTO_RANGE
 import lotto.MAX_LOTTO_SIZE
 import lotto.MIN_LOTTO_RANGE
 import lotto.domain.RandomGenerator
+import lotto.errorMessageFormat
+import lotto.view.InputView.ERROR_PRIZE_SIZE_MESSAGE
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == MAX_LOTTO_SIZE)
+        require(numbers.size == MAX_LOTTO_SIZE) {
+            errorMessageFormat(ERROR_PRIZE_SIZE_MESSAGE)
+        }
     }
 
     fun getLottoState(): List<LottoState> {

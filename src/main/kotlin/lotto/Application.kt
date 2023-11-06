@@ -4,5 +4,11 @@ import lotto.controller.LottoController
 
 fun main() {
     val lottoController = LottoController()
-    lottoController.playGame()
+
+    try {
+        lottoController.playGame()
+    } catch (e: Exception) {
+        println(e.message)
+    }
+
 }
