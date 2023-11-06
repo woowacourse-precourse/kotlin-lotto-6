@@ -1,6 +1,7 @@
 package lotto.view
 
 import lotto.Lotto
+import lotto.domain.Prize
 import lotto.utils.Messages
 import lotto.utils.Messages.DIVIDER
 import lotto.utils.Messages.WINNING_STATISTICS_MESSAGE
@@ -31,4 +32,11 @@ object OutputView {
         println(WINNING_STATISTICS_MESSAGE)
         println(DIVIDER)
     }
+
+    fun printResults(results: MutableMap<Prize, Int>) {
+        results.forEach { (prize, count) ->
+            println("${prize.matchingNumbers}개 일치 (${prize.prizeAmount}원) -  ${count}개")
+        }
+    }
+
 }

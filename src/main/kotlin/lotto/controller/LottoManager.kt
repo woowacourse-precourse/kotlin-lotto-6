@@ -28,8 +28,11 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         outputView.showWinningStatisticsMessages()
         val ranks = LottoRanks()
 
+        var results = mutableMapOf<Prize, Int>()
         lottoList.forEach { it ->
-            ranks.rank(it.getLotto(), lotto, bonusNumber)
+            results = ranks.rank(it.getLotto(), lotto, bonusNumber)
         }
+
+        outputView.printResults(results)
     }
 }
