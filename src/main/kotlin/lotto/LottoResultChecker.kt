@@ -22,7 +22,6 @@ class LottoResultChecker {
                 winningResult[result] = winningResult.getOrDefault(result, 0) + 1
                 addEarnings(result.prize)
             }
-
         }
         return winningResult.toMap()
     }
