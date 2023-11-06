@@ -1,10 +1,11 @@
 package lotto.validate
 
+import lotto.Lotto
 import lotto.utils.Constants
 import lotto.utils.Messages
 
 class validateBonus {
-    fun validateBonus(bonusNumber: Int, winningNumbers: List<Int>) {
+    fun validateBonus(bonusNumber: Int, winningNumbers: MutableList<Lotto>) {
         validateDuplicateBonusNumber(bonusNumber, winningNumbers)
         validateInputIsEmpty(bonusNumber.toString())
         validateInputNotNumber(bonusNumber.toString())
@@ -12,8 +13,8 @@ class validateBonus {
 
     }
 
-    private fun validateDuplicateBonusNumber(bonus: Int, winningNumbers: List<Int>) {
-        require(!winningNumbers.contains(bonus)) {
+    private fun validateDuplicateBonusNumber(bonus: Int, winningNumbers: MutableList<Lotto>) {
+        require(winningNumbers.contains<Any>(bonus)) {
             "${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_DUPLICATED_MESSAGE}"
         }
     }
