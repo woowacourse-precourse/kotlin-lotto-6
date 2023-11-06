@@ -1,26 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
-
-/*
-    구입금액을 입력해 주세요.
-    8000
-
-    8개를 구매했습니다.
-    [8, 21, 23, 41, 42, 43]
-    [3, 5, 11, 16, 32, 38]
-    [7, 11, 16, 35, 36, 44]
-    [1, 8, 11, 31, 41, 42]
-    [13, 14, 16, 38, 42, 45]
-    [7, 11, 30, 40, 42, 43]
-    [2, 13, 22, 32, 38, 45]
-    [1, 3, 5, 14, 22, 45]
-
-    당첨 번호를 입력해 주세요.
-    1,2,3,4,5,6
-
-    보너스 번호를 입력해 주세요.
- */
+import kotlin.math.round
 
 /**
  * 복권 번호 생성
@@ -36,12 +17,13 @@ fun printLottoList(lottoList: List<Lotto>) {
     }
 }
 
-fun makeLotto(number: Int) {
+fun makeLotto(number: Int): MutableList<Lotto> {
     val lottoList = mutableListOf<Lotto>()
     repeat(number) {
         lottoList.add(Lotto(makeNumbers()))
     }
     printLottoList(lottoList)
+    return lottoList
 }
 
 fun readPrice(): Int {
@@ -62,10 +44,37 @@ fun readBonusNumber(): Int {
     return input.toInt()
 }
 
+
+fun printLotteryResult(price: Int, winningPrize: Int, winning: Array<Int>) {
+
+    println("당첨 통계")
+    println("---")
+    println("3개 일치 (5,000원) - ${winning[5]}")
+    println("4개 일치 (50,000원) - ${winning[4]}")
+    println("5개 일치 (1,500,000원) - ${winning[3]}")
+    println("5개 일치, 보너스 볼 일치 (30,000,000원)- ${winning[2]}")
+    println("6개 일치 (2,000,000,000원) - ${winning[1]}")
+    println("총 수익률은 ${round(winningPrize.toDouble() / price * 100 * 10) / 10.0}%입니다.")
+}
+
+fun getLotteryPrize(lottos: List<Lotto>, price: Int, winningNumbers: List<Int>, bonusNumber: Int) {
+    val winning = Array(6) { 0 }
+    var winningPrize = 0
+
+    for (lotto in lottos) {
+        winning[lotto.getLotteryOutcome(winningNumbers, bonusNumber)] += 1
+        winningPrize += lotto.winningPrize
+    }
+
+    printLotteryResult(price, winningPrize, winning)
+
+}
+
 fun main() {
     val price = readPrice()
-    val bonusNumber = readBonusNumber()
     val winningNumbers = readWinningNumbers()
+    val bonusNumber = readBonusNumber()
 
-    makeLotto(price / 1000)
+    val lottos = makeLotto(price / 1000)
+    getLotteryPrize(lottos, price, winningNumbers, bonusNumber)
 }
