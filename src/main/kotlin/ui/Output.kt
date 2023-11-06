@@ -14,4 +14,8 @@ object Output  {
             println(it.getNumbers())
         }
     }
+
+    fun printInputWinningNumber() {
+        println(Message.MESSAGE_INPUT_WINNING_NUMBER)
+    }
 }
