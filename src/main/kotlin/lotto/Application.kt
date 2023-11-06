@@ -2,13 +2,39 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
 fun main() {
+    val (tickets, purchaseAmount) = buyTickets()
+    val (winningNumbers, bonusNumber) = getWinningNumbersAndBonus()
+    val results = getResults(tickets, winningNumbers, bonusNumber)
+    printResults(results, purchaseAmount)
+}
+
+fun printResults(results: List<LottoResult>, purchaseAmount: Int) {
+    val resultCounts = results.groupingBy { it }.eachCount()
+    for (result in LottoResult.values()) {
+        if (result != LottoResult.NONE) {
+            val count = resultCounts[result] ?: 0
+            println("${result.matchCount}개 일치 (${result.getFormattedPrize()}원) - ${count}개")
+        }
+    }
+    val totalPrize = results.sumBy { it.prize }
+    val profitRate = totalPrize.toDouble() / purchaseAmount * 100
+    println("총 수익률은 ${profitRate}%입니다.")
+}
+
+fun buyTickets(): Pair<List<Lotto>, Int> {
     val purchaseAmount = getValidPurchaseAmount()
     val tickets = buyLottoTickets(purchaseAmount)
+    return tickets to purchaseAmount
+}
+
+fun getWinningNumbersAndBonus(): Pair<List<Int>, Int> {
     val winningNumbers = getValidWinningNumbers()
-    val results = tickets.map { it.getLottoResult(winningNumbers) }
-    results.groupingBy { it }.eachCount().forEach { (result, count) ->
-        println("${result.matchCount}개 일치 (${result.prize}원) - ${count}개")
-    }
+    val bonusNumber = getValidBonusNumber()
+    return winningNumbers to bonusNumber
+}
+
+fun getResults(tickets: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): List<LottoResult> {
+    return tickets.map { it.getLottoResult(winningNumbers, bonusNumber) }
 }
 
 fun buyLottoTickets(purchaseAmount: Int): List<Lotto> {
