@@ -16,7 +16,5 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     // TODO: 추가 기능 구현
-    fun calculateMatchingCount(inputNumbers: List<Int>) {
-
-    }
+    fun calculateMatchingCount(inputNumbers: Set<Int>): Int = numbers.count { it in inputNumbers }
 }
