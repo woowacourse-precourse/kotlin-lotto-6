@@ -28,25 +28,20 @@ class LottoController(
     fun run() {
         while (true) {
             when (lottoStatus) {
-                LOTTO_AMOUNT -> {
+                LOTTO_AMOUNT ->
                     inputAmount()
-                }
 
-                LOTTO_WIN_NUMBER -> {
+                LOTTO_WIN_NUMBER ->
                     inputWinNumber()
-                }
 
-                LOTTO_BONUS_NUMBER -> {
+                LOTTO_BONUS_NUMBER ->
                     inputBonusNumber()
-                }
 
-                LOTTO_CALCULATE -> {
+                LOTTO_CALCULATE ->
                     calculateRank()
-                }
 
-                LOTTO_END -> {
+                LOTTO_END ->
                     break
-                }
             }
         }
     }

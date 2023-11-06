@@ -20,6 +20,7 @@ class InputView {
         val winNumber = Console.readLine().trim().split(",")
         winNumber.checkLottoSize()
         winNumber.forEach { number ->
+            number.isDigit()
             number.isLottoNumber()
         }
         winNumber.isDuplicateNumber()
