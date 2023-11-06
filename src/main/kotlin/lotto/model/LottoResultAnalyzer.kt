@@ -6,8 +6,6 @@ import lotto.util.Constants.MATCH_FOUR
 import lotto.util.Constants.MATCH_SIX
 import lotto.util.Constants.MATCH_THREE
 import lotto.util.Constants.PERCENTAGE_MULTIPLIER
-import java.math.BigDecimal
-import java.math.RoundingMode
 
 class LottoResultAnalyzer {
 
@@ -47,8 +45,7 @@ class LottoResultAnalyzer {
 
     fun calculateProfitRate(purchaseAmount: Int) {
         sumProfit()
-        val divResult = _profit.toDouble().div(purchaseAmount.toDouble())
-        val rate = BigDecimal(divResult).setScale(3, RoundingMode.HALF_EVEN).toDouble() * PERCENTAGE_MULTIPLIER
+        val rate = _profit.toDouble().div(purchaseAmount.toDouble()) * PERCENTAGE_MULTIPLIER
         _profitRate = rate
     }
 
