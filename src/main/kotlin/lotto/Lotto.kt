@@ -50,4 +50,3 @@ enum class LottoResult(val matchCount: Int, val prize: Int, val isBonus: Boolean
         }
     }
 }
-
