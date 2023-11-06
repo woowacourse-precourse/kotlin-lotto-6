@@ -16,13 +16,12 @@ class NumberPickerTest {
 
     @Test
     fun `구매 횟수에 따른 로또 구매 시 각 로또 리스트의 번호 개수 테스트`() {
-        val lottiesList: MutableList<List<Int>> = numberPicker.getRandomNumbers()
-        assertThat(lottiesList).hasSize(8)
+        assertThat(numberPicker.getRandomNumbers()).hasSize(8)
     }
 
     @Test
     fun `구매한 로또 정렬 테스트`() {
-        val inputLotties = listOf(
+        val inputLotties = mutableListOf(
             listOf(21, 8, 23, 43, 41, 23, 42, 43),
             listOf(5, 38, 16, 32, 11, 3),
             listOf(35, 7, 44, 16, 36, 11),
@@ -33,7 +32,7 @@ class NumberPickerTest {
             listOf(22, 45, 1, 3, 5, 14,),
         )
 
-        val expectedResult = listOf(
+        val expectedResult = mutableListOf(
             listOf(8, 21, 23, 41, 42, 43),
             listOf(3, 5, 11, 16, 32, 38),
             listOf(7, 11, 16, 35, 36, 44),
@@ -44,9 +43,8 @@ class NumberPickerTest {
             listOf(1, 3, 5, 14, 22, 45),
         )
 
-        val actualResult: List<List<Int>> = numberPicker.sortRandomNumbers(inputLotties)
+        val actualResult = numberPicker.sortRandomNumbers(inputLotties)
 
-        /*assertThat(actualResult).isEqualto(expectedResult)*/
         actualResult.forEach {
             assertThat(it).isSorted
         }
