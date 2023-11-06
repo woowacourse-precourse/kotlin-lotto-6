@@ -6,7 +6,7 @@ class LottoRateOfReturn(
 ) {
     fun rateOfReturn(): String = getTotalPrize().calculateRateOfReturn()
 
-    private fun getTotalPrize(): Int {
+    internal fun getTotalPrize(): Int {
         var myTotalPrize = 0
         checkPrize.forEachIndexed { index, prize ->
             myTotalPrize += when (index) {
