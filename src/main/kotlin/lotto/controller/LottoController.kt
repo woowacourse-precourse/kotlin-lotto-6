@@ -12,10 +12,13 @@ class LottoController() {
         printPurchaseAmountOfLotto()
         val purchaseAmount = inputPurchaseAmountOfLotto()
 
-        if (!lottoModel.isPurchaseAmountNumeric(purchaseAmount)) {
+        isReStart(purchaseAmount)
+    }
+
+    private fun isReStart(input: String) {
+        if (!lottoModel.isPurchaseAmountNumeric(input)) {
             LottoView.printErrorMessage(INVALID_NUMERIC_MESSAGE)
             start()
         }
-
     }
 }
