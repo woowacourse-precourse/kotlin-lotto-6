@@ -15,15 +15,14 @@ object Validation {
 
     }
 
-    fun validateDuplicateNumbers(numbers: List<Int>): Boolean {
+    fun validateDuplicateNumbers(lottoNumbers: List<Int>): Boolean {
 
-        val set = HashSet<Int>()
-        for (number in numbers) {
-            if (set.contains(number)) {
-
+        val lottoCheck = HashSet<Int>()
+        for (number in lottoNumbers) {
+            if (lottoCheck.contains(number)) {
                 return true
             }
-            set.add(number)
+            lottoCheck.add(number)
         }
         return false
     }

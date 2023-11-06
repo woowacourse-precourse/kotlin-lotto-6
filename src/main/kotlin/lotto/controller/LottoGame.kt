@@ -1,7 +1,9 @@
 package lotto.controller
 
 import lotto.model.LottoManager
+import lotto.util.Constants.INPUT_BONUS_NUMBERS
 import lotto.util.Constants.INPUT_MONEY
+import lotto.util.Constants.INPUT_WINNING_NUMBERS
 import lotto.util.Validation
 import lotto.util.Validation.validatePurchaseAmount
 import lotto.view.Input
@@ -22,6 +24,14 @@ class LottoGame {
             output.outputTickets(it.issueNumbers())
         }
 
+        output.outputBlank()
+        println(INPUT_WINNING_NUMBERS)
+        val winningNumbers = input.inputWinningNumbers()
+
+        output.outputBlank()
+        println(INPUT_BONUS_NUMBERS)
+        val bonusNumber = input.inputBonusNumber()
+
 
     }
 
@@ -29,7 +39,7 @@ class LottoGame {
         return try {
             val amount = input.inputPurchaseAmount()
             validatePurchaseAmount(amount)
-            println()
+            output.outputBlank()
             amount.toInt() / 1000
         } catch (e: IllegalArgumentException) {
             println(e)

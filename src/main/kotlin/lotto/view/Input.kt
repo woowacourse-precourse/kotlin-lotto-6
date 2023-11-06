@@ -8,4 +8,15 @@ class Input {
 
         return Console.readLine()
     }
+
+    fun inputWinningNumbers(): List<String> {
+
+        return Console.readLine().split(",")
+
+    }
+
+    fun inputBonusNumber(): String {
+
+        return Console.readLine()
+    }
 }
