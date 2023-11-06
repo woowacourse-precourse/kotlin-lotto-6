@@ -3,7 +3,7 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 
 class InputManager {
-    fun inputMoney(): String? {
+    fun inputMoney(): String {
         println("구입금액을 입력해 주세요.")
         return Console.readLine()
     }
@@ -11,7 +11,7 @@ class InputManager {
         println("당첨 번호를 입력해 주세요.")
         return Console.readLine().split(",")
     }
-    fun inputBonusNumber(): String? {
+    fun inputBonusNumber(): String {
         println("보너스 번호를 입력해 주세요.")
         return Console.readLine()
     }
