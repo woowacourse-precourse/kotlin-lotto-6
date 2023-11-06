@@ -128,8 +128,12 @@ fun checkJackpot(matchedCount: Int, matchedBonus: Boolean) {
 }
 
 // 숫자를 천 단위로 끊어 주어 보여주는 함수
-fun formatNumber(number: Int): String {
+fun formatIntNumber(number: Int): String {
     return DecimalFormat("#,###").format(number)
+}
+
+fun formatDoubleNumber(number: Double): String {
+    return DecimalFormat("#,###.0").format(number)
 }
 
 // 당첨 횟수 출력
@@ -137,7 +141,7 @@ fun showJackpotCount() {
     println("당첨 통계")
     println("---")
     for (item in LottoPrize.entries) {
-        println("${item.matchedNumbers}개 일치${if (item.matchedBonus) ", 보너스 볼 일치" else ""} (${formatNumber(item.prize)}원) - ${item.jackpot}개")
+        println("${item.matchedNumbers}개 일치${if (item.matchedBonus) ", 보너스 볼 일치" else ""} (${formatIntNumber(item.prize)}원) - ${item.jackpot}개")
     }
 }
 
@@ -153,7 +157,7 @@ fun showReturn() {
         roundedPercentage += 100
     }
 
-    println("총 수익률은 ${String.format("%.1f", roundedPercentage)}%입니다.")
+    println("총 수익률은 ${formatDoubleNumber(String.format("%.1f", roundedPercentage).toDouble())}%입니다.")
 }
 
 fun throwErrorMessage(text: String) {
