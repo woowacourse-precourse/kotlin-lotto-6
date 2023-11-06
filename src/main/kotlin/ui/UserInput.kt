@@ -1,20 +1,18 @@
 package ui
 
 import camp.nextstep.edu.missionutils.Console
-import util.Constants.MSG_ERR_INVALIDATE_INPUT
-import util.Constants.MSG_ERR_LOTTO_NUMBER_BY_COMMA
-import util.Constants.MSG_INPUT_BONUS_NUMBER
-import util.Constants.MSG_INPUT_MONEY
-import util.Constants.MSG_INPUT_WIN_NUMBERS
-import util.Validator
 
+const val MSG_INPUT_MONEY = "구입금액을 입력해 주세요."
+const val MSG_INPUT_WIN_NUMBERS = "당첨 번호를 입력해 주세요."
+const val MSG_INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요."
+const val MSG_INPUT_LOTTO_NUMBER_BY_COMMA = "숫자가 여러 개인 경우 쉼표(,)로 구분해주세요. 예) 1,2,3,4,5,6"
 
 object UserInput {
     private lateinit var duplicateNumbers: List<Int> // 당첨 번호들을 담아 두기 위한 변수(보너스 번호 중복 체크 용도)
 
     private fun readOnlyDigitAndToInt(): Int {
             val input = Console.readLine()
-            Validator
+            InputValidator
                 .checkIsDigit(input)
                 .checkIsEmptyString(input)
 
@@ -26,8 +24,8 @@ object UserInput {
             try {
                 println(MSG_INPUT_MONEY)
                 val money = readOnlyDigitAndToInt()
-                Validator.checkPurchaseRange(money)
-                Validator.checkIsDivisibleByThousand(money)
+                InputValidator.checkPurchaseRange(money)
+                InputValidator.checkIsDivisibleByThousand(money)
                 return money
             } catch (e: NumberFormatException) {
                 println(MSG_ERR_INVALIDATE_INPUT)
@@ -43,7 +41,7 @@ object UserInput {
             try {
                 println(MSG_INPUT_WIN_NUMBERS)
                 val winNumbers = inputToNumbersByComma(Console.readLine())
-                Validator
+                InputValidator
                     .checkProperNumbersSize(winNumbers)
                     .checkNumberListInRange(winNumbers)
                 duplicateNumbers = winNumbers // 입력 받은 당첨 번호를 중복 숫자 리스트에 담는다.(보너스 번호 중복 체크 용도)
@@ -52,7 +50,7 @@ object UserInput {
             } catch (e: NumberFormatException) {
                 println(MSG_ERR_INVALIDATE_INPUT)
             } catch (e: IllegalArgumentException) {
-                println(e.message + " " + MSG_ERR_LOTTO_NUMBER_BY_COMMA)
+                println(e.message + " " + MSG_INPUT_LOTTO_NUMBER_BY_COMMA)
             }
         }
     }
@@ -62,7 +60,7 @@ object UserInput {
             try {
                 println(MSG_INPUT_BONUS_NUMBER)
                 val bonus = readOnlyDigitAndToInt()
-                Validator
+                InputValidator
                     .checkNumberInRange(bonus)
                     .checkIsDuplicateNumber(bonus, duplicateNumbers)
 
@@ -80,7 +78,7 @@ object UserInput {
             .filter { it.isNotBlank() || it.isNotEmpty() }
             .map {
                 val digit = it.trim()
-                Validator
+                InputValidator
                     .checkIsDigit(digit)
                     .checkIsEmptyString(digit)
                 digit.toInt()

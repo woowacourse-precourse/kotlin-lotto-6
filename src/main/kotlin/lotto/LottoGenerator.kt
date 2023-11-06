@@ -1,14 +1,14 @@
 package lotto
 
 import ui.UserOutput
-import util.Validator
+import ui.InputValidator
 
 class LottoGenerator(var money: Int) {
 
     val lottos: MutableList<Lotto> = mutableListOf()
 
     init {
-      Validator.checkIsDivisibleByThousand(money)
+      InputValidator.checkIsDivisibleByThousand(money)
     }
 
     fun create(): LottoGenerator {

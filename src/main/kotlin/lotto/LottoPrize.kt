@@ -1,11 +1,5 @@
 package lotto
 
-import util.Constants.MONEY_FIFTH_PRIZE
-import util.Constants.MONEY_FOURTH_PRIZE
-import util.Constants.MONEY_JACKPOT
-import util.Constants.MONEY_SECOND_PRIZE
-import util.Constants.MONEY_THIRD_PRIZE
-
 enum class LottoPrize(val value: Int, var count: Int, val prizeMoney: Long) {
     FIFTH_PRIZE(3, 0, 5_000){
         override fun printPrizeData() =
@@ -30,4 +24,12 @@ enum class LottoPrize(val value: Int, var count: Int, val prizeMoney: Long) {
     abstract fun printPrizeData()
 
     fun calculatePrizeMoney(): Long = count * prizeMoney
+
+    companion object {
+        const val MONEY_JACKPOT = "2,000,000,000원"
+        const val MONEY_SECOND_PRIZE = "30,000,000원"
+        const val MONEY_THIRD_PRIZE = "1,500,000원"
+        const val MONEY_FOURTH_PRIZE = "50,000원"
+        const val MONEY_FIFTH_PRIZE = "5,000원"
+    }
 }
