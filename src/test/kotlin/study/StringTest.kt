@@ -22,4 +22,13 @@ class StringTest {
 
         assertThat(result).containsExactly("1")
     }
+
+    @Test
+    fun `"(1,2)"를 substring()로 ()을 제거했을때 "1,2"를 반환하는지 확인`() {
+        val given = "(1,2)"
+
+        val result = given.substring(1,4)
+
+        assertThat(result).isEqualTo("1,2")
+    }
 }
