@@ -11,11 +11,6 @@ class LottoShop {
     fun buyLotto() {
         inputView.buyMessage()
         val price = inputView.inputView()
-        validatePrice(price)
-    }
-
-    private fun validatePrice(price: String) {
-        validator.validatePriceNotNum(price)
-
+        validator.validatePrice(price)
     }
 }
