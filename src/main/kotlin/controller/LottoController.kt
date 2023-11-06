@@ -2,6 +2,7 @@ package controller
 
 import model.Lotto
 import model.Money
+import model.WinningNumbersManager
 import util.LottoStore.generateLottoTickets
 import view.InputView
 import view.OutputView
@@ -9,6 +10,7 @@ import view.OutputView
 class LottoController(private val inputView: InputView, private val outputView: OutputView) {
 
     private lateinit var money: Money
+    private lateinit var winningNumbersManager: WinningNumbersManager
     private var purchasedLottoTickets = mutableListOf<Lotto>()
     fun run() {
         do {
@@ -38,5 +40,17 @@ class LottoController(private val inputView: InputView, private val outputView: 
         }
 
         outputView.printAppendLine()
+
+        do {
+            outputView.printEnterWinningNumberMessage()
+            try {
+                val inputWinningNumber = inputView.getValue()
+                winningNumbersManager = WinningNumbersManager(inputWinningNumber.split(","))
+            } catch (e: IllegalArgumentException) {
+                e.printStackTrace()
+                continue
+            }
+            break
+        } while (true)
     }
 }
