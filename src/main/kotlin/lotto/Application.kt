@@ -33,7 +33,7 @@ fun main() {
     val reward = winningChecker.numbersCheck(manage.getLotto(),winningNumber,bonusNumber)
     val prizeChecker = Prize()
     OutputView.printReward(reward)
-    OutputView.printYield(prizeChecker.checkPrize(reward,myMoney))
+    OutputView.printYield(prizeChecker.getPrizeRatio(reward,myMoney))
 
 
 }

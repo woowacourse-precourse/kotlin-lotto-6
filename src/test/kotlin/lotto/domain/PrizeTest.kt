@@ -10,7 +10,7 @@ class PrizeTest {
         val testList = mutableListOf<Grade>()
         testList.add(Grade.FIFTH)
         val testMoney = 1000
-        val testResult = testPrize.checkPrize(testList,testMoney)
+        val testResult = testPrize.getPrizeRatio(testList,testMoney)
         Assertions.assertThat(testResult).isEqualTo(500.0)
     }
 }
