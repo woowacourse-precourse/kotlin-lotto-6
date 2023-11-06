@@ -17,4 +17,8 @@ object Input {
         }
         return winningNumber
     }
+
+    fun inputBonusNumber(): Int {
+        return Console.readLine().toInt()
+    }
 }
