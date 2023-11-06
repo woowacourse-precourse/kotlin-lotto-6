@@ -55,6 +55,9 @@ fun getValidWinningNumbers(): List<Int> {
             if (numbers.size != 6) {
                 throw IllegalArgumentException("[ERROR] 로또 당첨 번호는 콤마로 구분된 6개의 숫자로 입력해야 합니다.")
             }
+            if (numbers.any { it !in 1..45 }) {
+                throw IllegalArgumentException("[ERROR] 로또 당첨 번호는 1부터 45 사이의 숫자로 입력해야 합니다.")
+            }
             return numbers
         } catch (e: NumberFormatException) {
             println("[ERROR] 로또 당첨 번호는 숫자로 입력해야 합니다.")
