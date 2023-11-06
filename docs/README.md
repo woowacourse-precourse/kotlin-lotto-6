@@ -21,16 +21,24 @@
   - 사용 라이브러리: camp.nextstep.edu.missionutils.Console의 readLine()
   - 입력 예: "$숫자1,$숫자2,$숫자3"
   - 예외처리 - 1~45 범위의 정수가 아닌 입력시
-      - IllegalArgumentException 발생
-      - `[ERROR] 로또 당첨 번호는 1~45사이의 정수여야 합니다` 출력
-      - 입력 다시 받기
+    - IllegalArgumentException 발생
+    - `[ERROR] 로또 당첨 번호는 1~45사이의 정수여야 합니다.` 출력
+    - 입력 다시 받기
+  - 예외처리 - 중복되는 정수 입력시
+    - IllegalArgumentException 발생
+    - `[ERROR] 로또 당첨 번호는 중복될 수 없습니다.` 출력
+    - 입력 다시 받기
 - 보너스 번호 1개(범위: 1~45) 입력
   - 출력 문자열: "보너스 번호를 입력해 주세요."
   - 사용 라이브러리: camp.nextstep.edu.missionutils.Console의 readLine()
   - 예외처리 - 1~45 범위의 정수가 아닌 입력시
-      - IllegalArgumentException 발생
-      - `[ERROR] 보너스 번호는 1~45사이의 정수여야 합니다` 출력
-      - 입력 다시 받기
+    - IllegalArgumentException 발생
+    - `[ERROR] 보너스 번호는 1~45사이의 정수여야 합니다.` 출력
+    - 입력 다시 받기
+  - 예외처리 - 로또 당첨 번호와 중복되는 정수 입력시
+    - IllegalArgumentException 발생
+    - `[ERROR] 보너스 번호와 로또 당첨 번호는 같을 수 없습니다.` 출력
+    - 입력 다시 받기
 
 ### 당첨 등수 판단과 수익률 계산
 - 당첨 기준
