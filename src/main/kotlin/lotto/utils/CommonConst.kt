@@ -8,8 +8,8 @@ object CommonConst {
     const val MESSAGE_INPUT_BONUS_NUMBER= "보너스 번호를 입력해 주세요."
 
     // outputs
+    const val MESSAGE_START_LOTTO_GAME = "로또 게임을 시작합니다."
     const val MESSAGE_WINNING_STATISTICS= "당첨 통계\n---"
-    //formatter 사용 예정 : MESSAGE_NUMBER_of_PURCHASES.format(상수값)
     const val MESSAGE_NUMBER_OF_PURCHASES = "%d개를 구매했습니다."
     const val MESSAGE_LOTTO_WINNING_DETAILS_3_MATCHES = "3개 일치 (5,000원) - %d개"
     const val MESSAGE_LOTTO_WINNING_DETAILS_4_MATCHES = "4개 일치 (50,000원) - %d개"
