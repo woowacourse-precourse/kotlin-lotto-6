@@ -3,8 +3,12 @@ package lotto
 fun main() {
     val player = Player()
     val amount = player.inputPurchaseAmount()
-    player.calculateLottoGenerateCount(amount)
+    val count = player.calculateLottoGenerateCount(amount)
+
+    val lottoGenerator = LottoGenerator(count)
+    lottoGenerator.printRandomLotto()
 }
+
 
 
 
