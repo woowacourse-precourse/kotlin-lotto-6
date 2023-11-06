@@ -8,18 +8,20 @@ import java.lang.IllegalArgumentException
 class LottoGameManager {
     private var gameState = BUYING
     private var gameManagerState = NORMAL
+    private val lottoGenerator = LottoGenerator()
     private var data: Any = ""
     private var userMoney = 0
+    private var userLotteryTickets = listOf<Lotto>()
+
+    fun getState() = this.gameManagerState
+
+    fun getData() = this.data
 
     fun set(gameState: LottoGameState) {
         this.gameState = gameState
 
         commandByGameState()
     }
-
-    fun getState() = this.gameManagerState
-
-    fun getData() = this.data
 
     private fun commandByGameState() {
         if (gameState == BUYING) commandBuyingState()
@@ -41,6 +43,7 @@ class LottoGameManager {
     private fun buyLotto() {
         getMoneyFromUser()
         if (gameManagerState != REQUEST_ERROR) {
+            generateLotto()
             gameManagerState = RESULT
         }
     }
@@ -58,6 +61,17 @@ class LottoGameManager {
             data = e
             gameManagerState = REQUEST_ERROR
         }
+    }
+
+    private fun generateLotto() {
+        val userLotteryTickets = mutableListOf<Lotto>()
+        val count = userMoney / 1000
+
+        for (i in 1..count) {
+            userLotteryTickets.add(lottoGenerator.get())
+        }
+
+        this.userLotteryTickets = userLotteryTickets
     }
 
     private fun validatedInputAsMoney(input: String): Int {
