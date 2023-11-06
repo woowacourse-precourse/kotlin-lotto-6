@@ -1,25 +1,25 @@
 package lotto.service
 
 import lotto.domain.*
-import lotto.repository.RandomNumberLottoesRepository
+import lotto.repository.RandomNumberLottosRepository
 import lotto.util.RandomLottoNumbersGenerator
 
 class LottoGameService(
     private val randomLottoNumbersGenerator: RandomLottoNumbersGenerator,
-    private val randomLottoNumberRepository: RandomNumberLottoesRepository
+    private val randomLottoNumberRepository: RandomNumberLottosRepository
 ) {
 
-    fun generateRandomNumbers(purchaseAmount: Int): Lottoes {
-        val randomNumbersLottoes = mutableListOf<Lotto>()
+    fun generateRandomNumbers(purchaseAmount: Int): Lottos {
+        val randomNumbersLottos = mutableListOf<Lotto>()
         repeat(purchaseAmount) {
-            randomNumbersLottoes.add(Lotto(randomLottoNumbersGenerator.generate()))
+            randomNumbersLottos.add(Lotto(randomLottoNumbersGenerator.generate()))
         }
-        randomLottoNumberRepository.saveRandomNumbers(randomNumbersLottoes.toList())
+        randomLottoNumberRepository.saveRandomNumbers(randomNumbersLottos.toList())
         return randomLottoNumberRepository.loadRandomNumbers()
     }
 
     fun calculateLottoResult(winningNumbers: WinningNumbers, bonusNumber: BonusNumber): LottoGameResult {
-        val randomLottoes = randomLottoNumberRepository.loadRandomNumbers()
-        return randomLottoes.calculateGameResult(winningNumbers, bonusNumber)
+        val randomLottos = randomLottoNumberRepository.loadRandomNumbers()
+        return randomLottos.calculateGameResult(winningNumbers, bonusNumber)
     }
 }

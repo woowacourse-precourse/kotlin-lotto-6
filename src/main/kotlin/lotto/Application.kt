@@ -1,7 +1,7 @@
 package lotto
 
 import lotto.controller.LottoGameController
-import lotto.repository.RandomNumberLottoesRepository
+import lotto.repository.RandomNumberLottosRepository
 import lotto.service.LottoGameService
 import lotto.util.RandomLottoNumbersGenerator
 import lotto.view.PrintOutputView
@@ -11,6 +11,6 @@ fun main() {
     LottoGameController(
         ReadUserInputView(),
         PrintOutputView(),
-        LottoGameService(RandomLottoNumbersGenerator(), RandomNumberLottoesRepository())
+        LottoGameService(RandomLottoNumbersGenerator(), RandomNumberLottosRepository())
     ).play()
 }
