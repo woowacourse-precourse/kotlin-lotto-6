@@ -24,62 +24,73 @@ class InputValidatorTest {
         assertThrows<IllegalArgumentException> { Validator.checkIsDigit(input) }
     }
 
-    @Nested
-    @DisplayName("로또 구입 금액")
-    class Money {
+        @Nested
+        @DisplayName("로또 구입 금액")
+        inner class Money {
 
-        @Test
-        @DisplayName("예외1")
-        fun `checkDividedAsThousand 메서드 사용 시 입력값이 1000 으로 나누어 떨어지지 않을 때 예외 발생`() {
-            val input = "1200"
+            @Test
+            @DisplayName("예외1")
+            fun `checkDividedAsThousand 메서드 사용 시 입력값이 1000 으로 나누어 떨어지지 않을 때 예외 발생`() {
+                val input = "1200"
 
-            assertThrows<IllegalArgumentException> { Validator.checkDividedAsThousand(input) }
-        }
+                assertThrows<IllegalArgumentException> { Validator.checkDividedAsThousand(input) }
+            }
 
-        @Test
-        @DisplayName("예외2")
-        fun `checkIsOverZero 메서드 사용 시 입력값이 0 이하일 때 예외 발생`() {
-            val input = "0"
+            @Test
+            @DisplayName("예외2")
+            fun `checkIsOverZero 메서드 사용 시 입력값이 0 이하일 때 예외 발생`() {
+                val input = "0"
 
-            assertThrows<IllegalArgumentException> { Validator.checkIsOverZero(input) }
-        }
-    }
-
-    @Nested
-    @DisplayName("당첨 번호")
-    class Winning {
-
-        @Test
-        @DisplayName("예외1")
-        fun `checkHasSeparator 메서드 사용 시 입력값이 주어진 구분자로 구분되어있지 않을 때 예외 발생`() {
-            val input = "0 1 2"
-
-            assertThrows<IllegalArgumentException> { Validator.checkHasSeparator(input, COMMA) }
-        }
-
-        @Test
-        @DisplayName("예외2")
-        fun `checkIsInBoundary 메서드 사용 시 입력값이 주어진 범위를 벗어났을 때 예외 발생`() {
-            val input = 31
-
-            assertThrows<IllegalArgumentException> {
-                Validator.checkIsInBoundary(input, MIN_NUMBER, MAX_NUMBER)
+                assertThrows<IllegalArgumentException> { Validator.checkIsOverZero(input) }
             }
         }
 
-        @Test
-        @DisplayName("예외3")
-        fun `checkIsContained 메서드 사용 시 입력값이 주어진 배열 안에 존재할 때 예외 발생`() {
-            val input = "b"
-            val items = listOf("a", "b", "c")
+        @Nested
+        @DisplayName("당첨 번호")
+        inner class Winning {
 
-            assertThrows<IllegalArgumentException> { Validator.checkIsNotContained(input, items) }
+            @Test
+            @DisplayName("예외1")
+            fun `checkHasSeparator 메서드 사용 시 입력값이 주어진 구분자로 구분되어있지 않을 때 예외 발생`() {
+                val input = "0 1 2"
+
+                assertThrows<IllegalArgumentException> { Validator.checkHasSeparator(input, COMMA) }
+            }
+
+            @Test
+            @DisplayName("예외2")
+            fun `checkIsInBoundary 메서드 사용 시 입력값이 주어진 범위를 벗어났을 때 예외 발생`() {
+                val input = 31
+
+                assertThrows<IllegalArgumentException> {
+                    Validator.checkIsInBoundary(input, MIN_NUMBER, MAX_NUMBER)
+                }
+            }
+
+            @Test
+            @DisplayName("예외3")
+            fun `checkCountsOf 메서드 사용 시 주어진 크기의 배열이 아닐 때 예외 발생`() {
+                val items = listOf("1", "2", "3")
+                val count = 4
+
+                assertThrows<java.lang.IllegalArgumentException> {
+                    Validator.checkCountsOf(items, count)
+                }
+            }
+
+            @Test
+            @DisplayName("예외4")
+            fun `checkIsContained 메서드 사용 시 입력값이 주어진 배열 안에 존재할 때 예외 발생`() {
+                val input = "b"
+                val items = listOf("a", "b", "c")
+
+                assertThrows<IllegalArgumentException> { Validator.checkIsNotContained(input, items) }
+            }
         }
 
-        companion object {
-            private const val COMMA = ","
-            private const val MIN_NUMBER = 0
-            private const val MAX_NUMBER = 30
-        }
+    companion object {
+        private const val COMMA = ","
+        private const val MIN_NUMBER = 0
+        private const val MAX_NUMBER = 30
     }
 }
