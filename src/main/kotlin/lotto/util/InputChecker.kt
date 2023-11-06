@@ -44,7 +44,7 @@ object InputChecker {
         require(
             lottoNumbers.filter { it in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER }.size == 6
         ) {
-            throw IllegalNumbersException.numbersNotRange
+            throw IllegalNumbersException.numbersNotList
         }
         require(lottoNumbers.distinct().size == 6) {
             throw IllegalNumbersException.numbersDuplicate
