@@ -13,4 +13,9 @@ class LottoView {
     fun displayPurchasedLotteryAmountMessage(lotteryAmount: Int) {
         println("\n${lotteryAmount}${ConsoleMessage.INDICATE_PURCHASED_AMOUNT}")
     }
+    fun displayLotteryNumbers(lotteryNumbers: ArrayList<List<Int>>) {
+        for(item in lotteryNumbers) {
+            println(item)
+        }
+    }
 }
