@@ -21,6 +21,7 @@ fun main() {
     while (BONUS_NUMBER == null) {
         inputBonusNumber()
     }
+    Console.close()
     countJackpot()
     showJackpotCount()
     showReturn()
@@ -83,7 +84,7 @@ fun checkNumbersFirst(numbers: Set<String>) {
 fun checkNumbersSecond(number: String) {
     // 당첨번호가 1~45 사이인지 확인
     if (number.toIntOrNull() == null || number.toInt() !in 1..45) {
-        throwErrorMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+        throwErrorMessage("로또 번호는 1부터 45 사이의 번호여야 합니다.")
     }
 
     NUMBERS.add(number.toInt())
@@ -127,22 +128,34 @@ fun checkJackpot(matchedCount: Int, matchedBonus: Boolean) {
     }
 }
 
+const val PATTERN_INT = "#,###"
+const val PATTERN_DOUBLE = "#,###.0"
+
 // 숫자를 천 단위로 끊어 주어 보여주는 함수
-fun formatIntNumber(number: Int): String {
-    return DecimalFormat("#,###").format(number)
+fun formatNumber(number: Number, pattern: String): String {
+    return DecimalFormat(pattern).format(number)
 }
 
-fun formatDoubleNumber(number: Double): String {
-    return DecimalFormat("#,###.0").format(number)
-}
 
 // 당첨 횟수 출력
 fun showJackpotCount() {
     println("당첨 통계")
     println("---")
     for (item in LottoPrize.entries) {
-        println("${item.matchedNumbers}개 일치${if (item.matchedBonus) ", 보너스 볼 일치" else ""} (${formatIntNumber(item.prize)}원) - ${item.jackpot}개")
+        var text = ""
+        text += "${item.matchedNumbers}개 일치"
+        text += isMatchedBonus(item)
+        text += " (${formatNumber(item.prize, PATTERN_INT)}원) - "
+        text += "${item.jackpot}개"
+        println(text)
     }
+}
+
+fun isMatchedBonus(item: LottoPrize): String {
+    if (item.matchedBonus) {
+        return ", 보너스 볼 일치"
+    }
+    return ""
 }
 
 // 수익률 출력
@@ -157,7 +170,11 @@ fun showReturn() {
         roundedPercentage += 100
     }
 
-    println("총 수익률은 ${formatDoubleNumber(String.format("%.1f", roundedPercentage).toDouble())}%입니다.")
+    var text = ""
+    text += "총 수익률은 "
+    text += formatNumber(String.format("%.1f", roundedPercentage).toDouble(), PATTERN_DOUBLE)
+    text += "%입니다."
+    println(text)
 }
 
 fun throwErrorMessage(text: String) {
