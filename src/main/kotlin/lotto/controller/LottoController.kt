@@ -9,19 +9,9 @@ import lotto.utils.Values
 class LottoController(private val view: LottoView, private val model: LottoModel) {
     fun run() {
         view.requestPurchaseMoneyValueMessage()
-        checkPurchaseMoneyValue()
+        while(model.checkPurchaseMoneyValue(setPurchaseMoneyValue())) { }
     }
-    private fun checkPurchaseMoneyValue() {
-        while(true) {
-            try {
-                val moneyValue = Console.readLine().toInt()
-                if ((moneyValue % Values.LOTTERY_PRICE) != 0) {
-                    throw IllegalArgumentException("${ErrorMessage.ERRORMESSAGE_TITLE} ${ErrorMessage.INAPPROATE_VALUE}")
-                }
-                break
-            } catch (e: IllegalArgumentException) {
-                println("${ErrorMessage.ERRORMESSAGE_TITLE} ${ErrorMessage.INAPPROATE_VALUE}")
-            }
-        }
+    private fun setPurchaseMoneyValue(): Int {
+        return Console.readLine().toInt()
     }
 }
