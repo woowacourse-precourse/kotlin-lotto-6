@@ -1,12 +1,15 @@
 package lotto
 
+import com.sun.imageio.plugins.jpeg.JPEG.vendor
+
 class Lottos {
+    private val vendor = Vendor()
+    private val outputManager = OutputManager()
+    private val lottoNum = vendor.lottoNum()
     fun makeLotto(): List<Lotto> {
-        val vendor = Vendor()
-        val outputManager = OutputManager()
+
         val numberCreator = NumberCreator()
         val lottos = mutableListOf<Lotto>()
-        val lottoNum = vendor.lottoNum()
 
         outputManager.lottos(lottoNum)
 
@@ -16,7 +19,6 @@ class Lottos {
             val lotto = Lotto(lottoNumber)
             lottos.add(lotto)
         }
-
         return lottos
     }
 }
