@@ -24,4 +24,14 @@ class LottoPurchase {
             MESSAGE_NOT_FIT_UNIT_1000
         )
     }
+
+    fun buyLottos(lotteryNumber: Int): MutableList<Lotto> {
+        val lottos = mutableListOf<Lotto>()
+        val lottoGenerator = LottoGenerator()
+        repeat(lotteryNumber){
+            val lotto = lottoGenerator.generatorLotto()
+            lottos.add(lotto)
+        }
+        return lottos
+    }
 }

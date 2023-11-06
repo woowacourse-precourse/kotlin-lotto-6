@@ -11,4 +11,6 @@ fun startLotto() {
     val purchaseLotto = LottoPurchase()
     val lotteryNumber = purchaseLotto.inputAmount()
     Output.printLotteryNumber(lotteryNumber)
+    val lottos = purchaseLotto.buyLottos(lotteryNumber)
+    Output.printLottos(lottos)
 }
