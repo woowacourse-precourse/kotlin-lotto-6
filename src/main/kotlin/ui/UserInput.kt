@@ -7,54 +7,87 @@ import util.Constants.MSG_INPUT_WIN_NUMBERS
 import util.Validator
 
 
-
 object UserInput {
 
-    private fun readOnlyDigit(): String {
-        val input = Console.readLine()
-        Validator
-            .checkIsDigit(input)
-            .checkIsEmptyString(input)
+    private fun readOnlyDigitAndToInt(): Int {
+        while (true) {
+            try {
+                val input = Console.readLine()
+                Validator
+                    .checkIsDigit(input)
+                    .checkIsEmptyString(input)
 
-        return input
+                return input.toInt()
+            } catch (ne: NumberFormatException) {
+                println("[ERROR] 유효하지 않은 입력입니다.")
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+
     }
 
     fun readMoney(): Int {
         println(MSG_INPUT_MONEY)
-        val money = readOnlyDigit().toInt()
-        Validator.checkPurchaseRange(money)
+        while (true) {
+            try {
+                val money = readOnlyDigitAndToInt()
+                Validator.checkPurchaseRange(money)
+                Validator.checkIsDivisibleByThousand(money)
+                return money
+            } catch (e: NumberFormatException) {
+                println("[ERROR] 유효하지 않은 입력입니다.")
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
 
-        return money
     }
 
     fun readWinNumbers(): List<Int> {
         println(MSG_INPUT_WIN_NUMBERS)
-        val winNumbers = inputToNumbersByComma(Console.readLine())
-        Validator
-            .checkProperNumbersSize(winNumbers)
-            .checkNumberListInRange(winNumbers)
+        while (true) {
+            try {
+                val winNumbers = inputToNumbersByComma(Console.readLine())
+                Validator
+                    .checkProperNumbersSize(winNumbers)
+                    .checkNumberListInRange(winNumbers)
 
-        return winNumbers
+                return winNumbers
+            } catch (e: NumberFormatException) {
+                println("[ERROR] 유효하지 않은 입력입니다.")
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 
     fun readBonusNumber(): Int {
         println(MSG_INPUT_BONUS_NUMBER)
-        val bonus = readOnlyDigit().toInt()
-        Validator.checkNumberInRange(bonus)
+        while (true) {
+            try {
+                val bonus = readOnlyDigitAndToInt()
+                Validator.checkNumberInRange(bonus)
 
-        return bonus
+                return bonus
+            } catch (e: NumberFormatException) {
+                println("[ERROR] 유효하지 않은 입력입니다.")
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
-}
 
-private fun inputToNumbersByComma(input: String): List<Int> {
-    return input.split(",")
-        .map {
-            val digit = it.trim()
-            Validator
-                .checkIsDigit(digit)
-                .checkIsEmptyString(digit)
-            digit.toInt()
-        }.distinct()
+    private fun inputToNumbersByComma(input: String): List<Int> {
+        return input.split(",")
+            .map {
+                val digit = it.trim()
+                Validator
+                    .checkIsDigit(digit)
+                    .checkIsEmptyString(digit)
+                digit.toInt()
+            }.distinct()
+    }
 }
 
 
