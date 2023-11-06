@@ -35,3 +35,7 @@ fun getValidPurchaseAmount(): Int {
         }
     }
 }
+
+fun generateLottoNumbers(): List<Int> {
+    return Randoms.pickUniqueNumbersInRange(1, 45, 6)
+}
