@@ -6,7 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms
 class Lotto(private val numbers: List<Int>) {
     private var lottoPurchaseAmount: Int = 0
     private var lottoTickets: List<List<Int>> = emptyList()
-    private var winningNumbers: List<String> = emptyList()
+    private var winningNumbers: List<Int> = emptyList()
     private var bonusNumber: Int = 0
 
     init {
@@ -34,15 +34,14 @@ class Lotto(private val numbers: List<Int>) {
 
         val tickets = mutableListOf<List<Int>>()
         for(i in 1..numOfTickets) {
-            val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+            val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6).sorted()
 
             if (hasDuplicateNumbers(numbers)) {
                 throw IllegalArgumentException()
             }
 
-            val sortedLottoNumbers = numbers.sorted()
-            tickets.add(sortedLottoNumbers)
-            println(sortedLottoNumbers.joinToString(", ", "[", "]"))
+            tickets.add(numbers)
+            println(numbers)
         }
         lottoTickets = tickets
     }
@@ -56,9 +55,9 @@ class Lotto(private val numbers: List<Int>) {
         // 당첨 번호를 입력 받는 함수, 번호는 쉼표 기준으로 구분한다
         println("\n당첨 번호를 입력해 주세요.")
         val winningNumbers = Console.readLine()
-        val winningNumberList = winningNumbers.split(",")
+        val winningNumberList = winningNumbers.split(",").map { it.toInt() }
 
-        if (winningNumberList.size != 6 || hasDuplicateNumbers(winningNumberList.map { it.toInt() })) {
+        if (winningNumberList.size != 6 || hasDuplicateNumbers(winningNumberList)) {
             throw IllegalArgumentException()
         }
 
@@ -76,28 +75,11 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun showWinningNumbers() {
-        // enum class 만들기
-        val match3Numbers = 5000L
-        val match4Numbers = 50000L
-        val match5Numbers = 1500000L
-        val match5NumbersWithBonus = 30000000L
-        val match6Numbers = 2000000000L
-
-        // 수익률 계산
-        val totalCost = lottoPurchaseAmount
-        val totalPrize = (match3Numbers + match4Numbers + match5Numbers + match5NumbersWithBonus + match6Numbers)
-        val profitPercentage = ((totalPrize - totalCost) / totalCost) * 100
-        val formattedProfitPercentage = "%.1f".format(profitPercentage)
-
         // 당첨 통계 계산
-        val matchingNumbers = lottoTickets.map { ticket -> winningNumbers.intersect(ticket.toSet()).count() }
-        val hasBonusNumbers = lottoTickets.map { ticket ->
-            if (ticket.contains(bonusNumber)) {
-                winningNumbers.intersect(ticket.toSet()).count() - 1
-            } else {
-                winningNumbers.intersect(ticket.toSet()).count()
-            }
+        val matchingNumbers: List<Int> = lottoTickets.map { ticket ->
+            ticket.count { it in winningNumbers }
         }
+        val hasBonusNumbers = bonusNumbers()
 
         // enum class 만들기
         println("\n당첨 통계")
@@ -107,6 +89,43 @@ class Lotto(private val numbers: List<Int>) {
         println("5개 일치 (1,500,000원) - ${matchingNumbers.count { it == 5 }}개")
         println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${hasBonusNumbers.count { it == 5 }}개")
         println("6개 일치 (2,000,000,000원) - ${matchingNumbers.count { it == 6 }}개")
-        println("총 수익률은 ${formattedProfitPercentage}%입니다.")
+        println("총 수익률은 ${calculateProfit(matchingNumbers)}%입니다.")
+    }
+
+    private fun bonusNumbers(): List<Int> {
+        val hasBonusNumbers = lottoTickets.map { ticket ->
+            if (ticket.contains(bonusNumber)) {
+                winningNumbers.intersect(ticket.toSet()).count() - 1
+            } else {
+                winningNumbers.intersect(ticket.toSet()).count()
+            }
+        }
+        return hasBonusNumbers
+    }
+
+    private fun calculateProfit(matchingNumbers: List<Int>): String {
+        val match3Numbers = 5000.0
+        val match4Numbers = 50000.0
+        val match5Numbers = 1500000.0
+        val match5NumbersWithBonus = 30000000.0
+        val match6Numbers = 2000000000.0
+
+        // 각 등수의 상금과 해당 등수의 로또 티켓 수를 매핑
+        val prizeMap = mapOf(
+            3 to match3Numbers,
+            4 to match4Numbers,
+            5 to match5Numbers,
+            5 to match5NumbersWithBonus,
+            6 to match6Numbers
+        )
+
+        // 수익 계산
+        val totalPrize = matchingNumbers.mapNotNull { prizeMap[it] }.sum()
+        val totalCost = lottoPurchaseAmount.toDouble()
+        val profitPercentage = (totalPrize / totalCost) * 100
+
+        return "%.1f".format(profitPercentage)
     }
 }
+
+
