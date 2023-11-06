@@ -6,16 +6,19 @@ class LottoController {
     private val inputView = InputView()
     private val outView = OutputView()
     private val lottoList = mutableListOf<List<Int>>()
+    private val lottoResult = LottoResult()
 
     fun run() {
         val priceAmount = inputPriceAmount()
-        println()
         val lottoCount = inputView.calculateCount(priceAmount)
         generateAllLotto(lottoCount)
         val lottoNumberInput = inputLottoNumber()
         //println(lottoNumberInput) 결과 확인용
         val bonusNumberInput = inputBonusNumber(lottoNumberInput)
         //println(bonusNumberInput) 결과 확인용
+        val lottoResult = lottoResult.calculateResult(lottoList, lottoNumberInput, bonusNumberInput)
+        //println(lottoResult) 결과 확인용
+        outView.printLottoResult(lottoResult)
     }
 
     private fun inputPriceAmount(): Int {
