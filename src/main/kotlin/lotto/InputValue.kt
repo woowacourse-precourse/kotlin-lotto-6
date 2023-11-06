@@ -5,7 +5,7 @@ package lotto
 
 class InputValue {
 
-    val check = CheckError()
+    private val check = CheckError()
 
     fun inputLottoMoney(): Int {
 
@@ -18,10 +18,12 @@ class InputValue {
             if (!check.checkInputPositiveInt(money)) continue
             if (!check.checkCanDivide1000(money.toInt())) continue
 
+            moneyInt = money.toInt()
+
             break
         }
 
-        return 0
+        return moneyInt
     }
 
     fun inputWinningNumber(): List<Int> {
