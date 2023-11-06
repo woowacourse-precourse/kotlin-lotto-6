@@ -46,3 +46,17 @@ fun getPrize(prizeList: Pair<Int,Boolean>): Prize {
     }
     return Prize.MISS
 }
+fun getPrizeList(prize:MutableList<Prize>): MutableList<Int> {
+    val prizeList = mutableListOf(0,0,0,0,0,0)
+    for (i in prize) {
+        when(i) {
+            Prize.FIRST -> prizeList[0]++
+            Prize.SECOND -> prizeList[1]++
+            Prize.THIRD -> prizeList[2]++
+            Prize.FOURTH -> prizeList[3]++
+            Prize.FIFTH -> prizeList[4]++
+            Prize.MISS -> prizeList[5]++
+        }
+    }
+    return prizeList
+}
