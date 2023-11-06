@@ -1,5 +1,6 @@
 package lotto.view
 
+import lotto.Lotto
 import lotto.message.ControlMessage
 import lotto.message.ErrorMessage
 
@@ -12,13 +13,13 @@ class LottoView {
         println("\n${num}${ControlMessage.SHOW_TICKET}")
     }
 
-    fun showTicketNumber(buy_lotto_number : Array<Array<Int>>,inputMoney : Pair<Int,Int>){
-        for(ticket in 1..inputMoney.second){
+    fun showTicketNumber(buy_lotto_number : Array<Lotto?>,inputMoney : Pair<Int,Int>){
+        for(ticket in 0..inputMoney.second-1){
             print("[")
             for(num in 0..4){
-                print("${buy_lotto_number[ticket-1][num]}, ")
+                print("${buy_lotto_number[ticket]!!.getTicketNumber().toList().get(num)}, ")
             }
-            println("${buy_lotto_number[ticket-1][5]}]")
+            println("${buy_lotto_number[ticket]!!.getTicketNumber().toList().get(5)}]")
         }
     }
 

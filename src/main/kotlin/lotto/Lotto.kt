@@ -1,21 +1,17 @@
 package lotto
 
-//Lotto 클래스
-//제공된 Lotto 클래스를 활용해 구현해야 한다.
-//numbers의 접근 제어자인 private을 변경할 수 없다.
-//Lotto에 필드를 추가할 수 없다.
-//Lotto의 패키지 변경은 가능하다.
-//class Lotto(private val numbers: List<Int>) {
-//    init {
-//        require(numbers.size == 6)
-//    }
-//
-//    // TODO: 추가 기능 구현
-//}
-
 class Lotto(private val numbers: List<Int>) {
+
     init {
         require(numbers.size == 6)
+        require(numbers.distinct().size == 6)
+        for(check_num in 0..5){
+            require(numbers.get(check_num) >= 1 && numbers.get(check_num) <= 45)
+        }
+    }
+
+    fun getTicketNumber() : List<Int>{
+        return numbers
     }
 
     // TODO: 추가 기능 구현

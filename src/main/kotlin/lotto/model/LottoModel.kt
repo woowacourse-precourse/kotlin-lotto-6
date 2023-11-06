@@ -1,29 +1,39 @@
 package lotto.model
 
-import net.bytebuddy.asm.Advice.Return
-import javax.security.auth.kerberos.KerberosTicket
+import camp.nextstep.edu.missionutils.Randoms
+import lotto.Lotto
 
 class LottoModel {
 
-    fun check(buy_lotto_number : Array<Array<Int>>,winning_number : List<String>,bonus_number : Int,size : Int) : IntArray{
-        var choose_result = IntArray(6)
-        choose_result = chooseWinning(buy_lotto_number,winning_number,bonus_number,size,choose_result)
-        return choose_result
+    fun getRandomTicket(input_money : Pair<Int,Int>) : Array<Lotto?> {
+        val buy_lotto_number = Array<Lotto?>(input_money.second){null}
+        for(ticket_num in 0..input_money.second-1){
+            val number = Randoms.pickUniqueNumbersInRange(1,45,6)
+            val lotto = Lotto(number.sorted())
+            buy_lotto_number[ticket_num] = lotto
+        }
+        return buy_lotto_number
     }
-    fun chooseWinning(buy_lotto_number : Array<Array<Int>>,winning_number : List<String>,bonus_number: Int,size : Int,choose_result : IntArray) : IntArray{
+
+    fun checkWinningTicket(buy_lotto_number : Array<Lotto?>,winning_number : List<String>,bonus_number : Int,size : Int) : IntArray{
+        var ticket_result = IntArray(6)
+        ticket_result = chooseWinning(buy_lotto_number,winning_number,bonus_number,size,ticket_result)
+        return ticket_result
+    }
+    fun chooseWinning(buy_lotto_number : Array<Lotto?>, winning_number : List<String>, bonus_number: Int, size : Int, ticket_result : IntArray) : IntArray{
         for (ticket in 0..size - 1) {
             var get_ticket_line = getTicketLine(buy_lotto_number,ticket)//선택된 로또의 번호들을 저장하는 함수
             var winning_lotto_num = checkLottoWinningAgreement(get_ticket_line,winning_number)//당첨과 같은 번호와 갯수를 저장하는 PAIR 생성
             winning_lotto_num = checkLottoBonusAgreement(get_ticket_line,bonus_number,winning_lotto_num)
-            choose_result[getWinningStatistics(winning_lotto_num)] += 1
+            ticket_result[getWinningStatistics(winning_lotto_num)] += 1
         }
-        return choose_result
+        return ticket_result
     }
 
-    fun getTicketLine(buy_lotto_number : Array<Array<Int>>,ticket: Int) : ArrayList<Int>{
+    fun getTicketLine(buy_lotto_number : Array<Lotto?>,ticket: Int) : ArrayList<Int>{
         var get_ticket_line = ArrayList<Int>()
         for(line in 0..5){
-            get_ticket_line.add(buy_lotto_number[ticket][line])
+            get_ticket_line.add(buy_lotto_number[ticket]!!.getTicketNumber().toList().get(line))
         }
         return get_ticket_line
     }
@@ -53,32 +63,28 @@ class LottoModel {
         return 5
     }
 
-    fun getRateOfReturn(choose_result: IntArray,insert_money : Int) : String {
+    fun getRateOfReturn(ticket_result: IntArray, insert_money : Int) : String {
         var money: Int = 0
         for(idx in 0..4){
-            money += plusMoney(idx,choose_result)
+            money += plusMoney(idx,ticket_result)
         }
         var rate_of_return = ((money.toDouble()/insert_money.toDouble()) * 100)
         val rate_of_return_str = String.format("%.1f",rate_of_return)
         return rate_of_return_str
     }
 
-    fun plusMoney(idx : Int,choose_result: IntArray) : Int{
-
-        if(idx == 0 && choose_result[idx] > 0){
-            return 5000 * choose_result[idx]
-        }else if(idx == 1 && choose_result[idx] > 0){
-            return 50000 * choose_result[idx]
-        }else if(idx == 2 && choose_result[idx] > 0){
-            return 1500000 * choose_result[idx]
-        }else if(idx == 3 && choose_result[idx] > 0){
-            return 2000000000 * choose_result[idx]
-        }else if(idx == 4 && choose_result[idx] > 0){
-            return 30000000 * choose_result[idx]
+    fun plusMoney(idx : Int, ticket_result: IntArray) : Int{
+        if(idx == 0 && ticket_result[idx] > 0){
+            return 5000 * ticket_result[idx]
+        }else if(idx == 1 && ticket_result[idx] > 0){
+            return 50000 * ticket_result[idx]
+        }else if(idx == 2 && ticket_result[idx] > 0){
+            return 1500000 * ticket_result[idx]
+        }else if(idx == 3 && ticket_result[idx] > 0){
+            return 2000000000 * ticket_result[idx]
+        }else if(idx == 4 && ticket_result[idx] > 0){
+            return 30000000 * ticket_result[idx]
         }
         return 0
     }
-
-
-
 }
