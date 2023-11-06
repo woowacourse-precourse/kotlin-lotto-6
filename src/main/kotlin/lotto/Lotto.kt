@@ -36,7 +36,7 @@ enum class Rank(//등수 조건 설정
         fun findRank(matchCount: Int, bonusMatch: Boolean): Rank {
             return values().find { it.matchCount == matchCount && it.needBonus == bonusMatch }
                 ?: values().find { it.matchCount == matchCount && it != SECOND }
-                ?: FIFTH // 기본 값으로 FIFTH를 반환합니다.
+                ?: FIFTH
         }
     }
 }
