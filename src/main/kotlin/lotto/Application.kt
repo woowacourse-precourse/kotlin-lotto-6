@@ -6,20 +6,20 @@ import lotto.view.OutputView
 import lotto.validator.InputValidator
 
 fun main() {
-    val lottos = generateLottos()
-    OutputView.outputLottos(lottos)
+    val purchasedLottos = purchaseLottos()
+    OutputView.outputLottos(purchasedLottos)
 
     val winningLotto = getWinningLotto()
     val bonusNumber = getBonusNumber()
 }
 
-private fun generateLottos(): Lottos {
+private fun purchaseLottos(): Lottos {
     return try {
         val money = getInputPurchaseAmount()
-        LottoShop.buyLottos(money)
+        LottoShop.purchaseLottos(money)
     } catch (e: IllegalArgumentException) {
         println(e.message)
-        generateLottos()
+        purchaseLottos()
     }
 }
 
