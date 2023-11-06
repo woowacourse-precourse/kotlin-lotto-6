@@ -32,4 +32,8 @@ class CheckInputValidation {
         numbers: List<Int>,
         bonusNumber: Int
     ): Boolean = numbers.contains(bonusNumber)
+
+    fun checkLottoCount(
+        userInput: List<String>
+    ): Boolean = userInput.size == 6
 }

@@ -5,35 +5,37 @@ import lotto.validation.CheckInputValidation
 
 
 // 사용자 입력 관리
-class InputManager(
-    private val printer : MessageManager
-) {
+class InputManager {
     val checkInputValidation = CheckInputValidation()
 
-//    fun inputLottoWinningNumber(): String {
-//        while (true){
-//            val userInput = getUserInput()
-//            try {
-//
-//            } catch (e: IllegalArgumentException){
-//                when(e.message){
-//                    ErrorState.IS_NOT_POSITIVE_INTEGER.message -> {
-//                        printer.printErrorMessage(ErrorState.IS_INCORRECT_NUMBER)
-//                    }
-//                    else -> {}
-//                }
-//            } catch (e: IllegalStateException){
-//            }
-//
-//            return userInput
-//        }
-//    }
-//
-//    fun inputBonusNumber(): String {
-//        val userInput = getUserInput()
-//    }
+    fun inputLottoWinningNumber(): Set<Int> {
+        val userInput = getUserInput()
+        return setOf() // 임시
+    }
 
+    fun inputBonusNumber(): Int {
+        val userInput = getUserInput()
+        return 0 // 임시
+    }
+
+    private fun checkLottoNumberValidation(
+        userInput: String
+    ){
+
+    }
+
+    private fun checkBonusNumberValidation(
+        userInput: String,
+        isValidation: (Boolean) -> Unit
+    ){
+
+    }
 
     private fun getUserInput(): String = Console.readLine()
 
+    private fun splitUserInput(userInput: String): List<String> = userInput.split(SPLIT_SEPARATOR)
+
+    companion object {
+        private const val SPLIT_SEPARATOR = ","
+    }
 }

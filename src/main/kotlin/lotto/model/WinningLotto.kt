@@ -14,7 +14,7 @@ class WinningLotto(
         lottoNumber: Set<Int>
     ): Int = countWinningNumbers(numbers.intersect(lottoNumber))
 
-    // 담청 번호를 제외하는 기능을 합니다.
+    // 담청 번호를 제외한 목록을 반환하는 기능을 합니다.
     private fun getNotWinningNumbers(
         lottoNumber: Set<Int>
     ): Set<Int> = lottoNumber.subtract(numbers)

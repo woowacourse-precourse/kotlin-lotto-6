@@ -5,7 +5,7 @@ import lotto.model.Lotto
 
 class LottoManager {
 
-    fun makeLotto(): Lotto = Lotto(makeRandomNumbers())
+    fun purchaseLotto(): Lotto = Lotto(makeRandomNumbers())
 
     private fun makeRandomNumbers(): List<Int> =
         Randoms.pickUniqueNumbersInRange(
