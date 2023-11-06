@@ -12,3 +12,4 @@ const val MESSAGE_LOTTERY_NUMBER = "개를 구매했습니다."
 
 const val MESSAGE_ONLY_NUMBER = "[ERROR] 숫자만 입력해주세요."
 const val MESSAGE_NOT_FIT_UNIT_1000 = "[ERROR] 1,000원 단위로 입력해주세요."
+const val MESSAGE_DUPLICATE_NUMBER = "[ERROR] 중복된 번호가 있습니다."
