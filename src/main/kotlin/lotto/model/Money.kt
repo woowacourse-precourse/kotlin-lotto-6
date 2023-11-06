@@ -5,6 +5,7 @@ import java.lang.NumberFormatException
 
 
 class Money {
+
     fun moneyFormatValidate(money: String) {
         try {
             money.toInt()
@@ -15,14 +16,14 @@ class Money {
     }
 
     fun moneyRangeValidate(money: String) {
-        if (money.toInt() < Constants.THOUSAND) {
+        if (money.toInt() < NumberConstants.THOUSAND.value) {
             println(Constants.ERROR_MONEY_RANGE)
             throw IllegalArgumentException(Constants.ERROR_MONEY_RANGE)
         }
     }
 
     fun moneyChangesValidate(money: String) {
-        if (money.toInt() % Constants.THOUSAND != Constants.ZERO) {
+        if (money.toInt() % NumberConstants.THOUSAND.value != NumberConstants.ZERO.value) {
             println(Constants.ERROR_NO_CHAGES)
             throw IllegalArgumentException(Constants.ERROR_NO_CHAGES)
         }

@@ -5,12 +5,12 @@ import kotlin.math.round
 class Profit {
     fun calculateProfit(money: Int, jackpot: List<Int>): Float {
         var profit = 0
-        profit += jackpot[0] * Constants.FIVE_THOUSAND
-        profit += jackpot[1] * Constants.FIFTY_THOUSAND
-        profit += jackpot[2] * Constants.ONE_MILLION_FIVE_HUNDRED_THOUSAND
-        profit += jackpot[3] * Constants.THIRTY_MILLION
-        profit += jackpot[4] * Constants.TWO_BILLION
+        profit += jackpot[0] * NumberConstants.FIVE_THOUSAND.value
+        profit += jackpot[1] * NumberConstants.FIFTY_THOUSAND.value
+        profit += jackpot[2] * NumberConstants.ONE_MILLION_FIVE_HUNDRED_THOUSAND.value
+        profit += jackpot[3] * NumberConstants.THIRTY_MILLION.value
+        profit += jackpot[4] * NumberConstants.TWO_BILLION.value
 
-        return round(profit / money.toFloat() * Constants.TEN_THOUSAND) / Constants.HUNDRED
+        return round(profit / money.toFloat() * NumberConstants.TEN_THOUSAND.value) / NumberConstants.HUNDRED.value
     }
 }

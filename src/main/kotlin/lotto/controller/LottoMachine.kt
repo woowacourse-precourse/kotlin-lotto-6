@@ -55,8 +55,6 @@ class LottoMachine {
         while (validFlag) {
             try {
                 Lotto(userLottoAnswer).rangeValidate()
-                Lotto(userLottoAnswer).duplicationValidate()
-                UserLottoNumber().sizeValidate(userLottoAnswer)
                 validFlag = false
             } catch (e: IllegalArgumentException) {
                 answers = Input().write()

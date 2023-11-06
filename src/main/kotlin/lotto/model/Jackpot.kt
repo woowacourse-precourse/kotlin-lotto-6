@@ -12,30 +12,30 @@ class Jackpot {
     }
 
     fun rankUpdate(count: Int, rank: MutableList<Int>, bonusCount: Int): MutableList<Int> {
-        if (count == Constants.THREE) {
-            rank[Constants.ZERO]++
-        } else if (count == Constants.FIVE && bonusCount == Constants.ONE) {
-            rank[Constants.THREE]++
-        } else if (count == Constants.FOUR) {
-            rank[Constants.ONE]++
-        } else if (count == Constants.FIVE) {
-            rank[Constants.TWO]++
-        } else if (count == Constants.SIX) {
-            rank[Constants.FOUR]++
+        if (count == NumberConstants.THREE.value) {
+            rank[NumberConstants.ZERO.value]++
+        } else if (count == NumberConstants.FIVE.value && bonusCount == NumberConstants.ONE.value) {
+            rank[NumberConstants.THREE.value]++
+        } else if (count == NumberConstants.FIVE.value) {
+            rank[NumberConstants.ONE.value]++
+        } else if (count == NumberConstants.FIVE.value) {
+            rank[NumberConstants.TWO.value]++
+        } else if (count == NumberConstants.SIX.value) {
+            rank[NumberConstants.FOUR.value]++
         }
         return rank
     }
 
     fun rankInitiate(): MutableList<Int> {
         val rank = mutableListOf<Int>()
-        repeat(Constants.FIVE) {
+        repeat(NumberConstants.FIVE.value) {
             rank.add(0)
         }
         return rank
     }
 
     fun countDiscriminate(answers: List<Int>, eachLotto: List<Int>): Int {
-        var count = Constants.ZERO
+        var count = NumberConstants.ZERO.value
         for (number in answers) {
             if (eachLotto.contains(number)) {
                 count++
@@ -45,7 +45,7 @@ class Jackpot {
     }
 
     fun bonusDiscriminate(answers: List<Int>, eachLotto: List<Int>, bonus: Int): Int {
-        var bonusCount = Constants.ZERO
+        var bonusCount = NumberConstants.ZERO.value
         for (number in answers) {
             if (eachLotto.contains(bonus)) {
                 bonusCount++

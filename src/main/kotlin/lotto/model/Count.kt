@@ -2,6 +2,6 @@ package lotto.model
 
 class Count {
     fun calculate(number: Int): Int {
-        return number / 1000
+        return number / NumberConstants.TEN_THOUSAND.value
     }
 }
