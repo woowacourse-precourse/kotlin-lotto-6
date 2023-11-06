@@ -9,9 +9,9 @@ import view.ResultView
 
 object LottoController {
 
-    private lateinit var money: Money
-    private lateinit var chance: Chance
-    private lateinit var numberPicker: NumberPicker
+    private var money: Money
+    private var chance: Chance
+    private var numberPicker: NumberPicker
 
     init {
         money = getUserAmount()
@@ -27,7 +27,7 @@ object LottoController {
             Lotto(it).getSortedNumbers()
         }
 
-
+        ResultView.printPurchasedLotties(sortedLotties)
     }
 
     private fun getUserAmount(): Money = Money(InputView.inputPurchaseAmount())
