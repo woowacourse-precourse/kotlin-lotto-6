@@ -10,6 +10,8 @@ class OutputView {
 
     fun printLottoInfo(lotto: Lotto) = println(lotto.getLottoNumberInfo())
 
+    fun printAppendLine() = println()
+
     private enum class RequestType(val message: String) {
         PURCHASE_AMOUNT("구입금액을 입력해 주세요"),
         PURCHASED_N_ITEMS("개를 구매했습니다."),

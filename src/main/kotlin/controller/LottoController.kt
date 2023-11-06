@@ -1,6 +1,6 @@
 package controller
 
-import lotto.Lotto
+import model.Lotto
 import model.Money
 import util.LottoStore.generateLottoTickets
 import view.InputView
@@ -36,5 +36,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
         purchasedLottoTickets.forEach { lotto ->
             outputView.printLottoInfo(lotto)
         }
+
+        outputView.printAppendLine()
     }
 }
