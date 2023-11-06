@@ -2,7 +2,11 @@ package lotto
 
 import lotto.model.BonusNumberVerification
 import lotto.model.Lotto
+import lotto.model.LottoNumberGenerator
 import lotto.model.PurchaseMoneyVerification
+import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -43,5 +47,22 @@ class LottoTest {
             Lotto(listOf(1, 2, 3, 4, 5, 46))
         }
     }
-    // 아래에 추가 테스트 작성 가능
+
+    @Test
+    fun `구입한 로또 번호 만큼 로또를 생성하는지 테스트`() {
+        val lottoNumbers = LottoNumberGenerator()
+        val lotto = 5
+        val result = lottoNumbers.lottoNumberCreation(lotto)
+
+        assertEquals(lotto, result.size)
+    }
+
+    @Test
+    fun `구입한 로또 하나가 고유한 6개의 숫자를 가지고 있는지 테스트`() {
+        val lottoNumbers = LottoNumberGenerator()
+        val lotto = 1
+        val result = lottoNumbers.lottoNumberCreation(lotto)
+
+        assertTrue { result[0].distinct().size == 6 }
+    }
 }
