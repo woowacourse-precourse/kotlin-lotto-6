@@ -1,6 +1,5 @@
 package domain.chance
 
-import camp.nextstep.edu.missionutils.Randoms
 import lotto.constants.Constants.LOTTO_PRICE
 import lotto.domain.purchase.Money
 
