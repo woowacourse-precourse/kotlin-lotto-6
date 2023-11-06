@@ -2,6 +2,8 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 
+private const val LOTTO_UNIT = 1000
+
 class Player {
 
     fun inputPurchaseAmount(): Int {
@@ -12,6 +14,6 @@ class Player {
     }
 
     private fun validatePurchaseAmount(amount: Int) {
-        require(amount % 1000 == 0) { throw IllegalArgumentException("[ERROR] 1,000원 단위로 입력해주세요.") }
+        require(amount % LOTTO_UNIT == 0) { throw IllegalArgumentException("[ERROR] 1,000원 단위로 입력해주세요.") }
     }
 }
