@@ -6,7 +6,14 @@ class OutputView {
     fun lottoPurchaseMessage() = println(OutputMessages.PURCHASE_MONEY.message)
     fun lottoPurchaseConfirm(purchaseLottoNumber: Int)= println(OutputMessages.PURCHASE_CONFIRMATION.message.format(purchaseLottoNumber))
     fun rightLottoNumberMessage() = println(OutputMessages.CORRECT_LOTTO_NUMBER.message)
+    fun rightLottoNumbersView(lottoNumbers: MutableList<List<Int>>){
+        lottoNumbers.forEach {
+            println(it)
+        }
+    }
     fun bonusLottoNumberMessage() = println(OutputMessages.BONUS_NUMBER.message)
+
+
 }
 
 enum class OutputMessages(val message: String) {
