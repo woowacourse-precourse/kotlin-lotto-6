@@ -39,7 +39,8 @@ class LottoController(
         inputWinningNumber()
         outputView.printInputBonusNumber()
         inputBonusNumber()
-        winResult = winResultService.makeWinResult(user,winningLotto)
+        outputView.printWinStatisticsMessage()
+        calculateWinResult()
     }
 
     private fun buyLotto() {
@@ -69,5 +70,10 @@ class LottoController(
             println(e.message)
             inputBonusNumber()
         }
+    }
+    private fun calculateWinResult(){
+        winResult = winResultService.makeWinResult(user,winningLotto)
+        outputView.printWinStatisticsResult(winResult.getPlaceResult())
+        outputView.printTotalEarningRate(winResult.getEarningRate())
     }
 }
