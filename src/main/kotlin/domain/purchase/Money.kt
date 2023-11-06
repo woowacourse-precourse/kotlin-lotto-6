@@ -1,3 +1,3 @@
 package lotto.domain.purchase
 
-data class Money(val amount: String)
+data class Money(val amount: Int)
