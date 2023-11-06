@@ -19,7 +19,7 @@ class ValidationUtilTest {
         val exception = assertThrows<IllegalArgumentException> {
             ValidationUtil.validatePurchaseAmount("삼천원")
         }
-        assertTrue(exception.message!!.contains("유효하지 않은 금액입니다."))
+        assertTrue(exception.message!!.contains("[ERROR] 유효하지 않은 금액입니다."))
     }
 
     @Test
@@ -27,7 +27,7 @@ class ValidationUtilTest {
         val exception = assertThrows<IllegalArgumentException> {
             ValidationUtil.validatePurchaseAmount("2500")
         }
-        assertTrue(exception.message!!.contains("구매 금액은 1,000원 단위로 입력해야 합니다."))
+        assertTrue(exception.message!!.contains("[ERROR] 구매 금액은 1,000원 단위로 입력해야 합니다."))
     }
 
     @Test
@@ -44,7 +44,7 @@ class ValidationUtilTest {
         val outOfRangeException = assertThrows<IllegalArgumentException> {
             ValidationUtil.validateWinningNumbers(outOfRangeWinningNumbers)
         }
-        assertTrue(outOfRangeException.message!!.contains("당첨 번호는 1부터 45 사이의 숫자여야 합니다."))
+        assertTrue(outOfRangeException.message!!.contains("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다."))
     }
 
     @Test
@@ -52,7 +52,7 @@ class ValidationUtilTest {
         val exception = assertThrows<IllegalArgumentException> {
             ValidationUtil.validateWinningNumbers("1,2,3,4,5,오")
         }
-        assertTrue(exception.message!!.contains("당첨 번호는 숫자여야 합니다."))
+        assertTrue(exception.message!!.contains("[ERROR] 유효하지 않은 당첨 번호입니다."))
     }
 
     @Test
@@ -60,7 +60,7 @@ class ValidationUtilTest {
         val exception = assertThrows<IllegalArgumentException> {
             ValidationUtil.validateWinningNumbers("1,2,3,3,4,5")
         }
-        assertTrue(exception.message!!.contains("당첨 번호는 중복될 수 없습니다."))
+        assertTrue(exception.message!!.contains("[ERROR] 당첨 번호는 중복될 수 없습니다."))
     }
 
     @Test
@@ -68,7 +68,7 @@ class ValidationUtilTest {
         val exception = assertThrows<IllegalArgumentException> {
             ValidationUtil.validateBonusNumber("보너스", listOf(1, 2, 3, 4, 5, 6))
         }
-        assertTrue(exception.message!!.contains("보너스 번호는 숫자여야 합니다."))
+        assertTrue(exception.message!!.contains("[ERROR] 유효하지 않은 보너스 번호입니다."))
     }
 
     @Test
@@ -76,7 +76,7 @@ class ValidationUtilTest {
         val exception = assertThrows<IllegalArgumentException> {
             ValidationUtil.validateBonusNumber("1", listOf(1, 2, 3, 4, 5, 6))
         }
-        assertTrue(exception.message!!.contains("보너스 번호는 당첨 번호와 중복될 수 없습니다."))
+        assertTrue(exception.message!!.contains("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."))
     }
 
     @Test
@@ -86,6 +86,6 @@ class ValidationUtilTest {
         val outOfRangeException = assertThrows<IllegalArgumentException> {
             ValidationUtil.validateBonusNumber(outOfRangeBonusNumber, winningNumbers)
         }
-        assertTrue(outOfRangeException.message!!.contains("보너스 번호는 1부터 45 사이의 숫자여야 합니다."))
+        assertTrue(outOfRangeException.message!!.contains("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다."))
     }
 }
