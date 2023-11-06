@@ -14,5 +14,6 @@ object ResultView {
         lotties.onEach { numbers ->
             println(numbers)
         }
+        println()
     }
 }

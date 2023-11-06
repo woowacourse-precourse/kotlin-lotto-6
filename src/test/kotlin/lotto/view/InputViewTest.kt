@@ -36,7 +36,7 @@ class InputViewTest {
     fun `사용자로부터 입력받은 당첨번호가 겹치지 않는 6개로 정상적`() {
         val numbers = "1,2,3,4,5,6"
         assertDoesNotThrow {
-            InputView.validateWinningNumbers(numbers)
+            InputView.getWinningNumbersList(numbers)
         }
     }
 
@@ -44,15 +44,15 @@ class InputViewTest {
     fun `사용자로부터 입력받은 당첨번호가 6개가 아닌 경우 예외 발생`() {
         val numbers = "1,2,3,4,5"
         assertThrows<IllegalArgumentException> {
-            InputView.validateWinningNumbers(numbers)
+            InputView.getWinningNumbersList(numbers)
         }
     }
 
     @Test
-    fun `사용자로부터 입력받은 당첨번호 중 음수가 포함되어 있는 경우 예외 발생`() {
+    fun `사용자로부터 입력받은 당첨번호 중 1 ~ 45가 아닌 숫자가 있는 경우 예외 발생`() {
         val numbers = "1,-12,3,4,5,6"
         assertThrows<IllegalArgumentException> {
-            InputView.validateWinningNumbers(numbers)
+            InputView.getWinningNumbersList(numbers)
         }
     }
 
@@ -60,7 +60,7 @@ class InputViewTest {
     fun `사용자로부터 입력받은 당첨번호 6개 중 겹치는 번호가 존재하는 경우 예외 발생`() {
         val numbers = "1,1,3,4,5,6"
         assertThrows<IllegalArgumentException> {
-            InputView.validateWinningNumbers(numbers)
+            InputView.getWinningNumbersList(numbers)
         }
     }
 
@@ -68,7 +68,7 @@ class InputViewTest {
     fun `사용자로부터 입력받은 당첨번호 중 문자열이 포함되어 있는 경우 예외 발생`() {
         val numbers = "kkm,2,3,4,5,6"
         assertThrows<IllegalArgumentException> {
-            InputView.validateWinningNumbers(numbers)
+            InputView.getWinningNumbersList(numbers)
         }
     }
 
@@ -76,7 +76,7 @@ class InputViewTest {
     fun `사용자로부터 입력받은 당첨번호 중 소수가 포함되어 있는 경우 예외 발생`() {
         val numbers = "1.1,2,3,4,5,6"
         assertThrows<IllegalArgumentException> {
-            InputView.validateWinningNumbers(numbers)
+            InputView.getWinningNumbersList(numbers)
         }
     }
 }
