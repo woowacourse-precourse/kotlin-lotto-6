@@ -1,10 +1,9 @@
 package lotto.validator
 
-class BonusNumberValidator : InputValidator() {
+class BonusNumberValidator(value: String) : InputValidator() {
     init {
-        checkForLength()
-        checkForDigit()
-        checkForPositiveInteger()
-        checkForNumberRange()
+        checkBlank(value)
+        checkForPositiveInteger(value)
+        checkForNumberRange(value)
     }
 }
