@@ -16,9 +16,11 @@ class LottoController {
         //println(lottoNumberInput) 결과 확인용
         val bonusNumberInput = inputBonusNumber(lottoNumberInput)
         //println(bonusNumberInput) 결과 확인용
-        val lottoResult = lottoResult.calculateResult(lottoList, lottoNumberInput, bonusNumberInput)
+        val lottoResultList = lottoResult.calculateResult(lottoList, lottoNumberInput, bonusNumberInput)
         //println(lottoResult) 결과 확인용
-        outView.printLottoResult(lottoResult)
+        outView.printLottoResult(lottoResultList)
+        val totalPrize = lottoResult.calculateTotalPrize(lottoResultList)
+        outView.printTotalProfit(priceAmount, totalPrize)
     }
 
     private fun inputPriceAmount(): Int {

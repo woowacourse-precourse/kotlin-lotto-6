@@ -31,4 +31,10 @@ class OutputView {
             }
         }
     }
+
+    fun printTotalProfit(priceAmount: Int, totalPrize: Long) {
+        val profit = (totalPrize.toDouble() / priceAmount.toDouble())
+        val result = (Math.round(profit * 1000) / 10.0)
+        print("총 수익률은 $result%입니다.")
+    }
 }
