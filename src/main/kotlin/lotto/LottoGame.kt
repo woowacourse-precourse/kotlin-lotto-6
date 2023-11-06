@@ -16,7 +16,6 @@ class LottoGame {
         try{
             inputPrice()
             inputPrizeNumber()
-            val input = Lotto(numbers)
             inputBonusNumber()
             for(number in buyNumbers){
                 checkLotto(number)
@@ -33,39 +32,32 @@ class LottoGame {
                 correctNumber++
             }
         }
-        if(correctNumber == 3){
-            ranking[0]++
-            prize += 5000
-        }
-        if(correctNumber == 4){
-            ranking[1]++
-            prize += 50000
-        }
-        if(correctNumber == 5 && !number.contains(bonus)){
-            ranking[2]++
-            prize += 1500000
-        }
         if(correctNumber == 5 && number.contains(bonus)){
-            ranking[3]++
-            prize += 30000000
+            Ranking.check(correctNumber,bonus)
         }
-        if(correctNumber == 6){
-            ranking[4]++
-            prize += 2000000000
+        else{
+            Ranking.check(correctNumber,0)
         }
     }
     private fun showResult() {
         showText()
-        println("3개 일치 (5,000원) - ${ranking[0]}개")
-        println("4개 일치 (50,000원) - ${ranking[1]}개")
-        println("5개 일치 (1,500,000원) - ${ranking[2]}개")
-        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${ranking[3]}개")
-        println("6개 일치 (2,000,000,000원) - ${ranking[4]}개")
+        val rank = Ranking.getRank()
+        println("3개 일치 (5,000원) - ${rank[3]}개")
+        println("4개 일치 (50,000원) - ${rank[4]}개")
+        println("5개 일치 (1,500,000원) - ${rank[5]}개")
+        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${rank[6]}개")
+        println("6개 일치 (2,000,000,000원) - ${rank[7]}개")
+        caculate(rank)
         showProfit()
     }
-    private fun showProfit(){
+    private fun showProfit() {
         var result = prize.toDouble() / buyPrice.toDouble() * 100.0
         println("총 수익률은 ${String.format("%.1f",result)}%입니다.")
+    }
+    private fun caculate(rank: IntArray){
+        prize = rank[3] * 5000 + rank[4] * 50000 +
+                rank[5] *1500000 + rank[6] * 30000000 +
+                rank[7]*2000000000
     }
     private fun showText(){
         println("\n당첨 통계")
