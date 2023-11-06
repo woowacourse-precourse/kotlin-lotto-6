@@ -1,4 +1,3 @@
 package lotto.domain.purchase
 
-class Money(private val amount: String) {
-}
+data class Money(val amount: String)
