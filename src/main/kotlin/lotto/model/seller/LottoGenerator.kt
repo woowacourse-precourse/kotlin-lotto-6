@@ -1,0 +1,27 @@
+package lotto.model.seller
+
+import lotto.model.Lotto
+import lotto.model.random.DefaultRandomGenerator
+import lotto.model.random.RandomGenerator
+import lotto.model.toBalls
+
+class LottoGenerator private constructor(private val generator: RandomGenerator) {
+
+    fun createLottos(count: Int): Ticket {
+        val ticket = Ticket()
+        repeat(count) {
+            val randomNumbers = generator.pickUniqueNumberInRange(START_NUMBER, END_NUMBER, LOTTO_NUMBER_COUNT)
+            ticket.record(lotto = Lotto(randomNumbers.toBalls()))
+        }
+        return ticket
+    }
+
+    companion object {
+        const val START_NUMBER = 1
+        private const val END_NUMBER = 45
+        private const val LOTTO_NUMBER_COUNT = 6
+
+        fun createWithRandomGenerator(generator: RandomGenerator = DefaultRandomGenerator()): LottoGenerator =
+            LottoGenerator(generator)
+    }
+}
