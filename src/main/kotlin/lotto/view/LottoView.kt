@@ -3,8 +3,8 @@ package lotto.view
 import lotto.utils.ConsoleMessage
 
 class LottoView {
-    fun requestPurchaseMoneyMessage() {
-        println(ConsoleMessage.REQUEST_PURCHASE_MONEY)
+    fun requestPurchaseMoneyValueMessage() {
+        println(ConsoleMessage.REQUEST_PURCHASE_MONEY_VALUE)
     }
 
 }
