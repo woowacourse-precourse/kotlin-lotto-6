@@ -3,6 +3,7 @@ package lotto
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
+        if (numbers.toSet().size != lottoWinningNumberQuantity) throw IllegalArgumentException("$errorPrefix 로또 번호는 중복이 될 수 없습니다.")
     }
 
     fun printWinningNumbers() {
