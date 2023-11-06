@@ -89,11 +89,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
             resultMap[rank] = 1
         }
         for (rank in 6 downTo 1) {
-            if (resultMap.containsKey(rank)) {
-                outputView.printWinningStatistics(rank, resultMap[rank]!!)
-                continue
-            }
-            outputView.printWinningStatistics(rank, 0)
+            outputView.printWinningStatistics(rank, resultMap[rank] ?: 0)
         }
     }
 }
