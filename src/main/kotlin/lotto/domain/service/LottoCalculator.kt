@@ -1,8 +1,9 @@
 package lotto.domain.service
 
 import lotto.Lotto
+import lotto.domain.model.Winning
 
-class LottoCalculator(private val winningNumbers: List<Int>, private val bonusNumber: Int) {
+class LottoCalculator(private val winning:Winning) {
 
     fun checkWinningRank(lotto: Lotto): Int {
         return when (getWinningCount(lotto)) {
@@ -19,8 +20,8 @@ class LottoCalculator(private val winningNumbers: List<Int>, private val bonusNu
     }
 
     private fun getWinningCount(lotto: Lotto) =
-        winningNumbers.count { winningNumber -> lotto.getNumbers().contains(winningNumber) }
+        winning.numbers.count { winningNumber -> lotto.getNumbers().contains(winningNumber) }
 
-    private fun hasBonusNumber(lotto: Lotto) = lotto.getNumbers().contains(bonusNumber)
+    private fun hasBonusNumber(lotto: Lotto) = lotto.getNumbers().contains(winning.bonusNumber)
 
 }

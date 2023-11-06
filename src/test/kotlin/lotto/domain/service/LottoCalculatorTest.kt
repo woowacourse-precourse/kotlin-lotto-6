@@ -2,6 +2,7 @@ package lotto.domain.service
 
 import lotto.Lotto
 import lotto.domain.model.Customer
+import lotto.domain.model.Winning
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -13,7 +14,7 @@ class LottoCalculatorTest {
 
     @BeforeEach
     fun `setUp`(){
-        lottoCalculator = LottoCalculator(listOf(1,2,3,4,5,6),7)
+        lottoCalculator = LottoCalculator(Winning(listOf(1,2,3,4,5,6),7))
     }
 
     @Test
