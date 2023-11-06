@@ -25,7 +25,6 @@ object Exception {
             require(number in LOTTO_MIN_RANDOM_NUMBER..LOTTO_MAX_RANDOM_NUMBER) { LOTTO_NUMBER_ERROR_MESSAGE }
         }
         require(numbers.toSet().size == LOTTO_NUMBER_SIZE) { LOTTO_NUMBER_OVERLAP_ERROR_MESSAGE }
-        require(numbers == numbers.sorted()) { LOTTO_NUMBER_SORT_ERROR_MESSAGE }
     }
 
     fun validateInputWinningNumber(numbers: List<Int>) {
