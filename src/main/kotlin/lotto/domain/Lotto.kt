@@ -5,7 +5,7 @@ import lotto.constants.*
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6)
+        require(numbers.size == LOTTO_SIZE)
         validateDuplication()
     }
 
