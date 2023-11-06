@@ -7,13 +7,16 @@ class LottoGame(private val user: User) {
         val amount = inputAmountFromUser()
         println(amount)
 
-        showMessage(INPUT_WINNING_NUMBERS)
+        showMessage(INPUT_WINNING_NUMBERS_MESSAGE)
         val winningNumbers = inputWinningNumbersFromUser()
         println(winningNumbers)
 
-        showMessage(INPUT_BONUS_NUMBER)
+        showMessage(INPUT_BONUS_NUMBER_MESSAGE)
         val bonusNumber = inputBonusNumberFromUser()
         println(bonusNumber)
+
+        val lottoCount = calculateLottoCount(amount)
+        showMessage(PURCHASED_LOTTO_COUNT_MESSAGE.format(lottoCount))
     }
 
     private fun inputAmountFromUser(): Int {
@@ -52,6 +55,8 @@ class LottoGame(private val user: User) {
         return user.bonusNumber
     }
 
+    private fun calculateLottoCount(amount: Int): Int = amount / User.AMOUNT_UNIT
+
     private fun showMessage(message: String) = println(message)
 
     private fun showErrorMessage(errorMessage: String) = println("$PREFIX_ERROR_MESSAGE $errorMessage")
@@ -61,7 +66,8 @@ class LottoGame(private val user: User) {
         const val UNKNOWN_ERROR_MESSAGE = "알 수 없는 에러가 발생했습니다."
 
         const val INPUT_AMOUNT_MESSAGE = "구입금액을 입력해 주세요."
-        const val INPUT_WINNING_NUMBERS = "\n당첨 번호를 입력해 주세요."
-        const val INPUT_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요."
+        const val INPUT_WINNING_NUMBERS_MESSAGE = "\n당첨 번호를 입력해 주세요."
+        const val INPUT_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요."
+        const val PURCHASED_LOTTO_COUNT_MESSAGE = "\n%d개를 구매했습니다. "
     }
 }
