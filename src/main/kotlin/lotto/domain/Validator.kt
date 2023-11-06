@@ -1,17 +1,22 @@
 package lotto.domain
 
-class Validator() {
+class Validator {
 
     fun validatePrice(price: String) {
         validatePriceNotNum(price)
         validatePriceBlank(price)
+        validatePrice1000Unit(price)
     }
 
     private fun validatePriceNotNum(price: String) {
         require(price.all { it.isDigit() })
     }
 
-    fun validatePriceBlank(price: String) {
+    private fun validatePriceBlank(price: String) {
         require(price.isNotBlank())
+    }
+
+    private fun validatePrice1000Unit(price: String) {
+        require(price.toInt() % 1000 == 0)
     }
 }
