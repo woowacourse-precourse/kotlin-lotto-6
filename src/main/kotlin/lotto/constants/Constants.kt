@@ -1,6 +1,8 @@
 package lotto.constants
 
 const val AMOUNT_UNIT = 1000
+const val MINIMUM_NUMBER = '0'
+const val MAXIMUM_NUMBER = '9'
 
 const val MESSAGE_PURCHASE_AMOUNT = "구입금액을 입력해 주세요."
 
