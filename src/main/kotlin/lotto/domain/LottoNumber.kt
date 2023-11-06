@@ -2,7 +2,7 @@ package lotto.domain
 
 import lotto.exception.LottoNumberException
 
-data class LottoNumber(private val value: Int) {
+data class LottoNumber(val value: Int) {
     companion object {
         const val MIN_LOTTO_NUMBER = 1
         const val MAX_LOTTO_NUMBER = 45
@@ -14,7 +14,5 @@ data class LottoNumber(private val value: Int) {
         }
     }
 
-    override fun toString(): String {
-        return value.toString()
-    }
+    override fun toString(): String = value.toString()
 }
