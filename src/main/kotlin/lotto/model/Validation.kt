@@ -1,19 +1,24 @@
 package lotto.model
 
+import lotto.model.Constant.LOTTO_COST
+import lotto.model.Constant.LOTTO_MAX_NUMBER
+import lotto.model.Constant.LOTTO_MIN_NUMBER
+import lotto.model.Constant.LOTTO_SIZE
+
 internal fun String.isAmountInThousand() =
-    require(this.toInt() % 1000 == 0) { ErrorMessage.IsNotAmountInThousand }
+    require(this.toInt() % LOTTO_COST == 0) { ErrorMessage.IsNotAmountInThousand }
 
 internal fun String.isDigit() =
     requireNotNull(this.toIntOrNull()) { ErrorMessage.IsDigit }
 
 internal fun String.isLessThanThousand() =
-    require(this.toInt() >= 1000) { ErrorMessage.IsLessThanThousand }
+    require(this.toInt() >= LOTTO_COST) { ErrorMessage.IsLessThanThousand }
 
 internal fun List<String>.checkLottoSize() =
-    require(this.size == 6) { ErrorMessage.CheckLottoSize }
+    require(this.size == LOTTO_SIZE) { ErrorMessage.CheckLottoSize }
 
 internal fun String.isLottoNumber() =
-    require(this.toInt() in 1..45) { ErrorMessage.IsLottoNumber }
+    require(this.toInt() in LOTTO_MIN_NUMBER..LOTTO_MAX_NUMBER) { ErrorMessage.IsLottoNumber }
 
 internal fun List<String>.isDuplicateNumber() =
     require(this.distinct().size == this.size) { ErrorMessage.IsDuplicateNumber }
@@ -31,4 +36,11 @@ internal enum class ErrorMessage(private val message: String) {
     HasNoDuplicateNumbers("당첨 번호와 보너스 번호는 중복 될 수 없습니다.");
 
     override fun toString() = message
+}
+
+object Constant {
+    const val LOTTO_COST = 1000
+    const val LOTTO_MIN_NUMBER = 1
+    const val LOTTO_MAX_NUMBER = 45
+    const val LOTTO_SIZE = 6
 }
