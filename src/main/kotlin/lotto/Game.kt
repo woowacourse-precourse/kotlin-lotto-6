@@ -1,12 +1,12 @@
 package lotto
 
-import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
-class Game {
+class Game(
+    private val calculator: Calculator = Calculator()
+) {
 
     fun purchaseLotto(input: String): Int {
-        val calculator = Calculator()
         requireIsInt(input)
         return calculator.calculateLottoAvailableForPurchase(input.toInt())
     }
@@ -20,11 +20,11 @@ class Game {
         return lottery
     }
 
-    fun sortLotteryRandomNumber(numbers: List<Int>): List<Int> {
+    private fun sortLotteryRandomNumber(numbers: List<Int>): List<Int> {
         return numbers.sorted()
     }
 
-    fun inputUserPickNumbersS(input: String): Lotto {
+    fun inputUserPickNumbers(input: String): Lotto {
         val splitNumber = input.split(",")
         val numbers = mutableListOf<Int>()
         splitNumber.forEach {
@@ -32,17 +32,27 @@ class Game {
             numbers.add(it.toInt())
         }
 
-        return Lotto(numbers)
+        return Lotto(sortLotteryRandomNumber(numbers))
     }
 
-    fun inputBonusNumber(input: String): Int {
+    fun inputBonusNumber(input: String, userPickNumbers: List<Int>): Int {
         requireIsInt(input)
+        val bonusNumber = input.toInt()
+        requireDuplicateBonusNumber(bonusNumber, userPickNumbers)
         return input.toInt()
     }
 
     private fun requireIsInt(input: String) {
         val number = input.toIntOrNull() ?: throw IllegalArgumentException()
         require(number > 0)
+    }
+
+    private fun requireDuplicateBonusNumber(bonusNumber: Int, userPickNumbers: List<Int>) {
+        val uniqueNumbers = HashSet<Int>()
+        for (number in userPickNumbers) {
+            require(uniqueNumbers.add(number))
+        }
+        require(uniqueNumbers.add(bonusNumber))
     }
 
 }
