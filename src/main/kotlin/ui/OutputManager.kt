@@ -1,6 +1,7 @@
 package ui
 
 import domain.Lotto
+import model.Winning
 
 class OutputManager {
     fun promptPurchaseAmount() = println(OutputMessages.PROMPT_PURCHASE_AMOUNT)
@@ -11,6 +12,11 @@ class OutputManager {
     fun lottoNumbers(lottoNumber: List<Lotto>) { lottoNumber.forEach { println(it.getNumbers()) } }
     fun promptJackpotNumbers() = println(OutputMessages.PROMPT_JACKPOT_NUMBERS)
     fun promptBonusNumber() = println(OutputMessages.PROMPT_BONUS_NUMBER)
+    fun prizeResult(prize: Array<Int>) {
+        Winning.values().forEachIndexed { index, winning ->
+            println("$winning ${prize[index]}개")
+        }
+    }
     fun lottoStats() = println(OutputMessages.LOTTO_STATS)
     fun line() = println(OutputMessages.LINE)
     fun rateOfReturn(lottoRateOfReturn: String) = println(OutputMessages.RATE_OF_RETURN.toString().format(lottoRateOfReturn))
