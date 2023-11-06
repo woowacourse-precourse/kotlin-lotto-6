@@ -18,15 +18,13 @@ class WinningLotto(
         return countWinningNumbers(numbers.intersect(lottoNumber))
     }
 
+    // 담청 번호를 제외하는 기능을 합니다.
     private fun getNotWinningNumbers(
         lottoNumber: Set<Int>
-    ): Set<Int> = numbers.subtract(lottoNumber)
+    ): Set<Int> = lottoNumber.subtract(numbers)
 
     private fun countWinningNumbers(
         intersection: Set<Int>
     ): Int = intersection.size
 
-    companion object {
-
-    }
 }
