@@ -13,5 +13,5 @@ enum class Messages(val message: String) {
     EXCEPTION_WRONG_MONEY_UNIT("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다."),
     EXCEPTION_DUPLICATE_NUMBER("[ERROR] 중복된 로또 번호가 존재합니다."),
     EXCEPTION_WRONG_RANGE_NUMBER("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
-    EXCEPTION_LENGTH_NUMBER("[ERROR] 로또 번호는 총 6개의 숫자여야 합니다."),
+    EXCEPTION_WRONG_LENGTH_NUMBER("[ERROR] 로또 번호는 총 6개의 숫자여야 합니다."),
 }

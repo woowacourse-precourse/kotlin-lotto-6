@@ -1,7 +1,5 @@
 package lotto
 
-import lotto.model.Lotto
-
 object Validation {
 
     fun validateOutOfRange(amount: String): Long {
@@ -24,8 +22,8 @@ object Validation {
         return num
     }
 
-    fun validateLengthNumber(numbers: List<Int>) {
-        require(numbers.size == 6) { Messages.EXCEPTION_LENGTH_NUMBER.message }
+    fun validateWrongLengthNumber(numbers: List<Int>) {
+        require(numbers.size == 6) { Messages.EXCEPTION_WRONG_LENGTH_NUMBER.message }
     }
 
     fun validateDuplicateBonusNumber(bonusNumber: Int, winningNumbers: List<Int>) {

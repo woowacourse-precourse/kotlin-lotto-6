@@ -6,7 +6,7 @@ import lotto.model.Lotto
 import lotto.Messages
 import lotto.Validation.validateDuplicateBonusNumber
 import lotto.Validation.validateDuplicateNumber
-import lotto.Validation.validateLengthNumber
+import lotto.Validation.validateWrongLengthNumber
 import lotto.Validation.validateLottoNumber
 import lotto.Validation.validateMoneyUnit
 import lotto.Validation.validateOutOfRange
@@ -66,7 +66,7 @@ class LottoController {
                 numbers.split(",").forEach {
                     winningLotto.add(validateLottoNumber(it))
                 }
-                validateLengthNumber(winningLotto)
+                validateWrongLengthNumber(winningLotto)
                 validateDuplicateNumber(winningLotto)
                 break
             } catch (e: IllegalArgumentException) {
