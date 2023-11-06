@@ -79,5 +79,5 @@ fun getEarningRate(prizeList: MutableList<Prize>, amount: Int): Double {
         totalPrize += prize.prize
     }
     earningRate = totalPrize.toDouble() / totalAmount.toDouble() * 100
-    return round(earningRate * 100) / 100
+    return round(earningRate * 10) / 10
 }
