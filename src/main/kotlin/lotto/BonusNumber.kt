@@ -1,8 +1,6 @@
 package lotto
 
-import camp.nextstep.edu.missionutils.Console
 import exception.Exception
-import exception.Message
 import ui.Input
 import ui.Output
 
@@ -12,28 +10,33 @@ class BonusNumber {
     }
 
     fun createBonusNumber(userLotto: Lotto): Int {
-        val bonusNumber = Input.inputBonusNumber()
-        checkValidBonusNumber(bonusNumber)
-        checkDuplicateBonusNumber(userLotto, bonusNumber.toInt())
-        return bonusNumber.toInt()
-    }
-
-    fun checkValidBonusNumber(bonusNumber: String) {
-        if (bonusNumber.toInt() !in 1..45) {
-            println(Exception.EXCEPTION_INVALID_BONUS_NUMBER)
-            throw IllegalArgumentException(Exception.EXCEPTION_INVALID_BONUS_NUMBER)
-        }
-        if (!bonusNumber.all { Character.isDigit(it) }) {
-            println(Exception.EXCEPTION_INVALID_TYPE)
-            throw IllegalArgumentException(Exception.EXCEPTION_INVALID_NUMBER)
+        try {
+            val bonusNumber = Input.inputBonusNumber()
+            checkValidBonusNumber(bonusNumber)
+            checkDuplicateBonusNumber(userLotto, bonusNumber.toInt())
+            return bonusNumber.toInt()
+        } catch (e: InvalidBonusNumberException) {
+            println(e.message)
+            return createBonusNumber(userLotto)
         }
     }
-    fun  checkDuplicateBonusNumber(userLotto: Lotto, bonusNumber: Int) {
-        val lotto = userLotto.getNumbers()
-        if (lotto.contains(bonusNumber)) {
-            println(Exception.EXCEPTION_DUPLICATE_BONUS_NUMBER)
-            throw IllegalArgumentException(Exception.EXCEPTION_DUPLICATE_BONUS_NUMBER)
-        }
-    }
-
 }
+
+class InvalidBonusNumberException(message: String) : IllegalArgumentException(message)
+
+fun checkValidBonusNumber(bonusNumber: String) {
+    val bonusNumberInt = bonusNumber.toIntOrNull()
+
+    if (bonusNumberInt == null || bonusNumberInt !in 1..45) {
+        throw InvalidBonusNumberException(Exception.EXCEPTION_INVALID_NUMBER)
+    }
+}
+
+fun checkDuplicateBonusNumber(userLotto: Lotto, bonusNumber: Int) {
+    val lotto = userLotto.getNumbers()
+    if (lotto.contains(bonusNumber)) {
+        throw InvalidBonusNumberException(Exception.EXCEPTION_DUPLICATE_BONUS_NUMBER)
+    }
+}
+
+
