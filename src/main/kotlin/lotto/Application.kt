@@ -13,12 +13,14 @@ import lotto.Constants.START
 import lotto.Constants.WIN_NUM_ERROR
 
 fun main() {
-    val number = Purchase(askAmount()).lottoNum()
+    val amount = askAmount()
+    val number = Purchase(amount).lottoNum()
     val winNum = askWinNum()
     val bonusNum = askBonusNum(winNum)
     val winStat = mutableListOf<Int>(0, 0, 0, 0, 0, 0)
     number.map { winStat[Lotto(it).isWin(winNum, bonusNum)]++ }
-    Statistics(winStat).stat()
+    Statistics(winStat).stat(amount)
+
 }
 
 fun askAmount(): Int {

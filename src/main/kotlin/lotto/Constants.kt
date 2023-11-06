@@ -11,6 +11,11 @@ object Constants {
     const val FOURTH_PLACE = 2
     const val FIFTH_PLACE = 1
     const val NOTHING = 0
+    const val FIRST_PRIZE = 2000000000
+    const val SECOND_PRIZE = 30000000
+    const val THIRD_PRIZE = 1500000
+    const val FOURTH_PRIZE = 50000
+    const val FIFTH_PRIZE = 5000
 
     const val ASK_AMOUNT = "구입금액을 입력해 주세요."
     const val AMOUNT_ERROR = "[ERROR] 1000원 단위의 숫자를 입력하세요.\n"
@@ -21,4 +26,5 @@ object Constants {
     const val BONUS_ERROR = "[ERROR] 당첨 번호를 제외한 1~45 범위의 숫자를 1개 입력해 주세요."
     const val COUNT_ERROR = "로또 번호는 6개여야 합니다."
     const val DUPLICATE_ERROR = "중복된 번호 입니다."
+
 }
