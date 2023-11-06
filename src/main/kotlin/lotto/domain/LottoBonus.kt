@@ -18,11 +18,7 @@ class LottoBonus {
     }
 
     fun checkBonusWithWinningNumbers(bonus: Int, lottoList: List<Int>): Boolean {
-        lottoList.forEach {
-            if (it == bonus) {
-                return true
-            }
-        }
+        lottoList.forEach { if (it == bonus) return true }
         return false
     }
 
