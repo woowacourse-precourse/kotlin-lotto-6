@@ -22,7 +22,7 @@ class LottoShopTest {
         // when & then
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { LottoShop.purchaseLottos(input) }
-            .withMessage("[ERROR] 구입금액은 1000원 단위로 입력해야 합니다.")
+            .withMessage("[ERROR] 구입금액은 1,000원 단위로 입력해야 합니다.")
     }
 
     @Test
@@ -32,6 +32,6 @@ class LottoShopTest {
         // when & then
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { LottoShop.purchaseLottos(input) }
-            .withMessage("[ERROR] 구입금액은 최소 1000원 이상 입력해야 합니다.")
+            .withMessage("[ERROR] 구입금액은 최소 1,000원 이상 입력해야 합니다.")
     }
 }
