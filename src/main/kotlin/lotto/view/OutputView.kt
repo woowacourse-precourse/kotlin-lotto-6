@@ -9,4 +9,11 @@ class OutputView {
     fun printInputMoney() {
         printer.printInputMoney()
     }
+
+    fun printInputNumbers() {
+        printer.printInputNumbers()
+    }
+    fun printInputBonus() {
+        printer.printInputBonus()
+    }
 }

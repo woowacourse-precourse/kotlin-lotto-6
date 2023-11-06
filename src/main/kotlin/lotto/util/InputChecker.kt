@@ -1,7 +1,10 @@
 package lotto.util
 
 import lotto.constants.LottoConstants
+import lotto.exception.IllegalBonusException
 import lotto.exception.IllegalMoneyException
+import lotto.exception.IllegalNumbersException
+import lotto.model.Lotto
 
 object InputChecker {
 
@@ -9,7 +12,7 @@ object InputChecker {
         val money: Long
         try {
             money = inputString.toLong()
-        } catch (e: NumberFormatException) {
+        } catch (e: IllegalMoneyException) {
             throw IllegalMoneyException.moneyNotNumber
         }
         require(money >= LottoConstants.LOTTO_PRICE) {
@@ -19,5 +22,26 @@ object InputChecker {
             throw IllegalMoneyException.moneyNotDivide
         }
         return money
+    }
+
+    fun checkInputNumbers(inputString: String): Lotto {
+        val lottoNumbers: Lotto
+
+        try {
+            lottoNumbers = Lotto(inputString.split(",").map { it.toInt() }.toList())
+        } catch (e: IllegalNumbersException) {
+            throw IllegalNumbersException.numbersNotList
+        }
+        return lottoNumbers
+    }
+
+    fun checkInputBonus(inputString: String): Int {
+        val bonusNumber: Int
+        try {
+            bonusNumber = inputString.toInt()
+        } catch (e: IllegalBonusException) {
+            throw IllegalBonusException.bonusNotNumber
+        }
+        return bonusNumber
     }
 }

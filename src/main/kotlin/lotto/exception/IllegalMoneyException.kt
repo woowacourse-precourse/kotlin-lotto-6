@@ -20,5 +20,4 @@ class IllegalMoneyException(
             errorMessage = ErrorConstants.MONEY_NOT_DIVIDE
         )
     }
-
 }

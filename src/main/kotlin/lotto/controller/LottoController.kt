@@ -14,5 +14,9 @@ class LottoController {
     private fun purchaseLotto() {
         outputView.printInputMoney()
         inputView.readInputMoney()
+        outputView.printInputNumbers()
+        inputView.readInputNumbers()
+        outputView.printInputBonus()
+        inputView.readInputBonus()
     }
 }

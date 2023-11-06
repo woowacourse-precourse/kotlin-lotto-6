@@ -9,9 +9,10 @@ object Reader {
         return InputChecker.checkInputMoney(readLine())
     }
 
-    // Todo: 입력 메서드 수정
-    fun readLottoNumber(): Lotto {
-        readLine()
-        return Lotto(listOf(0, 0, 0, 0, 0, 0))
+    fun readLottoNumbers(): Lotto {
+        return InputChecker.checkInputNumbers(readLine())
+    }
+    fun readLottoBonus(): Int {
+        return InputChecker.checkInputBonus(readLine())
     }
 }
