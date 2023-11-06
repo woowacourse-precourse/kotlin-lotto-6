@@ -3,7 +3,7 @@ package lotto.domain
 import camp.nextstep.edu.missionutils.Console
 import lotto.data.Lotto
 
-class IO private constructor(private val validator: Validator) {
+class IO private constructor() {
 
     private fun getInput() = Console.readLine()
 
@@ -19,7 +19,7 @@ class IO private constructor(private val validator: Validator) {
         show(INPUT_PURCHASE_AMOUNT, true)
 
         val input = getInput()
-        require(validator.checkInputOfPurchasingCorrect(input)) {
+        require(Validator.getInstance().checkInputOfPurchasingCorrect(input)) {
             SHOULD_BE_POSITIVE_NUM
         }
 
@@ -41,7 +41,7 @@ class IO private constructor(private val validator: Validator) {
 
         @Volatile
         private var instance: IO? = null
-        fun getInstance(validator: Validator): IO {
+        fun getInstance(): IO {
             val io = instance
             if (io != null) {
                 return io
@@ -51,7 +51,7 @@ class IO private constructor(private val validator: Validator) {
                 if (ioForCheck != null) {
                     return@synchronized ioForCheck
                 }
-                val createdIO = IO(validator)
+                val createdIO = IO()
                 instance = createdIO
                 createdIO
             }
