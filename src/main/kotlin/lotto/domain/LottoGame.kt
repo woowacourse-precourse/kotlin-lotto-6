@@ -25,6 +25,9 @@ class LottoGame {
             result.put(Rank.checkRank(count, isBonus))
         }
         outputView.printWinningResult(result)
+
+        val totalReward = result.getTotalReward().toDouble()
+        val rateOfReturn = totalReward / inputMoney * 100
     }
 
     private fun printLottos(lottos: List<Lotto>) {

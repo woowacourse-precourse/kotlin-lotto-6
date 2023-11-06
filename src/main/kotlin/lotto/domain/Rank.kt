@@ -16,6 +16,10 @@ enum class Rank(
         return "$message${count}개\n"
     }
 
+    fun getReward(rank: Rank): Int {
+        return rank.reward
+    }
+
     companion object {
         fun checkRank(count: Int, bonusMatch: Boolean): Rank {
             if (count < 3) {
