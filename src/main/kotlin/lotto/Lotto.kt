@@ -34,8 +34,7 @@ enum class Rank(//등수 조건 설정
 
     companion object {
         fun findRank(matchCount: Int, bonusMatch: Boolean): Rank {
-            return values().find { it.matchCount == matchCount && it.needBonus == bonusMatch }
-                ?: values().find { it.matchCount == matchCount && it != SECOND }
+            return values().find { it.matchCount == matchCount && (!it.needBonus || bonusMatch) }
                 ?: FIFTH
         }
     }
