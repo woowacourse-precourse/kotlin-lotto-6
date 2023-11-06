@@ -1,7 +1,7 @@
 package lotto.domain
 
 class Prize {
-    fun getPrizeRatio(grades: List<Grade>, money: Int): Double {
+    fun getPrizeRatio(grades: List<Grade>, money: Int): String {
         val totalPrize = countPrize(grades)
         val ratio = calculateRatio(totalPrize, money)
         return formatRatio(ratio)
@@ -15,8 +15,8 @@ class Prize {
         return (totalPrize.toDouble() / money.toDouble()) * 100
     }
 
-    private fun formatRatio(ratio: Double): Double {
-        return String.format("%.1f", ratio).toDouble()
+    private fun formatRatio(ratio: Double): String {
+        return String.format("%.1f", ratio)
     }
 
 }
