@@ -2,10 +2,11 @@ package lotto
 
 import ui.Input
 import exception.Exception
+import ui.Output
 
 class UserLotto {
     init {
-        Input.getInputWinningNumber()
+        Output.printInputWinningNumber()
     }
 
     fun createUserLotto(): Lotto {
