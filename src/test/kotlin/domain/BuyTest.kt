@@ -1,5 +1,8 @@
-package lotto
+package domain
 
+import lotto.Buy
+import lotto.Lotto
+import lotto.Lottos
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import ui.Output

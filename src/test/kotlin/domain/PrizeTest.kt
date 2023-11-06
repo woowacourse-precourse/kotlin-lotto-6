@@ -1,9 +1,10 @@
-package lotto
+package domain
 
-import org.junit.jupiter.api.Assertions
+import lotto.Prize
+import lotto.getEarningRate
+import lotto.getPrizeList
 import org.junit.jupiter.api.Test
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.assertThrows
 import ui.Output
 
 class PrizeTest {
