@@ -10,8 +10,7 @@ class LottoProfit(
     val rate: String
 
     init {
-        val profit = calculateRate(rankings, purchasePrice)
-        rate = String.format(FIRST_DECIMAL_PLACE, profit)
+        rate = calculateRate(rankings, purchasePrice)
     }
 
 
@@ -23,9 +22,9 @@ class LottoProfit(
                 rankings[4] * Winnings.RANKING_5ST.price
     }
 
-    private fun calculateRate(rankings: List<Int>, purchasePrice: Int): Double {
+    private fun calculateRate(rankings: List<Int>, purchasePrice: Int): String {
         val totalGain = getTotalGain(rankings)
         val profit = (totalGain / purchasePrice.toDouble()) * 100
-        return profit
+        return String.format(FIRST_DECIMAL_PLACE, profit)
     }
 }
