@@ -14,6 +14,11 @@ object InputValidator {
         checkIntegers(input)
     }
 
+    fun validateInputBonusNumber(input: String) {
+        checkStringBlank(input)
+        checkInteger(input)
+    }
+
     private fun checkStringBlank(input: String) =
         require(input.isNotBlank()) { InputException.STRING_BLANK.message }
 
