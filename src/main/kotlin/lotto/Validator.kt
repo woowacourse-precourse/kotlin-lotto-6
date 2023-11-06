@@ -26,4 +26,26 @@ class Validator {
             throw IllegalArgumentException("구입 금액이 1000원으로 나누어 떨어지지 않습니다.")
         }
     }
+
+    fun validateLottoNumber(lotto: String): Boolean {
+        return try {
+            containsComma(lotto)
+            val lottoNumbers: List<String> = lotto.split(",")
+            for (number in lottoNumbers) {
+                isNumberOverZero(number)
+            }
+            true
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] ${e}")
+            false
+        }
+    }
+
+    fun containsComma(lotto: String): Boolean {
+        return if (lotto.contains(',')) {
+            true
+        } else {
+            throw IllegalArgumentException("로또 번호는 쉼표(,)로 구분지어주세요.")
+        }
+    }
 }
