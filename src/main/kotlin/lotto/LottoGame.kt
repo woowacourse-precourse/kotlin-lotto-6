@@ -12,26 +12,34 @@ enum class WinningPrice(val correspondResult: String, val price: Int) {
 }
 
 class LottoGame {
-    companion object {
-        private val inputView = InputView()
-        private val outputView = OutputView()
-    }
+    private val inputView = InputView()
+    private val outputView = OutputView()
+    private var purchasePrice: Int = 0
+    private var purchaseNumber: Int = 0
+    private lateinit var lottoList: List<Lotto>
+    private lateinit var winningNumberList : List<Int>
+    private var bonusNumber : Int = 0
+
 
     fun start() {
-        val purchasePrice = getPurchasePrice()
-        val purchaseNumber = purchasePrice / 1000
+        lottoPurchase()
+        winningNumberList = getWinningNumberList()
+        bonusNumber = getBonusNumber(winningNumberList)
+        printStatistics()
+    }
 
-        val lottoList: List<Lotto> = getLottoList(purchaseNumber)
+    private fun lottoPurchase() {
+        purchasePrice = getPurchasePrice()
+        purchaseNumber = purchasePrice / 1000
+        lottoList = getLottoList(purchaseNumber)
 
         printPurchaseLottoResult(purchaseNumber, lottoList)
+    }
 
-        val winningNumberList = getWinningNumberList()
-        val bonusNumber = getBonusNumber(winningNumberList)
-
+    private fun printStatistics(){
         outputView.printWinningStatisticsMention()
 
         val winningList: HashMap<Int, Int> = getWinningList(lottoList, winningNumberList, bonusNumber)
-
         outputView.printWinningStatics(winningList)
 
         val totalWinningPrice = getTotalPrice(winningList)
@@ -40,12 +48,12 @@ class LottoGame {
         outputView.printProfitRate(rate)
     }
 
-    fun getPurchasePrice(): Int {
+    private fun getPurchasePrice(): Int {
         outputView.printPurchaseAmountInputMention()
         return inputView.inputPurchaseAmount()
     }
 
-    fun getLottoList(purchaseNumber: Int): List<Lotto> {
+    private fun getLottoList(purchaseNumber: Int): List<Lotto> {
         val tmpLottoList = mutableListOf<Lotto>()
 
         for (i in 0 until purchaseNumber) {
@@ -61,12 +69,12 @@ class LottoGame {
         outputView.printLottoList(purchaseNumber, lottoList)
     }
 
-    fun getWinningNumberList(): List<Int> {
+    private fun getWinningNumberList(): List<Int> {
         outputView.printWinningNumberInputMention()
         return inputView.inputWinningNumberList()
     }
 
-    fun getBonusNumber(winningNumberList: List<Int>): Int {
+    private fun getBonusNumber(winningNumberList: List<Int>): Int {
         outputView.printBonusNumberInputMention()
         return inputView.inputBonusNumber(winningNumberList)
     }
@@ -91,7 +99,7 @@ class LottoGame {
         return totalWinningPrice
     }
 
-    fun getWinningPrice(rank: Int): WinningPrice {
+    private fun getWinningPrice(rank: Int): WinningPrice {
         return when (rank) {
             5 -> WinningPrice.FIFTH
             4 -> WinningPrice.FOURTH
