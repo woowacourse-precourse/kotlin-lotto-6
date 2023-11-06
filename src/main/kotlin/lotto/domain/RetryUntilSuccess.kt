@@ -7,13 +7,9 @@ open class RetryUntilSuccess {
             try {
                 return function()
             } catch (e: IllegalArgumentException) {
-                val errorMessage = e.message ?: throw IllegalArgumentException(ERROR_SHOULD_CONTAIN_MESSAGE)
+                val errorMessage = e.message ?: "[ERROR] ${e.stackTraceToString()}"
                 println(errorMessage)
             }
         }
-    }
-
-    companion object {
-        private const val ERROR_SHOULD_CONTAIN_MESSAGE = "에러가 발생하면 메시지를 반드시 포함해야 합니다."
     }
 }
