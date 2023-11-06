@@ -15,15 +15,14 @@ object InputView {
         return inputPurchaseMoney.toInt()
     }
 
-    fun getWinningNumber(): List<Int> {
+    fun getWinningNumbers(): List<Int> {
         println("\n$WINNING_NUMBER_MESSAGE")
 
         val inputWinningNumbers = Console.readLine().split(",")
-        val winningNumbers = mutableListOf<Int>()
-
-        inputWinningNumbers.forEach {
-            winningNumbers.add(checkPositiveInteger(it))
+        val winningNumbers = inputWinningNumbers.map {
+            checkPositiveInteger(it)
         }
+
         checkDuplicateNumber(winningNumbers)
         checkNumbersSize(winningNumbers)
 

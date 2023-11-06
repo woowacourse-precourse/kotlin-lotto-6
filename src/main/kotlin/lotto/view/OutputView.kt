@@ -27,7 +27,7 @@ object OutputView {
         println(RESULT_RATE_MESSAGE.format((totalMoney.toDouble() / purchaseMoney.toDouble()) * 100))
     }
 
-    fun Int.addCommas(): String {
+    private fun Int.addCommas(): String {
         return String.format("%,d", this)
     }
 

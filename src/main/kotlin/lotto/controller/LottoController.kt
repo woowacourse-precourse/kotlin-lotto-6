@@ -14,7 +14,6 @@ class LottoController {
     private lateinit var lottoPrizes: List<LottoPrize>
 
     fun playGame() {
-
         buyLotto()
         receiveWinningNumbers()
         gameEnd()
@@ -33,12 +32,12 @@ class LottoController {
     }
 
     private fun receiveWinningNumbers() {
-        val winningNumbers = InputView.getWinningNumber()
+        val winningNumbers = InputView.getWinningNumbers()
         val bonusLottoNumber = InputView.getBonusNumber(winningNumbers)
         lottoPrizes = randomLottos.getLottoPrizes(Lotto(winningNumbers), bonusLottoNumber)
     }
 
-    fun gameEnd() {
+    private fun gameEnd() {
         val lottoResults = LottoResults()
         lottoResults.makeLottoResults(lottoPrizes)
 
