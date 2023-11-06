@@ -1,6 +1,5 @@
 package lotto.util
 
-import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import lotto.util.Validator.validate1000Unit
 import lotto.util.Validator.validateContain
 import lotto.util.Validator.validateInteger
@@ -14,59 +13,43 @@ import lotto.util.Validator.validateRange
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class ValidatorTest {
-    @Test
+    @ParameterizedTest
     @DisplayName("로또 구매 가격이 숫자가 아니면 예외가 발생한다.")
-    fun validateIntegerTest() {
-        assertSimpleTest {
-            assertThrows<IllegalArgumentException> {
-                validateInteger("abcd")
-            }
-
-            assertThrows<IllegalArgumentException> {
-                validateInteger("1245!")
-            }
-        }
-    }
-
-    @Test
-    @DisplayName("로또 구매 가격의 범위가 유효하지 않으면 예외가 발생한다.")
-    fun validateRangeTest() {
-        assertSimpleTest {
-            assertThrows<IllegalArgumentException> {
-                validateRange(-1000)
-            }
-
-            assertThrows<IllegalArgumentException> {
-                validateRange(999)
-            }
-
-            assertThrows<IllegalArgumentException> {
-                validateRange(0)
-            }
-        }
-    }
-
-    @Test
-    @DisplayName("로또 구매 가격이 1000원 단위가 아니면 예외가 발생한다.")
-    fun validate1000UnitTest() {
-        assertSimpleTest {
-            assertThrows<IllegalArgumentException> {
-                validate1000Unit(1001)
-            }
-
-            assertThrows<IllegalArgumentException> {
-                validate1000Unit(2001)
-            }
-        }
-    }
-
-    @Test
-    @DisplayName("로또 당첨 번호에 숫자가 아닌 값이 들어오면 예외가 발생한다.")
-    fun validateLottoIntegerTest() {
+    @ValueSource(strings = ["abcd", "1234!, `1234"])
+    fun validateIntegerTest(input: String) {
         assertThrows<IllegalArgumentException> {
-            validateLottoInteger("a,b,1,c")
+            validateInteger(input)
+        }
+    }
+
+    @ParameterizedTest
+    @DisplayName("로또 구매 가격의 범위가 유효하지 않으면 예외가 발생한다.")
+    @ValueSource(ints = [-1000, 999, 0])
+    fun validateRangeTest(input: Int) {
+        assertThrows<IllegalArgumentException> {
+            validateRange(input)
+        }
+    }
+
+    @ParameterizedTest
+    @DisplayName("로또 구매 가격이 1000원 단위가 아니면 예외가 발생한다.")
+    @ValueSource(ints = [1001, 2001, 9999])
+    fun validate1000UnitTest(input: Int) {
+        assertThrows<IllegalArgumentException> {
+            validate1000Unit(input)
+        }
+    }
+
+    @ParameterizedTest
+    @DisplayName("로또 당첨 번호에 숫자가 아닌 값이 들어오면 예외가 발생한다.")
+    @ValueSource(strings = ["a,b,1,c", "1,2,3,_"])
+    fun validateLottoIntegerTest(input: String) {
+        assertThrows<IllegalArgumentException> {
+            validateLottoInteger(input)
         }
     }
 
@@ -94,39 +77,30 @@ class ValidatorTest {
         }
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("입력이 널값이면 예외가 발생한다.")
-    fun validateNotNullTest() {
-        assertSimpleTest {
-            assertThrows<IllegalArgumentException> {
-                validateNotNull("")
-            }
-
-            assertThrows<IllegalArgumentException> {
-                validateNotNull(" ")
-            }
-        }
-    }
-
-    @Test
-    @DisplayName("번호가 1부터 45까지의 숫자가 아니면 예외가 발생한다.")
-    fun validateNumberRangeTest() {
-        assertSimpleTest {
-            assertThrows<IllegalArgumentException> {
-                validateNumberRange(0)
-            }
-
-            assertThrows<IllegalArgumentException> {
-                validateNumberRange(46)
-            }
-        }
-    }
-
-    @Test
-    @DisplayName("검증 값이 주어진 리스트에 중복된 값이면 예외가 발생한다.")
-    fun validateContainTest() {
+    @ValueSource(strings = ["", " ", "             "])
+    fun validateNotNullTest(input: String) {
         assertThrows<IllegalArgumentException> {
-            validateContain(listOf(1, 2, 3, 4, 5, 6), 4)
+            validateNotNull(input)
+        }
+    }
+
+    @ParameterizedTest
+    @DisplayName("번호가 1부터 45까지의 숫자가 아니면 예외가 발생한다.")
+    @ValueSource(ints = [0, 46, -1])
+    fun validateNumberRangeTest(input: Int) {
+        assertThrows<IllegalArgumentException> {
+            validateNumberRange(input)
+        }
+    }
+
+    @ParameterizedTest
+    @DisplayName("검증 값이 주어진 리스트에 중복된 값이면 예외가 발생한다.")
+    @ValueSource(ints = [1, 2, 3, 4, 5, 6])
+    fun validateContainTest(input: Int) {
+        assertThrows<IllegalArgumentException> {
+            validateContain(listOf(1, 2, 3, 4, 5, 6), input)
         }
     }
 }

@@ -25,7 +25,7 @@ class LottoProfitTest {
         assertThat(lottoProfit.rate).isEqualTo("200000000.0")
     }
 
-    fun resetSetting() {
+    private fun resetSetting() {
         val input = listOf(1, 0, 0, 0, 0)
         val purchasePrice = 1000
         lottoProfit = LottoProfit(input, purchasePrice)

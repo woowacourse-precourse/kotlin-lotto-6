@@ -1,36 +1,29 @@
 package lotto.model
 
-import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
 
 class PurchaseTest {
-    @Test
+
+    @ParameterizedTest
     @DisplayName("유효하지 않은 값이 들어가면 예외가 발생한다.")
-    fun constructorTest() {
-        assertSimpleTest {
-            assertThrows<IllegalArgumentException> {
-                Purchase(3021)
-            }
-
-            assertThrows<IllegalArgumentException> {
-                Purchase(1001)
-            }
-
-            assertThrows<IllegalArgumentException> {
-                Purchase(-1000)
-            }
+    @ValueSource(ints = [3021, 1001, -1000])
+    fun constructorTest(input: Int) {
+        assertThrows<IllegalArgumentException> {
+            Purchase(input)
         }
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("유효한 값이 들어가면 1000원으로 나눈 값으로 초기화한다.")
-    fun validConstructTest() {
-        val purchaseCount = Purchase(8000)
+    @CsvSource(value = ["8000:8", "2000:2", "100000:100"], delimiter = ':')
+    fun validConstructTest(input: Int, expected: Int) {
+        val purchaseCount = Purchase(input)
         val validation = purchaseCount.count
-        val result = 8
-        assertThat(validation).isEqualTo(result)
+        assertThat(validation).isEqualTo(expected)
     }
 }
