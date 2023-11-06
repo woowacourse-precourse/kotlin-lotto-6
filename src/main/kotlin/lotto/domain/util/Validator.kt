@@ -10,7 +10,7 @@ class Validator {
         return amount.toInt()
     }
 
-    fun validateDrawNumber(drawNumber: String): List<Int> {
+    fun drawNumber(drawNumber: String): List<Int> {
         require(isNotEmpty(drawNumber)) { NOT_EMPTY }
         require(isNotBlank(drawNumber)) { NOT_BLANK }
         val split = drawNumber.split(SEPARATOR)
@@ -21,27 +21,47 @@ class Validator {
         return split.map { it.toInt() }
     }
 
+    fun bonusNumber(bonusNumber: String, drawNumbers: List<Int>): Int {
+        require(isNotEmpty(bonusNumber)) { NOT_EMPTY }
+        require(isNotBlank(bonusNumber)) { NOT_BLANK }
+        requireNotNull(isNumber(bonusNumber)) { BONUS_ONLY_INT }
+        require(isBonusNumber(bonusNumber)) { BONUS_MUST_1_TO_45 }
+        require(!isBonusDuplicate(bonusNumber, drawNumbers)) {
+            BONUS_NOT_DUPLICATE_DRAW.format(
+                drawNumbers.joinToString(
+                    SEPARATOR
+                )
+            )
+        }
+        return bonusNumber.toInt()
+    }
+
     companion object {
         // 사용자를 혼내는 게 아니다. 에러 메시지를 보고 제대로 입력할 수 있도록 유도해야 한다.
         const val NOT_EMPTY = "아무것도 입력하지 않았어요."
         const val NOT_BLANK = "공    백만 있어요."
+        const val START_NUMBER = 1
+        const val END_NUMBER = 45
 
-        // validateAmount
+        // amount
         const val ONLY_INT = "숫자만 입력해 주세요. 입력 예시 -> 8000 (설마 21억 4748만 3647원보다 많이 사려는 부자는 아니겠죠?)"
         const val ONLY_POSITIVE_INT = "제 돈을 뺏어갈 속셈인가요..? 입력 예시 -> 8000"
         const val MUST_DIVISIBLE_BY_1000 = "동전은 필요 없어요. 지폐만 주세요. 입력 예시 -> 8000"
         const val ZERO = 0
         const val THOUSAND = 1000
 
-        // validateDrawNumber
+        // drawNumber
         const val MUST_SIX_VALUE = "6개의 숫자를 입력해주세요. 입력 예시 -> 1,6,11,23,37,45"
         const val MUST_SIX_NUMBER = "입력값중 숫자가 아닌게 있어요. 입력 예시 -> 1,6,11,23,37,45"
         const val MUST_1_TO_45 = "1~45사이의 숫자가 아닌게 있어요. 입력 예시 -> 1,6,11,23,37,45"
         const val NOT_DUPLICATE = "중복된 숫자가 있어요"
         const val SIX = 6
         const val SEPARATOR = ","
-        const val START_NUMBER = 1
-        const val END_NUMBER = 45
+
+        // bonusNumber
+        const val BONUS_ONLY_INT = "하나의 숫자만 입력해주세요. 입력 예시 -> 16"
+        const val BONUS_MUST_1_TO_45 = "1~45사이의 숫자가 아닌게 있어요. 입력 예시 -> 16"
+        const val BONUS_NOT_DUPLICATE_DRAW = "당첨 번호 %s와 중복된 숫자가 있어요"
 
         fun isNotEmpty(input: String): Boolean {
             return input.isNotEmpty()
@@ -77,6 +97,14 @@ class Validator {
 
         fun isDuplicate(input: List<String>): Boolean {
             return input.toSet().size == SIX
+        }
+
+        fun isBonusNumber(input: String): Boolean {
+            return input.toInt() in START_NUMBER..END_NUMBER
+        }
+
+        fun isBonusDuplicate(input: String, drawNumbers: List<Int>): Boolean {
+            return drawNumbers.contains(input.toInt())
         }
     }
 }

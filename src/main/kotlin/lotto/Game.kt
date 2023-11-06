@@ -55,6 +55,18 @@ class Game {
         }
     }
 
+    fun bonusDrawing(drawNumbers: List<Int>): Int {
+        while (true) {
+            try {
+                drawScreen.outputRequestBonusNumber()
+                val bonusNumber = drawScreen.inputBonusNumber()
+                return draw.validateBonusNumber(bonusNumber, drawNumbers)
+            } catch (e: IllegalArgumentException) {
+                println("$ERROR_MESSAGE_SETTING${e.message}\n")
+            }
+        }
+    }
+
     companion object {
         const val ERROR_MESSAGE_SETTING = "[ERROR] "
     }
