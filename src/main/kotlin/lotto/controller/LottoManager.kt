@@ -25,6 +25,7 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         val bonus = LottoBonus()
         val bonusNumber = bonus.createBonusNumber(winningNumbers)
 
+        outputView.showWinningStatisticsMessages()
 
     }
 }

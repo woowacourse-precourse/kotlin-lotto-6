@@ -2,6 +2,8 @@ package lotto.view
 
 import lotto.Lotto
 import lotto.utils.Messages
+import lotto.utils.Messages.DIVIDER
+import lotto.utils.Messages.WINNING_STATISTICS_MESSAGE
 
 object OutputView {
     fun showInputBuyPriceMessage() {
@@ -23,5 +25,10 @@ object OutputView {
 
     fun showInputBonusNumberMessage() {
         println(Messages.BONUS_NUMBER_MESSAGE)
+    }
+
+    fun showWinningStatisticsMessages() {
+        println(WINNING_STATISTICS_MESSAGE)
+        println(DIVIDER)
     }
 }
