@@ -45,11 +45,21 @@ class Validator {
         require(lottoNum.size != lottoNum.distinct().count())
     }
 
-    fun validateBonusNum(bonusNum: String) {
+    fun validateBonusNum(bonusNum: String, lottoNum: List<String>) {
         validateBonusNumIsBlank(bonusNum)
+        validateBonusNumRange(bonusNum)
+        validateBonusNumDuplicateLottoNum(bonusNum, lottoNum)
     }
 
     private fun validateBonusNumIsBlank(bonusNum: String) {
         require(bonusNum.isBlank())
+    }
+
+    private fun validateBonusNumRange(bonusNum: String) {
+        require(bonusNum.toInt() in 1..45)
+    }
+
+    private fun validateBonusNumDuplicateLottoNum(bonusNum: String, lottoNum: List<String>) {
+        require(bonusNum.toInt() != lottoNum.distinct().count())
     }
 }
