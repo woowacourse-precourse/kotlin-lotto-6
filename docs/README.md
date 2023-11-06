@@ -2,10 +2,9 @@
 ## 기능 목록
 
 ### 1. 게임 시작
-- [ ] Computer - 게임안내 메시지
- <br>
- <br>
-### 2. ${구입금액} 입력
+- [ ] Computer - 게임안내 메시지 <br>
+
+### 2. 구입금액 입력
 - [ ] Computer - 요청 메시지 <br>
 - [ ] User - 입력 <br>
 > - [ ] System - 예외 체크 : 공백 입력 <br> 
@@ -16,10 +15,9 @@
 
 - [ ] Compueter - 구매완료 메시지 <br>
 - [ ] Compueter - 1000원 * n장 만큼 로또번호 추출 <br>
-- [ ] Compueter - 로또번호 리스트 정렬 후 출력
- <br>
- <br>
-### 3. ${당첨번호} 입력
+- [ ] Compueter - 로또번호 리스트 정렬 후 출력  <br>
+
+### 3. 당첨번호 입력
 - [ ] Computer - 요청 메시지 <br>
 - [ ] User - 입력 <br>
 > - [ ] System - 예외 체크 : 공백 입력 <br>
@@ -27,20 +25,18 @@
 > - [ ] System - 예외 체크 : 음수 or 0 입력 <br>
 > - [ ] System - 예외 체크 : 숫자범위 벗어난 입력(1 ~ 45) <br>
 > - [ ] System - 예외 체크 : 쉼표 갯수가 6개 이상
->> - [ ] Computer - 에러 출력 [ERROR]
- <br>
- <br>
-### 4. ${보너스번호} 입력
-- [ ] Computer - 메시지 <br>
+>> - [ ] Computer - 에러 출력 [ERROR]  <br>
+
+### 4. 보너스번호 입력
+- [ ] Computer - 요청 메시지 <br>
 - [ ] User - 입력 <br>
 > - [ ] System - 예외 체크 : 공백 입력 <br>
 > - [ ] System - 예외 체크 : 음수 or 0 입력 <br>
 > - [ ] System - 예외 체크 : 숫자범위 벗어난 입력(1 ~ 45) <br>
 > - [ ] System - 예외 체크 : 숫자 외에 문자 입력 <br>
 > - [ ] System - 예외 체크 : 쉼표 갯수가 6개 이상 <br>
->> - [ ] Computer - 에러 출력 [ERROR]
-<br>
-<br>
+>> - [ ] Computer - 에러 출력 [ERROR]  <br>
+
 ### 5. 로또게임 진행 & 결과 출력
 - [ ] Computer - 당첨번호와 로또번호 비교 <br>
 - [ ] Computer - 결과 출력
