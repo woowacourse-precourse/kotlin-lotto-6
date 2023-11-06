@@ -1,30 +1,24 @@
 package lotto
 
-import lotto.utils.validator.LottoWinningNumbersInputValidator
+import lotto.utils.validator.LottoWinningNumberInputValidator
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class LottoWinningNumbersValidatorTest {
-    @Test
-    fun `알파벳 입력`(){
+    @ParameterizedTest
+    @ValueSource(strings = ["1c","c"," ","~!@~!@"])
+    fun `숫자가 아닌 값 입력`(input: String){
         assertThrows<IllegalArgumentException> {
-            LottoWinningNumbersInputValidator.validate(listOf("1c","c"))
+            LottoWinningNumberInputValidator.validate(input)
         }
     }
-    
-    @Test
-    fun `공백 입력`(){
+    @ParameterizedTest
+    @ValueSource(strings = ["0","46","999","-1"])
+    fun `1~45 범위 초과`(input: String){
         assertThrows<IllegalArgumentException> {
-            LottoWinningNumbersInputValidator.validate(listOf("12"," "))
-        }
-    }
-
-    @Test
-    fun `1~45 범위 초과`(){
-        assertThrows<IllegalArgumentException> {
-            LottoWinningNumbersInputValidator.validate(listOf("100","0"))
+            LottoWinningNumberInputValidator.validate(input)
         }
     }
 }

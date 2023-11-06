@@ -22,4 +22,5 @@ class LottoGame(private val lottoAmount : Int) {
     }
 
     private fun receiveWinningNumbers() = LottoInputHandler.receiveLottoWinningNumbers()
+
 }

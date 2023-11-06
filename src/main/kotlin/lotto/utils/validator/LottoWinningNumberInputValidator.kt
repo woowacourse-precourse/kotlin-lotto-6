@@ -1,14 +1,12 @@
 package lotto.utils.validator
 
-object LottoWinningNumbersInputValidator {
+object LottoWinningNumberInputValidator {
 
-    fun validate(numbers: List<String>): LottoWinningNumbersInputState {
+    fun validate(numbers: String): LottoWinningNumbersInputState {
         var state : LottoWinningNumbersInputState = LottoWinningNumbersInputState.SUCCESSFUL
-        for (i in numbers.indices){
-            state = getState(numbers[i].toIntOrNull())
-            if (state != LottoWinningNumbersInputState.SUCCESSFUL) {
-                throw IllegalArgumentException()
-            }
+        state = getState(numbers.toIntOrNull())
+        if (state != LottoWinningNumbersInputState.SUCCESSFUL) {
+            throw IllegalArgumentException()
         }
         return state
     }
