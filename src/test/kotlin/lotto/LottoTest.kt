@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.model.Lotto
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
@@ -60,6 +61,13 @@ class LottoTest {
     }
 
 
+    @ParameterizedTest
+    @MethodSource("provideLottoTestData")
+    fun `input 번호와 로또 번호 중 같은 숫자의 개수를 센다`(lottoTestData: LottoTestData) {
+        val result = lottoTestData.lotto.calculateMatchingCount(lottoTestData.input)
+        assertThat(result).isEqualTo(lottoTestData.expected)
+    }
+
     companion object {
         @JvmStatic
         fun provideInvalidElementAmount(): Stream<Arguments> = Stream.of(
@@ -98,6 +106,39 @@ class LottoTest {
             Arguments.of(listOf(45, 44, 43, 42, 41, 40)),
             Arguments.of(listOf(1, 10, 20, 30, 40, 45)),
         )
+
+        @JvmStatic
+        fun provideLottoTestData(): Stream<LottoTestData> {
+            val input = setOf(1, 2, 3, 4, 5, 6)
+            return Stream.of(
+                LottoTestData(
+                    lotto = Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    input = input,
+                    expected = 6
+                ),
+                LottoTestData(
+                    lotto = Lotto(listOf(1, 2, 3, 43, 44, 45)),
+                    input = input,
+                    expected = 3
+                ),
+                LottoTestData(
+                    lotto = Lotto(listOf(6, 5, 4, 3, 2, 1)),
+                    input = input,
+                    expected = 6
+                ),
+                LottoTestData(
+                    lotto = Lotto(listOf(45, 44, 43, 42, 41, 40)),
+                    input = input,
+                    expected = 0
+                ),
+            )
+        }
     }
 
 }
+
+data class LottoTestData(
+    val lotto: Lotto,
+    val input: Set<Int>,
+    val expected: Int,
+)
