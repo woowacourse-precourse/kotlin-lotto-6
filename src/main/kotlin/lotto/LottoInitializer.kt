@@ -22,12 +22,15 @@ class LottoInitializer {
             println(UserInterface.INPUT_USER_PURCHASE_AMOUNT.mention)
             try {
                 var price = Console.readLine().toInt()
+                var amount = price/1000
                 checkPriceMultipleOfThousands(price)
+                println("$amount" + UserInterface.OUTPUT_USER_PURCHASE_RESULT.mention)
                 return price
             }catch (message: IllegalArgumentException){
                 message.printStackTrace()
             }
         }
+
     }
 
     fun checkPriceMultipleOfThousands(input: Int){
