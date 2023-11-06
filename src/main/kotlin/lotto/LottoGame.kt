@@ -86,13 +86,13 @@ class LottoGame {
 
     private fun inputPrice(){
         println("구입금액을 입력해 주세요.")
-        val price = Console.readLine().toInt()
-        buyPrice = price
+        val price = Console.readLine()
         error.checkPrice(price)
+        buyPrice = price.toInt()
         printLotto(price)
     }
-    private fun printLotto(price: Int) {
-        val line = price/1000
+    private fun printLotto(price: String) {
+        val line = price.toInt()/1000
         println()
         println("${line}개를 구매했습니다.")
         printNumber(line)
