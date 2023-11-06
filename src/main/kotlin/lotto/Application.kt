@@ -1,13 +1,17 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     try {
         printStartMessage()
-        var input = inputMessage().trim()
-        purchaseAmountEmpty(input)
-        println(input)
+        val input = inputMessage().trim()
+        val result = purchaseAmountEmpty(input)
+        printPurchaseTotal(result)
+        repeat(result/1000) {
+            println(makeLotto())
+        }
     } catch (e: IllegalArgumentException) {
         println(e.message)
         main()
@@ -24,7 +28,7 @@ fun printStartMessage() {
 }
 
 fun printPurchaseTotal(n: Int) {
-    println("${n}개를 구매했습니다.")
+    println("${n/1000}개를 구매했습니다.")
 }
 
 fun printWinningMessage() {
@@ -55,4 +59,8 @@ fun purchaseAmountEmpty(num: String): Int {
 fun purchaseAmountEmpty(num: Int): Int {
     require (num % 1000 != 0) {"[ERROR] 1,000원 단위로 입력해주세요."}
     return num
+}
+
+fun makeLotto(): List<Int> {
+    return Randoms.pickUniqueNumbersInRange(1, 45, 6)
 }
