@@ -30,5 +30,12 @@ class LottoResult(private val lottos: List<Lotto>, private val winningNumbers: W
         }
     }
 
+    fun computerProfit(cost: Int) {
+        val lottoProfit = (totalPrize.toDouble() / cost.toDouble()) * 100
+        profit = "%.1f".format(lottoProfit).toDouble()
+    }
 
+    fun printProfit() {
+        println("총 수익률은 $profit%입니다. ")
+    }
 }
