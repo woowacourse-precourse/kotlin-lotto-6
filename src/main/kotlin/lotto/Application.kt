@@ -64,17 +64,17 @@ fun getUserLottoNumbers() {
     }.map {
         it.toIntOrNull()
     }
-    validateUserLottoNumbers(userInputLottoNumbers)
+    val validatedUserInputLottoNumbers = validateUserLottoNumbers(userInputLottoNumbers)
+    userLottoNumbers.addAll(validatedUserInputLottoNumbers)
 }
 
-fun validateUserLottoNumbers(userInputLottoNumbers: List<Int?>) {
+fun validateUserLottoNumbers(userInputLottoNumbers: List<Int?>): List<Int> {
     val isUserInputNumber = !userInputLottoNumbers.contains(null)
     val isRangedNumber =
         userInputLottoNumbers.filter { it in minLottoWinningNumber..maxLottoWinningNumber }.size == lottoWinningNumberQuantity
     val isAppropriateCnt = userInputLottoNumbers.size == lottoWinningNumberQuantity
-    if (isUserInputNumber && isRangedNumber && isAppropriateCnt) userLottoNumbers.addAll(
-        userInputLottoNumbers.map { it!! })
-    else throw IllegalArgumentException("$errorPrefix 당첨 번호는 1~45 사이의 중복되지 않는 숫자를 , 로 구분하여 6개를 입력해야 합니다.")
+    if (isUserInputNumber && isRangedNumber && isAppropriateCnt) return userInputLottoNumbers.map { it!! }
+    else throw IllegalArgumentException("$errorPrefix 당첨 번호는 $minLottoWinningNumber~$maxLottoWinningNumber 사이의 중복되지 않는 숫자를 , 로 구분하여 ${lottoWinningNumberQuantity}개를 입력해야 합니다.")
 }
 
 fun getUserBonusLottoNumber() {
@@ -91,7 +91,7 @@ fun validateUserBonusLottoNumber(userBonusInput: String): Int {
     val isNotDuplicatedNumber = !userLottoNumbers.contains(userLottoNumber)
     if (isNumber && isRangedNumber && isNotDuplicatedNumber) return userLottoNumber.toString()
         .toInt()
-    else throw IllegalArgumentException("$errorPrefix 보너스 번호는 1~45 사이의 숫자 중 당첨 번호와 중복 되지 않는 수 하나를 입력해야 합니다.")
+    else throw IllegalArgumentException("$errorPrefix 보너스 번호는 $minLottoWinningNumber~$maxLottoWinningNumber 사이의 숫자 중 당첨 번호와 중복 되지 않는 수 하나를 입력해야 합니다.")
 }
 
 fun checkWinning() {
