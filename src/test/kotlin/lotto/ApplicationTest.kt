@@ -83,7 +83,14 @@ class ApplicationTest : NsTest() {
         }
     }
 
-
+    @Test
+    fun `당첨 번호의 개수가 일치하지 않으면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            ValidationManager().apply {
+                arrayListOf(1, 2, 3, 4, 5).isCorrectLottoCount()
+            }
+        }
+    }
 
     override fun runMain() {
         main()
