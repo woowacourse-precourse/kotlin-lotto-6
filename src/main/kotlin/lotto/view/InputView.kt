@@ -1,4 +1,10 @@
 package lotto.view
 
-class InputView {
+import lotto.util.Reader
+
+class InputView(private val reader: Reader) {
+
+    private fun inputMoney() {
+        reader.readLottoPrice()
+    }
 }

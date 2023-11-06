@@ -1,4 +1,4 @@
 package lotto.constants
 
-class MessageConstants {
+object MessageConstants {
 }
