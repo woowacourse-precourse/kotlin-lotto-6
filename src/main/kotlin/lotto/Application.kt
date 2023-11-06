@@ -10,6 +10,7 @@ fun main() {
     OutputView.outputLottos(lottos)
 
     val winningLotto = getWinningLotto()
+    val bonusNumber = getBonusNumber()
 }
 
 private fun generateLottos(): Lottos {
@@ -41,5 +42,16 @@ private fun getWinningLotto(): Lotto {
     } catch (e: IllegalArgumentException) {
         println(e.message)
         getWinningLotto()
+    }
+}
+
+private fun getBonusNumber(): LottoNumber {
+    return try {
+        val input = InputView.inputBonusNumber()
+        InputValidator.validateInputBonusNumber(input)
+        LottoNumber(input.toInt())
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+        getBonusNumber()
     }
 }
