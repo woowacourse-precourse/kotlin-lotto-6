@@ -7,7 +7,7 @@ object LottoWinningNumbersInputValidator {
         for (i in numbers.indices){
             state = getState(numbers[i].toIntOrNull())
             if (state != LottoWinningNumbersInputState.SUCCESSFUL) {
-                break
+                throw IllegalArgumentException()
             }
         }
         return state
@@ -16,7 +16,7 @@ object LottoWinningNumbersInputValidator {
     private fun getState(number : Int?): LottoWinningNumbersInputState {
         return when{
             number == null -> LottoWinningNumbersInputState.IS_NULL
-            number <= 0 && number > 45 -> LottoWinningNumbersInputState.OUT_OF_RANGE
+            number <= 0 || number > 45 -> LottoWinningNumbersInputState.OUT_OF_RANGE
             else -> LottoWinningNumbersInputState.SUCCESSFUL
         }
     }
