@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions.*
 class LottoGeneratorTest {
     @Test
     fun `발행된 로또가 숫자 범위를 벗어 나는지 확인`() {
-        assertTrue(LottoGenerator().createLottoNumber().all { it in  LOTTO_RANGE })
+        assertTrue(LottoGenerator().createLottoNumber().all { it in  lottoRange })
     }
 
     @Test
@@ -16,7 +16,7 @@ class LottoGeneratorTest {
     }
 
     companion object {
-        private val LOTTO_RANGE = 1..45
+        private val lottoRange = 1..45
         private const val LOTTO_COUNT = 6
     }
 }
