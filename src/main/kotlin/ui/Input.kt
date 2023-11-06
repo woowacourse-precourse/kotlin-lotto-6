@@ -1,7 +1,6 @@
 package ui
 
 import camp.nextstep.edu.missionutils.Console
-import exception.Message
 
 object Input {
     fun inputMoney(): Int {

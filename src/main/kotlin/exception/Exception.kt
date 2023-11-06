@@ -1,6 +1,5 @@
 package exception
 
-import java.lang.Exception
 
 class Exception {
     companion object {

@@ -1,10 +1,8 @@
 package lotto.domain
 
 
-import lotto.UserLotto
 import org.junit.jupiter.api.Test
 import lotto.checkValidUserLotto
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.assertThrows
 
 

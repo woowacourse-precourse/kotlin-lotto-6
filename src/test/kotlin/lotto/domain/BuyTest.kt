@@ -7,9 +7,7 @@ import org.junit.jupiter.api.Test
 import ui.Output
 
 
-
 class BuyTest {
-
     @Test
     fun `구매한 로또를 출력하는지 확인`() {
         val lotto1 = Lotto(listOf(1, 2, 3, 4, 5, 6))

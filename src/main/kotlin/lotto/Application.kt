@@ -5,7 +5,8 @@ import ui.Output
 fun main() {
     play()
 }
-fun play(){
+
+fun play() {
     val buy = Buy()
     val amount = buy.buyLotto()
     Output.printLottoCount(amount)

@@ -23,7 +23,7 @@ fun getPrize(userLottos: Lottos, winningLotto: Lotto, bonusNumber: Int): Mutable
 }
 
 
-fun getMatchCount(userLotto: Lotto, lotto: Lotto, bonusNumber: Int ): Pair<Int, Boolean> {
+fun getMatchCount(userLotto: Lotto, lotto: Lotto, bonusNumber: Int): Pair<Int, Boolean> {
     var matchCount = 0
     var bonus = false
     val numbers = userLotto.getNumbers()
@@ -38,7 +38,8 @@ fun getMatchCount(userLotto: Lotto, lotto: Lotto, bonusNumber: Int ): Pair<Int, 
     }
     return Pair(matchCount, bonus)
 }
-fun getPrize(prizeList: Pair<Int,Boolean>): Prize {
+
+fun getPrize(prizeList: Pair<Int, Boolean>): Prize {
 
     if (prizeList.first == 3) {
         return Prize.FIFTH
@@ -57,10 +58,11 @@ fun getPrize(prizeList: Pair<Int,Boolean>): Prize {
     }
     return Prize.MISS
 }
-fun getPrizeList(prize:MutableList<Prize>): MutableList<Int> {
-    val prizeList = mutableListOf(0,0,0,0,0,0)
+
+fun getPrizeList(prize: MutableList<Prize>): MutableList<Int> {
+    val prizeList = mutableListOf(0, 0, 0, 0, 0, 0)
     for (i in prize) {
-        when(i) {
+        when (i) {
             Prize.FIRST -> prizeList[0]++
             Prize.SECOND -> prizeList[1]++
             Prize.THIRD -> prizeList[2]++
@@ -71,6 +73,7 @@ fun getPrizeList(prize:MutableList<Prize>): MutableList<Int> {
     }
     return prizeList
 }
+
 fun getEarningRate(prizeList: MutableList<Prize>, amount: Int): Double {
     var totalPrize = 0
     var earningRate = 0.0

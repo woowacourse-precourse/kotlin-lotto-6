@@ -1,10 +1,8 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
-import exception.Exception
 import exception.Message
 import ui.Input
-
 
 
 class Buy {
@@ -30,7 +28,6 @@ class Buy {
             return buyLotto()
         }
     }
-
 
     fun generateLottos(count: Int): Lottos {
         val lottos = Lottos()

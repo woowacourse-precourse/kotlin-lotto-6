@@ -10,7 +10,7 @@ class UserLotto {
     }
 
     fun createUserLotto(): Lotto {
-try {
+        try {
             val userLotto = Input.getInputWinningNumber()
             checkValidUserLotto(userLotto)
             return Lotto(userLotto)
@@ -25,6 +25,7 @@ try {
 
 
 }
+
 class InvalidUserLottoException(message: String) : IllegalArgumentException(message)
 
 fun checkValidUserLotto(userLotto: MutableList<Int>) {
