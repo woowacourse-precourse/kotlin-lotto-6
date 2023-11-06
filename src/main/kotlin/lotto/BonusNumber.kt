@@ -19,10 +19,19 @@ class BonusNumber {
 
     fun checkValidBonusNumber(bonusNumber: String) {
         if (bonusNumber.toInt() !in 1..45) {
+            println(Exception.EXCEPTION_INVALID_BONUS_NUMBER)
             throw IllegalArgumentException(Exception.EXCEPTION_INVALID_BONUS_NUMBER)
         }
         if (!bonusNumber.all { Character.isDigit(it) }) {
+            println(Exception.EXCEPTION_INVALID_TYPE)
             throw IllegalArgumentException(Exception.EXCEPTION_INVALID_NUMBER)
+        }
+    }
+    fun  checkDuplicateBonusNumber(userLotto: Lotto, bonusNumber: Int) {
+        val lotto = userLotto.getNumbers()
+        if (lotto.contains(bonusNumber)) {
+            println(Exception.EXCEPTION_DUPLICATE_BONUS_NUMBER)
+            throw IllegalArgumentException(Exception.EXCEPTION_DUPLICATE_BONUS_NUMBER)
         }
     }
 
