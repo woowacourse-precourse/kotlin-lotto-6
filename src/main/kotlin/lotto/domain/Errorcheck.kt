@@ -2,7 +2,7 @@ package lotto.domain
 
 import lotto.constants.*
 
-fun moneyErrorCheck(moneyInput : String){
+fun moneyErrorCheck(moneyInput: String) {
     blankCheck(moneyInput)
     numberCheck(moneyInput)
     moneyCheck(moneyInput.toInt())
@@ -44,8 +44,8 @@ fun winNumberCheck(splitInput: List<String>) {
 }
 
 fun winBlankCheck(splitInput: List<String>) {
-    for(i in splitInput){
-        if(i==""){
+    for (i in splitInput) {
+        if (i == "") {
             throw IllegalArgumentException(BLANK_ERROR)
         }
     }
@@ -58,7 +58,7 @@ fun winNumberIndexCheck(splitInput: List<String>) {
 }
 
 fun winValidNumberCheck(changeNumbers: List<Int>) {
-    val validNumber= changeNumbers.filter { it in 1..45 }
+    val validNumber = changeNumbers.filter { it in 1..45 }
     if (validNumber.size != 6) {
         throw IllegalArgumentException(RANGE_ERROR)
 
@@ -99,8 +99,8 @@ fun bonusWinningDuplicateCheck(winningNumber: List<Int>, bonusNumber: Int) {
     }
 }
 
-fun bonusNumberCheck(bonus: String){
-    if(bonus.toIntOrNull()==null){
+fun bonusNumberCheck(bonus: String) {
+    if (bonus.toIntOrNull() == null) {
         throw IllegalArgumentException(NUMBER_ERROR)
     }
 }

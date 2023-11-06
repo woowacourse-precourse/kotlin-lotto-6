@@ -40,7 +40,7 @@ object OutputView {
         println("6개 일치 (2,000,000,000원) - ${correctNumber[0]}개")
     }
 
-    fun printYield(yield:Double){
+    fun printYield(yield: Double) {
         print("총 수익률은 ${yield}%입니다.")
     }
 }

@@ -6,13 +6,13 @@ class Lotto(private val numbers: List<Int>) {
         duplicateCheck()
     }
 
-    private fun duplicateCheck(){
-        if(numbers.distinct().size!=numbers.size){
+    private fun duplicateCheck() {
+        if (numbers.distinct().size != numbers.size) {
             throw IllegalArgumentException()
         }
     }
 
-    fun getNumbers ():List<Int>{
+    fun getNumbers(): List<Int> {
         return numbers
     }
 
