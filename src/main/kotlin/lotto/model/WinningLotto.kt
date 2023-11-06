@@ -5,13 +5,13 @@ class WinningLotto(private val numbers: MutableSet<Int>) {
 
     fun addBonusNumber(num: Int) = numbers.add(num)
 
-    fun getWinningNumber(
+    fun getWinningNumbers(
         lotto: MutableSet<Int>
     ): Int {
-        return countWinningNumber(numbers.intersect(lotto))
+        return countWinningNumbers(numbers.intersect(lotto))
     }
 
-    private fun countWinningNumber(
+    private fun countWinningNumbers(
         intersection: Set<Int>
     ): Int = intersection.size
 }
