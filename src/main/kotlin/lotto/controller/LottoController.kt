@@ -27,6 +27,7 @@ class LottoController {
 
     private fun printTickets(lottoStore: LottoStore) {
         OutputView.printPurchaseCount(lottoStore.getNumberOfTickets())
-        lottoStore.sellTickets()
+        val tickets = lottoStore.sellTickets()
+        OutputView.printTickets(tickets)
     }
 }
