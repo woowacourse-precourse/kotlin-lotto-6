@@ -6,6 +6,10 @@ class Lotto(private val numbers: MutableList<Int>) {
         require(numbers.all { it in 1..45}) { "1 ~ 45 범위 밖의 숫자가 존재합니다." }
     }
 
+    override fun toString(): String {
+        return "[${numbers.joinToString(", ")}]"
+    }
+
     fun isNumRepeated(numbers: MutableList<Int>): Boolean {
         return numbers.size != numbers.distinct().count();
     }

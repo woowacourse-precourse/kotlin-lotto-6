@@ -6,9 +6,10 @@ import lotto.Lottos
 import lotto.LottoResult
 
 class LottoController(private val view: ScreenView) {
-    fun pickRandomNums(): MutableList<Int> {
-        val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
-        return numbers
+    fun pickRandomNums(): Lotto {
+        val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6).toMutableList()
+        val lotto = Lotto(toAscending(numbers))
+        return lotto
     }
 
     fun pickRandomNum(): Int {
@@ -16,8 +17,17 @@ class LottoController(private val view: ScreenView) {
         return number
     }
 
-    fun toAscending(unsorted: MutableList<Int>) {
-        return unsorted.sort()
+    fun toAscending(unsorted: MutableList<Int>): MutableList<Int> {
+        unsorted.sort()
+        return unsorted
+    }
+
+    fun buyLottos(quantity: Int): Lottos{
+        val lottos = Lottos()
+        for (i in 1..quantity){
+            lottos.add(pickRandomNums())
+        }
+        return lottos
     }
 
     fun countEqualNums(answer: MutableList<Int>, input: MutableList<Int>): Int {

@@ -8,8 +8,6 @@ class ScreenView {
     private val inputLottoMessage = "당첨 번호를 입력해 주세요."
     private val inputBonusNumberMessage = "보너스 번호를 입력해 주세요."
 
-    private val controller = LottoController()
-
     fun inputMoney(): Int {
         println(inputMoneyMessage)
         val money: Int = Console.readLine().toInt()
@@ -21,6 +19,7 @@ class ScreenView {
     fun inputLotto(): MutableList<Int> {
         println(inputLottoMessage)
         val numbers = Console.readLine()
+        println()
         val inputString = numbers?.split(",")?.toMutableList()
         val inputInt = convertStringsToInts(inputString)
         return inputInt
