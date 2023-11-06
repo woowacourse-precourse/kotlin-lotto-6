@@ -1,5 +1,6 @@
 package lotto.view
 
+import domain.chance.Chance
 import lotto.domain.purchase.Money
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -10,6 +11,6 @@ class ResultViewTest {
     fun `입력받은 구매 금액에 따른 발행 가능 횟수 출력`() {
         val money = Money(5000)
         val chance = Chance(money)
-        assertThat(chance.times).isEqualTo(5)
+        assertThat(chance.getChanceTimes()).isEqualTo(5)
     }
 }
