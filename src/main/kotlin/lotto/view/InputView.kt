@@ -10,18 +10,18 @@ class InputView {
 
         fun promptForPurchasePrice(): String {
             println(PURCHASE_PRICE_PROMPT)
-            return Console.readLine()
+            return Console.readLine().replace(" ", "")
         }
 
         fun promptForWinNumbers(): List<String> {
             println(WIN_NUMBERS_PROMPT)
-            val input = Console.readLine()
+            val input = Console.readLine().replace(" ", "")
             return input.split(",")
         }
 
         fun promptForBonusNumber(): String {
             println(BONUS_NUMBER_PROMPT)
-            return Console.readLine()
+            return Console.readLine().replace(" ", "")
         }
     }
 }
