@@ -141,5 +141,4 @@ BUILD SUCCESSFUL in 0s
 - 로또 구입 금액에 따라 로또 갯수 설정하기
 - 사용자가 잘못된 값 입력한 경우 **IllegalArgumentException**을 이용해서
   **[ERROR]**로 시작하는 에러 메시지 출력하기
-
 ---

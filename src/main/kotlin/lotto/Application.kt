@@ -42,4 +42,3 @@ fun printLotto(lotto: List<List<Int>>) {
     lotto.forEach { println(it) }
 }
 
-
