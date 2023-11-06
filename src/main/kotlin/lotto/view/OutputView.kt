@@ -17,6 +17,10 @@ class OutputView {
     fun printWinningResult(result: Result) {
         println("\n당첨 통계")
         println("---")
-        println(result)
+        print(result)
+    }
+
+    fun printRateOfReturn(rateOfReturn: Double) {
+        println("총 수익률은 %.1f%%입니다.".format(rateOfReturn))
     }
 }

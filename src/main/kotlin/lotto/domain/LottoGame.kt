@@ -28,6 +28,7 @@ class LottoGame {
 
         val totalReward = result.getTotalReward().toDouble()
         val rateOfReturn = totalReward / inputMoney * 100
+        outputView.printRateOfReturn(rateOfReturn)
     }
 
     private fun printLottos(lottos: List<Lotto>) {
