@@ -33,6 +33,14 @@ class LottoGameViewer {
     }
 
     private fun printDataByGameState(data: Any) {
-        // TODO: 로또 발행 결과 출력
+        if (gameState == BUYING) printResultOfBuyingLotto(data)
+        // TODO: 나머지 state 구현
+    }
+
+    private fun printResultOfBuyingLotto(data: Any) {
+        val userLotteryTickets = data as List<Lotto>
+
+        println("${userLotteryTickets.size}" + Constants.RESULT_BUYING_COUNT_MESSAGE)
+        userLotteryTickets.map { println(it.getNumbers().sorted()) }
     }
 }

@@ -44,6 +44,7 @@ class LottoGameManager {
         getMoneyFromUser()
         if (gameManagerState != REQUEST_ERROR) {
             generateLotto()
+            data = userLotteryTickets
             gameManagerState = RESULT
         }
     }
