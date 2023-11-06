@@ -29,9 +29,8 @@
   [1, 3, 5, 14, 22, 45]
   ```
 
-- [ ] 6자리 로또번호를 생성한다. (`LottoGenerator.generateLottoNumbers`)
-    - [ ] 로또 번호는 오름차순으로 정렬된다.
-        - (`HashSet` 을 사용하고, `toList` 를 사용하면 될 것 같음.)
+- [x] 6자리 로또번호를 생성한다. (`LottoGenerator.generateLottoNumbers`)
+    - [x] 로또 번호는 오름차순으로 정렬된다.
 
 - [x] 로또 번호의 조건(로또 번호 생성, 6자리 당첨번호 입력, 보너스 번호 입력시 만족해야 함) (`Lotto.init`)
     - [x] 로또 번호의 숫자 범위는 1 ~ 45 이다.
