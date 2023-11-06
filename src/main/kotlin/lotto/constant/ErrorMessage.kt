@@ -5,6 +5,7 @@ enum class ErrorMessage(val message: String) {
     NOT_PURCHASE_AMOUNT_FORMAT("[ERROR] 구매금액은 1000원단위여야 합니다."),
     NOT_BONUS_NUMBER_FORMAT("[ERROR] 보너스 금액은 정수여야 합니다."),
     NOT_NUMBER_WINNING_NUMBER("[ERROR] 당첨번호는 정수여야 합니다."),
+    NOT_BLANK_INPUT("[ERROR] 값을 입력해주세요."),
     NOT_WINNING_NUMBER_PATTERN("[ERROR] 당첨번호의 형식에 맞게 입력해주세요."),
     NOT_SIX_WINNING_NUMBER("[ERROR] 당첨 번호는 6자리여야합니다."),
     NOT_SIX_LOTTO_NUMBER("[ERROR] Lotto 번호는 6자리여야합니다."),
