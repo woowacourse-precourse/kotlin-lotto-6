@@ -15,7 +15,7 @@ enum class InputValidation(val message: String, val isValid: (String) -> Unit) {
     ),
     VALID_RANGE(
         "[ERROR] 최소 1,000원 부터 최대 100,000원 까지 구매가 가능합니다.",
-        fun(value: String) = require(value.toInt() in 1_000..100_000) { VALID_RANGE.message },
+        fun(value: String) = require(value.toIntOrNull() in 1_000..100_000) { VALID_RANGE.message },
     ),
     PURCHASE_IN_THOUSAND_WON(
         "[ERROR] 1,000원 단위로 구매가 가능합니다.",
@@ -23,6 +23,6 @@ enum class InputValidation(val message: String, val isValid: (String) -> Unit) {
     ),
     NUMBER_RANGE(
         "[ERROR] 1 부터 45까지만 입력이 가능합니다.",
-        fun(value: String) = require(value.toInt() in 1..45) { NUMBER_RANGE.message },
+        fun(value: String) = require(value.toIntOrNull() in 1..45) { NUMBER_RANGE.message },
     ),
 }
