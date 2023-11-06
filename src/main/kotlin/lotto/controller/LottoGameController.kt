@@ -1,7 +1,8 @@
 package lotto.controller
 
+import lotto.constant.ErrorMessage
 import lotto.domain.BonusNumber
-import lotto.domain.Lottoes
+import lotto.domain.Lottos
 import lotto.domain.PurchasePrice
 import lotto.domain.WinningNumbers
 import lotto.service.LottoGameService
@@ -22,18 +23,21 @@ class LottoGameController(
         printLottoResult(winningNumbers, bonusNumber, purchaseAmount)
     }
 
-    private fun <T> normal(supplier: Supplier<T>): T {
+    private fun <T> repeatReadInput(supplier: Supplier<T>): T {
         while (true) {
             try {
                 return supplier.get()
-            } catch (e: Exception) {
+            } catch (e: IllegalArgumentException) {
                 outputView.printError(e.message)
+            } catch (t: NoSuchElementException) {
+                outputView.printError(ErrorMessage.NOT_BLANK_INPUT.message)
+                throw t
             }
         }
     }
 
     private fun requirePurchaseAmount(): PurchasePrice {
-        return normal {
+        return repeatReadInput {
             outputView.printRequirePurchaseAmount()
             PurchasePrice(inputView.readUserPurchaseAmountInput())
         }
@@ -44,19 +48,19 @@ class LottoGameController(
         outputView.printRandomWinningNumbers(generateLottoNumbers(purchaseAmount.calculateLottoCount()))
     }
 
-    private fun generateLottoNumbers(lottoCount: Int): Lottoes {
+    private fun generateLottoNumbers(lottoCount: Int): Lottos {
         return service.generateRandomNumbers(lottoCount)
     }
 
     private fun requireWinningNumbers(): WinningNumbers {
-        return normal {
+        return repeatReadInput {
             outputView.requireWinningNumber()
             inputView.readUserWinningNumberInput()
         }
     }
 
     private fun requireBonusNumber(winningNumbers: WinningNumbers): BonusNumber {
-        return normal {
+        return repeatReadInput {
             outputView.requireBonusNumber()
             val bonusNumber = inputView.readUserBonusNumberInput()
             bonusNumber.validateBonusNumber(winningNumbers)
