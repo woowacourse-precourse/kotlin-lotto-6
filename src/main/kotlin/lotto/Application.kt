@@ -12,6 +12,14 @@ fun main() {
         repeat(result/1000) {
             println(lottoSort(makeLotto()))
         }
+
+        printWinningMessage()
+        val winningNumber = inputMessage().trim()
+        println(parser(winningNumber))
+
+        printBonusMessage()
+        val BonusNumber = inputMessage().trim()
+
     } catch (e: IllegalArgumentException) {
         println(e.message)
         main()
@@ -67,4 +75,10 @@ fun makeLotto(): List<Int> {
 
 fun lottoSort(list: List<Int>): List<Int> {
     return list.sorted()
+}
+
+// 쉼표로 나누기, 정수로 변경
+fun parser(s: String): List<Int> {
+    val win = s.split(",")
+    return win.map { it.toInt() }
 }
