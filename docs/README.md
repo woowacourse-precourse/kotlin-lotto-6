@@ -3,27 +3,25 @@
 ## 📋 절차
 
 1. **구입금액 입력 받기**
-   * [InputView] 사용자에게 구입 금액 입력 요청
-   * [InputValidator] 예외 처리 : 숫자 외 문자열 입력
-   * [InputValidator] 예외 처리 : 빈 값 입력
-   * [Application] String -> Int 자료형 변환
-   * [Money] 예외 처리 : 0원 미만
+   * [View] 사용자에게 구입 금액 입력 요청
+   * [Controller] 예외 처리 : 숫자 외 문자열 입력
+   * [Controller] 예외 처리 : 빈 값 입력
+   * [Domain] 예외 처리 : 0원 미만
 
 2. **구입 금액에 해당하는 만큼 로또를 발행**
-   * [LottoShop] 예외 처리 : 구입 금액이 1,000원으로 나누어 떨어지지 않음
-   * [LottoShop] 예외 처리 : 구입 금액 1,000원 미만
-   * [LottoShop] 입력 받은 금액만큼 로또 발행
+   * [Domain] 예외 처리 : 구입 금액이 1,000원으로 나누어 떨어지지 않음
+   * [Domain] 예외 처리 : 구입 금액 1,000원 미만
+   * [Domain] 입력 받은 금액만큼 로또 발행
 
 3. **발행한 로또 수량 및 번호를 출력**
-   * [OutputView] Lottos를 입력 받아 수량 및 번호 리스트 출력
+   * [View] 발행한 로또 수량 및 번호를 출력
 
 4. **당첨 번호 입력 받기**
-   * [InputView] 사용자에게 당첨 번호 입력 요청
-   * [InputValidator] 예외 처리 : 숫자 외 문자열 입력
-   * [InputValidator] 예외 처리 : 빈 값 입력
-   * [Application] List&lt;String&gt; -> List&lt;LottoNumber&gt; 자료형 변환
-   * [LottoNumber] 예외 처리 : 번호의 범위가 1~45가 아님
-   * [Lotto] 예외 처리 : 번호의 개수가 6개가 아님
+   * [View] 사용자에게 당첨 번호 입력 요청
+   * [Controller] 예외 처리 : 숫자 외 문자열 입력
+   * [Controller] 예외 처리 : 빈 값 입력
+   * [Domain] 예외 처리 : 번호의 범위가 1~45가 아님
+   * [Domain] 예외 처리 : 번호의 개수가 6개가 아님
 
 5. **보너스 번호 입력 받기**
 6. **사용자가 구매한 로또 번호와 당첨 번호를 비교**
