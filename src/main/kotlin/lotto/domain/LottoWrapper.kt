@@ -22,10 +22,4 @@ class LottoWrapper {
     private fun sortLottoNumbers(lottoNumbers: List<Int>): List<Int> {
         return lottoNumbers.sorted()
     }
-
-    private fun bonusLottoNumbers(): MutableList<Int> {
-        val bonusNumber = Randoms.pickUniqueNumbersInRange(Constants.LOTTO_START_NUMBER, Constants.LOTTO_LAST_NUMBER, 1)
-        return bonusNumber
-    }
-
 }
