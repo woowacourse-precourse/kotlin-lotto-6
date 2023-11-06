@@ -1,5 +1,12 @@
 package lotto
 
+import lotto.domain.PurchaseLotto
+
 fun main() {
-    TODO("프로그램 구현")
+    startLotto()
+}
+
+fun startLotto() {
+    val purchaseLotto = PurchaseLotto()
+    val amount = purchaseLotto.inputAmount()
 }
