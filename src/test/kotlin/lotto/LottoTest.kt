@@ -1,11 +1,13 @@
 package lotto
 
 import model.Lotto
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-
 class LottoTest {
+    private val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+
     @Test
     fun `로또 번호의 개수가 6개가 넘어가면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
@@ -28,5 +30,11 @@ class LottoTest {
         assertThrows<IllegalArgumentException> {
             Lotto(listOf(1, 2, 3, 44, 45, 46))
         }
+    }
+
+    @Test
+    fun `로또 등수 출력 확인`() {
+        val result = lotto.getLottoRank(listOf(1, 2, 3, 4, 5, 6), 7)
+        assertThat(1).isEqualTo(result)
     }
 }
