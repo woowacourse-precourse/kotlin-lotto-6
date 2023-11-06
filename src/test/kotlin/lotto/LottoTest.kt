@@ -36,4 +36,11 @@ class LottoTest {
             LottoPurchase().validateAmount("12001")
         }
     }
+
+    @Test
+    fun `로또 번호가 오른차순이 아니면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1, 2, 3, 4, 6, 5))
+        }
+    }
 }
