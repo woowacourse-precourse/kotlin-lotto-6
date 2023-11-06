@@ -19,6 +19,6 @@ class LottoNumberTest {
         // when & then
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { LottoNumber(input) }
-            .withMessage("[ERROR] 로또 숫자 범위는 1부터 45까지 입니다.")
+            .withMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
     }
 }
