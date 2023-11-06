@@ -6,9 +6,8 @@ class LottoMachine(
     private val user: User,
     private val winningLotto: WinningLotto
 ) {
+    fun calculateMyResult() {
 
-
-
-
+    }
 
 }

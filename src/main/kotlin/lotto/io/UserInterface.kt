@@ -48,5 +48,12 @@ class UserInterface(
         }
     }
 
+    fun printLotto(lottoTickets:List<Int>){
+        output.printLotto(lottoTickets)
+    }
+    fun printLottoCounts(counts:Int) {
+        output.printQuantityMsg(counts)
+    }
+
 
 }
