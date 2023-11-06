@@ -3,9 +3,11 @@ package lotto.view
 import camp.nextstep.edu.missionutils.Console
 
 class InputView {
-    fun purchaseAmountPrompt() = promptInput(PURCHASE_AMOUNT_INPUT_MESSAGE, PURCHASE_AMOUNT_IS_EMPTY)
+    fun purchaseAmountPrompt() =
+        promptInput(PURCHASE_AMOUNT_INPUT_MESSAGE, PURCHASE_AMOUNT_IS_EMPTY)
 
-    fun winningNumbersPrompt() = promptInput(WINNING_NUMBERS_INPUT_MESSAGE, WINNING_NUMBERS_IS_EMPTY)
+    fun winningNumbersPrompt() =
+        promptInput(WINNING_NUMBERS_INPUT_MESSAGE, WINNING_NUMBERS_IS_EMPTY)
 
     fun bonusNumberPrompt() = promptInput(BOUNS_NUMBER_INPUT_MESSAGE, BOUNS_NUMBER_IS_EMPTY)
 
@@ -20,7 +22,7 @@ class InputView {
 
     private fun String.validateEmpty(errorMessage: String) {
         if (this.isEmpty()) {
-            throw IllegalArgumentException(errorMessage)
+            throw IllegalArgumentException("ERROR" + errorMessage)
         }
     }
 

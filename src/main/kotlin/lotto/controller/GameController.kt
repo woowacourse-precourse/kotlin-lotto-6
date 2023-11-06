@@ -1,11 +1,12 @@
 package lotto.controller
 
+import BonusNumber
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.Constants
-import lotto.model.BonusNumber
 import lotto.model.Lotto
 import lotto.model.LottoNumber
 import lotto.model.Lottos
+import lotto.model.Match
 import lotto.model.PurchaseAmount
 import lotto.model.Reward
 import lotto.model.WinningNumbers
@@ -25,7 +26,13 @@ class GameController {
     private val inputView = InputView()
     private val outputView = OutputView()
     private val task = Task()
-    private var result = mutableMapOf(3 to 0, 4 to 0, 50 to 0, 51 to 0, 6 to 0)
+    private var result = mutableMapOf(
+        Match.THIRD.count to 0,
+        Match.FOURTH.count to 0,
+        Match.FIFTH.count to 0,
+        Match.FIFTH_BONUS.count to 0,
+        Match.SIX.count to 0,
+    )
     lateinit var lottos: Lottos
     lateinit var purchaseAmount: PurchaseAmount
 
@@ -99,15 +106,16 @@ class GameController {
     }
 
     private fun updateLottoResults(data: Pair<Int, Int>) {
+        if (data.first !in 3..6) {
+            return
+        }
+        var key = data.first
+
         if (data.first == 5) {
-            val key = data.first * 10 + data.second
-            result[key] = result.getOrDefault(key, 0) + 1
-            return
+            key = Match.FIFTH.count.takeIf { data.second == 0 } ?: Match.FIFTH_BONUS.count
         }
-        if (data.first in 0..2) {
-            return
-        }
-        result[data.first] = result.getOrDefault(data.first, 0) + 1
+
+        result[key] = result.getOrDefault(key, 0) + 1
     }
 
     private fun calculateLotto(
