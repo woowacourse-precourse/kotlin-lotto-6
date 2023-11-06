@@ -1,6 +1,7 @@
 package lotto.controller
 
 import lotto.domain.Lotto
+import lotto.domain.LottoMC
 import lotto.domain.Validator
 import lotto.utils.RandomUtils
 import lotto.view.InputView
@@ -10,6 +11,7 @@ class LottoShop {
     private val inputView = InputView()
     private val validator = Validator()
     private val randomUtils = RandomUtils()
+    private val lottoMC = LottoMC(inputView)
 
     fun buyLotto() {
         inputView.buyMessage()
@@ -21,5 +23,10 @@ class LottoShop {
             val lotto: Lotto = Lotto(numbers.sorted())
             println(lotto)
         }
+    }
+
+    fun startLottoProgram() {
+        val lottoNum = lottoMC.pickLottoNum()
+        validator.validateLottoNum(lottoNum)
     }
 }

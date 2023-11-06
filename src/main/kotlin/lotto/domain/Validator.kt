@@ -19,4 +19,12 @@ class Validator {
     private fun validatePrice1000Unit(price: String) {
         require(price.toInt() % 1000 == 0)
     }
+
+    fun validateLottoNum(lottoNum: List<String>) {
+        validateLottoNumEmpty(lottoNum)
+    }
+
+    private fun validateLottoNumEmpty(lottoNum: List<String>) {
+        require(lottoNum.isNotEmpty())
+    }
 }

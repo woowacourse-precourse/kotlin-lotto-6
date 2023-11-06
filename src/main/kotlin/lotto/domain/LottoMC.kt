@@ -1,3 +1,9 @@
 package lotto.domain
 
-class LottoMC
+import lotto.view.InputView
+
+class LottoMC(private val inputView: InputView) {
+    fun pickLottoNum(): List<String> {
+        return listOf(inputView.inputView().trim())
+    }
+}
