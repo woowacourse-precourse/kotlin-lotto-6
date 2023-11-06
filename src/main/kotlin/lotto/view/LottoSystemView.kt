@@ -1,6 +1,5 @@
 package lotto.view
 
-import lotto.model.LottoNum
 import lotto.model.LottoPaper
 import lotto.util.inputHandler
 
