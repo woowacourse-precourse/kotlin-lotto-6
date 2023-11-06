@@ -24,6 +24,7 @@ class Validator {
         validateLottoNumEmpty(lottoNum)
         validateLottoNumCount(lottoNum)
         validateLottoNumRange(lottoNum)
+        validateLottoNumDuplicate(lottoNum)
     }
 
     private fun validateLottoNumEmpty(lottoNum: List<String>) {
@@ -38,5 +39,9 @@ class Validator {
         for (element in lottoNum) {
             require(element.toInt() in 1..45)
         }
+    }
+
+    private fun validateLottoNumDuplicate(lottoNum: List<String>) {
+        require(lottoNum.size != lottoNum.distinct().count())
     }
 }
