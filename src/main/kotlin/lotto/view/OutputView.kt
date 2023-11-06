@@ -41,4 +41,9 @@ object OutputView {
             println("6개 일치 (2,000,000,000원) - ${results[Prize.SIX_MATCH] ?: 0}개")
         }
 
+
+    fun printProfitPercentage(profitPercentage: Double) {
+        println("총 수익률은 $profitPercentage%입니다.")
+    }
+
     }

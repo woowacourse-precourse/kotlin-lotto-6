@@ -33,7 +33,10 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         lottoList.forEach { it ->
             results = ranks.rank(it.getLotto(), lotto, bonusNumber)
         }
+        val yield = LottoYield()
+        val profitPercentage = yield.calcurateLottoYield(results, amount)
 
         outputView.printResults(results)
+        outputView.printProfitPercentage(profitPercentage)
     }
 }
