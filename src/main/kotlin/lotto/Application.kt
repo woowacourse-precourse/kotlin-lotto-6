@@ -7,6 +7,9 @@ fun main() {
 
     val lottoGenerator = LottoGenerator(count)
     lottoGenerator.printRandomLotto()
+
+    val lottoMachine = LottoMachine()
+    lottoMachine.inputWinningNumbers()
 }
 
 
