@@ -3,9 +3,9 @@ package model
 import util.InputValidation
 import util.LottoValidation
 
-class WinningNumbersManager(private val numbers: List<String>) {
+class WinningNumbersManager(numbers: List<String>) {
 
-    private lateinit var winningNumbers: List<Int>
+    private var winningNumbers: List<Int>
     private var bonusNumber = 0
 
     init {
