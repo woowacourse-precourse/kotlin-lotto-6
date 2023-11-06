@@ -23,7 +23,7 @@ object InputView {
         getUserAmount()
     }
 
-    private fun validateUserAmount(userInput: String) {
+    fun validateUserAmount(userInput: String) {
         try {
             val amount = userInput.toInt()
 

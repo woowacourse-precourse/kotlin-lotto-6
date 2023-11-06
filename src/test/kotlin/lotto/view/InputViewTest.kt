@@ -10,7 +10,7 @@ class InputViewTest {
     fun `사용자로부터 입력받은 금액이 문자열 형태인 경우 예외 발생`() {
         val amount = "금액"
         assertThrows<IllegalArgumentException> {
-            Money(amount)
+            InputView.validateUserAmount(amount)
         }
     }
 
@@ -18,7 +18,7 @@ class InputViewTest {
     fun `사용자로부터 입력받은 금액이 0 이하인 경우 예외 발생`() {
         val amount = "0"
         assertThrows<IllegalArgumentException> {
-            Money(amount)
+            InputView.validateUserAmount(amount)
         }
     }
 
@@ -26,7 +26,7 @@ class InputViewTest {
     fun `사용자로부터 입력받은 금액이 1,000으로 나누어 떨어지지 않는 경우 예외 발생`() {
         val amount = "1010"
         assertThrows<IllegalArgumentException> {
-            Money(amount)
+            InputView.validateUserAmount(amount)
         }
     }
 }
