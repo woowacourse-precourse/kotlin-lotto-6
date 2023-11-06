@@ -18,14 +18,14 @@ class InputValidatorTest {
 
     @Test
     @DisplayName("정수 여부")
-    fun `checkHasNotWord 메서드 사용 시 입력값이 정수가 아닐 때 예외 발생`() {
+    fun `checkIsNumeric 메서드 사용 시 입력값이 정수의 형태가 아닐 때 예외 발생`() {
         val input = "11.5"
 
-        assertThrows<IllegalArgumentException> { Validator.checkIsNotNumber(input) }
+        assertThrows<IllegalArgumentException> { Validator.checkIsNumeric(input) }
     }
 
     @Nested
-    @DisplayName("로또 구매 금액")
+    @DisplayName("로또 구입 금액")
     class Money {
 
         @Test
