@@ -9,10 +9,11 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class PurchasePriceValidatorTest {
 
-    @Test
-    fun `구입 금액으로 공백을 입력 시`() {
+    @ParameterizedTest
+    @ValueSource(strings = [" ", ""])
+    fun `구입 금액으로 공백을 입력 시`(value: String) {
         val exception = assertThrows<IllegalArgumentException> {
-            PurchasePriceValidator(" ")
+            PurchasePriceValidator(value)
         }
 
         assertEquals("[ERROR] 공백을 제외한 값을 입력해 주세요", exception.message)
@@ -49,5 +50,12 @@ class PurchasePriceValidatorTest {
     @Test
     fun `1000원 이상 입력 시`() {
         assertDoesNotThrow { PurchasePriceValidator("1000") }
+    }
+
+    @Test
+    fun `올바른 값 입력 시`() {
+        assertDoesNotThrow {
+            PurchasePriceValidator("3000")
+        }
     }
 }
