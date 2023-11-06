@@ -25,10 +25,12 @@
 2. 구현할 기능 목록
 
    - [ ] application.kt
-     - [ ] 게임 시작, Lotto 인스턴스 생성 및 입출력
+     - [ ] 게임 시작
 
-   - [ ] Lotto.kt - Lotto 객체 선언
-
+   - [x] Lotto.kt - Lotto 객체 선언
+     - [x] numbers 유효성 검사
+   - [ ] LottaGame.kt - LottaGame 객체 선언
+ 
    - [ ] 입력 처리
      - [ ] 로또 구입 금액 입력 처리
      - [ ] 당첨 번호 입력 처리
