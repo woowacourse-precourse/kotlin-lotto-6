@@ -1,9 +1,9 @@
 package lotto.domain
 
 class Lottos(private val lottos: List<Lotto>) {
-    fun <T> forEach(action: (T) -> Unit) {
-        lottos.forEach { action }
-    }
+    fun forEach(action: (Lotto) -> Unit) = lottos.forEach { action(it) }
+
+    fun joinToString(separator: CharSequence): String = lottos.joinToString(separator)
 
     fun size(): Int = lottos.size
 }
