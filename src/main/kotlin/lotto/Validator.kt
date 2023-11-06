@@ -10,4 +10,8 @@ class Validator {
             false
         }
     }
+
+    fun isNumber(input: String): Boolean{
+        return input.toIntOrNull() != null
+    }
 }
