@@ -8,6 +8,10 @@ class Lotto(private val numbers: List<Int>) {
     fun matchCount(winningNumbers: List<Int>): Int {
         return numbers.intersect(winningNumbers).size
     }
+    fun getLottoResult(winningNumbers: List<Int>): LottoResult {
+        val matchCount = matchCount(winningNumbers)
+        return LottoResult.fromMatchCount(matchCount)
+    }
     override fun toString(): String {
         return numbers.joinToString(separator = ", ", prefix = "[", postfix = "]")
     }
