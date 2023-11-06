@@ -5,8 +5,8 @@ enum class ValidatorError(val message: String) {
     NotPositiveNumber("음수나 0 값은 입력할 수 없습니다.")
 }
 
-fun <T> T.requireAndReturn(value: Boolean, message: String, containsErrorMessage: Boolean = true): T {
-    require(value) { if (containsErrorMessage) message.toErrorMessage() else message }
+fun <T> T.requireAndReturn(value: Boolean, message: String): T {
+    require(value) { message }
     return this
 }
 
@@ -23,5 +23,3 @@ fun String.isInt(containsSign: Boolean = false): Boolean {
 fun Int.isPositiveNumber(): Boolean = this > 0
 
 fun Int.isInRange(start: Int, end: Int): Boolean = this in start..end
-
-private fun String.toErrorMessage(): String = "[ERROR] $this"

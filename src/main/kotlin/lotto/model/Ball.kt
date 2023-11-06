@@ -13,6 +13,8 @@ value class Ball(val number: Int) {
         number.validIsInRange()
     }
 
+    override fun toString(): String = number.toString()
+
     private fun Int.validIsInRange(): Int =
         requireAndReturn(this.isInRange(MIN_NUMBER, MAX_NUMBER), OUT_OF_RANGE_ERROR)
 
