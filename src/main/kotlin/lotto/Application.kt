@@ -109,11 +109,15 @@ fun getValidBonusNumber(): Int {
     while (true) {
         val input = inputBonusNumber()
         try {
-            return input.toInt()
+            val bonusNumber = input.toInt()
+            if (bonusNumber !in 1..45) {
+                throw IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자로 입력해야 합니다.")
+            }
+            return bonusNumber
         } catch (e: NumberFormatException) {
             println("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.")
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
         }
     }
-
 }
-
