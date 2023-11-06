@@ -43,6 +43,20 @@ fun lottoGame(price:Int):List<Lotto>{
     return tickets
 }
 
+fun parseWinningNumber():pair<List<Int>, Int>{
+    val numbers = Console.readLine().split(",").map{it.toInt()}
+    val bonusNumber = Console.readLine().toInt()
+    return numbers to bonusNumber
+}
+
+fun validateWinningNumber(winningNumber:pair<List<Int>, Int>){
+    val (numbers, bonusNumber) = winningNumber
+    require(hasSixNumbers(numbers))
+    require(isUnique(numbers))
+    require(isInValidRange(bonusNumber))
+    require(isUniqueWithBonusNumber(numbers, bonusNumber))
+}
+
 fun main() {
     TODO("프로그램 구현")
 }
