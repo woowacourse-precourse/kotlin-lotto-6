@@ -1,5 +1,11 @@
 package lotto
 
+import PlayLotto
+import lotto.domain.WinningNumber
+import lotto.model.PlayLottoState
+
 fun main() {
-    TODO("프로그램 구현")
+    val winningNumber = WinningNumber()
+    val lottoData = PlayLottoState.LottoData()
+    PlayLotto(winningNumber, lottoData).start()
 }
