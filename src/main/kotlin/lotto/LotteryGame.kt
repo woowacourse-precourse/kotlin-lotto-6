@@ -7,13 +7,7 @@ class LotteryGame {
     }
 
     fun gameStart() {
-        var count = 0
-
-        do {
-            count = insertAmount()
-        } while (count == 0)
-
-        println(makeAnswer())
+        val count: Int = insertAmount() / 1000
 
     }
 
@@ -28,7 +22,7 @@ class LotteryGame {
 
         if (bullet % 1000 != 0){
             println("[ERROR] 금액은 1,000원 단위로만 입력해주십시오.")
-            throw IllegalArgumentException()
+            throw IllegalArgumentException("[ERROR] 금액은 숫자로만 입력해주십시오.")
             return 0
         }
         return bullet
