@@ -7,7 +7,6 @@ class LottoTickets {
         get() = _tickets
 
     fun createLottoTickets() {
-        println(PURCHASE_INSTRUCTION)
         initializeLottoTickets()
     }
 
@@ -16,13 +15,7 @@ class LottoTickets {
     }
 
     fun displayLottoTickets() {
-        println("${tickets.size}${PURCHASE_TICKET_COUNT}")
+        println("${tickets.size}${InfoMessage.PURCHASE_TICKET_COUNT.message}")
         tickets.forEach { println(it) }
     }
-
-    companion object {
-        const val PURCHASE_INSTRUCTION = "구입금액을 입력해 주세요."
-        const val PURCHASE_TICKET_COUNT = "개를 구매했습니다."
-    }
-
 }
