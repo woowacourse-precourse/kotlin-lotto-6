@@ -3,7 +3,7 @@ package lotto
 class UserInputValidator {
     fun checkNumber(userInput: String) = userInput.toIntOrNull() ?: throw IllegalArgumentException(ExceptionMessage.NOT_NUMBER)
     fun checkDivideBy1000(userInput: String) {
-        if (userInput.toInt() % 1000 != 0)
+        if (userInput.toInt() % 1000 != 0 || userInput.toInt() == 0)
             throw IllegalArgumentException(ExceptionMessage.NOT_CORRECT_PRICE)
     }
 
