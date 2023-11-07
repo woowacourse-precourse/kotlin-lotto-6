@@ -21,8 +21,7 @@ class InputView {
     }
 
     fun inputBonusNumber(): Int {
-        var bonusNumber = ""
-        bonusNumber = Console.readLine()
+        val bonusNumber = Console.readLine()
         requireNotNull(bonusNumber.toIntOrNull()) { Constant.INPUT_BONUS_NUMBER_NOT_NUMBER_ERROR_MESSAGE }
         return bonusNumber.toInt()
     }
