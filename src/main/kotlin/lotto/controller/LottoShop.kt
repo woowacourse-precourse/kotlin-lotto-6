@@ -63,6 +63,7 @@ class LottoShop {
         }
 
         var bonusNum: String
+        inputView.bonusMessage()
         while (true) {
             try {
                 bonusNum = lottoMC.pickBonusNum(lottoNum)
@@ -78,8 +79,6 @@ class LottoShop {
         for (lotto in lottos) {
             val correctCnt = lotto.getNumbers().intersect(lottoNum.toSet()).size
             val bonusCnt = lotto.getNumbers().contains(bonusNum.toInt())
-            println("lotto.getNumbers() type: ${lotto.getNumbers()::class.simpleName}, lottoNum.toSet() type: ${lottoNum.toSet()::class.simpleName}")  // 로그 추가
-            println("lottoNum: $lottoNum, lotto: ${lotto.getNumbers()}, bonusNum: $bonusNum, correctCnt: $correctCnt, bonusCnt: $bonusCnt")
             lottoResult(correctCnt, bonusCnt)
         }
         printResult(threeMatch, fourMatch, fiveMatch, bonusMatch, sixMatch, price)
@@ -112,8 +111,6 @@ class LottoShop {
 
         val earningRate = ((totalPrize.toDouble() / price.toDouble()) * 100)
         val roundedEarningRate = String.format("%.1f", earningRate).toDouble()
-        println(earningRate)
-        println(roundedEarningRate)
         outputView.printLottoResult(threeMatch, fourMatch, fiveMatch, bonusMatch, sixMatch, roundedEarningRate)
     }
 
