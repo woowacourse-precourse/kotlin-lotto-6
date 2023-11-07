@@ -55,7 +55,17 @@
 - [x] 사용자가 잘못 입력할 경우 `IllegalArgumentException` 발생시키고, "[ERROR]"로 시작하는 메세지 출력 후 그 부분부터 다시 입력받는다.  
   이때, `Exception`이 아닌 `IllegalArgumentException` 또는 `IllegalStateException` 같은 명확한 값이어야한다.
 
-### 기능 구현 방안
+### 사용자의 잘못된 입력 처리
+
+Extensions.kt 에서 정의
+
+- 로또 번호가 숫자가 아닌 경우
+- 로또 번호가 범위를 벗어난 경우
+- 로또 리스트 갯수가 제한을 벗어난 경우
+- 로또 리스트 내의 숫자가 중복될 경우
+- 로또 구입 금액이 1000의 배수가 아닌 경우
+
+### 프로젝트 구현 방안
 
 MVC 패턴  
 View : Input/Output 처리  
