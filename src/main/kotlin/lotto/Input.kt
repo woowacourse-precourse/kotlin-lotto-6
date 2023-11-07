@@ -18,9 +18,12 @@ object Input {
         val input = getInput()
         input.split(",").map {
             require(isNumeric(it))
-            it.toInt()
+            val num = it.toInt()
+            require(isValidLottoNum(num))
+            num
         }
     }
+    private fun isValidLottoNum(num: Int): Boolean = num in Constants.MIN_LOTTO_NUMBER ..< Constants.MAX_LOTTO_NUMBER
     private fun isNumeric(string: String): Boolean = string.all { it.isDigit() }
     private fun <T>repeatUntilGetValidInput(inputFunction: () -> T): T {
         val ret: T
