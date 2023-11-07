@@ -23,13 +23,17 @@ class LottoServer {
     private fun computeRateOfReturn(winPrizeList: List<WinState>, count: Int): Float {
         val userMoney = (count * 1000).toFloat()
         val totalReturn =
-            (THREE_PRIZE_MONEY * winPrizeList.count { it == WinState.THREE }
-        +FOUR_PRIZE_MONEY * winPrizeList.count { it == WinState.FOUR }
-        +FIVE_PRIZE_MONEY * winPrizeList.count { it == WinState.FIVE }
-        +FIVE_WITH_BONUS_PRIZE_MONEY * winPrizeList.count { it == WinState.FIVEPLUSBONUS }
-        +SIX_PRIZE_MONEY * winPrizeList.count { it == WinState.SIX }).toFloat()
+            computeTotalReturn(winPrizeList)
 
         return (totalReturn / userMoney) * 100
+    }
+
+    private fun computeTotalReturn(winPrizeList: List<WinState>): Float {
+        return (THREE_PRIZE_MONEY * winPrizeList.count { it == WinState.THREE }
+                + FOUR_PRIZE_MONEY * winPrizeList.count { it == WinState.FOUR }
+                + FIVE_PRIZE_MONEY * winPrizeList.count { it == WinState.FIVE }
+                + FIVE_WITH_BONUS_PRIZE_MONEY * winPrizeList.count { it == WinState.FIVEPLUSBONUS }
+                + SIX_PRIZE_MONEY * winPrizeList.count { it == WinState.SIX }).toFloat()
     }
 
     private fun computeWinPrize(winNumberList: List<Int>, bonusNumber: Int): List<WinState> {
