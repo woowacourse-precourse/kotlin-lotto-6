@@ -48,7 +48,6 @@ object Validation {
 
     private fun checkIsListDigit(input:String){
         val answerNums = input.split(",")
-        println("$answerNums")
         for(num in answerNums){
             checkIsDigit(num)
         }
