@@ -12,9 +12,10 @@ class InputManager {
         val nums = Console.readLine().split(",")
         return nums.map { it.toInt() }
     }
-    fun inputBonusNumber(): String {
+    fun inputBonusNumber(): Int {
         println("보너스 번호를 입력해 주세요.")
-        return Console.readLine()
+        val num = Console.readLine()
+        return num.toInt()
     }
 
 }
