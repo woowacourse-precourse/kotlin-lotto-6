@@ -1,5 +1,6 @@
 package lotto
 
 object StringRes {
-    const val NUMBER_RANGE_ERR = "번호가 잘못되었습니다."
+    private const val ERR_PREFIX = "[ERROR] "
+    const val NUMBER_RANGE_ERR = "${ERR_PREFIX}번호가 잘못되었습니다."
 }

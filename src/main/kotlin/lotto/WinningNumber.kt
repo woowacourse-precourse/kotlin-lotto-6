@@ -5,7 +5,7 @@ data class WinningNumber(
     val bonus: Int
 ) {
     init {
-        check(
+        require(
             numbers.all {
                 it in 1..GameConst.MAX_NUM
             } && numbers.distinct().size == numbers.size && bonus in 1..GameConst.MAX_NUM
@@ -13,4 +13,4 @@ data class WinningNumber(
             StringRes.NUMBER_RANGE_ERR
         }
     }
-}
+}       
