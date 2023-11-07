@@ -60,7 +60,7 @@ class CalculatorTest {
     }
 
     @ParameterizedTest
-    @MethodSource("generateTestDataForCalculateProfitRate")
+    @MethodSource("generateTestDataForCalculateProfit")
     @DisplayName("Calculator : calculateTotalProfit()")
     fun `로또 당첨 내역을 입력하면 총 수익금을 반환한다`(data: Pair<List<Int>, Long>) {
         // given
@@ -75,7 +75,7 @@ class CalculatorTest {
 
     companion object {
         @JvmStatic
-        private fun generateTestDataForCalculateProfitRate(): List<Pair<List<Int>, Long>> {
+        private fun generateTestDataForCalculateProfit(): List<Pair<List<Int>, Long>> {
             return listOf(
                 listOf(7, 0, 0, 0, 0, 1) to 5_000,
                 listOf(0, 0, 0, 0, 0, 1) to 5_000,
