@@ -2,7 +2,10 @@ package view
 
 class OutputView {
 
-    fun printError(exception: Exception) = println(exception.message)
+    fun printError(exception: Exception) {
+        exception.printStackTrace()
+        println(exception.message)
+    }
 
     fun printPurchaseAmount() = println(RequestType.ENTER_PURCHASE_AMOUNT.message)
 
