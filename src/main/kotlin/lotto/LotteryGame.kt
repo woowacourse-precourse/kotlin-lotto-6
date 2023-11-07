@@ -19,7 +19,6 @@ class LotteryGame {
         if (count == 0) return
 
         val tickets = makeTickets(count)
-
         val win_num = enterWinningNumber()
         val bonus: Int = enterBonusNumber()
 
@@ -27,6 +26,7 @@ class LotteryGame {
             check(i.round(win_num, bonus))
         }
 
+        printResult()
     }
 
     private fun insertAmount(): Int {
@@ -84,6 +84,16 @@ class LotteryGame {
             4 -> won.FOURTH.count++
             5 -> won.FIFTH.count++
         }
+    }
+
+    private fun printResult() {
+        println("당첨 통계")
+        println("---")
+        println("3개 일치 (5,000원) - " + won.FIFTH.count.toString() + "개")
+        println("4개 일치 (50,000원) - " + won.FOURTH.count.toString() + "개")
+        println("5개 일치 (1,500,000원) - " + won.THIRD.count.toString() + "개")
+        println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + won.SECOND.count.toString() + "개")
+        println("6개 일치 (2,000,000,000원) - " + won.FIRST.count.toString() + "개")
     }
 
 }
