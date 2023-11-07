@@ -2,8 +2,9 @@ package lotto.domain
 
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.data.Lotto
+import lotto.data.WinningLotto
 
-class PointOfSales {
+class PointOfSales : RetryUntilSuccess() {
 
     fun issueLotto(quantity: Int): List<Lotto> {
         require(quantity > 0) {
@@ -21,6 +22,14 @@ class PointOfSales {
         val remainder = (dividend % divisor).toInt()
 
         return quotient to remainder
+    }
+
+    private fun getWinningLotto(): WinningLotto {
+        val nums = doUntilSuccess { IO.getInstance().getWinningLottoNum() }
+        val bonus = doUntilSuccess { IO.getInstance().getBonusNum(nums) }
+        val winningLotto = doUntilSuccess { WinningLotto(nums, bonus) }
+
+        return winningLotto
     }
 
     private fun getRandomLottoNum() =

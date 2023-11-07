@@ -1,13 +1,61 @@
 package lotto.domain
 
-class Validator private constructor(){
+import lotto.data.Lotto
+
+class Validator private constructor() {
     fun checkInputOfPurchasingCorrect(input: String): Boolean {
         val number = input.toUIntOrNull()
         return number != null && number > 0u
     }
 
+    fun checkInputOfWinningNumCorrect(input: String): Boolean {
+        return input.split(IO.INPUT_SPLITTER).all {
+            it.toUIntOrNull() != null
+        }
+    }
+
+    fun checkLottoNumberIsCorrect(numbers: List<Int>) {
+        require(numbers.all { it in Lotto.START_NUM..Lotto.END_NUM }) {
+            NUMBER_IS_NOT_IN_LOTTO_RANGE
+        }
+        require(numbers.size == Lotto.LENGTH_OF_NUM) {
+            LENGTH_IS_NOT_CORRECT
+        }
+        require(numbers.toSet().size == Lotto.LENGTH_OF_NUM) {
+            DUPLICATE_IS_NOT_ALLOWED
+        }
+        require(numbers.sorted() == numbers) {
+            NUMBER_SHOULD_BE_ORDERED
+        }
+    }
+
+    fun checkInputOfBonusCorrect(input: String, lottoNums: List<Int>) {
+        val bonus = input.toIntOrNull()
+        require(bonus in Lotto.START_NUM..Lotto.END_NUM) {
+            NUMBER_IS_NOT_IN_LOTTO_RANGE
+        }
+        require(lottoNums.contains(bonus).not()) {
+            BONUS_SHOULD_NOT_BE_DUPLICATE
+        }
+    }
+
+    fun checkInputOfBonusCorrect(bonus: Int, lottoNums: List<Int>) {
+        require(bonus in Lotto.START_NUM..Lotto.END_NUM) {
+            NUMBER_IS_NOT_IN_LOTTO_RANGE
+        }
+        require(lottoNums.contains(bonus).not()) {
+            BONUS_SHOULD_NOT_BE_DUPLICATE
+        }
+    }
+
     companion object {
+        private const val DUPLICATE_IS_NOT_ALLOWED = "[ERROR] 번호는 중복될 수 없습니다."
+        private const val NUMBER_SHOULD_BE_ORDERED = "[ERROR] 오름차순으로 정렬해서 입력하세요."
+        private const val LENGTH_IS_NOT_CORRECT = "[ERROR] 여섯 개의 숫자를 입력하세요."
+        private const val BONUS_SHOULD_NOT_BE_DUPLICATE = "[ERROR] 보너스 번호는 기본 번호와 중복될 수 없습니다."
         private var instance: Validator? = null
+        const val NUMBER_IS_NOT_IN_LOTTO_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."
+
         fun getInstance(): Validator {
             val validator = instance
             if (validator != null) {
