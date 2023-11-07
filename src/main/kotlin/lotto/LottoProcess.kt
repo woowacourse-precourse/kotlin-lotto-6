@@ -22,7 +22,7 @@ class LottoProcess {
 
     private fun printLottoTickets(userTickets: List<Lotto>) {
         for (ticket in userTickets) {
-            println("${ticket.getDelimiter()}")
+            println(ticket.getDelimiter())
         }
     }
 
