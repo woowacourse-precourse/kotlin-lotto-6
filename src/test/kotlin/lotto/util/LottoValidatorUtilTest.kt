@@ -97,8 +97,18 @@ internal class LottoValidatorUtilTest {
         assertThat(money % 1000 == 0).isTrue
     }
 
-    @Test
-    fun checkWinningNumberAvailable() {
+    @DisplayName("당첨번호가 올바른 형식으로 입력되었는지 검증")
+    @ParameterizedTest
+    @ValueSource(strings = ["2,3,4,bamin0422,pobi,woni", "1,2,3,a,4,5", "1,2,3,4,5,y", "1,3,4,5,8,,"])
+    fun `checkWinningNumberAvailable - 당첨번호가 올바른 형식으로 입력되었는가`(winningNumberString: String) {
+        // given
+        val exception = assertThrows<IllegalArgumentException> {
+            LottoValidatorUtil.checkWinningNumberAvailable(winningNumberString)
+        }
+        // when
+        val expectedExceptionMessage = EXCEPTION_MESSAGE_MONEY_NOT_NUMBER
+        // then
+        assertEquals(expectedExceptionMessage, exception.message)
     }
 
     @Test
