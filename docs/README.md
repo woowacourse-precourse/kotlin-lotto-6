@@ -64,9 +64,11 @@
 
 - [] 총 수익률을 소수점 둘째 자리에서 반올림 해 알 수 있다
 
-## 단위 테스트 목록
+
+## 도메인 로직 단위 테스트 목록
 - [x] PurchasePriceValidator 테스트
 - [x] WinNumbersValidator 테스트
 - [x] BonusNumberValidator 테스트
 - [x] LottoStore 테스트
 - [x] LottoRank 테스트
+- [x] Lotto 테스트
