@@ -46,7 +46,7 @@
 - [] 당첨 1등 ~ 6등 까지 계산하는 기능을 Enum으로 구현한다. DivideStandard1to6 클래스 활용
 - [] 일치 개수 만큼 당첨 금액 계산 : DivideStandard1to6#calculateWinningAmount()
 
-- [] 로또 클래스 생성 : main 함수에서 MakeLotto클래스를 통해 생성
-- [] 복권 클래스 package lotto#Lotto# 이미 존재
+- [O] 로또 클래스 생성 : main 함수에서 MakeLotto클래스를 통해 생성
+- [O] 복권 클래스 package lotto#Lotto# 이미 존재
 
 - [O] 당첨 숫자 클래스 WinningAndBonusNumber#

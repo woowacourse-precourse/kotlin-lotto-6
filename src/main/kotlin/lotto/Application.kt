@@ -16,10 +16,7 @@ fun main() {
     val lottoCount = makeLotto.calculateCountingLotto(money)    // 로또 개수
 
     for (count in 1..lottoCount) {
-
         val lotto = makeLotto.createNonOverlapSixNumbers()
-
-        println(lotto.toString())
 
         lottoBunch.add(Lotto(lotto))
     }
