@@ -3,9 +3,7 @@ package lotto
 enum class ErrorType {
     IllegalArgumentException,
     IllegalStateException,
-    IndexOutOfBoundsException,
     NumberFormatException,
-    NullPointerException,
     Exception;
 
     companion object {
