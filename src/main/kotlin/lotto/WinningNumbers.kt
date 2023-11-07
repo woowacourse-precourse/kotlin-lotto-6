@@ -26,3 +26,4 @@ fun validateBonusNumber(inputBonusNumber: Int):Int {
     if(inputBonusNumber !in 1..45) throw IllegalArgumentException("[ERROR] 1~45 사이의 숫자만 입력해 주세요.")
     return inputBonusNumber
 }
+
