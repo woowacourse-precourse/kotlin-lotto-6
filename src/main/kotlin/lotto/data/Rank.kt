@@ -1,4 +1,4 @@
-package lotto
+package lotto.data
 
 enum class Rank(
     val grade: Int,

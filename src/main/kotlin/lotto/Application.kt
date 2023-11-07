@@ -1,5 +1,10 @@
 package lotto
 
+import lotto.domain.Lotto
+import lotto.domain.LottoWinResult
+import lotto.domain.NumberGenerator
+import lotto.ui.LottoView
+
 fun main() {
     val numberGenerator = NumberGenerator()
     val lottoView = LottoView()
