@@ -11,6 +11,6 @@ class RateOfReturnTest {
         // when
         val result = RateOfReturn(input).toString()
         // then
-        assertEquals(result, "77.8%")
+        assertEquals("77.8%", result)
     }
 }
