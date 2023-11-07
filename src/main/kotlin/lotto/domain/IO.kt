@@ -26,9 +26,9 @@ class IO private constructor() {
     }
 
     fun showIssuedLotto(tickets: List<Lotto>) {
+        show(EMPTY_TEXT_FOR_LINE_BREAK, true)
         show(ISSUED_N_TICKET.format(tickets.size), true)
         show(tickets.joinToString(LINE_BREAK), true)
-        show(EMPTY_TEXT_FOR_LINE_BREAK, true)
     }
 
     fun getWinningLottoNum(): List<Int> {

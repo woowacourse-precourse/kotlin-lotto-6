@@ -9,13 +9,11 @@ data class WinningInfo(
 ) {
 
     override fun toString(): String {
-        return """
-            ${GRADE.FIVE.countOfSame}개 일치 (${GRADE.FIVE.priceAsString()}) - ${fifth}개
+        return """${GRADE.FIVE.countOfSame}개 일치 (${GRADE.FIVE.priceAsString()}) - ${fifth}개
             ${GRADE.FOUR.countOfSame}개 일치 (${GRADE.FOUR.priceAsString()}) - ${fourth}개
             ${GRADE.THREE.countOfSame}개 일치 (${GRADE.THREE.priceAsString()}) - ${third}개
             ${GRADE.TWO.countOfSame}개 일치, 보너스 볼 일치 (${GRADE.TWO.priceAsString()}) - ${second}개
-            ${GRADE.ONE.countOfSame}개 일치 (${GRADE.ONE.priceAsString()}) - ${first}개
-        """.trimIndent()
+            ${GRADE.ONE.countOfSame}개 일치 (${GRADE.ONE.priceAsString()}) - ${first}개""".trimIndent()
     }
 
     companion object {
