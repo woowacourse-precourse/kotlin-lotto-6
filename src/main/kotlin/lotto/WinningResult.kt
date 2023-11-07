@@ -34,7 +34,7 @@ class WinningResult(
             println("${rank.rankDescription} (${formattedPrizeMoney}원) - ${count}개")
         }
 
-        val formattedProfitRate = String.format("%.1f%%", profitRate)
-        println("총 수익률은 $formattedProfitRate 입니다.")
+        val formattedProfitRate = String.format("%,.1f", profitRate)
+        println("총 수익률은 ${formattedProfitRate}%입니다.")
     }
 }
