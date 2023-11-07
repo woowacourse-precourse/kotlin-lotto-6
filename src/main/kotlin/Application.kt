@@ -3,5 +3,10 @@ import controller.LottoController
 
 fun main() {
     val lottoController = LottoController()
-    lottoController.startGame()
+    try {
+        lottoController.startGame()
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+        lottoController.startGame()
+    }
 }
