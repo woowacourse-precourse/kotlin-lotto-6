@@ -6,9 +6,7 @@ import lotto.resources.Error.WINNING_NUMBER_SIZE_ERROR
 import lotto.resources.Lotto.END_NUMBER
 import lotto.resources.Lotto.START_NUMBER
 
-class WinningNumber(
-
-) {
+object WinningNumber {
 
     fun userInputToWinningNumber(userInput: String): List<Int> {
         return userInput
