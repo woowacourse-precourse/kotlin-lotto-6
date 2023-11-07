@@ -26,3 +26,5 @@ const val OUTPUT_MESSAGE_NEWLINE = "\n"
 const val OUTPUT_MESSAGE_UNIT = "개"
 
 const val COST_UNIT = 1000
+const val LOTTO_NUMBER_COUNT = 6
+const val LOTTO_WIN_FIVE = 5
