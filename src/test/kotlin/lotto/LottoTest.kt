@@ -17,7 +17,6 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import org.junit.jupiter.params.provider.ValueSource
 
 class LottoTest {
     private val calculator = WinningCalculator()
@@ -70,14 +69,6 @@ class LottoTest {
             assertThatThrownBy { PurchaseInfo(1200) }
                 .isInstanceOf(IllegalArgumentException::class.java)
                 .hasMessage(Exception.PURCHASE_DIVISIBLE.toString())
-        }
-
-        @ParameterizedTest
-        @ValueSource(ints = [1000000, 110000, 98765000])
-        fun `로또 최대 구매 개수보다 많은 로또를 구매할 수 있으면 예외가 발생한다`(구매금액: Int) {
-            assertThatThrownBy { PurchaseInfo(구매금액) }
-                .isInstanceOf(IllegalArgumentException::class.java)
-                .hasMessage(Exception.PURCHASE_MAX_COUNT.toString())
         }
 
         @Test

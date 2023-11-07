@@ -9,8 +9,5 @@ class PurchaseInfo(val amount: Int) {
 
     init {
         require(amount % PURCHASE_AMOUNT_UNIT.value == 0) { Exception.PURCHASE_DIVISIBLE }
-        require(count <= Constants.LOTTO_MAX_COUNT.value) {
-            Exception.PURCHASE_MAX_COUNT
-        }
     }
 }
