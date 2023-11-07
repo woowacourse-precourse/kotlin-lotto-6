@@ -10,7 +10,8 @@ object LottoGameController {
     private val outputView = OutputView
     fun start() {
         outputView.requestPurchaseAmountMessage()
-        val lottoPurchaseAmount= inputView.readPurchaseAmount()
+        val lottoPurchaseNumber= inputView.readPurchaseAmount()
+
 
 
     }

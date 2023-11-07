@@ -11,7 +11,7 @@ object LottoPurchaseAmountParser {
         validateAmountRange(amount)
         validateAmountByUnit(amount)
 
-        return amount
+        return amount % PURCHASE_UNIT
     }
 
     private fun validateAmountRange(amount: Int) {
