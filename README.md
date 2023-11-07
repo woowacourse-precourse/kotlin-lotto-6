@@ -256,9 +256,9 @@ class Lotto(private val numbers: List<Int>) {
 
 ### LottoNumberGenerator
 
-- [ ] 발행한 로또 번호들
-- [ ] 로또 번호 발행
-- [ ] 발행한 로또 번호 오름차순 정렬
+- [x] 발행한 로또 번호들
+- [x] 로또 번호 발행
+- [x] 발행한 로또 번호 오름차순 정렬
 
 ### LottoNumberComparator
 
@@ -285,7 +285,7 @@ class Lotto(private val numbers: List<Int>) {
 
 ### LottoNumber
 
-- [ ] 로또 번호
+- [x] 로또 번호
 
 ### Controller
 
