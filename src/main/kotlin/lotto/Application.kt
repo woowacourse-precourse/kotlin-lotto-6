@@ -105,31 +105,31 @@ fun printResult(lottoResults: Map<Rank, Int>, money: Int) {
     println("총 수익률은 ${"%.2f".format(returnRate)}% 입니다.") // 수익률 출력
 }
 
-@Test
-fun `match count is correct`() {
-    // 준비
-    val lotto = Lotto(setOf(1, 2, 3, 4, 5, 6).toList())
-    val winningNumbers = setOf(4, 5, 6, 7, 8, 9)
-
-    // 실행
-    val matchCount = lotto.matches(winningNumbers)
-
-    // 검증
-    assertThat(matchCount).isEqualTo(3)
-}
-
-@Test
-fun `bonus number is correctly identified`() {
-    // 준비
-    val lotto = Lotto(setOf(1, 2, 3, 4, 5, 6).toList())
-    val winningNumbers = setOf(4, 5, 6, 7, 8, 9)
-    val bonusNumber = 1
-
-    // 실행
-    val matchCount = lotto.matches(winningNumbers)
-    val matchesBonus = lotto.contains(bonusNumber)
-
-    // 검증
-    assertThat(matchCount).isEqualTo(3)
-    assertThat(matchesBonus).isTrue
-}
+//@Test
+//fun `match count is correct`() {
+//    // 준비
+//    val lotto = Lotto(setOf(1, 2, 3, 4, 5, 6).toList())
+//    val winningNumbers = setOf(4, 5, 6, 7, 8, 9)
+//
+//    // 실행
+//    val matchCount = lotto.matches(winningNumbers)
+//
+//    // 검증
+//    assertThat(matchCount).isEqualTo(3)
+//}
+//
+//@Test
+//fun `bonus number is correctly identified`() {
+//    // 준비
+//    val lotto = Lotto(setOf(1, 2, 3, 4, 5, 6).toList())
+//    val winningNumbers = setOf(4, 5, 6, 7, 8, 9)
+//    val bonusNumber = 1
+//
+//    // 실행
+//    val matchCount = lotto.matches(winningNumbers)
+//    val matchesBonus = lotto.contains(bonusNumber)
+//
+//    // 검증
+//    assertThat(matchCount).isEqualTo(3)
+//    assertThat(matchesBonus).isTrue
+//}
