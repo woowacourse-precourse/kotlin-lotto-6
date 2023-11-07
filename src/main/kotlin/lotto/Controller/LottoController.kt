@@ -40,5 +40,41 @@ object LottoController {
             // LottoGameModel에 대한 작업 수행
             lottoGameModel.printLottoNumbers()
         }
+        println("\n당첨 번호를 입력해 주세요.")
+
+        val winningNumbers = readLine()
+
+        if (winningNumbers != null) {
+            try {
+                val parsedWinningNumbers = parseLottoNumbers(winningNumbers)
+                // 여기에서 로또 번호 유효성 검사 및 로직을 추가하세요.
+            } catch (e: IllegalArgumentException) {
+                println("[ERROR] ${e.message}")
+            }
+        }
     }
+}
+fun parseLottoNumbers(input: String?): List<Int> {
+    if (input == null) {
+        throw IllegalArgumentException("[ERROR] 입력이 null입니다.")
+    }
+
+    // 쉼표로 문자열을 분할하고 빈 문자열을 제거합니다.
+    val numbers = input.split(",").map { it.trim() }.filter { it.isNotEmpty() }
+
+    val lottoNumbers = numbers.map {
+        try {
+            val number = it.toInt()
+            if (number < 1 || number > 45) {
+                throw IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자여야 합니다.")
+            }
+            number
+        } catch (e: NumberFormatException) {
+            throw IllegalArgumentException("[ERROR] 숫자가 아닌 값이 포함되어 있습니다.")
+        }
+    }
+
+
+
+    return lottoNumbers
 }
