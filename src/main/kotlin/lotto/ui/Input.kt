@@ -6,4 +6,8 @@ object Input {
     fun inputPurchaseAmount(): String {
         return Console.readLine()
     }
+
+    fun inputWinningNumber(): String {
+        return Console.readLine()
+    }
 }

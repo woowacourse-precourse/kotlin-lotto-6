@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.domain.LottoPurchase
+import lotto.domain.WinningNumberGenerator
 import lotto.ui.Output
 
 fun main() {
@@ -13,4 +14,6 @@ fun startLotto() {
     Output.printLotteryNumber(lotteryNumber)
     val lottos = purchaseLotto.buyLottos(lotteryNumber)
     Output.printLottos(lottos)
+    val winningNumberGenerator = WinningNumberGenerator()
+    val winningNumber = winningNumberGenerator.inputWinningNumber()
 }

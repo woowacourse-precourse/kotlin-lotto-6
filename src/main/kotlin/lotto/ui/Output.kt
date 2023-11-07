@@ -14,4 +14,9 @@ object Output {
             println(lottos[i].getLotto())
         }
     }
+
+    fun printWinningNumbers() {
+        println()
+        println(MESSAGE_INPUT_WINNING_NUMBER)
+    }
 }
