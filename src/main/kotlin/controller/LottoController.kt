@@ -86,7 +86,6 @@ class LottoController(private val inputView: InputView, private val outputView: 
     }
 
     private fun getRankedValue() {
-        outputView.printResultMessage()
         for (lotto in purchasedLottoTickets) {
             val rank = winningNumbersManager.getRank(lotto.getNumberInfo())
             if (rankFrequencyData.containsKey(rank)) {
@@ -98,6 +97,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
     }
 
     private fun printRankedValue() {
+        outputView.printResultMessage()
         for (rank in 5 downTo 1) {
             outputView.printWinningStatistics(rank, rankFrequencyData[rank] ?: 0)
         }
