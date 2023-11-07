@@ -93,6 +93,22 @@ class CheckError {
         return true
     }
 
+    fun checkInputOneNumbers(bonusNumber: List<String>): Boolean {
+
+        try {
+
+            require(bonusNumber.size == 1) { }
+
+        } catch (e: IllegalArgumentException) {
+
+            println("[ERROR] : 6개의 숫자를 입력하지 않았습니다. 다시 입력해주세요")
+
+            return false
+        }
+
+        return true
+    }
+
     fun checkNonOverlapNumber(numbers: List<String>): Boolean {
 
         try {
@@ -121,11 +137,6 @@ class CheckError {
 
             return false
         }
-
-        return true
-    }
-
-    fun checkInputOneNumbers(bonusNumber: Int): Boolean {
 
         return true
     }

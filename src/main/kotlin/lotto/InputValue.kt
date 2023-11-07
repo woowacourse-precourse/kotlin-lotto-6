@@ -57,6 +57,7 @@ class InputValue {
 
             if (!check.checkOnlyNumber(bonusNumber)) continue
             if (!check.checkNumber1to45(bonusNumber)) continue
+            if (!check.checkInputOneNumbers(bonusNumber)) continue
 
             break
         }
