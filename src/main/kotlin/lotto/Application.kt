@@ -96,6 +96,13 @@ fun printRankResult(rank: Rank, count: Int) {
     }
 }
 
+fun calculateEarnings(results: List<Rank>): Double {
+    val earnings = results.sumOf { it.prize }
+    val spendings = results.size * 1000
+    val earningsRate = earnings.toDouble() / spendings * 100
+    return String.format("%.1f", earningsRate).toDouble()
+}
+
 enum class Rank(val matchCount: Int, val prize: Int) {
     FIFTH(3, 5_000),
     FOURTH(4, 50_000),
