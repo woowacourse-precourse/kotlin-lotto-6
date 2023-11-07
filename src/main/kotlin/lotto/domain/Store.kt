@@ -18,10 +18,15 @@ class Store(
         }
     }
 
+    fun checkWinningLotto(tickets: List<Lotto>) {
+        val stats = pos.checkResultOfLotto(tickets)
+
+        io.showStats(stats)
+    }
+
     companion object {
         const val LOTTO_PRICE = 1_000u
-        private const val NO_CHANGE = 0
         const val SHOULD_BE_NO_CHANGE = "[ERROR] %d원 단위로 지불하셔야 합니다."
-
+        private const val NO_CHANGE = 0
     }
 }

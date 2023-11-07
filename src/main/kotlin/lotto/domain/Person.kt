@@ -6,5 +6,6 @@ class Person(
 
     fun startTravelToBuyLotto() {
         val tickets = doUntilSuccess { store.buyLotto() }
+        store.checkWinningLotto(tickets)
     }
 }

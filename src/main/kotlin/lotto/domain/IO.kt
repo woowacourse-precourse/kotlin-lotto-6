@@ -2,10 +2,9 @@ package lotto.domain
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.data.Lotto
+import lotto.data.Stats
 
 class IO private constructor() {
-
-    private fun getInput() = Console.readLine()
 
     fun show(content: String, lineBreak: Boolean) {
         print(content)
@@ -53,7 +52,16 @@ class IO private constructor() {
         val input = getInput()
         Validator.getInstance().checkInputOfBonusCorrect(input, lottoNums)
         return input.toInt()
-     }
+    }
+
+    fun showStats(stats: Stats) {
+        show(EMPTY_TEXT_FOR_LINE_BREAK, true)
+        show("당첨 통계$LINE_BREAK---", true)
+        show(stats.toString(), true)
+    }
+
+    private fun getInput() = Console.readLine()
+
 
     companion object {
         const val INPUT_SPLITTER = ","

@@ -13,6 +13,12 @@ open class Lotto(private val numbers: List<Int>) {
         return GRADE.from(countOfSame, isBonusContain)
     }
 
+    fun checkGrade(winningLotto: WinningLotto): GRADE {
+        val countOfSame = numbers.intersect(winningLotto.numbers.toSet()).size
+        val isBonusContain = countOfSame == 5 && winningLotto.bonus in numbers
+        return GRADE.from(countOfSame, isBonusContain)
+    }
+
     override fun toString(): String {
         return numbers.toString()
     }
@@ -21,5 +27,6 @@ open class Lotto(private val numbers: List<Int>) {
         const val LENGTH_OF_NUM = 6
         const val START_NUM = 1
         const val END_NUM = 45
+        const val PRICE = 1_000
     }
 }
