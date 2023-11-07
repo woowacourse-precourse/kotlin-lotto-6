@@ -1,12 +1,12 @@
 package lottonumbergenerator
 
 import camp.nextstep.edu.missionutils.Randoms
-import entity.LottoNumber
+import lotto.Lotto
 
 class LottoNumberGeneratorImpl : LottoNumberGenerator {
 
-    private val _lottoes: MutableList<LottoNumber> = mutableListOf()
-    override val lottoes: List<LottoNumber>
+    private val _lottoes: MutableList<Lotto> = mutableListOf()
+    override val lottoes: List<Lotto>
         get() = _lottoes
 
     override fun generateLotto(numberOfIssuedLotto: Int) {
@@ -14,7 +14,7 @@ class LottoNumberGeneratorImpl : LottoNumberGenerator {
             val randomLottoNumber =
                 Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER, LOTTO_SIZE)
             val sortedRandomLottoNumber = randomLottoNumber.sorted()
-            _lottoes.add(LottoNumber(sortedRandomLottoNumber))
+            _lottoes.add(Lotto(sortedRandomLottoNumber))
         }
     }
 

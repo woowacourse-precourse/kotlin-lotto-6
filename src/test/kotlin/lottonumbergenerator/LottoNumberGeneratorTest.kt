@@ -38,7 +38,7 @@ class LottoNumberGeneratorTest {
         val result = lottoNumberGenerator.lottoes
 
         for (index in result.indices) {
-            assertThat(result[index].lottoNumber).isSorted
+            assertThat(result[index].getNumbers()).isSorted
         }
     }
 }

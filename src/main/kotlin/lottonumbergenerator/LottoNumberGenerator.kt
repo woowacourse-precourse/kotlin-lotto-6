@@ -1,9 +1,9 @@
 package lottonumbergenerator
 
-import entity.LottoNumber
+import lotto.Lotto
 
 interface LottoNumberGenerator {
 
-    val lottoes: List<LottoNumber>
+    val lottoes: List<Lotto>
     fun generateLotto(numberOfIssuedLotto: Int)
 }
