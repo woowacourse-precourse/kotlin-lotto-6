@@ -11,5 +11,4 @@ enum class GameResult(
     FOURTH(4, 50000, "4개 일치 (50,000원) - "),
     FIFTH(3, 5000, "3개 일치 (5,000원) - "),
     Fail(0, 0, "")
-
 }

@@ -4,7 +4,11 @@ class MessageManager {
 
     fun printInputPrice() = println(ENTER_PURCHASE_PRICE)
 
-    fun printPurchaseAmount(amount: String) = println("$amount$COUNT_PURCHASE_AMOUNT")
+    fun printPurchaseAmount(amount: String) =
+        println("$amount$COUNT_PURCHASE_AMOUNT")
+
+    fun printPurchaseLottoNumber(lotto: List<Int>) =
+        println("[${lotto.joinToString(LOTTO_SEPARATOR)}]")
 
     fun printInputLottoNumber() = println(ENTER_LOTTO_NUMBER)
 
@@ -17,7 +21,8 @@ class MessageManager {
         winningCount: Int
     ) = println("${resultComment}${winningCount}개")
 
-    fun printTotalReturnRate(rate: Double) = println("총 수익률은 ${rate}%입니다.")
+    fun printTotalReturnRate(rate: Double) =
+        println("총 수익률은 ${rate}%입니다.")
 
     companion object {
         private const val ENTER_PURCHASE_PRICE = "구입금액을 입력해 주세요."
@@ -26,5 +31,6 @@ class MessageManager {
         private const val ENTER_BONUS_NUMBER = "보너스 번호를 입력해 주세요."
         private const val RECORD_RESULT = "당첨 통계"
         private const val RECORD_LINE = "---"
+        private const val LOTTO_SEPARATOR = ", "
     }
 }

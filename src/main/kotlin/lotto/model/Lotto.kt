@@ -6,5 +6,7 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
     }
 
-    fun sendLottoNumbers(): Set<Int> = numbers.toMutableSet()
+    fun getLottoNumbers(): List<Int> = numbers
+
+    fun changeLottoNumbersToSet(): Set<Int> = numbers.toMutableSet()
 }
