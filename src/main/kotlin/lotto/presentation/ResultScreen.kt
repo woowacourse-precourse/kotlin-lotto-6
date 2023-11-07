@@ -4,7 +4,7 @@ import lotto.domain.Prize
 
 class ResultScreen {
     fun outputResultMessage() {
-        println(WIN_RESULT_START_MESSAGE)
+        println(LINE_SEPARATOR + WIN_RESULT_START_MESSAGE)
     }
 
     fun outputWinningResult(countEachPrize: Map<Prize, Int>) {
