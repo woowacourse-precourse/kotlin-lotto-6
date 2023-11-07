@@ -13,6 +13,7 @@ object Comment {
 
 object Lotto {
     const val INIT_VALUE = 0
+    const val INIT_DOUBLE_VALUE = 0.0
 
     const val LOTTO_PRISE = 1000
 
@@ -28,7 +29,7 @@ object Lotto {
 }
 
 object Error {
-    const val CANT_BUY_ERROR = "\n[ERROR] 0원으로는 로또를 구매하실 수 없습니다."
+    const val CANT_BUY_ERROR = "\n[ERROR] 1,000원 미만으로는 로또를 구매하실 수 없습니다."
     const val NOT_INT_ERROR = "\n[ERROR] 정수만 입력할 수 있습니다."
     const val NOT_IN_LOTTO_RANGE_ERROR = "\n[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."
     const val CANT_CONTAIN_WINNING_NUMBER_ERROR ="\n[ERROR] 당첨 번호와 겹치는 숫자는 입력할 수 없습니다."
