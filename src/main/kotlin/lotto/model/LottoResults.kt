@@ -18,7 +18,7 @@ class LottoResults(lottoPrizes: List<LottoPrize>) {
     }
 
     fun getResultState(): List<LottoResultState> {
-        return lottoResults.map {
+        return lottoResults.filter { it.prize != LottoPrize.NOTING }.map {
             LottoResultState(
                 it.prize.prizeCount,
                 it.prize.money,
