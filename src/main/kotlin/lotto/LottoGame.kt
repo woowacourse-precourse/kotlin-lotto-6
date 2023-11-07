@@ -3,6 +3,7 @@ package lotto
 import lotto.domain.Lotto
 import lotto.domain.LottoWallet
 import lotto.domain.Purchaser
+import lotto.domain.WinningDetails
 import lotto.domain.WinningLotto
 import lotto.view.InputManager
 
@@ -13,6 +14,8 @@ class LottoGame {
         val lottoWallet = purchaseLotto()
         println(lottoWallet)
         val winningLotto = getWinningLotto()
+        val statistics = WinningDetails(winningLotto, lottoWallet)
+        println(statistics.toString())
     }
 
     private fun purchaseLotto(): LottoWallet {
