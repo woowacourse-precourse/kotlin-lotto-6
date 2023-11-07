@@ -78,6 +78,24 @@ fun validateBonusNumber(bonusNumber: Int, winningNumbers: Lotto) {
     }
 }
 
+fun printResults(ticketCount: Int, winningNumbers: Lotto, bonusNumber: Int, earningsRate: Double, countByRank: Map<Rank, Int>) {
+    println("\n당첨 통계")
+    println("---")
+    Rank.values().filter { it != Rank.MISS }.forEach { rank ->
+        printRankResult(rank, countByRank[rank] ?: 0)
+    }
+    println("총 수익률은 ${earningsRate}%입니다.")
+}
+
+
+fun printRankResult(rank: Rank, count: Int) {
+    if (rank == Rank.SECOND) {
+        println("${rank.matchCount}개 일치, 보너스 볼 일치 (${rank.getFormattedPrize()}원) - ${count}개")
+    } else {
+        println("${rank.matchCount}개 일치 (${rank.getFormattedPrize()}원) - ${count}개")
+    }
+}
+
 enum class Rank(val matchCount: Int, val prize: Int) {
     FIFTH(3, 5_000),
     FOURTH(4, 50_000),
