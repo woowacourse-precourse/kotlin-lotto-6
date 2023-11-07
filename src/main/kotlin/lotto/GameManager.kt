@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms
 class GameManager {
     private val inputManager = InputManager()
     private var money = 0
-    private var lottoList = ArrayList<Lotto>()
+    private var lottos = ArrayList<Lotto>()
     private lateinit var winningNumbers: List<Int>
     private var bonusNumber = 0
 
@@ -26,7 +26,7 @@ class GameManager {
         val numberOfLottoTickets = money / LOTTO_PRICE
 
         for (i in 1..numberOfLottoTickets) {
-            lottoList.add(generateLotto())
+            lottos.add(generateLotto())
         }
     }
 
@@ -39,7 +39,7 @@ class GameManager {
     private fun printPurchaseResult() {
         println()
         println("8개를 구매했습니다.")
-        for (lotto in lottoList) {
+        for (lotto in lottos) {
             println(lotto.getNumbers())
         }
     }
