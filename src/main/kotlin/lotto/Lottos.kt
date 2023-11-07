@@ -1,10 +1,9 @@
 package lotto
 
+
 class Lottos {
-    private val vendor = Vendor()
     private val outputManager = OutputManager()
-    private val lottoNum = vendor.lottoNum()
-    fun makeLotto(): List<Lotto> {
+    fun makeLotto(lottoNum : Int): List<Lotto> {
 
         val numberCreator = NumberCreator()
         val lottos = mutableListOf<Lotto>()
