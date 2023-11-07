@@ -21,21 +21,19 @@ import lotto.constants.Constants.LOTTO_SIZE
 object InputView {
 
     fun inputPurchaseAmount(): Int {
-        printStepMessage(INPUT_PURCHASE_AMOUNT)
         return getUserAmount()
     }
 
     fun inputWinningNumberList(): List<Int> {
-        printStepMessage(INPUT_WINNING_NUMBERS)
         return getWinningNumbers()
     }
 
     fun inputBonusNumber(winningNumbers: List<Int>): Int {
-        printStepMessage(INPUT_BONUS_NUMBER)
         return getBonusNumber(winningNumbers)
     }
 
     private fun getUserAmount(): Int = try {
+        printStepMessage(INPUT_PURCHASE_AMOUNT)
         val userInput = Console.readLine()
         validateUserAmount(userInput)
 
@@ -59,6 +57,7 @@ object InputView {
     }
 
     fun getWinningNumbers(): List<Int> = try {
+        printStepMessage(INPUT_WINNING_NUMBERS)
         val numbers = Console.readLine()
         printStepMessage()
         getWinningNumbersList(numbers)
@@ -96,6 +95,7 @@ object InputView {
     }
 
     fun getBonusNumber(winningNumbers: List<Int>): Int = try {
+        printStepMessage(INPUT_BONUS_NUMBER)
         val bonus = Console.readLine()
         printStepMessage()
         val bonusNum = getValidatedBonusNumber(bonus, winningNumbers)
