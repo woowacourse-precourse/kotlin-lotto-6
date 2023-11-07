@@ -70,7 +70,7 @@ class LottoTest {
 
     @ParameterizedTest
     @MethodSource("provideLottoTestData")
-    fun `보너스 번호가 로또 번호 중 일치하는 것이 있는지 판단한다`(lottoTestData: LottoTestData) {
+    fun `보너스 번호가 로또 트번호 중 일치하는 것이 있는지 판단한다`(lottoTestData: LottoTestData) {
         val result = lottoTestData.lotto.containBonusNumber(lottoTestData.bonusNumber)
         assertThat(result).isEqualTo(lottoTestData.containBonusNumber)
     }

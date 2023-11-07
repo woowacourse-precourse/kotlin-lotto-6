@@ -57,6 +57,7 @@
 
 - [ ] 당첨 기준에 따라 당첨 내역을 계산한다.
     - [ ] 입력 번호와, 로또 번호를 비교해서 같은 숫자 개수를 계산한다. (`Lotto.calculateMathingCount`)
+    - [ ] 로또 번호 중에 보너스 번호가 있는지 판단한다. (`Lotto.containBonusNumber`)
     - [ ] 총 로또 당첨 결과를 계산한다. (`Lottoes.getLottoesResult`)
 
 - [ ] 당첨 통계
