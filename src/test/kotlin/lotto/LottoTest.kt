@@ -65,4 +65,22 @@ class LottoTest {
         assertDoesNotThrow { validateBonusNumber(7, winningNumbers) }
     }
 
+    @Test
+    fun `로또 당첨 확인시 당첨 번호와 일치하는 번호가 있으면 당첨된 것으로 처리한다`() {
+        val ticket = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val winningNumbers = Lotto(listOf(1, 2, 3, 7, 8, 9))
+        val bonusNumber = 10
+        val rank = ticket.match(winningNumbers, bonusNumber)
+        assertThat(rank).isEqualTo(Rank.FIFTH)
+    }
+
+    @Test
+    fun `로또 당첨 확인시 보너스 번호가 일치하면 2등으로 처리한다`() {
+        val ticket = Lotto(listOf(1, 2, 3, 7, 8, 10))
+        val winningNumbers = Lotto(listOf(1, 2, 3, 7, 8, 9))
+        val bonusNumber = 10
+        val rank = ticket.match(winningNumbers, bonusNumber)
+        assertThat(rank).isEqualTo(Rank.SECOND)
+    }
+    
 }
