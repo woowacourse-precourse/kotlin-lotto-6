@@ -1,14 +1,14 @@
 package lotto.view
 
-import lotto.message.Exception
+import lotto.constants.message.ExceptionMessage
 import lotto.enums.LottoResult
-import lotto.message.OutPut.THREE_N_DASH
-import lotto.message.OutPut.PLEASE_INPUT_AMOUNT
-import lotto.message.OutPut.PLEASE_INPUT_BONUS_NUMBER
-import lotto.message.OutPut.PLEASE_INPUT_WINNING_NUMBER
-import lotto.message.OutPut.PURCHASED
-import lotto.message.OutPut.TOTAL_PROFIT_IS
-import lotto.message.OutPut.WINNING_STATISTICS
+import lotto.constants.message.OutPutMessage.THREE_N_DASH
+import lotto.constants.message.OutPutMessage.PLEASE_INPUT_AMOUNT
+import lotto.constants.message.OutPutMessage.PLEASE_INPUT_BONUS_NUMBER
+import lotto.constants.message.OutPutMessage.PLEASE_INPUT_WINNING_NUMBER
+import lotto.constants.message.OutPutMessage.PURCHASED
+import lotto.constants.message.OutPutMessage.TOTAL_PROFIT_IS
+import lotto.constants.message.OutPutMessage.WINNING_STATISTICS
 import java.text.DecimalFormat
 
 class LottoView {
@@ -25,7 +25,7 @@ class LottoView {
     }
 
     fun printErrorAndRetryMessage(message: String, e: IllegalArgumentException) {
-        println("${Exception.ERROR_HEADER} ${e.message}")
+        println("${ExceptionMessage.ERROR_HEADER} ${e.message}")
         println(message)
     }
 

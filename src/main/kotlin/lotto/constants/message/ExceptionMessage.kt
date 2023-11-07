@@ -1,6 +1,6 @@
-package lotto.message
+package lotto.constants.message
 
-object Exception {
+object ExceptionMessage {
     const val ERROR_HEADER = "[ERROR]"
     const val NOT_NUMBER = "숫자가 아닙니다"
     const val INPUT_IS_BLANK = "입력값이 공백입니다"
