@@ -20,4 +20,23 @@ object LottoUtil {
         return value % 1000 == 0
     }
 
+    fun List<String>.isAllNumbers(): Boolean {
+        return all { isStringNumber(it) }
+    }
+
+    fun List<String>.toIntList(): List<Int> {
+        return map { it.toInt() }
+    }
+
+    fun List<Int>.isAllInLottoRange(): Boolean {
+        return all { it.isInLottoRange() }
+    }
+
+    fun Int.isInLottoRange(): Boolean {
+        return this in 1..45
+    }
+
+    val <T> List<T>.uniqueSize: Int
+        get() = this.toSet().size
+
 }

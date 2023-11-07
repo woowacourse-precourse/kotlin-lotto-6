@@ -27,4 +27,8 @@ object LottoLogic {
         println(lottoCount.toString() + LogicMessage.PURCHASED_LOTTO_COUNT)
     }
 
+    fun getWinningNumbers(): List<Int> {
+        return LottoUserInput.getWinningNumbers()
+    }
+
 }

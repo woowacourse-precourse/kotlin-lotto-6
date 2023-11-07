@@ -1,5 +1,7 @@
 package lotto
 
+import lotto.LottoUtil.isAllNumbers
+import lotto.LottoUtil.isInLottoRange
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -26,6 +28,26 @@ class LottoUtilTest {
         assertThat(LottoUtil.isMultipleOf1000(999)).isFalse()
         assertThat(LottoUtil.isMultipleOf1000(1025)).isFalse()
         assertThat(LottoUtil.isMultipleOf1000(9999)).isFalse()
+    }
+
+    @Test
+    fun `모든 문자열이 숫자로 변환될 수 있는 경우 확인`() {
+        assertThat(listOf("123", "456", "678").isAllNumbers())
+            .isTrue()
+    }
+
+    @Test
+    fun `적어도 하나의 문자열이 숫자로 변환될 수 없는 경우 확인`() {
+        assertThat(listOf("123", "456", "abc").isAllNumbers())
+            .isFalse()
+    }
+
+    @Test
+    fun `주어진 수가 로또 숫자 범위 내에 포함되는지 확인`() {
+        val numbers = listOf(1, 2, 0, 45, 47, -100)
+        val result = numbers.map { number -> number.isInLottoRange() }
+        assertThat(result)
+            .containsExactly(true, true, false, true, false, false)
     }
 
 }

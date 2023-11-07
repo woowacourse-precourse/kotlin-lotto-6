@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.enums.PriceInputType
+import lotto.enums.WinningNumbersInput
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -27,7 +28,20 @@ class LottoUserInputTest {
         assertThat(LottoUserInput.checkPriceInput("5000")).isEqualTo(PriceInputType.VALID)
         assertThat(LottoUserInput.checkPriceInput("13000")).isEqualTo(PriceInputType.VALID)
         assertThat(LottoUserInput.checkPriceInput("770000")).isEqualTo(PriceInputType.VALID)
+    }
 
+    @Test
+    fun `당첨 번호 입력 테스트`() {
+        assertThat(LottoUserInput.checkWinningNumbersInput("1,2,3,4,5,6"))
+            .isEqualTo(WinningNumbersInput.VALID)
+        assertThat(LottoUserInput.checkWinningNumbersInput("1,2,3,4,5"))
+            .isEqualTo(WinningNumbersInput.NUMBERS_COUNT_WRONG)
+        assertThat(LottoUserInput.checkWinningNumbersInput("1,2,3,4,5,5"))
+            .isEqualTo(WinningNumbersInput.NUMBERS_COUNT_WRONG)
+        assertThat(LottoUserInput.checkWinningNumbersInput("1,2,3,4,5,60"))
+            .isEqualTo(WinningNumbersInput.OUT_OF_LOTTO_RANGE)
+        assertThat(LottoUserInput.checkWinningNumbersInput("1,2,3,4,5,a"))
+            .isEqualTo(WinningNumbersInput.NOT_ALL_NUMBERS)
     }
 
 }
