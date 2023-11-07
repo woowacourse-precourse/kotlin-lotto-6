@@ -31,7 +31,7 @@ class LottoMachine {
     }
 
     fun lottoNum(): Int {
-        return money / 1000
+        return money / LOTTO_COST
     }
 
     fun calculatePrizeSum(): Int {
@@ -49,6 +49,8 @@ class LottoMachine {
     }
 
     companion object {
+
+        private const val LOTTO_COST = 1000
         private const val FIFTH_PLACE_PRIZE = 5000
         private const val FOURTH_PLACE_PRIZE = 50000
         private const val THIRD_PLACE_PRIZE = 1500000
