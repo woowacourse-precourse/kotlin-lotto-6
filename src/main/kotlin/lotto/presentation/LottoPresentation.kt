@@ -8,4 +8,10 @@ class LottoPresentation {
         val purchaseLottoInput = Console.readLine()
         return purchaseLottoInput
     }
+
+    fun getWinningNumbersInput(): String {
+        println("당첨 번호를 입력해 주세요.")
+        val winningNumbersInput = Console.readLine()
+        return winningNumbersInput
+    }
 }
