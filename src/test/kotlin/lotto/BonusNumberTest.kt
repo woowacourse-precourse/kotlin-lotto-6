@@ -12,4 +12,11 @@ class BonusNumberTest {
         }
     }
 
+    @Test
+    fun `보너스 번호가 1부터 45 사이의 숫자가 아닐 때`() {
+        assertThrows<IllegalArgumentException> {
+            BonusNumber("50")
+        }
+    }
+
 }
