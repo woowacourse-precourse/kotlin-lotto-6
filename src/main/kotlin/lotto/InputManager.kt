@@ -3,9 +3,12 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 
 class InputManager {
+    private val exceptionManager = ExceptionManager()
     fun inputMoney(): Int {
         println(PRINT_INPUT_MONEY)
-        return Console.readLine().toInt()
+        val money = Console.readLine()
+        exceptionManager.moneyException(money)
+        return money.toInt()
     }
 
     fun inputWinningNumber(): List<Int> {
