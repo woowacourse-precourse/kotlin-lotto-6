@@ -23,7 +23,11 @@ class LottoGame {
         return boughtAmountToInt / UnitAmount.unit.price
     }
 
-    private fun printBoughtLottos(numberOfLottos: Int, winningNumbers: List<Int>, bonusNumber: Int): MutableMap<Int, Int> {
+    private fun printBoughtLottos(
+        numberOfLottos: Int,
+        winningNumbers: List<Int>,
+        bonusNumber: Int
+    ): MutableMap<Int, Int> {
         println("${numberOfLottos}개를 구매했습니다.")
         // 3: 3개적중, 4: 4개적중, 5: 5개적중(보너스x), 6: 6개적중, -1: 5개적중(보너스)
         val winningMap =
@@ -39,6 +43,12 @@ class LottoGame {
         return winningMap
     }
 
+    private fun readWinningNumberExceptionHandling(winningNumbersToInt: List<Int>) {
+        for (winningNumber in winningNumbersToInt) {
+            require(winningNumber in 1..45)
+        }
+    }
+
     private fun readWinningNumber(): List<Int> {
         println("당첨 번호를 입력해 주세요.")
         var winningNumbersToInt: List<Int>
@@ -46,9 +56,7 @@ class LottoGame {
             val winningNumbers = Console.readLine().split(',').toMutableList()
             try {
                 winningNumbersToInt = winningNumbers.map { it.toInt() }
-                for (winningNumber in winningNumbersToInt) {
-                    require(winningNumber in 1..45)
-                }
+                readWinningNumberExceptionHandling(winningNumbersToInt)
                 require(winningNumbersToInt.size == 6)
                 require(winningNumbers.toSet().size == winningNumbersToInt.size)
                 break
