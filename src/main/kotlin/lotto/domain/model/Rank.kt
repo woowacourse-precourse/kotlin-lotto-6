@@ -18,13 +18,14 @@ enum class Rank(val prize: String, val hasBonusNumber: Boolean, val maxMatchWinn
         fun getPlace(count: Int, isBonusNumber: Boolean) =
             when (count) {
                 3 -> FIFTH_PLACE
-                4 -> SECOND_PLACE
+                4 -> FOURTH_PLACE
                 5 -> THIRD_PLACE
                 6 -> {
                     if (isBonusNumber) {
                         SECOND_PLACE
+                    } else {
+                        FIRST_PLACE
                     }
-                    FIRST_PLACE
                 }
 
                 else -> NONE
