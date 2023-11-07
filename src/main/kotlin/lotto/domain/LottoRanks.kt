@@ -1,13 +1,27 @@
 package lotto.domain
 
 import lotto.Lotto
+import lotto.utils.Constants.FIVE
+import lotto.utils.Constants.FIVE_AMOUNT
+import lotto.utils.Constants.FIVE_BONUS_MATCH_MESSAGE
+import lotto.utils.Constants.FIVE_MATCH_MESSAGE
+import lotto.utils.Constants.FIVE_WITH_BONUS_AMOUNT
+import lotto.utils.Constants.FOUR
+import lotto.utils.Constants.FOUR_AMOUNT
+import lotto.utils.Constants.FOUR_MATCH_MESSAGE
+import lotto.utils.Constants.SIX
+import lotto.utils.Constants.SIX_AMOUNT
+import lotto.utils.Constants.SIX_MESSAGE
+import lotto.utils.Constants.THREE
+import lotto.utils.Constants.THREE_AMOUNT
+import lotto.utils.Constants.THREE_MATCH_MESSAGE
 
 enum class Prize(val matchingNumbers: Int, val prizeAmount: Int, val message: String) {
-    THREE(3, 5_000, "3개 일치"),
-    FOUR(4, 50_000, "4개 일치"),
-    FIVE(5, 1_500_000, "5개 일치"),
-    FIVE_MATCH_WITH_BONUS(5, 30_000_000, "5개 일치, 보너스 볼 일치"),
-    SIX(6, 2_000_000_000, "6개 일치")
+    THREE_MATCH(THREE, THREE_AMOUNT, THREE_MATCH_MESSAGE),
+    FOUR_MATCH(FOUR, FOUR_AMOUNT, FOUR_MATCH_MESSAGE),
+    FIVE_MATCH(FIVE, FIVE_AMOUNT, FIVE_MATCH_MESSAGE),
+    FIVE_MATCH_WITH_BONUS(FIVE, FIVE_WITH_BONUS_AMOUNT, FIVE_BONUS_MATCH_MESSAGE),
+    SIX_MATCH(SIX, SIX_AMOUNT, SIX_MESSAGE)
 }
 
 class LottoRanks {
@@ -39,15 +53,15 @@ class LottoRanks {
     }
     private fun winningResultsUpdate(matchedNumbers: Int, results: MutableMap<Prize, Int>, bonusMatch: Boolean) {
         when (matchedNumbers) {
-            Prize.THREE.matchingNumbers -> results[Prize.THREE] = results.getOrDefault(Prize.THREE, 0) + 1
-            Prize.FOUR.matchingNumbers -> results[Prize.FOUR] = results.getOrDefault(Prize.FOUR, 0) + 1
-            Prize.FIVE.matchingNumbers -> {
+            THREE -> results[Prize.THREE_MATCH] = results.getOrDefault(Prize.THREE_MATCH, 0) + 1
+            FOUR -> results[Prize.FOUR_MATCH] = results.getOrDefault(Prize.FOUR_MATCH, 0) + 1
+            FIVE -> {
                 if (bonusMatch) {
                     results[Prize.FIVE_MATCH_WITH_BONUS] = results.getOrDefault(Prize.FIVE_MATCH_WITH_BONUS, 0) + 1
                 }
-                results[Prize.FIVE] = results.getOrDefault(Prize.FIVE, 0) + 1
+                results[Prize.FIVE_MATCH] = results.getOrDefault(Prize.FIVE_MATCH, 0) + 1
                 }
-            Prize.SIX.matchingNumbers -> results[Prize.SIX] = results.getOrDefault(Prize.SIX, 0) + 1
+            SIX -> results[Prize.SIX_MATCH] = results.getOrDefault(Prize.SIX_MATCH, 0) + 1
             }
         }
     }
