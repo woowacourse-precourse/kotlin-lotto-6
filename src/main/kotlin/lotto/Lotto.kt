@@ -2,9 +2,9 @@ package lotto
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6) { "[ERROR] 로또에는 6개의 숫자가 필요합니다." }
-        require(numbers.distinct().size == 6) { "[ERROR] 중복되지 않은 6개의 숫자가 필요합니다." }
-        require(numbers.all { it in 1 .. 45 }) { "[ERROR] 6개의 숫자는 1~45 사이의 숫자여야 합니다. " }
+        require(numbers.size == 6) { NEEDS_SIX_NUMBERS_MENTION }
+        require(numbers.distinct().size == 6) { NEEDS_SIX_NUMBERS_WITHOUT_REDUNDANT_MENTION }
+        require(numbers.all { it in 1 .. 45 }) { NUMBER_OUT_OF_BOUND_METION }
     }
 
     fun getLottoNumberString() : String {
@@ -30,5 +30,11 @@ class Lotto(private val numbers: List<Int>) {
             if(numbers.contains(it)) matchNumbers++
         }
         return matchNumbers
+    }
+
+    companion object {
+        const val NEEDS_SIX_NUMBERS_MENTION = "[ERROR] 로또에는 6개의 숫자가 필요합니다."
+        const val NEEDS_SIX_NUMBERS_WITHOUT_REDUNDANT_MENTION = "[ERROR] 중복되지 않은 6개의 숫자가 필요합니다."
+        const val NUMBER_OUT_OF_BOUND_METION = "[ERROR] 6개의 숫자는 1~45 사이의 숫자여야 합니다."
     }
 }
