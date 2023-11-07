@@ -29,4 +29,11 @@ class WinningNumberTest {
         }
     }
 
+    @Test
+    fun `당첨 번호가 1부터 45 사이의 숫자가 아닐 때`() {
+        assertThrows<IllegalArgumentException> {
+            WinningNumber("1,3,4,25,33,56")
+        }
+    }
+
 }
