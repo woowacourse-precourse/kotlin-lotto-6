@@ -9,7 +9,7 @@ class LottoGame {
         val boughtAmount = Console.readLine().toInt()
         require(boughtAmount % 1000 == 0) { "[ERROR] 금액은 1000단위여야 합니다." }
         // 구입금액을 1000으로 나눈 나머지가 구입한 로또의 개수
-        return boughtAmount % 1000
+        return boughtAmount / 1000
     }
 
     private fun readWinningNumber(): List<Int> {
@@ -34,15 +34,6 @@ class LottoGame {
         return bonusNumber
     }
 
-    fun printBoughtLotto() {
-        println("${readBoughtAmount()}개를 구매했습니다.")
-        for (i in 0..readBoughtAmount() - 1) {
-            val lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
-            println("$lottoNumbers")
-        }
-
-        print("\n")
-    }
 
     fun printWinningDetails(winningMap: MutableMap<Int, Int>, numberOfLottos: Int) {
         println("3개 일치 (5,000원) - ${winningMap[3]}개")
@@ -50,9 +41,10 @@ class LottoGame {
         println("5개 일치 (1,500,000원) - ${winningMap[5]}개")
         println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningMap[0]}개")
         println("6개 일치 (2,000,000,000원) - ${winningMap[6]}개")
-        val profitRate = (5000 * winningMap[3]!! + 50000 * winningMap[4]!! + 1500000 * winningMap[5]!!
-                + 30000000 * winningMap[0]!! + 2000000000 * winningMap[6]!!) / (numberOfLottos * 1000)
-        println ("총 수익률은 ${profitRate}%입니다.")
+        val profitRate =
+            (5000 * winningMap[3]!! + 50000 * winningMap[4]!! + 1500000 * winningMap[5]!!
+                    + 30000000 * winningMap[0]!! + 2000000000 * winningMap[6]!!) / (numberOfLottos * 1000)
+        println("총 수익률은 ${profitRate}%입니다.")
     }
 
     fun gameStart() {
@@ -62,7 +54,7 @@ class LottoGame {
         val winningMap = mutableMapOf(0 to 0, 3 to 0, 4 to 0, 5 to 0, 6 to 0)
 
         println("${numberOfLottos}개를 구매했습니다.")
-        for (i in 0..readBoughtAmount() - 1) {
+        for (i in 0..numberOfLottos - 1) {
             val lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
             println("$lottoNumbers")
             val lotto = Lotto(
@@ -70,7 +62,8 @@ class LottoGame {
                 winningNumbers,
                 bonusNumber
             )
-            winningMap[lotto.winningJudge()] = winningMap[lotto.winningJudge()]!! + 1
+            val winning = lotto.winningJudge()
+            winningMap[winning]
         }
         printWinningDetails(winningMap, numberOfLottos)
     }
