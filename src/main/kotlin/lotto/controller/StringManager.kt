@@ -7,7 +7,7 @@ class StringManager {
         return "%,d".format(number)
     }
 
-    fun formatPercentage(profitPercentage: Double) {
-        String.format(Messages.PROFIT_MESSAGE, profitPercentage)
+    fun formatPercentage(profitPercentage: Double): String {
+        return String.format(Messages.PROFIT_MESSAGE, profitPercentage)
     }
 }
