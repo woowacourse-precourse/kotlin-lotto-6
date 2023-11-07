@@ -15,7 +15,7 @@ object InputView {
 
     fun inputWinningNumbers(): List<String> {
         println(System.lineSeparator() + INPUT_WINNING_NUMBERS)
-        return Console.readLine().split(",")
+        return Console.readLine().split(",").map { it.trim() }
     }
 
     fun inputBonusNumber(): String {
