@@ -55,7 +55,7 @@ class LottoGame {
         println ("총 수익률은 ${profitRate}%입니다.")
     }
 
-    private fun gameStart() {
+    fun gameStart() {
         val numberOfLottos = readBoughtAmount()
         val winningNumbers = readWinningNumber()
         val bonusNumber = readBonusNumber()
