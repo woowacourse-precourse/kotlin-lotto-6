@@ -10,12 +10,16 @@ class InputView {
 
     fun inputPrizeLottoNumber(): List<Int> {
         val prizeLottoNumber = Console.readLine()
-        val prizeLottoNumberList = prizeLottoNumber.split(",")
+        val prizeLottoNumberList = prizeLottoNumber.split(SEPARATOR)
         return prizeLottoNumberList.map { it.toInt() }
     }
 
     fun inputPrizeBonusNumber(): Int {
         val bonusNumber = Console.readLine()
         return bonusNumber.toInt()
+    }
+
+    companion object {
+        private const val SEPARATOR = ","
     }
 }

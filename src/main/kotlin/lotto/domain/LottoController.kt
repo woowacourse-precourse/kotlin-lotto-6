@@ -30,11 +30,11 @@ class LottoController(private val inputView: InputView, private val outputView: 
 
     fun purchaseLotteries(money: Int): MutableList<Lotto> {
         val lotteries = mutableListOf<Lotto>()
-        val numOfLotto = money / 1000
+        val numOfLotto = money / LOTTO_PRICE
         outputView.printPurchaseAmount(numOfLotto)
 
         for (i in 0 until numOfLotto) {
-            val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+            val numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, PICK_NUMBER)
             outputView.printPurchasedLotto(numbers)
             lotteries.add(Lotto(numbers))
         }
@@ -76,5 +76,13 @@ class LottoController(private val inputView: InputView, private val outputView: 
             sumOfPrize += key.prize * value
         }
         outputView.printProfit(calculateProfit(money, sumOfPrize))
+    }
+
+    companion object {
+        private const val LOTTO_PRICE = 1000
+        private const val MIN_NUMBER = 1
+        private const val MAX_NUMBER = 45
+        private const val PICK_NUMBER = 6
+
     }
 }
