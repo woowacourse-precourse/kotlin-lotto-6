@@ -9,9 +9,18 @@ class LottoPurchase {
     }
 
     fun inputAmount(): Int {
-        val amount = Input.inputPurchaseAmount()
-        validateAmount(amount)
-        return amount.toInt() / AMOUNT_UNIT
+        do {
+            try {
+                val amount = Input.inputPurchaseAmount()
+                validateAmount(amount)
+                return amount.toInt() / AMOUNT_UNIT
+            }catch (e: IllegalArgumentException){
+                println(e.message)
+                continue
+            }
+
+        }while (true)
+
     }
 
     fun validateAmount(amount: String) {
