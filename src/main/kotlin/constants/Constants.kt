@@ -10,6 +10,7 @@ object Constants {
     const val LOTTO_PRICE = 1000
     const val LOTTO_SIZE = 6
 
+    const val WINNING_NUM_SEPARATOR = ","
     const val PRIZE_SEPARATOR = "-"
 
     const val PRIZE_FIRST = "6개 일치 (2,000,000,000원)"

@@ -16,7 +16,9 @@ import constants.ExceptionMessages.EXCEPTION_UNEXPECTED
 import lotto.constants.Constants.INPUT_BONUS_NUMBER
 import lotto.constants.Constants.INPUT_PURCHASE_AMOUNT
 import lotto.constants.Constants.INPUT_WINNING_NUMBERS
+import lotto.constants.Constants.LOTTO_PRICE
 import lotto.constants.Constants.LOTTO_SIZE
+import lotto.constants.Constants.WINNING_NUM_SEPARATOR
 
 object InputView {
 
@@ -50,7 +52,7 @@ object InputView {
             val amount = userInput.toInt()
 
             if (amount <= 0) throw IllegalArgumentException(EXCEPTION_PURCHASE_NO_MORE_THAN_ZERO)
-            if (amount % 1000 != 0) throw IllegalArgumentException(EXCEPTION_PURCHASE_DIVISION)
+            if (amount % LOTTO_PRICE != 0) throw IllegalArgumentException(EXCEPTION_PURCHASE_DIVISION)
         } catch (e: NumberFormatException) {
             throw IllegalArgumentException(EXCEPTION_PURCHASE_STRING)
         }
@@ -67,7 +69,7 @@ object InputView {
     }
 
     fun getWinningNumbersList(winningNumbers: String): List<Int> {
-        val winningNumbersList = winningNumbers.split(",")
+        val winningNumbersList = winningNumbers.split(WINNING_NUM_SEPARATOR)
 
         return getValidatedNumbersList(winningNumbersList)
     }
