@@ -10,10 +10,9 @@ class Lotto(private val numbers: List<Int>) {
     public fun round(win_num: List<Int>, bonus: Int): Int {
         val count = winningCheck(win_num)
 
-        if (count == 5 && numbers.contains(bonus)){
+        if (count == 5 && numbers.contains(bonus)){ // 5개 번호 일치 및 보너스 번호 일치 시 2등
             return 2
         }
-
         when (count) {
             3 -> return 5
             4 -> return 4
@@ -33,6 +32,5 @@ class Lotto(private val numbers: List<Int>) {
         }
         return count
     }
-
 
 }

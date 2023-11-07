@@ -51,11 +51,24 @@ class LotteryGame {
 
     private fun enterWinningNumber(): List<Int> {
         println("당첨 번호를 입력해 주세요.")
-        var win_input: List<String> = readLine()!!.split(",")
-        val numbers = mutableListOf<Int>()
+        var win_input: List<Int>
 
-        for (i in 0..win_input.size - 1) {
-            numbers.add(win_input[i].toInt())
+        do {
+            win_input = charToInt(readLine()!!)
+        } while (win_input.size != 6)
+
+        return win_input
+    }
+
+    private fun charToInt(input: String): List<Int> {
+        val numbers = mutableListOf<Int>()
+        var input_split = input.split(",")
+
+        for (i in 0..input_split.size - 1) {
+            val number = input_split[i].toInt()
+            if (number in 1..45){ // 1 ~ 45 범위의 숫자만 입력
+                numbers.add(number)
+            }
         }
 
         return numbers.distinct().sorted()
@@ -63,7 +76,13 @@ class LotteryGame {
 
     private fun enterBonusNumber(): Int {
         println("보너스 번호를 입력해 주세요.")
-        return readLine()!!.toInt()
+        var bonus: Int = 0
+
+        do {
+            bonus = readLine()!!.toInt()
+        } while (bonus !in 1..45)
+
+        return bonus
     }
 
     private fun makeTickets(count: Int): MutableList<Lotto> {
