@@ -1,10 +1,10 @@
-package lotto.domain
+package lotto.domain.lotto
 
 import lotto.constants.ErrorConstants
 import lotto.constants.GameConstants.MAX_NUMBER
 import lotto.constants.GameConstants.MIN_NUMBER
 
-class LottoNumber(numberAsString: String) {
+class LottoNumberParser(numberAsString: String) {
     val number: Int = parseNumber(numberAsString)
 
     companion object {

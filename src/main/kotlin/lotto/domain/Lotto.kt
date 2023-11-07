@@ -1,9 +1,0 @@
-package lotto.domain
-
-class Lotto(private val numbers: List<LottoNumber>) {
-    init {
-        require(numbers.size == 6)
-    }
-
-    // TODO: 추가 기능 구현
-}
