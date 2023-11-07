@@ -59,6 +59,7 @@ fun getWinningNumbersAndBonus(): Pair<List<Int>, Int> {
 fun getResults(tickets: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): List<LottoResult> {
     return tickets.map { it.getLottoResult(winningNumbers, bonusNumber) }
 }
+//결과출력
 
 fun buyLottoTickets(purchaseAmount: Int): List<Lotto> {
     val ticketCount = purchaseAmount / 1000
