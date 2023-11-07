@@ -2,7 +2,6 @@ package lotto.controller
 
 import lotto.domain.Lotto
 import lotto.domain.LottoMC
-import lotto.domain.Validator
 import lotto.utils.RandomUtils
 import lotto.view.InputView
 import lotto.view.OutputView
@@ -10,7 +9,6 @@ import lotto.view.OutputView
 class LottoShop {
 
     private val inputView = InputView()
-    private val validator = Validator()
     private val randomUtils = RandomUtils()
     private val lottoMC = LottoMC(inputView)
     private val outputView = OutputView()
@@ -28,7 +26,7 @@ class LottoShop {
         while (true) {
             try {
                 val price = inputView.inputView()
-                validator.validatePrice(price)
+                validatePrice(price)
                 val lottoCount = price.toInt() / 1000
                 repeat(lottoCount) {
                     val numbers = randomUtils.pickLottoNum()
@@ -42,6 +40,12 @@ class LottoShop {
                 println(e.message)
             }
         }
+    }
+
+    private fun validatePrice(price: String) {
+        require(price.isNotBlank())
+        require(price.all { it.isDigit() })
+        require(price.toInt() % 1000 == 0)
     }
 
     private fun startLottoProgram(price: Int) {
@@ -61,7 +65,6 @@ class LottoShop {
         while (true) {
             try {
                 bonusNum = lottoMC.pickBonusNum(lottoNum)
-                validator.validateBonusNum(bonusNum, lottoNum)
                 break
             } catch (e: IllegalArgumentException) {
                 println(e.message)
