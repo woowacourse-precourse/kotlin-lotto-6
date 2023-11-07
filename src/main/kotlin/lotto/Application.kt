@@ -3,7 +3,8 @@ package lotto
 fun main() {
     val inputMoney =lottoMoneyInput()
     val count = lottoCnt(inputMoney)
-    val generatedLottoList = lottoNumberLimit(count)
+    val lottoList = lottoNumberLimit(count)
+    lottoNumberPrint(count, lottoList)
 
 }
 fun lottoMoneyInput(): Int {
@@ -27,8 +28,14 @@ fun lottoNumberLimit(count: Int): List<List<Int>> {
             val num = randomNumber.nextInt(45) + 1
             lotto.add(num)
         }
-        println("생성된 로또 번호: $lotto")
         comLottoList.add(lotto.toList())
     }
     return comLottoList
 }
+fun lottoNumberPrint(lottoCount: Int, lottoList: List<List<Int>>) {
+    println("$lottoCount 개를 구매했습니다.")
+    for (lotto in lottoList) {
+        println(lotto.sorted())
+    }
+}
+
