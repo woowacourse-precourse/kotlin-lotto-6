@@ -2,7 +2,7 @@ package lotto
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-
+import org.assertj.core.api.Assertions.*
 
 class LottoTest {
     @Test
@@ -21,4 +21,10 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `구입 금액의 값이 잘못되면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+
+        }
+    }
 }
