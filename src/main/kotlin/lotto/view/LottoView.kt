@@ -2,21 +2,22 @@ package lotto.view
 
 import lotto.constants.message.ExceptionMessage
 import lotto.enums.LottoResult
-import lotto.constants.message.OutPutMessage
+import lotto.constants.message.OutputMessage
 import java.text.DecimalFormat
 
 class LottoView {
     fun printEnterPurchaseMessage() {
-        println(OutPutMessage.PLEASE_INPUT_AMOUNT)
+        println(OutputMessage.PLEASE_INPUT_AMOUNT)
     }
 
     fun printEnterWinningNumberMessage() {
-        println(OutPutMessage.PLEASE_INPUT_WINNING_NUMBER)
+        println(OutputMessage.PLEASE_INPUT_WINNING_NUMBER)
     }
 
     fun printEnterBonusNumberMessage() {
-        println(OutPutMessage.PLEASE_INPUT_BONUS_NUMBER)
+        println(OutputMessage.PLEASE_INPUT_BONUS_NUMBER)
     }
+    
 
     fun printErrorAndRetryMessage(message: String, e: IllegalArgumentException) {
         println("${ExceptionMessage.ERROR_HEADER} ${e.message}")
@@ -24,21 +25,21 @@ class LottoView {
     }
 
     fun displayLottoNumbers(lottoNumbers: List<List<Int>>) {
-        println("${lottoNumbers.size}${OutPutMessage.PURCHASED}")
+        println("${lottoNumbers.size}${OutputMessage.PURCHASED}")
         lottoNumbers.forEach { numbers ->
             println(numbers)
         }
     }
 
     fun displayResults(results: MutableMap<LottoResult, Int>) {
-        println(OutPutMessage.WINNING_STATISTICS)
-        println(OutPutMessage.THREE_N_DASH)
+        println(OutputMessage.WINNING_STATISTICS)
+        println(OutputMessage.THREE_N_DASH)
         results.entries.forEach { (lottoResult, amount) ->
-            println("${lottoResult.message} (${DecimalFormat("#,###").format(lottoResult.prizeAmount)}${OutPutMessage.WON}) - ${amount}${OutPutMessage.EA}")
+            println("${lottoResult.message} (${DecimalFormat("#,###").format(lottoResult.prizeAmount)}${OutputMessage.WON}) - ${amount}${OutputMessage.EA}")
         }
     }
 
     fun displayProfit(profit: Double) {
-        println(OutPutMessage.TOTAL_PROFIT_IS.format(profit))
+        println(OutputMessage.TOTAL_PROFIT_IS.format(profit))
     }
 }

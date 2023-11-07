@@ -1,7 +1,6 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest
-import lotto.constants.message.OutPutMessage
 import lotto.enums.LottoResult
 import lotto.model.LottoModel
 import org.junit.jupiter.api.Assertions.assertEquals

@@ -2,7 +2,7 @@ package lotto.controller
 
 import camp.nextstep.edu.missionutils.Console.readLine
 import lotto.model.LottoModel
-import lotto.constants.message.OutPutMessage
+import lotto.constants.message.OutputMessage
 import lotto.util.ValidationUtil
 import lotto.view.LottoView
 
@@ -31,7 +31,7 @@ class LottoController(private val lottoModel: LottoModel, private val lottoView:
                 lottoModel.generateLottoNumbers(amount.toInt())
                 break
             } catch (e: IllegalArgumentException) {
-                lottoView.printErrorAndRetryMessage(OutPutMessage.PLEASE_INPUT_AMOUNT, e)
+                lottoView.printErrorAndRetryMessage(OutputMessage.PLEASE_INPUT_AMOUNT, e)
             }
         }
     }
@@ -44,7 +44,7 @@ class LottoController(private val lottoModel: LottoModel, private val lottoView:
                 lottoModel.setWinningNumbers(winningNumbers)
                 break
             } catch (e: IllegalArgumentException) {
-                lottoView.printErrorAndRetryMessage(OutPutMessage.PLEASE_INPUT_WINNING_NUMBER, e)
+                lottoView.printErrorAndRetryMessage(OutputMessage.PLEASE_INPUT_WINNING_NUMBER, e)
             }
         }
     }
@@ -57,7 +57,7 @@ class LottoController(private val lottoModel: LottoModel, private val lottoView:
                 lottoModel.setBonusNumbers(bonusNumber)
                 break
             } catch (e: IllegalArgumentException) {
-                lottoView.printErrorAndRetryMessage(OutPutMessage.PLEASE_INPUT_BONUS_NUMBER, e)
+                lottoView.printErrorAndRetryMessage(OutputMessage.PLEASE_INPUT_BONUS_NUMBER, e)
             }
         }
     }
