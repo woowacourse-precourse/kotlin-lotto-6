@@ -21,7 +21,7 @@ class Output {
     }
 
     fun getBonusInfoNotice() {
-        TODO("Not yet implemented")
+        println(Notice.ENTER_BONUS_INFO)
     }
 
     fun showResult(generatedAutoLottoTickets: List<Lotto>, winningLottoInfo: Lotto, bonusInfo: Int) {
