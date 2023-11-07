@@ -50,7 +50,13 @@ class Validator {
 
     fun countsLottoNumbers(lottoNumbers: List<String>) {
         if (lottoNumbers.size != 6) {
-            throw IllegalArgumentException("로또 번호의 개수는 6개이어야 합니다.")
+            throw IllegalArgumentException("로또 번호의 개수는 6개여야 합니다.")
+        }
+    }
+
+    fun inRangeLottoNumber(lottoNumber: Int) {
+        if (lottoNumber < 1 && lottoNumber > 45) {
+            throw IllegalArgumentException("로또 번호는 1과 45 사이의 정수여야 합니다.")
         }
     }
 }
