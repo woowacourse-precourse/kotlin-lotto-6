@@ -5,7 +5,7 @@ class WinningResult(
     private val winningNumbers: List<Int>,
     private val bonusNumber: Int
 ) {
-    private fun calculateStatistics(): Map<LottoRank, Int> {
+    fun calculateStatistics(): Map<LottoRank, Int> {
         val statistics = mutableMapOf<LottoRank, Int>()
         for (lotto in lottoTickets) {
             val rank = lotto.checkMatch(winningNumbers, bonusNumber)
@@ -24,18 +24,20 @@ class WinningResult(
         return totalPrize.toDouble() / amount * 100
     }
 
-    fun printResults() {
+    fun returnStatisticsResults(): List<Triple<String, String, Int>> {
         val statistics = calculateStatistics()
-        val totalPrize = calculateTotalPrize(statistics)
-        val profitRate = calculateProfitRate(lottoTickets.size * 1000, totalPrize)
-        for (rank in LottoRank.entries) {
+        return LottoRank.entries.map { rank ->
             val count = statistics[rank] ?: 0
             val prizeMoney = rank.prizeMoney
             val formattedPrizeMoney = String.format("%,d", prizeMoney)
-            println("${rank.rankDescription} (${formattedPrizeMoney}원) - ${count}개")
+            Triple(rank.rankDescription, formattedPrizeMoney, count)
         }
+    }
 
-        val formattedProfitRate = String.format("%,.1f", profitRate)
-        println("총 수익률은 ${formattedProfitRate}%입니다.")
+    fun returnProfitRateResults(statistics: Map<LottoRank, Int>): String {
+        val totalPrize = calculateTotalPrize(statistics)
+        val profitRate = calculateProfitRate(lottoTickets.size * 1000, totalPrize)
+
+        return String.format("%,.1f", profitRate)
     }
 }
