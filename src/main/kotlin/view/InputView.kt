@@ -18,24 +18,26 @@ import lotto.constants.Constants.INPUT_PURCHASE_AMOUNT
 import lotto.constants.Constants.INPUT_WINNING_NUMBERS
 import lotto.constants.Constants.LOTTO_PRICE
 import lotto.constants.Constants.LOTTO_SIZE
+import lotto.constants.Constants.MAX_NUM
+import lotto.constants.Constants.MIN_NUM
 import lotto.constants.Constants.WINNING_NUM_SEPARATOR
 
 class InputView {
 
     fun inputPurchaseAmount(): Int {
-        val stepMessage = printStepMessage(INPUT_PURCHASE_AMOUNT)
+        val stepMessage = getStepMessage(INPUT_PURCHASE_AMOUNT)
         println(stepMessage)
         return getUserAmount()
     }
 
     fun inputWinningNumberList(): List<Int> {
-        val stepMessage = printStepMessage(INPUT_WINNING_NUMBERS)
+        val stepMessage = getStepMessage(INPUT_WINNING_NUMBERS)
         println(stepMessage)
         return getWinningNumbers()
     }
 
     fun inputBonusNumber(winningNumbers: List<Int>): Int {
-        val stepMessage = printStepMessage(INPUT_BONUS_NUMBER)
+        val stepMessage = getStepMessage(INPUT_BONUS_NUMBER)
         println(stepMessage)
         return getBonusNumber(winningNumbers)
     }
@@ -49,7 +51,7 @@ class InputView {
         userInput.toInt()
     } catch (e: IllegalArgumentException) {
         e.message?.let {
-            println(printErrorMessage(it))
+            println(getErrorMessage(it))
         } ?: println()
         getUserAmount()
     }
@@ -70,7 +72,7 @@ class InputView {
         println()
         getWinningNumbersList(numbers)
     } catch (e: IllegalArgumentException) {
-        println(printErrorMessage(e.message))
+        println(getErrorMessage(e.message))
         getWinningNumbers()
     }
 
@@ -98,7 +100,7 @@ class InputView {
             throw IllegalArgumentException(EXCEPTION_WINNING_NUMBERS_DUPLICATED)
         }
         winningNumbers.onEach {
-            if (it !in 1..45) throw IllegalArgumentException(EXCEPTION_WINNING_NUMBERS_RANGE)
+            if (it !in MIN_NUM..MAX_NUM) throw IllegalArgumentException(EXCEPTION_WINNING_NUMBERS_RANGE)
         }
     }
 
@@ -108,24 +110,20 @@ class InputView {
         val bonusNum = getValidatedBonusNumber(bonus, winningNumbers)
         bonusNum
     } catch (e: IllegalArgumentException) {
-        println(printErrorMessage(e.message))
+        println(getErrorMessage(e.message))
         getBonusNumber(winningNumbers)
     }
 
     fun getValidatedBonusNumber(bonus: String, winningNumbers: List<Int>): Int = try {
         val bonusNum = bonus.toInt()
-        if (bonusNum !in 1..45) throw IllegalArgumentException(EXCEPTION_BONUS_NUMBER_RANGE)
+        if (bonusNum !in MIN_NUM..MAX_NUM) throw IllegalArgumentException(EXCEPTION_BONUS_NUMBER_RANGE)
         if (bonusNum in winningNumbers) throw IllegalArgumentException(EXCEPTION_BONUS_NUMBER_DUPLICATED)
         bonusNum
     } catch (e: NumberFormatException) {
         throw IllegalArgumentException(EXCEPTION_BONUS_NUMBER_TYPE)
     }
 
+    private fun getStepMessage(message: String): String = message
 
-    private fun printStepMessage(message: String): String = message
-
-
-    private fun printErrorMessage(message: String? = EXCEPTION_UNEXPECTED) = "$ERROR $message"
+    private fun getErrorMessage(message: String? = EXCEPTION_UNEXPECTED) = "$ERROR $message"
 }
-
-

@@ -18,9 +18,27 @@ object Constants {
     const val WINNING_NUM_SEPARATOR = ","
     const val PRIZE_SEPARATOR = "-"
 
-    const val PRIZE_FIRST = "6개 일치 (2,000,000,000원)"
-    const val PRIZE_SECOND = "5개 일치, 보너스 볼 일치 (30,000,000원)"
-    const val PRIZE_THIRD = "5개 일치 (1,500,000원)"
-    const val PRIZE_FOURTH = "4개 일치 (50,000원)"
-    const val PRIZE_FIFTH = "3개 일치 (5,000원)"
+    const val MIN_NUM = 1
+    const val MAX_NUM = 45
+
+    const val NOTIFICATION_FIRST = "6개 일치 (2,000,000,000원)"
+    const val NOTIFICATION_SECOND = "5개 일치, 보너스 볼 일치 (30,000,000원)"
+    const val NOTIFICATION_THIRD = "5개 일치 (1,500,000원)"
+    const val NOTIFICATION_FOURTH = "4개 일치 (50,000원)"
+    const val NOTIFICATION_FIFTH = "3개 일치 (5,000원)"
+
+    const val WINNING_COUNT_FIRST = 6
+    const val WINNING_COUNT_SECOND = 5
+    const val WINNING_COUNT_THIRD = 5
+    const val WINNING_COUNT_FOURTH = 4
+    const val WINNING_COUNT_FIFTH = 3
+
+    const val REWARD_FIRST = 2000000000
+    const val REWARD_SECOND = 30000000
+    const val REWARD_THIRD = 1500000
+    const val REWARD_FOURTH = 50000
+    const val REWARD_FIFTH = 5000
+
+    const val PERCENTILE = 100.0
+    const val FORMAT_ONE_DECIMAL_PLACE = "%.1f"
 }

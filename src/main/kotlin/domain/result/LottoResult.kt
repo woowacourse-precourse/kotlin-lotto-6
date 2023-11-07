@@ -1,7 +1,8 @@
 package domain.result
 
+import lotto.constants.Constants.FORMAT_ONE_DECIMAL_PLACE
 import lotto.constants.Constants.LOTTO_PRICE
-import kotlin.math.round
+import lotto.constants.Constants.PERCENTILE
 
 class LottoResult(
     private val lotties: List<List<Int>>,
@@ -25,7 +26,7 @@ class LottoResult(
         val ranks = Rank.entries.toTypedArray()
 
         for (rank in ranks) {
-            winningData[rank] = resultRankData.count { it -> it == rank }
+            winningData[rank] = resultRankData.count { it == rank }
         }
 
         return winningData
@@ -34,10 +35,10 @@ class LottoResult(
     private fun getRateOfReturn(winningData: Map<Rank, Int>): String {
         val purchasedAmount = lotties.size * LOTTO_PRICE.toDouble()
         val earnedAmount = winningData.entries.sumOf { (rank, count) ->
-            rank.amount * count
+            rank.reward * count
         }.toDouble()
 
-        return "%.1f".format(earnedAmount / purchasedAmount * 100.0)
+        return FORMAT_ONE_DECIMAL_PLACE.format(earnedAmount / purchasedAmount * PERCENTILE)
     }
 
     private fun List<Int>.getResultForEachLotto(): Rank? {

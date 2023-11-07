@@ -34,7 +34,7 @@ class ResultView {
 
     private fun printWinningStats(winningData: Map<Rank, Int>) {
         winningData.onEach { (rank, count) ->
-            println("${rank.reward} $PRIZE_SEPARATOR $count$RESULT_NUM_UNIT")
+            println("${rank.notification} $PRIZE_SEPARATOR $count$RESULT_NUM_UNIT")
         }
     }
 

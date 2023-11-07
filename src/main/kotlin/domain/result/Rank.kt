@@ -1,20 +1,30 @@
 package domain.result
 
-import lotto.constants.Constants.PRIZE_FIFTH
-import lotto.constants.Constants.PRIZE_FIRST
-import lotto.constants.Constants.PRIZE_FOURTH
-import lotto.constants.Constants.PRIZE_SECOND
-import lotto.constants.Constants.PRIZE_THIRD
+import lotto.constants.Constants.NOTIFICATION_FIFTH
+import lotto.constants.Constants.NOTIFICATION_FIRST
+import lotto.constants.Constants.NOTIFICATION_FOURTH
+import lotto.constants.Constants.NOTIFICATION_SECOND
+import lotto.constants.Constants.NOTIFICATION_THIRD
+import lotto.constants.Constants.REWARD_FIFTH
+import lotto.constants.Constants.REWARD_FIRST
+import lotto.constants.Constants.REWARD_FOURTH
+import lotto.constants.Constants.REWARD_SECOND
+import lotto.constants.Constants.REWARD_THIRD
+import lotto.constants.Constants.WINNING_COUNT_FIFTH
+import lotto.constants.Constants.WINNING_COUNT_FIRST
+import lotto.constants.Constants.WINNING_COUNT_FOURTH
+import lotto.constants.Constants.WINNING_COUNT_SECOND
+import lotto.constants.Constants.WINNING_COUNT_THIRD
 
 enum class Rank(
     val winningCount: Int,
     val bonus: Boolean,
-    val amount: Int,
-    val reward: String,
+    val reward: Int,
+    val notification: String,
 ) {
-    FIFTH(3, false, 5000, PRIZE_FIFTH),
-    FOURTH(4, false, 50000, PRIZE_FOURTH),
-    THIRD(5, false, 1500000, PRIZE_THIRD),
-    SECOND(5, true, 30000000, PRIZE_SECOND),
-    FIRST(6, false, 2000000000, PRIZE_FIRST)
+    FIFTH(WINNING_COUNT_FIFTH, false, REWARD_FIFTH, NOTIFICATION_FIFTH),
+    FOURTH(WINNING_COUNT_FOURTH, false, REWARD_FOURTH, NOTIFICATION_FOURTH),
+    THIRD(WINNING_COUNT_THIRD, false, REWARD_THIRD, NOTIFICATION_THIRD),
+    SECOND(WINNING_COUNT_SECOND, true, REWARD_SECOND, NOTIFICATION_SECOND),
+    FIRST(WINNING_COUNT_FIRST, false, REWARD_FIRST, NOTIFICATION_FIRST)
 }
