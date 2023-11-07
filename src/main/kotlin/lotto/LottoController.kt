@@ -9,6 +9,9 @@ class LottoController(private val lottoView: LottoView) {
         val lottoMoney = payMoney() // 돈 입력
         val lottos = purchaseLottos(lottoMoney.money) // 로또 구매
 
+        // 2단계 : 로또 당첨 번호 추첨
+        val lottoResult = processLottoWinningNumbers()
+
     }
 
 
@@ -30,6 +33,16 @@ class LottoController(private val lottoView: LottoView) {
         repeat(lottoCount) { lottos.add(Lotto.fromList(LottoStore().buy())) }
         lottoView.printLottos(lottos)
         return lottos
+    }
+
+    private fun processLottoWinningNumbers(): Lotto {
+        return try {
+            lottoView.printWinningNumberRequest()
+            Lotto.fromInput(lottoView.inputWinningNumber())
+        } catch (e: IllegalArgumentException) {
+            lottoView.printError(e.message)
+            return processLottoWinningNumbers()
+        }
     }
 
 }
