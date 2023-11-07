@@ -4,7 +4,9 @@ import camp.nextstep.edu.missionutils.Console
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6)
+        require(numbers.size == 6) {"[ERROR] : 6개의 숫자를 입력하지 않았습니다. 다시 입력해주세요"}
+        require(numbers.all { it in 1..45 }) { "[ERROR] : 1보다 작거나 45보다 큰 수를 입력했습니다. 다시 입력해주세요" }
+        require(numbers.distinct().size == 6) { "[ERROR] : 중복된 숫자가 있습니다. 다시 입력해주세요" }
     }
 
     fun compareCountingMatchedWinningNumber(winningNumber: Lotto): Int {
