@@ -1,7 +1,6 @@
 package lotto.domain
 
 import lotto.utils.Constants
-import lotto.view.OutputView.showInputBuyPriceMessage
 import lotto.view.InputView.inputBuyPrice
 
 class LottoPurchase {
