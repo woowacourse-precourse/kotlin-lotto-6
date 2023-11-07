@@ -1,30 +1,38 @@
 package lotto.model
 
+import kotlin.math.round
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.utils.ErrorMessage
 import lotto.utils.Values
 import java.lang.NumberFormatException
-import kotlin.properties.Delegates
 
 class LottoModel {
-    private var lotteryAmount by Delegates.notNull<Int>()
+    private var lotteryAmount = 0
+    private var purchasePrice = 0
     private var lotteryNumbers: ArrayList<List<Int>> = ArrayList()
     private lateinit var lotto: Lotto
     private lateinit var bonusNumber: BonusNumber
     private var lottoResult = LottoResult()
-    private var totalEarned = 0
+    private var totalEarned: Long = 0
+    private var benefitRate: Double = 0.0
     fun isPurchaseMoneyValueValid(moneyValue: String): Boolean {
         return try {
             if ((moneyValue.toInt() % Values.LOTTERY_PRICE) != 0) {
                 throw IllegalArgumentException("${ErrorMessage.TITLE} ${ErrorMessage.INAPPROPRIATE_MONEY_VALUE}")
             }
+            setPurchasePrice(moneyValue.toInt())
             setLotteryAmount(moneyValue)
             false
         } catch (e: IllegalArgumentException) {
             true
         }
     }
-    @JvmName("callFromInt")
+    fun getPurchasePrice(): Int {
+        return purchasePrice
+    }
+    fun setPurchasePrice(price: Int) {
+        purchasePrice = price
+    }
     fun getLotteryAmount(): Int {
         return lotteryAmount
     }
@@ -72,14 +80,37 @@ class LottoModel {
     }
     fun calculateWinningLottery() {
         for(item in lotteryNumbers) {
-            when {
-                lotto.getNumbers().toSet().intersect(item.toSet()).size == 6 -> lottoResult.first++
-                (lotto.getNumbers().toSet().intersect(item.toSet()).size == 5) && (item.contains(bonusNumber.getBonusNumber())) -> lottoResult.second++
-                (lotto.getNumbers().toSet().intersect(item.toSet()).size == 5) && !(item.contains(bonusNumber.getBonusNumber())) -> lottoResult.third++
-                lotto.getNumbers().toSet().intersect(item.toSet()).size == 4 -> lottoResult.fourth++
-                lotto.getNumbers().toSet().intersect(item.toSet()).size == 3 -> lottoResult.fifth++
+            calculateLottoCondition(lotto.getNumbers().toSet().intersect(item.toSet()).size, (item.contains(bonusNumber.getBonusNumber())))
+        }
+    }
+    private fun calculateLottoCondition(matchAmount: Int, isBonusActive: Boolean) {
+        when {
+            matchAmount == 6 -> {
+                lottoResult.first++
+                totalEarned += Values.WINNING_PRIZE_FIRST
+            }
+            (matchAmount == 5) && isBonusActive -> {
+                lottoResult.second++
+                totalEarned += Values.WINNING_PRIZE_SECOND
+            }
+            (matchAmount == 5) && !isBonusActive -> {
+                lottoResult.third++
+                totalEarned += Values.WINNING_PRIZE_THIRD
+            }
+            matchAmount == 4 -> {
+                lottoResult.fourth++
+                totalEarned += Values.WINNING_PRIZE_FOURTH
+            }
+            matchAmount == 3 -> {
+                lottoResult.fifth++
+                totalEarned += Values.WINNING_PRIZE_FIFTH
             }
         }
     }
-
+    fun getBenefitRate(): Double {
+        return benefitRate
+    }
+    fun setBenefitRate() {
+        benefitRate = round(totalEarned.toDouble() / getPurchasePrice() * 1000) / 10
+    }
 }

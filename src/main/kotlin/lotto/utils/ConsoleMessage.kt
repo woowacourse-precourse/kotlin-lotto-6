@@ -11,5 +11,6 @@ object ConsoleMessage {
     const val WINNING_MESSAGE_PHASE_2 = "("
     const val WINNING_MESSAGE_PHASE_3 = "원) - "
     const val WINNING_MESSAGE_PHASE_4 = "개"
-
+    const val BENEFIT_RATE_MESSAGE_PHASE_1 = "총 수익률은 "
+    const val BENEFIT_RATE_MESSAGE_PHASE_2 = "%입니다."
 }

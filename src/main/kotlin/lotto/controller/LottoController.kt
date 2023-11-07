@@ -2,7 +2,6 @@ package lotto.controller
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.model.LottoModel
-import lotto.model.LottoResult
 import lotto.view.LottoView
 
 class LottoController(private val view: LottoView, private val model: LottoModel) {
@@ -25,6 +24,8 @@ class LottoController(private val view: LottoView, private val model: LottoModel
         view.displayLotteryStatisticsMessage()
         model.calculateWinningLottery()
         view.displayWinningResult(model.getLottoResult())
+        model.setBenefitRate()
+        view.displayBenefitRate(model.getBenefitRate())
     }
     private fun setPurchaseMoneyValue(): String {
         return Console.readLine()

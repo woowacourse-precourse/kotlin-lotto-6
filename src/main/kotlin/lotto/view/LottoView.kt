@@ -60,6 +60,9 @@ class LottoView {
             WinningLottery.FIRST -> print("%,d".format(Values.WINNING_PRIZE_FIRST))
         }
     }
+    fun displayBenefitRate(rate: Double) {
+        println("${ConsoleMessage.BENEFIT_RATE_MESSAGE_PHASE_1}${rate}${ConsoleMessage.BENEFIT_RATE_MESSAGE_PHASE_2}")
+    }
     enum class WinningLottery(val conditionValue: Int) {
         FIRST(Values.WINNING_CONDITION_FIRST),
         SECOND(Values.WINNING_CONDITION_SECOND),
