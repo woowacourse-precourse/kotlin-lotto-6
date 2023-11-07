@@ -1,17 +1,19 @@
 package lotto.models
 
-import lotto.User
+import lotto.withCommas
 
 class Purchase(private val amount: Int) {
 
     init {
-
+        require(isValidAmount()) { AMOUNT_UNIT_ERROR_MESSAGE.format(AMOUNT_UNIT.withCommas()) }
     }
 
     fun getAmount() = amount
 
+    private fun isValidAmount() = amount >= AMOUNT_UNIT && amount % AMOUNT_UNIT == 0
+
     companion object {
         const val AMOUNT_UNIT = 1000
-        const val INVALID_AMOUNT_ERROR_MESSAGE = "금액은 ${User.AMOUNT_UNIT} 단위의 숫자만 입력이 가능합니다."
+        const val AMOUNT_UNIT_ERROR_MESSAGE = "구매 금액은 %s원 단위이어야 합니다."
     }
 }

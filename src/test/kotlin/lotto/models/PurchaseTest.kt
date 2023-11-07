@@ -1,9 +1,12 @@
 package lotto.models
 
+import lotto.withCommas
 import org.assertj.core.api.AssertionsForClassTypes.assertThat
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import lotto.models.Purchase.Companion.AMOUNT_UNIT_ERROR_MESSAGE
+import lotto.models.Purchase.Companion.AMOUNT_UNIT
+
 
 class PurchaseTest {
 
@@ -13,6 +16,6 @@ class PurchaseTest {
 
         val exception = assertThrows<IllegalArgumentException> { Purchase(amount) }
 
-        assertThat(exception.message).isEqualTo(Purchase.INVALID_AMOUNT_ERROR_MESSAGE)
+        assertThat(exception.message).isEqualTo(AMOUNT_UNIT_ERROR_MESSAGE.format(AMOUNT_UNIT.withCommas()))
     }
 }
