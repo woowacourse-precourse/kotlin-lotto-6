@@ -6,18 +6,9 @@ import lotto.constants.message.OutputMessage
 import java.text.DecimalFormat
 
 class LottoView {
-    fun printEnterPurchaseMessage() {
-        println(OutputMessage.PLEASE_INPUT_AMOUNT)
+    fun displayMessage(outputMessage: String) {
+        println(outputMessage)
     }
-
-    fun printEnterWinningNumberMessage() {
-        println(OutputMessage.PLEASE_INPUT_WINNING_NUMBER)
-    }
-
-    fun printEnterBonusNumberMessage() {
-        println(OutputMessage.PLEASE_INPUT_BONUS_NUMBER)
-    }
-    
 
     fun printErrorAndRetryMessage(message: String, e: IllegalArgumentException) {
         println("${ExceptionMessage.ERROR_HEADER} ${e.message}")

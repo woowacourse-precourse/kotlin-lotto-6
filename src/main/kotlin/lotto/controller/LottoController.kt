@@ -7,16 +7,15 @@ import lotto.util.ValidationUtil
 import lotto.view.LottoView
 
 class LottoController(private val lottoModel: LottoModel, private val lottoView: LottoView) {
-
     fun startLotto() {
-        lottoView.printEnterPurchaseMessage()
+        lottoView.displayMessage(OutputMessage.PLEASE_INPUT_AMOUNT)
         inputPurchaseAmount()
         lottoView.displayLottoNumbers(lottoModel.getLottoNumbers())
 
-        lottoView.printEnterWinningNumberMessage()
+        lottoView.displayMessage(OutputMessage.PLEASE_INPUT_WINNING_NUMBER)
         inputWinningNumbers()
 
-        lottoView.printEnterBonusNumberMessage()
+        lottoView.displayMessage(OutputMessage.PLEASE_INPUT_BONUS_NUMBER)
         inputBonusNumber()
 
         lottoView.displayResults(lottoModel.calculateLotto())
