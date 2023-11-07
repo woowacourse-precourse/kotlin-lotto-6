@@ -31,10 +31,4 @@ class LottoTest {
             Lotto(listOf(1, 2, 3, 44, 45, 46))
         }
     }
-
-    @Test
-    fun `로또 등수 출력 확인`() {
-        val result = lotto.getLottoRank(listOf(1, 2, 3, 4, 5, 6), 7)
-        assertThat(1).isEqualTo(result)
-    }
 }

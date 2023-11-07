@@ -42,12 +42,16 @@ class OutputView {
         }
     }
 
+    fun printProfitPercentage(profitPercentage: Float) =
+        println(RequestType.PROFIT_MESSAGE.message.replace("profit", String.format("%.1f", profitPercentage)))
+
     private enum class RequestType(val message: String) {
         ENTER_PURCHASE_AMOUNT("구입금액을 입력해 주세요"),
         PURCHASED_N_ITEMS("개를 구매했습니다."),
         ENTER_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
         ENTER_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
         WINNING_STATISTICS("당첨 통계\n---"),
+        PROFIT_MESSAGE("총 수익률은 profit%입니다."),
     }
 
     private enum class RankMessage(val rank: Int, val message: String) {

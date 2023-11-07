@@ -46,5 +46,4 @@ class WinningNumbersManager(numbers: List<String>) {
         }
         return 0
     }
-
 }

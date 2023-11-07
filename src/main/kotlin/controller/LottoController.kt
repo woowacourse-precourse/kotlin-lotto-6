@@ -3,6 +3,8 @@ package controller
 import model.Lotto
 import model.Money
 import model.WinningNumbersManager
+import util.Calculator.getProfitPercentage
+import util.Calculator.plusWinningAmount
 import util.LottoStore.generateLottoTickets
 import view.InputView
 import view.OutputView
@@ -12,6 +14,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
     private lateinit var money: Money
     private lateinit var winningNumbersManager: WinningNumbersManager
     private var purchasedLottoTickets = mutableListOf<Lotto>()
+    private var winningAmount = 0L
     fun run() {
         do {
             outputView.printPurchaseAmount()
@@ -42,7 +45,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
 
         outputView.printPurchasedItemCount(money.getPurchasableLottoTicketCount())
         purchasedLottoTickets.forEach { lotto ->
-            outputView.printLottoInfo(lotto.getLottoNumberInfo())
+            outputView.printLottoInfo(lotto.getNumberInfo())
         }
 
         do {
@@ -79,17 +82,20 @@ class LottoController(private val inputView: InputView, private val outputView: 
         outputView.printAppendLine()
         outputView.printResultMessage()
 
-        val resultMap = HashMap<Int, Int>()
+        val rankFrequencyData = HashMap<Int, Int>()
         for (lotto in purchasedLottoTickets) {
-            val rank = winningNumbersManager.getRank(lotto.getLottoNumberInfo())
-            if (resultMap.containsKey(rank)) {
-                resultMap[rank] = resultMap[rank]!! + 1
+            val rank = winningNumbersManager.getRank(lotto.getNumberInfo())
+            if (rankFrequencyData.containsKey(rank)) {
+                rankFrequencyData[rank] = rankFrequencyData[rank]!! + 1
                 continue
             }
-            resultMap[rank] = 1
+            rankFrequencyData[rank] = 1
         }
+
         for (rank in 6 downTo 1) {
-            outputView.printWinningStatistics(rank, resultMap[rank] ?: 0)
+            outputView.printWinningStatistics(rank, rankFrequencyData[rank] ?: 0)
+            plusWinningAmount(rank, (rankFrequencyData[rank] ?: 0))
         }
+        outputView.printProfitPercentage(getProfitPercentage(purchasedLottoTickets.size))
     }
 }
