@@ -39,13 +39,19 @@ ___
 
 ### staticLotto(): 당첨 통계를 출력한다.
 
-## LottoGame: 로또 게임 내 기능
-
-___
 
 ### makeLotto(): 로또 내역을 만든다.
 
+
+## Lotto: 로또 게임 내 기능
+
+___
+
 ### checkLotto(): 당첨 내역을 확인한다.
+
+## LottoStatics
+
+___
 
 ### checkMoney(): 당첨 금액을 확인한다.
 
