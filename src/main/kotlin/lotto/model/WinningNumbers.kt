@@ -1,33 +1,19 @@
 package lotto.model
 
-import lotto.Constants
+import java.lang.IllegalArgumentException
 
-class WinningNumbers(
-    _winningNumbers: String,
-) {
-    val numbers: List<LottoNumber>
+class WinningNumbers(_winningNumbers: String) : Lotto(parseWinningNumbers(_winningNumbers)) {
+    companion object {
+        private fun parseWinningNumbers(winningNumbers: String): List<Int> {
+            try {
+                return winningNumbers.split(",")
+                    .map { it.trim().toInt() }
 
-    init {
-        validateSize(_winningNumbers)
-
-        val _winningNumbersSplit = _winningNumbers.split(",")
-        validateDuplicate(_winningNumbersSplit)
-
-        numbers = List(Constants.LOTTO_NUMBER_SIZE) {
-            LottoNumber(_winningNumbersSplit[it])
+            } catch (e: NumberFormatException) {
+                throw IllegalArgumentException(WINNING_NUMBERS_IS_ONLY_DIGIT, e)
+            }
         }
-    }
 
-    private fun validateSize(_winningNumbers: String) {
-        val commaCount = _winningNumbers.count { it == ',' }
-        require(commaCount == Constants.LOTTO_NUMBER_SIZE - 1) {
-            "당첨 번호는 6개여야 합니다."
-        }
-    }
-
-    private fun validateDuplicate(temp: List<String>) {
-        require(temp.toSet().size == Constants.LOTTO_NUMBER_SIZE) {
-            "당첨 번호는 중복될 수 없습니다."
-        }
+        const val WINNING_NUMBERS_IS_ONLY_DIGIT = "당첨 번호는 숫자로 구성되어야 합니다."
     }
 }

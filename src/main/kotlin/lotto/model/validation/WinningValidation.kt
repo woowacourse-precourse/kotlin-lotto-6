@@ -1,4 +1,4 @@
-package lotto.model
+package lotto.model.validation
 
 class WinningValidation(
     winningNumbers: List<LottoNumber>,

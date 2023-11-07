@@ -1,8 +1,11 @@
 package lotto
 
 import lotto.controller.GameController
+import lotto.util.Task
 
 fun main() {
     val lottocontroller = GameController()
-    lottocontroller.play()
+    val task = Task()
+
+    lottocontroller.play(task)
 }

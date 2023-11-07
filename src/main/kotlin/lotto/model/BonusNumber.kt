@@ -1,4 +1,6 @@
-import lotto.model.LottoNumber
+package lotto.model
+
+import lotto.model.validation.LottoNumber
 
 data class BonusNumber(
     private val _bonus: String

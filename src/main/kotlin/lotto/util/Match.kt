@@ -1,4 +1,4 @@
-package lotto.model
+package lotto.util
 
 enum class Match(val count: Int, val info: String, val amount: String) {
     THIRD(3, "3개 일치", "5,000"),

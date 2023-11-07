@@ -1,6 +1,7 @@
 package lotto.model
 
 import lotto.Constants
+import lotto.model.validation.LottoNumber
 
 /*
     요구 사항 : 제공된 Lotto 클래스를 활용해 구현해야 한다.
@@ -8,7 +9,7 @@ import lotto.Constants
     2. Lotto에 필드를 추가할 수 없다.
     3. Lotto의 패키지 변경은 가능하다.
 */
-class Lotto(private val _numbers: List<Int>) {
+open class Lotto(private val _numbers: List<Int>) {
     val numbers: List<LottoNumber> get() = _numbers.map { LottoNumber(it.toString()) }
 
     init {
@@ -16,13 +17,34 @@ class Lotto(private val _numbers: List<Int>) {
         validateDuplicate()
     }
 
-    private fun validateSize() =
-        require(_numbers.size == Constants.LOTTO_NUMBER_SIZE) { "Error Message" }
+    protected fun validateSize() =
+        require(_numbers.size == Constants.LOTTO_NUMBER_SIZE) { LOTTO_NUMBERS_OUT_OF_SIZE }
 
-    private fun validateDuplicate() =
-        require(_numbers.size == _numbers.toSet().size) { "Error Message" }
+    protected fun validateDuplicate() =
+        require(_numbers.size == _numbers.toSet().size) { LOTTO_NUMBERS_NON_DUPLICATE }
 
     override fun toString(): String {
         return "$_numbers"
+    }
+
+    fun calculate(
+        winningnumbers: List<LottoNumber>,
+        bonusNumber: LottoNumber
+    ): Pair<Int, Int> {
+        var winningMatchCount = 0
+        val numbers = this.numbers
+        val bonusMatch = numbers.count { it == bonusNumber }
+
+        for (num in numbers) {
+            if (winningnumbers.contains(num)) {
+                winningMatchCount += 1
+            }
+        }
+        return Pair(winningMatchCount, bonusMatch)
+    }
+
+    companion object {
+        const val LOTTO_NUMBERS_OUT_OF_SIZE = "로또 번호는 6개의 숫자로 이루어져야 합니다."
+        const val LOTTO_NUMBERS_NON_DUPLICATE = "로또 번호는 중복될 수 없습니다."
     }
 }

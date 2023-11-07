@@ -1,4 +1,4 @@
-package lotto.model
+package lotto.model.validation
 
 import lotto.Constants
 

@@ -1,22 +1,21 @@
 package lotto.view
 
 import lotto.Constants
-import lotto.model.Lottos
-import lotto.model.Match
-import lotto.model.Reward
+import lotto.model.Lotto
+import lotto.util.Match
 
 class OutputView {
-    fun printPurchaseResults(lottos: Lottos) {
+    fun printPurchaseResults(lottoNumbers: List<Lotto>) {
         println(
             PURCHASE_COUNT_CONFIRMATION.format(
-                lottos.lottoNumbers.size
+                lottoNumbers.size
             )
         )
 
-        println("${lottos}\n")
+        println("${lottoNumbers}\n")
     }
 
-    fun printWinnigResults(result: MutableMap<Int, Int>) {
+    fun printWinnigResults(result: Map<Int, Int>) {
         println(
             """
                 당첨 통계
@@ -30,8 +29,8 @@ class OutputView {
         )
     }
 
-    fun printRateOfReturn(reward: Reward) {
-        println("총 수익률은 ${reward.rateOfReturn}%입니다.")
+    fun printRateOfReturn(reward: Double) {
+        println("총 수익률은 ${reward}%입니다.")
     }
 
     fun printError(errorMessage: String) = println("${Constants.ERROR_TAG} $errorMessage")
