@@ -11,3 +11,8 @@ const val NEGATIVE_ERROR = "음수는 안됩니다."
 const val INDEX_ERROR = "입력 값이 6개가 아닙니다."
 const val RANGE_ERROR = "입력 수의 범위는 1~45 입니다."
 const val DUPLICATE_ERROR = "중복된 값이 있습니다."
+
+const val RANGE_MIN = 1
+const val RANGE_MAX = 45
+const val MONEY_UNIT = 1000
+const val NUMBER_SIZE = 6

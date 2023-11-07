@@ -22,7 +22,7 @@ fun numberCheck(input: String) {
 }
 
 fun moneyCheck(money: Int) {
-    if (money % 1000 != 0) {
+    if (money % MONEY_UNIT != 0) {
         throw IllegalArgumentException(MONEY_ERROR)
     }
 }
@@ -40,7 +40,7 @@ fun winningNumberErrorCheck(input: String, splitInput: List<String>): List<Int> 
     val changeNumbers = input.split(",").map { it.toInt() }
     winNumberDistinctCheck(changeNumbers)
     winNumberRangeCheck(changeNumbers)
-    return changeNumbers.filter { it in 1..45 }
+    return changeNumbers.filter { it in RANGE_MIN..RANGE_MAX }
 }
 
 fun winNumberCheck(splitInput: List<String>) {
@@ -59,14 +59,14 @@ fun winBlankCheck(splitInput: List<String>) {
 }
 
 fun winNumberIndexCheck(splitInput: List<String>) {
-    if (splitInput.size != 6) {
+    if (splitInput.size != NUMBER_SIZE) {
         throw IllegalArgumentException(INDEX_ERROR)
     }
 }
 
 fun winNumberRangeCheck(changeNumbers: List<Int>) {
-    val validNumber = changeNumbers.filter { it in 1..45 }
-    if (validNumber.size != 6) {
+    val validNumber = changeNumbers.filter { it in RANGE_MIN..RANGE_MAX }
+    if (validNumber.size != NUMBER_SIZE) {
         throw IllegalArgumentException(RANGE_ERROR)
 
     }
@@ -89,13 +89,13 @@ fun bonusNumberErrorCheck(winningNumber: List<Int>, bonus: String): Int {
 }
 
 fun bonusBlankCheck(bonus: String) {
-    if (bonus.equals("")) {
+    if (bonus == "") {
         throw IllegalArgumentException(BLANK_ERROR)
     }
 }
 
 fun bonusRangeCheck(bonusNumber: Int) {
-    if (bonusNumber < 1 || bonusNumber > 45) {
+    if (bonusNumber < RANGE_MIN || bonusNumber > RANGE_MAX) {
         throw IllegalArgumentException(RANGE_ERROR)
     }
 }
