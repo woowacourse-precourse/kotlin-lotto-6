@@ -9,11 +9,9 @@ class OutputView {
 
     fun printPurchaseAmount() = println(RequestType.ENTER_PURCHASE_AMOUNT.message)
 
-    fun printPurchasedItemCount(count: Int) = println("${count}${RequestType.PURCHASED_N_ITEMS.message}")
+    fun printPurchasedItemCount(count: Int) = println("\n${count}${RequestType.PURCHASED_N_ITEMS.message}")
 
     fun printLottoInfo(numbers: List<Int>) = println(numbers)
-
-    fun printAppendLine() = println()
 
     fun printEnterWinningNumberMessage() = println(RequestType.ENTER_WINNING_NUMBERS.message)
 

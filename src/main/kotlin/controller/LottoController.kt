@@ -42,7 +42,6 @@ class LottoController(private val inputView: InputView, private val outputView: 
     }
 
     private fun makeLotto() {
-        outputView.printAppendLine()
         do {
             try {
                 purchasedLottoTickets.add(generateLottoTickets())
