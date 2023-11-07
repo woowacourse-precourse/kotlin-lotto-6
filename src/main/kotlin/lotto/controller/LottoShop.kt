@@ -25,23 +25,49 @@ class LottoShop {
 
     fun buyLotto() {
         inputView.buyMessage()
-        val price = inputView.inputView()
-        validator.validatePrice(price)
-        val lottoCount = price.toInt() / 1000
-        repeat(lottoCount) {
-            val numbers = randomUtils.pickLottoNum()
-            val lotto: Lotto = Lotto(numbers.sorted())
-            lottos.add(lotto)
-            println(lotto)
+        while (true) {
+            try {
+                val price = inputView.inputView()
+                validator.validatePrice(price)
+                val lottoCount = price.toInt() / 1000
+                repeat(lottoCount) {
+                    val numbers = randomUtils.pickLottoNum()
+                    val lotto: Lotto = Lotto(numbers.sorted())
+                    lottos.add(lotto)
+                    println(lotto)
+                }
+                startLottoProgram(price.toInt())
+                break
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
         }
-        startLottoProgram(price.toInt())
     }
 
     private fun startLottoProgram(price: Int) {
-        val lottoNum = lottoMC.pickLottoNum()
-        validator.validateLottoNum(lottoNum)
-        val bonusNum = lottoMC.pickBonusNum()
-        validator.validateBonusNum(bonusNum, lottoNum)
+        inputView.lottoMessage()
+
+        var lottoNum: List<Int>
+        while (true) {
+            try {
+                lottoNum = lottoMC.pickLottoNum()
+                validator.validateLottoNum(lottoNum)
+                break
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+
+        var bonusNum: String
+        while (true) {
+            try {
+                bonusNum = lottoMC.pickBonusNum()
+                validator.validateBonusNum(bonusNum, lottoNum)
+                break
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
         checkLottoCorrect(lottoNum, bonusNum, price)
     }
 
@@ -78,11 +104,8 @@ class LottoShop {
         sixMatch: Int,
         price: Int,
     ) {
-        val totalPrize = (threeMatch * THREE_MATCH_PRIZE) +
-                (fourMatch * FOUR_MATCH_PRIZE) +
-                (fiveMatch * FIVE_MATCH_PRIZE) +
-                (bonusMatch * BONUS_MATCH_PRIZE) +
-                (sixMatch * SIX_MATCH_PRIZE)
+        val totalPrize =
+            (threeMatch * THREE_MATCH_PRIZE) + (fourMatch * FOUR_MATCH_PRIZE) + (fiveMatch * FIVE_MATCH_PRIZE) + (bonusMatch * BONUS_MATCH_PRIZE) + (sixMatch * SIX_MATCH_PRIZE)
 
         val earningRate = ((totalPrize.toDouble() / price.toDouble()) * 100)
         val roundedEarningRate = String.format("%.1f", earningRate).toDouble()

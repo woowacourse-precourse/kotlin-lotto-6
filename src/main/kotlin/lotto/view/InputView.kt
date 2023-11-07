@@ -4,11 +4,16 @@ import camp.nextstep.edu.missionutils.Console
 
 class InputView {
 
+
+    fun inputView(): String = Console.readLine()
+
     fun buyMessage() {
         println(PURCHASE_MESSAGE)
     }
 
-    fun inputView(): String = Console.readLine()
+    fun lottoMessage() {
+        println(LOTTO_NUM_MESSAGE)
+    }
 
     companion object {
         const val PURCHASE_MESSAGE = "구입금액을 입력해 주세요."
