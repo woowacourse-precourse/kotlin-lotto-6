@@ -41,6 +41,17 @@ class WinningRecordTest {
         assertThat(actualResult).isEqualTo(expectedResult)
     }
 
+    @Test
+    fun `구매 로또 번호 중 일치하는 보너스 번호가 없으면 거짓이다`() {
+        val bonus = Bonus(7)
+        val winningLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val expectedResult = false
+
+        val actualResult = winningRecord.hasMatchingBonusNumber(winningLotto, bonus)
+
+        assertThat(actualResult).isEqualTo(expectedResult)
+    }
+
     companion object {
         @JvmStatic
         fun generateMatchingNumbersTestCases(): Stream<Arguments> {
