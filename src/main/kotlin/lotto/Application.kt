@@ -81,29 +81,17 @@ fun lottoProcess(
 }
 
 // 결과 출력 함수
-fun printResult(lottoResults: Map<Int, Int>, money: Int) {
+fun printResult(lottoResults: Map<Rank, Int>, money: Int) {
     // 각 당첨 별 상금 설정
-    val rank = mapOf(
-        3 to 5000, 4 to 50000, 5 to 1500000, 6 to 2000000000, 5 to 30000000)
-    var totalRank = 0
-
-    // 당첨 통계 출력
-    println("\n당첨 통계")
-    println("---")
-    // 당첨 별 상금과 개수를 출력
-    lottoResults.forEach { (matchLotto, count) ->
-        // 5개가 일치하고 보너스 볼이 일치하는 경우
-        if (matchLotto == 5 && count > 0) {
-            println("${matchLotto}개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoResults[5]}개")
-            // 상금 총액에 해당 상금 보너스
-            totalRank += lottoResults.getOrDefault(5, 0) * rank.getOrDefault(5, 0)
-        } else {
-            // 그 외의 경우 상금과 개수를 출력
-            println("${matchLotto}개 일치 (${rank.getOrDefault(matchLotto, 0)}원) - ${count}개")
-            // 상금 총액에 해당 상금을 더하기
-            totalRank += count * rank.getOrDefault(matchLotto, 0)
-        }
+    lottoResults.forEach { (rank, count) ->
+        if (count > 0)
+            println("${rank.matchNum}개 일치 (${rank.winningMoney}원)- $count 개")
     }
-    val returnRate = (totalRank.toDouble() / money) * 100 // 수익률 계산
-    println("총 수익률은 %.2f%%입니다.".format(returnRate)) // 수익률 출력
+
+    // 수익금 계산
+    val totalMoney = lottoResults.entries.sumOf {
+        it.key.winningMoney * it.value }
+
+    val returnRate = (totalMoney.toDouble() / money) * 100 // 수익률 계산
+    println("총 수익률은 ${"%.2f".format(returnRate)}% 입니다.") // 수익률 출력
 }
