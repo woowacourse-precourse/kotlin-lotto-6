@@ -45,11 +45,7 @@ object OutputView {
         output.printMessage(GameConstants.MESSAGE_MATCH_SIX)
     }
 
-    fun profitRateMessage() {
-        output.printMessage(GameConstants.MESSAGE_PROFIT_RATE_START)
-    }
-
-    fun profitRateEndMessage() {
-        output.printMessage(GameConstants.MESSAGE_PROFIT_RATE_END)
+    fun profitRateMessage(profitRate: Double) {
+        output.printMessage("${GameConstants.MESSAGE_PROFIT_RATE_START} ${profitRate.toString()} ${GameConstants.MESSAGE_PROFIT_RATE_END}")
     }
 }
