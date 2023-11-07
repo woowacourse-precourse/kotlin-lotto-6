@@ -8,12 +8,16 @@ class Bonus {
         try {
             bonus.toInt()
         } catch (e: NumberFormatException) {
-            error(Constants.ERROR_BONUS_FORMAT)
+            println(Constants.ERROR_BONUS_FORMAT)
+            throw IllegalArgumentException(Constants.ERROR_BONUS_FORMAT)
         }
     }
 
     fun BonuDuplicationValidate(bonus: Int, answer: List<Int>) {
-        if (answer.contains(bonus))
+        if (answer.contains(bonus)){
+            println(Constants.ERROR_BONUS_DUPLICATION)
             throw IllegalArgumentException(Constants.ERROR_BONUS_DUPLICATION)
+        }
+
     }
 }
