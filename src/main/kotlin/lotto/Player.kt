@@ -10,8 +10,13 @@ class Player {
         return createTickets(ticketCount)
     }
 
-    // TODO 지불한 돈 예외처리
-    private fun readTicketPayment(): Int = Console.readLine().trim().toInt()
+    private fun readTicketPayment(): Int {
+        var input: String
+        do {
+            input = Console.readLine().trim()
+        } while (!Validator(input).isPaymentValid())
+        return input.toInt()
+    }
 
     private fun calculateTicketCount(payment: Int): Int = payment / 1_000
 
