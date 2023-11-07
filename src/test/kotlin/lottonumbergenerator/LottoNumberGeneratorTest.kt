@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class LottoNumberGeneratorTest {
@@ -16,13 +17,19 @@ class LottoNumberGeneratorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [1,3,4,30,100])
-    fun `발행한 로또 갯수 만큼 로또 갯수가 만들어지는지 확인`(input: Int) {
+    @CsvSource(
+        "1, 1",
+        "3, 3",
+        "4, 4",
+        "50, 50",
+        "100, 100",
+    )
+    fun `발행한 로또 갯수 만큼 로또 갯수가 만들어지는지 확인`(input: Int, output: Int) {
         lottoNumberGenerator.generateLotto(input)
 
         val result = lottoNumberGenerator.lottoes
 
-        assertThat(result).hasSize(input)
+        assertThat(result).hasSize(output)
     }
 
     @Test
