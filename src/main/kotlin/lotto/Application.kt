@@ -13,7 +13,7 @@ fun null_check(i: String?): String{
 fun lottoMoney(): Int{
     val amount = try{
         val money = null_check(readLine()).toIntOrNull()
-        if (money == null || money % 1000 != 0){
+        if (money == null || money % 1000 != 0 || money == 0){
             throw IllegalArgumentException("[ERROR] 잘못된 입금액 입니다. 1000원 단위로 입금해주세요. Ex)8000, 11000")
         }
             money.div(1000)
