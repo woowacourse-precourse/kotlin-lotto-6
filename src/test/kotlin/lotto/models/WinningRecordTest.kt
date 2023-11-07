@@ -52,6 +52,27 @@ class WinningRecordTest {
         assertThat(actualResult).isEqualTo(expectedResult)
     }
 
+
+    @Test
+    fun `구매한 로또에 대해 당첨 결과들을 정확히 기록한다`() {
+        val purchasedLottos = listOf(
+            Lotto(listOf(1, 2, 3, 4, 5, 6)),
+            Lotto(listOf(1, 2, 3, 4, 5, 7)),
+        )
+        val winningLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val bonus = Bonus(7)
+        val winningRecord = WinningRecord()
+        val expectedFirstWinningResult = 1
+        val expectedSecondWinningResult = 1
+
+        winningRecord.recordWinningResults(purchasedLottos, winningLotto, bonus)
+        val actualRecord = winningRecord.record
+
+        assertThat(actualRecord[WinningRank.FIRST]).isEqualTo(expectedFirstWinningResult)
+        assertThat(actualRecord[WinningRank.SECOND]).isEqualTo(expectedSecondWinningResult)
+    }
+
+
     companion object {
         @JvmStatic
         fun generateMatchingNumbersTestCases(): Stream<Arguments> {
