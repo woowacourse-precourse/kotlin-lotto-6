@@ -25,7 +25,7 @@ class WinningLotto {
         do {
             println(InfoMessage.INPUT_WINNING_NUMBERS.message)
             input = Console.readLine().trim()
-        } while (!Validator(input).isWinningNumbersValid())
+        } while (!WinningNumbersValidator(input).isValid())
         return input.split(",").map { it.toInt() }
     }
 
@@ -34,7 +34,7 @@ class WinningLotto {
         do {
             println(InfoMessage.INPUT_BONUS_NUMBER.message)
             input = Console.readLine()
-        } while (!Validator(input).isBonusBallValid(winningNumbers))
+        } while (!BonusNumberValidator(input).isValid(winningNumbers))
         return input.toInt()
     }
 
