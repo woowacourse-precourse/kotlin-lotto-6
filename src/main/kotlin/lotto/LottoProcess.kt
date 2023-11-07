@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console
 class LottoProcess {
     fun start() {
         val userCost = payLottery()
-        val userTickets = getLottoTickets(userCost)
+        val userTicket = getLottoTickets(userCost)
     }
 
     private fun payLottery(): Int {
@@ -17,6 +17,12 @@ class LottoProcess {
 
     private fun getLottoTickets(payment: Int): List<Lotto> {
         return LottoMachine(payment).generateLotto()
+    }
+
+    private fun printLottoTickets(userTickets: List<Lotto>) {
+        for (ticket in userTickets) {
+            println("${ticket.getDelimiter()}")
+        }
     }
 
     private fun validatePayment(userPayment: String): String {
