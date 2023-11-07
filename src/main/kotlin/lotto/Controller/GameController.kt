@@ -14,7 +14,7 @@ class GameController {
         val bonusNumber = readBonusNumber()
         val result = Result.calculateResults(lottoTickets, winningNumbers, bonusNumber)
         val profitRate = Result.calculateProfitRate(result)
-
+        Output.printResults(result, profitRate)
     }
 
     private fun readPurchaseAmount(): Int {
