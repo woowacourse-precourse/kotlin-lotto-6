@@ -2,6 +2,7 @@ package lotto
 
 import lotto.domain.LottoPurchase
 import lotto.domain.WinningNumberGenerator
+import lotto.domain.WinningStatistics
 import lotto.ui.Output
 
 fun main() {
@@ -17,4 +18,7 @@ fun startLotto() {
     val winningNumberGenerator = WinningNumberGenerator()
     val winningNumber = winningNumberGenerator.inputWinningNumber()
     val bonusNumber = winningNumberGenerator.inputBonusNumber(winningNumber)
+    val winningStatistics = WinningStatistics()
+    val winningDetails = winningStatistics.getWinningDetails(lottos, winningNumber, bonusNumber)
+    Output.printWinningStatistics(winningDetails)
 }

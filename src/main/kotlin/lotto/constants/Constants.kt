@@ -6,11 +6,19 @@ const val MAXIMUM_NUMBER = '9'
 const val MINIMUM_LOTTO_NUMBER = 1
 const val MAXIMUM_LOTTO_NUMBER = 45
 const val LOTTO_SIZE = 6
+const val DIVIDING_LINE = "---"
+const val MATCH_THREE = "3개 일치 (5,000원) - "
+const val MATCH_FOUR = "4개 일치 (50,000원) - "
+const val MATCH_FIVE = "5개 일치 (1,500,000원) - "
+const val MATCH_FIVE_AND_BONUS = "5개 일치, 보너스 볼 일치 (30,000,000원) - "
+const val MATCH_SIX = "6개 일치 (2,000,000,000원) - "
+const val COUNT = "개"
 
 const val MESSAGE_PURCHASE_AMOUNT = "구입금액을 입력해 주세요."
 const val MESSAGE_LOTTERY_NUMBER = "개를 구매했습니다."
 const val MESSAGE_INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요."
 const val MESSAGE_INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요."
+const val MESSAGE_WINNING_STATISTICS = "당첨 통계"
 
 const val MESSAGE_ONLY_NUMBER = "[ERROR] 숫자만 입력해주세요."
 const val MESSAGE_NOT_FIT_UNIT_1000 = "[ERROR] 1,000원 단위로 입력해주세요."
