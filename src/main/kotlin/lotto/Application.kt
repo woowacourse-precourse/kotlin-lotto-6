@@ -6,13 +6,13 @@ import kotlin.math.round
 fun lottoMoney(): Int{
     try {
         val moneyinput: String? = readLine()
-        requireNotNull(moneyinput) { "[ERROR" }
+        requireNotNull(moneyinput) { "[ERROR]" }
         val money: Int? = moneyinput.toIntOrNull()
         require(money != null && money != 0 && money % 1000 == 0) { "[ERROR]" }
         return money.div(1000)
     }
     catch(e:IllegalArgumentException){
-        println("[ERROR]")
+        println("[ERROR] ${e.message}")
         return lottoMoney()
     }
 }
@@ -36,11 +36,11 @@ fun winInput(): MutableList<Int>{
             require(num >= 1 && num <= 45)
             win_number.add(num)
         }
-        require(input_number.distinct().size == 6) { "[ERROR]" }
+        require(input_number.size == 6 && input_number.distinct().size == 6) { "[ERROR]" }
         return win_number
     }
     catch(e: IllegalArgumentException){
-        println("[ERROR]")
+        println("[ERROR] ${e.message}")
         return winInput()
     }
 }
@@ -48,11 +48,11 @@ fun winInput(): MutableList<Int>{
 fun bonusChecker(win_num:MutableList<Int>): Int{
     try {
         val input_bonus: Int? = requireNotNull(readLine()) { "[ERROR]" }.toIntOrNull()
-        require(input_bonus != null && input_bonus !in win_num)
+        require(input_bonus != null && input_bonus !in win_num && input_bonus >= 1 && input_bonus <= 45)
         return input_bonus
     }
     catch(e:IllegalArgumentException){
-        println("[ERROR]")
+        println("[ERROR] ${e.message}")
         return bonusChecker(win_num)
     }
 }
