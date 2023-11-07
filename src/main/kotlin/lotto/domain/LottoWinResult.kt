@@ -15,7 +15,7 @@ class LottoWinResult {
             6 -> ranks[Rank.ALL_MATCH.grade] += 1
             5 -> ranks[calculateRankWithBonus(bonus)] += 1
             4 -> ranks[Rank.FOUR_MATCH.grade] += 1
-            3 -> ranks[Rank.FOUR_MATCH.grade] += 1
+            3 -> ranks[Rank.THREE_MATCH.grade] += 1
             else -> ranks[Rank.NOT_MATCH.grade] += 1
         }
     }
