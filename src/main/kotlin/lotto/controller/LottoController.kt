@@ -31,7 +31,7 @@ class LottoController(
 
         outputView.lottoCompareResult(compareResult)
 
-        outputView.lottoProfit(ProfitCalculation().profit(compareResult,moneyInput))
+        outputView.lottoProfit(ProfitCalculation().profit(compareResult,lotto))
 
 
     }

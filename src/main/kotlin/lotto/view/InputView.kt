@@ -2,8 +2,8 @@ package lotto.view
 import camp.nextstep.edu.missionutils.Console
 class InputView {
 
-    fun lottoPurchase(): Int{
-        return (Console.readLine()).toInt()
+    fun lottoPurchase(): String{
+        return Console.readLine()
     }
     fun inputRightLottoNumber(): List<Int>{
         val rightLottoNumber=Console.readLine()

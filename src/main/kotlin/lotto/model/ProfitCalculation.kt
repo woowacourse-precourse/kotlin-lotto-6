@@ -19,6 +19,7 @@ class ProfitCalculation {
         sum+= result[OutputMessages.FOUR_NUMBER_CORRECT]!!.times((FOUR_NUMBER_NUMBER_PRICE))
         sum+= result[OutputMessages.THREE_NUMBER_CORRECT]!!.times((THREE_NUMBER_NUMBER_PRICE))
 
-        return ((sum.toDouble()/money)*100)
+
+        return ((sum.toDouble()/(money*1000))*100)
     }
 }
