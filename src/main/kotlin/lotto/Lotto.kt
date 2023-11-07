@@ -22,4 +22,8 @@ class Lotto(private val numbers: List<Int>) {
     }
 }
 
-//enum class
+enum class Error(val message: String){
+    error_moneyinput("[ERROR] 돈은 1000원 단위로 입력해주세요 Ex) 1000, 85000"),
+    error_numberinput("[ERROR] 1에서 45까지의 숫자를 중복없이 6개 입력해주세요 Ex) 1,2,3,4,5,6"),
+    error_bonusinput("[ERROR] 1에서 45까지의 숫자를 당첨번호와 중복없이 입력해주세요 Ex) 7")
+}
