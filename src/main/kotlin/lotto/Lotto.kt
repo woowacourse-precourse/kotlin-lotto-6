@@ -5,7 +5,7 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
     }
 
-    fun calculateMatchCount(luckyNumbers: List<Int>): Int {
+    fun matchNumbers(luckyNumbers: List<Int>): Int {
         var count = 0
 
         luckyNumbers.forEach { number ->
