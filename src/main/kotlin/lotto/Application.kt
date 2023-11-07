@@ -13,18 +13,36 @@ fun main() {
 }
 
 fun printResults(results: List<LottoResult>, purchaseAmount: Int) {
-    val resultCounts = results.groupingBy { it }.eachCount()
+    val resultCounts = countResults(results)
+    printResultMessages(resultCounts)
+    val profitRate = calculateProfitRate(results, purchaseAmount)
+    printProfitRate(profitRate)
+}
+//결과값 출력
+fun countResults(results: List<LottoResult>): Map<LottoResult, Int> {
+    return results.groupingBy { it }.eachCount()
+}
+//결과 집계
+fun printResultMessages(resultCounts: Map<LottoResult, Int>) {
     for (result in LottoResult.values()) {
         if (result != LottoResult.NONE) {
             val count = resultCounts[result] ?: 0
             println(result.getFormattedResult(count))
         }
     }
+}
+//결과 출력
+fun calculateProfitRate(results: List<LottoResult>, purchaseAmount: Int): Double {
     val totalPrize = results.sumOf { it.prize }
-    val profitRate = totalPrize.toDouble() / purchaseAmount * 100
+    return totalPrize.toDouble() / purchaseAmount * 100
+}
+//수익률 계산
+fun printProfitRate(profitRate: Double) {
     println("총 수익률은 ${profitRate}%입니다.")
 }
-//결과값 출력
+//수익률 표기
+
+
 fun buyTickets(): Pair<List<Lotto>, Int> {
     val purchaseAmount = getValidPurchaseAmount()
     val tickets = buyLottoTickets(purchaseAmount)
