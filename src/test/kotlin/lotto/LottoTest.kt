@@ -55,4 +55,20 @@ class LottoTest {
 
         assertThat(ranks[Rank.ALL_MATCH.grade]).isEqualTo(1)
     }
+
+    @Test
+    fun `로또 8개를 구입한 후 5,000원에 당첨되었을 때 수익률을 알 수 있다`() {
+        val winResult = LottoWinResult()
+        val luckyNumbers = listOf(1, 2, 3, 4, 5, 6)
+        val lotto = Lotto(listOf(1, 2, 3, 10, 11, 12))
+        val price = 8000
+
+        val matchCount = lotto.matchNumbers(luckyNumbers)
+        winResult.addPrizeMoney(matchCount, false)
+        val totalMoney = winResult.getTotalMoney()
+        val rateOfProfit = winResult.calculateRateOfProfit(price, totalMoney)
+
+        assertThat(totalMoney).isEqualTo(5000)
+        assertThat(rateOfProfit).isEqualTo(62.5)
+    }
 }
