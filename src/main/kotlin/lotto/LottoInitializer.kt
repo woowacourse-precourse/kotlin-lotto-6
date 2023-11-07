@@ -14,6 +14,7 @@ class LottoInitializer {
     private fun getPurchaseMoney(): Int {
         purchaseInputMessage()
         val purchaseMoney = Console.readLine()
+        Validation().purchaseMoneyValidation(purchaseMoney)
         return purchaseMoney.toInt()
     }
 
