@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import validation.ValidationManager
 
 class ApplicationTest : NsTest() {
 
@@ -47,6 +49,56 @@ class ApplicationTest : NsTest() {
         assertSimpleTest {
             runException("1000j")
             assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `로또 구입 금액이 1000으로 나누어 안떨어지면 예외가 발생한다`() {
+        val lottoPurchaseAmount = 1001
+        assertThrows<IllegalArgumentException> {
+            ValidationManager().apply {
+                lottoPurchaseAmount.modulusLottoPrice()
+            }
+        }
+    }
+
+    @Test
+    fun `로또 구입 금액이 0보다 작으면 예외가 발생한다`() {
+        val lottoPurchaseAmount = -10000
+        assertThrows<IllegalArgumentException> {
+            ValidationManager().apply {
+                lottoPurchaseAmount.lessThanZero()
+            }
+        }
+    }
+
+    @Test
+    fun `로또 숫자가 올바르지 않으면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            ValidationManager().apply {
+                listOf(1, 2, 3, 4, 5, 46).forEach { number ->
+                    number.validLottoNumber()
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `당첨 번호의 개수가 일치하지 않으면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            ValidationManager().apply {
+                arrayListOf(1, 2, 3, 4, 5).isCorrectLottoCount()
+            }
+        }
+    }
+
+    @Test
+    fun `당첨 번호에 보너스 번호가 포함되어 있다면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            val bonusNumber = 1
+            ValidationManager().apply {
+                arrayListOf(1, 2, 3, 4, 5, 6).containBonusNumber(bonusNumber)
+            }
         }
     }
 
