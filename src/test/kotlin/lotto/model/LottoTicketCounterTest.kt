@@ -1,11 +1,10 @@
-package lotto
+package lotto.model
 
-import lotto.model.LottoTicketCounter
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 
-class LottoCountTest {
+class LottoTicketCounterTest {
     private val purchase = "10000"
     private val lottoTicketCounter = LottoTicketCounter(purchase)
 
