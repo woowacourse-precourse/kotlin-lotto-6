@@ -4,14 +4,14 @@ class LottoGame {
     private val userInput = UserInput()
     private val lottoCalculator = LottoCalculator()
     private val lottoFactory = LottoFactory()
-    private val lottoPrinter = LottoPrinter()
+    private val lottoGamePrinter = LottoGamePrinter()
     fun gamePlay() {
         val purchasedAmount = userInput.purchasedAmountInput()
 
         val lottoCount = lottoCalculator.calLottoCount(purchasedAmount)
         val lottoList = lottoFactory.createLottoByCount(lottoCount)
 
-        lottoPrinter.showLottoList(lottoCount, lottoList)
+        lottoGamePrinter.showLottoList(lottoCount, lottoList)
 
         val winningList = userInput.winningPriceInput()
 
