@@ -2,7 +2,7 @@ package lotto
 
 class LotteryGame {
 
-    enum class won(val count: Int) {
+    enum class won(var count: Int) {
         FIRST(0),
         SECOND(0),
         THIRD(0),
@@ -20,11 +20,11 @@ class LotteryGame {
 
         val tickets = makeTickets(count)
 
-        val win_num = makeWinningNumber()
-        val bonus: Int = readLine()!!.toInt()
+        val win_num = enterWinningNumber()
+        val bonus: Int = enterBonusNumber()
 
         for (i in tickets) {
-
+            check(i.round(win_num, bonus))
         }
 
     }
@@ -46,7 +46,8 @@ class LotteryGame {
         return bullet
     }
 
-    private fun makeWinningNumber(): List<Int> {
+    private fun enterWinningNumber(): List<Int> {
+        println("당첨 번호를 입력해 주세요.")
         var win_input: List<String> = readLine()!!.split(",")
         val numbers = mutableListOf<Int>()
 
@@ -55,6 +56,11 @@ class LotteryGame {
         }
 
         return numbers.distinct().sorted()
+    }
+
+    private fun enterBonusNumber(): Int {
+        println("보너스 번호를 입력해 주세요.")
+        return readLine()!!.toInt()
     }
 
     private fun makeTickets(count: Int): MutableList<Lotto> {
@@ -70,5 +76,14 @@ class LotteryGame {
         return tickets
     }
 
+    private fun check(count: Int) {
+        when(count) {
+            1 -> won.FIRST.count++
+            2 -> won.SECOND.count++
+            3 -> won.THIRD.count++
+            4 -> won.FOURTH.count++
+            5 -> won.FIFTH.count++
+        }
+    }
 
 }

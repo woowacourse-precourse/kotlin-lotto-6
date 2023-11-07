@@ -20,6 +20,8 @@ class Lotto(private val numbers: List<Int>) {
             5 -> return 3
             6 -> return 1
         }
+
+        return 0
     }
 
     private fun winningCheck(win_num: List<Int>): Int {
