@@ -1,10 +1,6 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
-import kotlin.math.*
-import lotto.Lotto
-import lotto.Lottos
-import lotto.LottoResult
 
 class LottoController(private val view: ScreenView) {
     fun pickRandomNums(): Lotto {
@@ -36,10 +32,10 @@ class LottoController(private val view: ScreenView) {
         return count
     }
 
-    fun countWinningNums(lottos: Lottos, answer: List<Int>, bonusNum: Int, result: LottoResult){
+    fun countWinningNums(lottos: Lottos, answer: List<Int>, bonusNum: BonusNum, result: LottoResult){
         lottos.lottos.forEach{
             var count = countEqualNums(answer, it.getNumbers())
-            if (count == 5 && it.getNumbers().contains(bonusNum)){
+            if (count == 5 && it.getNumbers().contains(bonusNum.getBonusNum())){
                 count = 51
             }
             checkWinningNums(count, result)

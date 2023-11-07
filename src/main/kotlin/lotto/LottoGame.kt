@@ -1,7 +1,5 @@
 package lotto
 
-import lotto.LottoController
-import lotto.ScreenView
 class LottoGame {
     private val view  = ScreenView()
     private val controller = LottoController(view = view)
@@ -18,10 +16,11 @@ class LottoGame {
 
         // 보너스 번호를 입력 받는다.
         val bonusNum = view.inputBonusNum()
+        val BonusNum = BonusNum(bonusNum)
 
-        //
+        // 당첨 현황을 계산한다.
         val result = LottoResult()
-        controller.countWinningNums(boughtLottos, answerLotto, bonusNum, result)
+        controller.countWinningNums(boughtLottos, answerLotto, BonusNum, result)
         controller.calculateRateOfReturn(result, lottoQuantity*1000)
 
         // 당첨 내역을 출력한다.
