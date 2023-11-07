@@ -23,4 +23,14 @@ class MoneyTest {
             .isThrownBy { Money(input) }
             .withMessage("[ERROR] 금액은 음수가 될 수 없습니다.")
     }
+
+    @Test
+    fun `문자열 출력시 세자리마다 콤마를 찍고 접미사를 붙여 출력`() {
+        // given
+        val input = 2000000000
+        // when
+        val result = Money(input).toString()
+        // then
+        assertEquals("2,000,000,000원", result)
+    }
 }
