@@ -8,5 +8,5 @@ data class UserLottoState(
     var fourthPrizeCount: Int = 0,
     var fifthPrizeCount: Int = 0,
     var totalPrizeAmount: Int = 0,
-    var totalPrizeRate: Double = 0.0,
+    var totalPrizeRate: Double = -1.0,
 )
