@@ -31,7 +31,7 @@ fun printResultMessages(resultCounts: Map<LottoResult, Int>) {
         }
     }
 }
-//결과 출력
+//결과 출력 메시지
 fun calculateProfitRate(results: List<LottoResult>, purchaseAmount: Int): Double {
     val totalPrize = results.sumOf { it.prize }
     return totalPrize.toDouble() / purchaseAmount * 100
