@@ -1,68 +1,21 @@
-//package lotto
-//
-//// 메서드 분리: when (lottoNumberMatch)로 인덱스를 반환하는 메서드
-//// when (lottoNumberMatch)로 totalPrize를 반환하는 메서드
-//class LottoPrizeCalculator {
-//    fun calculatePrizesAndReturnTotalPrize(lottoPurchaseCounts: List<List<Int>>, winningLotteryNumbers: List<Int>, bonusNumber: Int, prizeCounts: IntArray): Int {
-//        var totalPrize = 0
-//
-//        for (i in 0 until lottoPurchaseCounts.size) {
-//            val union = lottoPurchaseCounts[i] + winningLotteryNumbers
-//            val intersection = union.groupBy { it }.filter { it.value.size > 1 }.flatMap { it.value }.distinct()
-//            var lottoNumberMatch = intersection.size
-//            var bonusNumberMatch = lottoPurchaseCounts[i].contains(bonusNumber)
-//
-//            if (bonusNumberMatch && lottoNumberMatch == 4) {
-//                bonusNumberMatch = false
-//                lottoNumberMatch++
-//            }
-//            if (bonusNumberMatch && lottoNumberMatch != 5) {
-//                lottoNumberMatch++
-//            }
-//
-//            when (lottoNumberMatch) {
-//                6 -> {
-//                    prizeCounts[4]++
-//                    totalPrize += 2000000000
-//                }
-//
-//                5 -> {
-//                    if (bonusNumberMatch) {
-//                        prizeCounts[3]++
-//                        totalPrize += 30000000
-//                    } else {
-//                        prizeCounts[2]++
-//                        totalPrize += 1500000
-//                    }
-//                }
-//
-//                4 -> {
-//                    prizeCounts[1]++
-//                    totalPrize += 50000
-//                }
-//
-//                3 -> {
-//                    prizeCounts[0]++
-//                    totalPrize += 5000
-//                }
-//            }
-//
-//        }
-//        return totalPrize
-//    }
-//}
-
-
 package lotto
 
 class LottoPrizeCalculator {
-    var lottoNumberMatch = 0
-    var bonusNumberMatch = false
+    private var lottoNumberMatch = INITIAL_NUM
+    private var bonusNumberMatch = false
 
+    companion object {
+        private const val INITIAL_NUM = 0
+        private const val SIX_MATCH_PRIZE = 2_000_000_000
+        private const val FIVE_AND_BONUS_MATCH_PRIZE = 30_000_000
+        private const val FIVE_MATCH_PRIZE = 1_500_000
+        private const val FOUR_MATCH_PRIZE = 50_000
+        private const val THREE_MATCH_PRIZE = 5_000
+    }
     fun calculatePrizesAndReturnTotalPrize(lottoPurchaseCounts: List<List<Int>>, winningLotteryNumbers: List<Int>, bonusNumber: Int, prizeCounts: IntArray): Int {
-        var totalPrize = 0
+        var totalPrize = INITIAL_NUM
 
-        for (i in 0 until lottoPurchaseCounts.size) {
+        for (i in INITIAL_NUM until lottoPurchaseCounts.size) {
             val union = lottoPurchaseCounts[i] + winningLotteryNumbers
             val intersection = union.groupBy { it }.filter { it.value.size > 1 }.flatMap { it.value }.distinct()
             lottoNumberMatch = intersection.size
@@ -99,21 +52,21 @@ class LottoPrizeCalculator {
             else -> -1
         }
 
-        if (prizeIndex >= 0) {
+        if (prizeIndex >= INITIAL_NUM) {
             prizeCounts[prizeIndex]++
             return calculatePrizeForMatch(lottoNumberMatch)
         }
 
-        return 0
+        return INITIAL_NUM
     }
 
     private fun calculatePrizeForMatch(lottoNumberMatch: Int): Int {
         return when (lottoNumberMatch) {
-            6 -> 2_000_000_000
-            5 -> if (bonusNumberMatch) 30_000_000 else 1_500_000
-            4 -> 50_000
-            3 -> 5_000
-            else -> 0
+            6 -> SIX_MATCH_PRIZE
+            5 -> if (bonusNumberMatch) FIVE_AND_BONUS_MATCH_PRIZE else FIVE_MATCH_PRIZE
+            4 -> FOUR_MATCH_PRIZE
+            3 -> THREE_MATCH_PRIZE
+            else -> INITIAL_NUM
         }
     }
 }
