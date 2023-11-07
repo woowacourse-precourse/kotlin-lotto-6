@@ -37,35 +37,34 @@ class LottoController(private val lottoView: LottoView, private val lotto: Lotto
     }
 
 
+    private fun formatRankString(rank: LottoRank, count: Int, prize: Int): String {
+        return when {
+            rank == LottoRank.SECOND && count >= 0 -> {
+                "${rank.matchCount}개 일치, 보너스 볼 일치 (${String.format("%,d", prize)}원) - ${count}개"
+            }
+
+            else -> {
+                "${rank.matchCount}개 일치 (${String.format("%,d", prize)}원) - ${count}개"
+            }
+        }
+    }
+
     private fun displayWinningStatistics(winnings: Map<LottoRank, Int>, purchaseAmount: Int) {
         println("\n당첨 통계")
         println("---")
-
         val sortedWinnings = winnings.entries.sortedByDescending { it.key.matchCount }
-
         for (rank in LottoRank.values()) {
             val count = sortedWinnings.find { it.key == rank }?.value ?: 0
             if (rank != LottoRank.NONE) {
                 val prize = rank.prize
-                if (rank == LottoRank.SECOND && count > 0) {
-                    println("${rank.matchCount}개 일치, 보너스 볼 일치 (${String.format("%,d", prize)}원) - ${count}개")
-                } else if (rank == LottoRank.SECOND && count == 0) {
-                    println("${rank.matchCount}개 일치, 보너스 볼 일치 (${String.format("%,d", prize)}원) - ${count}개")
-                } else {
-                    println("${rank.matchCount}개 일치 (${String.format("%,d", prize)}원) - ${count}개")
-                }
+                val rankString = formatRankString(rank, count, prize)
+                println(rankString)
             }
         }
-
-        val totalPrize = winnings.entries.sumBy { (rank, count) -> rank.prize * count }
-        val totalProfitRate = (totalPrize.toDouble() / purchaseAmount.toDouble()) * 100
+        val totalProfitRate = (winnings.entries.sumBy { (rank, count) -> rank.prize * count }.toDouble() / purchaseAmount.toDouble()) * 100
         val totalRate = String.format("%.1f", totalProfitRate)
         println("총 수익률은 ${totalRate}%입니다.")
     }
-
-
-
-
 
 
     fun run() {
