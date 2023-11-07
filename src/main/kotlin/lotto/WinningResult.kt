@@ -24,6 +24,7 @@ class WinningResult(
 
     fun printResults() {
         val (statistics, totalPrize) = calculateStatistics()
+        val profitRate = calculateProfitRate(lottoTickets.size * 1000, totalPrize)
         println("당첨 통계")
         println("---")
         for (rank in LottoRank.entries) {
@@ -32,5 +33,8 @@ class WinningResult(
             val formattedPrizeMoney = String.format("%,d", prizeMoney)
             println("${rank.rankDescription} (${formattedPrizeMoney}원) - ${count}개")
         }
+
+        val formattedProfitRate = String.format("%.1f%%", profitRate)
+        println("총 수익률은 $formattedProfitRate 입니다.")
     }
 }
