@@ -1,31 +1,46 @@
 package lotto.controller
 
 import camp.nextstep.edu.missionutils.Console.readLine
+import lotto.constants.LottoConstants.MAX_LOTTO_NUMBER
+import lotto.constants.LottoConstants.MIN_LOTTO_NUMBER
+import lotto.constants.LottoConstants.THOUSAND_WON
 import lotto.model.LottoModel
-import lotto.enums.Exception
+import lotto.message.Exception.AMOUNT_MUST_BE_THOUSAND_WON
+import lotto.message.Exception.DUPLICATED_BONUS_NUMBER
+import lotto.message.Exception.DUPLICATED_NUMBER
+import lotto.message.Exception.INPUT_IS_BLANK
+import lotto.message.Exception.INVALID_COUNT
+import lotto.message.Exception.INVALID_RANGE_NUMBER
+import lotto.message.Exception.NOT_NUMBER
+import lotto.message.OutPut.PLEASE_INPUT_AMOUNT
+import lotto.message.OutPut.PLEASE_INPUT_BONUS_NUMBER
+import lotto.message.OutPut.PLEASE_INPUT_WINNING_NUMBER
 import lotto.view.LottoView
 
 class LottoController(private val lottoModel: LottoModel, private val lottoView: LottoView) {
 
-    val MIN_LOTTO_NUMBER = 1
-    val MAX_LOTTO_NUMBER = 45
-
     fun startLotto() {
         lottoView.printEnterPurchaseMessage()
         inputPurchaseAmount()
+        lottoView.displayLottoNumbers(lottoModel.getLottoNumbers())
+
+        lottoView.printEnterWinningNumberMessage()
+        inputWinningNumbers()
+
+        lottoView.printEnterBonusNumberMessage()
+        inputBonusNumber()
+
+        lottoView.displayResults(lottoModel.calculateLotto())
+        lottoView.displayProfit(lottoModel.calculatorProfit())
     }
 
-    private fun inputPurchaseAmount() {
+    private fun inputPurchaseAmount()  {
         while (true) {
             try {
-                lottoModel.generateLottoNumbers(checkPurchaseAmount(readLine()))
-                lottoView.displayLottoNumbers(lottoModel.getLottoNumbers())
-                lottoView.printEnterWinningNumberMessage()
-                inputWinningNumbers()
+                checkPurchaseAmount(readLine())
                 break
             } catch (e: IllegalArgumentException) {
-                println("${Exception.ERROR_HEADER.message} ${e.message}")
-                lottoView.printEnterPurchaseMessage()
+                lottoView.printErrorAndRetryMessage(PLEASE_INPUT_AMOUNT, e)
             }
         }
     }
@@ -33,13 +48,10 @@ class LottoController(private val lottoModel: LottoModel, private val lottoView:
     private fun inputWinningNumbers() {
         while (true) {
             try {
-                lottoModel.setWinningNumbers(checkWinningNumbers(readLine()))
-                lottoView.printEnterBonusNumberMessage()
-                inputBonusNumber()
+                checkWinningNumbers(readLine())
                 break
             } catch (e: IllegalArgumentException) {
-                println("${Exception.ERROR_HEADER.message} ${e.message}")
-                lottoView.printEnterWinningNumberMessage()
+                lottoView.printErrorAndRetryMessage(PLEASE_INPUT_WINNING_NUMBER, e)
             }
         }
     }
@@ -48,41 +60,39 @@ class LottoController(private val lottoModel: LottoModel, private val lottoView:
         while (true) {
             try {
                 checkBonusNumber(readLine())
-                lottoView.displayResults(lottoModel.calculateLotto())
-                lottoView.displayProfit(lottoModel.calculatorProfit())
                 break
             } catch (e: IllegalArgumentException) {
-                println("${Exception.ERROR_HEADER.message} ${e.message}")
-                lottoView.printEnterBonusNumberMessage()
+                lottoView.printErrorAndRetryMessage(PLEASE_INPUT_BONUS_NUMBER, e)
             }
         }
     }
 
     private fun checkPurchaseAmount(purchaseAmount: String): Int {
-        require(purchaseAmount.isNotBlank() && purchaseAmount.isNotEmpty()) { Exception.INPUT_IS_BLANK.message }
-        require(purchaseAmount.isDigit()) { Exception.NOT_NUMBER.message }
+        require(purchaseAmount.isNotBlank() && purchaseAmount.isNotEmpty()) { INPUT_IS_BLANK }
+        require(purchaseAmount.isDigit()) { NOT_NUMBER }
         val amount = purchaseAmount.toInt()
-        require(amount > 0 && amount % 1000 == 0) { Exception.AMOUNT_MUST_BE_THOUSAND_WON.message }
+        require(amount > 0 && amount % THOUSAND_WON == 0) { AMOUNT_MUST_BE_THOUSAND_WON }
 
+        lottoModel.generateLottoNumbers(amount)
         return amount
     }
 
-    private fun checkWinningNumbers(winningNumbers: String): String {
+    private fun checkWinningNumbers(winningNumbers: String) {
         val splitWinningNumbers = winningNumbers.split(",")
-        require(splitWinningNumbers.size == 6) { Exception.INVALID_COUNT.message }
-        require(splitWinningNumbers.all { it.isNotBlank() && it.isNotEmpty() }) { Exception.INPUT_IS_BLANK.message }
-        require(splitWinningNumbers.all { it.isDigit() }) { Exception.NOT_NUMBER.message }
-        require(splitWinningNumbers.toSet().size == 6) { Exception.DUPLICATED_NUMBER.message }
-        require(splitWinningNumbers.all { it.toInt() in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER }) { Exception.INVALID_RANGE_NUMBER.message }
+        require(splitWinningNumbers.size == 6) { INVALID_COUNT }
+        require(splitWinningNumbers.all { it.isNotBlank() && it.isNotEmpty() }) { INPUT_IS_BLANK }
+        require(splitWinningNumbers.all { it.isDigit() }) { NOT_NUMBER }
+        require(splitWinningNumbers.toSet().size == 6) { DUPLICATED_NUMBER }
+        require(splitWinningNumbers.all { it.toInt() in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER }) { INVALID_RANGE_NUMBER }
 
-        return winningNumbers
+        lottoModel.setWinningNumbers(winningNumbers)
     }
 
     private fun checkBonusNumber(bonusNumber: String) {
-        require(bonusNumber.isNotBlank() && bonusNumber.isNotEmpty()) { Exception.INPUT_IS_BLANK.message }
-        require(bonusNumber.isDigit()) { Exception.NOT_NUMBER.message }
-        require(bonusNumber.toInt() in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER ) { Exception.INVALID_RANGE_NUMBER.message }
-        require(lottoModel.getWinningNumber().none() { it == bonusNumber }) { Exception.DUPLICATED_BONUS_NUMBER.message }
+        require(bonusNumber.isNotBlank() && bonusNumber.isNotEmpty()) { INPUT_IS_BLANK }
+        require(bonusNumber.isDigit()) { NOT_NUMBER }
+        require(bonusNumber.toInt() in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER ) { INVALID_RANGE_NUMBER }
+        require(lottoModel.getWinningNumber().none() { it == bonusNumber }) { DUPLICATED_BONUS_NUMBER }
 
         lottoModel.setBonusNumbers(bonusNumber)
     }
