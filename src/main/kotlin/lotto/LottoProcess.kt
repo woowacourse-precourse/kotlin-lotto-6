@@ -25,15 +25,15 @@ class LottoProcess {
 
     private fun printLottoTickets(userTickets: List<Lotto>) {
         for (ticket in userTickets) {
-            println(ticket.getDelimiter())
+            println("[${ticket.getDelimiter()}]")
         }
     }
 
     private fun getWinningNumbers(): WinningNumbers {
-        println("당첨 번호를 입력해 주세요.")
+        println("\n당첨 번호를 입력해 주세요.")
         val inputWinningNumber = Console.readLine()
         val winningNumbers = validateNumbersInput(inputWinningNumber)
-        println("보너스 번호를 입력해 주세요.")
+        println("\n보너스 번호를 입력해 주세요.")
         val inputBonus = Console.readLine()
         val bonusNumber = validateNumberInput(inputBonus)
         return WinningNumbers(winningNumbers, bonusNumber)

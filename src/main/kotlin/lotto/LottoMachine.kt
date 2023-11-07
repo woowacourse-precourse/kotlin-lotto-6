@@ -15,7 +15,7 @@ class LottoMachine(payment: Int) {
             lottoTickets.add(sortedLotto)
         }
 
-        println("${numberOfTicket}개를 구매했습니다.")
+        println("\n${numberOfTicket}개를 구매했습니다.")
         return lottoTickets
     }
 }
