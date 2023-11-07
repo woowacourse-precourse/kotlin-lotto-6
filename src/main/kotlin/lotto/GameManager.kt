@@ -33,7 +33,7 @@ class GameManager {
     private fun generateLotto(): Lotto {
         val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
 
-        return Lotto(numbers)
+        return Lotto(numbers.sorted())
     }
 
     private fun printPurchaseResult() {
