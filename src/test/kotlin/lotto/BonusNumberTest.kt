@@ -19,4 +19,11 @@ class BonusNumberTest {
         }
     }
 
+    @Test
+    fun `보너스 번호가 당첨 번호에 포함되어 있을 때`() {
+        assertThrows<IllegalArgumentException> {
+            BonusNumber("20", listOf(1, 3, 5, 20, 28, 40))
+        }
+    }
+
 }
