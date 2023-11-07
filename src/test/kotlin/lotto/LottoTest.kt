@@ -1,12 +1,14 @@
 package lotto
 
 import lotto.model.Lotto
+import lotto.model.WinningRank
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
@@ -70,9 +72,24 @@ class LottoTest {
 
     @ParameterizedTest
     @MethodSource("provideLottoTestData")
-    fun `보너스 번호가 로또 트번호 중 일치하는 것이 있는지 판단한다`(lottoTestData: LottoTestData) {
+    fun `보너스 번호가 로또 번호 중 일치하는 것이 있는지 판단한다`(lottoTestData: LottoTestData) {
         val result = lottoTestData.lotto.containBonusNumber(lottoTestData.bonusNumber)
         assertThat(result).isEqualTo(lottoTestData.containBonusNumber)
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+        "6, false, FIRST",
+        "5, true, SECOND",
+        "5, false, THIRD",
+        "4, true, FOURTH",
+        "4, false, FOURTH",
+        "3, true, FIFTH",
+        "3, false, FIFTH"
+    )
+    fun `로또 당첨 기준에 따라 결과를 판단한다`(matchingNumberCount: Int, bonusNumberMatch: Boolean, expected: WinningRank) {
+        val result = Lotto(listOf(1, 2, 3, 4, 5, 6)).calculateLottoRank(matchingNumberCount, bonusNumberMatch)
+        assertThat(result).isEqualTo(expected)
     }
 
 
