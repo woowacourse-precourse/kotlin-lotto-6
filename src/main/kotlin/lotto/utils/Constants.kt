@@ -15,7 +15,7 @@ object Constants {
 
     const val THREE_AMOUNT = 5_000
     const val FOUR_AMOUNT = 50_000
-    const val FIVE_AMOUNT = 150_000
+    const val FIVE_AMOUNT = 1_500_000
     const val FIVE_WITH_BONUS_AMOUNT = 30_000_000
     const val SIX_AMOUNT = 2_000_000_000
 
