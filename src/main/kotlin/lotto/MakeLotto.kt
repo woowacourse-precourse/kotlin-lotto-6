@@ -1,9 +1,9 @@
 package lotto
 
 class MakeLotto {
-    fun calculateCountingLotto(price: Int): Int {
 
-        return 0
+    fun calculateCountingLotto(price: Int): Int {
+        return price / 1000
     }
 
     fun createNonOverlapSixNumbers(): List<Int> {

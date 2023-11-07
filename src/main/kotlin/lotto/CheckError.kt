@@ -125,7 +125,7 @@ class CheckError {
         return true
     }
 
-    fun checkNonOverlapBonusNumber(winning : List<Int>, bonus: Int): Boolean {
+    fun checkNonOverlapBonusNumber(winning: List<Int>, bonus: Int): Boolean {
 
         try {
 

@@ -47,7 +47,7 @@ class InputValue {
         return changedWinningNumber
     }
 
-    fun inputBonusNumber(winning : List<Int>): List<Int> {
+    fun inputBonusNumber(winning: List<Int>): List<Int> {
 
         var changedBonusNumber: List<Int>
 
@@ -61,7 +61,7 @@ class InputValue {
 
             changedBonusNumber = changeStringInt(bonusNumber)
 
-            if (!check.checkNonOverlapBonusNumber(winning,changedBonusNumber[0])) continue
+            if (!check.checkNonOverlapBonusNumber(winning, changedBonusNumber[0])) continue
 
             break
         }
