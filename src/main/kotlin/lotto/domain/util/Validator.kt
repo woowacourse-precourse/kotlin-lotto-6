@@ -26,7 +26,13 @@ class Validator {
         require(isNotBlank(bonusNumber)) { NOT_BLANK }
         requireNotNull(isNumber(bonusNumber)) { BONUS_ONLY_INT }
         require(isBonusNumber(bonusNumber)) { BONUS_MUST_1_TO_45 }
-        require(!isBonusDuplicate(bonusNumber, drawNumbers)) { BONUS_NOT_DUPLICATE_DRAW.format(drawNumbers.joinToString(SEPARATOR)) }
+        require(!isBonusDuplicate(bonusNumber, drawNumbers)) {
+            BONUS_NOT_DUPLICATE_DRAW.format(
+                drawNumbers.joinToString(
+                    SEPARATOR
+                )
+            )
+        }
         return bonusNumber.toInt()
     }
 
@@ -57,48 +63,34 @@ class Validator {
         const val BONUS_MUST_1_TO_45 = "1~45사이의 숫자가 아닌게 있어요. 입력 예시 -> 16"
         const val BONUS_NOT_DUPLICATE_DRAW = "당첨 번호 %s와 중복된 숫자가 있어요"
 
-        fun isNotEmpty(input: String): Boolean {
-            return input.isNotEmpty()
-        }
+        fun isNotEmpty(input: String): Boolean = input.isNotEmpty()
 
-        fun isNotBlank(input: String): Boolean {
-            return input.isNotBlank()
-        }
+        fun isNotBlank(input: String): Boolean = input.isNotBlank()
 
-        fun isNumber(input: String): Int? {
-            return input.toIntOrNull()
-        }
+        fun isNumber(input: String): Int? = input.toIntOrNull()
 
-        fun isPositiveNumber(input: String): Boolean {
-            return input.toInt() > ZERO
-        }
+        fun isPositiveNumber(input: String): Boolean =
+            input.toInt() > ZERO
 
-        fun isDivisibleByThousand(input: String): Boolean {
-            return input.toInt().rem(THOUSAND) == ZERO
-        }
+        fun isDivisibleByThousand(input: String): Boolean =
+            input.toInt().rem(THOUSAND) == ZERO
 
-        fun hasSixValue(input: List<String>): Boolean {
-            return input.size == SIX
-        }
+        fun hasSixValue(input: List<String>): Boolean =
+            input.size == SIX
 
-        fun hasSixNumber(input: List<String>): Boolean {
-            return input.map { it.toIntOrNull() }.all { it != null }
-        }
+        fun hasSixNumber(input: List<String>): Boolean =
+            input.map { it.toIntOrNull() }.all { it != null }
 
-        fun isDrawNumber(input: List<String>): Boolean {
-            return input.map { it.toInt() }.all { it in START_NUMBER..END_NUMBER }
-        }
+        fun isDrawNumber(input: List<String>): Boolean =
+            input.map { it.toInt() }.all { it in START_NUMBER..END_NUMBER }
 
-        fun isDuplicate(input: List<String>): Boolean {
-            return input.toSet().size == SIX
-        }
+        fun isDuplicate(input: List<String>): Boolean =
+            input.toSet().size == SIX
 
-        fun isBonusNumber(input: String): Boolean {
-            return input.toInt() in START_NUMBER..END_NUMBER
-        }
+        fun isBonusNumber(input: String): Boolean =
+            input.toInt() in START_NUMBER..END_NUMBER
 
-        fun isBonusDuplicate(input: String, drawNumbers: List<Int>): Boolean {
-            return drawNumbers.contains(input.toInt())
-        }
+        fun isBonusDuplicate(input: String, drawNumbers: List<Int>): Boolean =
+            drawNumbers.contains(input.toInt())
     }
 }

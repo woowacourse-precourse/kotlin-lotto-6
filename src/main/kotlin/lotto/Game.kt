@@ -31,9 +31,8 @@ class Game {
         }
     }
 
-    fun calculating(amount: Int): Int {
-        return purchase.calculateLottoTicketCount(amount)
-    }
+    fun calculating(amount: Int): Int = purchase.calculateLottoTicketCount(amount)
+
 
     fun buying(lottoTicketCount: Int): List<List<Int>> {
         saleScreen.outputTicketCount(lottoTicketCount)

@@ -1,13 +1,11 @@
 package lotto.domain.util
 
 class MathHelper {
-    fun calculateWinRate(totalAmount: Int, ticketCount: Int): Float {
-        return (totalAmount.toFloat() / (ticketCount * TICKET_PRICE).toFloat()) * PERCENTAGE
-    }
+    fun calculateWinRate(totalAmount: Int, ticketCount: Int): Float =
+        (totalAmount.toFloat() / (ticketCount * TICKET_PRICE).toFloat()) * PERCENTAGE
 
-    fun roundToFirstDecimalPlace(input: Float): String {
-        return String.format(ROUND_TO_FIRST_DECIMAL_PLACE, input)
-    }
+    fun roundToFirstDecimalPlace(input: Float): String =
+        String.format(ROUND_TO_FIRST_DECIMAL_PLACE, input)
 
     companion object {
         const val ROUND_TO_FIRST_DECIMAL_PLACE = "%.1f"

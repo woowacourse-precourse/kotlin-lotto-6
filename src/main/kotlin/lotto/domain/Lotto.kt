@@ -6,9 +6,7 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.toSet().size == NUMBER_SIZE)
     }
 
-    fun sort(): List<Int> {
-        return numbers.sorted()
-    }
+    fun sort(): List<Int> = numbers.sorted()
 
     companion object {
         const val NUMBER_SIZE = 6

@@ -3,19 +3,15 @@ package lotto.presentation
 import lotto.domain.Prize
 
 class ResultScreen {
-    fun outputResultMessage() {
-        println(LINE_SEPARATOR + WIN_RESULT_START_MESSAGE)
-    }
+    fun outputResultMessage() = println(LINE_SEPARATOR + WIN_RESULT_START_MESSAGE)
 
-    fun outputWinningResult(countEachPrize: Map<Prize, Int>) {
+    fun outputWinningResult(countEachPrize: Map<Prize, Int>) =
         println(Prize.entries.filterNot { it == Prize.NONE }.joinToString(LINE_SEPARATOR) { prize ->
             String.format(prize.winningResult, countEachPrize.getOrDefault(prize, DEFAULT_VALUE))
         })
-    }
 
-    fun outputWinningRate(winRate: String) {
-        println(TOTAL_WIN_RATE.format(winRate))
-    }
+
+    fun outputWinningRate(winRate: String) = println(TOTAL_WIN_RATE.format(winRate))
 
     companion object {
         const val WIN_RESULT_START_MESSAGE = "당첨통계\n---"

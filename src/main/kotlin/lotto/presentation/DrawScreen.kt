@@ -3,21 +3,13 @@ package lotto.presentation
 import camp.nextstep.edu.missionutils.Console
 
 class DrawScreen {
-    fun outputRequestDrawNumber() {
-        println(LINE_SEPARATOR + REQUEST_DRAW_NUMBER_MESSAGE)
-    }
+    fun outputRequestDrawNumber() = println(LINE_SEPARATOR + REQUEST_DRAW_NUMBER_MESSAGE)
 
-    fun inputDrawNumber(): String {
-        return Console.readLine()
-    }
+    fun inputDrawNumber(): String = Console.readLine()
 
-    fun outputRequestBonusNumber() {
-        println(LINE_SEPARATOR + REQUEST_BONUS_NUMBER_MESSAGE)
-    }
+    fun outputRequestBonusNumber() = println(LINE_SEPARATOR + REQUEST_BONUS_NUMBER_MESSAGE)
 
-    fun inputBonusNumber(): String {
-        return Console.readLine()
-    }
+    fun inputBonusNumber(): String = Console.readLine()
 
     companion object {
         const val REQUEST_DRAW_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요."
