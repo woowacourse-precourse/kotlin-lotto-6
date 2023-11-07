@@ -1,10 +1,13 @@
 package lotto.controller
 
+import lotto.domain.WinningStatistics
 import lotto.model.LottoManager
+import lotto.model.LottoRecord
 import lotto.util.Constants.INPUT_BONUS_NUMBERS
 import lotto.util.Constants.INPUT_MONEY
 import lotto.util.Constants.INPUT_WINNING_NUMBERS
-import lotto.util.Validation
+import lotto.util.Constants.SEPARATOR
+import lotto.util.Constants.WINNING_STATISTICS
 import lotto.util.Validation.validateBonusNumber
 import lotto.util.Validation.validatePurchaseAmount
 import lotto.util.Validation.validateWinningNumbers
@@ -16,6 +19,7 @@ class LottoGame {
     private val input = Input()
     private val output = Output()
 
+
     fun play() {
         println(INPUT_MONEY)
         val amount = checkInputAmount()
@@ -26,14 +30,20 @@ class LottoGame {
             output.outputTickets(it.issueNumbers())
         }
 
-        output.outputBlank()
+        output.Blank()
         println(INPUT_WINNING_NUMBERS)
         val winningNumbers = checkInputWinningNumbers()
 
-        output.outputBlank()
+        output.Blank()
         println(INPUT_BONUS_NUMBERS)
         val bonusNumber = checkInputBonusNumber(winningNumbers)
 
+        output.Blank()
+        println(WINNING_STATISTICS)
+        println(SEPARATOR)
+
+        val reward = WinningStatistics().computeStatisics(lottoTickets, winningNumbers, bonusNumber)
+        output.outputReward(reward)
 
     }
 
@@ -41,7 +51,7 @@ class LottoGame {
         return try {
             val amount = input.inputPurchaseAmount()
             validatePurchaseAmount(amount)
-            output.outputBlank()
+            output.Blank()
             amount.toInt() / 1000
         } catch (e: IllegalArgumentException) {
             println(e)
