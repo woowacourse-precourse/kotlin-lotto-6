@@ -1,7 +1,11 @@
 package lotto.domain.lotto
 
 import lotto.domain.Money
+import lotto.domain.winningResult.MatchCount
+import lotto.domain.winningResult.RateOfReturn
+import lotto.domain.winningResult.WinningRank
 import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
@@ -34,5 +38,34 @@ class LottoShopTest {
         Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { LottoShop.purchaseLottos(input) }
             .withMessage("[ERROR] 구입금액은 최소 1,000원 이상 입력해야 합니다.")
+    }
+
+    @Test
+    fun `로또 당첨 결과 확인`() {
+        // given
+        val winningLotto = WinningLotto(
+            winningNumbers = Lotto(listOf(1, 2, 3, 4, 5, 6).map { LottoNumber(it) }),
+            bonusNumber = LottoNumber(7)
+        )
+        val purchasedLottos = Lottos(
+            listOf(
+                Lotto(listOf(1, 2, 3, 4, 5, 6).map { LottoNumber(it) }),
+                Lotto(listOf(1, 2, 3, 4, 5, 7).map { LottoNumber(it) }),
+                Lotto(listOf(1, 2, 3, 4, 5, 45).map { LottoNumber(it) }),
+                Lotto(listOf(1, 2, 3, 4, 44, 45).map { LottoNumber(it) }),
+                Lotto(listOf(1, 2, 3, 43, 44, 45).map { LottoNumber(it) })
+            )
+        )
+        // when
+        val result = LottoShop.getWinningResult(winningLotto, purchasedLottos)
+        // then
+        val winningResult = result.result
+        val rateOfReturn = result.rateOfReturn
+        assertEquals(winningResult[WinningRank.FIRST].toString(), "1개")
+        assertEquals(winningResult[WinningRank.SECOND].toString(), "1개")
+        assertEquals(winningResult[WinningRank.THIRD].toString(), "1개")
+        assertEquals(winningResult[WinningRank.FOURTH].toString(), "1개")
+        assertEquals(winningResult[WinningRank.FIFTH].toString(), "1개")
+        assertEquals(rateOfReturn.toString(), "40631100.0%")
     }
 }
