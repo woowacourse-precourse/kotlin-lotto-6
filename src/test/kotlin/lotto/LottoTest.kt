@@ -82,5 +82,12 @@ class LottoTest {
         val rank = ticket.match(winningNumbers, bonusNumber)
         assertThat(rank).isEqualTo(Rank.SECOND)
     }
-    
+
+    @Test
+    fun `수익률 계산시 당첨된 금액과 사용한 금액을 기준으로 수익률을 계산해야 한다`() {
+        val results = listOf(Rank.FIFTH, Rank.FIRST, Rank.MISS, Rank.MISS)
+        val earningsRate = calculateEarnings(results)
+        assertThat(earningsRate).isEqualTo(50000125.0)
+    }
+
 }
