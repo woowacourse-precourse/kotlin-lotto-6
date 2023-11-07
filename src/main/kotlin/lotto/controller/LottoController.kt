@@ -34,15 +34,15 @@ class LottoController() {
         inputWinningNumberOfLotto()
     }
 
-    fun validateInputNumeric(input: String) {
+    fun validateInputPurchaseAmountOfLottoNumeric(input: String) {
         lottoModel.isPurchaseAmountNumeric(input)
     }
 
-    fun validateInputPositive(input: Int) {
+    fun validateInputPurchaseAmountOfLottoPositive(input: Int) {
         lottoModel.isPurchaseAmountPositive(input)
     }
 
-    fun validateInputDivisionPrice(input: Int) {
+    fun validateInputPurchaseAmountOfLottoDivisionPrice(input: Int) {
         lottoModel.isDivisibleBy1000(input)
     }
 

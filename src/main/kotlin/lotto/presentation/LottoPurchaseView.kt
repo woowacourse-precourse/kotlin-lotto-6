@@ -8,9 +8,9 @@ object LottoPurchaseView {
 
     fun inputPurchaseAmountOfLotto(): Int {
         val purchaseAmount = Console.readLine()
-        LottoController().validateInputNumeric(purchaseAmount)
-        LottoController().validateInputPositive(purchaseAmount.toInt())
-        LottoController().validateInputDivisionPrice(purchaseAmount.toInt())
+        LottoController().validateInputPurchaseAmountOfLottoNumeric(purchaseAmount)
+        LottoController().validateInputPurchaseAmountOfLottoPositive(purchaseAmount.toInt())
+        LottoController().validateInputPurchaseAmountOfLottoDivisionPrice(purchaseAmount.toInt())
 
         return purchaseAmount.toInt()
     }
