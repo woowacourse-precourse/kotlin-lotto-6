@@ -10,13 +10,14 @@ class GameManager {
     fun runLottoGame() {
         // 사용자 구입 금액 입력
         money = inputManager.getMoney()
-
         // 발행 로또 번호 생성
         getLottoTickets(money)
+        // 발행 로또 갯수 및 번호 출력
+        printPurchaseResult()
     }
 
     private fun getLottoTickets(money: Int) {
-        val numberOfLottoTickets = money % LOTTO_PRICE
+        val numberOfLottoTickets = money / LOTTO_PRICE
 
         for (i in 1..numberOfLottoTickets) {
             lottoList.add(generateLotto())
@@ -27,6 +28,14 @@ class GameManager {
         val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
 
         return Lotto(numbers)
+    }
+
+    private fun printPurchaseResult() {
+        println()
+        println("8개를 구매했습니다.")
+        for (lotto in lottoList) {
+            println(lotto.getNumbers())
+        }
     }
 
     companion object {
