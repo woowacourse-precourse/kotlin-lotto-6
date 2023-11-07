@@ -10,6 +10,9 @@ class WinningRecord {
     }
 
     fun hasMatchingBonusNumber(winningLotto: Lotto, bonus: Bonus): Boolean {
-        return false
+        val bonusNumber = bonus.getNumber()
+        val winningLottoNumbers = winningLotto.getNumbers()
+
+        return bonusNumber in winningLottoNumbers
     }
 }
