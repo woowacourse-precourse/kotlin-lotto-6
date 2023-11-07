@@ -7,15 +7,15 @@ class WinningDetails(winningLotto: WinningLotto, lottoWallet: LottoWallet) {
     init {
         prize += lottoWallet.compareWithWinningLotto(winningLotto).groupingBy { it }.eachCount()
         prize.forEach {
-            if (it.key.name != LottoResult.NONE.name)
-                earnedMoney += it.key.prize * it.value
+            earnedMoney += it.key.prize * it.value
         }
     }
 
     override fun toString(): String {
         var message = "\n당첨 통계\n---\n"
         prize.forEach {
-            message += "${it.key.toMessage()}${it.value}개\n"
+            if (it.key.name != LottoResult.NONE.name)
+                message += "${it.key.toMessage()}${it.value}개\n"
         }
         return message
     }
