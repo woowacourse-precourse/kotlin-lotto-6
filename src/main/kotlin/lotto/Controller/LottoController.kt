@@ -1,31 +1,34 @@
 package lotto.Controller
 
+import lotto.View.LottoView
 import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 
-enum class LottoPrize(val sameCount: Int, val prizeMoney: Int, val prizeName: String) {
-    threeSame(3, 5000, "3개 일치"),
-    fourSame(4, 50000, "4개 일치"),
-    fiveSame(5, 1500000, "5개 일치"),
-    fiveSamePlusBonus(5, 30000000, "5개 일치, 보너스 볼 일치"),
-    sixSame(6, 2000000000, "6개 일치")
-}
-
 class LottoController {
+    private val lottoView = LottoView()
+
+    enum class LottoPrize(val sameCount: Int, val prizeMoney: Int, val prizeName: String) {
+        threeSame(3, 5000, "3개 일치"),
+        fourSame(4, 50000, "4개 일치"),
+        fiveSame(5, 1500000, "5개 일치"),
+        fiveSamePlusBonus(5, 30000000, "5개 일치, 보너스 볼 일치"),
+        sixSame(6, 2000000000, "6개 일치")
+    }
+
     fun startGame() {
         try {
             val inputMoney = lottoMoneyInput()
             val count = lottoCnt(inputMoney)
             val lottoList = lottoNumberLimit(count)
-            lottoNumberPrint(count, lottoList)
+            lottoView.printLottoNumbers(count, lottoList)
 
             val lottoNumber = lottoNumberChoose()
             val bonusNumber = lottoNumberBonus()
 
             val result = lottoNumberCheck(lottoList, lottoNumber, bonusNumber)
-            lottoResultPrint(result, count)
+            lottoView.printResult(result, count)
         } catch (e: IllegalArgumentException) {
-            println("[ERROR] ${e.message}")
+            lottoView.printMessage("[ERROR] ${e.message}")
         }
     }
 
@@ -51,12 +54,6 @@ class LottoController {
         return comLottoList
     }
 
-    fun lottoNumberPrint(lottoCount: Int, lottoList: List<List<Int>>) {
-        println("$lottoCount 개를 구매했습니다.")
-        lottoList.forEach { lotto ->
-            println(lotto.sorted())
-        }
-    }
 
     fun lottoNumberChoose(): List<Int> {
         println("당첨 번호를 입력해 주세요.")
@@ -109,31 +106,4 @@ class LottoController {
         return lottoMoneyList
     }
 
-    fun lottoResultPrint(result: Map<String, Int>, lottoCount: Int) {
-        println("당첨 통계")
-        println("---")
-        var totalPrize = 0
-        val prizeMoney = mapOf(
-            "3개 일치" to 5000,
-            "4개 일치" to 50000,
-            "5개 일치" to 1500000,
-            "5개 일치, 보너스 볼 일치" to 30000000,
-            "6개 일치" to 2000000000
-        )
-        for ((key, value) in result) {
-            val prize = when (key) {
-                "5개 일치" -> if (result[LottoPrize.fiveSamePlusBonus.prizeName] == 0) "1,500,000원" else "30,000,000원"
-                else -> "${prizeMoney[key]}원"
-            }
-            println("$key ($prize) - ${value}개")
-            totalPrize += if (key == "5개 일치") {
-                if (result[LottoPrize.fiveSamePlusBonus.prizeName] == 0) prizeMoney["5개 일치"]!! * value else prizeMoney["5개 일치, 보너스 볼 일치"]!! * value
-            } else {
-                prizeMoney[key]!! * value
-            }
-        }
-        val inputMoney = lottoCount * 1000
-        val rateOfReturn = ((totalPrize - inputMoney) / inputMoney.toDouble() * 100).coerceAtLeast(0.0)
-        println("총 수익률은 ${"%.1f".format(rateOfReturn)}%입니다.")
-    }
 }
