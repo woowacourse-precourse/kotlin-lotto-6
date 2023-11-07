@@ -15,7 +15,19 @@ class LottoController(private val inputView: InputView, private val outputView: 
     private lateinit var money: Money
     private lateinit var winningNumbersManager: WinningNumbersManager
     private var purchasedLottoTickets = mutableListOf<Lotto>()
+    private val rankFrequencyData = HashMap<Int, Int>()
     fun run() {
+        inputPrice()
+        makeLotto()
+        printLottoInfo()
+        inputWinningNumber()
+        inputBonusNumber()
+        getRankOfValue()
+        printRankOfValue()
+        getProfitPercentage()
+    }
+
+    private fun inputPrice() {
         do {
             outputView.printPurchaseAmount()
             val inputPrice = inputView.getValue()
@@ -23,66 +35,59 @@ class LottoController(private val inputView: InputView, private val outputView: 
                 money = Money(inputPrice)
             } catch (e: IllegalArgumentException) {
                 outputView.printError(e)
-                e.printStackTrace()
-                Thread.sleep(100)
                 continue
             }
             break
         } while (true)
+    }
 
+    private fun makeLotto() {
         outputView.printAppendLine()
-
         do {
             try {
                 purchasedLottoTickets.add(generateLottoTickets())
             } catch (e: IllegalArgumentException) {
                 outputView.printError(e)
-                e.printStackTrace()
-                Thread.sleep(100)
                 continue
             }
         } while (purchasedLottoTickets.size != money.getPurchasableLottoTicketCount())
+    }
 
+    private fun printLottoInfo() {
         outputView.printPurchasedItemCount(money.getPurchasableLottoTicketCount())
         purchasedLottoTickets.forEach { lotto ->
             outputView.printLottoInfo(lotto.getNumberInfo())
         }
+    }
 
+    private fun inputWinningNumber() {
         do {
-            outputView.printAppendLine()
             outputView.printEnterWinningNumberMessage()
             try {
-                val inputWinningNumber = inputView.getValue()
-                winningNumbersManager = WinningNumbersManager(inputWinningNumber.split(","))
+                winningNumbersManager = WinningNumbersManager(inputView.getValue().split(","))
             } catch (e: IllegalArgumentException) {
                 outputView.printError(e)
-                e.printStackTrace()
-                Thread.sleep(100)
                 continue
             }
             break
         } while (true)
+    }
 
+    private fun inputBonusNumber() {
         do {
-            outputView.printAppendLine()
             outputView.printEnterBonusNumberMessage()
-            val inputBonusNumber = inputView.getValue()
             try {
-                winningNumbersManager.isBonusNumberValid(inputBonusNumber)
+                winningNumbersManager.isBonusNumberValid(inputView.getValue())
             } catch (e: IllegalArgumentException) {
                 outputView.printError(e)
-                e.printStackTrace()
-                Thread.sleep(100)
                 continue
             }
-            winningNumbersManager.setBonusNumber(inputBonusNumber)
             break
         } while (true)
+    }
 
-        outputView.printAppendLine()
+    private fun getRankOfValue() {
         outputView.printResultMessage()
-
-        val rankFrequencyData = HashMap<Int, Int>()
         for (lotto in purchasedLottoTickets) {
             val rank = winningNumbersManager.getRank(lotto.getNumberInfo())
             if (rankFrequencyData.containsKey(rank)) {
@@ -91,10 +96,17 @@ class LottoController(private val inputView: InputView, private val outputView: 
             }
             rankFrequencyData[rank] = 1
         }
+    }
 
-        clearWinningAmountValue()
-        for (rank in 6 downTo 1) {
+    private fun printRankOfValue() {
+        for (rank in 5 downTo 1) {
             outputView.printWinningStatistics(rank, rankFrequencyData[rank] ?: 0)
+        }
+    }
+
+    private fun getProfitPercentage() {
+        clearWinningAmountValue()
+        for (rank in 5 downTo 1) {
             plusWinningAmount(rank, (rankFrequencyData[rank] ?: 0))
         }
         outputView.printProfitPercentage(getProfitPercentage(purchasedLottoTickets.size))
