@@ -8,7 +8,7 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun toLottoNumbersResult(): String {
-        return numbers.toString()
+        return numbers.sorted().toString()
     }
 
     fun compareWinningNumbers(winningNumbers: WinningNumbers): Int {
