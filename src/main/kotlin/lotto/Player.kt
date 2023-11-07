@@ -13,6 +13,7 @@ class Player {
     private fun readTicketPayment(): Int {
         var input: String
         do {
+            println(InfoMessage.PURCHASE_INSTRUCTION.message)
             input = Console.readLine().trim()
         } while (!Validator(input).isPaymentValid())
         return input.toInt()
