@@ -29,4 +29,12 @@ class ViewTest {
             validation.checkInputLottoNumber(input)
         }
     }
+
+    @Test
+    fun `보너스 번호 입력값이 1 ~ 45가 아닐 때 `() {
+        val input = "555"
+        assertThrows<IllegalArgumentException> {
+            validation.checkInputBonusNumber(input)
+        }
+    }
 }
