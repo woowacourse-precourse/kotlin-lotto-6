@@ -23,7 +23,9 @@ class LottoInitializer {
             println(MessageConstants.INPUT_PURCHASE_AMOUNT)
             try {
                 purchaseAmount = Console.readLine().toInt()
-                if (validatePurchaseAmount(purchaseAmount))
+//                if (validatePurchaseAmount(purchaseAmount))
+//                    break
+                if (PurchaseAmount().validateLottoNumbers(purchaseAmount))
                     break
             } catch (e: NumberFormatException) {
                 println(MessageConstants.ERROR_NOT_A_NUMBER)
@@ -33,12 +35,12 @@ class LottoInitializer {
         }
     }
 
-    fun validatePurchaseAmount(purchaseAmount: Int) : Boolean {
-        if (purchaseAmount < LOTTO_UNIT) {
-            throw IllegalArgumentException(MessageConstants.ERROR_AMOUNT_LESS_THAN_1000)
-        } else if (purchaseAmount % LOTTO_UNIT != ZERO) {
-            throw IllegalArgumentException(MessageConstants.ERROR_NOT_A_MULTIPLE_OF_1000)
-        }
-        return true
-    }
+//    fun validatePurchaseAmount(purchaseAmount: Int) : Boolean {
+//        if (purchaseAmount < LOTTO_UNIT) {
+//            throw IllegalArgumentException(MessageConstants.ERROR_AMOUNT_LESS_THAN_1000)
+//        } else if (purchaseAmount % LOTTO_UNIT != ZERO) {
+//            throw IllegalArgumentException(MessageConstants.ERROR_NOT_A_MULTIPLE_OF_1000)
+//        }
+//        return true
+//    }
 }
