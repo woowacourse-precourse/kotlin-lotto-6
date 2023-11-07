@@ -48,7 +48,6 @@ class LottoRanks {
                 }
                 results[Prize.FIVE_MATCH] = results.getOrDefault(Prize.FIVE_MATCH, 0) + 1
             }
-
             SIX -> results[Prize.SIX_MATCH] = results.getOrDefault(Prize.SIX_MATCH, 0) + 1
         }
     }
