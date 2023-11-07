@@ -41,7 +41,6 @@ class LottoGameModel(howManyBuyLotto: Int) {
     var winning5WithBonus = 0
     var winning6 = 0
 
-
     companion object {
         var instance: LottoGameModel? = null
     }
@@ -97,5 +96,12 @@ class LottoGameModel(howManyBuyLotto: Int) {
         println("5개 일치 (1,500,000원) - ${winning5}개")
         println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${winning5WithBonus}개")
         println("6개 일치 (2,000,000,000원) - ${winning6}개")
+        printProfitRate()
+    }
+
+    fun printProfitRate(){
+        val totalWinningCount = winning3 + winning4 + winning5 + winning5WithBonus + winning6
+        val profitRate = (totalWinningCount.toDouble()/lottoList.size) * 100
+        println("총 수익률은 ${profitRate}%입니다.")
     }
 }
