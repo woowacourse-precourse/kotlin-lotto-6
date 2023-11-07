@@ -7,5 +7,12 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
     }
 
-    // TODO: 추가 기능 구현
+    fun compareCountingMatchedWinningNumber(winningNumber: WinningAndBonusNumber): Int {
+        return (numbers.toSet().intersect(winningNumber.winningNumber.toSet()).size)
+    }
+
+    fun compareCountingMatchedBonusNumber(number: WinningAndBonusNumber): Boolean {
+
+        return true
+    }
 }

@@ -29,9 +29,13 @@ fun main() {
     println()
     val winningBonus = WinningAndBonusNumber(winning, bonus)    // 복권 당첨 번호, 보너스 번호 생성
 
+    println("당첨 통계")
+    println("---")
+    for (lotto in lottoBunch) {
 
+        println(lotto.compareCountingMatchedWinningNumber(winningBonus))
 
-
+    }
 
 
 
