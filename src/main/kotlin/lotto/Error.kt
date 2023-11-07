@@ -5,6 +5,11 @@ class Error {
         checkInt(price)
         checkPriceUnit(price.toInt())
     }
+    fun checkBonus(numbers: MutableList<Int>, bonusNum: Int) {
+        if(numbers.contains(bonusNum)){
+            throw IllegalArgumentException("[ERROR] 이미 로또번호에 존재하는 번호입니다.")
+        }
+    }
     private fun checkInt(price: String) {
         try{
             price.toInt()

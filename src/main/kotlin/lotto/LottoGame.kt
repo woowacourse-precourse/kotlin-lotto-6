@@ -66,6 +66,7 @@ class LottoGame {
         println()
         println("보너스 번호를 입력해 주세요.")
         val bonusNum = Console.readLine().toInt()
+        error.checkBonus(numbers,bonusNum)
         bonus = bonusNum
 
     }
