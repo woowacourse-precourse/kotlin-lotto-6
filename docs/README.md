@@ -41,7 +41,7 @@
       - [ ] 보너스 번호 입력 처리
       - [ ] 기준에 맞지 않는 입력이 들어왔을 경우 예외처리
 
-    - [ ] pickUniqueNumbersInRange()를 로또 번호 발행 처리
+    - [x] pickUniqueNumbersInRange()를 로또 번호 발행 처리
 
     - [ ] 출력 처리
       - [ ] 발행한 로또 수량 및 번호 출력

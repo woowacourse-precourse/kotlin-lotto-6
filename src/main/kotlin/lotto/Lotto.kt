@@ -10,7 +10,7 @@ class Lotto(private val numbers: List<Int>) {
         return numbers.sorted()
     }
     override fun toString() :String {
-        return getNumbers().joinToString(", ")
+        return "[" + getNumbers().joinToString(", ") + "]"
     }
     // TODO: 추가 기능 구현
 }

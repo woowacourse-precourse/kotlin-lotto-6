@@ -5,11 +5,7 @@ import camp.nextstep.edu.missionutils.Console
 
 class LottoGame() {
     fun start() {
-//        println("구입 금액을 입력해 주세요.")
-//        val purchaseAmount = getPurchaseAmount()
-//        require(purchaseAmount % 1000 == 0) {"[ERROR]"}
-//        val lottoCount = purchaseAmount / 1000
-//        println("${lottoCount}개를 구매했습니다.")
+        val lottoCount = purchaseSequence()
 //        var lottos = generateLottos(lottoCount)
 //        for (lotto in lottos) {
 //            println(lotto)
@@ -19,6 +15,25 @@ class LottoGame() {
 //        println("보너스 번호를 입력해 주세요.")
 //        val bonusNumber = getBonusNumber()
 //        println("당첨 통계")
+    }
+
+    private fun printMessage(type: String, count: Int) {
+        when(type) {
+            "GetPurchaseAmount" -> println("구입 금액을 입력해 주세요.")
+            "PrintCountNumber" -> println("${count}개를 구매했습니다.")
+            "GetWinningNumber" -> println("당첨 번호를 입력해 주세요.")
+            "GetBonusNumber" -> println("보너스 번호를 입력해 주세요.")
+            "PrintWinningStatistics" -> println("당첨 통계")
+            else -> println("ERROR")
+        }
+    }
+    private fun purchaseSequence(): Int{
+        printMessage("GetPurchaseAmount", 0)
+        val purchaseAmount = getPurchaseAmount()
+        InputValidator.validatePurchaseAmount(purchaseAmount)
+        val lottoCount = purchaseAmount / 1000
+        printMessage("PrintCountNumber", lottoCount)
+        return lottoCount
     }
 
     private fun generateLottos(count: Int) :List<Lotto>{
