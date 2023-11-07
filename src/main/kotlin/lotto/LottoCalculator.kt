@@ -20,11 +20,7 @@ class LottoCalculator {
         return dataList.toList()
     }
 
-    fun calWinningRate(
-        lottoList: List<Lotto>,
-        winningList: List<Int>,
-        bonusNumber: Int
-    ): WinningRate {
+    fun calWinningRate(lottoList: List<Lotto>, winningList: List<Int>, bonusNumber: Int): WinningRate {
         val dataList = calMatchCount(lottoList, winningList, bonusNumber)
         val winningRate = WinningRate()
         dataList.forEach {
