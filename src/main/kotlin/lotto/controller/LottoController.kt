@@ -96,4 +96,8 @@ class LottoController() {
     fun validateInputBonusNumberNumeric(input: String) {
         bonusNumber.isBonusNumberNumeric(input)
     }
+
+    fun validateInputBonusNumberRange(input: Int) {
+        bonusNumber.isBonusNumberRange(input)
+    }
 }

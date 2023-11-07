@@ -12,5 +12,6 @@ object LottoBonusView {
     fun inputBonusNumberOfLotto() {
         val bonusNumber = Console.readLine()
         LottoController().validateInputBonusNumberNumeric(bonusNumber)
+        LottoController().validateInputBonusNumberRange(bonusNumber.toInt())
     }
 }

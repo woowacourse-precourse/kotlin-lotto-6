@@ -19,5 +19,7 @@ const val INVALID_WINNING_NUMBER_RANGE_MESSAGE =
     ERROR + " 당첨 번호는 " + LOTTO_MIN_NUMBER + "에서 " + LOTTO_MAX_NUMBER + "사이의 값이어야 합니다."
 const val INVALID_WINNING_NUMBER_DUPLICATION_MESSAGE = ERROR + " 당첨 번호는 중복되지 않은 숫자로 입력되어야 합니다."
 const val INVALID_BONUS_NUMBER_NUMERIC_MESSAGE = ERROR + " 보너스 번호는 숫자로 입력되어야 합니다."
+const val INVALID_BONUS_NUMBER_RANGE_MESSAGE =
+    ERROR + " 보너스 번호는 " + LOTTO_MIN_NUMBER + "에서 " + LOTTO_MAX_NUMBER + "사이의 값이어야 합니다."
 
 const val SPLIT_COMMA = ","
