@@ -15,13 +15,13 @@ object LottoShop {
         return Lottos(lottos)
     }
 
-    fun getWinningResult(winningLotto: Lotto, bonusNumber: LottoNumber, purchasedLottos: Lottos): WinningResult {
+    fun getWinningResult(winningLotto: WinningLotto, purchasedLottos: Lottos): WinningResult {
         val result = mutableMapOf<WinningRank, MatchCount>()
         WinningRank.entries.forEach { result[it] = MatchCount(0) }
 
         purchasedLottos.forEach {
-            val numberMatchCount = it.getLottoMatchCount(winningLotto)
-            val isBonusNumberMatched = it.isContainLottoNumber(bonusNumber)
+            val numberMatchCount = it.getLottoMatchCount(winningLotto.winningNumbers)
+            val isBonusNumberMatched = it.isContainLottoNumber(winningLotto.bonusNumber)
             val rank = WinningRank.getRank(numberMatchCount, isBonusNumberMatched)
             result[rank]!!.count++
         }
