@@ -1,16 +1,16 @@
 package lotto.models
 
 class WinningRecord {
-    private val _record: MutableMap<WinningRank, Int> = mutableMapOf()
-    val record: Map<WinningRank, Int> get() = _record
+    private val _value: MutableMap<WinningRank, Int> = mutableMapOf()
+    val value: Map<WinningRank, Int> get() = _value
 
     init {
         initializeRecord()
     }
 
-    private fun initializeRecord() = WinningRank.entries.forEach { _record[it] = 0 }
+    private fun initializeRecord() = WinningRank.entries.forEach { _value[it] = 0 }
 
-    fun recordWinningResults(purchasedLottos: List<Lotto>, winningLotto: Lotto, bonus: Bonus) {
+    fun updateWinningResults(purchasedLottos: List<Lotto>, winningLotto: Lotto, bonus: Bonus) {
         purchasedLottos.forEach { purchasedLotto ->
             val matchedCount = calculateMatchingNumbers(purchasedLotto, winningLotto)
             val hasMatchingBonus = hasMatchingBonusNumber(purchasedLotto, bonus)
@@ -35,6 +35,6 @@ class WinningRecord {
     }
 
     private fun updateRecord(winningRank: WinningRank) {
-        _record[winningRank] = (_record[winningRank] ?: 0) + 1
+        _value[winningRank] = (_value[winningRank] ?: 0) + 1
     }
 }

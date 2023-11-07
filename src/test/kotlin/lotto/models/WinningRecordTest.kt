@@ -1,12 +1,10 @@
 package lotto.models
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
@@ -16,6 +14,20 @@ class WinningRecordTest {
     @BeforeEach
     fun setUp() {
         winningRecord = WinningRecord()
+    }
+
+    @ParameterizedTest
+    @MethodSource("generateExactWinningRecordTestCases")
+    fun `구매한 로또에 대해 당첨 결과들을 정확히 기록한다`(
+        purchasedLottos: List<Lotto>,
+        winningLotto: Lotto,
+        bonus: Bonus,
+        expectedRecord: Map<WinningRank, Int>
+    ) {
+        winningRecord.updateWinningResults(purchasedLottos, winningLotto, bonus)
+        val actualRecord = winningRecord.value
+
+        assertThat(actualRecord).isEqualTo(expectedRecord)
     }
 
     @ParameterizedTest
@@ -51,22 +63,6 @@ class WinningRecordTest {
 
         assertThat(actualResult).isEqualTo(expectedResult)
     }
-
-
-    @ParameterizedTest
-    @MethodSource("generateExactWinningRecordTestCases")
-    fun `구매한 로또에 대해 당첨 결과들을 정확히 기록한다`(
-        purchasedLottos: List<Lotto>,
-        winningLotto: Lotto,
-        bonus: Bonus,
-        expectedRecord: Map<WinningRank, Int>
-    ) {
-        winningRecord.recordWinningResults(purchasedLottos, winningLotto, bonus)
-        val actualRecord = winningRecord.record
-
-        assertThat(actualRecord).isEqualTo(expectedRecord)
-    }
-
 
     companion object {
         @JvmStatic
