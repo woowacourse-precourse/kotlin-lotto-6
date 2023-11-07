@@ -1,5 +1,9 @@
 package lotto
 
+import ui.GameConsole
+import ui.UserInputReader
+
 fun main() {
-    TODO("프로그램 구현")
+    val lottoGame = LottoGame(UserInputReader(), LottoMachine(), GameConsole(), LottoResultChecker())
+    lottoGame.startGame()
 }
