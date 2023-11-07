@@ -5,7 +5,8 @@ import lotto.domain.LottoResult
 
 class OutputView {
     fun printLottoPurchaseReceipt(lottos: List<Lotto>) {
-        println("\n${lottos.size}개를 구매했습니다.")
+        printBlankLine()
+        println("${lottos.size}" + PURCHASE_LOTTOS_MESSAGE)
         printLottoNumbers(lottos)
     }
 
@@ -13,16 +14,28 @@ class OutputView {
         lottos.forEach { lotto ->
             println(lotto)
         }
+        printBlankLine()
     }
 
     fun printWinningStatistics(lottoResult: LottoResult) {
-        println()
-        println("당첨 통계")
-        println("---")
+        printBlankLine()
+        println(WINNING_RESULT)
+        println(LINE)
         print(lottoResult)
     }
 
     fun printRateOfReturn(rateOfReturn: Double) {
-        println("총 수익률은 %.1f%%입니다.".format(rateOfReturn))
+        print(RATE_OF_RETURN_MESSAGE.format(rateOfReturn))
+    }
+
+    private fun printBlankLine() {
+        println()
+    }
+
+    companion object {
+        private const val PURCHASE_LOTTOS_MESSAGE = "개를 구매했습니다."
+        private const val RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다."
+        private const val WINNING_RESULT = "당첨 통계"
+        private const val LINE = "---"
     }
 }
