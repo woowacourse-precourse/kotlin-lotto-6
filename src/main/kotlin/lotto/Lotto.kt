@@ -22,7 +22,7 @@ class Lotto(private val numbers: List<Int>) {
 
         const val MIN_NUMBER = 1
         const val MAX_NUMBER = 45
-        const val INVALID_NUMBER_RANGE_ERROR_MESSAGE = "${MIN_NUMBER}이상 ${MAX_NUMBER}이하의 범위를 벗어난 로또 번호가 있습니다."
+        const val INVALID_NUMBER_RANGE_ERROR_MESSAGE = "로또 번호가는 ${MIN_NUMBER}에서 ${MAX_NUMBER}사이여야 합니다."
 
         const val INVALID_DISTINCT_NUMBER_ERROR_MESSAGE = "중복된 로또 번호가 있습니다."
     }

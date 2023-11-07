@@ -9,7 +9,7 @@ class BonusTest {
     @Test
     fun `범위를 벗어난 보너스 번호인 경우 예외가 발생한다`() {
         //given
-        val number = 1
+        val number = 46
 
         //when
         val exception = assertThrows<IllegalArgumentException> { Bonus(number) }
