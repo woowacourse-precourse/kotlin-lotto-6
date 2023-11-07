@@ -23,7 +23,7 @@ class LottoController(private val lottoModel: LottoModel, private val lottoView:
         lottoView.displayProfit(lottoModel.calculatorProfit())
     }
 
-    private fun inputPurchaseAmount()  {
+    private fun inputPurchaseAmount() {
         while (true) {
             try {
                 val amount = readLine()
