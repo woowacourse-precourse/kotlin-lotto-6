@@ -6,6 +6,7 @@ class GameManager {
     private val inputManager = InputManager()
     private var money = 0
     private var lottoList = ArrayList<Lotto>()
+    private lateinit var winningNumbers: List<Int>
 
     fun runLottoGame() {
         // 사용자 구입 금액 입력
@@ -14,6 +15,8 @@ class GameManager {
         getLottoTickets(money)
         // 발행 로또 갯수 및 번호 출력
         printPurchaseResult()
+        // 당첨 번호 입력 및 저장
+        winningNumbers = inputManager.getWinningNumber()
     }
 
     private fun getLottoTickets(money: Int) {
