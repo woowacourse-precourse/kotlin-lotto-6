@@ -14,19 +14,19 @@ class LottoCompare(
 
     fun calculateCorrect():MutableMap<OutputMessages, Int>{
         val lottoResults = mutableMapOf(
-            OutputMessages.SIX_NUMBER_CORRECT to 0,
-            OutputMessages.FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT to 0,
-            OutputMessages.FIVE_NUMBER_CORRECT to 0,
+            OutputMessages.THREE_NUMBER_CORRECT to 0,
             OutputMessages.FOUR_NUMBER_CORRECT to 0,
-            OutputMessages.THREE_NUMBER_CORRECT to 0
+            OutputMessages.FIVE_NUMBER_CORRECT to 0,
+            OutputMessages.FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT to 0,
+            OutputMessages.SIX_NUMBER_CORRECT to 0,
         )
 
         lottoNumbers.forEach { lottoNumber ->
             when (lottoNumber.intersect(correctLottoNumber.toSet()).count()) {
-                SIX_NUMBER -> sixNumberCorrect(lottoResults)
-                FIVE_NUMBER -> fiveNumberCorrect(lottoNumber, lottoResults)
-                FOUR_NUMBER -> fourNumberCorrect(lottoResults)
                 THREE_NUMBER -> threeNumberCorrect(lottoResults)
+                FOUR_NUMBER -> fourNumberCorrect(lottoResults)
+                FIVE_NUMBER -> fiveNumberCorrect(lottoNumber, lottoResults)
+                SIX_NUMBER -> sixNumberCorrect(lottoResults)
             }
         }
         return lottoResults
