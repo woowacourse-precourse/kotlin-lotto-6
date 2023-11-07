@@ -2,6 +2,7 @@ package lotto.controller
 
 import lotto.model.Lotto
 import lotto.model.LottoManager
+import lotto.model.LottoRank
 import lotto.view.LottoView
 
 class LottoController {
@@ -11,6 +12,7 @@ class LottoController {
     private val generatedLottoList = mutableListOf<Lotto>()
     private lateinit var winningLotto: Lotto
     private var bonusNumber = NOT_INITIALIZED
+    private lateinit var lottoRankMap: Map<LottoRank, Int>
 
     fun run() {
         purchaseLotto()
@@ -31,8 +33,11 @@ class LottoController {
     }
 
     private fun showResult() {
-        lottoView.printStatistics(lottoManager.classifyLotto(generatedLottoList, winningLotto, bonusNumber))
-
+        lottoManager.classifyLotto(generatedLottoList, winningLotto, bonusNumber)
+            .also { lottoRankMap -> this.lottoRankMap = lottoRankMap }
+        lottoView.printResult(lottoRankMap)
+        val reward = lottoManager.sumLotto(lottoRankMap)
+        lottoView.printProfitRate(lottoManager.calculateProfitRate(lottoCount, reward))
     }
 
     companion object {

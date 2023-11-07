@@ -36,10 +36,14 @@ class LottoView {
         println()
     }
 
-    fun printStatistics(lottoMap: Map<LottoRank, Int>) {
-        printer.printStatisticsMessage()
+    fun printResult(lottoMap: Map<LottoRank, Int>) {
+        printer.printResultMessage()
         lottoMap.forEach { map ->
             printer.printResult(map.key.message, map.value)
         }
+    }
+
+    fun printProfitRate(rate: Double) {
+        printer.printProfitRate(rate)
     }
 }

@@ -1,10 +1,10 @@
 package lotto.model
 
 import camp.nextstep.edu.missionutils.Randoms
-import lotto.constants.LottoConstants.LOTTO_PRICE
-import lotto.constants.LottoConstants.MIN_LOTTO_NUMBER
-import lotto.constants.LottoConstants.MAX_LOTTO_NUMBER
 import lotto.constants.LottoConstants.LOTTO_COUNT
+import lotto.constants.LottoConstants.LOTTO_PRICE
+import lotto.constants.LottoConstants.MAX_LOTTO_NUMBER
+import lotto.constants.LottoConstants.MIN_LOTTO_NUMBER
 import lotto.exception.IllegalStateException
 
 class LottoManager {
@@ -25,7 +25,7 @@ class LottoManager {
         val lottoMap = LottoRank.entries.associateWith { 0 }.toMutableMap()
 
         lottoList.forEach { lotto ->
-            val lottoRank = compareLotto(lotto, winningLotto, bonusNumber)
+            val lottoRank = checkLotto(lotto, winningLotto, bonusNumber)
             lottoMap[lottoRank] = lottoMap[lottoRank]!! + 1
         }
         lottoMap.remove(LottoRank.NOT_IN_RANK)
@@ -33,13 +33,26 @@ class LottoManager {
         return lottoMap
     }
 
-    private fun compareLotto(lotto: Lotto, winningLotto: Lotto, bonusNumber: Int): LottoRank {
+    private fun checkLotto(lotto: Lotto, winningLotto: Lotto, bonusNumber: Int): LottoRank {
         return when (winningLotto.getLottoNumbers().intersect(lotto.getLottoNumbers().toSet()).size) {
             6 -> LottoRank.FIRST_RANK
-            7 -> if (lotto.getLottoNumbers().contains(bonusNumber)) LottoRank.SECOND_RANK else LottoRank.THIRD_RANK
-            8 -> LottoRank.FOURTH_RANK
-            9 -> LottoRank.FIFTH_RANK
+            5 -> if (lotto.getLottoNumbers().contains(bonusNumber)) LottoRank.SECOND_RANK else LottoRank.THIRD_RANK
+            4 -> LottoRank.FOURTH_RANK
+            3 -> LottoRank.FIFTH_RANK
             else -> LottoRank.NOT_IN_RANK
         }
+    }
+
+    fun sumLotto(lottoMap: Map<LottoRank, Int>): Long {
+        var reward = 0L
+        lottoMap.forEach { (lottoRank, value) ->
+            reward += lottoRank.reward * value
+        }
+        return reward
+    }
+
+    fun calculateProfitRate(count: Int, reward: Long): Double {
+        val profitRate = (reward.toDouble() / (count * LOTTO_PRICE).toDouble()) * 100
+        return (Math.round(profitRate * 100.0) / 100.0)
     }
 }
