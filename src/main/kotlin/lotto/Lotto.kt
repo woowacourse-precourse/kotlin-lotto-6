@@ -22,6 +22,7 @@ class Lotto(val numbers: List<Int>) {
     fun generateLottoNumbers(): List<Int> {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6).sorted()
     }
+
     fun matchCount(winningNumbers: List<Int>): Int {
         return numbers.count { it in winningNumbers }
     }
