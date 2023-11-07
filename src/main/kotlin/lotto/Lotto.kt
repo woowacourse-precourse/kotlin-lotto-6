@@ -2,28 +2,28 @@ package lotto
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6)
-        requireDuplicateLottoNumber()
-        requireValidRange()
-        requireAscendingOrder()
+        require(numbers.size == 6) { Message.ERROR_RANDOM_NUMBER_SIX_RANGE }
+        requireRandomNumberDuplicate()
+        requireRandomNumberValidRange()
+        requireRandomNumberAscendingOrder()
     }
 
-    private fun requireDuplicateLottoNumber() {
+    private fun requireRandomNumberDuplicate() {
         val uniqueNumbers = HashSet<Int>()
         for (number in numbers) {
-            require(uniqueNumbers.add(number))
+            require(uniqueNumbers.add(number)) { Message.ERROR_RANDOM_NUMBER_DUPLICATION }
         }
     }
 
-    private fun requireValidRange() {
+    private fun requireRandomNumberValidRange() {
         for (number in numbers) {
-            require(number in VALID_RANGE)
+            require(number in VALID_RANGE) { Message.ERROR_RANDOM_NUMBER_RANGE }
         }
     }
 
-    private fun requireAscendingOrder() {
+    private fun requireRandomNumberAscendingOrder() {
         for (i in 1 until numbers.size) {
-            require(numbers[i] > numbers[i - 1])
+            require(numbers[i] > numbers[i - 1]) { Message.ERROR_RANDOM_NUMBER_SORTING }
         }
     }
 

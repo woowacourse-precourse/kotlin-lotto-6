@@ -8,6 +8,7 @@ class Game(
 
     fun purchaseLotto(input: String): Int {
         requireIsInt(input)
+        requireMoreThanThousand(input)
         val purchaseCost = input.toInt()
         return calculator.calculateLottoAvailableForPurchase(purchaseCost)
     }
@@ -34,8 +35,8 @@ class Game(
             numbers.add(it.toInt())
         }
         require(numbers.size == 6)
-        requireDuplicateLottoNumber(numbers = numbers)
-        requireValidRange(numbers = numbers)
+        requireUserPickNumberDuplicateLottoNumber(numbers = numbers)
+        requireUserPickNumberValidRange(numbers = numbers)
         return numbers
     }
 
@@ -74,28 +75,32 @@ class Game(
     }
 
     private fun requireIsInt(input: String) {
-        val number = input.toIntOrNull() ?: throw IllegalArgumentException()
-        require(number > 0)
+        require(input.matches(Regex(INTEGER_REGULAR_EXPRESSION))) { Message.ERROR_USER_INPUT_NOT_INT }
+        require(input.toInt() > 0) { Message.ERROR_USER_INPUT_LESS_THAN_ZERO }
+    }
+
+    private fun requireMoreThanThousand(input: String) {
+        require(input.toInt() >= 1000) { Message.ERROR_USER_INPUT_LESS_THAN_THOUSAND }
     }
 
     private fun requireDuplicateBonusNumber(numbers: List<Int>, bonusNumber: Int) {
         val uniqueNumbers = HashSet<Int>()
         for (number in numbers) {
-            require(uniqueNumbers.add(number))
+            require(uniqueNumbers.add(number)) { Message.ERROR_USER_PICK_NUMBERS_DUPLICATION }
         }
-        require(uniqueNumbers.add(bonusNumber))
+        require(uniqueNumbers.add(bonusNumber)) { Message.ERROR_BONUS_NUMBER_DUPLICATION }
     }
 
-    private fun requireDuplicateLottoNumber(numbers: List<Int>) {
+    private fun requireUserPickNumberDuplicateLottoNumber(numbers: List<Int>) {
         val uniqueNumbers = HashSet<Int>()
         for (number in numbers) {
-            require(uniqueNumbers.add(number)) {Message.ERROR_USER_PICK_NUMBERS_DUPLICATION}
+            require(uniqueNumbers.add(number)) { Message.ERROR_USER_PICK_NUMBERS_DUPLICATION }
         }
     }
 
-    private fun requireValidRange(numbers: List<Int>) {
+    private fun requireUserPickNumberValidRange(numbers: List<Int>) {
         for (number in numbers) {
-            require(number in VALID_RANGE)
+            require(number in VALID_RANGE) { Message.ERROR_RANDOM_NUMBER_RANGE }
         }
     }
 
@@ -104,6 +109,7 @@ class Game(
         const val END_NUMBER = 45
         const val NUMBER_COUNT = 6
         val VALID_RANGE = 1..45
+        const val INTEGER_REGULAR_EXPRESSION = "-?\\d+"
     }
 
 }

@@ -5,7 +5,7 @@ data class WinCount(
     var bonusJudge: Boolean = false
 ) {
     init {
-        require(winningCount in WINNING_VALID_RANGE)
+        require(winningCount in WINNING_VALID_RANGE) { Message.ERROR_WIN_COUNT_CALCULATOR }
     }
 
     companion object {
