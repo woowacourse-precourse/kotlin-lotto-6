@@ -28,7 +28,6 @@ class LottoCalculator {
         val dataList = calMatchCount(lottoList, winningList, bonusNumber)
         val winningRate = WinningRate()
         dataList.forEach {
-            println("${it.winningMatchCount} /// ${it.bonusNumber}")
             when {
                 it.winningMatchCount == 3 && it.bonusNumber == 0 -> winningRate.threeMatchedCount += 1
                 it.winningMatchCount == 4 && it.bonusNumber == 0 -> winningRate.fourMatchedCount += 1
