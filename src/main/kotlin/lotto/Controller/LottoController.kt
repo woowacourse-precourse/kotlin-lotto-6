@@ -1,8 +1,11 @@
 package lotto.Controller
 
+import lotto.LottoGameModel
+
 fun howManyBuyLotto(lottoPrice: String): Int {
     try {
         val price = lottoPrice.toInt()
+
         if (price % 1000 == 0) {
             return price / 1000
         } else {
@@ -19,14 +22,23 @@ object LottoController {
     fun gameStart() {
         println("구입금액을 입력해 주세요.")
         val lottoPrice = readLine()
+        var lottoGameModel: LottoGameModel? = null
 
         if (lottoPrice != null) {
             try {
                 val numberOfLottoTickets = howManyBuyLotto(lottoPrice)
-                println("${numberOfLottoTickets}개를 구매했습니다.")
+                println("\n$numberOfLottoTickets 개를 구매했습니다.")
+                lottoGameModel = LottoGameModel(numberOfLottoTickets)
+//                println(lottoGameModel.lottoList)
             } catch (e: IllegalArgumentException) {
                 println("[ERROR] ${e.message}")
             }
+        }
+
+        // lottoGameModel가 null이 아닌 경우에만 사용
+        lottoGameModel?.run {
+            // LottoGameModel에 대한 작업 수행
+            lottoGameModel.printLottoNumbers()
         }
     }
 }
