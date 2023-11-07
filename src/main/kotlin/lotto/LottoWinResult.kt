@@ -28,6 +28,9 @@ class LottoWinResult {
         }
     }
 
+    fun calculateRateOfProfit(price: Int, prizeMoney: Long): Double =
+        if (prizeMoney == 0L) 0.0 else (prizeMoney.toDouble() / price.toDouble()) * 100.0
+
     private fun calculateRankWithBonus(bonus: Boolean): Int {
         return if (bonus) Rank.FIVE_MATCH_WITH_BONUS.grade else Rank.FIVE_MATCH.grade
     }
