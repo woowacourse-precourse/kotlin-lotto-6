@@ -10,7 +10,7 @@ class LottoShop {
 
     private val inputView = InputView()
     private val randomUtils = RandomUtils()
-    private val lottoMC = LottoMC(inputView)
+    private val lottoMC = LottoMC()
     private val outputView = OutputView()
 
     private val lottos = mutableListOf<Lotto>()
@@ -51,11 +51,11 @@ class LottoShop {
 
     private fun startLottoProgram(price: Int) {
         inputView.lottoMessage()
-
         var lottoNum: List<Int>
         while (true) {
             try {
-                lottoNum = lottoMC.pickLottoNum()
+                val inputLottoNum = inputView.inputView()
+                lottoNum = lottoMC.pickLottoNum(inputLottoNum)
                 break
             } catch (e: IllegalArgumentException) {
                 println(e.message)
@@ -66,7 +66,8 @@ class LottoShop {
         inputView.bonusMessage()
         while (true) {
             try {
-                bonusNum = lottoMC.pickBonusNum(lottoNum)
+                val inputBonusNumm = inputView.inputView()
+                bonusNum = lottoMC.pickBonusNum(inputBonusNumm, lottoNum)
                 break
             } catch (e: IllegalArgumentException) {
                 println(e.message)

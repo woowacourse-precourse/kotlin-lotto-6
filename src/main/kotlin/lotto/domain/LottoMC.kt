@@ -1,10 +1,7 @@
 package lotto.domain
 
-import lotto.view.InputView
-
-class LottoMC(private val inputView: InputView) {
-    fun pickLottoNum(): List<Int> {
-        val lottoNum = inputView.inputView().replace(" ", "")
+class LottoMC() {
+    fun pickLottoNum(lottoNum: String): List<Int> {
         val numbers = lottoNum.split(",").map { it.trim().toInt() }
 
         validateLottoNumbers(numbers)
@@ -12,8 +9,7 @@ class LottoMC(private val inputView: InputView) {
         return numbers
     }
 
-    fun pickBonusNum(lottoNum: List<Int>): String {
-        val bonusNum = inputView.inputView().trim()
+    fun pickBonusNum(bonusNum: String, lottoNum: List<Int>): String {
 
         validateBonusNumber(bonusNum, lottoNum)
 
