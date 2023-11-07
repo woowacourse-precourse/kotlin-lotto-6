@@ -261,7 +261,8 @@ class Lotto(private val numbers: List<Int>) {
 
 ### Lotto
 
-- [ ] 발행한 로또 번호
+- [x] 발행한 로또 번호
+- [x] 로또 번호가 6자리 서로 다른 숫자인지 확인 
 
 ### LottoNumberComparator
 
