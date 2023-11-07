@@ -256,9 +256,12 @@ class Lotto(private val numbers: List<Int>) {
 
 ### LottoNumberGenerator
 
-- [x] 발행한 로또 번호들
 - [x] 로또 번호 발행
 - [x] 발행한 로또 번호 오름차순 정렬
+
+### Lotto
+
+- [ ] 발행한 로또 번호
 
 ### LottoNumberComparator
 
@@ -274,7 +277,7 @@ class Lotto(private val numbers: List<Int>) {
 - [ ] 수익률 구하는 기능
 - [ ] 수익률 소수점 둘째 자리에서 반올림하는 기능
 
-### Lotto
+### WinningNumber
 
 - [ ] 당첨 번호
 
