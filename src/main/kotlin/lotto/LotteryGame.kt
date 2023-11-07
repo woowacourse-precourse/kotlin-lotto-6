@@ -1,5 +1,7 @@
 package lotto
 
+import kotlin.math.roundToInt
+
 class LotteryGame {
 
     enum class won(var count: Int) {
@@ -27,6 +29,7 @@ class LotteryGame {
         }
 
         printResult()
+        println("총 수익률은 " + calcReturn(count).toString() + "%입니다.")
     }
 
     private fun insertAmount(): Int {
@@ -94,6 +97,18 @@ class LotteryGame {
         println("5개 일치 (1,500,000원) - " + won.THIRD.count.toString() + "개")
         println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + won.SECOND.count.toString() + "개")
         println("6개 일치 (2,000,000,000원) - " + won.FIRST.count.toString() + "개")
+    }
+
+    private fun calcReturn(count: Int): Float {
+        var sum = 0.0
+
+        sum += won.FIFTH.count * 5000
+        sum += won.FOURTH.count * 50000
+        sum += won.THIRD.count * 1500000
+        sum += won.SECOND.count * 30000000
+        sum += won.FIRST.count * 2000000000
+
+        return ((sum / count * 100.0).roundToInt() / 1000.0).toFloat()
     }
 
 }
