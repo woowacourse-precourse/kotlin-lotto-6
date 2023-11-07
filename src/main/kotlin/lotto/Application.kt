@@ -5,8 +5,8 @@ import camp.nextstep.edu.missionutils.Randoms
 
 var numberOfLottoTickets = 0
 val lottos = mutableListOf<Lotto>()
-val userSelectedNumbers = mutableSetOf<Int>()
-var userSelectedBonusNumber = 0
+lateinit var userLottos: Lotto
+var userLottoBonusNumber = 0
 val winnings = Winning.values()
 
 fun main() {
@@ -16,7 +16,8 @@ fun main() {
 fun doLotto() {
     doLogic {
         val lottoPurchaseAmount = getLottoPurchaseAmount()
-        getNumberOfLottoTickets(lottoPurchaseAmount) }
+        getNumberOfLottoTickets(lottoPurchaseAmount)
+    }
     getLottoWinningNumbers()
     showLottoWinningNumbers()
     doLogic {
@@ -91,7 +92,9 @@ fun validateUserLottoNumbers(userInputNumbers: String) {
     val isUerInputRightQuantity = parsedUserInputNumbers.size == lottoWinningNumberQuantity
     if (isUserInputNumberType && isUserInputInRange && isUerInputRightQuantity) {
         parsedUserInputNumbers.map { it!! }.apply {
-            userSelectedNumbers.addAll(this)
+            Lotto(this).apply {
+                userLottos = this
+            }
         }
     } else throw IllegalArgumentException("$errorPrefix 당첨 번호는 $minLottoWinningNumber~$maxLottoWinningNumber 사이의 중복되지 않는 숫자를 , 로 구분하여 ${lottoWinningNumberQuantity}개를 입력해야 합니다.")
 }
@@ -106,17 +109,17 @@ fun validateUserBonusLottoNumber(userInputBonusNumber: String) {
     val bonusNumber = userInputBonusNumber.toIntOrNull()
     val isUerInputNumberType = bonusNumber != null
     val isUserInputInRange = bonusNumber in minLottoWinningNumber..maxLottoWinningNumber
-    val isUerInputDistinct = !userSelectedNumbers.contains(bonusNumber)
+    val isUerInputDistinct = !userLottos.getNumbers().contains(bonusNumber)
     if (isUerInputNumberType && isUserInputInRange && isUerInputDistinct) {
         bonusNumber.toString().toInt().apply {
-            userSelectedBonusNumber = this
+            userLottoBonusNumber = this
         }
     } else throw IllegalArgumentException("$errorPrefix 보너스 번호는 $minLottoWinningNumber~$maxLottoWinningNumber 사이의 숫자 중 당첨 번호와 중복 되지 않는 수 하나를 입력해야 합니다.")
 }
 
 fun checkWinning() {
     lottos.forEach {
-        val winningResult = it.checkWinning(userSelectedNumbers, userSelectedBonusNumber)
+        val winningResult = it.checkWinning(userLottos, userLottoBonusNumber)
         winnings.toList().indexOf(winningResult).apply {
             if (this >= 0) winnings[this].winningCnt++
         }
