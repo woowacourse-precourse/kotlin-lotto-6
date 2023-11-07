@@ -12,8 +12,15 @@ class View {
     }
 
     fun printInputLottoNumber(): Lotto {
-        println("당첨 번호를 입력해 주세요.")
+        println("\n당첨 번호를 입력해 주세요.")
         val input = Console.readLine()
         return validation.checkInputLottoNumber(input)
+    }
+
+    fun printLotto(lotto: List<Lotto>) {
+        println("\n${lotto.size}개를 구매했습니다.")
+        lotto.forEach {
+            println(it.getLottoNumbers())
+        }
     }
 }

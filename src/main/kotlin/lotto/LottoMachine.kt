@@ -7,7 +7,8 @@ class LottoMachine {
 
     fun start() {
         val payment = view.printInputPaymentMessage()
-        val lotto = makeLotto(payment)
+        val lottos = makeLotto(payment)
+        view.printLotto(lottos)
         val inputLottoNumber = view.printInputLottoNumber()
     }
 
