@@ -9,14 +9,12 @@ private const val MAX_LOTTO_NUMBER = 45
 class LottoMachine {
 
     fun inputWinningNumbers(): List<Int> {
-        println("당첨 번호를 입력해 주세요.")
         val winningNumbers = Console.readLine().split(",").map { it.toInt() }.toList()
         validateWinningNumbers(winningNumbers)
         return winningNumbers
     }
 
     fun inputBonusNumber(winningNumbers: List<Int>): Int {
-        println("보너스 번호를 입력해 주세요.")
         val bonusNumber = Console.readLine().toInt()
         validateBonusNumber(bonusNumber, winningNumbers)
         return bonusNumber

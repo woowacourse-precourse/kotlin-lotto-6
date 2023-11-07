@@ -16,7 +16,6 @@ class LottoGenerator(private val lottoGenerateCount: Int) {
         val lottoTickets = mutableListOf<Lotto>()
         repeat(lottoGenerateCount) {
             val lottoNumbers = generateRandomLotto()
-            println(lottoNumbers)
             val lotto = Lotto(lottoNumbers)
             lottoTickets.add(lotto)
         }
