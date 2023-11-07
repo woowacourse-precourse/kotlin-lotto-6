@@ -36,16 +36,16 @@ class Ask {
     fun winNum(): List<Int> {
         try {
             println(ASK_WIN_NUM)
-            return validWinNum()
+            return validWinNum(Console.readLine())
         } catch (e: IllegalArgumentException) {
             println(e.message)
             return winNum()
         }
     }
 
-    private fun validWinNum(): List<Int> {
+    fun validWinNum(input: String): List<Int> {
         try {
-            val winNum = Console.readLine().trim().split(",")
+            val winNum = input.trim().split(",")
             val numbers = winNum.map { it.toInt() }
             require(numbers.size == COUNT && numbers.toSet().size == COUNT) { WIN_NUM_ERROR }
             require(numbers.all { it in START..END }) { WIN_NUM_ERROR }

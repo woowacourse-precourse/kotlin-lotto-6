@@ -7,8 +7,8 @@ import lotto.Constants.PRICE
 import lotto.Constants.PURCHASED
 import lotto.Constants.START
 
-class Purchase(private val amount: Int) {
-    fun lottoNum(): MutableList<List<Int>> {
+class Purchase() {
+    fun lottoNum(amount: Int): MutableList<List<Int>> {
         val quantity = amount / PRICE
         println("\n${quantity}" + PURCHASED)
         return randomNum(quantity)

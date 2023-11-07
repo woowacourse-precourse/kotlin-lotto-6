@@ -4,7 +4,7 @@ fun main() {
     try {
         val ask = Ask()
         val amount = ask.amount()
-        val purchasedLotto = Purchase(amount).lottoNum()
+        val purchasedLotto = Purchase().lottoNum(amount)
         val winNum = ask.winNum()
         val bonusNum = ask.bonusNum(winNum)
 
