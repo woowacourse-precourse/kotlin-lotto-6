@@ -19,4 +19,19 @@ class UserInput() {
         }
     }
 
+    fun winningPriceInput(): List<String> {
+        while (true) {
+            val userInput = Console.readLine()
+            val numberList = userInput.split(",")
+            try {
+                userInputValidator.checkNumberInList(numberList)
+                userInputValidator.checkNumberInRange(numberList)
+                return numberList
+            }
+            catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+    }
+
 }
