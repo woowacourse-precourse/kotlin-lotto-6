@@ -2,7 +2,6 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
 import kotlin.math.round
-import kotlin.system.exitProcess
 
 fun null_check(i: String?): String{
     if (i == null){
@@ -20,7 +19,7 @@ fun lottoMoney(): Int{
             money.div(1000)
     }catch(e: IllegalArgumentException){
         println("[ERROR] 잘못된 입금액 입니다. 1000원 단위로 입금해주세요. Ex)8000, 11000")
-        System.exit(0)
+        lottoMoney()
     }
     return amount
 }
