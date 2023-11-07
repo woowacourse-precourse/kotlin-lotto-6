@@ -1,8 +1,8 @@
 package lotto.domain.winningResult
 
 class WinningResult(
-    private val result: Map<WinningRank, MatchCount>,
-    private val rateOfReturn: RateOfReturn
+    val result: Map<WinningRank, MatchCount>,
+    val rateOfReturn: RateOfReturn
 ) {
     override fun toString(): String {
         val sb = StringBuilder()
