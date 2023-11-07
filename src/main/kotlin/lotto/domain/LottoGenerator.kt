@@ -2,18 +2,15 @@ package lotto.domain
 
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.domain.model.Lotto
+import lotto.domain.model.Lottos
 import lotto.domain.model.Purchase
 import lotto.util.Constants
 
-class LottoGenerator(val purchase: Purchase) {
+class LottoGenerator {
 
-    fun getLotto(purchase: Purchase): MutableList<Lotto> {
+    fun make(purchase: Purchase): Lottos {
         val lottoCount = purchase.getLottoCount()
-        val lottos = mutableListOf<Lotto>()
-        for (i in 1..lottoCount) {
-            lottos.add(generateLotto())
-        }
-        return lottos
+        return Lottos(List(lottoCount) { generateLotto() })
     }
 
     private fun generateLotto() = Lotto(getSortedNumber())

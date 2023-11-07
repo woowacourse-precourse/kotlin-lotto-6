@@ -19,6 +19,11 @@ class Lotto(private val numbers: List<Int>) {
 
     fun contains(lottoNumber: Int) = numbers.contains(lottoNumber)
 
+    fun hasBonusNumber(winningLotto: WinningLotto) = numbers.contains(winningLotto.bonusNumber)
+    fun compareWinningLotto(winningLotto: Lotto): Int {
+        return numbers.count { winningLotto.numbers.contains(it) }
+    }
+
     companion object {
         private const val LOTTO_CNT_ERROR = "[ERROR] 로또 숫자의 개수는 ${Constants.LOTTO_NUM_CNT}개여야 합니다."
         private const val LOTTO_DISTINCT_ERROR = "[ERROR] 로또 숫자들 중 중복된 숫자가 있어서는 안됩니다."

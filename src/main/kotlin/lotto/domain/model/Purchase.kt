@@ -1,6 +1,6 @@
 package lotto.domain.model
 
-class Purchase(private var amount: Int) {
+class Purchase(val amount: Int) {
 
     init {
         require(amount > ZERO) {

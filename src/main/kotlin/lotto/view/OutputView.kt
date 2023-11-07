@@ -1,6 +1,6 @@
 package lotto.view
 
-import lotto.domain.LottoGenerator
+import lotto.domain.model.Lottos
 import lotto.domain.model.Purchase
 import lotto.util.Constants
 
@@ -8,21 +8,19 @@ object OutputView {
 
     private const val PRINT_REPORT = "당첨 통계"
     private const val DIVISION_STR = "---"
-    fun printLottos(purchase: Purchase) {
-        val lottoGenerator = LottoGenerator(purchase)
-        val lottos = lottoGenerator.getLotto(purchase)
+    fun printLottos(purchase: Purchase, lottos: Lottos) {
         print(Constants.SPACING)
         println("${purchase.getLottoCount()}개를 구매했습니다.")
-        for (lotto in lottos) {
+        for (lotto in lottos.lottos) {
             println(lotto.getNumbers())
         }
     }
 
-    fun printReport() {
+    fun printReport(report: String) {
         print(Constants.SPACING)
         println(PRINT_REPORT)
         println(DIVISION_STR)
-        TODO("통계 출력 함수 호출")
+        println(report)
     }
 
     fun printPerformance() {
