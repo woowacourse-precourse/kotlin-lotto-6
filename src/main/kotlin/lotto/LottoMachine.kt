@@ -6,10 +6,12 @@ class LottoMachine {
     private val view = View()
 
     fun start() {
-        val payment = view.printInputPaymentMessage()
+        val payment = view.inputPayment()
         val lottos = makeLotto(payment)
         view.printLotto(lottos)
-        val inputLottoNumber = view.printInputLottoNumber()
+        val inputLottoNumber = view.inputLottoNumber()
+        val inputBonusNumber = view.inputBonusLottoNumber()
+
     }
 
     private fun makeLotto(payment: Int): List<Lotto> {

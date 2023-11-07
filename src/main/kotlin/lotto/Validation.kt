@@ -27,4 +27,12 @@ class Validation {
         }
         return Lotto(input.map { it.toInt() })
     }
+
+    fun checkInputBonusNumber(bonusNumber: String): Int {
+        val input = checkInt(bonusNumber)
+        if (input !in 1..45) {
+            throw IllegalArgumentException("[ERROR] 1 부터 45 사이의 숫자를 입력해주세요.")
+        }
+        return input
+    }
 }
