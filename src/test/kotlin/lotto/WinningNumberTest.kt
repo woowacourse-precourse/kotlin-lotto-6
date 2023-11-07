@@ -22,4 +22,11 @@ class WinningNumberTest {
         }
     }
 
+    @Test
+    fun `당첨 번호에 값이 비어있을 때`() {
+        assertThrows<IllegalArgumentException> {
+            WinningNumber("1,3,4,5, ,a")
+        }
+    }
+
 }
