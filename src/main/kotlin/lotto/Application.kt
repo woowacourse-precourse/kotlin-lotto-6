@@ -13,18 +13,24 @@ fun lottoMoney(): Int{
     }
     catch(e:IllegalArgumentException){
         println("[ERROR] ${e.message}")
-        return lottoMoney()
     }
+    return lottoMoney()
 }
 
 fun lotto_dispenser(money: Int): MutableList<Lotto>{
-    var lottos: MutableList<Lotto>  = mutableListOf()
-    for (i in 0 until money){
-        var auto_number = Randoms.pickUniqueNumbersInRange(1, 45, 6)
-        auto_number.sort()
-        lottos.add(Lotto(auto_number))
+    try {
+        var lottos: MutableList<Lotto> = mutableListOf()
+        for (i in 0 until money) {
+            var auto_number = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+            auto_number.sort()
+            lottos.add(Lotto(auto_number))
+        }
+        return lottos
     }
-    return lottos
+    catch(e:IllegalArgumentException){
+        println("[ERROR] ${e.message}")
+    }
+    return lotto_dispenser(money)
 }
 
 fun winInput(): MutableList<Int>{
@@ -41,8 +47,8 @@ fun winInput(): MutableList<Int>{
     }
     catch(e: IllegalArgumentException){
         println("[ERROR] ${e.message}")
-        return winInput()
     }
+    return winInput()
 }
 
 fun bonusChecker(win_num:MutableList<Int>): Int{
@@ -53,8 +59,8 @@ fun bonusChecker(win_num:MutableList<Int>): Int{
     }
     catch(e:IllegalArgumentException){
         println("[ERROR] ${e.message}")
-        return bonusChecker(win_num)
     }
+    return bonusChecker(win_num)
 }
 
 fun win_checker(lottos: MutableList<Lotto>, win_num: MutableList<Int>, bonus: Int): Int{
@@ -67,7 +73,6 @@ fun win_checker(lottos: MutableList<Lotto>, win_num: MutableList<Int>, bonus: In
     println("5개 일치 (1,500,000원) - ${winRate[2]}개")
     println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${winRate[3]}개")
     println("6개 일치 (2,000,000,000원) - ${winRate[4]}개")
-
     return (winRate[0] * 5000 + winRate[1] * 50000 + winRate[2] * 1500000 + winRate[3] * 30000000 + winRate[4] * 2000000000)
 }
 
