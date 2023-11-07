@@ -5,8 +5,9 @@ import constants.ExceptionMessages.EXCEPTION_WINNING_NUMBERS_RANGE
 import constants.ExceptionMessages.EXCEPTION_WINNING_NUMBERS_SIZE
 import constants.ExceptionMessages.EXCEPTION_WINNING_NUMBERS_TYPE
 import camp.nextstep.edu.missionutils.Console
-import constants.ExceptionMessages.EXCEPTION_BONUS_NUMBERS_RANGE
-import constants.ExceptionMessages.EXCEPTION_BONUS_NUMBERS_TYPE
+import constants.ExceptionMessages.EXCEPTION_BONUS_NUMBER_DUPLICATED
+import constants.ExceptionMessages.EXCEPTION_BONUS_NUMBER_RANGE
+import constants.ExceptionMessages.EXCEPTION_BONUS_NUMBER_TYPE
 import constants.ExceptionMessages.EXCEPTION_PURCHASE_DIVISION
 import constants.ExceptionMessages.EXCEPTION_PURCHASE_NO_MORE_THAN_ZERO
 import constants.ExceptionMessages.EXCEPTION_PURCHASE_STRING
@@ -28,9 +29,9 @@ object InputView {
         return getWinningNumbers()
     }
 
-    fun inputBonusNumber(): Int {
+    fun inputBonusNumber(winningNumbers: List<Int>): Int {
         printStepMessage(INPUT_BONUS_NUMBER)
-        return getBonusNumber()
+        return getBonusNumber(winningNumbers)
     }
 
     private fun getUserAmount(): Int = try {
@@ -93,22 +94,23 @@ object InputView {
         }
     }
 
-    fun getBonusNumber(): Int = try {
+    fun getBonusNumber(winningNumbers: List<Int>): Int = try {
         val bonus = Console.readLine()
         printStepMessage()
-        val bonusNum = getValidatedBonusNumber(bonus)
+        val bonusNum = getValidatedBonusNumber(bonus, winningNumbers)
         bonusNum
     } catch (e: IllegalArgumentException) {
         printErrorMessage(e.message)
-        getBonusNumber()
+        getBonusNumber(winningNumbers)
     }
 
-    fun getValidatedBonusNumber(bonus: String): Int = try {
+    fun getValidatedBonusNumber(bonus: String, winningNumbers: List<Int>): Int = try {
         val bonusNum = bonus.toInt()
-        if (bonusNum !in 1..45) throw IllegalArgumentException(EXCEPTION_BONUS_NUMBERS_RANGE)
+        if (bonusNum !in 1..45) throw IllegalArgumentException(EXCEPTION_BONUS_NUMBER_RANGE)
+        if (bonusNum in winningNumbers) throw IllegalArgumentException(EXCEPTION_BONUS_NUMBER_DUPLICATED)
         bonusNum
     } catch (e: NumberFormatException) {
-        throw IllegalArgumentException(EXCEPTION_BONUS_NUMBERS_TYPE)
+        throw IllegalArgumentException(EXCEPTION_BONUS_NUMBER_TYPE)
     }
 
 

@@ -42,7 +42,7 @@ object LottoController {
 
     private fun getLottoResult(lotties: List<List<Int>>): LottoResult {
         val winningNumbers = InputView.inputWinningNumberList()
-        val bonusNumber = InputView.inputBonusNumber()
+        val bonusNumber = InputView.inputBonusNumber(winningNumbers)
 
         return LottoResult(lotties, winningNumbers, bonusNumber)
     }
