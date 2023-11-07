@@ -1,9 +1,7 @@
 package lotto.domain
 
-import lotto.data.GRADE
-import lotto.data.Lotto
-import lotto.data.Stats
-import lotto.data.WinningLotto
+import lotto.data.*
+
 
 class Analyzer(private val calculator: Calculator) {
 
@@ -13,11 +11,7 @@ class Analyzer(private val calculator: Calculator) {
             countOfWin[ticket.checkGrade(winningLotto).rank()]++
         }
         return Stats(
-            first = countOfWin[1],
-            second = countOfWin[2],
-            third = countOfWin[3],
-            fourth = countOfWin[4],
-            fifth = countOfWin[5],
+            info = WinningInfo.from(countOfWin.slice(1..countOfWin.size)),
             profitRate = calculator.calculateProfitRate(countOfWin, tickets.size)
         )
     }
