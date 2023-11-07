@@ -4,10 +4,10 @@ class Lotto(private val numbers: List<Int>) {
 
     init {
         require(numbers.size == 6) {
-            Constants.ERROR_LOTTO_SIZE
+            println(Constants.ERROR_LOTTO_SIZE)
         }
         require(numbers.size == numbers.toSet().size) {
-            Constants.ERROR_LOTTO_DUPlICATION
+            println(Constants.ERROR_LOTTO_DUPlICATION)
         }
     }
 
