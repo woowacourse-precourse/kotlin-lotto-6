@@ -11,7 +11,7 @@ import LOTTO_SIZE
 class WinningNumber {
 
     fun isWinningNumberSize(input: List<String>) {
-        if (input.size < LOTTO_SIZE) {
+        if (input.size != LOTTO_SIZE) {
             throw IllegalArgumentException(INVALID_WINNING_NUMBER_SIZE_MESSAGE)
         }
     }
