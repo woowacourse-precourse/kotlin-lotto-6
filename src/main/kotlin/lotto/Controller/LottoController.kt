@@ -62,6 +62,8 @@ object LottoController {
                 println("[ERROR] ${e.message}")
             }
         }
+
+        lottoGameModel!!.checkWinnings()
     }
 }
 

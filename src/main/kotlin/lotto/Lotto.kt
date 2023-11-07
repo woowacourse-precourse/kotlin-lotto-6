@@ -68,4 +68,17 @@ class LottoGameModel(howManyBuyLotto: Int) {
             println(lotto.getLottoNumbers())
         }
     }
+
+    fun checkWinnings() {
+        for (lotto in lottoList) {
+            val result = lotto.checkWinnings(winningNumbers ?: emptyList(), bonusNumber)
+            when (result) {
+                3 -> println("3개 일치")
+                4 -> println("4개 일치")
+                5 -> println("5개 일치")
+                6 -> println("6개 일치")
+                0 -> println("꽝")
+            }
+        }
+    }
 }
