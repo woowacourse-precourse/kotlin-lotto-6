@@ -3,7 +3,9 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 
 object InputValidator {
-    fun validateBonusNumber(number: Int) {
+    fun validateBonusNumber(userInput: String) {
+        require(userInput.all{ it.isDigit() })
+        val number = userInput.toInt()
         require(number in 1..45) { "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다." }
     }
 
