@@ -1,6 +1,7 @@
 package lotto.model
 
 import lotto.Constants
+import lotto.model.dto.LottoResult
 import lotto.model.validation.LottoNumber
 
 /*
@@ -30,7 +31,7 @@ open class Lotto(private val _numbers: List<Int>) {
     fun calculate(
         winningnumbers: List<LottoNumber>,
         bonusNumber: LottoNumber
-    ): Pair<Int, Int> {
+    ): LottoResult {
         var winningMatchCount = 0
         val numbers = this.numbers
         val bonusMatch = numbers.count { it == bonusNumber }
@@ -40,7 +41,7 @@ open class Lotto(private val _numbers: List<Int>) {
                 winningMatchCount += 1
             }
         }
-        return Pair(winningMatchCount, bonusMatch)
+        return LottoResult(winningMatchCount, bonusMatch)
     }
 
     companion object {

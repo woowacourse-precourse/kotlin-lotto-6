@@ -10,7 +10,7 @@ class PurchaseAmountTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["a", "!", " "])
-    fun `PurchaseAmount 생성, 숫자가 입력 됐는지`(inputdata: String) {
+    fun `구입 금액에 문자가 입력되면, 예외가 발생한다`(inputdata: String) {
         val exception = assertThrows<IllegalArgumentException> {
             PurchaseAmount(inputdata)
         }
@@ -19,7 +19,7 @@ class PurchaseAmountTest {
     }
 
     @Test
-    fun `PurchaseAmount 생성, 입력된 숫자가 0보다 큰지`() {
+    fun `구입 금액에 0보다 작은 수가 들어오면, 예외가 발생한다`() {
         val exception = assertThrows<IllegalArgumentException> {
             PurchaseAmount("0")
         }
@@ -29,7 +29,7 @@ class PurchaseAmountTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["1", "11", "111", "500"])
-    fun `PurchaseAmount 생성, 입력된 숫자가 1,000 단위 인지`(inputdata: String) {
+    fun `구입 금액이 1,000 단위가 아니면, 예외가 발생한다`(inputdata: String) {
         val exception = assertThrows<IllegalArgumentException> {
             PurchaseAmount(inputdata)
         }

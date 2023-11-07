@@ -1,7 +1,5 @@
 package lotto.model
 
-import java.lang.IllegalArgumentException
-
 class WinningNumbers(_winningNumbers: String) : Lotto(parseWinningNumbers(_winningNumbers)) {
     companion object {
         private fun parseWinningNumbers(winningNumbers: String): List<Int> {

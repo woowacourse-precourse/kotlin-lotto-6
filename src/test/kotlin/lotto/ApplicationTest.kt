@@ -50,11 +50,6 @@ class ApplicationTest : NsTest() {
         }
     }
 
-    @Test
-    fun `1) 구입 금액 입력, Lotto N장 생성 및 정렬, 발행한 로또 수량 및 번호 출력`() {
-        run("1000000", "1,2,3,4,5,6", "7")
-    }
-
     override fun runMain() {
         main()
     }

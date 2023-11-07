@@ -2,21 +2,20 @@ package lotto.controller
 
 import lotto.model.BonusNumber
 import lotto.model.Lotto
+import lotto.model.LottoResults
 import lotto.model.Lottos
 import lotto.model.PurchaseAmount
 import lotto.model.RateOfReturn
-import lotto.util.Task
 import lotto.model.WinningNumbers
-import lotto.model.Results
 import lotto.model.validation.WinningValidation
+import lotto.util.Task
 import lotto.view.InputView
 import lotto.view.OutputView
-import kotlin.IllegalStateException
 
 class GameController {
     private val inputView = InputView()
     private val outputView = OutputView()
-    private var lottoResults = Results()
+    private var lottoResults = LottoResults()
 
     // TODO: 가능하면 멤버 변수에서 빼기
     lateinit var lottos: Lottos
@@ -46,7 +45,7 @@ class GameController {
     }
 
     private fun processPurchaseAmount(task: Task) {
-        purchaseAmount = inputProcess({ it.purchaseAmountPrompt() }, ::PurchaseAmount)
+        purchaseAmount = inputToClassInstance({ it.purchaseAmountPrompt() }, ::PurchaseAmount)
         task.inputState = Task.State.INPUT_WINNING_AND_BONUS_NUMBERS
 
         lottos = Lottos.create(purchaseAmount.amount / 1000)
@@ -55,14 +54,14 @@ class GameController {
     }
 
     private fun processWinningAndBonusNumbers(task: Task, lottos: List<Lotto>) {
-        val winningNumbers = inputProcess({ it.winningNumbersPrompt() }, ::WinningNumbers)
-        val bonusNumber = inputProcess({ it.bonusNumberPrompt() }, ::BonusNumber)
+        val winningNumbers = inputToClassInstance({ it.winningNumbersPrompt() }, ::WinningNumbers)
+        val bonusNumber = inputToClassInstance({ it.bonusNumberPrompt() }, ::BonusNumber)
         WinningValidation(winningNumbers.numbers, bonusNumber.number)
         task.inputState = Task.State.DONE
 
         lottos.forEach {
-            val data = it.calculate(winningNumbers.numbers, bonusNumber.number)
-            lottoResults.update(data)
+            val lottoMatchResult = it.calculate(winningNumbers.numbers, bonusNumber.number)
+            lottoResults.update(lottoMatchResult)
         }
 
         val reward = RateOfReturn(lottoResults.result, purchaseAmount.amount)
@@ -70,7 +69,10 @@ class GameController {
         outputView.printRateOfReturn(reward.get())
     }
 
-    private fun <T> inputProcess(prompt: (InputView) -> String, className: (String) -> T): T {
+    private fun <T> inputToClassInstance(
+        prompt: (InputView) -> String,
+        className: (String) -> T
+    ): T {
         val userInputData = prompt(inputView)
         return className(userInputData)
     }
