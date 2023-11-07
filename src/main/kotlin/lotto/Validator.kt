@@ -54,7 +54,7 @@ class Validator {
         }
     }
 
-    fun inRangeLottoNumber(lottoNumber: Int) {
+    fun inCorrectRange(lottoNumber: Int) {
         if (lottoNumber < 1 && lottoNumber > 45) {
             throw IllegalArgumentException("로또 번호는 1과 45 사이의 정수여야 합니다.")
         }
