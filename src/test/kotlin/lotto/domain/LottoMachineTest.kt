@@ -5,20 +5,18 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class LottoMachineTest {
-    private val lottoMachine = LottoMachine()
-
     @Test
     fun `구입금액에 따라 로또를 생성하는 기능 테스트 1`() {
-        val inputMoney = 5000
-        val lottos = lottoMachine.issueLottos(inputMoney)
+        val lottoMachine = LottoMachine(5000)
+        val lottos = lottoMachine.issueLottos()
         val expectedLottosSize = 5
         assertThat(expectedLottosSize).isEqualTo(lottos.size)
     }
 
     @Test
     fun `구입금액에 따라 로또를 생성하는 기능 테스트 2`() {
-        val inputMoney = 9595000
-        val lottos = lottoMachine.issueLottos(inputMoney)
+        val lottoMachine = LottoMachine(9595000)
+        val lottos = lottoMachine.issueLottos()
         val expectedLottosSize = 9595
         assertThat(expectedLottosSize).isEqualTo(lottos.size)
     }
