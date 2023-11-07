@@ -1,10 +1,13 @@
 package lotto.utils.validator
 
+import lotto.Lotto
+
 object LottoWinningNumberInputValidator {
 
     fun validate(number: String): LottoInputState.WinningNumber {
         var numberState = getState(number.toIntOrNull())
         if (numberState != LottoInputState.WinningNumber.SUCCESSFUL) {
+            displayErrorMessage(numberState)
             throw IllegalArgumentException()
         }
         return numberState
@@ -17,4 +20,17 @@ object LottoWinningNumberInputValidator {
         }
     }
 
+    private fun displayErrorMessage(error: LottoInputState.WinningNumber){
+        var errorMessage = ""
+        when(error) {
+            LottoInputState.WinningNumber.OUT_OF_RANGE -> {
+                errorMessage = "[ERROR]값의 범위에서 벗어났습니다. 로또 번호는 1 ~ 45 까지의 자연수만 입력 가능합니다."
+            }
+            LottoInputState.WinningNumber.IS_NULL ->{
+                errorMessage = "[ERROR]유효한 값이 아닙니다. 로또 번호는 1 ~ 45 까지의 자연수만 입력 가능합니다."
+            }
+            else -> {}
+        }
+        println(errorMessage)
+    }
 }

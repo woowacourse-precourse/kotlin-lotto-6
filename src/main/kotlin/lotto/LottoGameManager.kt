@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.utils.LottoNumbersGenerator
+import lotto.utils.validator.LottoInputState
 
 object LottoGameManager {
     private lateinit var lottoGame: LottoGame
