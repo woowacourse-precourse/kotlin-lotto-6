@@ -285,8 +285,8 @@ class Lotto(private val numbers: List<Int>) {
 
 ### LottoRanking
 
-- [ ] 등수
-- [ ] 금액
+- [x] 등수
+- [x] 상금
 
 ### LottoNumber
 
