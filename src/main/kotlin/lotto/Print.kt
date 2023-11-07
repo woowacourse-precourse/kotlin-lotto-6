@@ -9,12 +9,13 @@ object Print {
     fun pleaseInputBonusNumbers() = print(Messages.PLEASE_INPUT_BONUS_NUMBERS)
     fun winningStatistics(statistics: Map<Position, Int>) {
         val decimalFormat = DecimalFormat("#,###")
-        val sorted = statistics.toSortedMap().forEach{
+        val sorted = statistics.toSortedMap().forEach {
             if (it.key == Position.NoLuck) {
                 return@forEach
             }
             val formattedPrize = decimalFormat.format(it.key.winningPrize)
-            println("${it.key.message} (${formattedPrize}) - ${it.value}개")
+            println("${it.key.message} ($formattedPrize) - ${it.value}개")
         }
     }
+    fun profitRate(rate: Rate) = println("총 수익률은 ${rate}입니다.")
 }
