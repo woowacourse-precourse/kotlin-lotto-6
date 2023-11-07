@@ -9,12 +9,13 @@ class LottoController {
     private val lottoManager = LottoManager()
     private var lottoCount = NOT_INITIALIZED.toLong()
     private val generatedLottoList = mutableListOf<Lotto>()
-    private lateinit var lottoNumbers: Lotto
+    private lateinit var winningLotto: Lotto
     private var bonusNumber = NOT_INITIALIZED
 
     fun run() {
         purchaseLotto()
         inputWinningLotto()
+        showResult()
     }
 
     private fun purchaseLotto() {
@@ -25,8 +26,13 @@ class LottoController {
     }
 
     private fun inputWinningLotto() {
-        lottoView.readInputNumbers().also { lotto -> this.lottoNumbers = lotto }
-        lottoView.readInputBonus(lottoNumbers).also { bonusNumber -> this.bonusNumber = bonusNumber }
+        lottoView.readInputNumbers().also { lotto -> this.winningLotto = lotto }
+        lottoView.readInputBonus(winningLotto).also { bonusNumber -> this.bonusNumber = bonusNumber }
+    }
+
+    private fun showResult() {
+        lottoView.printStatistics(lottoManager.classifyLotto(generatedLottoList, winningLotto, bonusNumber))
+
     }
 
     companion object {

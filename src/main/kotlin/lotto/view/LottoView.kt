@@ -1,6 +1,7 @@
 package lotto.view
 
 import lotto.model.Lotto
+import lotto.model.LottoRank
 import lotto.util.Printer
 import lotto.util.Reader
 
@@ -33,5 +34,12 @@ class LottoView {
             printer.printGeneratedLotto(lotto.getLottoNumbers())
         }
         println()
+    }
+
+    fun printStatistics(lottoMap: Map<LottoRank, Long>) {
+        printer.printStatisticsMessage()
+        lottoMap.forEach { map ->
+            printer.printResult(map.key.message, map.value)
+        }
     }
 }
