@@ -4,7 +4,11 @@ import camp.nextstep.edu.missionutils.Randoms
 
 object LottoMaker {
 
-    fun createRandomNumbers(): List<Int> {
+    fun createRandomLottoNumbers(): List<Int> {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6).sorted()
+    }
+
+    fun createRandomBonusNumbers(): Int {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 1).get(0)
     }
 }
