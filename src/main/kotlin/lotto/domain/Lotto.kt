@@ -4,8 +4,10 @@ import lotto.util.Exception
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        Exception.validateLottoNumber(numbers)
+        validate()
     }
 
     fun getLottoNumbers() = numbers
+
+    private fun validate() = Exception.validateLottoNumber(numbers)
 }
