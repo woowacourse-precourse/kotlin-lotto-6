@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest
+import lotto.model.LottoNumberGenerator
 
 class LottoCorrectTest: NsTest() {
     @Test
@@ -72,6 +73,18 @@ class LottoCorrectTest: NsTest() {
         )
     }
 
+    @Test
+    fun `총 수익률이 정상적으로 계산되고 출력되는지 테스트`() {
+        assertRandomUniqueNumbersInRangeTest(
+            {
+                run("1000", "1,2,3,4,8,9", "10")
+                assertThat(output()).contains(
+                    "총 수익률은 5000.0%입니다.",
+                )
+            },
+            listOf(1, 2, 3, 4, 5, 6),
+        )
+    }
     override fun runMain() {
         main()
     }
