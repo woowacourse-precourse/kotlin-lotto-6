@@ -80,9 +80,7 @@ class CheckError {
     fun checkNonOverlapNumber(numbers: List<String>): Boolean {
 
         try {
-
             require(numbers.toSet().size == 6) { }
-
         } catch (e: IllegalArgumentException) {
 
             println("[ERROR] : 겹치는 숫자가 있습니다. 다시 입력해주세요")

@@ -1,18 +1,18 @@
 package lotto
 
-// 컴퓨터가 랜덤으로 돌려준 로또 번호들
-// 즉 당첨번호가 아니다. 주의할 것
+import camp.nextstep.edu.missionutils.Console
+
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
     }
 
-    fun compareCountingMatchedWinningNumber(winningNumber: WinningAndBonusNumber): Int {
-        return (numbers.toSet().intersect(winningNumber.winningNumber.toSet()).size)
+    fun compareCountingMatchedWinningNumber(winningNumber: Lotto): Int {
+        return (numbers.toSet().intersect(winningNumber.numbers.toSet()).size)
     }
 
-    fun compareCountingMatchedBonusNumber(bonusNumber: WinningAndBonusNumber): Boolean {
-        return numbers.toSet().intersect(bonusNumber.bonusNumber.toSet()).size == 1
+    fun compareCountingMatchedBonusNumber(bonusNumber: List<Int>): Boolean {
+        return numbers.toSet().intersect(bonusNumber.toSet()).size == 1
     }
 
     fun divideStandard1to6(win: Int, bonus: Boolean): Int {
@@ -30,4 +30,5 @@ class Lotto(private val numbers: List<Int>) {
             else -> 5
         }
     }
+
 }

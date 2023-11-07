@@ -28,7 +28,7 @@ fun main() {
     println("보너스 번호를 입력해 주세요.")
     val bonus = input.inputBonusNumber(winning) // 보너스 번호 1개
     println()
-    val winningBonus = WinningAndBonusNumber(winning, bonus)    // 복권 당첨 번호, 보너스 번호 생성
+    val winningNumber = Lotto(winning)    // 복권 당첨 번호, 보너스 번호 생성
 
     println("당첨 통계")
     println("---")
@@ -36,8 +36,8 @@ fun main() {
     val rank: MutableList<Int> = mutableListOf(0, 0, 0, 0, 0, 0)
 
     for (lotto in lottoBunch) {
-        val winCount = lotto.compareCountingMatchedWinningNumber(winningBonus)
-        val bonusCount = lotto.compareCountingMatchedBonusNumber(winningBonus)
+        val winCount = lotto.compareCountingMatchedWinningNumber(winningNumber)
+        val bonusCount = lotto.compareCountingMatchedBonusNumber(bonus)
 
         rank[lotto.divideStandard1to6(winCount, bonusCount)] += 1
     }
