@@ -83,16 +83,26 @@
 ##### dataLayer
 
 - Model
+  - LottoWinningnumber
+  - UserLottoState
 
 - repository
+  - LottoRepositoryImpl : 로또 게임 데이터를 관리하는 repository 구현부 클래스
 
 ##### uiLayer
 
-- model
 - repository
-- viewmodel
+  - LottoRepository : Facade 패턴을 사용해 view에게 단순한 인터페이스를 제공하는 repository interface
+- viewModel
+  - LottoViewModel : 로또 게임과 관련된 비즈니스 로직을 처리하는 ViewModel 클래스 -> 게임 로직과 UI를 분리하여 유지보수성, 확장성, 테스트 용이성 등을 높임
+- Lotto : 사용자와 상호작용하며 레이싱 게임의 플로우를 제어하는 View의 역할을 하는 클래스 -> 당첨 번호와 구매한 로또를 비교한 최종 통계를 ViewModel에 요청해 출력해주는 클래스
+- LottoGame : 사용자와 상호작용하며 레이싱 게임의 플로우를 제어하는 View의 역할을 하는 클래스 -> 사용자에게 로또 번호, 구매금액 등을 입력받아 viewModel을 통해 데이터를 요청하는 클래스
 
 ##### utils
+- CommonConst : 게임에서 사용되는 공통 문자열 상수를 정의한 클래스로, 화면에 표시되는 메시지나 문자열 값들을 관리
+- Exceptions : 예외 처리를 담당하는 클래스로, 잘못된 입력이나 예외 상황을 처리하기 위한 함수들을 제공
+- GameUtils : 게임에서 사용되는 유틸리티 함수들을 제공하는 객체
+- PrizeType : 로또 게임에서 각 등수에 해당하는 상금을 정의하고 관리하는 클래스로 등수와 상금을 간단하게 매핑하여 관리할 수 있도록 구현
 
 <br/>
 
