@@ -7,7 +7,7 @@ class DuplicatedValidator : NumbersValidator {
         }
     }
 
-    companion object{
+    companion object {
         private const val DUPLICATED_ERROR_FORMAT = "로또 번호 %s 는 중복되면 안됩니다"
     }
 }
