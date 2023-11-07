@@ -38,6 +38,7 @@ class LottoController {
 
     private fun issueTickets(lottoStore: LottoStore): List<Lotto> {
         OutputView.printPurchaseCount(lottoStore.getNumberOfTickets())
+
         val tickets = lottoStore.sellTickets()
         OutputView.printTickets(tickets).also { println() }
         return tickets
@@ -89,7 +90,8 @@ class LottoController {
     }
 
     private fun printPrizeDetails(results: List<LottoRank>) {
-        println("당첨 통계").also { println("---") }
+        OutputView.printPrizeDetails()
+
         LottoRank.entries.forEach { prize ->
             val count = results.count { it == prize }
             println("${prize.matchCount}개 일치${if (prize.hasBonus) ", 보너스 볼 일치 " else " "}" +

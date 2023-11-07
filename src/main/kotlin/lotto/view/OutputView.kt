@@ -20,11 +20,11 @@ class OutputView {
             }
         }
 
-//        fun printWinningDetails() {
-//            println(WINNING_STATISTICS_STRING)
-//            println(DASH_SEPARATOR)
-//
-//        }
+        fun printPrizeDetails() {
+            println(WINNING_STATISTICS_STRING)
+            println(DASH_SEPARATOR)
+
+        }
 
         fun printRateOfReturn(rateOfReturn: Double) {
             print(RATE_OF_RETURN_STRING + String.format("%.1f", rateOfReturn) + PERCENT_SUFFIX)
