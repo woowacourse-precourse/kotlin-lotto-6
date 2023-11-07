@@ -1,10 +1,9 @@
 package lotto.domain.validator
 
-import lotto.domain.LottoShop
 import lotto.domain.validator.InputValidator.validateInputIsInt
 import lotto.domain.validator.InputValidator.validateInputIsNotZero
 
-class LottoManagerValidator {
+object LottoManagerValidator {
     fun validateWinningNumbersInput(input: String) {
         val inputList = input.split(",").map {
             it.trim()

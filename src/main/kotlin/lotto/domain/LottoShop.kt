@@ -1,13 +1,12 @@
 package lotto.domain
 
-import lotto.domain.validator.LottoShopValidator
+import lotto.domain.validator.LottoShopValidator.validatePurchaseLottoInput
 
 class LottoShop {
-    private val lottoShopValidator: LottoShopValidator by lazy { LottoShopValidator() }
     private val lottoNumberGenerator: RandomNumberGenerator by lazy { RandomNumberGenerator() }
 
     fun purchaseLottos(input: String): List<Lotto> {
-        lottoShopValidator.validatePurchaseLottoInput(input)
+        validatePurchaseLottoInput(input)
         val purchasedLottoCount = input.toInt() / LOTTO_PRICE
         return createLottos(purchasedLottoCount)
     }
