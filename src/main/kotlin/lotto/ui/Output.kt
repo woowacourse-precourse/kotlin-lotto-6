@@ -36,4 +36,8 @@ object Output {
         println(MATCH_FIVE_AND_BONUS + "${winningDetails[Match.FIVE_AND_BONUS.value]}" + COUNT)
         println(MATCH_SIX + "${winningDetails[Match.SIX.value]}" + COUNT)
     }
+
+    fun printRateOfReturn(rateOfReturn: String) {
+        println(MESSAGE_RATE_OF_RETURN + "$rateOfReturn" + MESSAGE_IT_IS)
+    }
 }

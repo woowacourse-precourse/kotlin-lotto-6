@@ -21,4 +21,6 @@ fun startLotto() {
     val winningStatistics = WinningStatistics()
     val winningDetails = winningStatistics.getWinningDetails(lottos, winningNumber, bonusNumber)
     Output.printWinningStatistics(winningDetails)
+    val rateOfReturn = winningStatistics.getRateOfReturn(lotteryNumber, winningDetails)
+    Output.printRateOfReturn(rateOfReturn)
 }
