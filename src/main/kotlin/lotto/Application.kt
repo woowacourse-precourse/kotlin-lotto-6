@@ -28,3 +28,29 @@ fun generateTicket(): Lotto {
     val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
     return Lotto(numbers)
 }
+
+fun getWinningNumbers(): Lotto {
+    while (true) {
+        try {
+            println("\n당첨 번호를 입력해 주세요.")
+            val input = Console.readLine() ?: throw IllegalArgumentException("숫자를 입력해 주세요.")
+            val numbers = input.split(',').map { it.toIntOrNull() ?: throw IllegalArgumentException("숫자를 입력해 주세요.") }
+            validateNumbers(numbers)
+            return Lotto(numbers)
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] ${e.message}")
+        }
+    }
+}
+
+fun validateNumbers(numbers: List<Int>) {
+    if (numbers.any { it !in 1..45 }) {
+        throw IllegalArgumentException("로또 번호는 1~45 사이의 숫자여야 합니다.")
+    }
+    if (numbers.size != 6) {
+        throw IllegalArgumentException("로또 번호는 6개여야 합니다.")
+    }
+    if (numbers.distinct().size != 6) {
+        throw IllegalArgumentException("로또 번호는 중복될 수 없습니다.")
+    }
+}
