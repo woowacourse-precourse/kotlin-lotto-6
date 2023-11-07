@@ -36,7 +36,7 @@ class UserInput() {
         }
     }
 
-    fun bonusNumberInput(numberList: List<String>): Int {
+    fun bonusNumberInput(numberList: List<Int>): Int {
         while(true) {
             println(LottoGameMessage.BONUS_NUMBER_INPUT)
             val userInput = Console.readLine()
