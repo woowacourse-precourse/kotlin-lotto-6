@@ -8,7 +8,7 @@ class WinNumbersValidator(winNumbers: List<String>) : InputValidator() {
             checkForNumberRange(it)
         }
         checkForWinNumbersLength(winNumbers)
-        checkForDuplicates(winNumbers)
+        checkDuplicateForWinNumbers(winNumbers)
 
     }
 }

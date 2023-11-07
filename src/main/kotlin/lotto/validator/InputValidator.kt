@@ -13,8 +13,12 @@ open class InputValidator {
         require(value.matches("^[0-9]\\d*$".toRegex())) { "[ERROR] 양의 정수 이외의 숫자를 입력하지 말아주세요" }
     }
 
-    fun checkForDuplicates(winNumbers: List<String>) {
+    fun checkDuplicateForWinNumbers(winNumbers: List<String>) {
         require(winNumbers.size == winNumbers.toSet().size) { "[ERROR] 중복된 값이 존재합니다" }
+    }
+
+    fun checkDuplicateWithWinNumbers(winNumbers: List<Int>, bonusNumber: Int) {
+        require(!winNumbers.contains(bonusNumber)) { "[ERROR] 당첨 번호와 중복되지 않은 값을 입력해 주세요" }
     }
 
     fun checkBlank(value: String) {

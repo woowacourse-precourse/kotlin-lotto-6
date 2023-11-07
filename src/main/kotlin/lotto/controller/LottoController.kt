@@ -14,7 +14,7 @@ class LottoController {
         val (lottoStore, purchasePrice) = inputPrice()
         val tickets : List<Lotto> = issueTickets(lottoStore)
         val winNumbers: List<Int> = inputWinNumbers()
-        val bonusNumber: Int = inputBonusNumber()
+        val bonusNumber: Int = inputBonusNumber(winNumbers)
         val results : List<LottoRank> = calculateResult(tickets, winNumbers, bonusNumber)
 
         printPrizeDetails(results)
@@ -60,12 +60,12 @@ class LottoController {
         throw IllegalArgumentException("입력에 여러 차례 실패했습니다. 프로그램을 종료합니다.")
     }
 
-    private fun inputBonusNumber(): Int {
+    private fun inputBonusNumber(winNumbers: List<Int>): Int {
         var attempts = 0
         while (attempts <= 5) {
             try {
                 val bonusNumber = InputView.promptForBonusNumber().also { println() }
-                BonusNumberValidator(bonusNumber)
+                BonusNumberValidator(winNumbers, bonusNumber)
                 return bonusNumber.toInt()
             } catch (e: IllegalArgumentException) {
                 println(e.message)
