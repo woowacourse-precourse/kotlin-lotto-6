@@ -6,16 +6,6 @@ import lotto.domain.WinningLotto
 import lotto.service.UserService
 import lotto.service.WinResultService
 import lotto.service.WinningLottoService
-import lotto.util.Constant
-import lotto.util.Constant.INPUT_BONUS_NUMBER_NOT_NUMBER_ERROR_MESSAGE
-import lotto.util.Constant.INPUT_BONUS_NUMBER_OVERLAP_ERROR_MESSAGE
-import lotto.util.Constant.INPUT_PRICE_UNIT_ERROR_MESSAGE
-import lotto.util.Constant.INPUT_WINNING_NUMBER_LENGTH_ERROR_MESSAGE
-import lotto.util.Constant.INPUT_WINNING_NUMBER_MESSAGE
-import lotto.util.Constant.INPUT_WINNING_NUMBER_NOT_NUMBER_ERROR_MESSAGE
-import lotto.util.Constant.INPUT_WINNING_NUMBER_OVERLAP_ERROR_MESSAGE
-import lotto.util.Constant.UNIT_PRICE
-import lotto.util.Exception
 import lotto.view.InputView
 import lotto.view.OutputView
 
