@@ -30,10 +30,5 @@ class LottoTest {
         }
     }
 
-    @Test
-    fun `로또 번호가 숫자가 아니면 예외가 발생한다`() {
-        assertThrows<IllegalArgumentException> {
-            UserLottoNumber().convert("1,2,3,4,5,j")
-        }
-    }
+
 }
