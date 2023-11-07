@@ -72,3 +72,4 @@
 - [x] LottoStore 테스트
 - [x] LottoRank 테스트
 - [x] Lotto 테스트
+- [x] LottoResult 테스트
