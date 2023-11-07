@@ -68,6 +68,7 @@ class LottoController {
         while (true) {
             try {
                 val lottoNumberInput = inputView.lottoNumbersInput()
+                println()
                 val lottoNumber = validator.validateLottoNumberInput(lottoNumberInput)
                 val splitLottoNumbers = validator.validateLottoNumber(lottoNumber)
                 validator.validateLottoSize(splitLottoNumbers)

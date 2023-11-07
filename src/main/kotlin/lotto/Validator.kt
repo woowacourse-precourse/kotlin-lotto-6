@@ -47,7 +47,6 @@ class Validator {
         if (lottoNumber.isEmpty()) {
             throw IllegalArgumentException(InputErrorMessage.LOTTO_NUMBER_EMPTY.errorMessage)
         }
-        println()
         return lottoNumber
     }
 
