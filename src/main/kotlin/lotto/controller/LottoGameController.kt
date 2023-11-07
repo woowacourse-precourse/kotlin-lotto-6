@@ -8,6 +8,8 @@ object LottoGameController {
     private val inputView = InputView
     private val outputView = OutputView
     private val lotties = Lotties()
+    private var winningNumbers = List(6) { 0 }
+    private var bonusNumber = 0
 
     fun start() {
         purchaseLotto()
@@ -28,8 +30,15 @@ object LottoGameController {
 
     private fun setUserWinningNumber(){
         outputView.requestWinningNumbersMessage()
-        val winningNumber = inputView.readWinningNumber()
+        readWinningNumbersAndBonusNumber()
+    }
+
+    private fun readWinningNumbersAndBonusNumber(): Pair<List<Int>, Int> {
+        winningNumbers = InputView.readWinningNumber()
         outputView.requestBonusNumberMessage()
-        val bonusNumber = inputView.readBonusNumber()
+        bonusNumber = InputView.readBonusNumber()
+        inputView.validateBonusNumberNotInWinningNumbers(bonusNumber=bonusNumber, winningNumbers=winningNumbers)
+
+        return Pair(winningNumbers, bonusNumber)
     }
 }
