@@ -18,7 +18,7 @@ class LottoView {
     }
 
     fun displayGeneratedLottoTickets(numOfTickets: Int, lottoTickets: List<Lotto>) {
-        println("\n$numOfTickets 개를 구매했습니다.")
+        println("\n${numOfTickets}개를 구매했습니다.")
         lottoTickets.forEach { lottoTicket ->
             println(lottoTicket.numbers.sorted())
         }
