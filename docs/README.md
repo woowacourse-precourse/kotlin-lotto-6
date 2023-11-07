@@ -104,6 +104,12 @@
 
 <br>
 
+## FlowChart
+
+<img width="453" alt="lotto_flowchart" src="https://github.com/lh99j/woowa_lotto/assets/87519273/b8fe82a2-3f6f-4939-a208-3ec21752eca4">
+
+<br>
+
 ## 프로젝트 구조
 
 ```
