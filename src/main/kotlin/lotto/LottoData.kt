@@ -1,3 +1,5 @@
+package lotto
+
 object LottoData {
 
     var purchaseNum : Int = 0

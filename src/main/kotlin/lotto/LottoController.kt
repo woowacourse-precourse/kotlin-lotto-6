@@ -1,19 +1,23 @@
-import CheckData.checkBonusNum
-import CheckData.checkInputMoney
-import CheckData.checkLottoNum
-import LottoCalculating.calculateEarnings
-import LottoCalculating.calculateStats
-import LottoData.bonusNum
-import LottoData.lottoNums
-import LottoData.lottoResult
-import LottoData.profitRatio
-import LottoData.purchaseNum
-import LottoData.stats
+package lotto
+
+import lotto.CheckData.checkBonusNum
+import lotto.CheckData.checkInputMoney
+import lotto.CheckData.checkLottoNum
+import lotto.LottoCalculating.calculateEarnings
+import lotto.LottoCalculating.calculateStats
+import lotto.LottoData.bonusNum
+import lotto.LottoData.lottoNums
+import lotto.LottoData.lottoResult
+import lotto.LottoData.profitRatio
+import lotto.LottoData.purchaseNum
+import lotto.LottoData.stats
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
+
+
 
 object LottoController {
 
@@ -31,6 +35,13 @@ object LottoController {
             } catch (e: IllegalArgumentException) {
                 println("예외 발생: ${e.message} 다시 입력해주세요.")
             }
+        }
+    }
+
+    fun lottoDraw() {
+        repeat(LottoData.purchaseNum) {
+            val lottoNum = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+            Lotto(lottoNum).printNumbers()
         }
     }
 

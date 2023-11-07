@@ -1,3 +1,5 @@
+package lotto
+
 import LottoData.lottoResult
 
 object CheckData {
