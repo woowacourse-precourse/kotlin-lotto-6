@@ -19,6 +19,28 @@ enum class Reward(val matchedCount: Int, val bonus: Boolean, val money: String) 
                 else -> "NOTHING"
             }
         }
+
+        fun getPrizeMoney(rank: String): String {
+            return when (rank) {
+                "FIRST" -> FIRST.money
+                "SECOND" -> SECOND.money
+                "THIRD" -> THIRD.money
+                "FORTH" -> FORTH.money
+                "FIFTH" -> FIFTH.money
+                else -> throw IllegalArgumentException(INPUT_EXCEPTION)
+            }
+        }
+
+        fun getSameCount(rank: String): Int {
+            return when (rank) {
+                "FIRST" -> FIRST.matchedCount
+                "SECOND" -> SECOND.matchedCount
+                "THIRD" -> THIRD.matchedCount
+                "FORTH" -> FORTH.matchedCount
+                "FIFTH" -> FIFTH.matchedCount
+                else -> throw IllegalArgumentException(INPUT_EXCEPTION)
+            }
+        }
     }
 
 }
