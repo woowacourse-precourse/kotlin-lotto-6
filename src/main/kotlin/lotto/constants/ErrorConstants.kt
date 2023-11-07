@@ -2,7 +2,7 @@ package lotto.constants
 
 object ErrorConstants {
     const val MONEY_NOT_NUMBER = "구입 금액은 숫자만 입력해 주세요."
-    const val MONEY_TOO_MUCH = "구입 금액은 18자리 까지만 입력해 주세요."
+    const val MONEY_TOO_MUCH = "구입 금액은 9자리 까지만 입력해 주세요."
     const val MONEY_UNDER_PRICE = "로또 가격 ${LottoConstants.LOTTO_PRICE}원 이상 입력해 주세요."
     const val MONEY_NOT_DIVIDE = "거스름돈이 나오지 않게 ${LottoConstants.LOTTO_PRICE}원 단위로 입력해 주세요."
 

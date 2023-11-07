@@ -10,7 +10,7 @@ class LottoView {
     private val printer = Printer
     private val reader = Reader
 
-    fun readInputMoney(): Long {
+    fun readInputMoney(): Int {
         printer.printInputMoney()
         return reader.readLottoMoney()
     }
@@ -25,7 +25,7 @@ class LottoView {
         return reader.readLottoBonus(lotto.getLottoNumbers())
     }
 
-    fun printLottoCount(count: Long) {
+    fun printLottoCount(count: Int) {
         printer.printLottoCount(count)
     }
 
@@ -36,7 +36,7 @@ class LottoView {
         println()
     }
 
-    fun printStatistics(lottoMap: Map<LottoRank, Long>) {
+    fun printStatistics(lottoMap: Map<LottoRank, Int>) {
         printer.printStatisticsMessage()
         lottoMap.forEach { map ->
             printer.printResult(map.key.message, map.value)

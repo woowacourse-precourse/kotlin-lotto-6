@@ -9,7 +9,7 @@ import lotto.exception.IllegalStateException
 
 class LottoManager {
 
-    fun getMoneyToCount(money: Long): Long {
+    fun getMoneyToCount(money: Int): Int {
         while (money < LOTTO_PRICE) {
             println(IllegalStateException.stateNotInitialized)
         }
@@ -21,12 +21,12 @@ class LottoManager {
         return Lotto(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_COUNT).sorted())
     }
 
-    fun classifyLotto(lottoList: List<Lotto>, winningLotto: Lotto, bonusNumber: Int): Map<LottoRank, Long> {
-        val lottoMap = LottoRank.entries.associateWith { 0L }.toMutableMap()
+    fun classifyLotto(lottoList: List<Lotto>, winningLotto: Lotto, bonusNumber: Int): Map<LottoRank, Int> {
+        val lottoMap = LottoRank.entries.associateWith { 0 }.toMutableMap()
 
         lottoList.forEach { lotto ->
             val lottoRank = compareLotto(lotto, winningLotto, bonusNumber)
-            lottoMap[lottoRank] = lottoMap[lottoRank]!! + 1L
+            lottoMap[lottoRank] = lottoMap[lottoRank]!! + 1
         }
         lottoMap.remove(LottoRank.NOT_IN_RANK)
 

@@ -10,10 +10,10 @@ import lotto.exception.IllegalNumbersException
 
 object InputChecker {
 
-    fun checkInputMoney(inputString: String, returnCode: Long): Long {
-        val money: Long
+    fun checkInputMoney(inputString: String, returnCode: Int): Int {
+        val money: Int
 
-        require(inputString.length <= 18) {
+        require(inputString.length <= 9) {
             println(IllegalMoneyException.moneyTooMuch)
             return returnCode
         }
@@ -21,12 +21,12 @@ object InputChecker {
             println(IllegalMoneyException.moneyNotNumber)
             return returnCode
         }
-        money = inputString.toLong()
+        money = inputString.toInt()
         require(money >= LOTTO_PRICE) {
             println(IllegalMoneyException.moneyUnderPrice)
             return returnCode
         }
-        require((money % LOTTO_PRICE).toInt() == 0) {
+        require((money % LOTTO_PRICE) == 0) {
             println(IllegalMoneyException.moneyNotDivide)
             return returnCode
         }

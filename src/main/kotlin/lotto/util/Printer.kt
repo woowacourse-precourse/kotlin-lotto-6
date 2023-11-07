@@ -19,7 +19,7 @@ object Printer {
         println(MESSAGE_INPUT_BONUS)
     }
 
-    fun printLottoCount(count: Long) {
+    fun printLottoCount(count: Int) {
         println("$count$MESSAGE_LOTTO_COUNT")
     }
 
@@ -31,7 +31,7 @@ object Printer {
         println(MESSAGE_STATISTICS)
     }
 
-    fun printResult(rank: String, count: Long) {
+    fun printResult(rank: String, count: Int) {
         println("$rank${count}개")
     }
 }

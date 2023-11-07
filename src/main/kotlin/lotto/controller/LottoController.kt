@@ -7,7 +7,7 @@ import lotto.view.LottoView
 class LottoController {
     private val lottoView = LottoView()
     private val lottoManager = LottoManager()
-    private var lottoCount = NOT_INITIALIZED.toLong()
+    private var lottoCount = NOT_INITIALIZED
     private val generatedLottoList = mutableListOf<Lotto>()
     private lateinit var winningLotto: Lotto
     private var bonusNumber = NOT_INITIALIZED
