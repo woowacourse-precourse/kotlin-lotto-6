@@ -37,8 +37,7 @@
   - [O] 입력 당첨 번호를 모두 정수로 바꿔주는 기능 : InputValue#changeStringInt() - 중복 사용
   
 - [O] 구매 금액에 맞는 복권의 개수 계산 : MakeLotto#calculateCountingLotto()
-- [] 각 복권마다 중복되지 않는 번호 6개 생성 : MakeLotto#createNonOverlapSixNumbers()
-- [] 생성된 복권 번호 오름차순으로 변경 : MakeLotto#changeAscendingLottoNumbers()
+- [O] 각 복권마다 중복되지 않는 번호 6개 생성 : MakeLotto#createNonOverlapSixNumbers()
 
 - [] 각 로또마다 당첨 번호 일치 개수 확인 : Calculator#compareCountingMatchedWinningNumber()
 - [] 각 로또마다 보너스 번호 일치 확인 : Calculator#compareCountingMatchedBonusNumber()

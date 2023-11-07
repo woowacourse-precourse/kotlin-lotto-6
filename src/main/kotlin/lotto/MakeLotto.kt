@@ -9,12 +9,7 @@ class MakeLotto {
     }
 
     fun createNonOverlapSixNumbers(): List<Int> {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6)
-    }
-
-    fun changeAscendingLottoNumbers(winningSixNumbers: List<Int>): List<Int> {
-
-        return listOf(0)
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6).sorted()
     }
 
 }
