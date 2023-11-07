@@ -7,17 +7,17 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.toSet().size == 6) { "로또 번호는 중복될 수 없습니다." }
     }
 
-    fun contains(number: Int): Boolean {
-        return numbers.contains(number)
-    }
-
-    fun matchCount(winningNumbers: List<Int>): Int {
+    fun getMatchCount(winningNumbers: List<Int>): Int {
         return numbers.intersect(winningNumbers).size
     }
 
+    fun getIsBonus(bonusNumber: Int): Boolean {
+        return numbers.contains(bonusNumber)
+    }
+
     fun getLottoResult(winningNumbers: List<Int>, bonusNumber: Int): LottoResult {
-        val matchCount = matchCount(winningNumbers)
-        val isBonus = contains(bonusNumber)
+        val matchCount = getMatchCount(winningNumbers)
+        val isBonus = getIsBonus(bonusNumber)
         return LottoResult.fromMatchCount(matchCount, isBonus)
     }
 
@@ -25,6 +25,7 @@ class Lotto(private val numbers: List<Int>) {
         return numbers.joinToString(separator = ", ", prefix = "[", postfix = "]")
     }
 }
+
 enum class LottoResult(val matchCount: Int, val prize: Int, val isBonus: Boolean = false) {
     NONE(0, 0),
     THREE_MATCHES(3, 5000),
@@ -39,13 +40,18 @@ enum class LottoResult(val matchCount: Int, val prize: Int, val isBonus: Boolean
         }
     }
 
+    fun formatPrize(): String {
+        return NumberFormat.getNumberInstance().format(prize)
+    }
+
     fun getFormattedResult(count: Int): String {
+        val formattedPrize = formatPrize()
         return when(this) {
-            FIVE_MATCHES_AND_BONUS -> "${matchCount}개 일치, 보너스 볼 일치 (${NumberFormat.getNumberInstance().format(prize)}원) - ${count}개"
-            FIVE_MATCHES -> "${matchCount}개 일치 (${NumberFormat.getNumberInstance().format(prize)}원) - ${count}개"
-            FOUR_MATCHES -> "${matchCount}개 일치 (${NumberFormat.getNumberInstance().format(prize)}원) - ${count}개"
-            THREE_MATCHES -> "${matchCount}개 일치 (${NumberFormat.getNumberInstance().format(prize)}원) - ${count}개"
-            SIX_MATCHES -> "${matchCount}개 일치 (${NumberFormat.getNumberInstance().format(prize)}원) - ${count}개"
+            FIVE_MATCHES_AND_BONUS -> "${matchCount}개 일치, 보너스 볼 일치 (${formattedPrize}원) - ${count}개"
+            FIVE_MATCHES -> "${matchCount}개 일치 (${formattedPrize}원) - ${count}개"
+            FOUR_MATCHES -> "${matchCount}개 일치 (${formattedPrize}원) - ${count}개"
+            THREE_MATCHES -> "${matchCount}개 일치 (${formattedPrize}원) - ${count}개"
+            SIX_MATCHES -> "${matchCount}개 일치 (${formattedPrize}원) - ${count}개"
             NONE -> ""
         }
     }
