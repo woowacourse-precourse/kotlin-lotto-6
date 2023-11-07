@@ -12,7 +12,7 @@ class RankManager() {
         Prize.entries.forEach { results[it] = Constants.INIT_ZERO }
     }
 
-    fun rankManager(answerLottoNumbers: List<Int>, lotto: Lotto, bonusNumber: Int): MutableMap<Prize, Int> {
+    fun rankManager(lotto: Lotto, answerLottoNumbers: List<Int>, bonusNumber: Int): MutableMap<Prize, Int> {
         val userWinningNumbers = lotto.getLotto()
         val bonusMatch = lottoRank.bonusMatched(bonusNumber, answerLottoNumbers)
         val matchedNumbers = lottoRank.checkMatchingNumbers(answerLottoNumbers, userWinningNumbers)

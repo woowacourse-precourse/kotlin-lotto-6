@@ -46,12 +46,12 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         return inputView.inputBonusNumber().getBonus()
     }
 
-    private fun rankOfLotto(lotto: Lotto, lottoList: MutableList<Lotto>, bonusNumber: Int): MutableMap<Prize, Int> {
+    private fun rankOfLotto(lotto: Lotto, answerLottoNumbers: MutableList<Lotto>, bonusNumber: Int): MutableMap<Prize, Int> {
         outputView.showWinningStatisticsMessages()
         val ranks = RankManager()
         var results = mutableMapOf<Prize, Int>()
-        lottoList.forEach {
-            results = ranks.rankManager(it.getLotto(), lotto, bonusNumber)
+        answerLottoNumbers.forEach {
+            results = ranks.rankManager(lotto, it.getLotto(),bonusNumber)
         }
         return results
     }
