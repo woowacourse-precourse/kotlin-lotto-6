@@ -46,11 +46,11 @@ class CompareNumber {
         println("Before : $ranking")
 
         when (rank.toString()){
-            "FIRST" -> ranking[0]++
-            "SECOND" -> ranking[1]++
+            "FIRST" -> ranking[4]++
+            "SECOND" -> ranking[3]++
             "THIRD" -> ranking[2]++
-            "FOURTH" -> ranking[3]++
-            "FIFTH" -> ranking[4]++
+            "FOURTH" -> ranking[1]++
+            "FIFTH" -> ranking[0]++
         }
 
         println("After : $ranking")
