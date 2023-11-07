@@ -11,9 +11,9 @@ class LottoResults(lottoPrizes: List<LottoPrize>) {
 
     init {
         lottoPrizes.forEach { lottoPrize ->
-            lottoResults.first {
+            lottoResults.firstOrNull {
                 it.prize == lottoPrize
-            }.increasePrizeCount()
+            }?.increasePrizeCount()
         }
     }
 

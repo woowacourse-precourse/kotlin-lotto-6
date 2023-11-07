@@ -17,7 +17,7 @@ object InputView {
     private const val ERROR_BONUS_REPEAT_MESSAGE = "보너스 번호와 당첨 번호에 중복이 있으면 안됩니다."
 
     const val ERROR_PRIZE_SIZE_MESSAGE = "당첨 번호 길이는 6입니다."
-    const val DIVIDE_MONEY_NUMBER = 1000
+    const val LOTTO_PRICE = 1000
 
     fun getPurchaseMoney(): Int {
         println(PURCHASE_MONEY_MESSAGE)
@@ -32,7 +32,7 @@ object InputView {
     }
 
     private fun checkDivideMoney(userMoney: Int) {
-        check(userMoney % DIVIDE_MONEY_NUMBER == 0) {
+        check(userMoney % LOTTO_PRICE == 0) {
             errorMessageFormat(ERROR_PURCHASE_DIVIDE_MESSAGE)
         }
     }

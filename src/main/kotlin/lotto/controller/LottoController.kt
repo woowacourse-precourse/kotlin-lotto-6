@@ -7,7 +7,7 @@ import lotto.model.LottoResults
 import lotto.model.Lottos
 import lotto.repeatInputIncorrect
 import lotto.view.InputView
-import lotto.view.InputView.DIVIDE_MONEY_NUMBER
+import lotto.view.InputView.LOTTO_PRICE
 import lotto.view.OutputView
 
 class LottoController {
@@ -23,7 +23,7 @@ class LottoController {
 
     private fun buyLotto() {
         purchaseMoney = InputView.getPurchaseMoney()
-        val purchaseCount = purchaseMoney / DIVIDE_MONEY_NUMBER
+        val purchaseCount = purchaseMoney / LOTTO_PRICE
         randomLottos = Lottos(purchaseCount, RandomLottoGenerator())
 
         val lottosState = randomLottos.getLottosState()
