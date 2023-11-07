@@ -3,8 +3,7 @@ package lotto
 import camp.nextstep.edu.missionutils.Console.readLine
 import java.rmi.dgc.Lease
 
-class InputManager {
-    val exceptionManager = ExceptionManager()
+class InputManager(val exceptionManager: ExceptionManager) {
     fun money(): Int {
         val str = readLine()
         return exceptionManager.money(str)
