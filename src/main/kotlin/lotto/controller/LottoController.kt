@@ -61,6 +61,10 @@ class LottoController() {
         printLottoTickets(lottoTickets)
     }
 
+    fun validateInputWinningNumberSize(input: List<String>) {
+        winningNumber.isWinningNumberSize(input)
+    }
+
     fun validateInputWinningNumberNumeric(input: List<String>) {
         winningNumber.isWinningNumberNumeric(input)
     }

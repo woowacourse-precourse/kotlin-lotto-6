@@ -12,6 +12,7 @@ object LottoWinningView {
 
     fun inputWinningNumberOfLotto() {
         val winningNumber = Console.readLine().trim().split(SPLIT_COMMA)
+        LottoController().validateInputWinningNumberSize(winningNumber)
         LottoController().validateInputWinningNumberNumeric(winningNumber)
         LottoController().validateInputWinningNumberRange(winningNumber.map { it.toInt() })
     }
