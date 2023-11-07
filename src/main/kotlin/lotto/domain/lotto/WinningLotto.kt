@@ -7,6 +7,8 @@ class WinningLotto(
     val bonusNumber: LottoNumber
 ) {
     init {
-        require(!winningNumbers.isContainLottoNumber(bonusNumber)) { WinningLottoException.BONUS_NUMBER_DUPLICATED.message }
+        require(!winningNumbers.isContainLottoNumber(bonusNumber)) {
+            WinningLottoException.BONUS_NUMBER_DUPLICATED.message
+        }
     }
 }
