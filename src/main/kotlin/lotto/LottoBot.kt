@@ -21,7 +21,7 @@ class LottoBot(
         showLottos()
         receiveWinningNumbers()
         receiveBonusNumbers()
-        presentStatics()
+        presentCalculationResult()
     }
 
     private fun receiveBudget() {
@@ -90,7 +90,7 @@ class LottoBot(
         }
     }
 
-    private fun presentStatics() {
+    private fun presentCalculationResult() {
         calculater.calculateAllJackpot(
             _lottoWallet,
             _bonusWallet,
@@ -98,5 +98,7 @@ class LottoBot(
             bonusNumber
         )
         calculater.showAllCalculation()
+        calculater.calculateProfitRate(budget)
+        calculater.showProfitRate()
     }
 }

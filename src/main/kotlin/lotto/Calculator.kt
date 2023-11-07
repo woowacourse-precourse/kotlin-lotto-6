@@ -11,6 +11,15 @@ class Calculator {
     private var jackpot5 = 0
     private var jackpot5WithBonus = 0
     private var jackpot6 = 0
+    private lateinit var profitRate: String
+
+    fun calculateProfitRate(budget: Int): String {
+        val profit: Double =
+            (jackpot3 * FIFTH_PRIZE + jackpot4 * FOURTH_PRIZE + jackpot5 * THRID_PRIZE + jackpot5WithBonus * SECOND_PRIZE + jackpot6 * FIRST_PRIZE).toDouble()
+        profitRate = String.format("%.1f", profit / budget.toDouble() * 100)
+
+        return profitRate
+    }
 
     fun calculateAllJackpot(
         lottos: List<Lotto>,
@@ -69,6 +78,10 @@ class Calculator {
         println("5개 일치 (${THRID_PRIZE}원) - ${jackpot5}개")
         println("5개 일치, 보너스 볼 일치 (${SECOND_PRIZE}원) - ${jackpot5WithBonus}개")
         println("6개 일치 (${FIRST_PRIZE}원) - ${jackpot6}개")
+    }
+
+    fun showProfitRate() {
+        println("총 수익률은 ${profitRate}%입니다.")
     }
 
     fun is3Jackpot(lotto: Lotto, winningNumbers: List<Int>): Boolean {
