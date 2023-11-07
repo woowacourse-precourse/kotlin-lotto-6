@@ -3,6 +3,14 @@ package lotto
 import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 
+enum class LottoPrize(val sameCount: Int, val prizeMoney: Int, val prizeName: String) {
+    threeSame(3, 5000, "3개 일치"),
+    fourSame(4, 50000, "4개 일치"),
+    fiveSame(5, 1500000, "5개 일치"),
+    fiveSamePlusBonus(5, 30000000, "5개 일치, 보너스 볼 일치"),
+    sixSame(6, 2000000000, "6개 일치")
+}
+
 fun main() {
     try {
         val inputMoney = lottoMoneyInput()
@@ -68,26 +76,26 @@ fun lottoNumberBonus(): Int {
 
 fun lottoNumberCheck(lottoList: List<List<Int>>, comNumber: List<Int>, bonusNumber: Int): Map<String, Int> {
     val lottoMoneyList = mutableMapOf(
-        "3개 일치" to 0,
-        "4개 일치" to 0,
-        "5개 일치" to 0,
-        "5개 일치, 보너스 볼 일치" to 0,
-        "6개 일치" to 0
+        LottoPrize.threeSame.prizeName to 0,
+        LottoPrize.fourSame.prizeName to 0,
+        LottoPrize.fiveSame.prizeName to 0,
+        LottoPrize.fiveSamePlusBonus.prizeName to 0,
+        LottoPrize.sixSame.prizeName to 0
     )
     for (lotto in lottoList) {
         val sameNumber = lotto.filter { it in comNumber }.size
         when (sameNumber) {
-            3 -> lottoMoneyList["3개 일치"] = lottoMoneyList.getValue("3개 일치") + 1
-            4 -> lottoMoneyList["4개 일치"] = lottoMoneyList.getValue("4개 일치") + 1
-            5 -> {
+            LottoPrize.threeSame.sameCount -> lottoMoneyList[LottoPrize.threeSame.prizeName] = lottoMoneyList.getValue(LottoPrize.threeSame.prizeName) + 1
+            LottoPrize.fourSame.sameCount -> lottoMoneyList[LottoPrize.fourSame.prizeName] = lottoMoneyList.getValue(LottoPrize.fourSame.prizeName) + 1
+            LottoPrize.fiveSame.sameCount -> {
                 if (lotto.contains(bonusNumber)) {
-                    lottoMoneyList["5개 일치, 보너스 볼 일치"] =
-                        lottoMoneyList.getValue("5개 일치, 보너스 볼 일치") + 1
+                    lottoMoneyList[LottoPrize.fiveSamePlusBonus.prizeName] =
+                        lottoMoneyList.getValue(LottoPrize.fiveSamePlusBonus.prizeName) + 1
                 } else {
-                    lottoMoneyList["5개 일치"] = lottoMoneyList.getValue("5개 일치") + 1
+                    lottoMoneyList[LottoPrize.fiveSame.prizeName] = lottoMoneyList.getValue(LottoPrize.fiveSame.prizeName) + 1
                 }
             }
-            6 -> lottoMoneyList["6개 일치"] = lottoMoneyList.getValue("6개 일치") + 1
+            LottoPrize.sixSame.sameCount -> lottoMoneyList[LottoPrize.sixSame.prizeName] = lottoMoneyList.getValue(LottoPrize.sixSame.prizeName) + 1
         }
     }
     return lottoMoneyList
@@ -96,6 +104,7 @@ fun lottoNumberCheck(lottoList: List<List<Int>>, comNumber: List<Int>, bonusNumb
 fun lottoResultPrint(result: Map<String, Int>, lottoCount: Int) {
     println("당첨 통계")
     println("---")
+    var totalPrize = 0
     val prizeMoney = mapOf(
         "3개 일치" to 5000,
         "4개 일치" to 50000,
@@ -103,15 +112,14 @@ fun lottoResultPrint(result: Map<String, Int>, lottoCount: Int) {
         "5개 일치, 보너스 볼 일치" to 30000000,
         "6개 일치" to 2000000000
     )
-    var totalPrize = 0
     for ((key, value) in result) {
         val prize = when (key) {
-            "5개 일치" -> if (result["5개 일치, 보너스 볼 일치"] == 0) "1,500,000원" else "30,000,000원"
+            "5개 일치" -> if (result[LottoPrize.fiveSamePlusBonus.prizeName] == 0) "1,500,000원" else "30,000,000원"
             else -> "${prizeMoney[key]}원"
         }
         println("$key ($prize) - ${value}개")
         totalPrize += if (key == "5개 일치") {
-            if (result["5개 일치, 보너스 볼 일치"] == 0) prizeMoney["5개 일치"]!! * value else prizeMoney["5개 일치, 보너스 볼 일치"]!! * value
+            if (result[LottoPrize.fiveSamePlusBonus.prizeName] == 0) prizeMoney["5개 일치"]!! * value else prizeMoney["5개 일치, 보너스 볼 일치"]!! * value
         } else {
             prizeMoney[key]!! * value
         }
