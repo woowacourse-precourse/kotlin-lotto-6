@@ -12,8 +12,6 @@ import lotto.view.OutputView.printWinningReport
 fun main() {
 //    try {
 //
-//
-//
 //    } catch (e: IllegalArgumentException) {
 //        println(e.message)
 //        main()
@@ -22,14 +20,12 @@ fun main() {
     var lottos : MutableList<Lotto> = mutableListOf()
 
     printStartMessage()
-    val amount = PurchaseAmount().validators(inputMessage())
+    val amount = PurchaseAmount.validators(inputMessage())
 
     printPurchaseTotal(amount)
     repeat(amount/1000) {
         lottos.add(Lotto(makeLotto()))
     }
-
-//        var lotto = lottoSort(makeLotto())
 
     printWinningMessage()
     val winningNumber = inputMessage().trim()
