@@ -1,14 +1,17 @@
 package lotto.model
 
-class Lottoes(val lottoes: List<Lotto>, val inputLotto: String) {
+class Lottoes(val userNumbers: Set<Int>, val bonusNumber: Int, val paymentAmount: String) {
 
-    fun calculateQuantity(inputPrice: String): Int = inputPrice.toInt() / 1000
+    private lateinit var lottoes: List<Lotto>
+    private lateinit var lottoesResult: Map<WinningRank, Int>
+    private var lottoTicketCount: Int = paymentAmount.toInt() / 1000
 
-    fun calculateWinningResult(winningRank: WinningRank) {
 
+    fun calculateLottoesResult(): Map<WinningRank, Int> {
+        return mapOf()
     }
 
-    fun calculateTotalProfit() {
-
+    fun getTotalProfit(): Profit {
+        return Profit()
     }
 }
