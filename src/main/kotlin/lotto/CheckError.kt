@@ -37,9 +37,9 @@ class CheckError {
         return true
     }
 
-    fun checkOnlyNumber(winningSixNumbers: List<String>): Boolean {
+    fun checkOnlyNumber(numbers: List<String>): Boolean {
 
-        for (number in winningSixNumbers) {
+        for (number in numbers) {
 
             try {
 
@@ -56,9 +56,9 @@ class CheckError {
         return true
     }
 
-    fun checkNumber1to45(winningSixNumbers: List<String>): Boolean {
+    fun checkNumber1to45(numbers: List<String>): Boolean {
 
-        for (number in winningSixNumbers) {
+        for (number in numbers) {
 
             val numberInt = number.toInt()
 
@@ -77,11 +77,11 @@ class CheckError {
         return true
     }
 
-    fun checkInputSixNumbers(winningSixNumbers: List<String>): Boolean {
+    fun checkInputSixNumbers(numbers: List<String>): Boolean {
 
         try {
 
-            require(winningSixNumbers.size == 6) { }
+            require(numbers.size == 6) { }
 
         } catch (e: IllegalArgumentException) {
 
@@ -93,11 +93,11 @@ class CheckError {
         return true
     }
 
-    fun checkNonOverlapNumber(winningSixNumbers: List<String>): Boolean {
+    fun checkNonOverlapNumber(numbers: List<String>): Boolean {
 
         try {
 
-            require(winningSixNumbers.toSet().size == 6) { }
+            require(numbers.toSet().size == 6) { }
 
         } catch (e: IllegalArgumentException) {
 

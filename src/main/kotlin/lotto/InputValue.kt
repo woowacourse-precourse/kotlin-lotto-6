@@ -35,12 +35,24 @@ class InputValue {
         check.checkInputSixNumbers(winningNumber)
         check.checkNonOverlapNumber(winningNumber)
 
+        return changeStringInt(winningNumber)
+    }
+
+    fun inputBonusNumber(numbers: List<String>): List<Int> {
+
+
         return listOf(0)
     }
 
-    fun inputBonusNumber(): Int {
+    private fun changeStringInt(numbers: List<String>): List<Int> {
 
-        return 0
+        val winningIntNumber: MutableList<Int> = mutableListOf()
+
+        for (number in numbers) {
+            winningIntNumber.add(number.toInt())
+        }
+
+        return winningIntNumber
     }
 
 }
