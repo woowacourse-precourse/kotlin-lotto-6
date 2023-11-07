@@ -7,6 +7,7 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.isInRange()) { RANGE_ERROR }
     }
 
+    fun contains(number: Int) = numbers.contains(number)
     private fun List<Int>.isSizeOfSix() = (size == LOTTO_NUMBER_SIZE)
 
     private fun List<Int>.isNotDuplicated() = (distinct().size == size)
