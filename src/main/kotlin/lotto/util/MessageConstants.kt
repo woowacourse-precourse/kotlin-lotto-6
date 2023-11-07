@@ -6,4 +6,5 @@ object MessageConstants {
     const val ENTER_WINNING_NUMBER = "\n당첨 번호를 입력해 주세요."
     const val PURCHASED = "개를 구매했습니다."
     const val ENTER_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요."
+    const val RANK_RESULT = "\n당첨 통계\n--"
 }

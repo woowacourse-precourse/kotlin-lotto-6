@@ -1,6 +1,8 @@
 package lotto
 
 import lotto.domain.LottoMoney
+import lotto.domain.LottoRanking
+import lotto.domain.LottoResult
 import lotto.util.ErrorConstants
 import lotto.util.LottoStore
 import lotto.util.parseInt
@@ -15,6 +17,9 @@ class LottoController(private val lottoView: LottoView) {
         val lottoResult = processLottoWinningNumbers()
         // 3단계 : 로또 보너스 번호 추첨
         val bonus = processLottoBonusNumber(lottoResult)
+        // 4단계 : 결과 계산 & 랭크 확인
+        val results = checkResults(lottos, lottoResult, bonus)
+        calculateRanks(results)
     }
 
 
@@ -62,5 +67,28 @@ class LottoController(private val lottoView: LottoView) {
             return processLottoBonusNumber(lotto)
         }
     }
+
+    private fun checkResults(myLotto: List<Lotto>, answer: Lotto, bonus: Int): List<LottoResult> {
+        val ranks = mutableListOf<LottoResult>()
+        for (lotto in myLotto) {
+            val count = lotto.toList().intersect(answer.toList().toSet()).size
+            val hasBonus = lotto.contains(bonus)
+            ranks.add(LottoResult.of(count, hasBonus))
+        }
+        return ranks
+    }
+
+    private fun calculateRanks(lottoResults: List<LottoResult>) {
+
+        lottoView.printLottoRankHeader()
+        val ranks = LottoRanking.of(lottoResults)
+
+        for ((rank, count) in ranks.countByRanking) {
+            if (rank == LottoResult.MISS) continue
+            lottoView.printLottoRank(rank, count)
+        }
+        lottoView.printProfit(ranks.totalPrize)
+    }
+
 
 }

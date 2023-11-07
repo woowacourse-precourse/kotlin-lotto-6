@@ -1,5 +1,8 @@
 package lotto.util
 
+import kotlin.math.pow
+import kotlin.math.roundToInt
+
 fun String.parseInt(): Int {
     return this.toIntOrNull() ?: throw IllegalArgumentException(ErrorConstants.NOT_NUMBER)
 }
@@ -36,4 +39,9 @@ fun Int.validateRange(start: Int, end: Int): Int {
 fun List<Int>.validateRange(start: Int, end: Int): List<Int> {
     require(this.all { it in start..end }) { "${ErrorConstants.NOT_FIT_RANGE} $start ~ $end" }
     return this
+}
+
+fun Double.round(decimalPlaces: Int): Double {
+    val factor = 10.0.pow(decimalPlaces)
+    return (this * factor).roundToInt() / factor
 }

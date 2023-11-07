@@ -12,6 +12,10 @@ class Lotto(private val numbers: List<Int>) {
         return numbers.joinToString(prefix = "[", postfix = "]", separator = ", ") { it.toString() }
     }
 
+    fun toList(): List<Int> {
+        return numbers
+    }
+
     fun contains(number: Int): Boolean {
         return numbers.contains(number)
     }
@@ -19,15 +23,14 @@ class Lotto(private val numbers: List<Int>) {
     companion object {
 
         fun fromInput(inputNumbers: String): Lotto {
-            return Lotto(inputNumbers
-                    .parseIntList()
-                    .validateCount(LottoStore.LOTTO_NUMBER_COUNT)
-                    .validateUnique(LottoStore.LOTTO_NUMBER_COUNT)
-                    .validateRange(LottoStore.LOTTO_MIN_NUMBER, LottoStore.LOTTO_MAX_NUMBER))
+            return fromList(inputNumbers.parseIntList())
         }
 
         fun fromList(numbers: List<Int>): Lotto {
-            return Lotto(numbers)
+            return Lotto(numbers
+                    .validateCount(LottoStore.LOTTO_NUMBER_COUNT)
+                    .validateUnique(LottoStore.LOTTO_NUMBER_COUNT)
+                    .validateRange(LottoStore.LOTTO_MIN_NUMBER, LottoStore.LOTTO_MAX_NUMBER))
         }
     }
 }
