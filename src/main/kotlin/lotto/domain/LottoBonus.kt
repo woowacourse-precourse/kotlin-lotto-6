@@ -2,7 +2,6 @@ package lotto.domain
 
 import lotto.validate.ValidateBonus
 import lotto.view.InputView.inputBonusNumber
-import lotto.view.OutputView.showInputBonusNumberMessage
 
 class LottoBonus {
     fun createBonusNumber(winningNumbers: List<Int>): Int {

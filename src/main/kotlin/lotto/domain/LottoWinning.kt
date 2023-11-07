@@ -3,7 +3,6 @@ package lotto.domain
 import lotto.utils.Constants
 import lotto.validate.ValidateSplit
 import lotto.view.InputView.inputMyNumbers
-import lotto.view.OutputView.showInputMyNumbersMessage
 
 class LottoWinning {
     fun createWinningLotto(): List<Int> {
