@@ -3,6 +3,7 @@ package lotto
 import lotto.domain.Lotto
 import lotto.domain.LottoWallet
 import lotto.domain.Purchaser
+import lotto.domain.WinningLotto
 import lotto.view.InputManager
 
 class LottoGame {
@@ -11,7 +12,7 @@ class LottoGame {
     fun gameStart() {
         val lottoWallet = purchaseLotto()
         println(lottoWallet)
-        getWinningLotto()
+        val winningLotto = getWinningLotto()
     }
 
     private fun purchaseLotto(): LottoWallet {
@@ -19,8 +20,9 @@ class LottoGame {
         return purchaser.lottoWallet
     }
 
-    private fun getWinningLotto() {
+    private fun getWinningLotto(): WinningLotto {
         val winningNumber = checkException { Lotto(InputManager.getWinningNumber()) }
+        return checkException { WinningLotto(winningNumber, InputManager.getBonusNumber()) }
     }
 
     private fun <T> checkException(createClass: () -> T): T = runCatching { createClass() }

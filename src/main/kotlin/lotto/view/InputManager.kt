@@ -29,4 +29,17 @@ object InputManager {
             getWinningNumber()
         }
     }
+
+    fun getBonusNumber(): Int {
+        OutputManager.printInputBonusNum()
+        return runCatching {
+            requireNotNull(
+                Console.readLine().toIntOrNull()
+            ) { Error.NotNumber.message }
+        }
+            .getOrElse {
+                println(it.message)
+                getBonusNumber()
+            }
+    }
 }
