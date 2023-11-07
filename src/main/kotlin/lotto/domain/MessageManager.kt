@@ -19,11 +19,7 @@ class MessageManager {
 
     fun printTotalReturnRate(rate: Double) = println("총 수익률은 ${rate}%입니다.")
 
-    fun printErrorMessage(errorType: ErrorType) =
-        println("$ERROR_START_MESSAGE ${errorType.message}")
-
     companion object {
-        const val ERROR_START_MESSAGE = "[ERROR]"
         private const val ENTER_PURCHASE_PRICE = "구입금액을 입력해 주세요."
         private const val COUNT_PURCHASE_AMOUNT = "개를 구매했습니다."
         private const val ENTER_LOTTO_NUMBER = "당첨 번호를 입력해 주세요."

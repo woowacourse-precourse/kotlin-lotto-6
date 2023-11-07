@@ -1,39 +1,55 @@
 package lotto.validation
 
+import lotto.domain.ErrorType
 import lotto.domain.LottoManager.Companion.LOTTO_END_INCLUSIVE
 import lotto.domain.LottoManager.Companion.LOTTO_START_INCLUSIVE
 import java.lang.NumberFormatException
 
 class CheckInputValidation {
 
-    fun checkIsNumber(userInput: String): Boolean {
-        return try {
+    fun checkIsNumber(userInput: String){
+        try {
             userInput.toInt()
-            true
         } catch (e: NumberFormatException) {
-            false
+            throw IllegalArgumentException(
+                ErrorType.IS_NOT_POSITIVE_INTEGER.message
+            )
         }
     }
 
-    fun checkIsLottoNumber(number: Int): Boolean{
-        return number in LOTTO_START_INCLUSIVE..LOTTO_END_INCLUSIVE
+    fun checkIsLottoNumber(number: String){
+        require(number.toInt() in LOTTO_START_INCLUSIVE..LOTTO_END_INCLUSIVE){
+            ErrorType.IS_INCORRECT_NUMBER.message
+        }
     }
 
-    fun checkIsBlank(userInput: String): Boolean {
-        return userInput.isNotEmpty()
+    fun checkIsBlank(userInput: String) {
+        require(userInput.isNotEmpty()){
+            ErrorType.IS_BLANK.message
+        }
     }
 
-    fun checkDuplication(inputList: List<Int>): Boolean{
+    fun checkDuplication(inputList: List<Int>){
         val distinctCount = inputList.distinct().count()
-        return inputList.size == distinctCount
+        require(inputList.size == distinctCount){
+            ErrorType.IS_CONTAIN_DUPLICATES.message
+        }
     }
 
     fun checkBonusNumberDuplication(
-        numbers: List<Int>,
+        numbers: Set<Int>,
         bonusNumber: Int
-    ): Boolean = numbers.contains(bonusNumber)
+    ){
+        require(numbers.contains(bonusNumber)){
+            ErrorType.IS_CONTAIN_DUPLICATES.message
+        }
+    }
 
     fun checkLottoCount(
         userInput: List<String>
-    ): Boolean = userInput.size == 6
+    ) {
+     require(userInput.size == 6){
+         ErrorType.IS_NOT_SIX_NUMBERS.message
+     }
+    }
 }
