@@ -1,4 +1,4 @@
-package lotto
+package lotto.util
 
 fun doLogic(tryLogic: () -> Unit) {
     while (true) {

@@ -1,7 +1,16 @@
 package lotto
 
-import camp.nextstep.edu.missionutils.Console
-import camp.nextstep.edu.missionutils.Randoms
+import lotto.domain.Lotto
+import lotto.domain.Winning
+import lotto.util.NumberPicker
+import lotto.util.RateOfReturnCalculator.calculateRateOfReturn
+import lotto.util.doLogic
+import lotto.util.lottoPrice
+import lotto.util.validations.LottoBonusNumbersValidator
+import lotto.util.validations.LottoNumbersValidator
+import lotto.util.validations.PriceValidator
+import lotto.view.InputView
+import lotto.view.OutputView
 
 var numberOfLottoTickets = 0
 val lottos = mutableListOf<Lotto>()
@@ -40,33 +49,21 @@ fun showLottoWinningNumbers() {
 }
 
 fun getLottoPurchaseAmount(): String {
-    println("구입금액을 입력해 주세요.")
-    val lottoPurchaseAmount = Console.readLine()
-    println()
-    return lottoPurchaseAmount
+    OutputView.printPriceMessage()
+    return InputView.inputPrice()
 }
 
 fun getNumberOfLottoTickets(lottoPurchaseAmount: String) {
     val lottoTickets = lottoPurchaseAmount.toIntOrNull()
-    lottoTickets?.let {
-        if (lottoTickets % amountUnit == 0) {
-            println("${lottoTickets / amountUnit}개를 구매했습니다.")
-            numberOfLottoTickets = lottoTickets / 1000
-        } else {
-            throw IllegalArgumentException("$errorPrefix 구입금액은 ${amountUnit}원 단위의 숫자 여야합니다.")
-        }
-        return
+    if (PriceValidator.inputPrice(lottoPurchaseAmount)) {
+        OutputView.printLottoCountMessage(lottoTickets!! / lottoPrice)
+        numberOfLottoTickets = lottoTickets / lottoPrice
     }
-    throw IllegalArgumentException("$errorPrefix 구입금액은 $amountUnit 단위의 숫자 여야합니다.")
 }
 
 fun getLottoWinningNumbers() {
     repeat(numberOfLottoTickets) {
-        val numbers = Randoms.pickUniqueNumbersInRange(
-            minLottoWinningNumber,
-            maxLottoWinningNumber,
-            lottoWinningNumberQuantity
-        )
+        val numbers = NumberPicker.pickNumbers()
         Lotto(numbers).apply {
             lottos.add(this)
         }
@@ -74,47 +71,34 @@ fun getLottoWinningNumbers() {
 }
 
 fun getUserLottoNumbers(): String {
-    println("당첨 번호를 입력해 주세요.")
-    return Console.readLine()
+    return InputView.inputNumbers()
 }
 
 fun validateUserLottoNumbers(userInputNumbers: String) {
-
     val parsedUserInputNumbers = userInputNumbers.split(",").filter {
         it.isNotEmpty()
     }.map {
         it.toIntOrNull()
     }
-
-    val isUserInputNumberType = !parsedUserInputNumbers.contains(null)
-    val isUserInputInRange =
-        parsedUserInputNumbers.filter { it in minLottoWinningNumber..maxLottoWinningNumber }.size == lottoWinningNumberQuantity
-    val isUerInputRightQuantity = parsedUserInputNumbers.size == lottoWinningNumberQuantity
-    if (isUserInputNumberType && isUserInputInRange && isUerInputRightQuantity) {
+    if (LottoNumbersValidator.inputNumbers(parsedUserInputNumbers)) {
         parsedUserInputNumbers.map { it!! }.apply {
             Lotto(this).apply {
                 userLottos = this
             }
         }
-    } else throw IllegalArgumentException("$errorPrefix 당첨 번호는 $minLottoWinningNumber~$maxLottoWinningNumber 사이의 중복되지 않는 숫자를 , 로 구분하여 ${lottoWinningNumberQuantity}개를 입력해야 합니다.")
+    }
 }
 
 fun getUserBonusLottoNumber(): String {
-    println()
-    println("보너스 번호를 입력해 주세요.")
-    return Console.readLine()
+    return InputView.inputBonusNumber()
 }
 
 fun validateUserBonusLottoNumber(userInputBonusNumber: String) {
-    val bonusNumber = userInputBonusNumber.toIntOrNull()
-    val isUerInputNumberType = bonusNumber != null
-    val isUserInputInRange = bonusNumber in minLottoWinningNumber..maxLottoWinningNumber
-    val isUerInputDistinct = !userLottos.getNumbers().contains(bonusNumber)
-    if (isUerInputNumberType && isUserInputInRange && isUerInputDistinct) {
-        bonusNumber.toString().toInt().apply {
+    if (LottoBonusNumbersValidator.inputNumber(userInputBonusNumber)) {
+        userInputBonusNumber.toInt().apply {
             userLottoBonusNumber = this
         }
-    } else throw IllegalArgumentException("$errorPrefix 보너스 번호는 $minLottoWinningNumber~$maxLottoWinningNumber 사이의 숫자 중 당첨 번호와 중복 되지 않는 수 하나를 입력해야 합니다.")
+    }
 }
 
 fun checkWinning() {
@@ -127,11 +111,9 @@ fun checkWinning() {
 }
 
 fun showWinningResult() {
-    println()
-    println("당첨 통계")
-    println("---")
+    OutputView.printWinningStatisticsMessage()
     winnings.forEach {
-        println("${it.msg} (${PriceUtil.decimal.format(it.winningPrice)}원) - ${it.winningCnt}개")
+        OutputView.printWinningResult(it.msg, it.winningPrice, it.winningCnt)
     }
 }
 
@@ -140,10 +122,5 @@ fun showRateOfReturn() {
         acc + winning.winningPrice * winning.winningCnt
     }
     val totalRateOfReturn = calculateRateOfReturn(totalWinningPrice)
-    println("총 수익률은 ${totalRateOfReturn}%입니다.")
-}
-
-fun calculateRateOfReturn(totalWinningPrice: Int): String {
-    val rateOfReturn = totalWinningPrice.toDouble() / (numberOfLottoTickets * 1000) * 100
-    return String.format("%.1f", rateOfReturn)
+    OutputView.printTotalRateOfReturnMessage(totalRateOfReturn)
 }
