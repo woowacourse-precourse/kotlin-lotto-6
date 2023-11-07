@@ -31,7 +31,7 @@ fun getInputMoney(): Int {
     return Console.readLine().toInt()
 }
 
-fun checkException(inputMoney: Int) {
+fun checkMoneyException(inputMoney: Int) {
     require(inputMoney % 1000 == 0) { throw IllegalArgumentException(ERROR+NOT_MULTIPLE_OF_1000_ERROR) }
 
 }
@@ -41,7 +41,7 @@ fun validateInputMoney(inputMoney: Int): Int {
 
     while (!isValidInput) {
         try {
-            checkException(inputMoney)
+            checkMoneyException(inputMoney)
             isValidInput = true
 
         } catch (e: IllegalArgumentException) {
