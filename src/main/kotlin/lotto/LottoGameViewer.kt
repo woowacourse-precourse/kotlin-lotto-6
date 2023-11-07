@@ -18,7 +18,7 @@ class LottoGameViewer {
     private fun commandByManagerState(data: Any) {
         if (gameManagerState == REQUEST) printRequestMessageByGameState()
         if (gameManagerState == REQUEST_ERROR) printError(data)
-        if (gameManagerState == RESULT) printDataByGameState(data)
+        if (gameManagerState == RESULT) printResultDataByGameState(data)
     }
 
     private fun printRequestMessageByGameState() {
@@ -33,7 +33,7 @@ class LottoGameViewer {
         println(Constants.ERROR + error.message)
     }
 
-    private fun printDataByGameState(data: Any) {
+    private fun printResultDataByGameState(data: Any) {
         if (gameState == BUYING) printResultOfBuyingLotto(data)
         if (gameState == WINNING) printResultOfWinning(data)
     }
