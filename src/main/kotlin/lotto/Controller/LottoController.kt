@@ -30,25 +30,7 @@ object LottoController {
         }
 
         LottoGameView.inputLottoNumbers()
-
         LottoGameView.inputLottoBonusNumbers()
-
         lottoGameModel!!.checkWinnings()
-    }
-}
-
-fun checkValidationBonusLottoNumbers(bonusNumber: String?): Int{
-    if (bonusNumber == null) {
-        throw IllegalArgumentException(LottoException.INPUT_NULL)
-    }
-
-    try {
-        val number = bonusNumber.toInt()
-        if (number < 1 || number > 45) {
-            throw IllegalArgumentException(LottoException.INPUT_LOTTO_1TO45)
-        }
-        return number
-    } catch (e: NumberFormatException) {
-        throw IllegalArgumentException(LottoException.INPUT_LOTTO_INVALID_TYPE)
     }
 }
