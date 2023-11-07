@@ -13,6 +13,7 @@ fun lottoMoney(): Int{
     }
     catch(e:IllegalArgumentException){
         println("${e.message}")
+        Thread.sleep(100)
     }
     return lottoMoney()
 }
@@ -52,7 +53,7 @@ fun bonusChecker(win_num:MutableList<Int>): Int{
         return input_bonus
     }
     catch(e:IllegalArgumentException){
-        println("${e.message}")
+        print("${e.message}")
     }
     return bonusChecker(win_num)
 }
