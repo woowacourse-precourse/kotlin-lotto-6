@@ -6,7 +6,6 @@ import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
-import org.junit.jupiter.params.provider.ValueSource
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -33,10 +32,8 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("invalidNumberCountOfLotto")
     fun `정해진 로또 번호의 개수가 아니면 예외가 발생한다`(numbers: List<Int>) {
-        // when
         val exception = assertThrows<IllegalArgumentException> { Lotto(numbers) }
 
-        // then
         assertThat(exception.message).isEqualTo(Lotto.INVALID_NUMBER_COUNT_ERROR_MESSAGE)
     }
 
@@ -48,23 +45,18 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("invalidNumberRangeOfLotto")
     fun `범위를 벗어난 로또 번호가 있을 때 예외가 발생한다`(numbers: List<Int>) {
-        // when
         val exception = assertThrows<IllegalArgumentException> { Lotto(numbers) }
 
-        // then
         assertThat(exception.message).isEqualTo(Lotto.INVALID_NUMBER_RANGE_ERROR_MESSAGE)
     }
 
 
    @Test
     fun `중복된 로또 번호가 있을 때 예외가 발생한다`() {
-        // given
         val numbers = listOf(1, 2, 3, 4, 5, 5)
 
-        // when
         val exception = assertThrows<IllegalArgumentException> { Lotto(numbers) }
 
-        // then
         assertThat(exception.message).isEqualTo(Lotto.INVALID_DISTINCT_NUMBER_ERROR_MESSAGE)
     }
 }
