@@ -1,5 +1,6 @@
 package lotto.presentation
 
+import camp.nextstep.edu.missionutils.Console
 import lotto.util.PURCHASE_NUMBER_TEXT
 import lotto.util.PURCHASE_PRICE_TEXT
 
@@ -10,6 +11,7 @@ object LottoPurchaseView {
 
     fun inputLottoPurchase() {
         // 로또 구매 금액 입력 구현
+        val amount = Console.readLine().trim()
     }
 
     fun outputPurchaseCount() {
