@@ -37,36 +37,6 @@ object LottoController {
     }
 }
 
-fun parseLottoNumbers(input: String?): List<Int> {
-    if (input == null) {
-        throw IllegalArgumentException(LottoException.INPUT_NULL)
-    }
-
-    val numbers = input.split(",").map { it.trim() }.filter { it.isNotEmpty() }
-
-    if (numbers.size != 6) {
-        throw IllegalArgumentException(InputLottoNumsException.INPUT_LOTTO_6NUMBERS)
-    }
-
-    val lottoNumbers = numbers.map {
-        try {
-            val number = it.toInt()
-            if (number < 1 || number > 45) {
-                throw IllegalArgumentException(LottoException.INPUT_LOTTO_1TO45)
-            }
-            number
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException(LottoException.INPUT_LOTTO_INVALID_TYPE)
-        }
-    }
-
-    if (lottoNumbers.distinct().size != 6) {
-        throw IllegalArgumentException(InputLottoNumsException.INPUT_LOTTO_ISDUPLICATED)
-    }
-
-    return lottoNumbers
-}
-
 fun checkValidationBonusLottoNumbers(bonusNumber: String?): Int{
     if (bonusNumber == null) {
         throw IllegalArgumentException(LottoException.INPUT_NULL)
