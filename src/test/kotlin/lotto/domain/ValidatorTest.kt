@@ -153,7 +153,7 @@ class ValidatorTest {
     @DisplayName("Validator : checkInputOfBonusCorrect() - fail(타입)")
     fun `1 ~ 45에 속하지 않는 보너스 번호를 입력하면 에러를 발생시킨다`(bonus: String) {
         // given
-        val lotto = listOf(1,2,3,4,5,6)
+        val lotto = listOf(1, 2, 3, 4, 5, 6)
 
         // when
         val actual: java.lang.IllegalArgumentException = assertThrows(IllegalArgumentException::class.java) {
@@ -171,7 +171,7 @@ class ValidatorTest {
     fun `로또 번호와 중복된 보너스 번호를 입력하면 에러를 발생시킨다`() {
         // given
         val bonus = 1
-        val lotto = listOf(1,2,3,4,5,6)
+        val lotto = listOf(1, 2, 3, 4, 5, 6)
 
         // when
         val actual: java.lang.IllegalArgumentException = assertThrows(IllegalArgumentException::class.java) {
@@ -185,6 +185,19 @@ class ValidatorTest {
         assertThat(actual).hasMessageContaining(expectedMessage)
     }
 
+    @Test
+    fun `로또 번호와 중복되지 않은 보너스 번호를 입력하면 아무것도 반환하지 않는다`() {
+        // given
+        val bonus = 7
+        val lotto = listOf(1, 2, 3, 4, 5, 6)
+
+        // when
+        val actual = validator.checkInputOfBonusCorrect(bonus, lotto)
+
+        // the
+        val expected = Unit
+        assertThat(actual).isEqualTo(expected)
+    }
 
 
     companion object {
