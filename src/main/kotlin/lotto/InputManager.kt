@@ -9,6 +9,10 @@ class InputManager {
     private var inputMoney: Int = 1000
     private var bonusNumber: Int = 1
 
+    fun playerInsertMoney() : Int{
+        setInputMoney()
+        return inputMoney
+    }
     fun playerInputnumbers() {
         setWinningNumber()
         setBonusNumber()
