@@ -8,9 +8,11 @@ object OutputView {
 
     private const val PRINT_REPORT = "당첨 통계"
     private const val DIVISION_STR = "---"
+    private const val PRINT_PURCHASE_AMOUNT = "%d개를 구매했습니다."
+    private const val PRINT_PERFORMANCE = "총 수익률은 %s%%입니다."
     fun printLottos(purchase: Purchase, lottos: Lottos) {
         print(Constants.SPACING)
-        println("${purchase.getLottoCount()}개를 구매했습니다.")
+        println(String.format(PRINT_PURCHASE_AMOUNT, purchase.getLottoCount()))
         for (lotto in lottos.lottos) {
             println(lotto.getNumbers())
         }
@@ -24,6 +26,6 @@ object OutputView {
     }
 
     fun printPerformance(performance: String) {
-        println("총 수익률은 ${performance}%입니다.")
+        println(String.format(PRINT_PERFORMANCE, performance))
     }
 }

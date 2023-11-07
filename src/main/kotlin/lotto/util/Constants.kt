@@ -7,4 +7,5 @@ object Constants {
     const val LOTTO_NUM_CNT = 6
     const val LOTTO_START_NUM = 1
     const val LOTTO_END_NUM = 45
+    const val ERROR = "[ERROR]"
 }
