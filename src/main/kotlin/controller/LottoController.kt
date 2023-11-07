@@ -3,6 +3,7 @@ package controller
 import model.Lotto
 import model.Money
 import model.WinningNumbersManager
+import util.Calculator.clearWinningAmountValue
 import util.Calculator.getProfitPercentage
 import util.Calculator.plusWinningAmount
 import util.LottoStore.generateLottoTickets
@@ -91,6 +92,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
             rankFrequencyData[rank] = 1
         }
 
+        clearWinningAmountValue()
         for (rank in 6 downTo 1) {
             outputView.printWinningStatistics(rank, rankFrequencyData[rank] ?: 0)
             plusWinningAmount(rank, (rankFrequencyData[rank] ?: 0))

@@ -13,6 +13,10 @@ object Calculator {
         }
     }
 
+    fun clearWinningAmountValue() {
+        winningAmount = 0L
+    }
+
     fun getProfitPercentage(principal: Int) = (winningAmount / 1000).toFloat() / principal * 100
     enum class PrizeRank(val rank: Int, val amount: Long) {
         FIRST_PLACE(1, 2_000_000_000L),
