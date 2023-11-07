@@ -5,6 +5,7 @@ object OutputView {
     private const val BOUGHT_NUMBER_OF_THEM = "개를 구매했습니다."
     private const val PLEASE_ENTER_WINNING_NUMBER = "당첨 번호를 입력해 주세요."
     private const val PLEASE_ENTER_BONUS_NUMBER = "보너스 번호를 입력해 주새요."
+    private const val WINNING_STATISTICS = "당첨 통계"
 
     fun pleaseEnterPurchaseAmount() {
         println(PLEASE_ENTER_PURCHASE_AMOUNT)
@@ -20,5 +21,9 @@ object OutputView {
 
     fun pleaseEnterBonusNumber() {
         println(PLEASE_ENTER_BONUS_NUMBER)
+    }
+
+    fun winningStatistics() {
+        println(WINNING_STATISTICS)
     }
 }
