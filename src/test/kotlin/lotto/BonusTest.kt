@@ -27,9 +27,9 @@ class BonusTest {
     @Test
     fun `당첨 로또 번호와 중복되는 보너스 번호인 경우 예외가 발생한다`() {
         val bonus = Bonus(1)
-        val winningLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
 
-        val exception = assertThrows<IllegalArgumentException> { bonus.checkDistinctWithWinningLotto(winningLotto) }
+        val exception = assertThrows<IllegalArgumentException> { bonus.checkDistinctWithWinningLotto(winningNumbers) }
 
         assertThat(exception.message).isEqualTo(Bonus.DISTINCT_NUMBER_WITH_WINNING_LOTTO_ERROR_MESSAGE)
     }
