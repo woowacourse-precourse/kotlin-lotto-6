@@ -6,9 +6,14 @@ class LottoBot(
     private var budget: Int = 0,
     private var winningNumbers: MutableList<Int> = mutableListOf(),
     private var bonusNumber: Int = 0,
-    private var lottoWallet: MutableList<Lotto> = mutableListOf()
+    private var lottoWallet: MutableList<Lotto> = mutableListOf(),
+    private var bonusWallet: MutableList<Int> = mutableListOf(),
+    private var calculater: Calculator = Calculator()
 ) {
     private var purchase_chance = 0
+    private val _winningNumbers: List<Int> = winningNumbers
+    private val _lottoWallet: List<Lotto> = lottoWallet
+    private val _bonusWallet: List<Int> = bonusWallet
 
     fun startLotto() {
         receiveBudget()
@@ -16,6 +21,7 @@ class LottoBot(
         showLottos()
         receiveWinningNumbers()
         receiveBonusNumbers()
+        presentStatics()
     }
 
     fun receiveBudget() {
@@ -38,8 +44,10 @@ class LottoBot(
             var flag = true
             while (flag) {
                 runCatching {
-                    val newLotto = Lotto(LottoMaker.createRandomNumbers())
+                    val newLotto = Lotto(LottoMaker.createRandomLottoNumbers())
+                    val newBonus = LottoMaker.createRandomBonusNumbers()
                     lottoWallet.add(newLotto)
+                    bonusWallet.add(newBonus)
                 }
                     .onSuccess { flag = false }
                     .onFailure { exception -> println(exception.message) }
@@ -62,11 +70,13 @@ class LottoBot(
                 val input = Console.readLine()
                 val numbers = Validator.mapToWinningNumbers(input)
                 winningNumbers.addAll(Validator.validateNumbers(numbers))
+                winningNumbers.sort()
             }
                 .onSuccess { flag = false }
                 .onFailure { exception -> println(exception.message) }
         }
     }
+
 
     fun receiveBonusNumbers() {
         var flag = true
@@ -80,4 +90,5 @@ class LottoBot(
         }
     }
 
+    
 }
