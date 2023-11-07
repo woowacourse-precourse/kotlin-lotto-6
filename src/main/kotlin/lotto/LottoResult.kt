@@ -10,50 +10,6 @@ class LottoResult(private val lottoTickets: LottoTickets, private val winningLot
         findWinningResult()
     }
 
-    fun printResult() {
-        printWinningResults()
-        printWinningProfitRate()
-    }
-
-    private fun printWinningResults() {
-        println(WIN_STATICS)
-        println(STATICS_DIVIDER)
-        Prize.values().filterNot { it == Prize.Nothing }.reversed().forEach { displayWinningResult(it) }
-    }
-
-    private fun displayWinningResult(prize: Prize) {
-        val winCount = findWindCount(prize)
-        val matchedNumberCount = findMatchedNumberCount(prize)
-        val winningPrizeMoney = prize.amount.toWonFormat()
-        val bonusInfo = if (prize == Prize.Second) BONUS_NUMBER_MATCH else ""
-        val message = winCountMessage(matchedNumberCount, bonusInfo, winningPrizeMoney, winCount)
-        println(message)
-    }
-
-    private fun findWindCount(prize: Prize) = winningResult.count { it == prize }
-    private fun findMatchedNumberCount(prize: Prize) = Prize.findPrizeMatchNumberCount(prize)
-    private fun Int.toWonFormat(): String = DecimalFormat("#,###").format(this)
-
-    private fun winCountMessage(
-        matchedNumberCount: Int,
-        bonusInfo: String,
-        winningPrizeMoney: String,
-        winCount: Int
-    ): String {
-        return "${matchedNumberCount}개 일치, ${bonusInfo}(${winningPrizeMoney})원 - ${winCount}개"
-    }
-
-    private fun printWinningProfitRate() {
-        println(TOTAL_PROFIT.format(calculateTotalStaticResult()))
-    }
-
-    private fun calculateTotalStaticResult(): Double {
-        val winnerCountMap = winningResult.groupingBy { it }.eachCount()
-        val totalProfit = winnerCountMap.map { it.key.amount * it.value }.sum()
-        val payment = lottoTickets.tickets.count() * 1_000
-        return (totalProfit.toDouble() / payment) * 100.0
-    }
-
     private fun findWinningResult() {
         val matchedNumbersCounts = calculateMatchedNumberCounts(winningLotto)
         val bonusNumberExists = checkForBonusNumber(winningLotto)
@@ -68,6 +24,50 @@ class LottoResult(private val lottoTickets: LottoTickets, private val winningLot
 
     private fun checkForBonusNumber(winningLotto: WinningLotto): List<Boolean> {
         return lottoTickets.tickets.map { it.hasBonusNumber(winningLotto.bonusNumber) }
+    }
+
+    fun printResult() {
+        printWinningResults()
+        printWinningProfitRate()
+    }
+
+    private fun printWinningResults() {
+        println(WIN_STATICS)
+        println(STATICS_DIVIDER)
+        Prize.values().filterNot { it == Prize.Nothing }.reversed().forEach { displayEachWinningResult(it) }
+    }
+
+    private fun displayEachWinningResult(prize: Prize) {
+        val winCount = findWindCount(prize)
+        val matchedNumberCount = findMatchedNumberCount(prize)
+        val winningPrizeMoney = prize.amount.toWonFormat()
+        val bonusInfo = if (prize == Prize.Second) BONUS_NUMBER_MATCH else ""
+        val message = winCountMessage(matchedNumberCount, bonusInfo, winningPrizeMoney, winCount)
+        println(message)
+    }
+
+    private fun findWindCount(prize: Prize) = winningResult.count { it == prize }
+    private fun findMatchedNumberCount(prize: Prize) = Prize.findPrizeMatchNumberCount(prize)
+    private fun Int.toWonFormat(): String = DecimalFormat("#,###").format(this)
+
+    private fun winCountMessage(
+            matchedNumberCount: Int,
+            bonusInfo: String,
+            winningPrizeMoney: String,
+            winCount: Int
+    ): String {
+        return "${matchedNumberCount}개 일치, ${bonusInfo}(${winningPrizeMoney})원 - ${winCount}개"
+    }
+
+    private fun printWinningProfitRate() {
+        println(TOTAL_PROFIT.format(calculateTotalStaticResult()))
+    }
+
+    private fun calculateTotalStaticResult(): Double {
+        val winnerCountMap = winningResult.groupingBy { it }.eachCount()
+        val totalProfit = winnerCountMap.map { it.key.amount * it.value }.sum()
+        val payment = lottoTickets.tickets.count() * 1_000
+        return (totalProfit.toDouble() / payment) * 100.0
     }
 
     companion object {
