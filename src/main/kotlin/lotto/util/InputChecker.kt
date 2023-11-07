@@ -11,63 +11,69 @@ import java.lang.NumberFormatException
 
 object InputChecker {
 
-    fun checkInputMoney(inputString: String): Long {
+    fun checkInputMoney(inputString: String, returnCode: Long): Long {
         val money: Long
 
-        try {
-            money = inputString.toLong()
-        } catch (e: IllegalMoneyException) {
-            throw IllegalMoneyException.moneyNotNumber
-        } catch (e: NumberFormatException) {
-            throw IllegalMoneyException.moneyTooMuch
+        require(inputString.length <= 18) {
+            println(IllegalMoneyException.moneyTooMuch)
+            return returnCode
         }
+        require(inputString.matches(Regex("\\d+"))) {
+            println(IllegalMoneyException.moneyNotNumber)
+            return returnCode
+        }
+        money = inputString.toLong()
         require(money >= LottoConstants.LOTTO_PRICE) {
-            throw IllegalMoneyException.moneyUnderPrice
+            println(IllegalMoneyException.moneyUnderPrice)
+            return returnCode
         }
         require((money % LottoConstants.LOTTO_PRICE).toInt() == 0) {
-            throw IllegalMoneyException.moneyNotDivide
+            println(IllegalMoneyException.moneyNotDivide)
+            return returnCode
         }
 
         return money
     }
 
-    fun checkInputNumbers(inputString: String): Lotto {
+    fun checkInputNumbers(inputString: String, returnCode: Lotto): Lotto {
         val lottoNumbers: List<Int>
 
-        try {
-            lottoNumbers = inputString.split(",").map { it.toInt() }.toList()
-        } catch (e: IllegalNumbersException) {
-            throw IllegalNumbersException.numbersNotList
-        } catch (e: NumberFormatException) {
-            throw IllegalNumbersException.numbersNotRange
+        require(inputString.split(",").size == 6) {
+            println(IllegalNumbersException.numbersNotList)
+            return returnCode
         }
-        require(
-            lottoNumbers.filter { it in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER }.size == 6
-        ) {
-            throw IllegalNumbersException.numbersNotList
+        require(inputString.split(",").filter { it.matches(Regex("\\d+")) }.size == 6) {
+            println(IllegalNumbersException.numbersNotRange)
+            return returnCode
+        }
+        lottoNumbers = inputString.split(",").map { it.toInt() }.toList()
+        require(lottoNumbers.filter { it in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER }.size == 6) {
+            println(IllegalNumbersException.numbersNotRange)
+            return returnCode
         }
         require(lottoNumbers.distinct().size == 6) {
-            throw IllegalNumbersException.numbersDuplicate
+            println(IllegalNumbersException.numbersDuplicate)
+            return returnCode
         }
 
         return Lotto(lottoNumbers)
     }
 
-    fun checkInputBonus(lotto: Lotto, inputString: String): Int {
+    fun checkInputBonus(lotto: Lotto, inputString: String, returnCode: Int): Int {
         val bonusNumber: Int
 
-        try {
-            bonusNumber = inputString.toInt()
-        } catch (e: IllegalBonusException) {
-            throw IllegalBonusException.bonusNotRange
-        } catch (e: NumberFormatException) {
-            throw IllegalBonusException.bonusNotRange
+        require(inputString.matches(Regex("\\d+"))) {
+            println(IllegalBonusException.bonusNotRange)
+            return returnCode
         }
+        bonusNumber = inputString.toInt()
         require(bonusNumber in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER) {
-            throw IllegalBonusException.bonusNotRange
+            println(IllegalBonusException.bonusNotRange)
+            return returnCode
         }
         require(!lotto.getLottoNumbers().contains(bonusNumber)) {
-            throw IllegalBonusException.bonusDuplicate
+            println(IllegalBonusException.bonusDuplicate)
+            return returnCode
         }
 
         return bonusNumber
