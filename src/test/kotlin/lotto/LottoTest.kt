@@ -77,4 +77,30 @@ class LottoTest {
         assertEquals(expectedMatchNumber, result.first)
         assertEquals(expectedMatchBonus, result.second)
     }
+
+    @ParameterizedTest
+    @CsvSource(
+        "0, false, OUT_OF_RANK",
+        "0, true, OUT_OF_RANK",
+        "1, false, OUT_OF_RANK",
+        "1, true, OUT_OF_RANK",
+        "2, false, OUT_OF_RANK",
+        "2, true, OUT_OF_RANK",
+        "3, false, FIFTH_PLACE",
+        "3, true, FIFTH_PLACE",
+        "4, false, FOURTH_PLACE",
+        "4, true, FOURTH_PLACE",
+        "5, false, THIRD_PLACE",
+        "5, true, SECOND_PLACE",
+        "6, false, FIRST_PLACE"
+    )
+    fun `로또 당첨 결과 판별기능 테스트`(
+        matchNumbers: Int,
+        matchBonus: Boolean,
+        expectedRank: LottoRank
+    ) {
+        val compareResult = Pair(matchNumbers, matchBonus)
+        val result = lotto.resultOfLotto(compareResult)
+        assertEquals(expectedRank, result)
+    }
 }
