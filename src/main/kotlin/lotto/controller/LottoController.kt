@@ -3,6 +3,7 @@ package lotto.controller
 import camp.nextstep.edu.missionutils.Console
 import lotto.model.LottoModel
 import lotto.view.LottoView
+import java.lang.NumberFormatException
 
 class LottoController(private val view: LottoView, private val model: LottoModel) {
     fun run() {
@@ -17,7 +18,12 @@ class LottoController(private val view: LottoView, private val model: LottoModel
         while (model.setLotto(setWinningNumbers())) {
             view.displayInappropriateLottoNumberError()
         }
-        model.setBonusNumber()
+        view.requestBonusNumberMessage()
+        while (model.setBonus(setBonusNumber())) {
+            view.displayInappropriateBonusValueERROR()
+        }
+        view.displayLotteryStatisticsMessage()
+
     }
     private fun setPurchaseMoneyValue(): String {
         return Console.readLine()
@@ -25,5 +31,7 @@ class LottoController(private val view: LottoView, private val model: LottoModel
     private fun setWinningNumbers(): List<String> {
         return listOf(*Console.readLine().split(",").toTypedArray<String>())
     }
-
+    private fun setBonusNumber(): String {
+            return Console.readLine()
+    }
 }

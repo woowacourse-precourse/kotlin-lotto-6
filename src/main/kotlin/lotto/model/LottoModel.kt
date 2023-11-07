@@ -4,13 +4,15 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.utils.ErrorMessage
 import lotto.utils.Values
+import java.lang.NumberFormatException
 import kotlin.properties.Delegates
 
 class LottoModel {
     private var lotteryAmount by Delegates.notNull<Int>()
     private var lotteryNumbers: ArrayList<List<Int>> = ArrayList()
     private lateinit var lotto: Lotto
-    private var bonusNumber by Delegates.notNull<Int>()
+    private lateinit var bonusNumber: BonusNumber
+    private var benefitMoney by Delegates.notNull<Int>()
     fun isPurchaseMoneyValueValid(moneyValue: String): Boolean {
         return try {
             if ((moneyValue.toInt() % Values.LOTTERY_PRICE) != 0) {
@@ -47,16 +49,22 @@ class LottoModel {
     fun setLotto(winningNumbers: List<String>): Boolean {
         return try {
             lotto = Lotto(winningNumbers.map { it.toInt() }.map { it })
-            lotto.isLottoValid()
             false
         } catch (e: IllegalArgumentException) {
             true
         }
     }
-    fun getBonusNumber(): Int {
-        return bonusNumber
-    }
-    fun setBonusNumber() {
-        bonusNumber = Console.readLine().toInt()
+    fun setBonus(bonus: String): Boolean {
+        return try {
+            bonusNumber = BonusNumber(bonus.toInt())
+            false
+        } catch (e: Exception) {
+            when (e) {
+                is NumberFormatException, is IllegalArgumentException -> {
+                    true
+                }
+                else -> throw e
+            }
+        }
     }
 }
