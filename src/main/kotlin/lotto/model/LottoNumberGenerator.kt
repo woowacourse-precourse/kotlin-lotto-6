@@ -17,6 +17,6 @@ class LottoNumberGenerator{
     }
 
     private fun randomSixNumberGenerator():List<Int>{
-        return Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER,MAXIMUM_LOTTO_NUMBER,LOTTO_DEFAULT_DIGIT)
+        return Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER,MAXIMUM_LOTTO_NUMBER,LOTTO_DEFAULT_DIGIT).sorted()
     }
 }
