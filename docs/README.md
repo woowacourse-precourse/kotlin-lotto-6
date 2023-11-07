@@ -41,10 +41,10 @@
 
 - [O] 각 로또마다 당첨 번호 일치 개수 확인 : Lotto#compareCountingMatchedWinningNumber()
 - [O] 각 로또마다 보너스 번호 일치 확인 : Lotto#compareCountingMatchedBonusNumber()
-- [] 총 당첨 금액 대비 수익률 계산 : Lotto#calculateRateReturn()
+- [O] 총 당첨 금액 대비 수익률 계산 : Calculator#calculateRateReturn()
 - 
 - [O] 당첨 1등 ~ 6등 까지 계산. Lotto#DivideStandard1to6 클래스 활용
-- [] 일치 개수 만큼 당첨 금액 계산 : DivideStandard1to6#calculateWinningAmount()
+- [O] 일치 개수 만큼 당첨 금액 계산 : DivideStandard1to6#calculateWinningAmount()
 
 - [O] 로또 클래스 생성 : main 함수에서 MakeLotto클래스를 통해 생성
 - [O] 복권 클래스 package lotto#Lotto# 이미 존재

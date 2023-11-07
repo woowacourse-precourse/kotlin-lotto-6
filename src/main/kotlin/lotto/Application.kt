@@ -3,6 +3,7 @@ package lotto
 fun main() {
     val input = InputValue()
     val makeLotto = MakeLotto()
+    val calculator = Calculator()
 
     println("구입금액을 입력해 주세요.")
     val money = input.inputLottoMoney() // 내가 입력한 돈
@@ -46,4 +47,6 @@ fun main() {
     println("5개 일치 (1,500,000원) - ${rank[2]}개")
     println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${rank[3]}개")
     println("6개 일치 (2,000,000,000원) - ${rank[4]}개")
+
+    println("총 수익률은 ${calculator.calculateRateReturn(rank, money)}%입니다.")
 }
