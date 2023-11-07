@@ -3,6 +3,7 @@ package lotto.Model
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6) { "로또 번호는 6개여야 합니다." }
+        require(numbers.toSet().size == 6) { "로또 번호에 중복된 숫자가 있습니다." }
         require(numbers.all { it in 1..45 }) { "로또 번호는 1부터 45 사이의 값이어야 합니다." }
     }
 
@@ -10,7 +11,7 @@ class Lotto(private val numbers: List<Int>) {
         return numbers
     }
 
-    fun checkWinningNumbers(winningNumbers: List<Int>, bonusNumber: Int): String {
+    fun lottoNumberCheck(winningNumbers: List<Int>, bonusNumber: Int): String {
         val matchedNumbers = numbers.filter { it in winningNumbers }
         val matchingCount = matchedNumbers.size
         return when (matchingCount) {
