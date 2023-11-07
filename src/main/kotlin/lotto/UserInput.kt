@@ -7,9 +7,8 @@ class UserInput {
         return readLine()?.toInt()
     }
 
-    fun getLotNum(): List<String>? {
-
-        return readLine()?.split(',')
+    fun getLotNum(): List<Int>? {
+        return readLine()?.split(',')?.map { it.toInt() }
     }
 
     fun getBonusNum(): Int? {
