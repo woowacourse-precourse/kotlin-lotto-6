@@ -64,9 +64,17 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("provideLottoTestData")
     fun `input 번호와 로또 번호 중 같은 숫자의 개수를 센다`(lottoTestData: LottoTestData) {
-        val result = lottoTestData.lotto.calculateMatchingCount(lottoTestData.input)
-        assertThat(result).isEqualTo(lottoTestData.expected)
+        val result = lottoTestData.lotto.calculateMatchingCount(lottoTestData.inputNumbers)
+        assertThat(result).isEqualTo(lottoTestData.matchingCount)
     }
+
+    @ParameterizedTest
+    @MethodSource("provideLottoTestData")
+    fun `보너스 번호가 로또 번호 중 일치하는 것이 있는지 판단한다`(lottoTestData: LottoTestData) {
+        val result = lottoTestData.lotto.containBonusNumber(lottoTestData.bonusNumber)
+        assertThat(result).isEqualTo(lottoTestData.containBonusNumber)
+    }
+
 
     companion object {
         @JvmStatic
@@ -113,23 +121,31 @@ class LottoTest {
             return Stream.of(
                 LottoTestData(
                     lotto = Lotto(listOf(1, 2, 3, 4, 5, 6)),
-                    input = input,
-                    expected = 6
+                    inputNumbers = input,
+                    matchingCount = 6,
+                    bonusNumber = 7,
+                    containBonusNumber = false
                 ),
                 LottoTestData(
                     lotto = Lotto(listOf(1, 2, 3, 43, 44, 45)),
-                    input = input,
-                    expected = 3
+                    inputNumbers = input,
+                    matchingCount = 3,
+                    bonusNumber = 44,
+                    containBonusNumber = true
                 ),
                 LottoTestData(
                     lotto = Lotto(listOf(6, 5, 4, 3, 2, 1)),
-                    input = input,
-                    expected = 6
+                    inputNumbers = input,
+                    matchingCount = 6,
+                    bonusNumber = 7,
+                    containBonusNumber = false
                 ),
                 LottoTestData(
                     lotto = Lotto(listOf(45, 44, 43, 42, 41, 40)),
-                    input = input,
-                    expected = 0
+                    inputNumbers = input,
+                    matchingCount = 0,
+                    bonusNumber = 40,
+                    containBonusNumber = true
                 ),
             )
         }
@@ -139,6 +155,8 @@ class LottoTest {
 
 data class LottoTestData(
     val lotto: Lotto,
-    val input: Set<Int>,
-    val expected: Int,
+    val inputNumbers: Set<Int>,
+    val matchingCount: Int,
+    val bonusNumber: Int,
+    val containBonusNumber: Boolean,
 )
