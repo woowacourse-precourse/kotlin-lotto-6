@@ -41,18 +41,21 @@ class LottoController(private val lottoView: LottoView, private val lotto: Lotto
         println("\n당첨 통계")
         println("---")
 
-        for (rank in LottoRank.entries) {
+        val sortedWinnings = winnings.entries.sortedByDescending { it.key.matchCount }
+
+        for (rank in LottoRank.values()) {
+            val count = sortedWinnings.find { it.key == rank }?.value ?: 0
             if (rank != LottoRank.NONE) {
                 val prize = rank.prize
-                val count = winnings.getOrDefault(rank, 0)
-                println("${rank.matchCount}개 일치 (${prize}원) - ${count}개")
+                println("${rank.matchCount}개 일치 (${String.format("%,d", prize)}원) - ${count}개")
+
             }
         }
 
         val totalPrize = winnings.entries.sumBy { (rank, count) -> rank.prize * count }
-        val totalProfitRate = (totalPrize - purchaseAmount).toDouble() / purchaseAmount * 100
-
-        println("총 수익률은 $totalProfitRate%입니다.")
+        val totalProfitRate = (totalPrize.toDouble() / purchaseAmount.toDouble()) * 100
+        val totalRate = String.format("%.1f", totalProfitRate)
+        println("총 수익률은 ${totalRate}%입니다.")
     }
 
     fun run() {
