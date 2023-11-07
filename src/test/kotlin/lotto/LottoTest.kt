@@ -1,6 +1,7 @@
 package lotto
 
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 
 
@@ -41,4 +42,15 @@ class LottoTest {
         }
     }
 
+    @Test
+    fun `로또 번호 중에 숫자가 아닌 값이 포함되면 예외가 발생한다`() {
+        assertThrows<NumberFormatException> {
+            Lotto(listOf(1, 2, 3, 4, 5, "invalid".toInt()))
+        }
+    }
+
+    @Test
+    fun `로또 번호 정상 입력`() {
+        assertDoesNotThrow { Lotto(listOf(1, 2, 3, 4, 5, 6)) }
+    }
 }
