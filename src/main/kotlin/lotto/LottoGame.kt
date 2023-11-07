@@ -11,6 +11,16 @@ class LottoGame {
     private var bonus = 0
     private var prize = 0
     private val buyNumbers = mutableListOf<List<Int>>()
+    companion object{
+        private const val CHECK_THREE = "3개 일치 (5,000원)"
+        private const val CHECK_FOUR = "4개 일치 (50,000원)"
+        private const val CHECK_FIVE = "5개 일치 (1,500,000원)"
+        private const val CHECK_FIVE_BONUS = "5개 일치, 보너스 볼 일치 (30,000,000원)"
+        private const val CHECK_SIX = "6개 일치 (2,000,000,000원)"
+        private const val INPUT_PRICE = "구입금액을 입력해 주세요."
+        private const val INPUT_BONUS = "보너스 번호를 입력해 주세요."
+        private const val INPUT_LOTTO = "당첨 번호를 입력해 주세요."
+    }
     fun start(){
         try{
             inputPrice()
@@ -41,11 +51,11 @@ class LottoGame {
     private fun showResult() {
         showText()
         val rank = Ranking.getRank()
-        println("3개 일치 (5,000원) - ${rank[3]}개")
-        println("4개 일치 (50,000원) - ${rank[4]}개")
-        println("5개 일치 (1,500,000원) - ${rank[5]}개")
-        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${rank[6]}개")
-        println("6개 일치 (2,000,000,000원) - ${rank[7]}개")
+        println(CHECK_THREE+ " - ${rank[3]}개")
+        println(CHECK_FOUR+ " - ${rank[4]}개")
+        println(CHECK_FIVE+ " - ${rank[5]}개")
+        println(CHECK_FIVE_BONUS+ " - ${rank[6]}개")
+        println(CHECK_SIX+ " - ${rank[7]}개")
         caculate(rank)
         showProfit()
     }
@@ -64,14 +74,14 @@ class LottoGame {
     }
     private fun inputBonusNumber(){
         println()
-        println("보너스 번호를 입력해 주세요.")
+        println(INPUT_BONUS)
         val bonusNum = Console.readLine().toInt()
         error.checkBonus(numbers,bonusNum)
         bonus = bonusNum
 
     }
     private fun inputPrizeNumber(){
-        println("당첨 번호를 입력해 주세요.")
+        println(INPUT_LOTTO)
         val number = Console.readLine().split(',')
         for(i in number.indices){
             numbers.add(number[i].toInt())
@@ -80,7 +90,7 @@ class LottoGame {
     }
 
     private fun inputPrice(){
-        println("구입금액을 입력해 주세요.")
+        println(INPUT_PRICE)
         val price = Console.readLine()
         error.checkPrice(price)
         buyPrice = price.toInt()
