@@ -5,5 +5,5 @@ enum class LottoRanking(val rank: Int, val reward: Int, var count: Int) {
     SECOND(rank = 2, reward = 30_000_000, count = 0),
     THIRD(rank = 3, reward = 1_500_000, count = 0),
     FOURTH(rank = 4, reward = 50_000, count = 0),
-    FIFTH(rank = 5, reward = 5_000, count = 0)
+    FIFTH(rank = 5, reward = 5_000, count = 0),
 }
