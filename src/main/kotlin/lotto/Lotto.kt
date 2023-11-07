@@ -1,7 +1,6 @@
 package lotto
 
 import lotto.domain.LottoRank
-import lotto.domain.WinningNumber
 
 class Lotto(private val numbers: List<Int>) {
     init {
@@ -10,10 +9,10 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.distinct().size == 6)
     }
 
-    fun compareNumber(winningNumber: WinningNumber): Pair<Int, Boolean> {
-        val comparisonNumbers = winningNumber.getWinningNumbers()
+    fun compareNumber(winningNumberSet: Pair<List<Int>, Int>): Pair<Int, Boolean> {
+        val comparisonNumbers = winningNumberSet.first
         val matchNumbers = numbers.intersect(comparisonNumbers.toSet()).size
-        val comparisonBonus = winningNumber.getBonusNumber()
+        val comparisonBonus = winningNumberSet.second
         val matchBonus = numbers.contains(comparisonBonus)
         return Pair(matchNumbers, matchBonus)
     }
