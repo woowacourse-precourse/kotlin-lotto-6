@@ -3,6 +3,7 @@ package lotto.controller
 import lotto.model.*
 import lotto.domain.*
 import lotto.utils.Constants
+import lotto.utils.Messages
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -12,7 +13,7 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         val answerLottoNumbers = answerLotto(ticket)
         val userWinningNumbers = userWinningLotto()
         val lottos = Lotto(userWinningNumbers)
-        val bonusNumber = bonus()
+        val bonusNumber = bonus(userWinningNumbers)
         val results = rankOfLotto(lottos, answerLottoNumbers, bonusNumber)
         val profitPercentage = yieldLotto(results, ticket)
         outputResults(results, profitPercentage)
@@ -41,9 +42,11 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         return lottoWinning.createWinningLotto()
     }
 
-    private fun bonus(): Int {
+    private fun bonus(userWinningNumbers: List<Int>): Int {
         outputView.showInputBonusNumberMessage()
-        return inputView.inputBonusNumber().getBonus()
+        val bonusNumber = inputView.inputBonusNumber().getBonus()
+        validateDuplicateBonusNumber(userWinningNumbers, bonusNumber)
+        return bonusNumber
     }
 
     private fun rankOfLotto(lotto: Lotto, answerLottoNumbers: MutableList<Lotto>, bonusNumber: Int): MutableMap<Prize, Int> {
@@ -64,5 +67,11 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
     private fun outputResults(results: MutableMap<Prize, Int>, profitPercentage: Double) {
         outputView.printResults(results)
         outputView.printProfitPercentage(profitPercentage)
+    }
+
+    private fun validateDuplicateBonusNumber(userWinningNumbers: List<Int>, bonusNumber: Int) {
+        require(!userWinningNumbers.contains(bonusNumber)) {
+            "${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_DUPLICATED_MESSAGE}"
+        }
     }
 }
