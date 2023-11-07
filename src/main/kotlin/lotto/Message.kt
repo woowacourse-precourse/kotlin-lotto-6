@@ -9,8 +9,7 @@ object Message {
     const val WINNING_STATISTICS = "당첨 통계"
     const val COMMA = "---"
 
-    const val ERROR = "[ERROR]"
-    const val ERROR_USER_PICK_NUMBERS_DUPLICATION = "중복된 로또번호가 입력되었습니다."
-    const val ERROR_BONUS_NUMBER_DUPLICATION = "앞서 입력된 로또번호와 중복되었습니다."
+    const val ERROR_USER_PICK_NUMBERS_DUPLICATION = "[ERROR] 중복된 로또번호가 입력되었습니다."
+    const val ERROR_BONUS_NUMBER_DUPLICATION = "[ERROR] 앞서 입력된 로또번호와 중복되었습니다."
 
 }
