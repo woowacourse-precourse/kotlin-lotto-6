@@ -1,6 +1,5 @@
 package lotto.domain
 
-import lotto.domain.Lotto
 import lotto.domain.fake.FakeNumberGenerator
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -14,7 +13,7 @@ class LottoTest {
     fun `로또 번호의 개수가 6개가 넘어가면 예외가 발생한다`(input : Int) {
         //given
         val numberGenerator = FakeNumberGenerator(input)
-        val generatedNumbers = numberGenerator.generateNumber()
+        val generatedNumbers = numberGenerator.generateNumbers()
 
         //when
 

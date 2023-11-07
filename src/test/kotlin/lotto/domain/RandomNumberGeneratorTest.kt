@@ -1,11 +1,8 @@
 package lotto.domain
 
 import lotto.domain.Lotto.Companion.LOTTO_NUMBER_COUNT
-import lotto.domain.fake.FakeNumberGenerator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
 
 class RandomNumberGeneratorTest{
     @Test
@@ -14,7 +11,7 @@ class RandomNumberGeneratorTest{
         val randomNumberGenerator = RandomNumberGenerator()
 
         //when
-        val actual = randomNumberGenerator.generateNumber().size
+        val actual = randomNumberGenerator.generateNumbers().size
 
         //then
         val expected = LOTTO_NUMBER_COUNT
@@ -27,7 +24,7 @@ class RandomNumberGeneratorTest{
         val randomNumberGenerator = RandomNumberGenerator()
 
         //when
-        val actual = randomNumberGenerator.generateNumber().toSet().size
+        val actual = randomNumberGenerator.generateNumbers().toSet().size
 
         //then
         val expected = LOTTO_NUMBER_COUNT

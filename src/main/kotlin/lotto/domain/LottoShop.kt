@@ -25,7 +25,7 @@ class LottoShop {
     }
 
     private fun createLotto(): Lotto {
-        val lottoNumbers = lottoNumberGenerator.generateNumber()
+        val lottoNumbers = lottoNumberGenerator.generateNumbers()
         return Lotto(lottoNumbers)
     }
 

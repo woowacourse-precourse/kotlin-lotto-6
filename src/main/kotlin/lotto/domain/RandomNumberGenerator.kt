@@ -5,7 +5,7 @@ import lotto.domain.Lotto.Companion.LOTTO_NUMBER_COUNT
 
 class RandomNumberGenerator : NumberGenerator{
 
-    override fun generateNumber() : List<Int> {
+    override fun generateNumbers() : List<Int> {
         val numbers = Randoms.pickUniqueNumbersInRange(MIN_VALUE, MAX_VALUE, LOTTO_NUMBER_COUNT)
         return numbers.toList()
     }
