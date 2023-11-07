@@ -41,10 +41,8 @@ class Validator {
         }
     }
 
-    fun containsComma(lotto: String): Boolean {
-        return if (lotto.contains(',')) {
-            true
-        } else {
+    fun containsComma(lotto: String) {
+        if (!lotto.contains(',')) {
             throw IllegalArgumentException("로또 번호는 쉼표(,)로 구분지어주세요.")
         }
     }
