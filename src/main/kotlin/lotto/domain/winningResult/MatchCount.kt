@@ -1,7 +1,6 @@
-package lotto.domain
+package lotto.domain.winningResult
 
 import lotto.exception.MatchCountException
-import lotto.exception.MoneyException
 
 class MatchCount(var count: Int) {
     companion object {

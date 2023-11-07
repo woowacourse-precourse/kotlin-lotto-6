@@ -39,7 +39,7 @@ class InputValidatorTest {
         // given
         val input = listOf("1", "2", "3")
         // when & then
-        assertDoesNotThrow { InputValidator.validateInputWinningLotto(input) }
+        assertDoesNotThrow { InputValidator.validateInputWinningNumbers(input) }
     }
 
     @Test
@@ -48,7 +48,7 @@ class InputValidatorTest {
         val input = listOf("1", "", "3")
         // when & then
         assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { InputValidator.validateInputWinningLotto(input) }
+            .isThrownBy { InputValidator.validateInputWinningNumbers(input) }
             .withMessage("[ERROR] 빈 값이 입력되었습니다.")
     }
 
@@ -58,7 +58,7 @@ class InputValidatorTest {
         val input = listOf("2147483648", "-2147483649", "abcdef")
         // when & then
         assertThatExceptionOfType(IllegalArgumentException::class.java)
-            .isThrownBy { InputValidator.validateInputWinningLotto(input) }
+            .isThrownBy { InputValidator.validateInputWinningNumbers(input) }
             .withMessage("[ERROR] 숫자를 입력해주세요.")
     }
 }

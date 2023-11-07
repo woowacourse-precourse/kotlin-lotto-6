@@ -1,4 +1,4 @@
-package lotto.domain
+package lotto.domain.lotto
 
 class Lottos(private val lottos: List<Lotto>) {
     fun forEach(action: (Lotto) -> Unit) = lottos.forEach { action(it) }

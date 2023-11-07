@@ -1,4 +1,4 @@
-package lotto.domain
+package lotto.domain.winningResult
 
 class WinningResult(
     private val result: Map<WinningRank, MatchCount>,

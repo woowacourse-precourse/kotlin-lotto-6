@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.domain.*
+import lotto.domain.lotto.*
 import lotto.view.InputView
 import lotto.view.OutputView
 import lotto.validator.InputValidator

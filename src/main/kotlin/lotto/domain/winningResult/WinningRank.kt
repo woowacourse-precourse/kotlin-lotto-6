@@ -1,4 +1,6 @@
-package lotto.domain
+package lotto.domain.winningResult
+
+import lotto.domain.Money
 
 enum class WinningRank(val description: String, val prize: Money) {
     NONE("꽝", Money(0)),

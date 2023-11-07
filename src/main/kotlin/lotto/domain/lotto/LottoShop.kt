@@ -1,6 +1,11 @@
-package lotto.domain
+package lotto.domain.lotto
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.domain.*
+import lotto.domain.winningResult.MatchCount
+import lotto.domain.winningResult.RateOfReturn
+import lotto.domain.winningResult.WinningRank
+import lotto.domain.winningResult.WinningResult
 import lotto.exception.LottoShopException
 
 object LottoShop {
