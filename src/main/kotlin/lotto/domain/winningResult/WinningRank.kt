@@ -11,14 +11,13 @@ enum class WinningRank(val description: String, val prize: Money) {
     FIRST("6개 일치", Money(2_000_000_000));
 
     companion object {
-        fun getRank(matchingCount: Int, isBonusNumberMatched: Boolean): WinningRank {
-            return when (matchingCount) {
+        fun getRank(matchingCount: Int, isBonusNumberMatched: Boolean): WinningRank =
+            when (matchingCount) {
                 3 -> FIFTH
                 4 -> FOURTH
                 5 -> if (isBonusNumberMatched) SECOND else THIRD
                 6 -> FIRST
                 else -> NONE
             }
-        }
     }
 }
