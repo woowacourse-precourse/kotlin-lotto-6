@@ -36,8 +36,8 @@ class LottoGameController {
 
     private fun printLotto(lottoPaper: List<Lotto>) {
         println("\n${USER_LOTTO.format(lottoPaper.size)}")
-        lottoPaper.forEach {
-            it.printNumbers()
+        lottoPaper.forEach { lotto ->
+            lotto.printNumbers()
         }
     }
 

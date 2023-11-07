@@ -18,13 +18,13 @@ class LottoResultView {
 
     private fun getTotalPrize(resultTable: Map<String, Int>): Int {
         var total = 0
-        resultTable.forEach {
-            when(it.key) {
-                GRADE_FIRST -> total += it.value * LotteryPrize.FIRST.getPrizeAmount()
-                GRADE_SECOND -> total += it.value * LotteryPrize.SECOND.getPrizeAmount()
-                GRADE_THIRD -> total += it.value * LotteryPrize.THIRD.getPrizeAmount()
-                GRADE_FORTH -> total += it.value * LotteryPrize.FORTH.getPrizeAmount()
-                GRADE_FIFTH -> total += it.value * LotteryPrize.FIFTH.getPrizeAmount()
+        resultTable.forEach { gradeCount ->
+            when(gradeCount.key) {
+                GRADE_FIRST -> total += gradeCount.value * LotteryPrize.FIRST.getPrizeAmount()
+                GRADE_SECOND -> total += gradeCount.value * LotteryPrize.SECOND.getPrizeAmount()
+                GRADE_THIRD -> total += gradeCount.value * LotteryPrize.THIRD.getPrizeAmount()
+                GRADE_FORTH -> total += gradeCount.value * LotteryPrize.FORTH.getPrizeAmount()
+                GRADE_FIFTH -> total += gradeCount.value * LotteryPrize.FIFTH.getPrizeAmount()
             }
         }
         return total

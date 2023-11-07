@@ -10,8 +10,8 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun compareLottoNumber(winningNumber: WinningNumber): Int {
-        val result = winningNumber.getWinningNumbers().filter {
-            this.numbers.contains(it)
+        val result = winningNumber.getWinningNumbers().filter { number ->
+            this.numbers.contains(number)
         }
         return result.size
     }
