@@ -292,6 +292,10 @@ class Lotto(private val numbers: List<Int>) {
 
 - [x] 로또 번호
 
+### LottoPurchaseAmount
+
+- [x] 구입 금액
+
 ### Controller
 
 - [ ] 로또 프로그램 시작
