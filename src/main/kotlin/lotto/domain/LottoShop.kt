@@ -4,7 +4,8 @@ import lotto.domain.validator.LottoShopValidator
 
 class LottoShop {
 
-    private val lottoShopValidator = LottoShopValidator()
+    private val lottoShopValidator: LottoShopValidator by lazy { LottoShopValidator() }
+    val lottoNumberGenerator: RandomNumberGenerator by lazy { RandomNumberGenerator() }
 
     fun purchaseLotto(input: String): List<Lotto> {
         lottoShopValidator.validatePurchaseLottoInput(input)
@@ -12,7 +13,8 @@ class LottoShop {
         val lottos: MutableList<Lotto> = mutableListOf()
 
         repeat(input.toInt() / LOTTO_PRICE) {
-            lottos.add(Lotto(listOf(1, 2, 3, 4, 5, 6)))
+            val lottoNumbers = lottoNumberGenerator.generateNumber()
+            lottos.add(Lotto(lottoNumbers))
         }
 
         return lottos.toList()
