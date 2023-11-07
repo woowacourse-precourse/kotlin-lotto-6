@@ -93,7 +93,7 @@ class LottoGame {
                             WinningAmounts.fiveMatch.amounts * winningMap[5]!! +
                             WinningAmounts.fiveAndBonus.amounts * winningMap[-1]!! +
                             WinningAmounts.sixMatch.amounts * winningMap[6]!!).toFloat() /
-                    (numberOfLottos * UnitAmount.unit.price)
+                    (numberOfLottos * UnitAmount.unit.price) * 100
         println(String.format("총 수익률은 %.1f%%입니다.", profitRate))
     }
 
