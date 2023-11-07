@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms
 
 class RandomLottoNumbersGenerator {
 
-    fun generate() = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, NUMBER_COUNT)
+    fun generate(): List<Int> = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, NUMBER_COUNT)
 
     companion object {
         private const val START_NUMBER = 1
