@@ -79,10 +79,11 @@ class LottoController(private val model: LottoModel, private val view: LottoView
     fun checkWinningNumberDuplicated(winning_number: List<String>) {
         var check_duplicated = ArrayList<String>()
         for (idx in 0..winning_number.size - 1) {
-            if (check_duplicated.contains(winning_number.get(idx)))
-                throw IllegalArgumentException(ErrorMessage.ANSWER_DUPLICATED_NUMBER)
-            else
+            if (!check_duplicated.contains(winning_number.get(idx))) {
                 check_duplicated.add(winning_number.get(idx))
+                continue
+            }
+            throw IllegalArgumentException(ErrorMessage.ANSWER_DUPLICATED_NUMBER)
         }
     }
 
