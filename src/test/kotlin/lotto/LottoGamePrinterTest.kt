@@ -29,7 +29,7 @@ class LottoGamePrinterTest : NsTest() {
     }
 
     @Test
-    fun `당첨 통계가 적절하게 나오는지에 대한 여부`() {
+    fun `당첨 통계 정보가 나오는지에 대한 여부`() {
         camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest {
             run("5000", "1,2,3,4,5,6", "7")
             Assertions.assertThat(output()).contains(
