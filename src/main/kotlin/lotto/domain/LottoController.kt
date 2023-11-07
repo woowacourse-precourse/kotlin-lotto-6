@@ -17,8 +17,8 @@ class LottoController(private val inputView: InputView, private val outputView: 
 
     fun makeLottoResultMap(): MutableMap<LottoRank, Int> {
         val lottoResult = mutableMapOf<LottoRank, Int>()
-        for (i in LottoRank.entries) {
-            lottoResult[i] = 0
+        for (rank in LottoRank.entries) {
+            lottoResult[rank] = 0
         }
         return lottoResult
     }
@@ -33,7 +33,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
         val numOfLotto = money / LOTTO_PRICE
         outputView.printPurchaseAmount(numOfLotto)
 
-        for (i in 0 until numOfLotto) {
+        for (attempts in 0 until numOfLotto) {
             val numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, PICK_NUMBER)
             outputView.printPurchasedLotto(numbers)
             lotteries.add(Lotto(numbers))
