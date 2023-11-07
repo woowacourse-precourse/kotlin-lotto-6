@@ -27,9 +27,10 @@ class PointOfSales : RetryUntilSuccess() {
     private fun getWinningLotto(): WinningLotto {
         val nums = doUntilSuccess { IO.getInstance().getWinningLottoNum() }
         val bonus = doUntilSuccess { IO.getInstance().getBonusNum(nums) }
-        val winningLotto = doUntilSuccess { WinningLotto(nums, bonus) }
-
-        return winningLotto
+        return executeOrFallback(
+            primary = { WinningLotto(nums, bonus) },
+            fallback = { getWinningLotto() },
+        )
     }
 
     private fun getRandomLottoNum() =

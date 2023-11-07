@@ -12,4 +12,14 @@ open class RetryUntilSuccess {
             }
         }
     }
+
+    protected fun <T> executeOrFallback(primary: () -> T, fallback: () -> T): T {
+        try {
+            return primary()
+        } catch (e: IllegalArgumentException) {
+            val errorMessage = e.message ?: "[ERROR] ${e.stackTraceToString()}"
+            println(errorMessage)
+        }
+        return fallback()
+    }
 }
