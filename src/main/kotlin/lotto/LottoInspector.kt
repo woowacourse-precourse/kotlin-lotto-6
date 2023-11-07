@@ -2,6 +2,19 @@ package lotto
 
 class LottoInspector {
 
+    private fun showLottoResult(issuedLotto: List<Lotto>, winningNumber: List<Int>, bonusNumber: Int) {
+        val lottoResultList = makeLottoResultList(issuedLotto,winningNumber,bonusNumber)
+    }
+
+    private fun makeLottoResultList(issuedLotto: List<Lotto>, winningNumber: List<Int>, bonusNumber: Int): Array<Int> {
+        val lottoResultList = Array(6) { 0 }
+        for (lotto in issuedLotto) {
+            val lottoResult = checkLotto(lotto,winningNumber,bonusNumber)
+            lottoResultList[lottoResult]++
+        }
+        return lottoResultList
+    }
+
     private fun checkLotto(lotto: Lotto, winningNumber: List<Int>, bonusNumber: Int): Int {
         val lottoNumber = lotto.getLottoNumber()
         val lottoResult = compareLotto(lottoNumber, winningNumber)
