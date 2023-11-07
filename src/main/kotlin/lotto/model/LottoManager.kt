@@ -1,4 +1,6 @@
-package lotto
+package lotto.model
+
+import lotto.model.Lotto
 
 class LottoManager(private val purchaseAmount: Int, private val answerNumInt: List<Int>, private val bonusNumber: Int) {
 

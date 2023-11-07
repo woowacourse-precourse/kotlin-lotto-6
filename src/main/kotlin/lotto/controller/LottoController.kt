@@ -1,4 +1,4 @@
-package lotto
+package lotto.controller
 
 class LottoController() {
 }
