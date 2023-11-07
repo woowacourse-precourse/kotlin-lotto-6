@@ -64,7 +64,7 @@ object InputValidator {
         return this
     }
 
-    fun checkIsDuplicateNumber(number: Int, duplicateNumbers: List<Int>): InputValidator {
+    fun checkIsExistingNumber(number: Int, duplicateNumbers: List<Int>): InputValidator {
         require(!(duplicateNumbers.contains(number))) { MSG_ERR_BONUS_NOT_DUPLICATE }
 
         return this

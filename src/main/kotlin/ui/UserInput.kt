@@ -8,7 +8,6 @@ const val MSG_INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요."
 const val MSG_INPUT_LOTTO_NUMBER_BY_COMMA = "숫자가 여러 개인 경우 쉼표(,)로 구분해주세요. 예) 1,2,3,4,5,6"
 
 object UserInput {
-    private lateinit var duplicateNumbers: List<Int> // 당첨 번호들을 담아 두기 위한 변수(보너스 번호 중복 체크 용도)
 
     private fun readOnlyDigitAndToInt(): Int {
         val input = Console.readLine()
@@ -44,7 +43,6 @@ object UserInput {
                 InputValidator
                     .checkProperNumbersSize(winNumbers)
                     .checkNumberListInRange(winNumbers)
-                duplicateNumbers = winNumbers // 입력 받은 당첨 번호를 중복 숫자 리스트에 담는다.(보너스 번호 중복 체크 용도)
 
                 return winNumbers
             } catch (e: NumberFormatException) {
@@ -55,14 +53,14 @@ object UserInput {
         }
     }
 
-    fun readBonusNumber(): Int {
+    fun readBonusNumber(existingNumbers: List<Int>): Int {
         while (true) {
             try {
                 println(MSG_INPUT_BONUS_NUMBER)
                 val bonus = readOnlyDigitAndToInt()
                 InputValidator
                     .checkNumberInRange(bonus)
-                    .checkIsDuplicateNumber(bonus, duplicateNumbers)
+                    .checkIsExistingNumber(bonus, existingNumbers)
 
                 return bonus
             } catch (e: NumberFormatException) {

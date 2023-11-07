@@ -9,10 +9,7 @@ fun main() {
         .create()
         .printLotto()
 
-    val lottoResult = LottoResult(
-        winLotto = Lotto(UserInput.readWinNumbers()),
-        bonus = UserInput.readBonusNumber()
-    )
+    val lottoResult = LottoResult()
 
     lottoResult
         .calculateWinLottos(lottoGenerator.lottos)
