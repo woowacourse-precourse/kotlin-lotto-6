@@ -69,3 +69,4 @@
 - [x] WinNumbersValidator 테스트
 - [x] BonusNumberValidator 테스트
 - [x] LottoStore 테스트
+- [x] LottoRank 테스트
