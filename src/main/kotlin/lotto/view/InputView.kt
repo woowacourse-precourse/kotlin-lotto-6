@@ -16,7 +16,7 @@ object InputView {
     fun inputWinningNumber(): List<Int> {
         print(Constants.SPACING)
         println(INPUT_WINNING_NUMBER)
-        return readLine()!!.split(",").map { it.toInt() }
+        return readLine()!!.split(Constants.COMMA).map { it.toInt() }
     }
 
     fun inputBonusNumber(): Int {
