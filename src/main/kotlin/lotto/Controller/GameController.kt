@@ -12,6 +12,7 @@ class GameController {
         Output.printLotto(lottoTickets)
         val winningNumbers = readWinningNumbers()
         val bonusNumber = readBonusNumber()
+        val result = Result.calculateResults(lottoTickets, winningNumbers, bonusNumber)
 
     }
 
