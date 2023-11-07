@@ -8,4 +8,9 @@ class InputView {
         println(Constants.INPUT_BUY_AMOUNT)
         return Console.readLine()
     }
+
+    fun inputWinningNumbers() {
+        println(Constants.INPUT_WINNING_NUMBER)
+        val winningNumbers = Console.readLine()
+    }
 }
