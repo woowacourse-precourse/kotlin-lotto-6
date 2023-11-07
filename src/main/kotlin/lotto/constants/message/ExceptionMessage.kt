@@ -10,4 +10,5 @@ object ExceptionMessage {
     const val INVALID_CHARACTER = "잘못된 입력입니다."
     const val INVALID_RANGE_NUMBER = "1부터 45 사이의 숫자를 입력해주세요."
     const val DUPLICATED_BONUS_NUMBER = "당첨번호와 중복 됩니다"
+    const val INVALID_LOTTO_NUMBER = "자동생성된 로또번호 에러"
 }

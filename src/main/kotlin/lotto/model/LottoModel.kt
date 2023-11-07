@@ -19,7 +19,7 @@ class LottoModel {
         repeat(calculateLottoCount(amount)) { lottoNumbers.add(Lotto(createRandomNumber()).getNumber()) }
     }
 
-    fun getLottoNumbers(): MutableList<List<Int>>{
+    fun getLottoNumbers(): MutableList<List<Int>> {
         return lottoNumbers
     }
 
@@ -39,21 +39,25 @@ class LottoModel {
 
     fun calculateLotto(): MutableMap<LottoResult, Int> {
         val winningNumbers = winningAndBonusNumbers.take(6)
-        val bonusNumber = winningAndBonusNumbers.last().toInt()
 
         lottoNumbers.forEach { lottoNumber ->
             val matchNumber = lottoNumber.intersect(winningNumbers.map { it.toInt() }.toSet()).toList()
-            val match = when (matchNumber.size) {
-                3 -> LottoResult.MATCH_THREE
-                4 -> LottoResult.MATCH_FOUR
-                5 -> if (lottoNumber.contains(bonusNumber)) LottoResult.MATCH_FIVE_BONUS else LottoResult.MATCH_FIVE
-                6 -> LottoResult.MATCH_SIX
-                else -> LottoResult.NOT_MATCH
-            }
+            val match = calculateMatchResult(lottoNumber, matchNumber.size)
             results[match]?.let { results[match] = it + 1 }
         }
 
         return results
+    }
+
+    private fun calculateMatchResult(lottoNumber: List<Int>, matchNumber: Int): LottoResult {
+        val bonusNumber = winningAndBonusNumbers.last().toInt()
+        return when (matchNumber) {
+            3 -> LottoResult.MATCH_THREE
+            4 -> LottoResult.MATCH_FOUR
+            5 -> if (lottoNumber.contains(bonusNumber)) LottoResult.MATCH_FIVE_BONUS else LottoResult.MATCH_FIVE
+            6 -> LottoResult.MATCH_SIX
+            else -> LottoResult.NOT_MATCH
+        }
     }
 
     fun calculatorProfit(): Double {

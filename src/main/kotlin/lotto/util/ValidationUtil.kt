@@ -28,10 +28,10 @@ object ValidationUtil {
     }
 
     fun checkLottoNumbers(lottoNumber: List<Int>) {
-        require(lottoNumber.isNotEmpty()) { ExceptionMessage.INPUT_IS_BLANK }
-        require(lottoNumber.size == LottoConstants.LOTTO_SIZE) { ExceptionMessage.INVALID_COUNT }
-        require(lottoNumber.toSet().size == LottoConstants.LOTTO_SIZE) { ExceptionMessage.DUPLICATED_NUMBER }
-        require(lottoNumber.all { it in LottoConstants.MIN_LOTTO_NUMBER..LottoConstants.MAX_LOTTO_NUMBER }) { ExceptionMessage.INVALID_RANGE_NUMBER }
+        require(lottoNumber.isNotEmpty()) { ExceptionMessage.INVALID_LOTTO_NUMBER + ExceptionMessage.INPUT_IS_BLANK }
+        require(lottoNumber.size == LottoConstants.LOTTO_SIZE) { ExceptionMessage.INVALID_LOTTO_NUMBER }
+        require(lottoNumber.toSet().size == LottoConstants.LOTTO_SIZE) { ExceptionMessage.INVALID_LOTTO_NUMBER + ExceptionMessage.DUPLICATED_NUMBER }
+        require(lottoNumber.all { it in LottoConstants.MIN_LOTTO_NUMBER..LottoConstants.MAX_LOTTO_NUMBER }) { ExceptionMessage.INVALID_LOTTO_NUMBER + ExceptionMessage.INVALID_RANGE_NUMBER }
     }
 
     private fun String.isDigit(): Boolean {
