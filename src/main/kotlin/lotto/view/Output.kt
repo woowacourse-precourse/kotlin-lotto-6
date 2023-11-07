@@ -1,10 +1,11 @@
 package lotto.view
 
 import lotto.model.Lotto
+import lotto.utils.Notice
 
 class Output {
     fun startGameNotice() {
-
+        println(Notice.PURCHASE_PAYMENT)
     }
 
     fun showLottoTickets(generatedAutoLottoTickets: List<Lotto>) {

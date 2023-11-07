@@ -12,7 +12,7 @@ class LottoController {
     fun startGame(){
         output.startGameNotice()
         val lottoTicketsNum = input.getlottoTicketsNum()
-        val generatedAutoLottoTickets = lottoRepository.generateAutoLottoTicket(lottoTicketsNum)
+        val generatedAutoLottoTickets = lottoRepository.generateAutoLottoTickets(lottoTicketsNum)
         output.showLottoTickets(generatedAutoLottoTickets)
 
         output.getWinningInfoNotice()
