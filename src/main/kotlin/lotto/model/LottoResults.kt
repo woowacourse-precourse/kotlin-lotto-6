@@ -1,7 +1,16 @@
 package lotto.model
 
-class LottoResults {
+class LottoResults(lottoPrizes: List<LottoPrize>) {
     private val lottoResults: List<LottoResult> = LottoPrize.entries.map { LottoResult(it) }
+
+    init {
+        lottoPrizes.forEach { lottoPrize ->
+            lottoResults.first {
+                it.prize == lottoPrize
+            }.increasePrizeCount()
+        }
+    }
+
     val totalMoney: Long
         get() {
             var totalMoney = 0L
@@ -10,14 +19,6 @@ class LottoResults {
             }
             return totalMoney
         }
-
-    fun makeLottoResults(lottoPrizes: List<LottoPrize?>) {
-        lottoPrizes.forEach { lottoPrize ->
-            lottoResults.firstOrNull {
-                it.prize == lottoPrize
-            }?.increasePrizeCount()
-        }
-    }
 
     fun getResultState(): List<LottoResultState> {
         return lottoResults.map {
