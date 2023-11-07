@@ -1,6 +1,5 @@
 package lotto.model
 
-import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.utils.ErrorMessage
 import lotto.utils.Values
@@ -12,7 +11,7 @@ class LottoModel {
     private var lotteryNumbers: ArrayList<List<Int>> = ArrayList()
     private lateinit var lotto: Lotto
     private lateinit var bonusNumber: BonusNumber
-    private var benefitMoney by Delegates.notNull<Int>()
+    private lateinit var winningLottery: WinningLottery
     fun isPurchaseMoneyValueValid(moneyValue: String): Boolean {
         return try {
             if ((moneyValue.toInt() % Values.LOTTERY_PRICE) != 0) {
@@ -67,9 +66,10 @@ class LottoModel {
             }
         }
     }
-    fun checkRate() {
+    fun calculateWinningLottery() {
         for(item in lotteryNumbers) {
-
+            println(lotto.getNumbers().toSet().intersect(item.toSet()).size)
+            println(item.contains(bonusNumber.getBonusNumber()))
         }
     }
 }

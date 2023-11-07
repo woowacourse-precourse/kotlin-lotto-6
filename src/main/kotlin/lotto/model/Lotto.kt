@@ -10,4 +10,7 @@ class Lotto(private val numbers: List<Int>) {
             require(Values.MINIMUM_LOTTERY_NUMBER <= item && item <= Values.MAXIMUM_LOTTERY_NUMBER)
         }
     }
+    fun getNumbers(): List<Int> {
+        return numbers
+    }
 }

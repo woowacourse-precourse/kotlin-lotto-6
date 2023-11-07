@@ -1,19 +1,11 @@
 package lotto.model
 
-enum class WinningLottery {
-    FIRST {
+import lotto.utils.Values
 
-    },
-    SECOND {
-
-    },
-    THIRD {
-
-    },
-    FOURTH {
-
-    },
-    FIFTH {
-
-    }
+enum class WinningLottery(val winningAmount: Int) {
+    First(Values.WINNING_PRIZE_FIRST),
+    SECOND(Values.WINNING_PRIZE_SECOND),
+    THIRD(Values.WINNING_PRIZE_THIRD),
+    FOURTH(Values.WINNING_PRIZE_FOURTH),
+    FIFTH(Values.WINNING_PRIZE_FIFTH)
 }

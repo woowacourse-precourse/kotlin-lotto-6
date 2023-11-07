@@ -23,7 +23,7 @@ class LottoController(private val view: LottoView, private val model: LottoModel
             view.displayInappropriateBonusValueERROR()
         }
         view.displayLotteryStatisticsMessage()
-
+        model.calculateWinningLottery()
     }
     private fun setPurchaseMoneyValue(): String {
         return Console.readLine()
