@@ -1,19 +1,19 @@
 package lotto.domain
 
 import lotto.model.Lotto
-import lotto.model.LottoRecord
+import lotto.model.Winning
 
 class WinningStatistics() {
 
     fun computeStatistics(
-        lottoNumbers: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): HashMap<LottoRecord, Int> {
+        lottoNumbers: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): HashMap<Winning, Int> {
 
-        val reward = HashMap<LottoRecord, Int>()
+        val reward = HashMap<Winning, Int>()
 
         lottoNumbers.forEach {
             var countMatch = compareLotto(it.issueNumbers(), winningNumbers)
 
-            var match = LottoRecord.makeRewardStatistics(countMatch,compareBonus(it.issueNumbers(),bonusNumber))
+            var match = Winning.makeRewardStatistics(countMatch,compareBonus(it.issueNumbers(),bonusNumber))
             reward[match] = reward.getOrDefault(match, 0) + 1
         }
         return reward

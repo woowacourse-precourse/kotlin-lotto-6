@@ -1,19 +1,19 @@
 package lotto.domain
 
-import lotto.model.LottoRecord
+import lotto.model.Winning
 
 class Calculator {
 
-    fun calculateYield(amount : Int, reward: HashMap<LottoRecord, Int>) : String{
+    fun calculateYield(amount : Int, reward: HashMap<Winning, Int>) : String{
         return "%.1f".format(addTotalEarnings(reward).toDouble() / amount.toDouble() * 100)
     }
 
-    private fun addTotalEarnings(reward: HashMap<LottoRecord, Int>): Int {
+    private fun addTotalEarnings(reward: HashMap<Winning, Int>): Int {
 
-        return reward.getOrDefault(LottoRecord.FIFTH,0) * LottoRecord.FIFTH.reward +
-                reward.getOrDefault(LottoRecord.FOURTH,0) * LottoRecord.FOURTH.reward +
-                reward.getOrDefault(LottoRecord.THIRD,0) * LottoRecord.THIRD.reward +
-                reward.getOrDefault(LottoRecord.SECOND,0) * LottoRecord.SECOND.reward +
-                reward.getOrDefault(LottoRecord.FIRST,0) * LottoRecord.FIRST.reward
+        return reward.getOrDefault(Winning.FIFTH,0) * Winning.FIFTH.reward +
+                reward.getOrDefault(Winning.FOURTH,0) * Winning.FOURTH.reward +
+                reward.getOrDefault(Winning.THIRD,0) * Winning.THIRD.reward +
+                reward.getOrDefault(Winning.SECOND,0) * Winning.SECOND.reward +
+                reward.getOrDefault(Winning.FIRST,0) * Winning.FIRST.reward
     }
 }
