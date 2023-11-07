@@ -9,7 +9,7 @@ class ValidateSplit {
             validateInputNotNumber(it)
             validateInputEmpty(it)
         }
-        validateDuplicateBonusNumber(myNumbers)
+        validateDuplicateNumber(myNumbers)
         validateMyNumbersRange(myNumbers)
         return myNumbers
     }
@@ -27,7 +27,7 @@ class ValidateSplit {
         { "${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_OVER_RANGE_MESSAGE}" }
     }
 
-    private fun validateDuplicateBonusNumber(myNumbers: List<String>) {
+    private fun validateDuplicateNumber(myNumbers: List<String>) {
         require(myNumbers.toSet().size == myNumbers.size) {
             "${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_DUPLICATED_MESSAGE}"
         }
