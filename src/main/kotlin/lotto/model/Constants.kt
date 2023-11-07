@@ -28,5 +28,6 @@ class Constants {
 
         val ERROR_BONUS_DUPLICATION = "[ERROR] 보너스가 답과 중복됐습니다."
         val ERROR_BONUS_FORMAT = "[ERROR] 보너스는 숫자여야 합니다."
+        val ERROR_BONUS_RANGE = "[ERROR] 보너스는 로또 번호 범위여야 합니다."
     }
 }

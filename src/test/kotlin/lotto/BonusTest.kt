@@ -20,4 +20,11 @@ class BonusTest {
             Bonus().BonusFomatValidate(";")
         }
     }
+
+    @Test
+    fun `보너스가 범위내가 아니면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            Bonus().BonusRangeValidate("46")
+        }
+    }
 }

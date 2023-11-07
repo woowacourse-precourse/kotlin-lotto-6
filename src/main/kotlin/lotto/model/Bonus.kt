@@ -14,7 +14,7 @@ class Bonus {
     }
 
     fun BonuDuplicationValidate(bonus: Int, answer: List<Int>) {
-        if (answer.contains(bonus)){
+        if (answer.contains(bonus)) {
             println(Constants.ERROR_BONUS_DUPLICATION)
             throw IllegalArgumentException(Constants.ERROR_BONUS_DUPLICATION)
         }
