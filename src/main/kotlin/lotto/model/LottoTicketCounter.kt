@@ -2,7 +2,7 @@ package lotto.model
 
 import lotto.util.Constants.LOTTO_PURCHASE_COST
 
-class LottoTicketCount(private val _purchase: String) {
+class LottoTicketCounter(private val _purchase: String) {
     val lottoCount: Int
         get() = getLottoCount(_purchase.toInt())
 

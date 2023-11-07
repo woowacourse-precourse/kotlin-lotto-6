@@ -3,7 +3,7 @@ package lotto.controller
 import lotto.model.LottoResultAnalyzer
 import lotto.model.Lotto
 import lotto.model.LottoPublisher
-import lotto.model.LottoTicketCount
+import lotto.model.LottoTicketCounter
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -28,7 +28,7 @@ class LottoController {
     }
 
     private fun countAndPrintLottoQuantity(purchaseAmount: String): Int {
-        val lottoTicketCounter = LottoTicketCount(purchaseAmount)
+        val lottoTicketCounter = LottoTicketCounter(purchaseAmount)
         val lottoCount = lottoTicketCounter.lottoCount
         outputView.printLottoCount(lottoCount)
         return lottoCount
