@@ -11,8 +11,8 @@ class LottoController {
     fun startGame(){
         output.startGameNotice()
         val lottoTicketsNum = input.getlottoTicketsNum()
-        val generatedAutoLottoTickets = lottoRepository.generateAutoLottoTickets(lottoTicketsNum)
-        output.showLottoTickets(generatedAutoLottoTickets)
+        val autoLottoTickets = lottoRepository.generateAutoLottoTickets(lottoTicketsNum)
+        output.showLottoTickets(autoLottoTickets)
 
         output.getWinningInfoNotice()
         val winningLottoInfo = input.getwinningLottoInfo()
@@ -20,7 +20,7 @@ class LottoController {
         output.getBonusInfoNotice()
         val bonusInfo = input.getbonusInfo()
 
-        val lottoResult = lottoRepository.calculateLottoTickets(generatedAutoLottoTickets, winningLottoInfo, bonusInfo)
+        val lottoResult = lottoRepository.calculateLottoResult(lottoTicketsNum, autoLottoTickets, winningLottoInfo, bonusInfo)
         output.showResult(lottoResult)
     }
 

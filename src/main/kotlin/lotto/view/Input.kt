@@ -28,17 +28,22 @@ class Input {
 
     private fun isLengthOkay(num: String) = require(num.length <= 10){ErrorMessage.NOT_NUM_SIZE}
 
+    private fun isDevidableBy1000(userInput: String) = require(userInput.toInt() % 1000 == 0)
+
+
     fun getlottoTicketsNum(): Int {
         return try{
             val userInput = getUserInput()
             isIntAndValidated(userInput)
-            userInput.toInt()
+            isDevidableBy1000(userInput)
+            userInput.toInt() / 1000
         }
         catch (e: Exception){
             println(e.message)
             getlottoTicketsNum()
         }
     }
+
 
     fun getwinningLottoInfo(): Lotto {
         return try{
