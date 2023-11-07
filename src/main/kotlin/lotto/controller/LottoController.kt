@@ -5,6 +5,7 @@ import LottoPurchaseView.inputPurchaseAmountOfLotto
 import LottoPurchaseView.printPurchaseAmountOfLotto
 import lotto.model.LottoModel
 import lotto.model.LottoTicket
+import lotto.presentation.LottoGeneratorView.printLottoTickets
 import lotto.presentation.LottoGeneratorView.printPurchaseLottoCount
 
 class LottoController() {
@@ -42,5 +43,6 @@ class LottoController() {
             val lottoTicket = LottoTicket()
             lottoTickets.add(lottoTicket)
         }
+        printLottoTickets(lottoTickets)
     }
 }
