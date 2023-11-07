@@ -37,19 +37,19 @@ object Validation {
     }
 
     private fun checkCanDivided1000(input: String) {
-        require(input.toInt() < 1000) {
+        require(input.toInt() %1000==0) {
             DIVIDE_1000_ERROR_MESSAGE
         }
     }
 
     private fun checkContainComma(input: String) {
-        require(!input.contains(",")) {
+        require(input.contains(",")) {
             COMMA_ERROR_MESSAGE
         }
     }
 
     private fun checkNumAmount(input:String){
-        require(input.split(",").size!=6) {
+        require(input.split(",").size==6) {
             NUM_AMOUNT_ERROR_MESSAGE
         }
     }
@@ -57,7 +57,7 @@ object Validation {
     private fun checkNumRange(input: String) {
         val answerNums = input.split(",").map { it.toInt() }
         for(num in answerNums){
-            require(num !in 1..45){
+            require(num in 1..45){
                 NUM_RANGE_ERROR_MESSAGE
             }
         }
