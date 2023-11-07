@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import lotto.models.Purchase.Companion.AMOUNT_UNIT_ERROR_MESSAGE
 import lotto.models.Purchase.Companion.AMOUNT_UNIT
+import org.junit.jupiter.api.assertDoesNotThrow
 
 
 class PurchaseTest {
@@ -17,5 +18,12 @@ class PurchaseTest {
         val exception = assertThrows<IllegalArgumentException> { Purchase(amount) }
 
         assertThat(exception.message).isEqualTo(AMOUNT_UNIT_ERROR_MESSAGE.format(AMOUNT_UNIT.withCommas()))
+    }
+
+    @Test
+    fun `유효한 구매 금액 단위에 대해 예외가 발생하지 않는다`() {
+        val amount = 1000
+
+        assertDoesNotThrow { Purchase(amount) }
     }
 }
