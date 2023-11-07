@@ -26,4 +26,11 @@ class ExceptionManagerTest {
             exceptionManager.money("1001")
         }
     }
+
+    @Test
+    fun `당첨 번호가 숫자 리스트가 아니면 에러가 발생한다`() {
+        org.junit.jupiter.api.assertThrows<IllegalArgumentException> {
+            exceptionManager.winningNum("a,b,c")
+        }
+    }
 }
