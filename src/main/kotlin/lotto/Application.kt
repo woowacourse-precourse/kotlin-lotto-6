@@ -1,5 +1,15 @@
 package lotto
 
 fun main() {
-    TODO("프로그램 구현")
+    try {
+        val ask = Ask()
+        val amount = ask.amount()
+        val purchasedLotto = Purchase().lottoNum(amount)
+        val winNum = ask.winNum()
+        val bonusNum = ask.bonusNum(winNum)
+
+        Statistics(amount).winLotto(purchasedLotto, winNum, bonusNum)
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+    }
 }
