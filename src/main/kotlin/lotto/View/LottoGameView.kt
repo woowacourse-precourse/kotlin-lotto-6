@@ -5,8 +5,16 @@ object LottoGameView {
         println("구입금액을 입력해 주세요.")
         val lottoPrice = readLine()
 
-        return Exceptions.checkHowManyLottoIsValid(lottoPrice)
+        return Exceptions.checkHowManyBuyLottoIsValid(lottoPrice)
     }
+
+    fun inputLottoNumbers(){
+        println("\n당첨 번호를 입력해 주세요.")
+        val winningNumbers = readLine()
+
+        return Exceptions.checkInputLottoNumbersAreValid(winningNumbers)
+    }
+
 
 
 

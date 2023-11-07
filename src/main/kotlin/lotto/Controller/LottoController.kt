@@ -28,18 +28,8 @@ object LottoController {
         lottoGameModel?.run {
             printLottoNumbers()
         }
-        println("\n당첨 번호를 입력해 주세요.")
 
-        val winningNumbers = readLine()
-
-        if (winningNumbers != null) {
-            try {
-                val parsedWinningNumbers = parseLottoNumbers(winningNumbers)
-                lottoGameModel?.setWinningNumbers(parsedWinningNumbers)
-            } catch (e: IllegalArgumentException) {
-                println("[ERROR] ${e.message}")
-            }
-        }
+        LottoGameView.inputLottoNumbers()
 
         println("\n보너스 번호를 입력해 주세요.")
 
