@@ -1,6 +1,8 @@
 package lotto
 
+
 class Lotto(private val numbers: List<Int>) {
+
     init {
         require(numbers.isSizeOfSix()) { LENGTH_ERROR }
         require(numbers.isNotDuplicated()) { DUPLICATED_ERROR }
@@ -8,6 +10,15 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun contains(number: Int) = numbers.contains(number)
+
+    fun countMatch(otherLotto: Lotto): Int {
+        val matchCount = numbers.fold(0) { total, number ->
+            if (otherLotto.contains(number)) return@fold total + 1
+            total
+        }
+        return matchCount
+    }
+
     private fun List<Int>.isSizeOfSix() = (size == LOTTO_NUMBER_SIZE)
 
     private fun List<Int>.isNotDuplicated() = (distinct().size == size)
