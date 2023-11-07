@@ -20,25 +20,15 @@ class OutputView {
 
     fun printWinningStatistics(rank: Int, count: Int) {
         when (rank) {
-            RankMessage.FIRST_PRIZE.rank -> {
-                println(RankMessage.FIRST_PRIZE.message.replace("result", "$count"))
-            }
+            RankMessage.FIRST_PRIZE.rank -> println(RankMessage.FIRST_PRIZE.message.replace("result", "$count"))
 
-            RankMessage.SECOND_PRIZE.rank -> {
-                println(RankMessage.SECOND_PRIZE.message.replace("result", "$count"))
-            }
+            RankMessage.SECOND_PRIZE.rank -> println(RankMessage.SECOND_PRIZE.message.replace("result", "$count"))
 
-            RankMessage.THIRD_PRIZE.rank -> {
-                println(RankMessage.THIRD_PRIZE.message.replace("result", "$count"))
-            }
+            RankMessage.THIRD_PRIZE.rank -> println(RankMessage.THIRD_PRIZE.message.replace("result", "$count"))
 
-            RankMessage.FOURTH_PRIZE.rank -> {
-                println(RankMessage.FOURTH_PRIZE.message.replace("result", "$count"))
-            }
+            RankMessage.FOURTH_PRIZE.rank -> println(RankMessage.FOURTH_PRIZE.message.replace("result", "$count"))
 
-            RankMessage.FIFTH_PRIZE.rank -> {
-                println(RankMessage.FIFTH_PRIZE.message.replace("result", "$count"))
-            }
+            RankMessage.FIFTH_PRIZE.rank -> println(RankMessage.FIFTH_PRIZE.message.replace("result", "$count"))
         }
     }
 
