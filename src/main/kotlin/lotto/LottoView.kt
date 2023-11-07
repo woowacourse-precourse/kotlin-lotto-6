@@ -22,4 +22,10 @@ class LottoView() {
     fun inputWinningNumber(): String {
         return Console.readLine()
     }
+
+    fun printBonusNumberRequest() = println(MessageConstants.ENTER_BONUS_NUMBER)
+
+    fun inputBonusNumber(): String {
+        return Console.readLine()
+    }
 }

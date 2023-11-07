@@ -12,6 +12,10 @@ class Lotto(private val numbers: List<Int>) {
         return numbers.joinToString(prefix = "[", postfix = "]", separator = ", ") { it.toString() }
     }
 
+    fun contains(number: Int): Boolean {
+        return numbers.contains(number)
+    }
+
     companion object {
 
         fun fromInput(inputNumbers: String): Lotto {

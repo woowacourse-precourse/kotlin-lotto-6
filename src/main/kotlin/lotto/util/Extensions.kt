@@ -1,6 +1,5 @@
 package lotto.util
 
-
 fun String.parseInt(): Int {
     return this.toIntOrNull() ?: throw IllegalArgumentException(ErrorConstants.NOT_NUMBER)
 }
@@ -26,6 +25,11 @@ fun List<Int>.validateCount(count: Int): List<Int> {
 
 fun List<Int>.validateUnique(count: Int): List<Int> {
     require(this.toSet().size == count) { ErrorConstants.NOT_UNIQUE }
+    return this
+}
+
+fun Int.validateRange(start: Int, end: Int): Int {
+    require(this in start..end) { "${ErrorConstants.NOT_FIT_RANGE} $start ~ $end" }
     return this
 }
 
