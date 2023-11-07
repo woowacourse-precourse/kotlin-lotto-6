@@ -27,9 +27,9 @@ class OutputView {
 
     private fun printWinningStatsHeader() = println(WINNING_STATS_HEADER_MSG)
 
-    private fun printProfitRate(profitRate: Double) = println(PROFIT_RATE_MSG.format(profitRate))
+    private fun printProfitRate(profitRate: String) = println(PROFIT_RATE_MSG.format(profitRate))
 
-    fun printWinningStats(result: List<Int>, profitRate: Double) {
+    fun printWinningStats(result: List<Int>, profitRate: String) {
         printWinningStatsHeader()
         printWinningResult(result)
         printProfitRate(profitRate)
@@ -46,6 +46,6 @@ class OutputView {
         private const val FIVE_BONUS_MATCH_MSG = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"
         private const val SIX_MATCH_MSG = "6개 일치 (2,000,000,000원) - %d개"
         private const val WINNING_STATS_HEADER_MSG = "\n당첨 통계\n" + "---"
-        private const val PROFIT_RATE_MSG = "총 수익률은 %.1f%%입니다."
+        private const val PROFIT_RATE_MSG = "총 수익률은 %s%%입니다."
     }
 }

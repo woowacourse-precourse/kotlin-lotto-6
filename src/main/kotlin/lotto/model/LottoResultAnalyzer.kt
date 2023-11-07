@@ -13,9 +13,9 @@ class LottoResultAnalyzer {
         get() = _analyzedLottoResults
     private var _analyzedLottoResults = MutableList(5) { 0 }
 
-    val profitRate: Double
+    val profitRate: String
         get() = _profitRate
-    private var _profitRate: Double = 0.0
+    private var _profitRate: String = ""
 
     private var _profit = 0
 
@@ -46,7 +46,11 @@ class LottoResultAnalyzer {
     fun calculateProfitRate(purchaseAmount: Int) {
         sumProfit()
         val rate = _profit.toDouble().div(purchaseAmount.toDouble()) * PERCENTAGE_MULTIPLIER
-        _profitRate = rate
+        _profitRate = getFormattedProfitRate(rate)
+    }
+
+    private fun getFormattedProfitRate(rate:Double): String {
+        return String.format("%.1f", rate)
     }
 
     companion object {
