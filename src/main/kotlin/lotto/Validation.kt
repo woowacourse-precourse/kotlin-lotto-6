@@ -4,11 +4,11 @@ import java.lang.IllegalArgumentException
 
 object Validation {
 
-    private const val NUM_ERROR_MESSAGE = "숫자만 입력 가능합니다."
-    private const val DIVIDE_1000_ERROR_MESSAGE = "1000원 단위로 로또 구매 가능합니다."
-    private const val COMMA_ERROR_MESSAGE = "쉼표(,)를 기준으로 구분해주세요"
-    private const val NUM_AMOUNT_ERROR_MESSAGE = "6개의 숫자를 입력해주세요"
-    private const val NUM_RANGE_ERROR_MESSAGE  = "1에서 45 숫자만 입력 가능합니다."
+    private const val NUM_ERROR_MESSAGE = "[ERROR] 숫자만 입력 가능합니다."
+    private const val DIVIDE_1000_ERROR_MESSAGE = "[ERROR] 1000원 단위로 로또 구매 가능합니다."
+    private const val COMMA_ERROR_MESSAGE = "[ERROR] 쉼표(,)를 기준으로 구분해주세요"
+    private const val NUM_AMOUNT_ERROR_MESSAGE = "[ERROR] 6개의 숫자를 입력해주세요"
+    private const val NUM_RANGE_ERROR_MESSAGE  = "[ERROR] 1에서 45 숫자만 입력 가능합니다."
 
     fun purchaseAmount(input: String) {
         checkIsDigit(input)
