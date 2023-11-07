@@ -12,19 +12,11 @@ class WinningLotto {
     val bonusNumber: Int
         get() = _bonusNumber
 
-    fun createWinningNumbers() {
-        initializeWinningNumbers()
-    }
-
-    private fun initializeWinningNumbers() {
+    fun initializeWinningNumbers() {
         _winningNumbers = readWinningNumbers()
     }
 
-    fun createBonusNumber() {
-        initializeBonusNumber()
-    }
-
-    private fun initializeBonusNumber() {
+    fun initializeBonusNumber() {
         _bonusNumber = readBonusNumber()
     }
 

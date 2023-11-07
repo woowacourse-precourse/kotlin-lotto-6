@@ -6,11 +6,7 @@ class LottoTickets {
     val tickets: List<Lotto>
         get() = _tickets
 
-    fun createLottoTickets() {
-        initializeLottoTickets()
-    }
-
-    private fun initializeLottoTickets() {
+    fun initializeLottoTickets() {
         _tickets = Player().purchaseLottoTickets()
     }
 

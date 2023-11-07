@@ -13,13 +13,13 @@ class LottoMachine {
     }
 
     private fun generateLottoTickets() {
-        lottoTickets.createLottoTickets().also { println() }
+        lottoTickets.initializeLottoTickets().also { println() }
         lottoTickets.displayLottoTickets().also { println() }
     }
 
     private fun generateWinningNumbers() {
-        winningLotto.createWinningNumbers().also { println() }
-        winningLotto.createBonusNumber().also { println() }
+        winningLotto.initializeWinningNumbers().also { println() }
+        winningLotto.initializeBonusNumber().also { println() }
     }
 
     private fun generateResult() {
