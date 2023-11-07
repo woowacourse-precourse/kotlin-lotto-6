@@ -3,20 +3,21 @@ import camp.nextstep.edu.missionutils.Randoms
 
 
 fun main() {
-    println("구입금액을 입력해 주세요.")
+//    println("구입금액을 입력해 주세요.")
+//
+//    val purchaseAmount = getPurchaseAmount()
+//
+//    val lottoNumbers = generateLottoNumbers(purchaseAmount)
+//
+//    println("${lottoNumbers.size}개를 구매했습니다.")
+//    for (lottoNumber in lottoNumbers) {
+//        println(lottoNumber)
+//    }
+//    println("당첨 번호를 입력해 주세요.")
+//    val winningNumbers=getWinningNumbers()
 
-    val purchaseAmount = getPurchaseAmount()
-
-    val lottoNumbers = generateLottoNumbers(purchaseAmount)
-
-    println("${lottoNumbers.size}개를 구매했습니다.")
-    for (lottoNumber in lottoNumbers) {
-        println(lottoNumber)
-    }
-    println("당첨 번호를 입력해 주세요.")
-    getWinningNumbers()
-
-
+    println("보너스 번호를 입력해 주세요.")
+    val bonusNumber=getBonusNumber()
 }
 
 fun generateLottoNumbers(purchaseAmount: Int): List<Lotto> {
@@ -45,12 +46,8 @@ fun inputPurchase(amount: Int): Int {
         println("[ERROR] 잘못된 입력 형식입니다.")
         return amount
     }
-    if (mutableAmount % 1000 != 0) {
+    if (mutableAmount % 1000 != 0 || mutableAmount == 0) {
         println("[ERROR] 구입 금액은 1,000원 단위로 입력되어야 합니다.")
-        return amount
-    }
-    if (mutableAmount == 0) {
-        println("[ERROR] 구입 금액은 1000원 이상이어야 합니다.")
         return amount
     }
     return mutableAmount
@@ -87,5 +84,32 @@ fun validateLottoNumbers(numbers: List<Int>) {
     val uniqueNumbers = numbers.toSet()
     if (uniqueNumbers.size != 6) {
         throw IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 포함되어 있습니다.")
+    }
+}
+
+fun getBonusNumber(): Int {
+    var number = 0
+    while (number < 1 || number > 45) {
+        number=inputBonusNumbers()
+    }
+    return number
+}
+
+fun inputBonusNumbers(): Int{
+    var result = 0
+    try {
+        result = readLine()!!.toInt()
+        validateBonusNumbers(result)
+        return result
+    } catch (e: NumberFormatException) {
+        println("[ERROR] 잘못된 입력 형식입니다.")
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+    }
+    return result
+}
+fun validateBonusNumbers(number: Int){
+    if (number < 1 || number > 45) {
+        throw IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.")
     }
 }
