@@ -1,11 +1,10 @@
 package lotto
 
-import PlayLotto
+import lotto.data.LottoData
 import lotto.domain.WinningNumber
-import lotto.model.PlayLottoState
 
 fun main() {
-    val winningNumber = WinningNumber()
-    val lottoData = PlayLottoState.LottoData()
+    val winningNumber = WinningNumber
+    val lottoData = LottoData()
     PlayLotto(winningNumber, lottoData).start()
 }
