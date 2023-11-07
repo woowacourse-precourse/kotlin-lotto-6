@@ -23,10 +23,10 @@ class LottoResult() {
         println("당첨 통계\n---")
         for (rank in ranks) {
             if (rank == "SECOND") {
-                println("${count}개 일치, 보너스 볼 일치 (${bonus})원) - 개")
+                println("${Reward.getSameCount(rank)}개 일치, 보너스 볼 일치 (${Reward.getPrizeMoney(rank)}원) - ${results[rank]}개")
                 continue
             }
-            println("{}개 일치 ( 원) - 개")
+            println("${Reward.getSameCount(rank)}개 일치 (${Reward.getPrizeMoney(rank)}원) - ${results[rank]}개")
         }
     }
 }
