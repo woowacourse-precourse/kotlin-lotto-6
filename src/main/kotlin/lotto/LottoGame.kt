@@ -6,7 +6,7 @@ import camp.nextstep.edu.missionutils.Console
 class LottoGame() {
     fun start() {
         val lottoCount = purchaseSequence()
-//        var lottos = generateLottos(lottoCount)
+        var lottos = generateLottos(lottoCount)
 //        for (lotto in lottos) {
 //            println(lotto)
 //        }
@@ -38,7 +38,9 @@ class LottoGame() {
 
     private fun generateLottos(count: Int) :List<Lotto>{
         return List(count) {
-            Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6))
+            val lotto = Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6))
+            print(lotto)
+            lotto
         }
     }
     private fun getPurchaseAmount(): String {
