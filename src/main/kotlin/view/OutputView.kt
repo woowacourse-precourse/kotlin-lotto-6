@@ -20,6 +20,8 @@ object OutputView {
     private const val FIFTH_REWARD = "(5,000원)"
     private const val BONUS_BALL = "보너스 볼"
     private const val REST = ","
+    private const val TOTAL_RETURN = "총 수익률은"
+    private const val IT_IS_PERCENT = "%입니다."
 
     fun pleaseEnterPurchaseAmount() {
         println(PLEASE_ENTER_PURCHASE_AMOUNT)
@@ -57,5 +59,9 @@ object OutputView {
             LottoRanking.FOURTH -> println("${lottoRank.correct}$PART $SAME $FOURTH_REWARD $DOT ${lottoRank.correct}$PART")
             LottoRanking.FIFTH -> println("${lottoRank.correct}$PART $SAME $FIFTH_REWARD $DOT ${lottoRank.correct}$PART")
         }
+    }
+
+    fun totalReturn(totalReturn: Double) {
+        println("$TOTAL_RETURN $totalReturn$IT_IS_PERCENT")
     }
 }
