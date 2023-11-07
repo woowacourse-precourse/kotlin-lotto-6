@@ -2,5 +2,9 @@ package lotto
 
 fun main() {
     val cashier = Cashier()
-    cashier.purchase()
+    val machine = LottoMachine()
+
+    val purchases = cashier.purchase()
+    val winningNumbers = machine.drawNumbers()
+    machine.printResult(purchases, winningNumbers)
 }

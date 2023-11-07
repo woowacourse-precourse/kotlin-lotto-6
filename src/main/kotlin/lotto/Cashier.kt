@@ -5,12 +5,12 @@ import lotto.CashierState.*
 
 class Cashier {
 
-    val machine = LottoMachine()
+    private val machine = LottoMachine()
 
     fun purchase(): List<Lotto> {
         println(GREETING_MESSAGE)
         val price = getPriceSafely()
-        return machine.makeLotto(price)
+        return machine.buy(price / UNDER_BOUND_PRICE)
     }
 
     private fun getPriceSafely(): Int =
