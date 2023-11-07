@@ -35,6 +35,10 @@ class OutputView {
         }
     }
 
+    fun printRevenue(revenue: Double) {
+        println(String.format(TOTAL_REVENUE_MESSAGE, revenue.toString()))
+    }
+
     companion object {
         private const val INPUT_MONEY_MESSAGE = "구입 금액을 입력해 주세요."
         private const val PURCHASE_LOTTO_QUANTITY_MESSAGE = "%d개를 구매했습니다."

@@ -30,6 +30,8 @@ class LottoController(
         val bonusNumber = getBonusNumber()
         val playerLottoRank = getLottoRank(winningLotto, playerLotto, bonusNumber)
         printWinningRank(playerLottoRank)
+        val revenue = calculateRevenue(player, playerLottoRank)
+        printRevenue(revenue)
     }
 
     private fun getPurchaseMoney(): Money {
