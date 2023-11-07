@@ -10,7 +10,6 @@ class WinResultService {
         return WinResult(placeResult, earningRate)
     }
 
-
     private fun calculateResult(user: User, winningLotto: WinningLotto): HashMap<Place, Int> {
         val placeResult = hashMapOf<Place, Int>()
         for (lotto in user.getLottoes()) {

@@ -37,11 +37,12 @@ class LottoController(
         try {
             val price = inputView.inputPrice()
             user = userService.makeUser(price)
-        } catch (e:IllegalArgumentException){
+        } catch (e: IllegalArgumentException) {
             println(e.message)
             buyLotto()
         }
     }
+
     private fun inputWinningNumber() {
         try {
             val winningNumbers = inputView.inputLuckyNumber()
@@ -51,6 +52,7 @@ class LottoController(
             inputWinningNumber()
         }
     }
+
     private fun inputBonusNumber() {
         try {
             val bonusNumber = inputView.inputBonusNumber()
@@ -61,8 +63,9 @@ class LottoController(
             inputBonusNumber()
         }
     }
-    private fun calculateWinResult(){
-        winResult = winResultService.makeWinResult(user,winningLotto)
+
+    private fun calculateWinResult() {
+        winResult = winResultService.makeWinResult(user, winningLotto)
         outputView.printWinStatisticsResult(winResult.getPlaceResult())
         outputView.printTotalEarningRate(winResult.getEarningRate())
     }
