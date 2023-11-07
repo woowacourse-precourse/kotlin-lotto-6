@@ -1,6 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     TODO("프로그램 구현")
@@ -21,4 +22,9 @@ fun getPurchaseAmount(): Int {
         println("[ERROR] ${e.message}")
         return getPurchaseAmount()
     }
+}
+
+fun generateTicket(): Lotto {
+    val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+    return Lotto(numbers)
 }
