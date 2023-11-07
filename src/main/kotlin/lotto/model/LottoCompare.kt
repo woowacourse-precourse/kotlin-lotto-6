@@ -17,7 +17,7 @@ class LottoCompare(
     private val lottoNumbers: MutableList<List<Int>>
 ){
 
-    fun calculateCorrect():MutableMap<OutputMessages, Int>{
+    fun calculateCorrect(): MutableMap<OutputMessages, Int> {
         val lottoResults = mutableMapOf(
             THREE_NUMBER_CORRECT to 0,
             FOUR_NUMBER_CORRECT to 0,
@@ -28,33 +28,21 @@ class LottoCompare(
 
         lottoNumbers.forEach { lottoNumber ->
             when (lottoNumber.intersect(correctLottoNumber.toSet()).count()) {
-                THREE_NUMBER -> threeNumberCorrect(lottoResults)
-                FOUR_NUMBER -> fourNumberCorrect(lottoResults)
-                FIVE_NUMBER -> fiveNumberCorrect(lottoNumber, lottoResults)
-                SIX_NUMBER -> sixNumberCorrect(lottoResults)
+                THREE_NUMBER -> lottoResults[THREE_NUMBER_CORRECT] = (lottoResults[THREE_NUMBER_CORRECT]!! + 1)
+                FOUR_NUMBER -> lottoResults[FOUR_NUMBER_CORRECT] = (lottoResults[FOUR_NUMBER_CORRECT]!! + 1)
+                FIVE_NUMBER -> fiveNumberCorrect(lottoNumber,lottoResults)
+                SIX_NUMBER -> lottoResults[SIX_NUMBER_CORRECT] = (lottoResults[SIX_NUMBER_CORRECT]!! + 1)
             }
         }
         return lottoResults
     }
 
-    private fun sixNumberCorrect(lottoResults: MutableMap<OutputMessages, Int>) {
-        lottoResults[SIX_NUMBER_CORRECT] = (lottoResults[SIX_NUMBER_CORRECT]!! + 1)
-    }
-
-    private fun fiveNumberCorrect(lottoNumber: List<Int>, lottoResults: MutableMap<OutputMessages, Int>) {
+    private fun fiveNumberCorrect(lottoNumber: List<Int>,lottoResults: MutableMap<OutputMessages, Int>) {
         if (lottoNumber.contains(bonusNumber)) {
             lottoResults[FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT] = (lottoResults[FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT]!! + 1)
         } else {
             lottoResults[FIVE_NUMBER_CORRECT] = (lottoResults[FIVE_NUMBER_CORRECT]!! + 1)
         }
-    }
-
-    private fun fourNumberCorrect(lottoResults: MutableMap<OutputMessages, Int>) {
-        lottoResults[FOUR_NUMBER_CORRECT] = (lottoResults[FOUR_NUMBER_CORRECT]!! + 1)
-    }
-
-    private fun threeNumberCorrect(lottoResults: MutableMap<OutputMessages, Int>) {
-        lottoResults[THREE_NUMBER_CORRECT] = (lottoResults[THREE_NUMBER_CORRECT]!! + 1)
     }
 }
 
