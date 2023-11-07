@@ -1,6 +1,7 @@
 package lotto.presentation
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.domain.LottoCount
 import lotto.util.PURCHASE_NUMBER_TEXT
 import lotto.util.PURCHASE_PRICE_TEXT
 
@@ -11,7 +12,10 @@ object LottoPurchaseView {
 
     fun inputLottoPurchase() {
         // 로또 구매 금액 입력 구현
-        val amount = Console.readLine().trim()
+        val amount = Console.readLine().trim().toInt()
+        val count = LottoCount(amount).calculate()
+        println()
+        println("$count$PURCHASE_NUMBER_TEXT")
     }
 
     fun outputPurchaseCount() {
