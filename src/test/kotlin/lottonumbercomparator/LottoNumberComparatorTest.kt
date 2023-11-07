@@ -25,7 +25,7 @@ class LottoNumberComparatorTest {
     @ParameterizedTest
     @MethodSource("generateData")
     fun `각 등수 당첨됐을 때 각 등수 갯수가 오르는지 확인`(winningNumber: List<Int>, bonusNumber: Int, lotto: List<Int>, output: Int) {
-        val reuslt = lottoNumberComparator.compare(WinningNumber(Lotto(winningNumber), bonusNumber), Lotto(lotto))
+        val reuslt = lottoNumberComparator.compare(WinningNumber(winningNumber, bonusNumber), Lotto(lotto))
 
         assertThat(reuslt.count).isEqualTo(output)
     }

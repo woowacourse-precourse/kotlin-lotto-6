@@ -1,5 +1,3 @@
 package winningnumber
 
-import lotto.Lotto
-
-data class WinningNumber(val numbers: Lotto, val bonusNumber: Int)
+data class WinningNumber(val numbers: List<Int>, val bonusNumber: Int)
