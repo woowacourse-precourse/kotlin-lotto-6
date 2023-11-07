@@ -12,6 +12,7 @@ class LottoModel {
     private lateinit var lotto: Lotto
     private lateinit var bonusNumber: BonusNumber
     private lateinit var winningLottery: WinningLottery
+    private lateinit var lottoResult: LottoResult
     private var totalEarned = 0
     fun isPurchaseMoneyValueValid(moneyValue: String): Boolean {
         return try {
@@ -73,11 +74,11 @@ class LottoModel {
     fun calculateWinningLottery() {
         for(item in lotteryNumbers) {
             when {
-                lotto.getNumbers().toSet().intersect(item.toSet()).size == 6 -> totalEarned += Values.WINNING_PRIZE_FIRST
-                (lotto.getNumbers().toSet().intersect(item.toSet()).size == 5) && (item.contains(bonusNumber.getBonusNumber())) -> totalEarned = Values.WINNING_PRIZE_SECOND
-                lotto.getNumbers().toSet().intersect(item.toSet()).size == 5 -> totalEarned += Values.WINNING_PRIZE_THIRD
-                lotto.getNumbers().toSet().intersect(item.toSet()).size == 4 -> totalEarned += Values.WINNING_PRIZE_FOURTH
-                lotto.getNumbers().toSet().intersect(item.toSet()).size == 3 -> totalEarned += Values.WINNING_PRIZE_FIFTH
+                lotto.getNumbers().toSet().intersect(item.toSet()).size == 6 -> lottoResult.first++
+                (lotto.getNumbers().toSet().intersect(item.toSet()).size == 5) && (item.contains(bonusNumber.getBonusNumber())) -> lottoResult.second++
+                lotto.getNumbers().toSet().intersect(item.toSet()).size == 5 -> totalEarned += lottoResult.third++
+                lotto.getNumbers().toSet().intersect(item.toSet()).size == 4 -> totalEarned += lottoResult.fourth++
+                lotto.getNumbers().toSet().intersect(item.toSet()).size == 3 -> totalEarned += lottoResult.fifth++
             }
         }
         print(totalEarned)
