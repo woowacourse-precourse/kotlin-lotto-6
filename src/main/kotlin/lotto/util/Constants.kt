@@ -3,6 +3,9 @@ const val PURCHASE_LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다."
 
 const val LOTTO_PRICE: Int = 1000
 const val ZERO: Int = 0
+const val LOTTO_MAX_NUMBER: Int = 45
+const val LOTTO_MIN_NUMBER: Int = 1
+const val LOTTO_SIZE = 6
 
 const val ERROR = "[ERROR]"
 const val INVALID_NUMERIC_MESSAGE = ERROR + "구입 금액은 숫자로 입력되어야 합니다."

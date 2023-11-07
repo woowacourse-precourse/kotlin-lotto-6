@@ -1,19 +1,24 @@
 package lotto.controller
 
+import LOTTO_PRICE
 import LottoView.inputPurchaseAmountOfLotto
 import LottoView.printPurchaseAmountOfLotto
 import LottoView.printPurchaseLottoCount
 import lotto.model.LottoModel
-import java.util.*
+import lotto.model.LottoTicket
 
 class LottoController() {
     private val lottoModel = LottoModel()
+    val lottoTickets = mutableListOf<LottoTicket>()
     fun start() {
         try {
             printPurchaseAmountOfLotto()
             val purchaseAmount = inputPurchaseAmountOfLotto()
 
             printPurchaseLottoCount(purchaseAmount)
+
+            generateLottoTickets(purchaseAmount / LOTTO_PRICE)
+
         } catch (e: IllegalArgumentException) {
             println(e.message)
             start()
@@ -30,5 +35,12 @@ class LottoController() {
 
     fun validateInputDivisionPrice(input: Int) {
         lottoModel.isDivisibleBy1000(input)
+    }
+
+    fun generateLottoTickets(amount: Int) {
+        repeat(amount) {
+            val lottoTicket = LottoTicket()
+            lottoTickets.add(lottoTicket)
+        }
     }
 }
