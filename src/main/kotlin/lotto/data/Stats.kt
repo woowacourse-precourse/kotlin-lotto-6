@@ -7,7 +7,7 @@ data class Stats(
     override fun toString(): String {
         return """
             $info
-            총 수익률은 $profitRate%입니다.
+            총 수익률은 ${profitRate * 100}%입니다.
         """.trimIndent()
     }
 }

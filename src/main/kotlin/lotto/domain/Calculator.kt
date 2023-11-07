@@ -2,7 +2,7 @@ package lotto.domain
 
 import lotto.data.GRADE
 import lotto.data.Lotto
-import kotlin.math.round
+import kotlin.math.roundToInt
 
 class Calculator {
 
@@ -13,18 +13,19 @@ class Calculator {
         return quotient to remainder
     }
 
-    fun calculateProfitRate(countOfWin: List<Int>, countOfBuying: Int): Float {
-        val totalProfit = countOfWin.reduceIndexed { rank: Int, sum: Int, count: Int ->
+    fun calculateTotalProfit(countOfWin: List<Int>) =
+        countOfWin.foldIndexed(0) { rank: Int, sum: Long, count: Int ->
             if (rank == GRADE.LOSE.rank()) {
-                return@reduceIndexed sum
+                return@foldIndexed sum
             }
-            sum + GRADE.fromRank(rank).price() * count
+            sum + GRADE.fromRank(rank).price().toLong() * count
         }
-        return round((totalProfit.toFloat() / (Lotto.PRICE.toFloat() * countOfBuying) * ROUND_FACTOR)) / PERCENT_CONVERSION_FACTOR
+
+    fun calculateProfitRate(totalProfit: Long, sizeOfTicket: Int): Float {
+        return ((totalProfit.toFloat() / (Lotto.PRICE.toFloat() * sizeOfTicket) * ROUND_FACTOR)).roundToInt() / ROUND_FACTOR
     }
 
     companion object {
         private const val ROUND_FACTOR = 1_000f
-        private const val PERCENT_CONVERSION_FACTOR = 10f
     }
 }
