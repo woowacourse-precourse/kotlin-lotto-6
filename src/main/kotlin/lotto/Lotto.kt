@@ -15,4 +15,7 @@ class Lotto(private val numbers: List<Int>) {
         val intersection = myNumbers.intersect(winNumbers)
         return intersection.size
     }
+    fun compareBonusNumber(number : Int) : Boolean{
+        return numbers.contains(number)
+    }
 }
