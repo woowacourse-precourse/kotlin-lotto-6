@@ -11,5 +11,5 @@ class Lotto(private val numbers: List<Int>) {
 
     // TODO: 추가 기능 구현
 
-    fun getLottoNumberInfo() = numbers.sorted()
+    fun getNumberInfo() = numbers.sorted()
 }
