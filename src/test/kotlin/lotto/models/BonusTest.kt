@@ -1,4 +1,4 @@
-package lotto
+package lotto.models
 
 import lotto.models.Bonus
 import org.assertj.core.api.AssertionsForClassTypes.assertThat
