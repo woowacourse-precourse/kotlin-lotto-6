@@ -5,12 +5,27 @@ import java.lang.NumberFormatException
 class Customer {
 
 
-    private var lottoCounts = 0
+    private var lottoAmounts = 0
+
+    private var _purchaseCounts = 0
+
+    private var _lottoNumsList = mutableListOf<List<Int>>()
+    val lottoNumsList= _lottoNumsList
+
+    private var order = 1
 
     init{
 
-       lottoCounts = inputToInt()
+        lottoAmounts = inputToInt()
+        _purchaseCounts = lottoAmounts / 1000
 
+        while(order<=_purchaseCounts){
+
+            val lottoNums = produceLottoNums()
+            _lottoNumsList.add(lottoNums)
+            order ++
+
+        }
 
      }
 
@@ -31,5 +46,19 @@ class Customer {
             false
         }
     }
+
+    private fun produceLottoNums() : List<Int>{
+
+        val randomNumProducer = LottoNumProducer()
+        val sortNums = randomNumProducer.getLottoRandomNums().sorted()
+
+        return sortNums
+
+    }
+
+    fun getPurchaseCounts() : Int {
+        return _purchaseCounts
+     }
+
 
 }
