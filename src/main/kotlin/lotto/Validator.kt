@@ -31,6 +31,7 @@ class Validator {
         return try {
             containsComma(lotto)
             val lottoNumbers: List<String> = lotto.split(",")
+            countsLottoNumbers(lottoNumbers)
             for (number in lottoNumbers) {
                 isNumberOverZero(number)
             }
@@ -47,8 +48,8 @@ class Validator {
         }
     }
 
-    fun countsLottoNumber(lottos: List<String>) {
-        if (lottos.size != 6) {
+    fun countsLottoNumbers(lottoNumbers: List<String>) {
+        if (lottoNumbers.size != 6) {
             throw IllegalArgumentException("로또 번호의 개수는 6개이어야 합니다.")
         }
     }
