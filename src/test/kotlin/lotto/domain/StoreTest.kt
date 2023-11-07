@@ -13,14 +13,18 @@ import org.mockito.Mockito.mock
 class StoreTest {
 
     private lateinit var mockedIO: IO
+    private lateinit var calculator: Calculator
+    private lateinit var analyzer: Analyzer
     private lateinit var pos: PointOfSales
     private lateinit var store: Store
 
     @BeforeEach
     fun setUp() {
         mockedIO = mock(IO::class.java)
-        pos = PointOfSales()
-        store = Store(mockedIO, pos)
+        calculator = Calculator()
+        analyzer = Analyzer(calculator)
+        pos = PointOfSales(analyzer)
+        store = Store(mockedIO, calculator, pos)
     }
 
     @ParameterizedTest(name = "check {0}")
