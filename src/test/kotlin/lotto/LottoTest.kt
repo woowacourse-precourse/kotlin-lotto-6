@@ -89,5 +89,24 @@ class LottoTest {
         assertEquals(1, matchedCounts[5])
     }
 
+    @Test
+    fun `등수 산정 테스트_2`() {
+        val lottos = listOf(
+            Lotto(listOf(1, 2, 3, 4, 5, 6)),
+            Lotto(listOf(1, 2, 3, 8, 5, 6))
+        )
+        val winningNumbers = listOf(1, 2, 3, 8, 9, 10)
+        val bonusNumber = 7
+
+        val lottoResult = LottoResult(lottos, winningNumbers, bonusNumber)
+        val matchedCounts = lottoResult.getMatchedCountsForTest()
+
+        assertEquals(0, matchedCounts[1])
+        assertEquals(0, matchedCounts[2])
+        assertEquals(0, matchedCounts[3])
+        assertEquals(1, matchedCounts[4])
+        assertEquals(1, matchedCounts[5])
+    }
+
     // 아래에 추가 테스트 작성 가능
 }
