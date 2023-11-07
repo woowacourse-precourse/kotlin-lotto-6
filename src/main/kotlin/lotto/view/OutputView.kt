@@ -8,6 +8,7 @@ object OutputView {
     private const val RESULT_AMOUNT_PURCHASE_MESSAGE = "\n%d개를 구매했습니다."
     private const val RESULT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다."
     private const val SEPARATOR_COMMA = ", "
+
     fun printLottoNumbers(lottoNumbers: List<Int>) {
         println("[${lottoNumbers.sorted().joinToString(SEPARATOR_COMMA)}]")
     }

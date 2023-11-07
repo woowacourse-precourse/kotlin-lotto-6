@@ -2,6 +2,12 @@ package lotto.model
 
 class LottoResults(lottoPrizes: List<LottoPrize>) {
     private val lottoResults: List<LottoResult> = LottoPrize.entries.map { LottoResult(it) }
+    val totalMoney: Long
+        get() {
+            return lottoResults.fold(0L) { total, lottoResult ->
+                total + lottoResult.prize.money * lottoResult.resultCount
+            }
+        }
 
     init {
         lottoPrizes.forEach { lottoPrize ->
@@ -10,15 +16,6 @@ class LottoResults(lottoPrizes: List<LottoPrize>) {
             }.increasePrizeCount()
         }
     }
-
-    val totalMoney: Long
-        get() {
-            var totalMoney = 0L
-            lottoResults.forEach {
-                totalMoney += it.prize.money * it.resultCount
-            }
-            return totalMoney
-        }
 
     fun getResultState(): List<LottoResultState> {
         return lottoResults.map {
