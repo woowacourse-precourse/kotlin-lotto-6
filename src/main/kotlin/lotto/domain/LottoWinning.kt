@@ -6,10 +6,6 @@ import lotto.view.InputView.inputMyNumbers
 import lotto.view.OutputView.showInputMyNumbersMessage
 
 class LottoWinning {
-    init {
-        showInputMyNumbersMessage()
-    }
-
     fun createWinningLotto(): List<Int> {
         val userWinningNumbers = splitMyNumbers(inputMyNumbers())
         return changeStringToInteger(userWinningNumbers)

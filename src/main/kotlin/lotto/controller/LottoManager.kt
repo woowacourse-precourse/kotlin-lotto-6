@@ -36,11 +36,13 @@ class LottoManager(private val outputView: OutputView) {
 
     private fun userWinningLotto(): List<Int> {
         val lottoWinning = LottoWinning()
+        outputView.showInputMyNumbersMessage()
         return lottoWinning.createWinningLotto()
     }
 
     private fun bonus(winningNumbers: List<Int>): Int {
         val bonus = LottoBonus()
+        outputView.showInputBonusNumberMessage()
         return bonus.createBonusNumber(winningNumbers)
     }
 

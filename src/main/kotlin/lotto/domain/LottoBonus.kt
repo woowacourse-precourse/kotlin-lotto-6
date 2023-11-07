@@ -5,15 +5,11 @@ import lotto.view.InputView.inputBonusNumber
 import lotto.view.OutputView.showInputBonusNumberMessage
 
 class LottoBonus {
-    init {
-        showInputBonusNumberMessage()
-    }
-
-    fun createBonusNumber(userWinningNumbers: List<Int>): Int {
-        val bonusNumber = inputBonusNumber()
+    fun createBonusNumber(winningNumbers: List<Int>): Int {
+        val bonus = inputBonusNumber()
         val validateBonus = ValidateBonus()
-        validateBonus.validateBonus(bonusNumber, userWinningNumbers)
+        validateBonus.validateBonus(bonus, winningNumbers)
 
-        return bonusNumber
+        return bonus
     }
 }
