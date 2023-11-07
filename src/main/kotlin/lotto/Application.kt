@@ -15,7 +15,7 @@ fun main() {
 
     val tickets = generateAllTickets(numberOfTickets)
 
-    print(tickets)
+    printTickets(tickets)
 
 }
 
@@ -68,4 +68,11 @@ fun generateAllTickets(numberOfTickets: Int): List<Lotto> {
     }
 
     return tickets
+}
+
+fun printTickets(tickets: List<Lotto>) {
+    for (aTicket in tickets) {
+        println(aTicket)
+
+    }
 }
