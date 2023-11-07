@@ -1,9 +1,15 @@
-package lotto
+package lotto.Model
 
-class Lotto(private val numbers: List<Int>) {
+import lotto.util.Constants.Companion.DUPLICATE_WINNING_NUMBER_COUNT_ERROR_MESSAGE
+import lotto.util.Constants.Companion.LOTTO_SIZE
+
+class Lotto(private val numbers: List<Int>) { // 당첨 로또 번호 관리하는 클래스.
     init {
-        require(numbers.size == 6)
+        require(numbers.size == LOTTO_SIZE)
+        require(!isDoubleCheck()) { DUPLICATE_WINNING_NUMBER_COUNT_ERROR_MESSAGE }
     }
 
-    // TODO: 추가 기능 구현
+    private fun isDoubleCheck() = numbers.toSet().size != numbers.size
+
+    fun getNumbers(): List<Int> = numbers
 }
