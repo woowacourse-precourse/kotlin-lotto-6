@@ -5,6 +5,11 @@ import lotto.config.GameConfigValue.FIVE_NUMBER
 import lotto.config.GameConfigValue.FOUR_NUMBER
 import lotto.config.GameConfigValue.THREE_NUMBER
 import lotto.config.OutputMessages
+import lotto.config.OutputMessages.SIX_NUMBER_CORRECT
+import lotto.config.OutputMessages.FIVE_NUMBER_CORRECT
+import lotto.config.OutputMessages.FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT
+import lotto.config.OutputMessages.FOUR_NUMBER_CORRECT
+import lotto.config.OutputMessages.THREE_NUMBER_CORRECT
 
 class LottoCompare(
     private val bonusNumber: Int,
@@ -14,11 +19,11 @@ class LottoCompare(
 
     fun calculateCorrect():MutableMap<OutputMessages, Int>{
         val lottoResults = mutableMapOf(
-            OutputMessages.THREE_NUMBER_CORRECT to 0,
-            OutputMessages.FOUR_NUMBER_CORRECT to 0,
-            OutputMessages.FIVE_NUMBER_CORRECT to 0,
-            OutputMessages.FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT to 0,
-            OutputMessages.SIX_NUMBER_CORRECT to 0,
+            THREE_NUMBER_CORRECT to 0,
+            FOUR_NUMBER_CORRECT to 0,
+            FIVE_NUMBER_CORRECT to 0,
+            FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT to 0,
+            SIX_NUMBER_CORRECT to 0,
         )
 
         lottoNumbers.forEach { lottoNumber ->
@@ -33,23 +38,23 @@ class LottoCompare(
     }
 
     private fun sixNumberCorrect(lottoResults: MutableMap<OutputMessages, Int>) {
-        lottoResults[OutputMessages.SIX_NUMBER_CORRECT] = (lottoResults[OutputMessages.SIX_NUMBER_CORRECT]!! + 1)
+        lottoResults[SIX_NUMBER_CORRECT] = (lottoResults[SIX_NUMBER_CORRECT]!! + 1)
     }
 
     private fun fiveNumberCorrect(lottoNumber: List<Int>, lottoResults: MutableMap<OutputMessages, Int>) {
         if (lottoNumber.contains(bonusNumber)) {
-            lottoResults[OutputMessages.FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT] = (lottoResults[OutputMessages.FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT]!! + 1)
+            lottoResults[FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT] = (lottoResults[FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT]!! + 1)
         } else {
-            lottoResults[OutputMessages.FIVE_NUMBER_CORRECT] = (lottoResults[OutputMessages.FIVE_NUMBER_CORRECT]!! + 1)
+            lottoResults[FIVE_NUMBER_CORRECT] = (lottoResults[FIVE_NUMBER_CORRECT]!! + 1)
         }
     }
 
     private fun fourNumberCorrect(lottoResults: MutableMap<OutputMessages, Int>) {
-        lottoResults[OutputMessages.FOUR_NUMBER_CORRECT] = (lottoResults[OutputMessages.FOUR_NUMBER_CORRECT]!! + 1)
+        lottoResults[FOUR_NUMBER_CORRECT] = (lottoResults[FOUR_NUMBER_CORRECT]!! + 1)
     }
 
     private fun threeNumberCorrect(lottoResults: MutableMap<OutputMessages, Int>) {
-        lottoResults[OutputMessages.THREE_NUMBER_CORRECT] = (lottoResults[OutputMessages.THREE_NUMBER_CORRECT]!! + 1)
+        lottoResults[THREE_NUMBER_CORRECT] = (lottoResults[THREE_NUMBER_CORRECT]!! + 1)
     }
 }
 
