@@ -2,8 +2,13 @@ package lotto
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6)
+        require(numbers.size == Constant.LOTTO_NUMBER_SIZE)
+        validateRepeat()
     }
 
-    // TODO: 추가 기능 구현
+    fun sortNumbers(): List<Int> {
+        return numbers.sorted()
+    }
+
+    private fun validateRepeat() = require(numbers.size == numbers.toSet().size)
 }
