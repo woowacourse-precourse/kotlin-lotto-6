@@ -1,14 +1,13 @@
 package lotto.controller
 
-import lotto.domain.lotto.Lotto
-import lotto.domain.lotto.collection.LottoGame
+import lotto.domain.lotto.collection.Lotties
 import lotto.view.input.InputView
 import lotto.view.output.OutputView
 
 object LottoGameController {
     private val inputView = InputView
     private val outputView = OutputView
-    private val lottoGame = LottoGame()
+    private val lottoGame = Lotties()
     private var lottoPurchaseCount: Int = 0
     fun start() {
         purchaseLotto()
@@ -21,7 +20,7 @@ object LottoGameController {
         outputView.countLottoMessage(lottoPurchaseCount)
     }
     private fun setLotto(){
-        lottoGame.generateLottos(lottoPurchaseCount)
-        lottoGame.printLottos()
+        lottoGame.generateLotties(lottoPurchaseCount)
+        lottoGame.printLotties()
     }
 }
