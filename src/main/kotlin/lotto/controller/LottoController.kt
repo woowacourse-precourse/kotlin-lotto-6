@@ -16,15 +16,14 @@ class LottoController() {
         val winningLotto = getWinningLotto()
         val lottos = LottoGenerator().make(purchase)
         val lottoResult = RankGenerator.getLottoResults(lottos, winningLotto)
+        val performance = getPerformance(purchase, lottoResult)
 
-    fun make() {
-        val purchase = Purchase(getPurchaseAmount())
-        val winningLotto = WinningLotto(Lotto(getWinningNumber()), getBonusNumber())
-        OutputView.printLottos(purchase)
         OutputView.printLottos(purchase, lottos)
         OutputView.printReport(RankGenerator.make(lottos, winningLotto))
+        OutputView.printPerformance(performance)
     }
 
+    private fun getPerformance(purchase: Purchase, lottoResult: LottoResult) =
         String.format("%.1f", lottoResult.calculatePerformance(purchase))
 
     private fun getPurchase() = Purchase(getPurchaseAmount())

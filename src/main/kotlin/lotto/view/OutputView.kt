@@ -23,8 +23,7 @@ object OutputView {
         println(report)
     }
 
-    fun printPerformance() {
-        val performance = TODO("수익률 계산 함수 호출")
-        println("총 수익률은 $performance%입니다.")
+    fun printPerformance(performance: String) {
+        println("총 수익률은 ${performance}%입니다.")
     }
 }
