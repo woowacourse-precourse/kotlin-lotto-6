@@ -29,4 +29,17 @@ class LottoTest {
 
         assertThat(matchCount).isEqualTo(6)
     }
+
+    @Test
+    fun `5개의 당첨 번호와 1개의 보너스 번호가 일치한다`() {
+        val bonusNumber = 6
+        val luckyNumbers = listOf(1, 2, 3, 4, 5, 9)
+        val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+
+        val matchBall = lotto.matchNumbers(luckyNumbers)
+        val matchBonus = lotto.hasBonusNumber(bonusNumber)
+
+        assertThat(matchBonus).isTrue()
+        assertThat(matchBall).isEqualTo(5)
+    }
 }
