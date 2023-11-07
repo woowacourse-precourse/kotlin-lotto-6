@@ -4,19 +4,12 @@ import camp.nextstep.edu.missionutils.Console
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        validateLottoNumbers()
-    }
-
-    private fun validateLottoNumbers(): Boolean {
         require(numbers.size == 6) {
             printErrorMessage(ERROR_LOTTO_NUMBER_SIZE_IS_NOT_SIX)
-            return false
         }
         require(numbers.distinct().size == 6) {
             printErrorMessage(ERROR_LOTTO_NUMBER_CANT_DUPLICATE)
-            return false
         }
-        return true
     }
 
     private fun printErrorMessage(msg: String) {
