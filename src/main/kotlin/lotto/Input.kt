@@ -14,14 +14,14 @@ object Input {
         require(budget % Constants.PRICE_OF_LOTTO == 0)
         budget
     }
-    fun getWinningNumber(): List<Int> {
-        val winningNumbers = repeatUntilGetValidInput {
-            val input = getInput()
-            input.split(",").map { it.toInt() }
+    fun getWinningNumber(): List<Int> = repeatUntilGetValidInput {
+        val input = getInput()
+        input.split(",").map {
+            require(isNumeric(it))
+            it.toInt()
         }
-        return winningNumbers
     }
-
+    private fun isNumeric(string: String): Boolean = string.all { it.isDigit() }
     private fun <T>repeatUntilGetValidInput(inputFunction: () -> T): T {
         val ret: T
         while (true) {
