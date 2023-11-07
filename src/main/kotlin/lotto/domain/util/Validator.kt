@@ -26,13 +26,7 @@ class Validator {
         require(isNotBlank(bonusNumber)) { NOT_BLANK }
         requireNotNull(isNumber(bonusNumber)) { BONUS_ONLY_INT }
         require(isBonusNumber(bonusNumber)) { BONUS_MUST_1_TO_45 }
-        require(!isBonusDuplicate(bonusNumber, drawNumbers)) {
-            BONUS_NOT_DUPLICATE_DRAW.format(
-                drawNumbers.joinToString(
-                    SEPARATOR
-                )
-            )
-        }
+        require(!isBonusDuplicate(bonusNumber, drawNumbers)) { BONUS_NOT_DUPLICATE_DRAW.format(drawNumbers.joinToString(SEPARATOR)) }
         return bonusNumber.toInt()
     }
 
