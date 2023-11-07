@@ -13,4 +13,9 @@ class InputView {
         println(Constants.INPUT_WINNING_NUMBER)
         val winningNumbers = Console.readLine()
     }
+
+    fun inputBonusNumber() {
+        println(Constants.INPUT_BONUS_NUMBER)
+        val bonusNumber = Console.readLine()
+    }
 }
