@@ -8,6 +8,12 @@ class LotteryGame {
 
     fun gameStart() {
         val count: Int = insertAmount() / 1000
+        if (count == 0) return
+        val lotto = Lotto(makeWinningNumber())
+        val bonus: Int = readLine()!!.toInt()
+
+        lotto.roundStart(bonus, count)
+
 
     }
 
@@ -26,6 +32,15 @@ class LotteryGame {
             return 0
         }
         return bullet
+    }
+
+    private fun makeWinningNumber(): List<Int> {
+        var win_input: List<String> = readLine()!!.split(",")
+        val numbers = mutableListOf<Int>()
+        for (i in 0..win_input.size - 1) {
+            numbers.add(win_input[i].toInt())
+        }
+        return numbers.distinct().sorted()
     }
 
 
