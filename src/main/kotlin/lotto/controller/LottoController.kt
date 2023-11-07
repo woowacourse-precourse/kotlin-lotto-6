@@ -2,8 +2,8 @@ package lotto.controller
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.model.LottoModel
+import lotto.model.LottoResult
 import lotto.view.LottoView
-import java.lang.NumberFormatException
 
 class LottoController(private val view: LottoView, private val model: LottoModel) {
     fun run() {
@@ -24,6 +24,7 @@ class LottoController(private val view: LottoView, private val model: LottoModel
         }
         view.displayLotteryStatisticsMessage()
         model.calculateWinningLottery()
+        view.displayWinningResult(model.getLottoResult())
     }
     private fun setPurchaseMoneyValue(): String {
         return Console.readLine()

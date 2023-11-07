@@ -10,4 +10,9 @@ object Values {
     const val WINNING_PRIZE_THIRD = 1500000
     const val WINNING_PRIZE_FOURTH = 50000
     const val WINNING_PRIZE_FIFTH = 5000
+    const val WINNING_CONDITION_FIRST = 6
+    const val WINNING_CONDITION_SECOND = 5
+    const val WINNING_CONDITION_THIRD = 5
+    const val WINNING_CONDITION_FOURTH = 4
+    const val WINNING_CONDITION_FIFTH = 3
 }

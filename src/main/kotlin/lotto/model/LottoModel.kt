@@ -11,8 +11,7 @@ class LottoModel {
     private var lotteryNumbers: ArrayList<List<Int>> = ArrayList()
     private lateinit var lotto: Lotto
     private lateinit var bonusNumber: BonusNumber
-    private lateinit var winningLottery: WinningLottery
-    private lateinit var lottoResult: LottoResult
+    private var lottoResult = LottoResult()
     private var totalEarned = 0
     fun isPurchaseMoneyValueValid(moneyValue: String): Boolean {
         return try {
@@ -62,25 +61,25 @@ class LottoModel {
                 throw IllegalArgumentException("${ErrorMessage.TITLE} ${ErrorMessage.INAPPROPRIATE_MONEY_VALUE}")
             }
             false
-        } catch (e: Exception) {
-            when (e) {
-                is NumberFormatException, is IllegalArgumentException -> {
-                    true
-                }
-                else -> throw e
-            }
+        } catch (e: NumberFormatException) {
+            true
+        } catch (e: IllegalArgumentException) {
+            true
         }
+    }
+    fun getLottoResult(): LottoResult {
+        return lottoResult
     }
     fun calculateWinningLottery() {
         for(item in lotteryNumbers) {
             when {
                 lotto.getNumbers().toSet().intersect(item.toSet()).size == 6 -> lottoResult.first++
                 (lotto.getNumbers().toSet().intersect(item.toSet()).size == 5) && (item.contains(bonusNumber.getBonusNumber())) -> lottoResult.second++
-                lotto.getNumbers().toSet().intersect(item.toSet()).size == 5 -> totalEarned += lottoResult.third++
-                lotto.getNumbers().toSet().intersect(item.toSet()).size == 4 -> totalEarned += lottoResult.fourth++
-                lotto.getNumbers().toSet().intersect(item.toSet()).size == 3 -> totalEarned += lottoResult.fifth++
+                (lotto.getNumbers().toSet().intersect(item.toSet()).size == 5) && !(item.contains(bonusNumber.getBonusNumber())) -> lottoResult.third++
+                lotto.getNumbers().toSet().intersect(item.toSet()).size == 4 -> lottoResult.fourth++
+                lotto.getNumbers().toSet().intersect(item.toSet()).size == 3 -> lottoResult.fifth++
             }
         }
-        print(totalEarned)
     }
+
 }
