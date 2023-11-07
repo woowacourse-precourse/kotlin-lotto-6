@@ -8,12 +8,11 @@ import lotto.ui.LottoManagerScreen
 class LottoManager {
 
     private var lottoCounts = 0
-    private var lottoAmount = 0
+    private var lottoAmount : Long = 0
     private var lottoNumsList = emptyList<List<Int>>()
     private  var lottoNums : LottoNums
     private var lottoResult : LottoResult
-    private var revenue : Float
-
+    private var revenue : Double
     init {
         val customer = Customer()
 
@@ -33,7 +32,7 @@ class LottoManager {
         revenue = outputManager.getRevenue()
 
         val lottoManagerScreen = LottoManagerScreen(lottoResult,revenue)
-
+        lottoManagerScreen.printLottoResult()
 
     }
 

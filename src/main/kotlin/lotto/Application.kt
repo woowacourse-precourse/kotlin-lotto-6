@@ -8,7 +8,7 @@ import lotto.ui.LottoManagerScreen
 
 fun main() {
 
-    val lottoManager = LottoManager()
+    LottoManager()
 
 
 }

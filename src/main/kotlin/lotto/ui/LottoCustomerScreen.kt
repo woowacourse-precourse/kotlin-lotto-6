@@ -17,7 +17,7 @@ class LottoCustomerScreen(lottoCounts : Int, lottoNumsList : List<List<Int>>) {
 
     fun printLottoNumsList(){
 
-        println("${lottoCounts}개를 구매했습니다")
+        println("${lottoCounts}개를 구매했습니다.")
         lottoNumsList.forEach {
                 nums ->
             println(nums)

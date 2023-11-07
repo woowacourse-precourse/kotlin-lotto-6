@@ -6,7 +6,6 @@ class Customer {
 
 
     private var _lottoAmounts = 0
-
     private var _purchaseCounts = 0
 
     private var _lottoNumsList = mutableListOf<List<Int>>()
@@ -15,7 +14,6 @@ class Customer {
     private var order = 1
 
     init {
-
         _lottoAmounts = inputToInt()
         _purchaseCounts = _lottoAmounts / 1000
 
@@ -30,19 +28,28 @@ class Customer {
      }
 
 
+    private fun input(): String? {
+        println("구입금액을 입력해 주세요.")
+        val inputCount  = readLine()
+        return inputCount
+    }
+
     //금액 입력
     private fun inputToInt() : Int {
-        val inputCount  = readLine()
-        if(!checkInputCount(inputCount)) return inputToInt()
+        var inputCount  = input()
+        if(!checkInputCount(inputCount)) inputToInt()
 
         return inputCount!!.toInt()
     }
     private fun checkInputCount(input : String?) : Boolean {
         return try {
-            require(input != null && input.toIntOrNull()!=null && input.toInt() % 1000 == 0 )
+            require(input != null && input.toIntOrNull()!=null && input.toInt() % 1000 == 0 , { "[ERROR] 천원 단위의 금액을 입력해주세요" } )
             true
         }catch (e : IllegalArgumentException){
-            println("[ERROR] 천원 단위의 금액을 입력해주세요")
+            println(e.message)
+            false
+        }catch (e : Exception){
+            println(e.message)
             false
         }
     }
@@ -60,8 +67,8 @@ class Customer {
         return _purchaseCounts
      }
 
-    fun getPurchaseAmounts() : Int {
-        return  _lottoAmounts
+    fun getPurchaseAmounts() : Long {
+        return  _lottoAmounts.toLong()
     }
 
 }

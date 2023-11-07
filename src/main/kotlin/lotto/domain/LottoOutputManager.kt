@@ -4,12 +4,14 @@ import lotto.data.ConstNum
 import lotto.data.LottoNums
 import lotto.data.LottoResult
 import lotto.data.WinningCount
+import java.math.BigDecimal
+import kotlin.time.times
 
 class LottoOutputManager(inputNums : List<List<Int>>, lottoNums : LottoNums) {
 
 
     private val _lottoResult : LottoResult = LottoResult()
-    private var _revenue  : Float = 0.0F
+    private   var _revenue  : Double = 0.0
 
     init {
 
@@ -38,17 +40,17 @@ class LottoOutputManager(inputNums : List<List<Int>>, lottoNums : LottoNums) {
     fun getResult() : LottoResult{
         return _lottoResult
     }
-    fun getRevenue() :Float{
+    fun getRevenue() :Double{
         return _revenue
     }
 
-    fun calculateRevenue(purchaseAmounts : Int) {
+    fun calculateRevenue(purchaseAmounts : Long) {
 
-        val amounts = ConstNum.Three_Lotto_Amount * _lottoResult.three + ConstNum.Four_Lotto_Amount * _lottoResult.four
+        val amounts  = (ConstNum.Three_Lotto_Amount * _lottoResult.three + ConstNum.Four_Lotto_Amount * _lottoResult.four
         + ConstNum.Five_Lotto_Amount * _lottoResult.five + ConstNum.Five_Bonus_Lotto_Amount* _lottoResult.bonus
-        + ConstNum.Six_Lotto_Amount * _lottoResult.six
+        + ConstNum.Six_Lotto_Amount * _lottoResult.six).toBigInteger()
 
-        _revenue = amounts / purchaseAmounts.toFloat()
+        _revenue = (amounts.toDouble() / purchaseAmounts.toDouble()) * 100
     }
 
 
