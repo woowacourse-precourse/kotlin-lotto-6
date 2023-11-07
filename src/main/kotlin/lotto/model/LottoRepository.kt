@@ -13,7 +13,7 @@ class LottoRepository {
     }
 
     private fun generateLotto(): Lotto {
-        val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6).toList()
+        val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6).toList().sorted()
         return Lotto(numbers)
     }
 }
