@@ -1,6 +1,7 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.model.Bonus
 import lotto.validate.ValidateNumbers
 import lotto.validate.ValidatePrice
 
@@ -19,7 +20,7 @@ object InputView {
         return validateNumbers.validateInputNumbers(myNumbers)
     }
 
-    fun inputBonusNumber(): Int {
-        return Console.readLine().toInt()
+    fun inputBonusNumber(): Bonus {
+        return Bonus(Console.readLine())
     }
 }

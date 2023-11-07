@@ -3,15 +3,16 @@ package lotto.controller
 import lotto.model.*
 import lotto.domain.*
 import lotto.utils.Constants
+import lotto.view.InputView
 import lotto.view.OutputView
 
-class LottoManager(private val outputView: OutputView) {
+class LottoManager(private val inputView: InputView, private val outputView: OutputView) {
     fun run() {
         val ticket = purchaseLotto()
         val answerLottoNumbers = answerLotto(ticket)
         val userWinningNumbers = userWinningLotto()
         val lottos = Lotto(userWinningNumbers)
-        val bonusNumber = bonus(userWinningNumbers)
+        val bonusNumber = bonus()
         val results = rankOfLotto(lottos, answerLottoNumbers, bonusNumber)
         val profitPercentage = yieldLotto(results, ticket)
         outputResults(results, profitPercentage)
@@ -40,10 +41,9 @@ class LottoManager(private val outputView: OutputView) {
         return lottoWinning.createWinningLotto()
     }
 
-    private fun bonus(winningNumbers: List<Int>): Int {
-        val bonus = LottoBonus()
+    private fun bonus(): Int {
         outputView.showInputBonusNumberMessage()
-        return bonus.createBonusNumber(winningNumbers)
+        return inputView.inputBonusNumber().getBonus()
     }
 
     private fun rankOfLotto(lotto: Lotto, lottoList: MutableList<Lotto>, bonusNumber: Int): MutableMap<Prize, Int> {

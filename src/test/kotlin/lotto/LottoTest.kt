@@ -108,9 +108,9 @@ class LottoTest {
     @Test
     fun `보너스번호와 당첨번호에 중복이 존재할 경우`() {
         val validateBonus = ValidateBonus()
-        val bonusNumber = 1
+        val bonusNumber = "1"
         assertThrows<IllegalArgumentException> {
-            validateBonus.validateBonus(bonusNumber, listOf(1, 2, 3, 4, 5, 6))
+            validateBonus.validateBonus(bonusNumber)
         }
     }
 }
