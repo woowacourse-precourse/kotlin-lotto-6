@@ -44,7 +44,7 @@ class LottoMachineTest {
         val expectedRankCounts = Rank.entries.map { rank ->
             result.getCount(rank)
         }
-        assertThat(expectedRankCounts).allMatch { it == 1}
+        assertThat(expectedRankCounts).allMatch { it == 1 }
     }
 
     @Test
