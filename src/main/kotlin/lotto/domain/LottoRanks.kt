@@ -1,6 +1,7 @@
 package lotto.domain
 
 import lotto.model.Lotto
+import lotto.model.Prize
 import lotto.utils.Constants.FIVE
 import lotto.utils.Constants.FIVE_AMOUNT
 import lotto.utils.Constants.FIVE_BONUS_MATCH_MESSAGE
@@ -16,14 +17,6 @@ import lotto.utils.Constants.SIX_MESSAGE
 import lotto.utils.Constants.THREE
 import lotto.utils.Constants.THREE_AMOUNT
 import lotto.utils.Constants.THREE_MATCH_MESSAGE
-
-enum class Prize(val message: String, val prizeAmount: Int) {
-    THREE_MATCH(THREE_MATCH_MESSAGE, THREE_AMOUNT),
-    FOUR_MATCH(FOUR_MATCH_MESSAGE, FOUR_AMOUNT),
-    FIVE_MATCH(FIVE_MATCH_MESSAGE, FIVE_AMOUNT),
-    FIVE_MATCH_WITH_BONUS(FIVE_BONUS_MATCH_MESSAGE, FIVE_WITH_BONUS_AMOUNT),
-    SIX_MATCH(SIX_MESSAGE, SIX_AMOUNT)
-}
 
 class LottoRanks {
     private val results = mutableMapOf<Prize, Int>()

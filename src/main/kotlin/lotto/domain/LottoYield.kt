@@ -1,5 +1,6 @@
 package lotto.domain
 
+import lotto.model.Prize
 import lotto.utils.Constants.PERCENTAGE_NUMBER
 
 class LottoYield {

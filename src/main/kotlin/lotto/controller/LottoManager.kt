@@ -1,6 +1,6 @@
 package lotto.controller
 
-import lotto.model.Lotto
+import lotto.model.*
 import lotto.domain.*
 import lotto.utils.Constants
 import lotto.view.OutputView
