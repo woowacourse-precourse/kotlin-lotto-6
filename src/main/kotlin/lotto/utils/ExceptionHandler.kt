@@ -19,6 +19,6 @@ object ExceptionHandler {
     }
 
     fun checkBonusNumberIsDuplicate(winningLotto: WinningLotto, bonusNumber: LottoNumber) {
-        require(!winningLotto.contains(bonusNumber)) { BONUS_NUMBER_DUPLICATE_EXCEPTION_MESSAGE}
+        require(!winningLotto.contains(bonusNumber)) { BONUS_NUMBER_DUPLICATE_EXCEPTION_MESSAGE }
     }
 }

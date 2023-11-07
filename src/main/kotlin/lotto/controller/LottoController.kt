@@ -4,10 +4,21 @@ import lotto.domain.*
 import lotto.view.InputView
 import lotto.view.OutputView
 
+private const val DEFAULT_COUNT = 0
+private const val MATCH_LOTTO = 1
+
 class LottoController(
     private val inputView: InputView = InputView(),
     private val outputView: OutputView = OutputView()
 ) {
+    private val lottoRanks = mutableMapOf(
+        WinningRank.NO_MATCHES to DEFAULT_COUNT,
+        WinningRank.THREE_MATCHES to DEFAULT_COUNT,
+        WinningRank.FOUR_MATCHES to DEFAULT_COUNT,
+        WinningRank.FIVE_MATCHES to DEFAULT_COUNT,
+        WinningRank.FIVE_MATCHES_WITH_BONUS_NUMBER to DEFAULT_COUNT,
+        WinningRank.SIX_MATCHES to DEFAULT_COUNT
+    )
 
     // start 파라미터에 player 추가 예정
     fun start() {
@@ -65,7 +76,7 @@ class LottoController(
 
         playerLotto.forEach { lotto ->
             val rank = winningLotto.determineWinner(lotto, bonusNumber.number)
-            lottoRanks[rank] = lottoRanks[rank]!! + 1
+            lottoRanks[rank] = lottoRanks[rank]!! + MATCH_LOTTO
         }
 
         return lottoRanks
@@ -74,5 +85,15 @@ class LottoController(
     private fun printWinningRank(rank: Map<WinningRank, Int>) {
         outputView.printRank(rank)
     }
+
+    private fun calculateRevenue(player: Player, rank: Map<WinningRank, Int>): Double {
+        val revenue = player.calculateRevenue(rank)
+        return revenue
+    }
+
+    private fun printRevenue(revenue: Double) {
+        outputView.printRevenue(revenue)
+    }
+
 
 }
