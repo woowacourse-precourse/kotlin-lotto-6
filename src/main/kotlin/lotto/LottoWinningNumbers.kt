@@ -3,9 +3,9 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 
 class LottoWinningNumbers {
-    var winningLotteryNumbers: List<Int> = emptyList()
-    var bonusNumber = 0
-    var validBonusNumber = false
+    private var winningLotteryNumbers: List<Int> = emptyList()
+    private var bonusNumber = 0
+    private var validBonusNumber = false
 
     fun inputWinningNumbers(): List<Int> {
         var validWinningNumbers = false
