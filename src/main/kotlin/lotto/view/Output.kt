@@ -31,7 +31,8 @@ class Output {
         for (i in 5 downTo 1){
             println(getMatchCount(i) + ranks[i].toString() + Notice.COUNT)
         }
-        println(Notice.PRESENT_RATE_FIRST + rate.toString() + Notice.PRESENT_RATE_SECOND)
+
+        println(Notice.PRESENT_RATE_FIRST.toString() + rate.toString() + Notice.PRESENT_RATE_SECOND)
     }
 
     private fun getMatchCount(i: Int): String {

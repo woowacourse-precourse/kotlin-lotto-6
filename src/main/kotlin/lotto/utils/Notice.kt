@@ -9,5 +9,7 @@ enum class Notice(val message: String) {
     HYPHENS("---"),
     COUNT("개"),
     PRESENT_RATE_FIRST("총 수익률은 "),
-    PRESENT_RATE_SECOND("%입니다.")
+    PRESENT_RATE_SECOND("%입니다.");
+
+
 }
