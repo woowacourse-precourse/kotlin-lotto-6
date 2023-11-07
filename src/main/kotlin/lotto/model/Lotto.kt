@@ -11,8 +11,8 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 
-    fun getLottoState(): List<LottoState> {
-        return numbers.map { LottoState(it) }
+    fun getLottoNumbers(): List<LottoNumber> {
+        return numbers.map { LottoNumber(it) }
     }
 
     fun getWinningCount(winningLotto: Lotto): Int {
@@ -24,10 +24,7 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun confirmBonusNumber(winningCount: Int, bonusNumber: Int): Boolean {
-        if (winningCount == LottoPrize.SECOND.prizeCount) {
-            return numbers.contains(bonusNumber)
-        }
-        return false
+        return winningCount == LottoPrize.SECOND.prizeCount && numbers.contains(bonusNumber)
     }
 
     private fun confirmPrizeNumbers(currentNum: Int, winningLotto: Lotto): Int {
@@ -39,9 +36,10 @@ class Lotto(private val numbers: List<Int>) {
 
 
     companion object {
+        private const val MIN_LOTTO_RANGE = 1
+
         const val MAX_LOTTO_SIZE = 6
         const val MAX_LOTTO_RANGE = 45
-        const val MIN_LOTTO_RANGE = 1
         fun makeLotto(randomLottoGenerator: RandomGenerator): Lotto {
             return Lotto(randomLottoGenerator.pickNumberInRange(MIN_LOTTO_RANGE, MAX_LOTTO_RANGE, MAX_LOTTO_SIZE))
         }

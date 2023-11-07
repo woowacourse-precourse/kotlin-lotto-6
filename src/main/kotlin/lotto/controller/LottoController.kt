@@ -1,7 +1,10 @@
 package lotto.controller
 
 import lotto.domain.RandomLottoGenerator
-import lotto.model.*
+import lotto.model.Lotto
+import lotto.model.LottoPrize
+import lotto.model.LottoResults
+import lotto.model.Lottos
 import lotto.repeatInputIncorrect
 import lotto.view.InputView
 import lotto.view.InputView.DIVIDE_MONEY_NUMBER
@@ -26,7 +29,7 @@ class LottoController {
         val lottosState = randomLottos.getLottosState()
         OutputView.printLottoCount(purchaseCount)
         lottosState.forEach { lottoState ->
-            OutputView.printLottoNumbers(lottoState.lotto.getLottoState().map { it.number })
+            OutputView.printLottoNumbers(lottoState.lotto.getLottoNumbers().map { it.number })
         }
     }
 
