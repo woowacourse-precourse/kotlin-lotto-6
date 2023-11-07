@@ -91,6 +91,7 @@ class CalculatorTest {
         @JvmStatic
         private fun generateTestDataForCalculateProfit(): List<Pair<List<Int>, Long>> {
             return listOf(
+                listOf(0, 0, 0, 0, 0, 0) to 0,
                 listOf(7, 0, 0, 0, 0, 1) to 5_000,
                 listOf(0, 0, 0, 0, 0, 1) to 5_000,
                 listOf(0, 0, 0, 0, 0, 3) to 15_000,
