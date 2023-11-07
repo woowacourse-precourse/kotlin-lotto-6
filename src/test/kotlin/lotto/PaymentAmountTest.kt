@@ -14,7 +14,7 @@ class PaymentAmountTest {
     @ValueSource(strings = ["-1", "+1", "hjk", "!"])
     fun `구입 금액이 문자열일 때, 오류를 반환한다`(input: String) {
         assertThatThrownBy {
-            PaymentAmount.from(input)
+            PaymentAmount.from(input, 1000)
         }.isExactlyInstanceOf(IllegalArgumentException::class.java)
     }
 
@@ -22,7 +22,7 @@ class PaymentAmountTest {
     @EmptySource
     fun `구입 금액이 빈 값일 때, 오류를 반환한다`(input: String) {
         assertThatThrownBy {
-            PaymentAmount.from(input)
+            PaymentAmount.from(input, 1000)
         }.isExactlyInstanceOf(IllegalArgumentException::class.java)
     }
 
@@ -30,12 +30,12 @@ class PaymentAmountTest {
     @ValueSource(strings = ["0", "100", "1001", "10 "])
     fun `구입 금액이 1000원 단위가 아닐 때, 오류를 반환한다`(input: String) {
         assertThatThrownBy {
-            PaymentAmount.from(input)
+            PaymentAmount.from(input, 1000)
         }.isExactlyInstanceOf(IllegalArgumentException::class.java)
     }
 
     @Test
     fun `구입 금액이 8000원일 때, 로또 구매 개수가 8개이다`() {
-        assertThat(PaymentAmount.from("8000").purchase).isEqualTo(8)
+        assertThat(PaymentAmount.from("8000", 1000).purchase).isEqualTo(8)
     }
 }

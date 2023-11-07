@@ -1,27 +1,28 @@
 package lotto.model
 
+import lotto.model.seller.Money
+import lotto.model.seller.toMoney
 import lotto.requireAndReturn
 import lotto.toValidInt
 import lotto.validPositiveNumber
 
-class PaymentAmount private constructor(money: Int) {
+class PaymentAmount private constructor(val lottoPrice: Money, val cost: Money) {
 
-    val purchase: Int = money / LOTTO_PRICE
+    val purchase: Int = cost.value / lottoPrice.value
 
     companion object {
-        private const val LOTTO_PRICE = 1000
+        private const val INVALID_MONEY_ERROR = "1000원 단위의 금액만 입력할 수 있습니다."
 
-        fun from(input: String): PaymentAmount {
-            val money = input.toValidInt()
+        fun from(input: String, lottoPrice: Int): PaymentAmount {
+            val price = lottoPrice.toMoney()
+            val cost = input.toValidInt()
                 .validPositiveNumber()
-                .validLottoPrice()
-            return PaymentAmount(money)
+                .validLottoPrice(price)
+                .toMoney()
+            return PaymentAmount(price, cost)
         }
 
-        private fun Int.validLottoPrice(): Int = requireAndReturn(this % LOTTO_PRICE == 0, Error.Invalid.message)
-    }
-
-    internal enum class Error(val message: String) {
-        Invalid("1000원 단위의 금액만 입력해주세요.")
+        private fun Int.validLottoPrice(price: Money): Int =
+            requireAndReturn(this % price.value == 0, INVALID_MONEY_ERROR)
     }
 }
