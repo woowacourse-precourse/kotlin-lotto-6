@@ -2,7 +2,7 @@ package lotto
 
 
 class LottoResult() {
-    private val ranks = listOf("FIRST", "SECOND", "THIRD", "FOURTH", "FIFTH")
+    private val ranks = listOf("FIFTH", "FOURTH", "THIRD", "SECOND", "FIRST")
 
     fun getResult(winningNumbers: WinningNumbers, userTickets: List<Lotto>): Map<String, Int> {
         var result = mutableMapOf(
@@ -14,7 +14,8 @@ class LottoResult() {
             "NOTHING" to 0,
         )
         for (ticket in userTickets)
-            result[ticket.checkLotto(winningNumbers)] = result[ticket.checkLotto(winningNumbers)]!! + 1
+            result[ticket.checkLotto(winningNumbers)] =
+                result[ticket.checkLotto(winningNumbers)]!! + 1
         return result
     }
 
@@ -27,8 +28,10 @@ class LottoResult() {
             }
             println("${Reward.getSameCount(rank)}개 일치 (${Reward.getPrizeMoney(rank)}원) - ${results[rank]}개")
         }
-        println("총 수익률은 " + getProfit(results, userCost) + "%입니다.")
+        println("총 수익률은 ${getProfit(results, userCost)}%입니다.")
+
     }
+
     private fun getProfit(results: Map<String, Int>, userCost: Int): String {
         var sum = 0.0
         var prize: String
