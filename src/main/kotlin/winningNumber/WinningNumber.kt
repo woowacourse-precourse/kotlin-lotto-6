@@ -12,8 +12,8 @@ class WinningNumber {
                 winningNumber = Console.readLine().split(",").toMutableList()
                 WinningNumberCheck().checkWinningNumber(winningNumber)
                 return winningNumber
-            }catch (message: IllegalArgumentException){
-                message.printStackTrace()
+            }catch (e: IllegalArgumentException){
+                println(e.message)
             }
             println("WinningNumber : $winningNumber")
         }

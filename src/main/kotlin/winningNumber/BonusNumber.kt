@@ -12,8 +12,8 @@ class BonusNumber {
                 BonusNumberCheck().checkBonusNumber(bonusNumber, winningNumber)
                 winningNumber.add(bonusNumber)
                 return winningNumber
-            } catch (message: IllegalArgumentException) {
-                message.printStackTrace()
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
             }
         }
     }

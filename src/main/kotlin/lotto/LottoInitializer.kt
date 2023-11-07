@@ -17,23 +17,26 @@ class LottoInitializer {
         return lotto.sorted()
     }
 
-    fun inputPriceOfLotto(): Int{
-        while (true){
+    fun inputPriceOfLotto(): Int {
+        while (true) {
             println(UserInterface.INPUT_USER_PURCHASE_AMOUNT.mention)
             try {
                 var price = Console.readLine().toInt()
-                var amount = price/1000
+                var amount = price / 1000
                 checkPriceMultipleOfThousands(price)
                 println("$amount" + UserInterface.OUTPUT_USER_PURCHASE_RESULT.mention)
                 return price
-            }catch (message: IllegalArgumentException){
-                message.printStackTrace()
+            } catch (e: NumberFormatException) {
+                println(UserInterface.INPUT_NOT_STRING.mention)
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
             }
         }
-
     }
+
 
     fun checkPriceMultipleOfThousands(input: Int){
         if(input % 1000 != 0) throw IllegalArgumentException(UserInterface.INPUT_IN_UNIT_OF_THOUSANDS_EXCEPTION.mention)
     }
+
 }

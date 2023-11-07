@@ -10,7 +10,7 @@ enum class UserInterface (
     INPUT_IN_UNIT_OF_THOUSANDS_EXCEPTION("[ERROR] 로또 구매 금액은 1,000원 단위로 입력 되어야 합니다."),
     INPUT_WINNING_NUMBER_SIZE_NOT_6_EXCEPTION("[ERROR] 당첨 번호는 6개만 입력할 수 있습니다."),
     INPUT_BONUS_NUMBER_SIZE_NOT_1_EXCEPTION("[ERROR] 보너스 번호는 1개만 입력할 수 있습니디."),
-
+    INPUT_NOT_STRING("[ERROR] 숫자만 입력해야 합니다."),
     //UI
     INPUT_USER_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
     OUTPUT_USER_PURCHASE_RESULT("개를 구매했습니다."),
