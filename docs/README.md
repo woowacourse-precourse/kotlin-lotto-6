@@ -12,15 +12,20 @@
   * domain : 데이터의 처리와 관련된 로직을 수행
   * view : 사용자에게 보여줄 데이터를 출력하는 작업을 수행
     * 별도로 데이터를 처리하는 과정이 없어야 함
-  * util : 에러 핸들링 등 위의 구성요소들에서 수행하지 않는 부가적인 작업들을 수행
+  * util : 사용자 입력값의 유효성을 판단하고 예외 처리를 하는 등 부가적인 작업들을 수행
   ```
   src
    ├── main
-   │     ├── constants
-   │     ├── controller
+   │     ├── constants : Constants, ExceptionMessages
+   │     ├── controller : LottoController
    │     ├── domain
-   │     ├── view
-   │     └── util
+   │     │     ├── chance : Chance
+   │     │     ├── lotto : Lotto, NumberPicker
+   │     │     ├── purchase : Money
+   │     │     └── result : FinalResult, LottoResult, Rank
+   │     ├── utils : InputViewValidation
+   │     ├── view : InputView, ResultView
+   │     └── Application.kt
    └── test
   ```
 
@@ -37,6 +42,7 @@
 ### 1. 구입 금액 관련
 #### 1.1. 구입 금액 입력(View ➡️ Controller ➡️ Domain)
 - [x] View에서 사용자로부터 구입금액을 입력받는다.
+- [x] 사용자로부터 입력받은 금액의 유효성을 InputViewValidation에서 체크하고, 예외처리 한다. 유효하지 않은 값 입력 시 사용자가 다시 입력하도록 한다.
   - [x] 입력의 형태는 Int이어야 한다. 문자열 형태 입력 시 예외처리한다.
   - [x] 입력값은 0이 넘어야 한다. 음수 입력 시 예외처리 한다. 
   - [x] 1000으로 나누어 떨어져야 한다. 1000으로 나누어 떨어지지 않을 시 예외처리 한다.
@@ -46,7 +52,7 @@
 #### 2-1. 금액에 맞는 수량을 출력하는 기능(Domain ➡️ Controller ➡️ View)
 - [x] 투입한 금액을 바탕으로 로또를 발행하는 Chance Data Class
   - [x] 투입한 금액을 생성자로 하며, 1000으로 나눈 값(발행 가능한 로또의 수) 내부 필드에 저장
-  - [x] 해당 값을 ResultView에서 출력하도록 함수를 구현(View 계층에서는 어떠한 계산도 일어나지 않도록 한다.)
+  - [x] 해당 값을 ResultView에서 출력하도록 함수를 구현
 #### 2-2. 금액에 알맞는 수량만큼 로또를 발행하는 기능(Domain)
 - [x] 구입한 로또의 개수만큼 1부터 45까지 겹치지 않는 6개의 숫자를 뽑아 그 결과를 저장하는 NumberPicker 클래스
   - [x] 반복문을 활용하여 구입한 개수만큼 랜덤한 6개의 정수로 이뤄진 리스트로 이뤄진 리스트를 제작
@@ -59,7 +65,8 @@
 ### 3. 당첨 번호
 #### 3.1. 당첨 번호를 입력하는 기능(View ➡️ Controller)
 - [x] View에서 사용자로부터 당첨번호를 입력받는다.
-- [x] 입력한 당첨번호에 예외 사항이 없다면 정수의 리스트 형태로 반환받는 함수를 구현한다.
+- [x] 사용자로부터 입력받은 금액의 유효성을 InputViewValidation에서 체크하고, 예외처리 한다. 유효하지 않은 값 입력 시 사용자가 다시 입력하도록 한다.
+- [x] 입력한 당첨번호에 예외 사항이 없을 때 정수의 리스트 형태로 반환받는 함수를 구현한다.
 #### 3.2. 보너스 번호를 입력하는 기능(View ➡️ Controller)
 - [x] View에서 사용자로부터 보너스 번호를 입력받는다.
 - [x] 보너스 번호는 당첨번호에 이미 존재하는 숫자로 설정할 수 없다.
