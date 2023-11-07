@@ -17,7 +17,14 @@ fun main() {
 
     printTickets(tickets)
 
+    println("\n당첨 번호를 입력해 주세요.")
+    println(getWinningNumbers())
+
+    println("\n보너스 번호를 입력해 주세요.")
+    print(getBonusNumber())
+
 }
+
 
 fun getInputMoney(): Int {
 
@@ -75,4 +82,14 @@ fun printTickets(tickets: List<Lotto>) {
         println(aTicket)
 
     }
+}
+
+fun getWinningNumbers(): List<Int> {
+
+    return Console.readLine().split(',').map { it.toInt() }.sorted()
+}
+
+fun getBonusNumber(): Int {
+
+    return Console.readLine().toInt()
 }
