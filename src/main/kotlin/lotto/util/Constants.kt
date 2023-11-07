@@ -13,4 +13,8 @@ object Constants {
     const val RANKING_NOTHING = 5
     const val FIRST_DECIMAL_PLACE = "%.1f"
     const val DELIMITER = ","
+    const val MATCH_SIX_WINNING = 6
+    const val MATCH_FIVE_WINNING = 5
+    const val MATCH_FOUR_WINNING = 4
+    const val MATCH_THREE_WINNING = 3
 }

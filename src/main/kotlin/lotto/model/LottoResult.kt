@@ -1,5 +1,9 @@
 package lotto.model
 
+import lotto.util.Constants.MATCH_FIVE_WINNING
+import lotto.util.Constants.MATCH_FOUR_WINNING
+import lotto.util.Constants.MATCH_SIX_WINNING
+import lotto.util.Constants.MATCH_THREE_WINNING
 import lotto.util.Constants.RANKING_1ST_INDEX
 import lotto.util.Constants.RANKING_2ST_INDEX
 import lotto.util.Constants.RANKING_3ST_INDEX
@@ -14,10 +18,10 @@ class LottoResult(
     fun calculateRanking(lottoNumbers: List<Int>): Int {
         val matchingCount = lottoNumbers.intersect(winningNumbers.toSet()).count()
         return when (matchingCount) {
-            6 -> RANKING_1ST_INDEX
-            5 -> containBonusNumber(lottoNumbers)
-            4 -> RANKING_4ST_INDEX
-            3 -> RANKING_5ST_INDEX
+            MATCH_SIX_WINNING -> RANKING_1ST_INDEX
+            MATCH_FIVE_WINNING -> containBonusNumber(lottoNumbers)
+            MATCH_FOUR_WINNING -> RANKING_4ST_INDEX
+            MATCH_THREE_WINNING -> RANKING_5ST_INDEX
             else -> RANKING_NOTHING
         }
     }
