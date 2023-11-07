@@ -2,6 +2,7 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import java.lang.NumberFormatException
 
 class Lotto(private val numbers: List<Int>) {
     private var lottoPurchaseAmount: Int = 0
@@ -10,78 +11,109 @@ class Lotto(private val numbers: List<Int>) {
     private var bonusNumber: Int = 0
 
     init {
-        require(numbers.size == 6)
+        require(numbers.size == 6) {"로또 번호는 6개여야 합니다."}
+        require(numbers.toSet().size == numbers.size) {"로또 번호에 중복된 숫자가 있으면 안됩니다."}
+        require(numbers.all{ it in 1..45}) {"로또 번호는 1부터 45사이의 숫자여야한다."}
     }
 
     private fun getPurchaseAmount(): Int {
-        // 로또 구입 금액이 1000원 단위가 아니면 예외 처리하는 함수
-        // 무조건 숫자만 입력 가능하게 테스트 추가하기
-        println("구입금액을 입력해 주세요.")
-        lottoPurchaseAmount = Console.readLine().toInt()
-
-        if (lottoPurchaseAmount % 1000 != 0) {
-            throw IllegalArgumentException()
+        while (true) {
+            try {
+                println("구입금액을 입력해 주세요.")
+                lottoPurchaseAmount = checkPurchasePrice()
+                return lottoPurchaseAmount
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
         }
-        return lottoPurchaseAmount
+    }
+
+    private fun checkPurchasePrice(): Int {
+        while (true) {
+            try {
+                val input = Console.readLine().toInt()
+                if (input % 1000 != 0) {
+                    throw IllegalArgumentException("[ERROR] 구입 금액의 단위는 1,000원 단위입니다.")
+                }
+                return input
+            } catch (e: NumberFormatException) {
+                throw IllegalArgumentException("[ERROR] 유효하지 않은 입력입니다. 구입 금액은 숫자여야 합니다.")
+            }
+        }
     }
 
     fun getLottoNumbers() {
-        // 발행한 로또 수량 및 번호를 출력한다.
-        // 로또 번호는 오름차순으로 정렬하여 보여준다.
         val lottoPurchaseAmount = getPurchaseAmount()
         val numOfTickets = lottoPurchaseAmount / 1000
+        val tickets = mutableListOf<List<Int>>()
+
         println("\n${numOfTickets}개를 구매했습니다.")
 
-        val tickets = mutableListOf<List<Int>>()
-        for(i in 1..numOfTickets) {
+        for (i in 1..numOfTickets) {
             val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6).sorted()
-
-            if (hasDuplicateNumbers(numbers)) {
-                throw IllegalArgumentException()
-            }
-
+            hasDuplicateNumbers(numbers)
             tickets.add(numbers)
             println(numbers)
         }
         lottoTickets = tickets
     }
 
-    private fun hasDuplicateNumbers(numbers: List<Int>): Boolean {
-        // 숫자 중복 확인
-        return numbers.size != numbers.toSet().size
+    private fun hasDuplicateNumbers(numbers: List<Int>) {
+        if (numbers.size != numbers.toSet().size || numbers.size != 6) {
+            throw IllegalArgumentException("[ERROR] 1부터 45 사이의 6개의 서로 다른 숫자를 입력해야 합니다.")
+        }
     }
 
     fun getWinningNumbers() {
-        // 당첨 번호를 입력 받는 함수, 번호는 쉼표 기준으로 구분한다
-        println("\n당첨 번호를 입력해 주세요.")
-        val winningNumbers = Console.readLine()
-        val winningNumberList = winningNumbers.split(",").map { it.toInt() }
-
-        if (winningNumberList.size != 6 || hasDuplicateNumbers(winningNumberList)) {
-            throw IllegalArgumentException()
+        while (true) {
+            try {
+                println("\n당첨 번호를 입력해 주세요.")
+                val userNumbers = getUserNumbers()
+                if (userNumbers.toSet().size != 6) {
+                    println("[ERROR] 1부터 45 사이의 6개의 서로 다른 숫자를 입력해야 합니다.")
+                    continue
+                }
+                this.winningNumbers = userNumbers
+                break
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
         }
-
-        this.winningNumbers = winningNumberList
     }
 
+    private fun getUserNumbers(): List<Int> {
+        val winningNumbers = Console.readLine()
+        return winningNumbers.split(",").map { it.toInt() }
+    }
+
+
     fun getBonusNumber() {
-        // 보너스 번호를 입력 받는 함수
-        println("\n보너스 번호를 입력해 주세요.")
-        val bonusNumber = Console.readLine().toInt()
-        if (bonusNumber !in 1..45) {
-            throw IllegalArgumentException()
+        while (true) {
+            try {
+                println("\n보너스 번호를 입력해 주세요.")
+                val userBonusNumber = getUserBonusNumber()
+                if (userBonusNumber !in 1..45 || userBonusNumber in winningNumbers) {
+                    println("[ERROR] 1부터 45 사이의 숫자이며, 당첨 번호와 겹치지 않는 숫자를 입력해야 합니다.")
+                    continue
+                }
+                this.bonusNumber = userBonusNumber
+                break
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
         }
-        this.bonusNumber = bonusNumber
+    }
+
+    private fun getUserBonusNumber(): Int {
+        return Console.readLine().toInt()
     }
 
     fun showWinningNumbers() {
-        // 당첨 통계 계산
         val matchingNumbers: List<Int> = lottoTickets.map { ticket ->
             ticket.count { it in winningNumbers }
         }
         val hasBonusNumbers = bonusNumbers()
 
-        // enum class 만들기
         println("\n당첨 통계")
         println("---")
         println("3개 일치 (5,000원) - ${matchingNumbers.count { it == 3 }}개")
@@ -110,7 +142,6 @@ class Lotto(private val numbers: List<Int>) {
         val match5NumbersWithBonus = 30000000.0
         val match6Numbers = 2000000000.0
 
-        // 각 등수의 상금과 해당 등수의 로또 티켓 수를 매핑
         val prizeMap = mapOf(
             3 to match3Numbers,
             4 to match4Numbers,
@@ -119,7 +150,6 @@ class Lotto(private val numbers: List<Int>) {
             6 to match6Numbers
         )
 
-        // 수익 계산
         val totalPrize = matchingNumbers.mapNotNull { prizeMap[it] }.sum()
         val totalCost = lottoPurchaseAmount.toDouble()
         val profitPercentage = (totalPrize / totalCost) * 100
@@ -127,5 +157,3 @@ class Lotto(private val numbers: List<Int>) {
         return "%.1f".format(profitPercentage)
     }
 }
-
-
