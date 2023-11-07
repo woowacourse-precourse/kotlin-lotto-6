@@ -5,12 +5,12 @@ import lotto.domain.validator.InputValidator.validateInputIsNotZero
 
 object LottoManagerValidator {
     fun validateWinningNumbersInput(input: String) {
-        val inputList = input.split(",").map {
-            it.trim()
-        }.let {
-            validateInputIsIntList(it)
-            validateInputsAreNotZero(it)
-        }
+        val inputList = input.split(",")
+            .map { it.trim() }
+            .let {
+                validateInputIsIntList(it)
+                validateInputsAreNotZero(it)
+            }
     }
 
     private fun validateInputIsIntList(inputList: List<String>) {
