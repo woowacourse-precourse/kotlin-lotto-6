@@ -25,7 +25,6 @@ class Lotto(private val numbers: List<Int>) {
 }
 
 enum class Prize(val matchedNumbers: Int, private val prizeMoney: Int) {
-
     THIRD(3, 5000),
     FOURTH(4, 50000),
     FIFTH(5, 1_500_000),
@@ -33,5 +32,23 @@ enum class Prize(val matchedNumbers: Int, private val prizeMoney: Int) {
     FIRST(6, 2_000_000_000),
     NONE(0, 0);
 
+    override fun toString(): String {
+        return when (this) {
+            FIRST -> "6개 일치 (2,000,000,000원)"
+            SECOND -> "5개 일치, 보너스 볼 일치 (30,000,000원)"
+            THIRD -> "${matchedNumbers}개 일치 (${prizeMoney.formatCurrency()}원)"
+            FOURTH -> "${matchedNumbers}개 일치 (${prizeMoney.formatCurrency()}원)"
+            FIFTH -> "${matchedNumbers}개 일치 (${prizeMoney.formatCurrency()}원)"
+            NONE -> "꽝 (0원)"
+        }
+    }
+
+    fun calculatePrizeMoney(): Int {
+        return prizeMoney
+    }
+
 }
 
+fun Int.formatCurrency(): String {
+    return String.format("%,d", this)
+}

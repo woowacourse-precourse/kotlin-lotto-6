@@ -19,6 +19,7 @@ fun main() {
     println()
 
     val results = compareLottosWithWinningNumbers(myPurchaselottos, winningNumbers, bonusNumber)
+    printResults(results, myPurchaselottos.size)
 }
 
 fun readPurchaseAmount(): Int {
@@ -101,4 +102,23 @@ fun compareLottosWithWinningNumbers(lottos: List<Lotto>, winningNumbers: List<In
         results.add(prize ?: Prize.NONE)
     }
     return results
+}
+
+fun calculatePrizeMoney(results: List<Prize>): List<Int> {
+    return results.map { it.calculatePrizeMoney() }
+}
+
+fun printResults(results: List<Prize>, numberOfPurchasedLottos: Int) {
+    println("당첨 통계")
+    println("---")
+    val prizeGroups = results.groupBy { it }
+    for (prize in Prize.values()) {
+        val count = prizeGroups[prize]?.size ?: 0
+        if (prize != Prize.NONE) {
+            println("${prize} - ${count}개")
+        }
+    }
+    val totalPrizeMoney = calculatePrizeMoney(results).sum()
+    val totalPrizeRate = (totalPrizeMoney.toDouble() / (numberOfPurchasedLottos * 1000)) * 100
+    println("총 수익률은 ${"%.1f".format(totalPrizeRate)}%입니다.")
 }
