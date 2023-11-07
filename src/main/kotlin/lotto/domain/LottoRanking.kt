@@ -18,7 +18,7 @@ class LottoRanking(var countByRanking: MutableMap<LottoResult, Int>, var totalRe
                 prize += result.prize
             }
 
-            prize = calculateROI((lottoResults.size * LottoStore.LOTTO_TICKET_PRICE), prize).round(2)
+            prize = calculateROI((lottoResults.size * LottoStore.LOTTO_TICKET_PRICE), prize).round(PRECISION)
             return LottoRanking(map, prize)
         }
 
@@ -27,5 +27,6 @@ class LottoRanking(var countByRanking: MutableMap<LottoResult, Int>, var totalRe
         }
 
         private const val PERCENT_FACTOR = 100
+        private const val PRECISION = 2
     }
 }
