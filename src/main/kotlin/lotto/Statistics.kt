@@ -39,7 +39,7 @@ class Statistics(private val amount: Int) {
         val total = Rank.values().sumOf { rank ->
             rank.prize * winStat[rank.place]
         }
-        val rate = String.format("%.1f", (total / amount.toDouble()) * 100)
+        val rate = String.format("%,.1f", (total / amount.toDouble()) * 100)
         println("총 수익률은 ${rate}%입니다.")
     }
 }
