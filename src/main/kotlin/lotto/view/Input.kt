@@ -1,11 +1,15 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.validation.BonusNumberValidation
+import lotto.validation.MoneyValidation
 
 class Input {
     fun inputMoney(): Int {
         println(INPUT_PURCHASE_AMOUNT)
-        return Console.readLine().toInt()
+        val money = Console.readLine()
+        MoneyValidation.ERROR_VALIDATION.getMessage(money)
+        return money.toInt()
     }
 
     fun inputWinningNumber(): List<Int> {
@@ -17,7 +21,9 @@ class Input {
 
     fun inputBonusNumber(): Int {
         println(INPUT_BONUS_NUMBER)
-        return Console.readLine().toInt()
+        val number = Console.readLine()
+        BonusNumberValidation.ERROR_MESSAGE.getErrorMessage(number)
+        return number.toInt()
     }
 
     companion object {
