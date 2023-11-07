@@ -2,61 +2,30 @@ package lotto.models
 
 import org.assertj.core.api.AssertionsForClassTypes.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class WinningRankTest {
 
-    @Test
-    fun `로또 번호가 당첨 번호 3개와 일치하면 5등이다`() {
-        val matchedCount = 3
+    @ParameterizedTest
+    @CsvSource(
+        "3, false, FIFTH",
+        "4, false, FOURTH",
+        "5, false, THIRD",
+        "5, true, SECOND",
+        "6, false, FIRST",
 
-        val winningRank = WinningRank.find(matchedCount)
-
-        assertThat(winningRank).isEqualTo(WinningRank.FIFTH)
-    }
-
-    @Test
-    fun `로또 번호가 당첨 번호 4개와 일치하면 4등이다`() {
-        val matchedCount = 4
-
-        val winningRank = WinningRank.find(matchedCount)
-
-        assertThat(winningRank).isEqualTo(WinningRank.FOURTH)
-    }
-
-    @Test
-    fun `로또 번호가 당첨 번호 5개와 일치하면 3등이다`() {
-        val matchedCount = 5
-
-        val winningRank = WinningRank.find(matchedCount)
-
-        assertThat(winningRank).isEqualTo(WinningRank.THIRD)
-    }
-
-    @Test
-    fun `로또 번호가 당첨 번호 5개와 보너스 번호가 일치하면 2등이다`() {
-        val matchedCount = 5
-        val isMatchedBonus = true
-
+        "0, false, NOTHING",
+        "0, true, NOTHING",
+        "7, false, NOTHING",
+    )
+    fun `로또 번호와 보너스 번호 일치 여부에 따라 등수가 일치하는지 확인한다`(
+        matchedCount: Int,
+        isMatchedBonus: Boolean,
+        expectedRank: WinningRank
+    ) {
         val winningRank = WinningRank.find(matchedCount, isMatchedBonus)
 
-        assertThat(winningRank).isEqualTo(WinningRank.SECOND)
-    }
-
-    @Test
-    fun `로또 번호가 당첨 번호 6개가 일치하면 1등이다`() {
-        val matchedCount = 6
-
-        val winningRank = WinningRank.find(matchedCount)
-
-        assertThat(winningRank).isEqualTo(WinningRank.FIRST)
-    }
-
-    @Test
-    fun `당첨 번호에 일치하는 로또 번호의 개수가 당첨 등수의 개수에 해당하지 않으면 등수가 없다`() {
-        val matchedCount = 0
-
-        val winningRank = WinningRank.find(matchedCount)
-
-        assertThat(winningRank).isEqualTo(WinningRank.NOTHING)
+        assertThat(winningRank).isEqualTo(expectedRank)
     }
 }
