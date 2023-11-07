@@ -23,7 +23,9 @@ object Validation {
     }
 
     fun bonusNum(input: String) {
-
+        checkIsDigit(input)
+        checkNumRange(input)
+        checkNotContainComma(input)
     }
 
     private fun checkIsDigit(input: String) {
@@ -61,4 +63,9 @@ object Validation {
         }
     }
 
+    private fun checkNotContainComma(input: String){
+        require(input.contains(",")) {
+            COMMA_ERROR_MESSAGE
+        }
+    }
 }
