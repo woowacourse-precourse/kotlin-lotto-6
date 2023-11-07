@@ -1,8 +1,8 @@
 package lotto.domain
 
 import lotto.constants.ErrorConstants
-import lotto.constants.GameConstants.MAX_LOTTO_NUMBER
-import lotto.constants.GameConstants.MIN_LOTTO_NUMBER
+import lotto.constants.GameConstants.MAX_NUMBER
+import lotto.constants.GameConstants.MIN_NUMBER
 
 class LottoNumber(numberAsString: String) {
     val number: Int = parseNumber(numberAsString)
@@ -18,7 +18,7 @@ class LottoNumber(numberAsString: String) {
         }
 
         private fun validateNumberRange(number: Int) {
-            require(number in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER) {
+            require(number in MIN_NUMBER..MAX_NUMBER) {
                 ErrorConstants.RANGE_ERROR_MESSAGE
             }
         }
