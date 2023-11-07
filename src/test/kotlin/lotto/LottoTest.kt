@@ -46,6 +46,25 @@ class LottoTest {
             InputValidator.validatePurchaseAmount("-1")
         }
     }
+    @Test
+    fun `당첨 번호에 올바르지 숫자 외의 문자가 있으면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            InputValidator.validateWinningNumber("ㅁㄴㅇ, 1, 2, 3, 4, 5")
+        }
+    }
+    @Test
+    fun `당첨 번호에 올바르지 않은 범위의 숫자가 있으면 예외가 발생한다(1미만)`() {
+        assertThrows<IllegalArgumentException> {
+            InputValidator.validateWinningNumber("0, 1, 2, 3, 4, 5")
+        }
+    }
+    @Test
+    fun `당첨 번호에 올바르지 않은 범위의 숫자가 있으면 예외가 발생한다(45이상)`() {
+        assertThrows<IllegalArgumentException> {
+            InputValidator.validateWinningNumber("45, 1, 2, 3, 4, 5")
+        }
+    }
+
 
     // 아래에 추가 테스트 작성 가능
 }
