@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.domain.LottoWallet
 import lotto.domain.Purchaser
 import lotto.view.InputManager
 
@@ -7,11 +8,12 @@ class LottoGame {
 
 
     fun gameStart() {
-        purchaseLotto()
+        val lottoWallet = purchaseLotto()
     }
 
-    private fun purchaseLotto() {
+    private fun purchaseLotto(): LottoWallet {
         val purchaser: Purchaser = checkException { Purchaser(InputManager.getPurchaseInput()) }
+        return purchaser.lottoWallet
     }
 
     private fun <T> checkException(createClass: () -> T): T = runCatching { createClass() }
