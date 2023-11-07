@@ -10,8 +10,7 @@ class ProfitCalculator {
     }
 
     // 반올림 함수
-    private fun roundDigit(number: Double, digits: Int): Double {
+    fun roundDigit(number: Double, digits: Int): Double {
         return Math.round(number * 10.0.pow(digits.toDouble())) / 10.0.pow(digits.toDouble())
     }
-
 }
