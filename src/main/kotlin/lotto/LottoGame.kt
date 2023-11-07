@@ -18,7 +18,7 @@ class LottoGame {
         val bonusNumber = userInput.bonusNumberInput(winningList)
 
         val winningRate = lottoCalculator.calWinningRate(lottoList, winningList, bonusNumber)
-        lottoCalculator.showWinningRate(winningRate)
+        lottoGamePrinter.showWinningRate(winningRate)
 
         val profitRate = lottoCalculator.calProfitRate(winningRate, purchasedAmount)
         println(LottoGameMessage.TOTAL_RATE.format(profitRate))
