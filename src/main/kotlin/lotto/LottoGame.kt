@@ -7,9 +7,7 @@ class LottoGame() {
     fun start() {
         val lottoCount = purchaseSequence()
         var lottos = generateLottos(lottoCount)
-//        for (lotto in lottos) {
-//            println(lotto)
-//        }
+        val winningNumber = getWinnningNumber()
 //        println("당첨 번호를 입력해 주세요.")
 //        val winningNumber = getWinnningNumber()
 //        println("보너스 번호를 입력해 주세요.")
@@ -39,7 +37,7 @@ class LottoGame() {
     private fun generateLottos(count: Int) :List<Lotto>{
         return List(count) {
             val lotto = Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6))
-            print(lotto)
+            println(lotto)
             lotto
         }
     }

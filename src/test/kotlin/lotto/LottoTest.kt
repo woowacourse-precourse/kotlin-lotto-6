@@ -21,6 +21,20 @@ class LottoTest {
     }
 
     @Test
+    fun `로또 번호에 올바르지 않은 범위의 숫자가 있으면 예외가 발생한다(45초과)`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1, 2, 3, 4, 46, 5))
+        }
+    }
+
+    @Test
+    fun `로또 번호에 올바르지 않은 범위의 숫자가 있으면 예외가 발생한다(1미만)`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(0, 2, 3, 4, 45, 5))
+        }
+    }
+
+    @Test
     fun `구입 금액에 숫자 이외의 문자가 있으면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
             InputValidator.validatePurchaseAmount("12asd")
