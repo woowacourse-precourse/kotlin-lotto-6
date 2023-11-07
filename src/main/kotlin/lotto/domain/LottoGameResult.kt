@@ -8,11 +8,9 @@ class LottoGameResult {
     private val allSameCount: MutableMap<LottoRank, Int> = EnumMap(LottoRank::class.java)
 
     init {
-        allSameCount[LottoRank.FIFTH_PLACE] = INIT_SAME_COUNT
-        allSameCount[LottoRank.FOURTH_PLACE] = INIT_SAME_COUNT
-        allSameCount[LottoRank.THIRD_PLACE] = INIT_SAME_COUNT
-        allSameCount[LottoRank.SECOND_PLACE] = INIT_SAME_COUNT
-        allSameCount[LottoRank.FIRST_PLACE] = INIT_SAME_COUNT
+        for (sameCount in LottoRank.entries) {
+            allSameCount[sameCount] = INIT_SAME_COUNT
+        }
     }
 
     fun calculateResult(sameCount: Int, bonus: Int) {
