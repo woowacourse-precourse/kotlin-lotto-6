@@ -19,7 +19,7 @@ fun lottoMoney(): Int{
             money.div(1000)
     }catch(e: IllegalArgumentException){
         println("[ERROR] 잘못된 입금액 입니다. 1000원 단위로 입금해주세요. Ex)8000, 11000")
-        lottoMoney()
+        0
     }
     return amount
 }
@@ -90,14 +90,16 @@ fun win_checker(bought: MutableList<Lotto>, winNum: MutableList<Int>, bonus: Int
 fun main() {
     println("구입금액을 입력해 주세요.")
     val amount:Int = lottoMoney()
-    println("\n${amount}개를 구매했습니다.")
-    val lottos:MutableList<Lotto> = lotto_dispenser(amount)
-    println("\n당첨 번호를 입력해 주세요.")
-    val win_num:MutableList<Int> = winInput()
-    println("\n보너스 번호를 입력해 주세요.")
-    val bonus:Int = bonusChecker(win_num)
-    println("\n당첨 통계\n---")
-    val won_money:Int = win_checker(lottos, win_num, bonus)
-    val profit_rate:Double = round((won_money.toDouble().div(amount.toDouble() * 1000) * 100) * 10)
-    println("총 수익률은 ${profit_rate/10}%입니다.")
+    if (amount != 0) {
+        println("\n${amount}개를 구매했습니다.")
+        val lottos: MutableList<Lotto> = lotto_dispenser(amount)
+        println("\n당첨 번호를 입력해 주세요.")
+        val win_num: MutableList<Int> = winInput()
+        println("\n보너스 번호를 입력해 주세요.")
+        val bonus: Int = bonusChecker(win_num)
+        println("\n당첨 통계\n---")
+        val won_money: Int = win_checker(lottos, win_num, bonus)
+        val profit_rate: Double = round((won_money.toDouble().div(amount.toDouble() * 1000) * 100) * 10)
+        println("총 수익률은 ${profit_rate / 10}%입니다.")
+    }
 }
