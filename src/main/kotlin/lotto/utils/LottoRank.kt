@@ -10,10 +10,10 @@ enum class LottoRank(val numberMatch: Int, val prize: Int, val bonusNumber: Bool
 
     companion object {
         fun matchRank(numberMatch: Int, bonusNumber: Boolean): LottoRank {
-            if(numberMatch==5){
-                return entries.firstOrNull{it.numberMatch==numberMatch && it.bonusNumber==bonusNumber}?: MISS
+            if (numberMatch == 5) {
+                return entries.firstOrNull { it.numberMatch == numberMatch && it.bonusNumber == bonusNumber } ?: MISS
             }
-            return entries.firstOrNull{it.numberMatch==numberMatch}?:MISS
+            return entries.firstOrNull { it.numberMatch == numberMatch } ?: MISS
         }
     }
 }

@@ -6,7 +6,8 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.all { it in 1..45 }) { ERROR_LOTTO_NUMBER_RANGE }
         require(numbers.distinct().size == numbers.size) { ERROR_LOTTO_NUMBER_DUPLICATE }
     }
-    fun matchCount(prizeLottoNumber: List<Int>, bonusNumber: Int):Pair<Int, Boolean>{
+
+    fun matchCount(prizeLottoNumber: List<Int>, bonusNumber: Int): Pair<Int, Boolean> {
         val lottoNumberCount = numbers.count { it in prizeLottoNumber }
         val bonusNumberMatchStatus = numbers.any { it == bonusNumber }
         return Pair(lottoNumberCount, bonusNumberMatchStatus)
