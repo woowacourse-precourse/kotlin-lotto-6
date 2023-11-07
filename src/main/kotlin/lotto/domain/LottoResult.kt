@@ -9,20 +9,10 @@ class LottoResult {
         }
     }
 
+    fun getCount(rank: Rank): Int = results[rank]!!
+
     fun addCount(rank: Rank) {
         results.replace(rank, results.getValue(rank) + 1)
-    }
-
-    fun getRateOfReturn(inputMoney: Int): Double {
-        return (calculateTotalPrize().toDouble() / inputMoney) * 100
-    }
-
-    private fun calculateTotalPrize(): Int {
-        var totalPrize = 0
-        for (rank in Rank.entries) {
-            totalPrize += results[rank]!! * rank.getPrize(rank)
-        }
-        return totalPrize
     }
 
     override fun toString(): String {
