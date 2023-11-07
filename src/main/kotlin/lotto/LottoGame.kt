@@ -24,6 +24,9 @@ class LottoGame(private val user: User) {
         val winningRecord = recordWinning(lottos, winningNumbers, bonusNumber)
         showMessage(WINNING_STATISTICS_LABEL)
         showWinningRecordMessages(winningRecord)
+
+        val roi = calculateROI(amount, winningRecord)
+        showMessage(ROI_MESSAGE.format(roi.roundTo2DecimalPlaces()))
     }
 
     private fun inputAmountFromUser(): Int {
@@ -129,6 +132,12 @@ class LottoGame(private val user: User) {
         }
     }
 
+    private fun calculateROI(purchasedAmount: Int, winningRecord: Map<Winning, Int>): Double {
+        val totalWinningAmount = winningRecord.entries.sumOf { (winning, count) -> winning.amount * count }
+        val roi = ((totalWinningAmount.toDouble() - purchasedAmount) / purchasedAmount) * 100
+
+        return 100 + roi.roundTo2DecimalPlaces()
+    }
 
     private fun showMessage(message: String) = println(message)
 
@@ -149,9 +158,15 @@ class LottoGame(private val user: User) {
         const val WINNING_STATISTICS_LABEL = "당첨 통계\n---"
         const val WINNING_WITHOUT_BONUS_MESSAGE = "%d개 일치 (%s원) - %d개"
         const val WINNING_WITH_BONUS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개"
+
+        const val ROI_MESSAGE = "총 수익률은 %.1f%%입니다."
     }
 }
 
 fun Int.withCommas(): String {
     return "%,d".format(this)
+}
+
+fun Double.roundTo2DecimalPlaces(): Double {
+    return (this * 100.0).roundToInt() / 100.0
 }
