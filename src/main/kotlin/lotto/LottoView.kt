@@ -10,4 +10,11 @@ class LottoView() {
     fun inputLottoMoney(): String {
         return Console.readLine()
     }
+
+    fun printLottoCount(count: Int) = println("\n${count}개를 구매했습니다.")
+    fun printLottos(lottos: List<Lotto>) {
+        lottos.forEach {
+            println(it.toString())
+        }
+    }
 }
