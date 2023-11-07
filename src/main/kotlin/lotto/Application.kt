@@ -8,6 +8,5 @@ fun main() {
 
     val winningBonus = WinningAndBonusNumber(winning, bonus)
 
-    println(winningBonus.winningNumber)
-    println(winningBonus.bonusNumber)
+
 }

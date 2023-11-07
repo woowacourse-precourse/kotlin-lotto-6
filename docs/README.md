@@ -50,4 +50,4 @@
 - [] 로또 클래스 생성 : main 함수에서 MakeLotto클래스를 통해 생성
 - [] 복권 클래스 package lotto#Lotto# 이미 존재
 
-- [] 당첨 숫자 클래스 WinningAndBonusNumber#
+- [O] 당첨 숫자 클래스 WinningAndBonusNumber#
