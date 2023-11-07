@@ -6,15 +6,18 @@ class UserInputValidator {
         if (userInput.toInt() % 1000 != 0)
             throw IllegalArgumentException("[ERROR] 입력하신 가격으로 로또를 구매할 수 없습니다.")
     }
-    fun checkNumberInList(numberList: List<String>) {
-        numberList.map { number -> checkNumber(number) }
-    }
-    fun checkNumberInRange(numberList: List<String>) {
+
+    fun checkNumberInRange(userInput: String) {
         val set = (1..45).toSet()
+        if(!set.contains(userInput.toInt())) {
+            throw IllegalArgumentException("[ERROR] 입력하신 번호가 1 ~ 45사이의 숫자가 아닙니다.")
+        }
+    }
+
+    fun checkNumberInList(numberList: List<String>) {
         numberList.map { number ->
-            if(!set.contains(number.toInt())) {
-                throw IllegalArgumentException("[ERROR] 입력하신 번호가 1 ~ 45사이의 숫자가 아닙니다.")
-            }
+            checkNumber(number)
+            checkNumberInRange(number)
         }
     }
 }

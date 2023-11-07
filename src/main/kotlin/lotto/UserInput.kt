@@ -25,8 +25,21 @@ class UserInput() {
             val numberList = userInput.split(",")
             try {
                 userInputValidator.checkNumberInList(numberList)
-                userInputValidator.checkNumberInRange(numberList)
                 return numberList
+            }
+            catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+    }
+
+    fun bonusNumberInput(): String {
+        while(true) {
+            val userInput = Console.readLine()
+            try {
+                userInputValidator.checkNumber(userInput)
+                userInputValidator.checkNumberInRange(userInput)
+                return userInput
             }
             catch (e: IllegalArgumentException) {
                 println(e.message)
