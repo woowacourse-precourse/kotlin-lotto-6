@@ -9,8 +9,8 @@ object OutputView {
         output.printMessage(GameConstants.MESSAGE_REQUEST_PURCHASE_AMOUNT)
     }
 
-    fun countLottoMessage() {
-        output.printMessage(GameConstants.MESSAGE_LOTTO_COUNT_PURCHASED)
+    fun countLottoMessage(lottoPurchaseNumber: Int) {
+        output.printMessage("${lottoPurchaseNumber}${GameConstants.MESSAGE_LOTTO_COUNT_PURCHASED}")
     }
 
     fun requestWinningNumbersMessage() {
