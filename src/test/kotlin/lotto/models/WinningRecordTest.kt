@@ -37,7 +37,37 @@ class WinningRecordTest {
                 Arguments.of(
                     Lotto(listOf(1, 2, 3, 4, 5, 6)),
                     Lotto(listOf(1, 2, 3, 4, 5, 6)),
-                    -1
+                    6
+                ),
+                Arguments.of(
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 2, 3, 4, 5, 7)),
+                    5
+                ),
+                Arguments.of(
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 2, 3, 4, 7, 8)),
+                    4
+                ),
+                Arguments.of(
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 2, 3, 7, 8, 9)),
+                    3
+                ),
+                Arguments.of(
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 2, 7, 8, 9, 10)),
+                    2
+                ),
+                Arguments.of(
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 7, 8, 9, 10, 11)),
+                    1
+                ),
+                Arguments.of(
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(7, 8, 9, 10, 11, 12)),
+                    0
                 )
             )
         }
