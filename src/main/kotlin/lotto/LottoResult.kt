@@ -26,4 +26,7 @@ class LottoResult (private val lottos: List<Lotto>, private val winningNumbers: 
             }
         }
     }
+    fun getMatchedCountsForTest(): Map<Int, Int> {
+        return matchedCounts
+    }
 }

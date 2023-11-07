@@ -1,5 +1,6 @@
 package lotto
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -61,10 +62,32 @@ class LottoTest {
     @Test
     fun `당첨 번호에 올바르지 않은 범위의 숫자가 있으면 예외가 발생한다(45이상)`() {
         assertThrows<IllegalArgumentException> {
-            InputValidator.validateWinningNumber("45, 1, 2, 3, 4, 5")
+            InputValidator.validateWinningNumber("46, 1, 2, 3, 4, 5")
         }
     }
 
+    @Test
+    fun `등수 산정 테스트_1`() {
+        val lottos = listOf(
+            Lotto(listOf(1, 2, 3, 4, 5, 6)),
+            Lotto(listOf(1, 2, 3, 4, 5, 7)),
+            Lotto(listOf(1, 2, 3, 4, 5, 8)),
+            Lotto(listOf(1, 2, 3, 4, 7, 8)),
+            Lotto(listOf(1, 2, 3, 7, 8, 9)),
+            Lotto(listOf(1, 7, 8, 9, 10, 11)),
+        )
+        val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
+        val bonusNumber = 7
+
+        val lottoResult = LottoResult(lottos, winningNumbers, bonusNumber)
+        val matchedCounts = lottoResult.getMatchedCountsForTest()
+
+        assertEquals(1, matchedCounts[1])
+        assertEquals(1, matchedCounts[2])
+        assertEquals(1, matchedCounts[3])
+        assertEquals(1, matchedCounts[4])
+        assertEquals(1, matchedCounts[5])
+    }
 
     // 아래에 추가 테스트 작성 가능
 }
