@@ -9,6 +9,7 @@ import lotto.utils.Constants.FIVE_WITH_BONUS_AMOUNT
 import lotto.utils.Constants.FOUR
 import lotto.utils.Constants.FOUR_AMOUNT
 import lotto.utils.Constants.FOUR_MATCH_MESSAGE
+import lotto.utils.Constants.INIT_ZERO
 import lotto.utils.Constants.SIX
 import lotto.utils.Constants.SIX_AMOUNT
 import lotto.utils.Constants.SIX_MESSAGE
@@ -27,7 +28,7 @@ enum class Prize(val message: String, val prizeAmount: Int) {
 class LottoRanks {
     private val results = mutableMapOf<Prize, Int>()
     init {
-        Prize.entries.forEach { results[it] = 0 }
+        Prize.entries.forEach { results[it] = INIT_ZERO }
     }
     fun rank(answerLottoNumbers: List<Int>, lotto: Lotto, bonusNumber: Int): MutableMap<Prize, Int> {
         val userWinningNumbers = lotto.getLotto()
@@ -39,7 +40,7 @@ class LottoRanks {
     }
 
     private fun checkMatchingNumbers(answerLottoNumbers: List<Int>, userWinningNumbers: List<Int>): Int{
-        var matchedNumbers = 0
+        var matchedNumbers = INIT_ZERO
         userWinningNumbers.forEach {
             if (it in answerLottoNumbers) {
                 matchedNumbers++

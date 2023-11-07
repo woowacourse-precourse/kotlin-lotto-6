@@ -28,5 +28,7 @@ object Constants {
 
     const val PERCENTAGE_NUMBER = 100
 
+    const val INIT_ZERO = 0
+
     const val DELIMITER = ","
 }
