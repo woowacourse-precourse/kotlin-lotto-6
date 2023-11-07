@@ -1,6 +1,6 @@
 package lotto
 
 fun main() {
-    val game = Game()
-    game.execute()
+    val lottoGame = LottoGame()
+    lottoGame.execute()
 }

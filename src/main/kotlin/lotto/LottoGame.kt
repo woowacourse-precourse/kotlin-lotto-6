@@ -2,8 +2,8 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 
-class Game(
-    private val printer: Printer = Printer(), private val gameController: GameController = GameController()
+class LottoGame(
+    private val printer: Printer = Printer(), private val controller: Controller = Controller()
 ) {
     private var purchaseNumber: Int = 0
     private lateinit var userPickLottoNumbers: List<Int>
@@ -22,7 +22,7 @@ class Game(
         try {
             printer.printEnterPurchaseAnnouncement()
             val input = Console.readLine()
-            purchaseNumber = gameController.purchaseLotto(input)
+            purchaseNumber = controller.purchaseLotto(input)
             println()
         } catch (e: IllegalArgumentException) {
             println(e.localizedMessage)
@@ -33,7 +33,7 @@ class Game(
     private fun createRandomLottery() {
         try {
             printer.printBuyNPiecesAnnouncement(purchaseNumber)
-            randomLottoNumbers = gameController.createLotteryRandomNumber(purchaseNumber)
+            randomLottoNumbers = controller.createLotteryRandomNumber(purchaseNumber)
             printer.printRandomLottoNumber(randomLottoNumbers)
             println()
         } catch (e: IllegalArgumentException) {
@@ -46,7 +46,7 @@ class Game(
         try {
             printer.printEnterUserPickNumbersAnnouncement()
             val userPickNumberInput = Console.readLine().trim()
-            userPickLottoNumbers = gameController.inputUserPickNumbers(userPickNumberInput)
+            userPickLottoNumbers = controller.inputUserPickNumbers(userPickNumberInput)
             println()
         } catch (e: IllegalArgumentException) {
             println(e.localizedMessage)
@@ -58,7 +58,7 @@ class Game(
         try {
             printer.printEnterBonusNumberAnnouncement()
             val bonusNumberInput = Console.readLine().trim()
-            bonusNumber = gameController.inputBonusNumber(input = bonusNumberInput, userPickNumbers = userPickLottoNumbers)
+            bonusNumber = controller.inputBonusNumber(input = bonusNumberInput, userPickNumbers = userPickLottoNumbers)
             println()
         } catch (e: IllegalArgumentException) {
             println(e.localizedMessage)
@@ -68,9 +68,9 @@ class Game(
 
     private fun getLotteryWinning() {
         try {
-            val winCount = gameController.checkWinningDetails(randomLottoNumbers, userPickLottoNumbers, bonusNumber)
-            val winTypes = gameController.checkLottoWinType(winCount)
-            val yield = gameController.checkYieldResult(winTypes)
+            val winCount = controller.checkWinningDetails(randomLottoNumbers, userPickLottoNumbers, bonusNumber)
+            val winTypes = controller.checkLottoWinType(winCount)
+            val yield = controller.checkYieldResult(winTypes)
 
             printer.printWinningStatisticsAnnouncement()
             printer.printCommaAnnouncement()

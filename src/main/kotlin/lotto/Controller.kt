@@ -2,7 +2,7 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
 
-class GameController(
+class Controller(
     private val calculator: Calculator = Calculator()
 ) {
 
