@@ -9,12 +9,12 @@ import lotto.resources.Lotto
 import lotto.resources.Lotto.LOTTO_PRISE
 
 fun String.purchaseAmountValidation() {
-    require(this != "0") {
-        CANT_BUY_ERROR
-    }
-
     requireNotNull(toIntOrNull()) {
         NOT_INT_ERROR
+    }
+
+    require(this.toInt() > LOTTO_PRISE) {
+        CANT_BUY_ERROR
     }
 
     require(this.toInt() % LOTTO_PRISE == 0) {
