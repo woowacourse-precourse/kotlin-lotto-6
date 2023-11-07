@@ -9,10 +9,10 @@ object ExceptionMessages {
 
     const val EXCEPTION_WINNING_NUMBERS_SIZE = "당첨 번호로 6개를 입력해야 합니다."
     const val EXCEPTION_WINNING_NUMBERS_DUPLICATED = "당첨 번호는 중복될 수 없습니다."
-    const val EXCEPTION_WINNING_NUMBERS_RANGE = "당첨 번호는 1부터 45까지입니다."
+    const val EXCEPTION_WINNING_NUMBERS_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다."
     const val EXCEPTION_WINNING_NUMBERS_TYPE = "당첨 번호로 문자열을 입력할 수 없습니다."
 
-    const val EXCEPTION_BONUS_NUMBER_RANGE = "보너스 번호는 1부터 45까지입니다."
+    const val EXCEPTION_BONUS_NUMBER_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다."
     const val EXCEPTION_BONUS_NUMBER_TYPE = "보너스 번호로 문자열을 입력할 수 없습니다."
     const val EXCEPTION_BONUS_NUMBER_DUPLICATED = "보너스 번호가 이미 당첨 번호에 존재합니다."
 

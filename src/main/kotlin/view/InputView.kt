@@ -5,6 +5,7 @@ import constants.ExceptionMessages.EXCEPTION_WINNING_NUMBERS_RANGE
 import constants.ExceptionMessages.EXCEPTION_WINNING_NUMBERS_SIZE
 import constants.ExceptionMessages.EXCEPTION_WINNING_NUMBERS_TYPE
 import camp.nextstep.edu.missionutils.Console
+import constants.ExceptionMessages.ERROR
 import constants.ExceptionMessages.EXCEPTION_BONUS_NUMBER_DUPLICATED
 import constants.ExceptionMessages.EXCEPTION_BONUS_NUMBER_RANGE
 import constants.ExceptionMessages.EXCEPTION_BONUS_NUMBER_TYPE
@@ -121,7 +122,7 @@ object InputView {
     }
 
     private fun printErrorMessage(message: String? = EXCEPTION_UNEXPECTED) {
-        println(message)
+        println("$ERROR $message")
     }
 }
 
