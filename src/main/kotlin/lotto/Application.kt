@@ -4,5 +4,6 @@ fun main() {
     startLottoGame()
 }
 fun startLottoGame(){
-    LottoGameManager.startLottoGame()
+    var lottoGameManager = LottoGameManager()
+    lottoGameManager.startLottoGame()
 }

@@ -1,6 +1,6 @@
 package lotto.utils.validator
 
-object LottoCostInputValidator{
+class LottoCostInputValidator{
     fun validate(cost: String) : LottoInputState.Cost {
         val costState = getState(cost.toIntOrNull())
         if (costState != LottoInputState.Cost.SUCCESSFUL){

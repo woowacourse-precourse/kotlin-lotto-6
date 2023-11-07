@@ -2,7 +2,7 @@ package lotto.utils.validator
 
 import lotto.Lotto
 
-object LottoWinningNumberInputValidator {
+class LottoWinningNumberInputValidator {
 
     fun validate(number: String): LottoInputState.WinningNumber {
         var numberState = getState(number.toIntOrNull())

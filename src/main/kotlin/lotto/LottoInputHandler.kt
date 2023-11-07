@@ -4,11 +4,19 @@ import camp.nextstep.edu.missionutils.Console
 import lotto.utils.validator.LottoCostInputValidator
 import lotto.utils.validator.LottoWinningNumberInputValidator
 
-object LottoInputHandler {
+class LottoInputHandler {
+    private var lottoCostInputValidator : LottoCostInputValidator
+    private var lottoWinningNumberInputValidator : LottoWinningNumberInputValidator
+
+    init {
+        lottoCostInputValidator = LottoCostInputValidator()
+        lottoWinningNumberInputValidator = LottoWinningNumberInputValidator()
+    }
+
     fun receiveLottoCost() : Int{
         val cost = Console.readLine()
         try{
-            LottoCostInputValidator.validate(cost)
+            lottoCostInputValidator.validate(cost)
         } catch (e : IllegalArgumentException){
             return receiveLottoCost()
         }
@@ -20,7 +28,7 @@ object LottoInputHandler {
             .split(",")
         numbers.forEach {
             try{
-                LottoWinningNumberInputValidator.validate(it)
+                lottoWinningNumberInputValidator.validate(it)
             } catch (e : IllegalArgumentException){
                 return receiveLottoWinningNumbers()
             }
@@ -31,7 +39,7 @@ object LottoInputHandler {
     fun receiveLottoBonusNumber() : Int {
         val bonusNumber = Console.readLine()
         try{
-            LottoWinningNumberInputValidator.validate(bonusNumber)
+            lottoWinningNumberInputValidator.validate(bonusNumber)
         } catch (e : IllegalArgumentException){
             return receiveLottoBonusNumber()
         }
