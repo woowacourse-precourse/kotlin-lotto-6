@@ -12,4 +12,10 @@ class MoneyTest {
             Money().moneyChangesValidate("19999")
         }
     }
+    @Test
+    fun `구입 금액이 1000 이하면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            Money().moneyRangeValidate("199")
+        }
+    }
 }
