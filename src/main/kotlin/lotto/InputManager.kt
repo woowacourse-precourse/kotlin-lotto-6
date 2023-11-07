@@ -2,6 +2,8 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 
+const val ONE_LOTTO_PRICE = 1000
+
 class InputManager {
     private lateinit var winningNumber: List<String>
     private var inputMoney: Int = 1000
@@ -57,7 +59,7 @@ class InputManager {
         }
     }
     fun checkInputNumberRange() {
-        if(inputMoney % 1000 != 0) {
+        if(inputMoney % ONE_LOTTO_PRICE != 0) {
             throw IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위에 맞춰서 넣어주세요.")
         }
     }
