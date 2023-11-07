@@ -6,6 +6,7 @@ class LottoResult (private val lottos: List<Lotto>, private val winningNumbers: 
 
     init {
         checkMatches()
+        printResult()
     }
 
     private fun checkMatches() {
@@ -28,5 +29,22 @@ class LottoResult (private val lottos: List<Lotto>, private val winningNumbers: 
     }
     fun getMatchedCountsForTest(): Map<Int, Int> {
         return matchedCounts
+    }
+
+    private fun printResult() {
+        PrintText.printMessage("PrintWinningStatistics", 0)
+        for (rank in 1..5) {
+            val count = matchedCounts[rank]!!
+            val prizeAmount = prize[rank]!! * count
+            val matchedNumber = when(rank) {
+                1 -> 6
+                2 -> 5
+                else -> 8 - rank
+            }
+            when (rank) {
+                2 -> println("${matchedNumber}개 일치, 보너스 볼 일치 (${prize[rank]}원) - ${count}개")
+                else -> println("${matchedNumber}개 일치 (${prize[rank]}원) - ${count}개")
+            }
+        }
     }
 }

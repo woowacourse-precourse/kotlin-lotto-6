@@ -13,22 +13,12 @@ class LottoGame() {
         val lottoResult = LottoResult(lottos, winningNumbers, bonusNumber)
     }
 
-    private fun printMessage(type: String, count: Int) {
-        when(type) {
-            "GetPurchaseAmount" -> println("구입 금액을 입력해 주세요.")
-            "PrintCountNumber" -> println("${count}개를 구매했습니다.")
-            "GetWinningNumber" -> println("당첨 번호를 입력해 주세요.")
-            "GetBonusNumber" -> println("보너스 번호를 입력해 주세요.")
-            "PrintWinningStatistics" -> println("당첨 통계")
-            else -> println("ERROR")
-        }
-    }
     private fun purchaseSequence(): Int{
-        printMessage("GetPurchaseAmount", 0)
+        PrintText.printMessage("GetPurchaseAmount", 0)
         val purchaseAmount = getPurchaseAmount()
         InputValidator.validatePurchaseAmount(purchaseAmount)
         val lottoCount = purchaseAmount.toInt() / 1000
-        printMessage("PrintCountNumber", lottoCount)
+        PrintText.printMessage("PrintCountNumber", lottoCount)
         return lottoCount
     }
 
@@ -45,7 +35,7 @@ class LottoGame() {
     }
 
     private fun getWinnningNumberSequence(): List<Int> {
-        printMessage("GetWinningNumber", 0)
+        PrintText.printMessage("GetWinningNumber", 0)
         val winningNumber = getWinnningNumber()
         return winningNumber.split(",").map{ it.trim().toInt() }
     }
@@ -56,7 +46,7 @@ class LottoGame() {
     }
 
     private fun getBonusNumberSequence(): Int {
-        printMessage("GetBonusNumber", 0)
+        PrintText.printMessage("GetBonusNumber", 0)
         return getBonusNumber().toInt()
     }
     private fun getBonusNumber() : String {

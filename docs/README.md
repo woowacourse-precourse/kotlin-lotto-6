@@ -35,6 +35,7 @@
    - [x] InputValidator.kt - 입력에 대한 유효성 검사 클래스
    - [x] LottoResult.kt 당첨 여부 및 출력
      - [x] 로또 번호 비교 및 등수 산정
+     - [x] 당첨 내역 계산
      - [ ] 수익률 계산
      - [ ] 당첨 내역 및 수익률 출력
 
@@ -72,3 +73,4 @@
    - mock, fake 등
      gof
    - factory method 등 학습
+   - enum class를 통한 상수 선언
