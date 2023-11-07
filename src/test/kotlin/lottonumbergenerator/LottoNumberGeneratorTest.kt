@@ -2,9 +2,9 @@ package lottonumbergenerator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.ValueSource
 
 class LottoNumberGeneratorTest {
 
@@ -31,14 +31,14 @@ class LottoNumberGeneratorTest {
         assertThat(result).hasSize(output)
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [1, 3, 5])
-    fun `발행한 로또가 오름차순으로 정렬되는지 확인`(input: Int) {
-        lottoNumberGenerator.generateLotto(input)
+    @RepeatedTest(100)
+    fun `발행한 로또가 오름차순으로 정렬되는지 확인`() {
+        lottoNumberGenerator.generateLotto(1)
 
         val result = lottoNumberGenerator.lottoes
 
-        assertThat(result)
-            .satisfies { assertThat(it).isSorted }
+        for (index in result.indices) {
+            assertThat(result[index].lottoNumber).isSorted
+        }
     }
 }
