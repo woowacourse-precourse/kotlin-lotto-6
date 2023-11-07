@@ -39,5 +39,23 @@ object Result {
         return results
     }
 
+    fun calculateProfitRate(results: Map<String, Int>): Double {
+        val totalPrize = calculateTotalPrize(results)
+        val totalPurchaseAmount = calculateTotalPurchaseAmount(results)
+        val profitRate = (totalPrize / totalPurchaseAmount) * 100
+        return profitRate
+    }
+
+    fun calculateTotalPrize(results: Map<String, Int>): Double {
+        return results.entries.sumByDouble { entry ->
+            val prize = Prize.getPrize(entry.key)
+            val prizeWithoutCommas = prize.replace(",", "").toDouble()
+            entry.value * prizeWithoutCommas
+        }
+    }
+
+    fun calculateTotalPurchaseAmount(results: Map<String, Int>): Int {
+        return results.values.sum() * 1000
+    }
 
 }

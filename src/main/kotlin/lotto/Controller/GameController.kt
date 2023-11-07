@@ -13,6 +13,7 @@ class GameController {
         val winningNumbers = readWinningNumbers()
         val bonusNumber = readBonusNumber()
         val result = Result.calculateResults(lottoTickets, winningNumbers, bonusNumber)
+        val profitRate = Result.calculateProfitRate(result)
 
     }
 
