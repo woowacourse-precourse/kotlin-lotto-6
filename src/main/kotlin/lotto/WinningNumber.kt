@@ -8,6 +8,7 @@ class WinningNumber(private val numbers: String) {
         require(checkNumbersOfCommas()) { "$ERROR $PLEASE_SEPARATE_NUMBERS_COMMAS" }
         require(isNumberOrNull()) { "$ERROR $INPUT_ONLY_NUMBER" }
         require(numbersOutOfRange()) { "$ERROR $WINNING_NUMBER_RANGE" }
+        require(checkDuplicateNumbers()) { "$ERROR $WINNING_NUMBER_CANNOT_DUPLICATE" }
     }
 
     private fun checkNumbersOfCommas(): Boolean {
@@ -22,11 +23,16 @@ class WinningNumber(private val numbers: String) {
         return winningNumbers.all { it.toInt() in WINNING_MIN_NUMBER..WINNING_MAX_NUMBER }
     }
 
+    private fun checkDuplicateNumbers(): Boolean {
+        return winningNumbers.distinct().size == winningNumbers.size
+    }
+
     companion object {
         const val ERROR = "[ERROR]"
         const val PLEASE_SEPARATE_NUMBERS_COMMAS = "당첨 번호는 쉼표(,) 기준으로 구분해주세요."
         const val INPUT_ONLY_NUMBER = "당첨 번호는 숫자만 입력 가능합니다."
         const val WINNING_NUMBER_RANGE = "당첨 번호는 1부터 45사이의 숫자여야 합니다."
+        const val WINNING_NUMBER_CANNOT_DUPLICATE = "당첨 번호는 중복될 수 없습니다."
         const val WINNING_MIN_NUMBER = 1
         const val WINNING_MAX_NUMBER = 45
     }
