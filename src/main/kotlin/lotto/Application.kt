@@ -1,23 +1,26 @@
 package lotto
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
-
 fun main() {
-//    println("구입금액을 입력해 주세요.")
-//
-//    val purchaseAmount = getPurchaseAmount()
-//
-//    val lottoNumbers = generateLottoNumbers(purchaseAmount)
-//
-//    println("${lottoNumbers.size}개를 구매했습니다.")
-//    for (lottoNumber in lottoNumbers) {
-//        println(lottoNumber)
-//    }
-//    println("당첨 번호를 입력해 주세요.")
-//    val winningNumbers=getWinningNumbers()
+    println("구입금액을 입력해 주세요.")
+
+    val purchaseAmount = getPurchaseAmount()
+
+    val lottoNumbers = generateLottoNumbers(purchaseAmount)
+
+    println("${lottoNumbers.size}개를 구매했습니다.")
+    for (lottoNumber in lottoNumbers) {
+        println(lottoNumber)
+    }
+    println("당첨 번호를 입력해 주세요.")
+    val winningNumbers=getWinningNumbers()
 
     println("보너스 번호를 입력해 주세요.")
     val bonusNumber=getBonusNumber()
+
+    val results=calculateResults(lottoNumbers,winningNumbers,bonusNumber)
+
 }
 
 fun generateLottoNumbers(purchaseAmount: Int): List<Lotto> {
@@ -41,7 +44,7 @@ fun getPurchaseAmount(): Int {
 fun inputPurchase(amount: Int): Int {
     var mutableAmount = amount
     try {
-        mutableAmount = readLine()?.toInt()!!
+        mutableAmount = Console.readLine().toInt()!!
     } catch (e: NumberFormatException) {
         println("[ERROR] 잘못된 입력 형식입니다.")
         return amount
@@ -65,7 +68,7 @@ fun getWinningNumbers(): List<Int> {
 fun inputWinningNumbers(): List<Int> {
     try {
         var numbers: List<Int>
-        val input = readLine()
+        val input = Console.readLine()
         numbers = input?.split(",")!!.mapNotNull { it.trim().toIntOrNull() }
         validateLottoNumbers(numbers)
         return numbers // 유효한 입력이 들어왔으면 루프를 종료
@@ -98,7 +101,7 @@ fun getBonusNumber(): Int {
 fun inputBonusNumbers(): Int{
     var result = 0
     try {
-        result = readLine()!!.toInt()
+        result = Console.readLine().toInt()
         validateBonusNumbers(result)
         return result
     } catch (e: NumberFormatException) {
@@ -112,4 +115,38 @@ fun validateBonusNumbers(number: Int){
     if (number < 1 || number > 45) {
         throw IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.")
     }
+}
+
+fun calculateResults(lottoNumbers: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): MutableMap<String, Int> {
+    var results = mutableMapOf(
+        "6개 일치" to 0,
+        "5개 일치, 보너스 볼 일치" to 0,
+        "5개 일치" to 0,
+        "4개 일치" to 0,
+        "3개 일치" to 0
+    )
+
+    for (lotto in lottoNumbers) {
+        val numbers = lotto.getNumbers()
+        results=matchingNumber(results,numbers,winningNumbers,bonusNumber)
+    }
+
+    return results
+}
+
+fun matchingNumber(results: MutableMap<String, Int>, numbers: List<Int>, winningNumbers: List<Int>, bonusNumber: Int): MutableMap<String, Int> {
+    val matchingNumbers = numbers.intersect(winningNumbers).toList()
+    val bonusMatch = if (numbers.contains(bonusNumber)) 1 else 0
+
+    when (matchingNumbers.size) {
+        6 -> results["6개 일치"] = results["6개 일치"]!! + 1
+        5 -> results["5개 일치"] = results["5개 일치"]!! + 1
+        4 -> results["4개 일치"] = results["4개 일치"]!! + 1
+        3 -> results["3개 일치"] = results["3개 일치"]!! + 1
+    }
+
+    if (matchingNumbers.size == 5 && bonusMatch == 1) {
+        results["5개 일치, 보너스 볼 일치"] = results["5개 일치, 보너스 볼 일치"]!! + 1
+    }
+    return results
 }
