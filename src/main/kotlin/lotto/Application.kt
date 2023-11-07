@@ -45,8 +45,8 @@ fun lottoNumberPrint(lottoCount: Int, lottoList: List<List<Int>>) {
 fun lottoNumberChoose(): List<Int> {
     println("당첨 번호를 입력해 주세요.")
     val lottoNumber = readLine()!!.split(",").map { it.toInt() }
-    if (lottoNumber.size != 6) {
-        throw IllegalArgumentException("6개의 번호를 입력해 주세요.")
+    if (lottoNumber.size != 6 || lottoNumber.toSet().size != 6) {
+        throw IllegalArgumentException("중복되는 번호가 있습니다.")
     }
     return lottoNumber
 }
