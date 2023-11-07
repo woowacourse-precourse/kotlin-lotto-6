@@ -10,6 +10,7 @@ class LottoTicket {
 
     init {
         ticket = generateRandomNumbers()
+        ticket = ticket.sorted()
     }
 
     private fun generateRandomNumbers(): List<Int> {
