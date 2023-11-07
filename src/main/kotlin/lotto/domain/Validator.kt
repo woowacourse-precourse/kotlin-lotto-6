@@ -28,21 +28,21 @@ class Validator {
     }
 
     private fun validateLottoNumEmpty(lottoNum: List<String>) {
-        require(lottoNum.isNotEmpty())
+        require(lottoNum.isNotEmpty()) {"비어있음"}
     }
 
     private fun validateLottoNumCount(lottoNum: List<String>) {
-        require(lottoNum.size == 6)
+        require(lottoNum.size == 6) {"6자리 아님"}
     }
 
     private fun validateLottoNumRange(lottoNum: List<String>) {
         for (element in lottoNum) {
-            require(element.toInt() in 1..45)
+            require(element.toInt() in 1..45) {"범위 밖임"}
         }
     }
 
     private fun validateLottoNumDuplicate(lottoNum: List<String>) {
-        require(lottoNum.size != lottoNum.distinct().count())
+        require(lottoNum.size == lottoNum.distinct().count()) {"중복됨"}
     }
 
     fun validateBonusNum(bonusNum: String, lottoNum: List<String>) {
@@ -52,7 +52,7 @@ class Validator {
     }
 
     private fun validateBonusNumIsBlank(bonusNum: String) {
-        require(bonusNum.isBlank())
+        require(bonusNum.isNotBlank())
     }
 
     private fun validateBonusNumRange(bonusNum: String) {
@@ -60,6 +60,6 @@ class Validator {
     }
 
     private fun validateBonusNumDuplicateLottoNum(bonusNum: String, lottoNum: List<String>) {
-        require(bonusNum.toInt() != lottoNum.distinct().count())
+        require(!lottoNum.contains(bonusNum))
     }
 }
