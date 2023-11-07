@@ -35,6 +35,13 @@ class ExceptionManagerTest {
     }
 
     @Test
+    fun `당첨 번호가 1~45가 아니면 에러가 발생한다`() {
+        org.junit.jupiter.api.assertThrows<IllegalArgumentException> {
+            exceptionManager.winningNum("46")
+        }
+    }
+
+    @Test
     fun `보너스 번호가 숫자가 아니면 에러가 발생한다`() {
         org.junit.jupiter.api.assertThrows<IllegalArgumentException> {
             exceptionManager.bonusNum("abc")
