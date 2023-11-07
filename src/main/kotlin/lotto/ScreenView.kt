@@ -16,13 +16,13 @@ class ScreenView {
         return money/1000
     }
 
-    fun inputLotto(): MutableList<Int> {
+    fun inputLotto(): List<Int> {
         println(inputLottoMessage)
         val numbers = Console.readLine()
         println()
         val inputString = numbers?.split(",")?.toMutableList()
         val inputInt = convertStringsToInts(inputString)
-        return inputInt
+        return inputInt.toList()
     }
 
     fun inputBonusNum(): Int {
@@ -45,5 +45,16 @@ class ScreenView {
             }
         }
         return intList
+    }
+
+    fun printWinningStatistics(result: LottoResult) {
+        println("당첨 통계")
+        println("---")
+        println("3개 일치 (5,000원) - ${result.win[0]}개")
+        println("4개 일치 (50,000원) - ${result.win[1]}개")
+        println("5개 일치 (1,500,000원) - ${result.win[2]}개")
+        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${result.win[3]}개")
+        println("6개 일치 (2,000,000,000원) - ${result.win[4]}개")
+        println("총 수익률은 ${result.rateOfReturn}%입니다.")
     }
 }
