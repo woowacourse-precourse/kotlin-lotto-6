@@ -8,4 +8,5 @@ object Constants {
     const val RESULT_PURCHASED_LOTTIES = "개를 구매했습니다."
 
     const val LOTTO_PRICE = 1000
+    const val LOTTO_SIZE = 6
 }

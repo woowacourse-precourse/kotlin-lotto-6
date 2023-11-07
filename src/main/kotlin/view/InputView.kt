@@ -14,6 +14,7 @@ import constants.ExceptionMessages.EXCEPTION_UNEXPECTED
 import lotto.constants.Constants.INPUT_BONUS_NUMBER
 import lotto.constants.Constants.INPUT_PURCHASE_AMOUNT
 import lotto.constants.Constants.INPUT_WINNING_NUMBERS
+import lotto.constants.Constants.LOTTO_SIZE
 
 object InputView {
 
@@ -40,7 +41,7 @@ object InputView {
 
         userInput.toInt()
     } catch (e: IllegalArgumentException) {
-        printErrorMessage(e.message ?: EXCEPTION_UNEXPECTED)
+        printErrorMessage(e.message)
         getUserAmount()
     }
 
@@ -60,7 +61,7 @@ object InputView {
         printStepMessage()
         getWinningNumbersList(numbers)
     } catch (e: IllegalArgumentException) {
-        printErrorMessage(e.message ?: EXCEPTION_UNEXPECTED)
+        printErrorMessage(e.message)
         getWinningNumbers()
     }
 
@@ -83,7 +84,7 @@ object InputView {
 
 
     private fun validateWinningNumbersList(winningNumbers: List<Int>) {
-        if (winningNumbers.size != 6) throw IllegalArgumentException(EXCEPTION_WINNING_NUMBERS_SIZE)
+        if (winningNumbers.size != LOTTO_SIZE) throw IllegalArgumentException(EXCEPTION_WINNING_NUMBERS_SIZE)
         if (winningNumbers.size != winningNumbers.distinct().count()) {
             throw IllegalArgumentException(EXCEPTION_WINNING_NUMBERS_DUPLICATED)
         }
@@ -94,10 +95,11 @@ object InputView {
 
     fun getBonusNumber(): Int = try {
         val bonus = Console.readLine()
+        printStepMessage()
         val bonusNum = getValidatedBonusNumber(bonus)
         bonusNum
     } catch (e: IllegalArgumentException) {
-        printErrorMessage(e.message ?: EXCEPTION_UNEXPECTED)
+        printErrorMessage(e.message)
         getBonusNumber()
     }
 
@@ -116,7 +118,7 @@ object InputView {
         } ?: println()
     }
 
-    private fun printErrorMessage(message: String) {
+    private fun printErrorMessage(message: String? = EXCEPTION_UNEXPECTED) {
         println(message)
     }
 }
