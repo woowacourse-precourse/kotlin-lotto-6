@@ -9,13 +9,12 @@ class LottoResult() {
             "FIRST" to 0,
             "SECOND" to 0,
             "THIRD" to 0,
-            "FORTH" to 0,
+            "FOURTH" to 0,
             "FIFTH" to 0,
-            "NOTHING" to 0
+            "NOTHING" to 0,
         )
-        for (ticket in userTickets) {
+        for (ticket in userTickets)
             result[ticket.checkLotto(winningNumbers)] = result[ticket.checkLotto(winningNumbers)]!! + 1
-        }
         return result
     }
 

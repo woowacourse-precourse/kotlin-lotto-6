@@ -17,20 +17,5 @@ class WinningNumbers(private val winningNumbers: List<Int>, private val bonusNum
     fun bonus(): Int {
         return bonusNumber
     }
-    fun checkLotto(winning: WinningNumbers): String {
-        var count = 0
-        var bonus = false
-        for (num in numbers()) {
-            if (num in winning.numbers()) {
-                count += 1
-            }
-            if (num == winning.bonus()) {
-                bonus = true
-            }
-        }
-        return Reward.getRank(count, bonus)
-    }
+
 }
-
-
-

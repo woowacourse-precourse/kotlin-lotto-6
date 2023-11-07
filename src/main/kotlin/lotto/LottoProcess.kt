@@ -6,7 +6,10 @@ class LottoProcess {
     fun start() {
         val userCost = payLottery()
         val userTicket = getLottoTickets(userCost)
+        printLottoTickets(userTicket)
         val winningNumbers = getWinningNumbers()
+        val result = getLottoResult(winningNumbers, userTicket)
+        printResult(result, userCost)
     }
 
     private fun payLottery(): Int {
@@ -34,6 +37,17 @@ class LottoProcess {
         val inputBonus = Console.readLine()
         val bonusNumber = validateNumberInput(inputBonus)
         return WinningNumbers(winningNumbers, bonusNumber)
+    }
+
+    private fun getLottoResult(
+        winningNumbers: WinningNumbers,
+        userTickets: List<Lotto>
+    ): Map<String, Int> {
+        return LottoResult().getResult(winningNumbers, userTickets)
+    }
+
+    private fun printResult(result: Map<String, Int>, userCost: Int) {
+        LottoResult().printResult(result, userCost)
     }
 
     private fun validatePayment(userPayment: String): String {
