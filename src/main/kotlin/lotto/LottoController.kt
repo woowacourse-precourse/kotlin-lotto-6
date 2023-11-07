@@ -36,10 +36,6 @@ class LottoController(private val view: ScreenView) {
         return count
     }
 
-    fun isNumRepeated(numbers: List<Int>): Boolean {
-        return numbers.size != numbers.distinct().count();
-    }
-
     fun countWinningNums(lottos: Lottos, answer: List<Int>, bonusNum: Int, result: LottoResult){
         lottos.lottos.forEach{
             var count = countEqualNums(answer, it.getNumbers())

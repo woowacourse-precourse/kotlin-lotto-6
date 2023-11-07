@@ -15,9 +15,6 @@ class LottoGame {
 
         // 당첨 번호를 입력 받는다.
         val answerLotto = view.inputLotto()
-        if (controller.isNumRepeated(answerLotto)) {
-            throw IllegalArgumentException("중복되는 숫자가 존재합니다.")
-        }
 
         // 보너스 번호를 입력 받는다.
         val bonusNum = view.inputBonusNum()
