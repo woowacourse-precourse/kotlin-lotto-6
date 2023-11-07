@@ -1,7 +1,7 @@
 package lotto
 
-import lotto.domain.Lotto
-import lotto.domain.LottoWallet
+import lotto.domain.lotto.Lotto
+import lotto.domain.lotto.LottoWallet
 import lotto.domain.Purchaser
 import lotto.domain.WinningDetails
 import lotto.domain.WinningLotto

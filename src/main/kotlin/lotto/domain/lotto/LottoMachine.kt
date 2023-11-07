@@ -1,4 +1,4 @@
-package lotto.domain
+package lotto.domain.lotto
 
 object LottoMachine {
     fun buyLotto(lottoCount: Int): LottoWallet {

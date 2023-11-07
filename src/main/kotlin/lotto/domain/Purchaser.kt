@@ -1,10 +1,12 @@
 package lotto.domain
 
+import lotto.domain.lotto.LottoMachine
+import lotto.domain.lotto.LottoWallet
 import lotto.util.Error
 import lotto.util.LOTTO_PRICE
 
 class Purchaser(money: Int) {
-    val lottoCount = money / LOTTO_PRICE
+    private val lottoCount = money / LOTTO_PRICE
     var lottoWallet: LottoWallet
         private set
 

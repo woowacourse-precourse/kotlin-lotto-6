@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import lotto.util.Error
 
 object InputManager {
-    private val SEPERATOR = ","
+    private const val SEPERATOR = ","
     fun getPurchaseInput(): Int {
         OutputManager.printInputPurchaseAmount()
         return runCatching {

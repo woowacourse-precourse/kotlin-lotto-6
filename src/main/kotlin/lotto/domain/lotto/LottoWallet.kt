@@ -1,5 +1,6 @@
-package lotto.domain
+package lotto.domain.lotto
 
+import lotto.domain.WinningLotto
 import lotto.view.OutputManager.PURCHASED_LOTTO_AMOUNT_MSG
 
 class LottoWallet(private val lotteries: List<Lotto>) {

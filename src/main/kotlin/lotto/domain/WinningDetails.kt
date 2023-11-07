@@ -1,5 +1,7 @@
 package lotto.domain
 
+import lotto.domain.lotto.LottoResult
+import lotto.domain.lotto.LottoWallet
 import lotto.util.LOTTO_PRICE
 
 class WinningDetails(winningLotto: WinningLotto, lottoWallet: LottoWallet) {
