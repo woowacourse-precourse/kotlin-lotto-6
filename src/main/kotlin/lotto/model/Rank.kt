@@ -11,12 +11,10 @@ enum class Rank(val prize: Money, val matchingCount: Int) {
 
     companion object {
         fun of(matchingCount: Int, isMatchedBonus: Boolean): Rank? =
-            when (matchingCount) {
-                6 -> First
-                5 -> if (isMatchedBonus) Second else Third
-                4 -> Fourth
-                3 -> Fifth
-                else -> null
+            if (matchingCount == Second.matchingCount) {
+                if (isMatchedBonus) Second else Third
+            } else {
+                Rank.entries.find { rank -> rank.matchingCount == matchingCount }
             }
     }
 }
