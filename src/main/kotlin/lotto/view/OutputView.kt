@@ -1,11 +1,11 @@
 package lotto.view
 
+import lotto.controller.StringManager
 import lotto.model.Lotto
 import lotto.model.Prize
 import lotto.utils.Messages
 import lotto.utils.Messages.DIVIDER
 import lotto.utils.Messages.WINNING_STATISTICS_MESSAGE
-import lotto.controller.StringManager
 
 object OutputView {
     private val stringConverter = StringManager()
@@ -40,9 +40,7 @@ object OutputView {
         Prize.entries.forEach {
             println("${it.message} (${stringConverter.formatNumberWithComma(it.prizeAmount)}원) - ${results[it]}개")
         }
-
     }
-
 
     fun printProfitPercentage(profitPercentage: Double) {
         println(stringConverter.formatPercentage(profitPercentage))
