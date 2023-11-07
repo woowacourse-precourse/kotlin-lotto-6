@@ -51,7 +51,7 @@ fun buyTickets(): Pair<List<Lotto>, Int> {
 //로또 구매
 fun getWinningNumbersAndBonus(): Pair<List<Int>, Int> {
     val winningNumbers = getValidWinningNumbers()
-    val bonusNumber = getValidBonusNumber()
+    val bonusNumber = getValidBonusNumber(winningNumbers)
     return winningNumbers to bonusNumber
 }
 //당첨번호 및 보너스 번호 확인
@@ -130,13 +130,16 @@ fun inputBonusNumber(): String {
     return Console.readLine()
 }
 //보너스 번호 입력 받기
-fun getValidBonusNumber(): Int {
+fun getValidBonusNumber(winningNumbers: List<Int>): Int {
     while (true) {
         val input = inputBonusNumber()
         try {
             val bonusNumber = input.toInt()
             if (bonusNumber !in 1..45) {
                 throw IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자로 입력해야 합니다.")
+            }
+            if (bonusNumber in winningNumbers) {
+                throw IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 겹칠 수 없습니다.")
             }
             return bonusNumber
         } catch (e: NumberFormatException) {
