@@ -5,14 +5,14 @@ import camp.nextstep.edu.missionutils.Console
 class UserInput() {
     private val userInputValidator = UserInputValidator()
 
-    fun purchasedAmountInput(): String {
+    fun purchasedAmountInput(): Int {
         while(true) {
             println(LottoGameMessage.PURCHASE_AMOUNT_INPUT)
             val userInput = Console.readLine()
             try {
                 userInputValidator.checkNumber(userInput)
                 userInputValidator.checkDivideBy1000(userInput)
-                return userInput
+                return userInput.toInt()
             }
             catch (e: IllegalArgumentException) {
                 println(e.message)
@@ -20,7 +20,7 @@ class UserInput() {
         }
     }
 
-    fun winningPriceInput(): List<String> {
+    fun winningPriceInput(): List<Int> {
         while (true) {
             println(LottoGameMessage.WINNING_NUMBER_INPUT)
             val userInput = Console.readLine()
@@ -29,15 +29,14 @@ class UserInput() {
                 userInputValidator.checkNumberListSize(numberList)
                 userInputValidator.checkNumberInList(numberList)
                 userInputValidator.checkDuplicatedNumberInList(numberList)
-                return numberList
-            }
-            catch (e: IllegalArgumentException) {
+                return numberList.map { it.toInt() }
+            } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
     }
 
-    fun bonusNumberInput(numberList: List<String>): String {
+    fun bonusNumberInput(numberList: List<String>): Int {
         while(true) {
             println(LottoGameMessage.BONUS_NUMBER_INPUT)
             val userInput = Console.readLine()
@@ -45,7 +44,7 @@ class UserInput() {
                 userInputValidator.checkNumber(userInput)
                 userInputValidator.checkNumberInRange(userInput)
                 userInputValidator.checkDuplicatedNumber(numberList, userInput)
-                return userInput
+                return userInput.toInt()
             }
             catch (e: IllegalArgumentException) {
                 println(e.message)
