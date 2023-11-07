@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import lotto.util.Error
 
 object InputManager {
-    private const val SEPERATOR = ","
+    private const val SEPARATOR = ","
     fun getPurchaseInput(): Int {
         OutputManager.printInputPurchaseAmount()
         return runCatching {
@@ -18,11 +18,10 @@ object InputManager {
     fun getWinningNumber(): List<Int> {
         OutputManager.printInputWinningNum()
         return runCatching {
-            Console.readLine().split(SEPERATOR)
+            Console.readLine()
+                .split(SEPARATOR)
                 .map { number ->
-                    requireNotNull(
-                        number.trim().toIntOrNull()
-                    ) { Error.NotNumber.message }
+                    requireNotNull(number.trim().toIntOrNull()) { Error.NotNumber.message }
                 }
         }.getOrElse {
             println(it.message)
@@ -33,13 +32,10 @@ object InputManager {
     fun getBonusNumber(): Int {
         OutputManager.printInputBonusNum()
         return runCatching {
-            requireNotNull(
-                Console.readLine().toIntOrNull()
-            ) { Error.NotNumber.message }
+            requireNotNull(Console.readLine().toIntOrNull()) { Error.NotNumber.message }
+        }.getOrElse {
+            println(it.message)
+            getBonusNumber()
         }
-            .getOrElse {
-                println(it.message)
-                getBonusNumber()
-            }
     }
 }
