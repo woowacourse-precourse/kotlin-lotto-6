@@ -11,7 +11,7 @@ fun getBonusNumber(): Int {
     println("보너스 번호를 입력해 주세요.")
     val inputBonusNumber = Console.readLine().toInt()
     validateBonusNumber(inputBonusNumber)
-    return inputBonusNumber.
+    return inputBonusNumber
 }
 fun validateWinningNumber(inputWinningNumber: String):List<String> {
     if (inputWinningNumber.contains(",").not()) throw IllegalArgumentException("[Error] 잘못된 입력입니다.")
