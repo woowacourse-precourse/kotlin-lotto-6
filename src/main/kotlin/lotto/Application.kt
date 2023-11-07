@@ -1,6 +1,6 @@
 package lotto
 
 fun main() {
-    val presenter = Presenter()
-    presenter.execute()
+    val game = Game()
+    game.execute()
 }
