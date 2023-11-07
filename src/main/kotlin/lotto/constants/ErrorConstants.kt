@@ -8,6 +8,8 @@ object ErrorConstants {
     private const val ERROR_PREFIX = "[ERROR] "
 
     const val INPUT_ERROR_MESSAGE = "${ERROR_PREFIX}잘못된 입력값을 입력했습니다."
+    const val UNAVAILABLE_PURCHASE_AMOUNT_ERROR_MESSAGE = "${ERROR_PREFIX}로또 구입 금액은 1000원 이상이어야 합니다."
+    const val UNAVAILABLE_PURCHASE_AMOUNT_BY_THOUSAND_ERROR_MESSAGE = "${ERROR_PREFIX}로또 구입 금액은 1000원으로 나누어 떨어져야 합니다."
     const val DISTINCT_ERROR_MESSAGE = "${ERROR_PREFIX}중복된 이름이 존재합니다."
     const val RANGE_ERROR_MESSAGE = "${ERROR_PREFIX}${MIN_NUMBER}보다 작거나 ${MAX_NUMBER}보다 큰 수는 입력할 수 없습니다."
 }

@@ -3,6 +3,7 @@ package lotto.constants
 object GameConstants {
     const val MIN_NUMBER = 1
     const val MAX_NUMBER = 45
+    const val PURCHASE_UNIT = 1000
 
     const val MESSAGE_REQUEST_PURCHASE_AMOUNT = "구입금액을 입력해 주세요."
     const val MESSAGE_LOTTO_COUNT_PURCHASED = "개를 구매했습니다."

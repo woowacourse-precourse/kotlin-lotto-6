@@ -1,6 +1,6 @@
 package lotto
 
-import lotto.domain.LottoPurchaseAmount
+import lotto.domain.LottoPurchaseAmountParser
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -9,21 +9,21 @@ class LottoPurchaseAmountTest {
     @Test
     fun `금액에 음수값 입력 예외`() {
         assertThrows<IllegalArgumentException> {
-            LottoPurchaseAmount("-1000")
+            LottoPurchaseAmountParser.parse("-1000")
         }
     }
 
     @Test
     fun `금액에 공백 입력 예외`() {
         assertThrows<IllegalArgumentException> {
-            LottoPurchaseAmount(" ")
+            LottoPurchaseAmountParser.parse(" ")
         }
     }
 
     @Test
     fun `금액에 1000으로 나누어 떨어지지 않는 입력 예외`() {
         assertThrows<IllegalArgumentException> {
-            LottoPurchaseAmount("1001")
+            LottoPurchaseAmountParser.parse("1001")
         }
     }
 }
