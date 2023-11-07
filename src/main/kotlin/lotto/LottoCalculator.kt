@@ -28,12 +28,13 @@ class LottoCalculator {
         val dataList = calMatchCount(lottoList, winningList, bonusNumber)
         val winningRate = WinningRate()
         dataList.forEach {
+            println("${it.winningMatchCount} /// ${it.bonusNumber}")
             when {
-                it.winningMatchCount == 3 && it.bonusNumber == 0 -> winningRate.threeMatchedRate += 1
-                it.winningMatchCount == 4 && it.bonusNumber == 0 -> winningRate.fourMatchedRate += 1
-                it.winningMatchCount == 5 && it.bonusNumber == 0 -> winningRate.fiveMatchedRate += 1
-                it.winningMatchCount == 5 && it.bonusNumber == 1 -> winningRate.fiveAndBonusMatchedData += 1
-                it.winningMatchCount == 6 && it.bonusNumber == 0 -> winningRate.sixMatchedRate += 1
+                it.winningMatchCount == 3 && it.bonusNumber == 0 -> winningRate.threeMatchedCount += 1
+                it.winningMatchCount == 4 && it.bonusNumber == 0 -> winningRate.fourMatchedCount += 1
+                it.winningMatchCount == 5 && it.bonusNumber == 0 -> winningRate.fiveMatchedCount += 1
+                it.winningMatchCount == 5 && it.bonusNumber == 1 -> winningRate.fiveAndBonusMatchedCount += 1
+                it.winningMatchCount == 6 && it.bonusNumber == 0 -> winningRate.sixMatchedCount += 1
             }
         }
         return winningRate
@@ -41,11 +42,21 @@ class LottoCalculator {
 
     fun showWinningRate(winningRate: WinningRate) {
         println(LottoGameMessage.WINNING_RESULT)
-        println(LottoGameMessage.THREE_MATCHED.format(winningRate.threeMatchedRate))
-        println(LottoGameMessage.FOUR_MATCHED.format(winningRate.fourMatchedRate))
-        println(LottoGameMessage.FIVE_MATCHED.format(winningRate.fiveMatchedRate))
-        println(LottoGameMessage.FIVE_BONUS_MATCHED.format(winningRate.fiveAndBonusMatchedData))
-        println(LottoGameMessage.SIX_MATCHED.format(winningRate.sixMatchedRate))
+        println(LottoGameMessage.THREE_MATCHED.format(winningRate.threeMatchedCount))
+        println(LottoGameMessage.FOUR_MATCHED.format(winningRate.fourMatchedCount))
+        println(LottoGameMessage.FIVE_MATCHED.format(winningRate.fiveMatchedCount))
+        println(LottoGameMessage.FIVE_BONUS_MATCHED.format(winningRate.fiveAndBonusMatchedCount))
+        println(LottoGameMessage.SIX_MATCHED.format(winningRate.sixMatchedCount))
+    }
+
+    fun calProfitRate(winningRate: WinningRate, purchasedAmount: Int): Double {
+        var sum : Long = 0;
+        sum += LottoPrice.THREE_MATCHED.calculatePrice(winningRate.threeMatchedCount)
+        sum += LottoPrice.FOUR_MATCHED.calculatePrice(winningRate.fourMatchedCount)
+        sum += LottoPrice.FIVE_MATCHED.calculatePrice(winningRate.fiveMatchedCount)
+        sum += LottoPrice.FIVE_BONUS_MATCHED.calculatePrice(winningRate.fiveAndBonusMatchedCount)
+        sum += LottoPrice.SIX_MATCHED.calculatePrice(winningRate.sixMatchedCount)
+        return "%.2f".format(sum.toDouble() / purchasedAmount.toDouble() * 100).toDouble()
     }
 }
 
@@ -55,9 +66,9 @@ data class MatchedData(
 )
 
 data class WinningRate(
-    var threeMatchedRate: Int = 0,
-    var fourMatchedRate: Int = 0,
-    var fiveMatchedRate: Int = 0,
-    var fiveAndBonusMatchedData: Int = 0,
-    var sixMatchedRate: Int = 0
+    var threeMatchedCount: Int = 0,
+    var fourMatchedCount: Int = 0,
+    var fiveMatchedCount: Int = 0,
+    var fiveAndBonusMatchedCount: Int = 0,
+    var sixMatchedCount: Int = 0
 )
