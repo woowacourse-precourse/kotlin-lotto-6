@@ -66,8 +66,9 @@
   - [x] 당첨 번호 입력값
   - [x] 보너스 번호 입력값
 
-- [x] 포매터 Formatter
+- [x] 계산 도구 MathHelper
   - [x] 소수점 둘째 자리 반올림
+  - [x] 수익률 계산기
 
 `presentation`
 - [x] 구매 PurchaseScreen
@@ -86,6 +87,8 @@
 - [x] 당첨 통계 및 수익률 WinningResultScreen
   - [x] 당첨 통계 출력
   - [x] 총 수익률 출력
+
+- [x] 에러 문구 출력 ErrorScreen
 
 ## 4. 명확히 기재되지 않은 내용
 1. 로또 게임의 모든 규칙은 [kotlin-lotto-6](https://github.com/woowacourse-precourse/kotlin-lotto-6)을 따른다.
