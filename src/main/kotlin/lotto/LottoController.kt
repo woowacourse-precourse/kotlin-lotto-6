@@ -36,7 +36,6 @@ class LottoController(private val lottoView: LottoView, private val lotto: Lotto
         return winnings
     }
 
-
     private fun formatRankString(rank: LottoRank, count: Int, prize: Int): String {
         return when {
             rank == LottoRank.SECOND && count >= 0 -> {
@@ -49,9 +48,8 @@ class LottoController(private val lottoView: LottoView, private val lotto: Lotto
         }
     }
 
-    private fun displayWinningStatistics(winnings: Map<LottoRank, Int>, purchaseAmount: Int) {
-        println("\n당첨 통계")
-        println("---")
+    private fun winningStatistics(winnings: Map<LottoRank, Int>, purchaseAmount: Int) {
+        lottoView.displayWinningStatistics()
         val sortedWinnings = winnings.entries.sortedByDescending { it.key.matchCount }
         for (rank in LottoRank.values()) {
             val count = sortedWinnings.find { it.key == rank }?.value ?: 0
@@ -73,7 +71,7 @@ class LottoController(private val lottoView: LottoView, private val lotto: Lotto
         val (winningNumbers, bonusNumber) = getWinningNumbersAndBonus()
         val matchCounts = compareTicketsWithWinningNumbers(lottoTickets, winningNumbers, bonusNumber)
         val winnings = calculateWinnings(matchCounts)
-        displayWinningStatistics(winnings, purchaseAmount)
+        winningStatistics(winnings, purchaseAmount)
     }
 
 

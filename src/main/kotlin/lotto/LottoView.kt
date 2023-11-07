@@ -48,4 +48,9 @@ class LottoView {
         }
     }
 
+    fun displayWinningStatistics(){
+        println("\n당첨 통계")
+        println("---")
+    }
+
 }
