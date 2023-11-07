@@ -21,4 +21,10 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `숫자가 1이나 45 사이에 있지 않습니다`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(0, 2, 3, 4, 5, 46))
+        }
+    }
 }
