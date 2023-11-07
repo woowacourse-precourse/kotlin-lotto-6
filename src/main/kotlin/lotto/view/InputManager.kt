@@ -17,9 +17,13 @@ object InputManager {
 
     fun getWinningNumber(): List<Int> {
         OutputManager.printInputWinningNum()
-        return kotlin.runCatching {
+        return runCatching {
             Console.readLine().split(SEPERATOR)
-                .map { number -> requireNotNull(number.toIntOrNull()) }
+                .map { number ->
+                    requireNotNull(
+                        number.trim().toIntOrNull()
+                    ) { Error.NotNumber.message }
+                }
         }.getOrElse {
             println(it.message)
             getWinningNumber()
