@@ -5,6 +5,10 @@ import lotto.domain.Lotto
 import lotto.ui.LottoScreen
 
 fun main() {
-    val lotto = LottoScreen()
+
+    val lottoScreen = LottoScreen()
+    lottoScreen.printLottoNumsList()
+
+
 
 }

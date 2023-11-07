@@ -1,5 +1,5 @@
 package lotto.data
 
-enum class LottoNum {
+enum class WinningCounts {
     THREE,FOUR,FIVE,SIX,SEVEN
 }
