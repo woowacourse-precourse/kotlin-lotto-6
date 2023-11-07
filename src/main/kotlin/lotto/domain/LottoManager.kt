@@ -11,10 +11,10 @@ class LottoManager {
 
     fun setWinningNumbers(input: String) {
         validateWinningNumbersInput(input)
-        winningNumbers = input.split(",")
+        winningNumbers = input
+            .split(",")
             .map {
-                it.trim()
-                    .toInt()
+                it.trim().toInt()
             }
     }
 

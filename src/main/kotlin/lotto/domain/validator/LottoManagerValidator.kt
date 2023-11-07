@@ -8,7 +8,8 @@ import lotto.domain.validator.InputValidator.validateStringListHasUniqueElements
 
 object LottoManagerValidator {
     fun validateWinningNumbersInput(input: String) {
-        val inputList = input.split(",")
+        val inputList = input
+            .split(",")
             .map { it.trim() }
 
         validateInputIsIntList(inputList)
