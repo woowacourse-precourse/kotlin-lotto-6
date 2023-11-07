@@ -2,7 +2,6 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
-import java.lang.Exception
 
 class LottoGame {
     private fun readBoughtAmount(): Int {
@@ -11,7 +10,7 @@ class LottoGame {
         while (true) {
             boughtAmount = Console.readLine()
             try {
-                require(boughtAmount.toInt() % 1000 == 0)
+                require(boughtAmount.toInt() % UnitAmount.unit.price == 0)
                 break
             } catch (ex: IllegalArgumentException) {
                 println("[ERROR] 정수가 아니거나 1000단위가 아닙니다.")
@@ -21,13 +20,13 @@ class LottoGame {
         val boughtAmountToInt = boughtAmount.toInt()
         print("\n")
         // 구입금액을 1000으로 나눈 나머지가 구입한 로또의 개수
-        return boughtAmountToInt / 1000
+        return boughtAmountToInt / UnitAmount.unit.price
     }
 
     private fun readWinningNumber(): List<Int> {
         println("당첨 번호를 입력해 주세요.")
         var winningNumbersToInt: List<Int>
-        while(true) {
+        while (true) {
             val winningNumbers = Console.readLine().split(',').toMutableList()
             try {
                 winningNumbersToInt = winningNumbers.map { it.toInt() }
@@ -48,7 +47,7 @@ class LottoGame {
     private fun readBonusNumber(winningNumbers: List<Int>): Int {
         println("보너스 번호를 입력해 주세요.")
         var bonusNumberToInt: Int
-        while(true) {
+        while (true) {
             val bonusNumber = Console.readLine()
             try {
                 bonusNumberToInt = bonusNumber.toInt()
@@ -70,8 +69,13 @@ class LottoGame {
         println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningMap[-1]}개")
         println("6개 일치 (2,000,000,000원) - ${winningMap[6]}개")
         val profitRate: Float =
-            (5000 * winningMap[3]!! + 50000 * winningMap[4]!! + 1500000 * winningMap[5]!!
-                    + 30000000 * winningMap[-1]!! + 2000000000 * winningMap[6]!!).toFloat() / (numberOfLottos * 1000)
+            (
+                    WinningAmounts.threeMatch.amounts * winningMap[3]!! +
+                            WinningAmounts.fourMatch.amounts * winningMap[4]!! +
+                            WinningAmounts.fiveMatch.amounts * winningMap[5]!! +
+                            WinningAmounts.fiveAndBonus.amounts * winningMap[-1]!! +
+                            WinningAmounts.sixMatch.amounts * winningMap[6]!!).toFloat() /
+                    (numberOfLottos * UnitAmount.unit.price)
         println(String.format("총 수익률은 %.1f%%입니다.", profitRate))
     }
 
