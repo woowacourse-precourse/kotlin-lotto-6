@@ -30,7 +30,7 @@ class LottoTest {
         // when
         val result = lotto.isContainLottoNumber(lottoNumer)
         // then
-        assertEquals(result, true)
+        assertEquals(true, result)
     }
 
     @Test
@@ -41,7 +41,7 @@ class LottoTest {
         // when
         val result = lotto.getLottoMatchCount(inputLotto)
         // then
-        assertEquals(result, 2)
+        assertEquals(2, result)
     }
 
     @Test
@@ -51,6 +51,6 @@ class LottoTest {
         // when
         val result = lotto.toString()
         // then
-        assertEquals(result, "[1, 7, 10, 12, 38, 43]")
+        assertEquals("[1, 7, 10, 12, 38, 43]", result)
     }
 }
