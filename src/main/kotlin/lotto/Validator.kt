@@ -34,7 +34,9 @@ class Validator {
             countsLottoNumbers(lottoNumbers)
             for (number in lottoNumbers) {
                 isNumberOverZero(number)
+                inCorrectRange(number.toInt())
             }
+            hasDuplicateNumbers(lottoNumbers)
             true
         } catch (e: IllegalArgumentException) {
             println("[ERROR] ${e}")
@@ -57,6 +59,16 @@ class Validator {
     fun inCorrectRange(lottoNumber: Int) {
         if (lottoNumber < 1 && lottoNumber > 45) {
             throw IllegalArgumentException("로또 번호는 1과 45 사이의 정수여야 합니다.")
+        }
+    }
+
+    fun hasDuplicateNumbers(lottoNumbers: List<String>) {
+        var validator = mutableListOf<Int>()
+        for (lotto in lottoNumbers) {
+            if (validator.contains(lotto.toInt())){
+                throw IllegalArgumentException("로또 번호는 중복되지 않아야 합니다.")
+            }
+            validator.add(lotto.toInt())
         }
     }
 }
