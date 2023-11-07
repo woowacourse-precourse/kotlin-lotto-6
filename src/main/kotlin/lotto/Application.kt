@@ -18,18 +18,13 @@ fun main() {
 
 fun getPurchaseAmount(): Int {
     while (true) {
-        try {
-            println("구입 금액을 입력해 주세요.")
-            val amount = Console.readLine().toInt()
-            if (amount % 1000 == 0) {
-                return amount
-            } else {
-                throw IllegalArgumentException("[ERROR] 1,000원 단위로 입력해주세요.")
-            }
-        } catch (e: NumberFormatException) {
-            println("[ERROR] 올바른 숫자를 입력해주세요.")
-        } catch (e: IllegalArgumentException) {
-            println(e.message)
+        println("구입 금액을 입력해 주세요.")
+        val amount = Console.readLine().toInt()
+        if (amount % 1000 == 0) {
+            return amount
+        }
+        else {
+            throw IllegalArgumentException("[ERROR] 1,000원 단위로 입력해주세요.")
         }
     }
 }
@@ -54,37 +49,26 @@ fun generateLotto(purchaseAmount: Int): List<Lotto> {
 
 fun getWinningNumbers(): List<Int> {
     while (true) {
-        try {
-            println("\n당첨 번호를 입력해 주세요.")
-            val input = Console.readLine()
-            val numbers = input.split(",").map { it.toInt() }
-            if (numbers.size == 6 && numbers.all { it in 1..45 }) {
-                return numbers
-            } else {
-                throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
-            }
-        } catch (e: NumberFormatException) {
-            println("[ERROR] 올바른 숫자를 입력해주세요.")
-        } catch (e: IllegalArgumentException) {
-            println(e.message)
+        println("\n당첨 번호를 입력해 주세요.")
+        val input = Console.readLine()
+        val numbers = input.split(",").map { it.toInt() }
+        if (numbers.size == 6 && numbers.all { it in 1..45 }) {
+            return numbers
+        } else {
+            throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
         }
     }
 }
 
 fun getBonusNumber(): Int {
     while (true) {
-        try {
-            println("\n보너스 번호를 입력해 주세요.")
-            val number = Console.readLine().toInt()
-            if (number in 1..45) {
-                return number
-            } else {
-                throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
-            }
-        } catch (e: NumberFormatException) {
-            println("[ERROR] 올바른 숫자를 입력해주세요.")
-        } catch (e: IllegalArgumentException) {
-            println(e.message)
+        println("\n보너스 번호를 입력해 주세요.")
+        val number = Console.readLine().toInt()
+        if (number in 1..45) {
+            return number
+        }
+        else {
+            throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
         }
     }
 }
