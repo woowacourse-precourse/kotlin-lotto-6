@@ -1,5 +1,14 @@
 package lotto
 
+import camp.nextstep.edu.missionutils.Console
+import lotto.controller.LottoController
+
 fun main() {
-    TODO("프로그램 구현")
+    val lottoController = LottoController()
+    try {
+        lottoController.startGame()
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+        lottoController.startGame()
+    }
 }
