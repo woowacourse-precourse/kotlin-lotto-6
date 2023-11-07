@@ -2,6 +2,14 @@ package lotto
 
 class LotteryGame {
 
+    enum class won(val count: Int) {
+        FIRST(0),
+        SECOND(0),
+        THIRD(0),
+        FOURTH(0),
+        FIFTH(0);
+    }
+
     init {
         println("구입금액을 입력해 주세요.")
     }
@@ -12,8 +20,12 @@ class LotteryGame {
 
         val tickets = makeTickets(count)
 
-        val winning_num = makeWinningNumber()
+        val win_num = makeWinningNumber()
         val bonus: Int = readLine()!!.toInt()
+
+        for (i in tickets) {
+
+        }
 
     }
 
@@ -37,9 +49,11 @@ class LotteryGame {
     private fun makeWinningNumber(): List<Int> {
         var win_input: List<String> = readLine()!!.split(",")
         val numbers = mutableListOf<Int>()
+
         for (i in 0..win_input.size - 1) {
             numbers.add(win_input[i].toInt())
         }
+
         return numbers.distinct().sorted()
     }
 

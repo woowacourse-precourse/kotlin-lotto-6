@@ -7,18 +7,25 @@ class Lotto(private val numbers: List<Int>) {
         println(numbers)
     }
 
-    public fun roundStart(bonus: Int, count: Int) {
-        for (i in 1..count) {
-            val user_num = NumberGenerator().numberGenerate()
-            println(user_num)
-            val rank = winningCheck(user_num)
+    public fun round(win_num: List<Int>, bonus: Int): Int {
+        val count = winningCheck(win_num)
+
+        if (count == 5 && numbers.contains(bonus)){
+            return 2
+        }
+
+        when (count) {
+            3 -> return 5
+            4 -> return 4
+            5 -> return 3
+            6 -> return 1
         }
     }
 
-    private fun winningCheck(user_num: List<Int>): Int {
+    private fun winningCheck(win_num: List<Int>): Int {
         var count: Int = 0
-        for (i in 0..user_num.size - 1) {
-            if (numbers.contains(user_num[i])) {
+        for (i in 0..win_num.size - 1) {
+            if (numbers.contains(win_num[i])) {
                 count++
             }
         }
