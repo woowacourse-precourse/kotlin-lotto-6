@@ -40,7 +40,7 @@ class LottoTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["q", "`", "ㅂ"])
+    @ValueSource(strings = ["q", "`", "ㅂ",""])
     fun `로또 번호가 숫자가 아니면 예외가 발생한다`(input: String) {
         assertThrows<IllegalArgumentException> {
             input.isDigit()
