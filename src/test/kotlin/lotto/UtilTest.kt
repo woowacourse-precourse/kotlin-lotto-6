@@ -14,4 +14,13 @@ class UtilTest {
 
         Assertions.assertThat(roundedNumber).isEqualTo(12.3)
     }
+
+    @Test
+    fun `정규식 테스트`() {
+        val string1 = "12345"
+        val string2 = "12345t"
+
+        Assertions.assertThat(Utils.containsNonDigits(string1)).isEqualTo(false)
+        Assertions.assertThat(Utils.containsNonDigits(string2)).isEqualTo(true)
+    }
 }
