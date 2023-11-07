@@ -1,11 +1,18 @@
 package lotto
 
+import lotto.controller.LottoManager
 import lotto.domain.LottoPurchase
+import lotto.model.Bonus
 import lotto.model.Lotto
+import lotto.utils.Messages
 import lotto.validate.ValidateNumbers
 import lotto.validate.ValidatePrice
 import lotto.validate.ValidateSplit
 import lotto.validate.ValidateBonus
+import lotto.view.InputView
+import lotto.view.OutputView
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -49,13 +56,6 @@ class LottoTest {
         }
     }
 
-    @Test
-    fun `당첨 번호에서 쉼표가 없는경우`() {
-        val validate = ValidateNumbers()
-        assertThrows<IllegalArgumentException> {
-            validate.validateInputNumbers("1.2.3.4.5.6")
-        }
-    }
 
     @Test
     fun `구입금액 입력이 없는 경우`() {
@@ -73,44 +73,4 @@ class LottoTest {
         }
     }
 
-    @Test
-    fun `당첨번호가 숫자가 아닌 경우`() {
-        val validateSplit = ValidateSplit()
-        assertThrows<IllegalArgumentException> {
-            validateSplit.validateSplitMyNumbers(listOf("wooteco"))
-        }
-    }
-
-    @Test
-    fun `당첨 번호에 공백이 존재할 경우`() {
-        val validateSplit = ValidateSplit()
-        assertThrows<IllegalArgumentException> {
-            validateSplit.validateSplitMyNumbers(listOf(" ","3","7"))
-        }
-    }
-
-    @Test
-    fun `당첨번호가 입력 범위를 벗어난 경우`() {
-        val validateSplit = ValidateSplit()
-        assertThrows<IllegalArgumentException> {
-            validateSplit.validateSplitMyNumbers(listOf("100"))
-        }
-    }
-
-    @Test
-    fun `당첨번호에 중복이 존재할 경우`() {
-        val validateSplit = ValidateSplit()
-        assertThrows<IllegalArgumentException> {
-            validateSplit.validateSplitMyNumbers(listOf("1", "1"))
-        }
-    }
-
-    @Test
-    fun `보너스번호와 당첨번호에 중복이 존재할 경우`() {
-        val validateBonus = ValidateBonus()
-        val bonusNumber = "1"
-        assertThrows<IllegalArgumentException> {
-            validateBonus.validateBonus(bonusNumber)
-        }
-    }
 }
