@@ -5,6 +5,7 @@ import lotto.constants.*
 fun moneyErrorCheck(moneyInput: String) {
     blankCheck(moneyInput)
     numberCheck(moneyInput)
+    moneyNegativeCheck(moneyInput.toInt())
     moneyCheck(moneyInput.toInt())
 }
 
@@ -23,6 +24,12 @@ fun numberCheck(input: String) {
 fun moneyCheck(money: Int) {
     if (money % 1000 != 0) {
         throw IllegalArgumentException(MONEY_ERROR)
+    }
+}
+
+fun moneyNegativeCheck(money : Int){
+    if(money<0){
+        throw IllegalArgumentException(NEGATIVE_ERROR)
     }
 }
 
