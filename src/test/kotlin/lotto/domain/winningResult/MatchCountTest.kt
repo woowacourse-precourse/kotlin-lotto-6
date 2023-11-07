@@ -30,6 +30,6 @@ class MatchCountTest {
         // when
         val result = MatchCount(input).toString()
         // then
-        assertEquals(result, "50개")
+        assertEquals("50개", result)
     }
 }
