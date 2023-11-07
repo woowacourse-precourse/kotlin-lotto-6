@@ -216,3 +216,13 @@ class Lotto(private val numbers: List<Int>) {
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
   - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+## 구현할 기능
+
+- 로또 구입 금액을 입력받고, 1,000원 단위인지 체크하기
+- 주어진 금액에 해당하는 로또를 발행
+- 사용자로부터 번호를 입력받고, 입력받은 번호가 6개인지, 중복되지 않는지 확인하기
+- 보너스 번호 입력받기
+- 사용자의 입력과 당첨 번호를 비교하여 당첨 통계 구하기
+- 당첨 결과, 수익률 출력하기
+- 각 기능을 구현할 때마다 테스트를 함께 작성하기
