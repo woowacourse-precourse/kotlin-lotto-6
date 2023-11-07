@@ -12,7 +12,6 @@ class LottoTest : NsTest() {
     private val inputView = InputView()
     private val outputView = OutputView()
     private val lottoGame = LottoGame()
-
     private val hashMap = HashMap<Int, Int>()
 
     @BeforeEach
@@ -54,8 +53,8 @@ class LottoTest : NsTest() {
         }
         Assertions.assertSimpleTest {
             runException("500")
-            assertThat(output()).contains("[ERROR] 1,000원 이상이어야 구매가 가능합니다. (로또 1장 : 1,000원)")
-            assertThat(output()).contains("다시 입력해주세요")
+            assertThat(output()).contains(ERROR_LESS_THAN_THOUSAND_MENTION)
+            assertThat(output()).contains(INPUT_RETRY_MENTION)
         }
     }
 
@@ -66,20 +65,20 @@ class LottoTest : NsTest() {
         }
         Assertions.assertSimpleTest {
             runException("-1000")
-            assertThat(output()).contains("[ERROR] 1,000원 이상이어야 구매가 가능합니다. (로또 1장 : 1,000원)")
-            assertThat(output()).contains("다시 입력해주세요")
+            assertThat(output()).contains(ERROR_LESS_THAN_THOUSAND_MENTION)
+            assertThat(output()).contains(INPUT_RETRY_MENTION)
         }
     }
 
     @Test
     fun `Exception 및 출력 확인 (구매 금액이 Int 범위를 넘어가는 경우)`() {
         assertThrows<IllegalArgumentException> {
-            inputView.validatePurchaseAmount("50505050505050")
+            inputView.validatePurchaseAmount(TEST_OUT_OF_INT)
         }
         Assertions.assertSimpleTest {
-            runException("50505050505050")
-            assertThat(output()).contains("[ERROR] 금액은 숫자만 입력해주셔야하며, Int범위 이내여야합니다. (21억 이하 가능)")
-            assertThat(output()).contains("다시 입력해주세요")
+            runException(TEST_OUT_OF_INT)
+            assertThat(output()).contains(ERROR_UNDEFINED_PRICE_MENTION)
+            assertThat(output()).contains(INPUT_RETRY_MENTION)
         }
     }
 
@@ -90,8 +89,8 @@ class LottoTest : NsTest() {
         }
         Assertions.assertSimpleTest {
             runException("a")
-            assertThat(output()).contains("[ERROR] 금액은 숫자만 입력해주셔야하며, Int범위 이내여야합니다. (21억 이하 가능)")
-            assertThat(output()).contains("다시 입력해주세요")
+            assertThat(output()).contains(ERROR_UNDEFINED_PRICE_MENTION)
+            assertThat(output()).contains(INPUT_RETRY_MENTION)
         }
     }
 
@@ -102,8 +101,8 @@ class LottoTest : NsTest() {
         }
         Assertions.assertSimpleTest {
             runException("\n")
-            assertThat(output()).contains("[ERROR] 금액을 입력해주세요.")
-            assertThat(output()).contains("다시 입력해주세요")
+            assertThat(output()).contains(ERROR_INPUT_PRICE_MENTION)
+            assertThat(output()).contains(INPUT_RETRY_MENTION)
         }
     }
 
@@ -114,8 +113,8 @@ class LottoTest : NsTest() {
         }
         Assertions.assertSimpleTest {
             runException("1000", "1,2,3,4,5, 6")
-            assertThat(output()).contains("[ERROR] 공백없이 입력해주세요")
-            assertThat(output()).contains("다시 입력해주세요")
+            assertThat(output()).contains(ERROR_CONTAINS_SPACE_MENTION)
+            assertThat(output()).contains(INPUT_RETRY_MENTION)
         }
     }
 
@@ -126,8 +125,8 @@ class LottoTest : NsTest() {
         }
         Assertions.assertSimpleTest {
             runException("1000", "1,2,3,4,5")
-            assertThat(output()).contains("[ERROR] 6개의 숫자를 입력하셔야 합니다.")
-            assertThat(output()).contains("다시 입력해주세요")
+            assertThat(output()).contains(ERROR_NEED_SIX_NUMBERS_MENTION)
+            assertThat(output()).contains(INPUT_RETRY_MENTION)
         }
     }
 
@@ -138,8 +137,8 @@ class LottoTest : NsTest() {
         }
         Assertions.assertSimpleTest {
             runException("1000", "1,2,3,4,5,6,7")
-            assertThat(output()).contains("[ERROR] 6개의 숫자를 입력하셔야 합니다.")
-            assertThat(output()).contains("다시 입력해주세요")
+            assertThat(output()).contains(ERROR_NEED_SIX_NUMBERS_MENTION)
+            assertThat(output()).contains(INPUT_RETRY_MENTION)
         }
     }
 
@@ -150,20 +149,20 @@ class LottoTest : NsTest() {
         }
         Assertions.assertSimpleTest {
             runException("1000", "1,2,3,4,5,5")
-            assertThat(output()).contains("[ERROR] 중복되지 않는 6개의 숫자를 입력하셔야 합니다.")
-            assertThat(output()).contains("다시 입력해주세요")
+            assertThat(output()).contains(ERROR_REDUNDANT_NUMBER_MENTION)
+            assertThat(output()).contains(INPUT_RETRY_MENTION)
         }
     }
 
     @Test
     fun `Exception 및 출력 확인 (당첨 번호 입력에 1~45 범위 밖의 숫자가 있는 경우)`() {
         assertThrows<IllegalArgumentException> {
-            inputView.validateInputWinningNumber("1,2,3,4,5,5")
+            inputView.validateInputWinningNumber("1,2,3,4,5,46")
         }
         Assertions.assertSimpleTest {
-            runException("1000", "1,2,3,4,5,5")
-            assertThat(output()).contains("[ERROR] 중복되지 않는 6개의 숫자를 입력하셔야 합니다.")
-            assertThat(output()).contains("다시 입력해주세요")
+            runException("1000", "1,2,3,4,5,46")
+            assertThat(output()).contains(ERROR_NUMBER_OUT_OF_BOUND_MENTION)
+            assertThat(output()).contains(INPUT_RETRY_MENTION)
         }
     }
 
@@ -174,8 +173,8 @@ class LottoTest : NsTest() {
         }
         Assertions.assertSimpleTest {
             runException("1000", "1,2,3,4,5,a")
-            assertThat(output()).contains("[ERROR] 숫자를 입력하셔야 합니다.")
-            assertThat(output()).contains("다시 입력해주세요")
+            assertThat(output()).contains(ERROR_UNDEFINED_NUMBER_MENTION)
+            assertThat(output()).contains(INPUT_RETRY_MENTION)
         }
     }
 
@@ -186,8 +185,8 @@ class LottoTest : NsTest() {
         }
         Assertions.assertSimpleTest {
             runException("1000", "\n")
-            assertThat(output()).contains("[ERROR] 숫자를 입력하셔야 합니다.")
-            assertThat(output()).contains("다시 입력해주세요")
+            assertThat(output()).contains(ERROR_UNDEFINED_NUMBER_MENTION)
+            assertThat(output()).contains(INPUT_RETRY_MENTION)
         }
     }
 
@@ -198,8 +197,8 @@ class LottoTest : NsTest() {
         }
         Assertions.assertSimpleTest {
             runException("1000", "1,2,3,4,5,6", "46")
-            assertThat(output()).contains("[ERROR] 1~45 사이의 숫자를 입력하셔야 합니다.")
-            assertThat(output()).contains("다시 입력해주세요")
+            assertThat(output()).contains(ERROR_NUMBER_OUT_OF_BOUND_MENTION)
+            assertThat(output()).contains(INPUT_RETRY_MENTION)
         }
     }
 
@@ -210,8 +209,8 @@ class LottoTest : NsTest() {
         }
         Assertions.assertSimpleTest {
             runException("1000", "1,2,3,4,5,6", "6")
-            assertThat(output()).contains("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.")
-            assertThat(output()).contains("다시 입력해주세요")
+            assertThat(output()).contains(ERROR_BONUS_NUMBER_REDUNDANT_MENTION)
+            assertThat(output()).contains(INPUT_RETRY_MENTION)
         }
     }
 
@@ -222,8 +221,8 @@ class LottoTest : NsTest() {
         }
         Assertions.assertSimpleTest {
             runException("1000", "1,2,3,4,5,6", "\n")
-            assertThat(output()).contains("[ERROR] 숫자를 입력하셔야 합니다.")
-            assertThat(output()).contains("다시 입력해주세요")
+            assertThat(output()).contains(ERROR_UNDEFINED_NUMBER_MENTION)
+            assertThat(output()).contains(INPUT_RETRY_MENTION)
         }
     }
 
@@ -234,8 +233,8 @@ class LottoTest : NsTest() {
         }
         Assertions.assertSimpleTest {
             runException("1000", "1,2,3,4,5,6", "a")
-            assertThat(output()).contains("[ERROR] 숫자를 입력하셔야 합니다.")
-            assertThat(output()).contains("다시 입력해주세요")
+            assertThat(output()).contains(ERROR_UNDEFINED_NUMBER_MENTION)
+            assertThat(output()).contains(INPUT_RETRY_MENTION)
         }
     }
 
@@ -286,5 +285,20 @@ class LottoTest : NsTest() {
         val winningNumberList = listOf(6,5,4,3,2,1)
         val res = lotto.getMatchNumbers(winningNumberList)
         assertThat(res).isEqualTo(6)
+    }
+
+    companion object {
+        const val TEST_OUT_OF_INT = "50505050505050"
+
+        const val INPUT_RETRY_MENTION = "다시 입력해주세요"
+        const val ERROR_INPUT_PRICE_MENTION = "[ERROR] 금액을 입력해주세요."
+        const val ERROR_LESS_THAN_THOUSAND_MENTION = "[ERROR] 1,000원 이상이어야 구매가 가능합니다. (로또 1장 : 1,000원)"
+        const val ERROR_UNDEFINED_PRICE_MENTION = "[ERROR] 금액은 숫자만 입력해주셔야하며, Int범위 이내여야합니다. (21억 이하 가능)"
+        const val ERROR_CONTAINS_SPACE_MENTION = "[ERROR] 공백없이 입력해주세요."
+        const val ERROR_NEED_SIX_NUMBERS_MENTION = "[ERROR] 6개의 숫자를 입력하셔야 합니다."
+        const val ERROR_REDUNDANT_NUMBER_MENTION = "[ERROR] 중복되지 않는 6개의 숫자를 입력하셔야 합니다."
+        const val ERROR_NUMBER_OUT_OF_BOUND_MENTION = "[ERROR] 1~45 사이의 숫자를 입력하셔야 합니다."
+        const val ERROR_UNDEFINED_NUMBER_MENTION = "[ERROR] 숫자를 입력하셔야 합니다."
+        const val ERROR_BONUS_NUMBER_REDUNDANT_MENTION = "[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다."
     }
 }

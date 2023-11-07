@@ -4,14 +4,6 @@ import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
 class OutputView {
-    companion object {
-        private val decimalFormat = DecimalFormat("#,###")
-        const val INPUT_PURCHASE_AMOUNT_MENTION = "구입금액을 입력해 주세요."
-        const val INPUT_WINNING_NUMBER_METION = "\n당첨 번호를 입력해 주세요."
-        const val OUTPUT_PURCHASE_NUMBER_MENTION = "개를 구매했습니다."
-        const val OUTPUT_WINNING_STATISTICS_MENTION = "\n당첨 통계\n---"
-        const val INPUT_BONUS_NUMBER_MENTION = "\n보너스 번호를 입력해 주세요."
-    }
     fun printPurchaseAmountInputMention() = println(INPUT_PURCHASE_AMOUNT_MENTION)
 
     fun printPurchaseNumberMention(purchaseNumber: Int) = println("\n${purchaseNumber}$OUTPUT_PURCHASE_NUMBER_MENTION.")
@@ -51,5 +43,12 @@ class OutputView {
         }
     }
 
-
+    companion object {
+        private val decimalFormat = DecimalFormat("#,###")
+        const val INPUT_PURCHASE_AMOUNT_MENTION = "구입금액을 입력해 주세요."
+        const val INPUT_WINNING_NUMBER_METION = "\n당첨 번호를 입력해 주세요."
+        const val OUTPUT_PURCHASE_NUMBER_MENTION = "개를 구매했습니다."
+        const val OUTPUT_WINNING_STATISTICS_MENTION = "\n당첨 통계\n---"
+        const val INPUT_BONUS_NUMBER_MENTION = "\n보너스 번호를 입력해 주세요."
+    }
 }
