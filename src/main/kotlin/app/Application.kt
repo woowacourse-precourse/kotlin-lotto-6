@@ -3,6 +3,7 @@ package app
 import compareNumber.CompareNumber
 import lotto.Lotto
 import lotto.LottoInitializer
+import revenue.Revenue
 import winningNumber.BonusNumber
 import winningNumber.WinningNumber
 
@@ -12,6 +13,7 @@ fun main() {
     val winningNumber = WinningNumber()
     val bonusNumber = BonusNumber()
     val compareNumber = CompareNumber()
+    val revenue = Revenue()
 
 
     val price = lotto.inputPriceOfLotto()
@@ -33,4 +35,6 @@ fun main() {
 
     var ranks = compareNumber.resultOfLotto(lottos,addBonusNumber)
     compareNumber.showResult(ranks)
+
+    revenue.calculateRateOfRevenue(ranks,price)
 }

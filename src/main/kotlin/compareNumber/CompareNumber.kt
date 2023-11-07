@@ -5,6 +5,7 @@ import output.CompareResult
 import output.UserInterface
 
 class CompareNumber {
+    val ranking = mutableListOf(0,0,0,0,0)
     fun showResult(ranks: List<Int>){
         println(UserInterface.OUTPUT_WINNING_RESULT.mention)
 
@@ -39,24 +40,21 @@ class CompareNumber {
     }
 
     private fun countMatchingNumber(input: List<Int>): List<Int>{
-        var first = 0
-        var second = 0
-        var third = 0
-        var fourth = 0
-        var fifth = 0
+        var winningCount = input.filter { it==1 }.size
+        var rank = Rank.RANK.determineRank(winningCount,input)
 
-        println("INPUT DEBUG : $input")
-        var matchingNumbers = input.filter { it == 1 }
-        val rank = Rank.RANK.determineRank(matchingNumbers)
+        println("Before : $ranking")
+
         when (rank.toString()){
-            "FIRST" -> first++
-            "SECOND" -> second++
-            "THIRD" -> third++
-            "FOURTH" -> fourth++
-            "FIFTH" -> fifth++
+            "FIRST" -> ranking[0]++
+            "SECOND" -> ranking[1]++
+            "THIRD" -> ranking[2]++
+            "FOURTH" -> ranking[3]++
+            "FIFTH" -> ranking[4]++
         }
 
-        var result = listOf(first, second, third, fourth, fifth)
-        return result
+        println("After : $ranking")
+
+        return ranking
     }
 }
