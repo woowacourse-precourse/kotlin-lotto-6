@@ -1,4 +1,4 @@
-package lotto.Utils
+package lotto.Constants
 
 object LottoException {
     const val BUY_LOTTO_PRICE_1000 = "[ERROR] 구입 금액은 1000원 단위여야 합니다."

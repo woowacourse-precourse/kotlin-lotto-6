@@ -2,8 +2,8 @@ package lotto.Exceptions
 
 import lotto.Controller.LottoController
 import lotto.Model.LottoGameModel
-import lotto.Utils.InputLottoNumsException
-import lotto.Utils.LottoException
+import lotto.Constants.InputLottoNumsException
+import lotto.Constants.LottoException
 
 object Exceptions {
 

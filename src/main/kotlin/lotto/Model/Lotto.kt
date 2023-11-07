@@ -2,8 +2,8 @@ package lotto.Model
 
 import LottoGameView.printGameResult
 import camp.nextstep.edu.missionutils.Randoms
-import lotto.Utils.InputLottoNumsException
-import lotto.Utils.LottoException
+import lotto.Constants.InputLottoNumsException
+import lotto.Constants.LottoException
 
 enum class WinningRank(val prize: Long, val description: String) {
     FIRST(2000000000, "6개 일치"),
