@@ -1,4 +1,4 @@
-package lotto.exception.model
+package lotto.model
 
 import lotto.COST_UNIT
 import lotto.exception.NotPositiveCostException
