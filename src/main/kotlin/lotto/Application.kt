@@ -3,4 +3,12 @@ package lotto
 fun main() {
     val purchasePrice = LottoLogic.getLottoPurchasePrice()
     println()
+
+    val lottoCount = purchasePrice / 1000
+    val lotto = LottoLogic.createLotto(lottoCount)
+    LottoLogic.printLotto(lotto)
+    println()
+
+    val winningNumbers = LottoLogic.getWinningNumbers()
+    println()
 }
