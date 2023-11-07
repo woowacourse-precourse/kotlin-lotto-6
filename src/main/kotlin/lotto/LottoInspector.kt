@@ -2,8 +2,10 @@ package lotto
 
 class LottoInspector {
 
-    private fun showLottoResult(issuedLotto: List<Lotto>, winningNumber: List<Int>, bonusNumber: Int) {
+    fun showLottoResult(issuedLotto: List<Lotto>, winningNumber: List<Int>, bonusNumber: Int) {
         val lottoResultList = makeLottoResultList(issuedLotto,winningNumber,bonusNumber)
+        printLottoResult(lottoResultList)
+        printEarningRate(lottoResultList,issuedLotto)
     }
 
     private fun makeLottoResultList(issuedLotto: List<Lotto>, winningNumber: List<Int>, bonusNumber: Int): Array<Int> {

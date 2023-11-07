@@ -8,7 +8,7 @@ class LottoInitializer {
         val issuedLotto = LottoMaker().issueLotto(purchaseMoney)
         val winningNumbers = getWinningNumbers()
         val bonusNumber = getBonusNumber()
-        //printLottoResult()
+        LottoInspector().showLottoResult(issuedLotto,winningNumbers,bonusNumber)
     }
 
     private fun getPurchaseMoney(): Int {
