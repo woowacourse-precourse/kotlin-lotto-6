@@ -13,10 +13,22 @@ class Lotto(private val numbers: List<Int>) {
         return numbers
     }
 
-    fun checkWinnings() {
+    fun checkWinnings(winningNumbers: List<Int>, bonusNumber: Int?) : Int {
+        val matchedNumbers = numbers.intersect(winningNumbers)
+        val matchedCount = matchedNumbers.size
 
+        when (matchedCount) {
+            3 -> return 3
+            4 -> return 4
+            5 -> {
+                if (numbers.contains(bonusNumber))
+                    return 5
+            }
+
+            6 -> return 6
+        }
+        return 0
     }
-    // TODO: 추가 기능 구현
 }
 
 class LottoGameModel(howManyBuyLotto: Int) {
