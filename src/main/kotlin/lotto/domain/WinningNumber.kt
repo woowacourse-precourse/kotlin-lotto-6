@@ -41,6 +41,7 @@ class WinningNumberGenerator {
             if (!isNumberInRange(num)) throw IllegalArgumentException(MESSAGE_NOT_IN_RANGE)
         }
         if (winningNumber.size != LOTTO_SIZE) throw IllegalArgumentException(MESSAGE_NOT_SIX)
+        if (winningNumber.distinct().size != LOTTO_SIZE) throw IllegalArgumentException(MESSAGE_DUPLICATE_NUMBER)
     }
 
     fun validateBonusNumber(inputBonusNumber: Int, winningNumber: List<Int>) {
