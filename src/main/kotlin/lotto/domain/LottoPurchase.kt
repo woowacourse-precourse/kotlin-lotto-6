@@ -16,5 +16,4 @@ class LottoPurchase {
     fun calculateTicket(buyPrice: Int): Int {
         return buyPrice / Constants.THOUSAND_PRICE
     }
-
 }
