@@ -23,9 +23,10 @@ class LottoGame {
     fun play() {
         println(INPUT_MONEY)
         val amount = checkInputAmount()
+        val tickets = amount / 1000
 
-        output.outputNumber(amount)
-        val lottoTickets = LottoManager().issueLottoTicket(amount)
+        output.outputNumber(tickets)
+        val lottoTickets = LottoManager().issueLottoTicket(tickets)
         lottoTickets.forEach {
             output.outputTickets(it.issueNumbers())
         }
@@ -44,6 +45,7 @@ class LottoGame {
 
         val reward = WinningStatistics().computeStatisics(lottoTickets, winningNumbers, bonusNumber)
         output.outputReward(reward)
+        output.outputYield(amount, reward)
 
     }
 
@@ -52,36 +54,36 @@ class LottoGame {
             val amount = input.inputPurchaseAmount()
             validatePurchaseAmount(amount)
             output.Blank()
-            amount.toInt() / 1000
+            amount.toInt()
         } catch (e: IllegalArgumentException) {
             println(e)
             checkInputAmount()
         }
     }
 
-    private fun checkInputWinningNumbers() : List<Int> {
+    private fun checkInputWinningNumbers(): List<Int> {
         return try {
             val winningNumbers = input.inputWinningNumbers()
             validateWinningNumbers(winningNumbers)
             changeType(winningNumbers)
-        } catch (e : IllegalArgumentException) {
+        } catch (e: IllegalArgumentException) {
             println(e)
             checkInputWinningNumbers()
         }
     }
 
-    private fun checkInputBonusNumber(winningNumbers : List<Int>) : Int {
+    private fun checkInputBonusNumber(winningNumbers: List<Int>): Int {
         return try {
             val bonusNumber = input.inputBonusNumber()
-            validateBonusNumber(winningNumbers,bonusNumber)
+            validateBonusNumber(winningNumbers, bonusNumber)
             bonusNumber.toInt()
-        } catch (e : IllegalArgumentException) {
+        } catch (e: IllegalArgumentException) {
             println(e)
             checkInputBonusNumber(winningNumbers)
         }
     }
 
-    private fun changeType(original : List<String>) : List<Int> {
+    private fun changeType(original: List<String>): List<Int> {
         return original.map { it.toInt() }
     }
 
