@@ -16,6 +16,13 @@ class InputManager {
         return Console.readLine()
     }
 
+    // 보너스 번호 입력
+    private fun inputBonusNumber(): String {
+        println()
+        println("보너스 번호를 입력해 주세요.")
+        return Console.readLine()
+    }
+
     // 입력된 구입 금액 처리 및 반환
     fun getMoney(): Int {
         val inputMoney = inputMoney().toInt()
@@ -34,6 +41,13 @@ class InputManager {
         }
 
         return winningNumbers
+    }
+
+    // 입력된 보너스 번호 처리 및 반환
+    fun getBonusNumber(): Int {
+        val bonusNumber = inputBonusNumber().toInt()
+
+        return bonusNumber
     }
 
     // 1,000원 단위 입력 예외 처리

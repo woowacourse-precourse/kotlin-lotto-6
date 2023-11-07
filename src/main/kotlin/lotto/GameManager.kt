@@ -7,6 +7,7 @@ class GameManager {
     private var money = 0
     private var lottoList = ArrayList<Lotto>()
     private lateinit var winningNumbers: List<Int>
+    private var bonusNumber = 0
 
     fun runLottoGame() {
         // 사용자 구입 금액 입력
@@ -17,6 +18,8 @@ class GameManager {
         printPurchaseResult()
         // 당첨 번호 입력 및 저장
         winningNumbers = inputManager.getWinningNumber()
+        // 보너스 번호 입력 및 저장
+        bonusNumber = inputManager.getBonusNumber()
     }
 
     private fun getLottoTickets(money: Int) {
