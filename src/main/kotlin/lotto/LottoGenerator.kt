@@ -12,16 +12,10 @@ class LottoGenerator {
     }
 
     private fun generateLotto() {
-        val lottoNumbers = mutableSetOf<Int>()
-
-        while (lottoNumbers.size != Constants.LOTTO_NUMBER_COUNT) {
-            lottoNumbers.add(generatedLottoNumber())
-        }
-
-        this.lotto = Lotto(lottoNumbers.toList())
+        this.lotto = Lotto(generatedLottoNumber())
     }
 
-    private fun generatedLottoNumber(): Int {
-        return Randoms.pickNumberInRange(Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER)
-    }
+    private fun generatedLottoNumber() = Randoms.pickUniqueNumbersInRange(
+        Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER, Constants.LOTTO_NUMBER_COUNT
+    )
 }
