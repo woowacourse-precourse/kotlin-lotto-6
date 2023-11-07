@@ -78,7 +78,9 @@ fun parseLottoNumbers(input: String?): List<Int> {
         }
     }
 
-
+    if (lottoNumbers.distinct().size != 6) {
+        throw IllegalArgumentException("[ERROR] 중복되지 않은 6개의 숫자를 입력해야 합니다.")
+    }
 
     return lottoNumbers
 }
