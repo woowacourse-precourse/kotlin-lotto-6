@@ -14,6 +14,11 @@ class UserInputValidator {
         }
     }
 
+    fun checkNumberListSize(numberList: List<String>) {
+        if(numberList.size != 6) {
+            throw IllegalArgumentException("[ERROR] 입력하신 번호의 개수가 6개가 아닙니다.")
+        }
+    }
     fun checkNumberInList(numberList: List<String>) {
         numberList.map { number ->
             checkNumber(number)

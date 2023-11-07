@@ -24,6 +24,7 @@ class UserInput() {
             val userInput = Console.readLine()
             val numberList = userInput.split(",")
             try {
+                userInputValidator.checkNumberListSize(numberList)
                 userInputValidator.checkNumberInList(numberList)
                 return numberList
             }
