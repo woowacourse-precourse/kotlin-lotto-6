@@ -16,7 +16,6 @@ class LottoShopTest {
 
         //when
 
-
         //then
         assertThrows<IllegalArgumentException>{
             lottoShop.purchaseLottos("abcd")
@@ -30,7 +29,6 @@ class LottoShopTest {
         val lottoShop = LottoShop()
 
         //when
-
 
         //then
         assertThrows<IllegalArgumentException> {
@@ -46,7 +44,6 @@ class LottoShopTest {
 
         //when
 
-
         //then
         assertDoesNotThrow {
             lottoShop.purchaseLottos(input)
@@ -59,7 +56,6 @@ class LottoShopTest {
         val lottoShop = LottoShop()
 
         //when
-
 
         //then
         assertThrows<IllegalArgumentException> {
@@ -74,7 +70,6 @@ class LottoShopTest {
         val lottoShop = LottoShop()
 
         //when
-
 
         //then
         val actual = lottoShop.purchaseLottos(input).size

@@ -3,7 +3,6 @@ package lotto.domain
 import lotto.domain.validator.LottoShopValidator
 
 class LottoShop {
-
     private val lottoShopValidator: LottoShopValidator by lazy { LottoShopValidator() }
     private val lottoNumberGenerator: RandomNumberGenerator by lazy { RandomNumberGenerator() }
 
