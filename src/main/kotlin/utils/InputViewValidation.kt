@@ -27,7 +27,7 @@ object InputViewValidation {
         throw IllegalArgumentException(ExceptionMessages.EXCEPTION_WINNING_NUMBERS_TYPE)
     }
 
-    fun validateWinningNumbersList(winningNumbers: List<Int>) {
+    private fun validateWinningNumbersList(winningNumbers: List<Int>) {
         if (winningNumbers.size != Constants.LOTTO_SIZE) throw IllegalArgumentException(ExceptionMessages.EXCEPTION_WINNING_NUMBERS_SIZE)
         if (winningNumbers.size != winningNumbers.distinct().count()) {
             throw IllegalArgumentException(ExceptionMessages.EXCEPTION_WINNING_NUMBERS_DUPLICATED)

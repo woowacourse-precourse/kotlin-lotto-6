@@ -17,7 +17,7 @@ class LottoResult(
         return FinalResult(winningData, rateOfReturn)
     }
 
-    fun getWinningData(): Map<Rank, Int> {
+    private fun getWinningData(): Map<Rank, Int> {
         val winningData = mutableMapOf<Rank, Int>()
         val resultRankData = lotties.mapNotNull {
             getResultForEachLotto(it)

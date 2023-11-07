@@ -57,7 +57,7 @@ class InputView {
         getUserAmount()
     }
 
-    fun getWinningNumbers(): List<Int> = try {
+    private fun getWinningNumbers(): List<Int> = try {
         val numbers = Console.readLine().trim()
         println()
 
@@ -68,13 +68,13 @@ class InputView {
         getWinningNumbers()
     }
 
-    fun getWinningNumbersList(winningNumbers: String): List<Int> {
+    private fun getWinningNumbersList(winningNumbers: String): List<Int> {
         val winningNumbersList = winningNumbers.split(WINNING_NUM_SEPARATOR)
 
         return InputViewValidation.getValidatedNumbersList(winningNumbersList)
     }
 
-    fun getBonusNumber(winningNumbers: List<Int>): Int = try {
+    private fun getBonusNumber(winningNumbers: List<Int>): Int = try {
         val bonus = Console.readLine().trim()
         println()
         val bonusNum = InputViewValidation.getValidatedBonusNumber(bonus, winningNumbers)
