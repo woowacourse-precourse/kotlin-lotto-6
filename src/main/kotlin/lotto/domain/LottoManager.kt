@@ -5,7 +5,6 @@ import lotto.domain.validator.LottoManagerValidator.validateNoDuplicateNumbers
 import lotto.domain.validator.LottoManagerValidator.validateWinningNumbersInput
 
 class LottoManager {
-
     private lateinit var winningNumbers: List<Int>
     private var bonusNumber: Int? = null
 
@@ -23,4 +22,6 @@ class LottoManager {
         validateNoDuplicateNumbers(winningNumbers, input)
         bonusNumber = input.toInt()
     }
+
+
 }
