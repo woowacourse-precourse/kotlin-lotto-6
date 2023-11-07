@@ -45,5 +45,43 @@ object LottoController {
         }
     }
 
+    fun inputNum() {
+        LottoData.lottoResult = inputLottoNum()
+        LottoData.bonusNum = inputBonusNum()
+    }
+
+
+
+    private fun inputLottoNum(): MutableList<Int> {
+        while (true) {
+            try {
+                println("당첨 번호를 입력해 주세요.")
+                val inputNum = Console.readLine()
+                checkLottoNum(inputNum)
+                return addStringToList(inputNum)
+            } catch (e: IllegalArgumentException) {
+                println("${e.message}")
+            }
+        }
+    }
+
+    private fun inputBonusNum(): Int {
+        while (true) {
+            try {
+                println("보너스 번호를 입력해 주세요.")
+                val bonusNum = Console.readLine()
+                checkBonusNum(bonusNum)
+                return bonusNum.toInt()
+            } catch (e: IllegalArgumentException) {
+                println("${e.message}")
+            }
+        }
+    }
+
+    private fun addStringToList(input: String): MutableList<Int> {
+        return input.split(",").map { it.trim().toInt() }.toMutableList()
+    }
+
+
 
 }
