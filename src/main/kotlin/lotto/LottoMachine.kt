@@ -20,7 +20,6 @@ class LottoMachine {
         view.printWinRate(winRate)
     }
 
-    @VisibleForTesting
     fun winningLotteryResult(lottos: List<Lotto>, inputLottoNumber: Lotto, inputBonusNumber: BonusNumber): Prize {
         val inputNumber = inputLottoNumber.getLottoNumbers()
         val prize = Prize()
@@ -55,7 +54,7 @@ class LottoMachine {
         }
     }
 
-    private fun calculateWinRate(prize: Prize, lottos: List<Lotto>): Double {
+    fun calculateWinRate(prize: Prize, lottos: List<Lotto>): Double {
         return (prize.getPrizeMoney() / (lottos.size * LOTTO_UNITS) * PERCENT)
     }
 
