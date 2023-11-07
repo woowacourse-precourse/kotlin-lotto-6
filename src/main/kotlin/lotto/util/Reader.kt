@@ -10,6 +10,7 @@ object Reader {
         var money = RETURN_CODE
         while (money == RETURN_CODE) {
             money = InputChecker.checkInputMoney(readLine(), RETURN_CODE)
+            println()
         }
 
         return money
@@ -19,6 +20,7 @@ object Reader {
         var lottoNumbers = RETURN_LIST
         while (lottoNumbers == RETURN_LIST) {
             lottoNumbers = InputChecker.checkInputNumbers(readLine(), RETURN_LIST)
+            println()
         }
 
         return lottoNumbers
@@ -28,7 +30,9 @@ object Reader {
         var bonus = RETURN_CODE.toInt()
         while (bonus == RETURN_CODE.toInt()) {
             bonus = InputChecker.checkInputBonus(lottoNumbers, readLine(), RETURN_CODE.toInt())
+            println()
         }
+
         return bonus
     }
 }

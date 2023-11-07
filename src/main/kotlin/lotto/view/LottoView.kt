@@ -32,5 +32,6 @@ class LottoView {
         lottoList.forEach { lotto ->
             printer.printGeneratedLotto(lotto.getLottoNumbers())
         }
+        println()
     }
 }

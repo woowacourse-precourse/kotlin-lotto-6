@@ -1,6 +1,7 @@
 package lotto.util
 
-import lotto.constants.LottoConstants
+import lotto.constants.LottoConstants.LOTTO_COUNT
+import lotto.constants.LottoConstants.LOTTO_PRICE
 import lotto.constants.LottoConstants.MAX_LOTTO_NUMBER
 import lotto.constants.LottoConstants.MIN_LOTTO_NUMBER
 import lotto.exception.IllegalBonusException
@@ -21,11 +22,11 @@ object InputChecker {
             return returnCode
         }
         money = inputString.toLong()
-        require(money >= LottoConstants.LOTTO_PRICE) {
+        require(money >= LOTTO_PRICE) {
             println(IllegalMoneyException.moneyUnderPrice)
             return returnCode
         }
-        require((money % LottoConstants.LOTTO_PRICE).toInt() == 0) {
+        require((money % LOTTO_PRICE).toInt() == 0) {
             println(IllegalMoneyException.moneyNotDivide)
             return returnCode
         }
@@ -36,20 +37,20 @@ object InputChecker {
     fun checkInputNumbers(inputString: String, returnCode: List<Int>): List<Int> {
         val lottoNumbers: List<Int>
 
-        require(inputString.split(",").size == 6) {
+        require(inputString.split(",").size == LOTTO_COUNT) {
             println(IllegalNumbersException.numbersNotList)
             return returnCode
         }
-        require(inputString.split(",").filter { it.matches(Regex("\\d+")) }.size == 6) {
+        require(inputString.split(",").filter { it.matches(Regex("\\d+")) }.size == LOTTO_COUNT) {
             println(IllegalNumbersException.numbersNotRange)
             return returnCode
         }
         lottoNumbers = inputString.split(",").map { it.toInt() }.toList()
-        require(lottoNumbers.filter { it in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER }.size == 6) {
+        require(lottoNumbers.filter { it in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER }.size == LOTTO_COUNT) {
             println(IllegalNumbersException.numbersNotRange)
             return returnCode
         }
-        require(lottoNumbers.distinct().size == 6) {
+        require(lottoNumbers.distinct().size == LOTTO_COUNT) {
             println(IllegalNumbersException.numbersDuplicate)
             return returnCode
         }
