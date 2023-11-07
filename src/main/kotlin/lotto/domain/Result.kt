@@ -10,7 +10,13 @@ enum class Prize(val correct: Int, val bonus: Boolean, val reward: Int, val winn
 
     companion object {
         fun checkRank(correctCount: Int, hasBonus: Boolean): Prize {
-            return entries.find { it.correct == correctCount && it.bonus == hasBonus } ?: NONE
+            return when (correctCount) {
+                FIRST.correct -> FIRST
+                SECOND.correct -> if (hasBonus) SECOND else THIRD
+                FOURTH.correct -> FOURTH
+                FIFTH.correct -> FIFTH
+                else -> NONE
+            }
         }
     }
 }
