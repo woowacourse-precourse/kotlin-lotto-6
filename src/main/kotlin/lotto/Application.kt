@@ -1,18 +1,18 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Console
 import kotlin.math.round
 
 fun lottoMoney(): Int{
     try {
-        val moneyinput: String? = readLine()
+        val moneyinput: String? = Console.readLine()
         requireNotNull(moneyinput) { Error.error_moneyinput.message }
         val money: Int? = moneyinput.toIntOrNull()
         require(money != null && money != 0 && money % 1000 == 0) { Error.error_moneyinput.message }
         return money.div(1000)
     }
     catch(e:IllegalArgumentException){
-        e.printStackTrace()
         println("${e.message}")
     }
     return lottoMoney()
@@ -31,7 +31,7 @@ fun lotto_dispenser(money: Int): MutableList<Lotto>{
 fun winInput(): MutableList<Int>{
     try {
         var win_number: MutableList<Int> = mutableListOf<Int>()
-        val input_number: List<String> = requireNotNull(readLine()) { Error.error_numberinput.message }.split(',')
+        val input_number: List<String> = requireNotNull(Console.readLine()) { Error.error_numberinput.message }.split(',')
         for (i in input_number) {
             val num = requireNotNull(i.toIntOrNull()) { Error.error_numberinput.message }
             require(num >= 1 && num <= 45){ Error.error_numberinput.message }
@@ -48,7 +48,7 @@ fun winInput(): MutableList<Int>{
 
 fun bonusChecker(win_num:MutableList<Int>): Int{
     try {
-        val input_bonus: Int? = requireNotNull(readLine()) { Error.error_bonusinput.message }.toIntOrNull()
+        val input_bonus: Int? = requireNotNull(Console.readLine()) { Error.error_bonusinput.message }.toIntOrNull()
         require(input_bonus != null && input_bonus !in win_num && input_bonus >= 1 && input_bonus <= 45){ Error.error_bonusinput.message }
         return input_bonus
     }
