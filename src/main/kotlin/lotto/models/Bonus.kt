@@ -1,4 +1,4 @@
-package lotto
+package lotto.models
 
 class Bonus(private val number: Int) {
 

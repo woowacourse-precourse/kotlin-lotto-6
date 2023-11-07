@@ -1,6 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.models.Lotto
 import kotlin.math.roundToInt
 
 class LottoGame(private val user: User) {

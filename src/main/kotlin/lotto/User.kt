@@ -1,6 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.models.Lotto
 
 class User {
     private var _amount = 0
