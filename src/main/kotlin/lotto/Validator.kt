@@ -1,52 +1,21 @@
 package lotto
 
 class Validator(private val input: String) {
+    fun isPaymentValid(): Boolean = ErrorHandler().checkWithExceptionHandler(this::validateIsNumber, INVALID_PAYMENT_NUMBER, ErrorType.NumberFormatException) &&
+            ErrorHandler().checkWithExceptionHandler(this::validateIsUpperToThousand, INVALID_MINIMUM_PAYMENT, ErrorType.IllegalArgumentException) &&
+            ErrorHandler().checkWithExceptionHandler(this::validateIsCorrectUnit, DIVIDE_TO_THOUSAND, ErrorType.IllegalArgumentException)
 
-    fun isPaymentValid(): Boolean = checkIsNumber() && checkIsUpperToThousand() && checkIsCorrectUnit()
-
-    private fun checkIsNumber(): Boolean {
-        return try {
-            validateIsNumber()
-            true
-        } catch (e: NumberFormatException) {
-            ErrorPrinter.printError(INVALID_PAYMENT_NUMBER)
-            false
-        }
-    }
-
-    private fun validateIsNumber() {
-        if (input.toIntOrNull() !is Int) throw NumberFormatException(INVALID_PAYMENT_NUMBER)
-    }
-
-    private fun checkIsUpperToThousand(): Boolean {
+    private fun validateIsNumber(): Boolean = input.toIntOrNull() is Int
+    private fun validateIsUpperToThousand(): Boolean {
         val payment = input.toInt()
-        return try {
-            validateIsUpperToThousand(payment)
-            true
-        } catch (e: IllegalArgumentException) {
-            ErrorPrinter.printError(INVALID_MINIMUM_PAYMENT)
-            false
-        }
+        return payment >= 1000
     }
 
-    private fun validateIsUpperToThousand(payment: Int) {
-        if (payment < 1000) throw IllegalArgumentException(INVALID_MINIMUM_PAYMENT)
-    }
-
-    private fun checkIsCorrectUnit(): Boolean {
+    private fun validateIsCorrectUnit(): Boolean {
         val payment = input.toInt()
-        return try {
-            validateIsCorrectUnit(payment)
-            true
-        } catch (e: IllegalArgumentException) {
-            ErrorPrinter.printError(DIVIDE_TO_THOUSAND)
-            false
-        }
+        return payment % 1_000 == 0
     }
 
-    private fun validateIsCorrectUnit(payment: Int) {
-        if (payment % 1_000 != 0) throw IllegalArgumentException(DIVIDE_TO_THOUSAND)
-    }
 
     companion object {
         const val INVALID_PAYMENT_NUMBER = "지불금액은 숫자로만 입력가능합니다."
