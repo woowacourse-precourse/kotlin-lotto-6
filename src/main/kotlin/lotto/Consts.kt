@@ -4,6 +4,8 @@ const val EXCEPTION_MESSAGE_UNVALID_LOTTO_NUMBER = "[ERROR] 로또 번호는 1�
 const val EXCEPTION_MESSAGE_UNVALID_LOTTO_NUMBER_COUNT = "[ERROR] 로또 번호는 6개 입력 되어야 합니다."
 const val EXCEPTION_MESSAGE_UNVALID_COST = "[ERROR] 금액은 1000단위의 값이어야 합니다."
 const val EXCEPTION_MESSAGE_NOT_POSITIVE_COST = "[ERROR] 금액은 양수 값이어야 합니다."
+const val EXCEPTION_MESSAGE_UNVALID_NUMBER_FORMAT = "[ERROR] 잘못된 숫자 형식입니다."
+
 
 const val SEPARATOR = ","
 const val SEPARATOR_WITH_SPACE = ", "
