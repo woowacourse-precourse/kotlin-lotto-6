@@ -11,6 +11,7 @@ object LottoInputState {
     enum class WinningNumber{
         SUCCESSFUL,
         IS_NULL,
-        OUT_OF_RANGE
+        OUT_OF_RANGE,
+        NUMBERS_SIZE_IS_NOT_6
     }
 }

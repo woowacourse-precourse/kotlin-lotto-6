@@ -26,12 +26,10 @@ class LottoInputHandler {
     fun receiveLottoWinningNumbers() : List<Int>{
         val numbers = Console.readLine()
             .split(",")
-        numbers.forEach {
-            try{
-                lottoWinningNumberInputValidator.validate(it)
-            } catch (e : IllegalArgumentException){
-                return receiveLottoWinningNumbers()
-            }
+        try{
+            lottoWinningNumberInputValidator.validate(numbers)
+        } catch (e : IllegalArgumentException){
+            return receiveLottoWinningNumbers()
         }
         return numbers.map { it.toInt() }
     }
