@@ -38,6 +38,15 @@ class LottoCalculator {
         }
         return winningRate
     }
+
+    fun showWinningRate(winningRate: WinningRate) {
+        println(LottoGameMessage.WINNING_RESULT)
+        println(LottoGameMessage.THREE_MATCHED.format(winningRate.threeMatchedRate))
+        println(LottoGameMessage.FOUR_MATCHED.format(winningRate.fourMatchedRate))
+        println(LottoGameMessage.FIVE_MATCHED.format(winningRate.fiveMatchedRate))
+        println(LottoGameMessage.FIVE_BONUS_MATCHED.format(winningRate.fiveAndBonusMatchedData))
+        println(LottoGameMessage.SIX_MATCHED.format(winningRate.sixMatchedRate))
+    }
 }
 
 data class MatchedData(
