@@ -9,6 +9,7 @@ class LottoGame {
 
     fun gameStart() {
         val lottoWallet = purchaseLotto()
+        println(lottoWallet)
     }
 
     private fun purchaseLotto(): LottoWallet {
