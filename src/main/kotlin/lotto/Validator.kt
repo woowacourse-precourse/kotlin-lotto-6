@@ -48,4 +48,10 @@ class Validator {
             throw IllegalArgumentException("로또 번호는 쉼표(,)로 구분지어주세요.")
         }
     }
+
+    fun countsLottoNumber(lottos: List<String>) {
+        if (lottos.size != 6) {
+            throw IllegalArgumentException("로또 번호의 개수는 6개이어야 합니다.")
+        }
+    }
 }
