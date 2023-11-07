@@ -6,7 +6,6 @@ fun main() {
     val lottoTicketCount = game.calculating(amount)
     val lottoTickets = game.buying(lottoTicketCount)
     val drawNumber = game.drawing()
-    println(drawNumber)
     val bonusNumber = game.bonusDrawing(drawNumber)
-    println(bonusNumber)
+    game.winning(lottoTickets, drawNumber, bonusNumber)
 }

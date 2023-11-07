@@ -2,10 +2,10 @@ package lotto
 
 import lotto.domain.Draw
 import lotto.domain.Purchase
+import lotto.domain.Result
 import lotto.domain.Sale
-import lotto.presentation.DrawScreen
-import lotto.presentation.PurchaseScreen
-import lotto.presentation.SaleScreen
+import lotto.domain.util.MathHelper
+import lotto.presentation.*
 
 class Game {
     private val purchaseScreen = PurchaseScreen()
@@ -14,6 +14,10 @@ class Game {
     private val sale = Sale()
     private val drawScreen = DrawScreen()
     private val draw = Draw()
+    private val resultScreen = ResultScreen()
+    private val result = Result()
+    private val mathHelper = MathHelper()
+    private val errorScreen = ErrorScreen()
 
     fun paying(): Int {
         while (true) {
@@ -22,7 +26,7 @@ class Game {
                 val amount = purchaseScreen.inputAmount()
                 return purchase.payMoney(amount)
             } catch (e: IllegalArgumentException) {
-                println("$ERROR_MESSAGE_SETTING${e.message}\n")
+                errorScreen.outputErrorMessage(e)
             }
         }
     }
@@ -50,7 +54,7 @@ class Game {
                 val drawNumber = drawScreen.inputDrawNumber()
                 return draw.validateDrawNumber(drawNumber)
             } catch (e: IllegalArgumentException) {
-                println("$ERROR_MESSAGE_SETTING${e.message}\n")
+                errorScreen.outputErrorMessage(e)
             }
         }
     }
@@ -62,12 +66,18 @@ class Game {
                 val bonusNumber = drawScreen.inputBonusNumber()
                 return draw.validateBonusNumber(bonusNumber, drawNumbers)
             } catch (e: IllegalArgumentException) {
-                println("$ERROR_MESSAGE_SETTING${e.message}\n")
+                errorScreen.outputErrorMessage(e)
             }
         }
     }
 
-    companion object {
-        const val ERROR_MESSAGE_SETTING = "[ERROR] "
+    fun winning(lottoTickets: List<List<Int>>, drawNumbers: List<Int>, bonusNumber: Int) {
+        resultScreen.outputResultMessage()
+        val countEachPrize = result.checkTickets(lottoTickets, drawNumbers, bonusNumber)
+        val totalPrize = result.calculatePrize(countEachPrize)
+        val winRate = mathHelper.calculateWinRate(totalPrize, countEachPrize.values.sum())
+        val winRateFormat = mathHelper.roundToFirstDecimalPlace(winRate)
+        resultScreen.outputWinningResult(countEachPrize)
+        resultScreen.outputWinningRate(winRateFormat)
     }
 }
