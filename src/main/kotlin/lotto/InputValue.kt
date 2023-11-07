@@ -28,14 +28,23 @@ class InputValue {
 
     fun inputWinningNumber(): List<Int> {
 
-        val winningNumber = readln().split(",")
+        val winningNumberInt: List<Int>
 
-        check.checkOnlyNumber(winningNumber)
-        check.checkNumber1to45(winningNumber)
-        check.checkInputSixNumbers(winningNumber)
-        check.checkNonOverlapNumber(winningNumber)
+        while (true) {
 
-        return changeStringInt(winningNumber)
+            val winningNumber = readln().split(",")
+
+            if (!check.checkOnlyNumber(winningNumber)) continue
+            if (!check.checkNumber1to45(winningNumber)) continue
+            if (!check.checkInputSixNumbers(winningNumber)) continue
+            if (!check.checkNonOverlapNumber(winningNumber)) continue
+
+            winningNumberInt = changeStringInt(winningNumber)
+
+            break
+        }
+
+        return winningNumberInt
     }
 
     fun inputBonusNumber(numbers: List<String>): List<Int> {
