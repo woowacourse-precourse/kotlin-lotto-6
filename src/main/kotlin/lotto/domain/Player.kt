@@ -1,14 +1,20 @@
 package lotto.domain
 
-class Player(private var money: Int) {
+import kotlin.math.roundToInt
+
+class Player(private var money: Money) {
 
     fun purchaseLotto(): List<Lotto> {
-        val boughtLotto = NumberIssuer.issueNumbers(money)
+        val boughtLotto = NumberIssuer.issueNumbers(money.value)
         return boughtLotto
     }
 
-    fun getReturnMoney(returnMoney: Int) {
-        money += returnMoney
+    fun calculateRevenue(rank: Map<WinningRank, Int>): Double {
+        var revenue = 0.0
+        rank.forEach { playerRank ->
+            revenue += playerRank.key.winningPrize * playerRank.value
+        }
+        return ((revenue / money.value * 100) * 10).roundToInt() / 10.0
     }
 
 }
