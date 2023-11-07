@@ -1,12 +1,11 @@
 package lotto.util
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.model.Lotto
 
 object Reader {
     private fun readLine() = Console.readLine()
     private const val RETURN_CODE = 0L
-    private val RETURN_LOTTO = Lotto(listOf(0, 0, 0, 0, 0, 0))
+    private val RETURN_LIST = listOf(0)
     fun readLottoMoney(): Long {
         var money = RETURN_CODE
         while (money == RETURN_CODE) {
@@ -16,19 +15,19 @@ object Reader {
         return money
     }
 
-    fun readLottoNumbers(): Lotto {
-        var lotto = RETURN_LOTTO
-        while (lotto == RETURN_LOTTO) {
-            lotto = InputChecker.checkInputNumbers(readLine(), RETURN_LOTTO)
+    fun readLottoNumbers(): List<Int> {
+        var lottoNumbers = RETURN_LIST
+        while (lottoNumbers == RETURN_LIST) {
+            lottoNumbers = InputChecker.checkInputNumbers(readLine(), RETURN_LIST)
         }
 
-        return lotto
+        return lottoNumbers
     }
 
-    fun readLottoBonus(lotto: Lotto): Int {
+    fun readLottoBonus(lottoNumbers: List<Int>): Int {
         var bonus = RETURN_CODE.toInt()
         while (bonus == RETURN_CODE.toInt()) {
-            bonus = InputChecker.checkInputBonus(lotto, readLine(), RETURN_CODE.toInt())
+            bonus = InputChecker.checkInputBonus(lottoNumbers, readLine(), RETURN_CODE.toInt())
         }
         return bonus
     }

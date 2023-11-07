@@ -1,13 +1,11 @@
 package lotto.util
 
 import lotto.constants.LottoConstants
+import lotto.constants.LottoConstants.MAX_LOTTO_NUMBER
+import lotto.constants.LottoConstants.MIN_LOTTO_NUMBER
 import lotto.exception.IllegalBonusException
 import lotto.exception.IllegalMoneyException
 import lotto.exception.IllegalNumbersException
-import lotto.constants.LottoConstants.MIN_LOTTO_NUMBER
-import lotto.constants.LottoConstants.MAX_LOTTO_NUMBER
-import lotto.model.Lotto
-import java.lang.NumberFormatException
 
 object InputChecker {
 
@@ -35,7 +33,7 @@ object InputChecker {
         return money
     }
 
-    fun checkInputNumbers(inputString: String, returnCode: Lotto): Lotto {
+    fun checkInputNumbers(inputString: String, returnCode: List<Int>): List<Int> {
         val lottoNumbers: List<Int>
 
         require(inputString.split(",").size == 6) {
@@ -56,10 +54,10 @@ object InputChecker {
             return returnCode
         }
 
-        return Lotto(lottoNumbers)
+        return lottoNumbers
     }
 
-    fun checkInputBonus(lotto: Lotto, inputString: String, returnCode: Int): Int {
+    fun checkInputBonus(lottoNumbers: List<Int>, inputString: String, returnCode: Int): Int {
         val bonusNumber: Int
 
         require(inputString.matches(Regex("\\d+"))) {
@@ -71,7 +69,7 @@ object InputChecker {
             println(IllegalBonusException.bonusNotRange)
             return returnCode
         }
-        require(!lotto.getLottoNumbers().contains(bonusNumber)) {
+        require(!lottoNumbers.contains(bonusNumber)) {
             println(IllegalBonusException.bonusDuplicate)
             return returnCode
         }

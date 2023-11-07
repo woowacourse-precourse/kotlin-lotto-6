@@ -16,12 +16,12 @@ class LottoView {
 
     fun readInputNumbers(): Lotto {
         printer.printInputNumbers()
-        return reader.readLottoNumbers()
+        return Lotto(reader.readLottoNumbers())
     }
 
     fun readInputBonus(lotto: Lotto): Int {
         printer.printInputBonus()
-        return reader.readLottoBonus(lotto)
+        return reader.readLottoBonus(lotto.getLottoNumbers())
     }
 
     fun printLottoCount(count: Long) {

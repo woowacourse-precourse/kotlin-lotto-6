@@ -22,6 +22,7 @@ class LottoController {
 
     private fun generateLotto() {
 //        lottoView.printLottoCount()
+
     }
 
     companion object {
