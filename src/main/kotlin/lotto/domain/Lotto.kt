@@ -8,6 +8,8 @@ class Lotto(private val numbers: List<Int>) {
         numbers.forEach { number -> require(number in 1..45) { Error.InvalidLottoNumber.message } }
     }
 
+    fun isDuplicated(bonusNumber: Int) = numbers.contains(bonusNumber)
+
     override fun toString(): String {
         return numbers.sorted().toString() + '\n'
     }
