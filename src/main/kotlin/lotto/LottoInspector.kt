@@ -1,5 +1,7 @@
 package lotto
 
+import kotlin.math.round
+
 class LottoInspector {
 
     fun showLottoResult(issuedLotto: List<Lotto>, winningNumber: List<Int>, bonusNumber: Int) {
@@ -34,13 +36,17 @@ class LottoInspector {
 
     private fun printEarningRate(lottoResultList: Array<Int>, issuedLotto: List<Lotto>) {
         val earningRate = getEarningRate(lottoResultList,issuedLotto)
-        println("총 수익률은 ${earningRate}%입니다.")
+        println("총 수익률은 ${earningRateToPercent(earningRate)}%입니다.")
     }
 
     private fun getEarningRate(lottoResultList: Array<Int>, issuedLotto: List<Lotto>): Double {
         val earnedMoney = getEarnedMoney(lottoResultList)
         val purchasedMoney = issuedLotto.size * LOTTO_PRICE
         return earnedMoney.toDouble() / purchasedMoney.toDouble()
+    }
+
+    private fun earningRateToPercent(earningRate: Double): Double {
+        return round(earningRate * THOUSAND) / TEN
     }
 
     private fun getEarnedMoney(lottoResultList: Array<Int>): Int {
@@ -89,5 +95,7 @@ class LottoInspector {
         const val LOTTO_PRICE = 1000
         const val LOTTO_RESULT_LIST_SIZE = 6
         const val ZERO = 0
+        const val THOUSAND = 1000
+        const val TEN = 10
     }
 }
