@@ -83,7 +83,7 @@ class LottoGame(private val user: User) {
 
     private fun makeLottoNumbersMessage(lotto: Lotto): String = LOTTO_NUMBERS_MESSAGE.format(formatLottoNumbers(lotto))
 
-    private fun formatLottoNumbers(lotto: Lotto): String = lotto.getSortedNumbers().joinToString(LOTTO_NUMBER_SEPARATOR)
+    private fun formatLottoNumbers(lotto: Lotto): String = lotto.getNumbers().joinToString(LOTTO_NUMBER_SEPARATOR)
 
     private fun recordWinning(lottos: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): Map<Winning, Int> {
         val winningRecord = mutableMapOf<Winning, Int>()
@@ -100,7 +100,7 @@ class LottoGame(private val user: User) {
 
     private fun calculateWinningResult(lotto: Lotto, winningNumbers: List<Int>, bonusNumber: Int): Winning? {
         val (matchCount, isMatchBonus) = matchLottoWithWinningNumbers(
-            lotto.getSortedNumbers(),
+            lotto.getNumbers(),
             winningNumbers,
             bonusNumber
         )

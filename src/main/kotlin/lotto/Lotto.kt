@@ -1,17 +1,18 @@
 package lotto
 
 class Lotto(private val numbers: List<Int>) {
+
     init {
         require(isValidNumberCount()) { INVALID_NUMBER_COUNT_ERROR_MESSAGE }
-        require(isValidRangeNumber()) { INVALID_NUMBER_RANGE_ERROR_MESSAGE }
+        require(isValidNumberRange()) { INVALID_NUMBER_RANGE_ERROR_MESSAGE }
         require(isValidDistinctNumber()) { INVALID_DISTINCT_NUMBER_ERROR_MESSAGE }
     }
 
-    fun getSortedNumbers() = numbers.sorted() // 도메인 로직 X
+    fun getNumbers() = numbers.sorted()
 
     private fun isValidNumberCount() = numbers.size == NUMBER_COUNT
 
-    private fun isValidRangeNumber() = numbers.all { it in MIN_NUMBER..MAX_NUMBER }
+    private fun isValidNumberRange() = numbers.all { it in MIN_NUMBER..MAX_NUMBER }
 
     private fun isValidDistinctNumber() = numbers.size == numbers.distinct().size
 
