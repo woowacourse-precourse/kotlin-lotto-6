@@ -12,8 +12,8 @@ fun lottoMoney(): Int{
         return money.div(1000)
     }
     catch(e:IllegalArgumentException){
+        e.printStackTrace()
         println("${e.message}")
-        Thread.sleep(100)
     }
     return lottoMoney()
 }
