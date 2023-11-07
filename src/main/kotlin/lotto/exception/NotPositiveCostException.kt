@@ -1,0 +1,5 @@
+package lotto.exception
+
+import lotto.EXCEPTION_MESSAGE_NOT_POSITIVE_COST
+
+class NotPositiveCostException: IllegalArgumentException(EXCEPTION_MESSAGE_NOT_POSITIVE_COST)
