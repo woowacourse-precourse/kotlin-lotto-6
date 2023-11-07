@@ -16,4 +16,5 @@ fun startLotto() {
     Output.printLottos(lottos)
     val winningNumberGenerator = WinningNumberGenerator()
     val winningNumber = winningNumberGenerator.inputWinningNumber()
+    val bonusNumber = winningNumberGenerator.inputBonusNumber(winningNumber)
 }

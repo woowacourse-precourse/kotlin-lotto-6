@@ -19,4 +19,9 @@ object Output {
         println()
         println(MESSAGE_INPUT_WINNING_NUMBER)
     }
+
+    fun printBonusNumbers() {
+        println()
+        println(MESSAGE_INPUT_BONUS_NUMBER)
+    }
 }

@@ -10,4 +10,8 @@ object Input {
     fun inputWinningNumber(): String {
         return Console.readLine()
     }
+
+    fun inputBonusNumber(): Int {
+        return Console.readLine().toInt()
+    }
 }
