@@ -21,7 +21,7 @@ class LottoController {
         resultView.printNumberOfLottiesPurchased(chance)
 
         val pickedLotties = numberPicker.getRandomNumbers()
-        val sortedLotties = pickedLotties.onEach {
+        val sortedLotties = pickedLotties.map {
             Lotto(it).sortedRandomNumbers()
         }
         resultView.printPurchasedLotties(sortedLotties)

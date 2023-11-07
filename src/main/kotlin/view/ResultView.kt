@@ -18,7 +18,7 @@ class ResultView {
         println("$number$RESULT_PURCHASED_LOTTIES")
     }
 
-    fun printPurchasedLotties(lotties: MutableList<MutableList<Int>>) {
+    fun printPurchasedLotties(lotties: List<List<Int>>) {
         lotties.onEach { numbers ->
             println(numbers)
         }
