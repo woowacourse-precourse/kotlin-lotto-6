@@ -6,20 +6,20 @@ import lotto.requireAndReturn
 import lotto.toValidInt
 import lotto.validPositiveNumber
 
-class PaymentAmount private constructor(val lottoPrice: Money, val cost: Money) {
+class Payment private constructor(val lottoPrice: Money, val cost: Money) {
 
     val purchase: Int = cost.value / lottoPrice.value
 
     companion object {
         private const val INVALID_MONEY_ERROR = "1000원 단위의 금액만 입력할 수 있습니다."
 
-        fun from(input: String, lottoPrice: Int): PaymentAmount {
+        fun from(input: String, lottoPrice: Int): Payment {
             val price = lottoPrice.toMoney()
             val cost = input.toValidInt()
                 .validPositiveNumber()
                 .validLottoPrice(price)
                 .toMoney()
-            return PaymentAmount(price, cost)
+            return Payment(price, cost)
         }
 
         private fun Int.validLottoPrice(price: Money): Int =
