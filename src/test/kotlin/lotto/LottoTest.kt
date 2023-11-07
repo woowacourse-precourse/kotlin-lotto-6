@@ -31,7 +31,7 @@ class LottoTest {
 
     @ParameterizedTest
     @MethodSource("invalidNumberCountOfLotto")
-    fun `로또 번호의 개수가 6개가 아니면 예외가 발생한다`(numbers: List<Int>) {
+    fun `정해진 로또 번호의 개수가 아니면 예외가 발생한다`(numbers: List<Int>) {
         // when
         val exception = assertThrows<IllegalArgumentException> { Lotto(numbers) }
 
@@ -39,15 +39,18 @@ class LottoTest {
         assertThat(exception.message).isEqualTo(Lotto.INVALID_NUMBER_COUNT_ERROR_MESSAGE)
     }
 
-    @Test
-    fun `로또 번호의 범위가 1이상 45이하가 아니면 예외가 발생한다`() {
-        // given
-        val numbers = listOf(0, 2, 45, 4, 5, 6)
+    private fun invalidNumberRangeOfLotto() = listOf(
+        listOf(0, 1, 2, 3, 4, 5),
+        listOf(1, 2, 3, 4, 5, 46)
+    )
 
+    @ParameterizedTest
+    @MethodSource("invalidNumberRangeOfLotto")
+    fun `범위를 벗어난 로또 번호가 있을 때 예외가 발생한다`(numbers: List<Int>) {
         // when
         val exception = assertThrows<IllegalArgumentException> { Lotto(numbers) }
 
         // then
-        assertThat(exception.message).isEqualTo(Lotto.INVALID_RANGE_NUMBER_ERROR_MESSAGE)
+        assertThat(exception.message).isEqualTo(Lotto.INVALID_NUMBER_RANGE_ERROR_MESSAGE)
     }
 }
