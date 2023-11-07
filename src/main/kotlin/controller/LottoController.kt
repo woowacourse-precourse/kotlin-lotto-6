@@ -18,12 +18,12 @@ class LottoController(private val inputView: InputView, private val outputView: 
     private val rankFrequencyData = HashMap<Int, Int>()
     fun run() {
         inputPrice()
-        makeLotto()
+        generateLotto()
         printLottoInfo()
         inputWinningNumber()
         inputBonusNumber()
-        getRankOfValue()
-        printRankOfValue()
+        getRankedValue()
+        printRankedValue()
         getProfitPercentage()
     }
 
@@ -41,7 +41,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
         } while (true)
     }
 
-    private fun makeLotto() {
+    private fun generateLotto() {
         do {
             try {
                 purchasedLottoTickets.add(generateLottoTickets())
@@ -85,7 +85,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
         } while (true)
     }
 
-    private fun getRankOfValue() {
+    private fun getRankedValue() {
         outputView.printResultMessage()
         for (lotto in purchasedLottoTickets) {
             val rank = winningNumbersManager.getRank(lotto.getNumberInfo())
@@ -97,7 +97,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
         }
     }
 
-    private fun printRankOfValue() {
+    private fun printRankedValue() {
         for (rank in 5 downTo 1) {
             outputView.printWinningStatistics(rank, rankFrequencyData[rank] ?: 0)
         }
