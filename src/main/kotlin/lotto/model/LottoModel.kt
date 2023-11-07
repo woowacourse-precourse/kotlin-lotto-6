@@ -67,4 +67,9 @@ class LottoModel {
             }
         }
     }
+    fun checkRate() {
+        for(item in lotteryNumbers) {
+
+        }
+    }
 }

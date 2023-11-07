@@ -1,5 +1,6 @@
 package lotto.view
 
+import lotto.model.WinningLottery
 import lotto.utils.ConsoleMessage
 import lotto.utils.ErrorMessage
 
@@ -32,5 +33,12 @@ class LottoView {
     }
     fun displayLotteryStatisticsMessage() {
         println(ConsoleMessage.INDICATE_LOTTERY_STATISTICS)
+    }
+    fun displayWinningEachLotteryMessage(sameNumbers: Int, isBonusValid: Boolean, winningPrize: Int, winningAmount: Int) {
+        print("${sameNumbers}${ConsoleMessage.WINNING_MESSAGE_PHASE_1}")
+        if(isBonusValid) {
+            print(ConsoleMessage.WINNING_MESSAGE_PHASE_BONUS)
+        }
+        println("${ConsoleMessage.WINNING_MESSAGE_PHASE_2}${winningPrize}${ConsoleMessage.WINNING_MESSAGE_PHASE_3}${winningAmount}${ConsoleMessage.WINNING_MESSAGE_PHASE_4}")
     }
 }
