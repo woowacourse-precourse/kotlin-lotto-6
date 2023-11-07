@@ -1,5 +1,5 @@
 package lotto
 
-class BonusLotto(private val bonusNumber: Any) {
+class BonusLotto(private val bonusNumber: LottoNumber) {
 
 }
