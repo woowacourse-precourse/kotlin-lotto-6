@@ -1,7 +1,15 @@
 package lotto
 
+import lotto.domain.LottoRank
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
 
 class LottoTest {
@@ -20,5 +28,11 @@ class LottoTest {
         }
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @ParameterizedTest
+    @MethodSource("invalidLottos")
+    fun `로또 번호가 1 ~ 45 범위를 벗어난 숫자가 있으면 예외가 발생한다`(numbers: List<Int>) {
+        assertThrows<IllegalArgumentException> {
+            Lotto(numbers)
+        }
+    }
 }
