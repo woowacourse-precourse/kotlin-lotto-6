@@ -4,16 +4,20 @@ import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 
 fun main() {
-    val inputMoney = lottoMoneyInput()
-    val count = lottoCnt(inputMoney)
-    val lottoList = lottoNumberLimit(count)
-    lottoNumberPrint(count, lottoList)
+    try {
+        val inputMoney = lottoMoneyInput()
+        val count = lottoCnt(inputMoney)
+        val lottoList = lottoNumberLimit(count)
+        lottoNumberPrint(count, lottoList)
 
-    val lottoNumber = lottoNumberChoose()
-    val bonusNumber = lottoNumberBonus()
+        val lottoNumber = lottoNumberChoose()
+        val bonusNumber = lottoNumberBonus()
 
-    val result = lottoNumberCheck(lottoList, lottoNumber, bonusNumber)
-    lottoResultPrint(result, count)
+        val result = lottoNumberCheck(lottoList, lottoNumber, bonusNumber)
+        lottoResultPrint(result, count)
+    } catch (e: IllegalArgumentException) {
+        println("[ERROR] ${e.message}")
+    }
 }
 
 fun lottoMoneyInput(): Int {
@@ -48,8 +52,11 @@ fun lottoNumberPrint(lottoCount: Int, lottoList: List<List<Int>>) {
 fun lottoNumberChoose(): List<Int> {
     println("당첨 번호를 입력해 주세요.")
     val lottoNumber = Console.readLine().split(",").map { it.toInt() }
-    if (lottoNumber.size != 6 || lottoNumber.toSet().size != 6) {
+    if (lottoNumber.toSet().size != 6) {
         throw IllegalArgumentException("중복되는 번호가 있습니다.")
+    }
+    if (lottoNumber.size != 6) {
+        throw IllegalArgumentException("6개의 숫자를 입력하세요.")
     }
     return lottoNumber
 }
