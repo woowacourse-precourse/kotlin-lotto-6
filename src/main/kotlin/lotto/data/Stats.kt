@@ -2,7 +2,7 @@ package lotto.data
 
 data class Stats(
     val info: WinningInfo,
-    val profitRate: Float,
+    val profitRate: Double,
 ) {
     override fun toString(): String {
         return """

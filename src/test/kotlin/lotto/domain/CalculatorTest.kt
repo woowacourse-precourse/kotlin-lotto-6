@@ -73,6 +73,20 @@ class CalculatorTest {
         assertThat(actual).isEqualTo(expected)
     }
 
+    @ParameterizedTest
+    @MethodSource("generateTestDataForCalculateProfitRate")
+    @DisplayName("Calculator : calculateTotalProfitRate()")
+    fun `총 수익금과 구매 장수를 입력하면 수익률을 반환한다`(data: Triple<Long, Int, Double>) {
+        // given
+        val (totalProfit, sizeOfTicket, expected) = data
+
+        // when
+        val actual = calculator.calculateProfitRate(totalProfit, sizeOfTicket)
+
+        // then
+        assertThat(actual).isEqualTo(expected)
+    }
+
     companion object {
         @JvmStatic
         private fun generateTestDataForCalculateProfit(): List<Pair<List<Int>, Long>> {
@@ -87,6 +101,18 @@ class CalculatorTest {
                 listOf(0, 10, 1, 1, 1, 1) to 20_031_555_000,
                 listOf(0, 100, 1, 1, 1, 1) to 200_031_555_000,
                 listOf(0, 6, 7, 12, 5, 4) to 12_228_270_000,
+            )
+        }
+
+        @JvmStatic
+        private fun generateTestDataForCalculateProfitRate(): List<Triple<Long, Int, Double>> {
+            return listOf(
+                Triple(5000L, 8, 0.625),
+                Triple(5000L, 9, 0.556),
+                Triple(55_000L, 10, 5.5),
+                Triple(200_031_555_000L, 200, 1_000_157.775),
+                Triple(16_000_000L, 7, 2_285.714),
+                Triple(0L, 7, 0.0),
             )
         }
     }

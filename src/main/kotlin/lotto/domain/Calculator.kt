@@ -21,11 +21,11 @@ class Calculator {
             sum + GRADE.fromRank(rank).price().toLong() * count
         }
 
-    fun calculateProfitRate(totalProfit: Long, sizeOfTicket: Int): Float {
-        return ((totalProfit.toFloat() / (Lotto.PRICE.toFloat() * sizeOfTicket) * ROUND_FACTOR)).roundToInt() / ROUND_FACTOR
+    fun calculateProfitRate(totalProfit: Long, sizeOfTicket: Int): Double {
+        return ((totalProfit.toDouble() / (Lotto.PRICE.toDouble() * sizeOfTicket) * ROUND_FACTOR)).roundToInt() / ROUND_FACTOR
     }
 
     companion object {
-        private const val ROUND_FACTOR = 1_000f
+        private const val ROUND_FACTOR = 1_000.0
     }
 }
