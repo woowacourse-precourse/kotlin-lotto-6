@@ -8,7 +8,7 @@ object Validator {
     val MAX_COUNT_OF_NUMBER_IN_LOTTO = 1
 
     fun isAvailableRange(input: Int): Boolean {
-        require(MIN_RANGE <= input && MAX_RANGE >= input) {
+        require(input in MIN_RANGE..MAX_RANGE) {
             ErrorCode.NUMBER_RANGE_ERROR.message
         }
 
@@ -32,7 +32,7 @@ object Validator {
     }
 
     fun convertToNumber(input: String): Int {
-        var result = 0
+        var result: Int
         try {
             result = input.toInt()
         } catch (e: NumberFormatException) {
@@ -50,13 +50,8 @@ object Validator {
     }
 
     fun validateBudget(input: String): Int {
-        var budget = 0
-        try {
-            budget = input.toInt()
-            isAvailableUnit(budget)
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException(ErrorCode.NOT_NUMBER_ERROR.message)
-        }
+        val budget = convertToNumber(input)
+        isAvailableUnit(budget)
 
         return budget
     }
@@ -79,20 +74,20 @@ object Validator {
     }
 
     fun isDuplicatedNumber(input: List<Int>): Boolean {
-        var countNumber: MutableList<Int> = mutableListOf(0)
-        val MIN = input.min()
-        val MAX = input.max()
-        for (i in MIN..MAX) {
+        val countNumber: MutableList<Int> = mutableListOf(0)
+        val min = input.min()
+        val max = input.max()
+        for (i in min..max) {
             countNumber.add(0)
         }
 
         input.map {
-            val index = it + (1 - MIN)
+            val index = it + (1 - min)
             countNumber[index] += 1
             require(countNumber[index] <= MAX_COUNT_OF_NUMBER_IN_LOTTO) { ErrorCode.DUPLICATE_ERROR.message }
         }
 
         return true
     }
-    
+
 }
