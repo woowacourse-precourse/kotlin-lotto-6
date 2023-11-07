@@ -6,13 +6,14 @@ class LottoBot(
     private var budget: Int = 0,
     private var winningNumbers: MutableList<Int> = mutableListOf(),
     private var bonusNumber: Int = 0,
-    private var _lottoWallet: LottoWallet = LottoWallet()
+    private var lottoWallet: MutableList<Lotto> = mutableListOf()
 ) {
-    val lottoWallet: LottoWallet = _lottoWallet
+    private var purchase_chance = 0
 
     fun startLotto() {
         receiveBudget()
         purchaseLotto()
+        showLottos()
         receiveWinningNumbers()
         receiveBonusNumbers()
     }
@@ -31,18 +32,25 @@ class LottoBot(
     }
 
     fun purchaseLotto() {
-        val chance = budget / Validator.LOTTO_PRICE
+        purchase_chance = budget / Validator.LOTTO_PRICE
 
-        for (i in 1..chance) {
+        for (i in 1..purchase_chance) {
             var flag = true
             while (flag) {
                 runCatching {
                     val newLotto = Lotto(LottoMaker.createRandomNumbers())
-                    lottoWallet.addLotto(newLotto)
+                    lottoWallet.add(newLotto)
                 }
                     .onSuccess { flag = false }
                     .onFailure { exception -> println(exception.message) }
             }
+        }
+    }
+
+    fun showLottos() {
+        println("${purchase_chance}개를 구매했습니다.")
+        lottoWallet.map {
+            println(it._numbers)
         }
     }
 
