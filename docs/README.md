@@ -17,29 +17,31 @@
     - [x] Computer - 에러 출력 [ERROR]
 
 - [x] Compueter - 구매완료 메시지
-- [ ] Compueter - 1000원 * n장 만큼 로또번호 추출
-- [ ] Compueter - 로또번호 리스트 정렬 후 출력  <br>
+- [x] Compueter - 1000원 * n장 만큼 로또번호 추출
+- [x] Compueter - 로또번호 리스트 정렬 후 출력  <br>
 
 ### 3. 당첨번호 입력
-- [ ] Computer - 요청 메시지
-- [ ] User - 입력
-  - [ ] System - 예외 체크 : 공백 입력
-  - [ ] System - 예외 체크 : 음수 or 0 입력
+- [x] Computer - 요청 메시지
+- [x] User - 입력
+  - [x] System - 예외 체크 : 공백 입력
+  - [x] System - 예외 체크 : 음수 or 0 입력
   - 
-  - - [ ] System - 예외 체크 : 숫자+쉼표 외에 문자 입력
-  - [ ] System - 예외 체크 : 숫자범위 벗어난 입력(1 ~ 45)
-  - [ ] System - 예외 체크 : 쉼표 갯수가 6개 이상
-    - [ ] Computer - 에러 출력 [ERROR] <br>
+  - [x] System - 예외 체크 : 숫자+쉼표 외에 문자 입력
+  - [x] System - 예외 체크 : 쉼표로 끝나는 문자 입력
+  - [x] System - 예외 체크 : 연속된 쉼표 입력
+  - [x] System - 예외 체크 : 중복된 숫자 입력
+  - [x] System - 예외 체크 : 숫자범위 벗어난 입력(1 ~ 45)
+    - [x] Computer - 에러 출력 [ERROR] <br>
 
 ### 4. 보너스번호 입력
-- [ ] Computer - 요청 메시지
-- [ ] User - 입력
-  - [ ] System - 예외 체크 : 공백 입력
-  - [ ] System - 예외 체크 : 음수 or 0 입력
+- [x] Computer - 요청 메시지
+- [x] User - 입력
+  - [x] System - 예외 체크 : 공백 입력
+  - [x] System - 예외 체크 : 음수 or 0 입력
   - 
-  - [ ] System - 예외 체크 : 숫자 외에 문자 입력 
-  - [ ] System - 예외 체크 : 숫자범위 벗어난 입력(1 ~ 45)
-    - [ ] Computer - 에러 출력 [ERROR] <br>
+  - [x] System - 예외 체크 : 숫자 외에 문자 입력 
+  - [x] System - 예외 체크 : 숫자범위 벗어난 입력(1 ~ 45)
+    - [x] Computer - 에러 출력 [ERROR] <br>
 
 ### 5. 로또게임 진행 & 결과 출력
 - [ ] Computer - 당첨번호와 로또번호 비교
