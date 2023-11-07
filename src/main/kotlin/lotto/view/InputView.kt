@@ -90,8 +90,8 @@ object InputView {
     }
 
     private fun checkNumbersSize(winningNumbers: List<Int>) {
-        check(winningNumbers.size == MAX_LOTTO_SIZE){
-            errorMessageFormat(ERROR_PRIZE_SIZE_MESSAGE )
+        check(winningNumbers.size == MAX_LOTTO_SIZE) {
+            errorMessageFormat(ERROR_PRIZE_SIZE_MESSAGE)
         }
     }
 }

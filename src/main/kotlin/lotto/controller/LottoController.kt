@@ -6,6 +6,7 @@ import lotto.model.Lotto
 import lotto.model.LottoPrize
 import lotto.model.LottoResults
 import lotto.model.Lottos
+import lotto.repeatInputIncorrect
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -15,7 +16,7 @@ class LottoController {
     private lateinit var lottoPrizes: List<LottoPrize>
 
     fun playGame() {
-        buyLotto()
+        repeatInputIncorrect { buyLotto() }
         receiveWinningNumbers()
         gameEnd()
     }
@@ -33,8 +34,9 @@ class LottoController {
     }
 
     private fun receiveWinningNumbers() {
-        val winningNumbers = InputView.getWinningNumbers()
-        val bonusLottoNumber = InputView.getBonusNumber(winningNumbers)
+        val winningNumbers = repeatInputIncorrect { InputView.getWinningNumbers() }
+        val bonusLottoNumber = repeatInputIncorrect { InputView.getBonusNumber(winningNumbers) }
+
         lottoPrizes = randomLottos.getLottoPrizes(Lotto(winningNumbers), bonusLottoNumber)
     }
 
