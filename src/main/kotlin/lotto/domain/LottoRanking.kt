@@ -4,7 +4,7 @@ import lotto.util.LottoStore
 import lotto.util.round
 
 // 전체 랭킹을 다룸
-class LottoRanking(var countByRanking: MutableMap<LottoResult, Int>, var totalPrize: Double) {
+class LottoRanking(var countByRanking: MutableMap<LottoResult, Int>, var totalRevenue: Double) {
     companion object {
         fun of(lottoResults: List<LottoResult>): LottoRanking {
 

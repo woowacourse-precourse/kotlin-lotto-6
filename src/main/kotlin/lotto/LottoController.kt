@@ -88,7 +88,7 @@ class LottoController(private val lottoView: LottoView) {
             if (rank == LottoResult.MISS) continue
             lottoView.printLottoRank(rank, count)
         }
-        lottoView.printProfit(ranks.totalPrize)
+        lottoView.printProfit(ranks.totalRevenue)
     }
 
 

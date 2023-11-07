@@ -16,11 +16,11 @@ class LottoRankingTest {
                 LottoResult.MISS,
                 LottoResult.MISS,
                 LottoResult.MISS,
-                LottoResult.MISS)).totalPrize).isEqualTo(62.5)
+                LottoResult.MISS)).totalRevenue).isEqualTo(62.5)
         assertThat(LottoRanking.of(listOf(
-                LottoResult.THREE_MATCH)).totalPrize).isEqualTo(500.0)
+                LottoResult.THREE_MATCH)).totalRevenue).isEqualTo(500.0)
         assertThat(LottoRanking.of(listOf(
                 LottoResult.THREE_MATCH,
-                LottoResult.FOUR_MATCH)).totalPrize).isEqualTo(2750.0)
+                LottoResult.FOUR_MATCH)).totalRevenue).isEqualTo(2750.0)
     }
 }
