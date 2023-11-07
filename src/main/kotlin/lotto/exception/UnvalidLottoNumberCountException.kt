@@ -1,0 +1,5 @@
+package lotto.exception
+
+import lotto.EXCEPTION_MESSAGE_UNVALID_LOTTO_NUMBER_COUNT
+
+class UnvalidLottoNumberCountException : IllegalArgumentException(EXCEPTION_MESSAGE_UNVALID_LOTTO_NUMBER_COUNT)
