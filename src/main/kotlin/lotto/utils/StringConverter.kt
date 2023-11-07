@@ -1,8 +1,6 @@
-package lotto.controller
+package lotto.utils
 
-import lotto.utils.Messages
-
-class StringManager {
+object StringConverter {
     fun formatNumberWithComma(number: Int): String {
         return "%,d".format(number)
     }
