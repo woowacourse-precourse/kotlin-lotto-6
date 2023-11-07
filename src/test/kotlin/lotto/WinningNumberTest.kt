@@ -1,5 +1,6 @@
 package lotto
 
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -11,6 +12,13 @@ class WinningNumberTest {
     fun `당첨 번호를 쉼표로 구분하지 않았을 때`(winningNumber: String) {
         assertThrows<IllegalArgumentException> {
             WinningNumber(winningNumber)
+        }
+    }
+
+    @Test
+    fun `당첨 번호에 숫자가 아닌 문자를 입력했을 때`() {
+        assertThrows<IllegalArgumentException> {
+            WinningNumber("1,3,4,5,6,a")
         }
     }
 
