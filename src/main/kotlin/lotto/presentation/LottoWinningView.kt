@@ -15,5 +15,6 @@ object LottoWinningView {
         LottoController().validateInputWinningNumberSize(winningNumber)
         LottoController().validateInputWinningNumberNumeric(winningNumber)
         LottoController().validateInputWinningNumberRange(winningNumber.map { it.toInt() })
+        LottoController().validateInputWinningNumberDuplicate(winningNumber.map { it.toInt() })
     }
 }

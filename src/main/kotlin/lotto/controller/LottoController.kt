@@ -72,4 +72,8 @@ class LottoController() {
     fun validateInputWinningNumberRange(input: List<Int>) {
         winningNumber.isWinningNumberRange(input)
     }
+
+    fun validateInputWinningNumberDuplicate(input: List<Int>) {
+        winningNumber.isWinningNumberDuplicate(input)
+    }
 }
