@@ -50,3 +50,37 @@
   - [x] 3개 일치할 경우 5등인지 테스트
 - [x] 수익률 테스트 
   - [x] 기대하는 수익률과 일치하는지 테스트
+
+
+## 🤖프로젝트 구조 설명
+### controller
+-  LottoController
+   -  `view`와 상호작용을 하고 서비스에게 입력값을 전달한다. 
+   - `InputView`에서 입력받은 값을 `Service`로 전달한다. 
+   -  입력단계에 맞춰서 `OutputView`에서 출력 메시지를 호출한다.
+### domain
+- `Lotto` : 로또 번호를 담당하는 클래스
+- `User` : 사용자 구입 금액과 구입한 로또를 저장
+- `WinningLotto` : 당첨 번호와 보너스 번호를 저장
+- `WinResult` : 당첨 결과와 수익률을 저장
+- `Place` : 당첨 결과를 나타내는 sealed class
+  - 일치한 숫자와 보너스 번호의 일치 여부를 바탕으로 등수를 결정해주는 함수를 가지고 있다.
+### service
+- `LottoService` : Lotto 도메인을 위한 서비스
+  - 로또 번호를 랜덤적으로 범위에 맞게 생성해준다.
+- `UserService` : User 도메인을 위한 서비스
+  - 구입한 금액에 따라 로또를 구입한다.
+- `WinningLottoService` : WinningLotto 도메인을 위한 서비스
+  - 입력받은 당첨번호와 보너스 번호를 바탕으로 WinningLotto를 생성
+- `WinResultService` : WinResult 도메인을 위한 서비스
+  - User와 WinningLotto를 이용해서 당첨 결과를 계산하고, 수익률을 계산한다.
+### util
+- `Constant` : 입력 메시지, 출력 메시지, 에러 메시지, 로또 번호의 최소값, 최대값, 로또 번호의 숫자, 구입 단위 가격 등 상수를 저장하고 있다.
+- `Exception` : 예외 처리를 담당하고 있다.
+### view
+- `InputView` : console를 이용해서 사용자 입력을 담당하고 있다.
+- `OutputView` : 입력에 대한 결과를 출력을 담당하고 있다.
+가
+
+
+
