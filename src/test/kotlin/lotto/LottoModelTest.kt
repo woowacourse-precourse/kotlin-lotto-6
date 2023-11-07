@@ -57,7 +57,7 @@ class LottoModelTest {
                 lottoModel.setWinningNumbers("1,2,3,4,5,6")
                 lottoModel.setBonusNumbers("7")
                 lottoModel.calculateLotto()
-                val profit = lottoModel.calculatorProfit()
+                val profit = lottoModel.calculateProfit()
 
                 assertEquals(40001000.0, profit) // 예상 수익률 검사
             },

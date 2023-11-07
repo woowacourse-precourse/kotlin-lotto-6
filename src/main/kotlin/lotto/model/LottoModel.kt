@@ -63,7 +63,7 @@ class LottoModel {
         }
     }
 
-    fun calculatorProfit(): Double {
+    fun calculateProfit(): Double {
         val totalPrize = results.map { it.key.prizeAmount * it.value }.sum()
         val amount = lottoNumbers.size * 1000
         val profitPercentage = (((totalPrize).toDouble() / amount) * 100)

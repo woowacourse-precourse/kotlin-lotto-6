@@ -19,7 +19,7 @@ class LottoController(private val lottoModel: LottoModel, private val lottoView:
         inputBonusNumber()
 
         lottoView.displayResults(lottoModel.calculateLotto())
-        lottoView.displayProfit(lottoModel.calculatorProfit())
+        lottoView.displayProfit(lottoModel.calculateProfit())
     }
 
     private fun inputPurchaseAmount() {
