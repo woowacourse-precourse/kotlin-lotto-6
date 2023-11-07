@@ -1,7 +1,5 @@
 package lotto
 
-import camp.nextstep.edu.missionutils.Console
-
 class Lotto(
     private val numbers: List<Int>,
     private val winnigNumber: List<Int>,
@@ -23,8 +21,8 @@ class Lotto(
         if (numberOfSameNumber != 5) {
             return numberOfSameNumber
         }
-        if (bonusNumber in numbers){
-            return 0
+        if (bonusNumber in numbers) {
+            return -1
         }
         return numberOfSameNumber
     }
