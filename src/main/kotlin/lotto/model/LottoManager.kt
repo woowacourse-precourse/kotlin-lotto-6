@@ -61,7 +61,7 @@ class LottoManager {
     }
 
     fun calculateProfitRate(count: Int, reward: Long): Double {
-        val profitRate = (reward.toDouble() / (count * LOTTO_PRICE).toDouble()) * 100
-        return (Math.round(profitRate * 100.0) / 100.0)
+        val profitRate = (reward.toDouble() / (count * LOTTO_PRICE).toDouble()) * 100.0
+        return String.format("%.1f", profitRate).toDouble()
     }
 }
