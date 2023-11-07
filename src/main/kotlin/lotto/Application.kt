@@ -1,5 +1,8 @@
 package lotto
 
 fun main() {
-    TODO("프로그램 구현")
+    //로또 뽑기 시작
+    LottoUI().lottoExc()
+
+
 }
