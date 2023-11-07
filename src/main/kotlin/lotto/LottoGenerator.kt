@@ -17,7 +17,7 @@ class LottoGenerator(var money: Int) {
         return this
     }
 
-    fun printLotto() {
+    fun printAll() {
         println()
         UserOutput.printPurchaseResult(lottos.size)
         for (lotto in lottos) println(lotto.toAscendingList())
