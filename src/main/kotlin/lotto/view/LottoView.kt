@@ -27,4 +27,10 @@ class LottoView {
     fun printLottoCount(count: Long) {
         printer.printLottoCount(count)
     }
+
+    fun printGeneratedLotto(lottoList: List<Lotto>) {
+        lottoList.forEach { lotto ->
+            printer.printGeneratedLotto(lotto.getLottoNumbers())
+        }
+    }
 }

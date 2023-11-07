@@ -26,4 +26,8 @@ object Printer {
     fun printLottoCount(count: Long) {
         println("$count$MESSAGE_LOTTO_COUNT")
     }
+
+    fun printGeneratedLotto(lottoNumbers: List<Int>) {
+        println(lottoNumbers)
+    }
 }

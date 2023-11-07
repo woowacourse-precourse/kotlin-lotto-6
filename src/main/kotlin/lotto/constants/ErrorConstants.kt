@@ -14,4 +14,6 @@ object ErrorConstants {
     const val BONUS_NOT_RANGE =
         "보너스 당첨 번호는 ${LottoConstants.MIN_LOTTO_NUMBER} ~ ${LottoConstants.MAX_LOTTO_NUMBER} 사이의 숫자로 입력해 주세요."
     const val BONUS_DUPLICATE = "보너스 당첨 번호는 당첨 번호와 중복된 숫자가 없게 입력해 주세요."
+
+    const val NOT_INITIALIZED = "변수가 초기화되지 않았습니다."
 }
