@@ -21,7 +21,6 @@ class Validator {
         if (purchaseAmount.isEmpty()) {
             throw IllegalArgumentException(InputErrorMessage.PURCHASE_AMOUNT_EMPTY.errorMessage)
         }
-        println()
         return purchaseAmount
     }
 

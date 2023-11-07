@@ -27,6 +27,7 @@ class LottoController {
             try {
                 val purchaseAmountInput = inputView.purchaseAmountInput()
                 val purchaseAmountString = validator.validatePurchaseAmount(purchaseAmountInput)
+                println()
                 val intPurchaseAmount = validator.validatePurchaseInt(purchaseAmountString)
                 val purchaseAmount = validator.validatePurchaseRange(intPurchaseAmount)
                 return validator.validatePriceUnit(purchaseAmount)
