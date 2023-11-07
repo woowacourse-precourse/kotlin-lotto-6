@@ -54,3 +54,27 @@ fun validateNumbers(numbers: List<Int>) {
         throw IllegalArgumentException("로또 번호는 중복될 수 없습니다.")
     }
 }
+
+fun getBonusNumber(winningNumbers: Lotto): Int {
+    while (true) {
+        try {
+            println("\n보너스 번호를 입력해 주세요.")
+            val input = Console.readLine() ?: throw IllegalArgumentException("숫자를 입력해 주세요.")
+            val bonusNumber = input.toIntOrNull() ?: throw IllegalArgumentException("숫자를 입력해 주세요.")
+            validateBonusNumber(bonusNumber, winningNumbers)
+            return bonusNumber
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] ${e.message}")
+        }
+    }
+}
+
+fun validateBonusNumber(bonusNumber: Int, winningNumbers: Lotto) {
+    if (bonusNumber !in 1..45) {
+        throw IllegalArgumentException("보너스 번호는 1~45 사이의 숫자여야 합니다.")
+    }
+    if (winningNumbers.contains(bonusNumber)) {
+        throw IllegalArgumentException("보너스 번호가 당첨 번호와 중복됩니다.")
+    }
+}
+
