@@ -16,7 +16,7 @@ class LottoModel {
     )
 
     fun generateLottoNumbers(amount: Int) {
-        repeat(calculateLottoCount(amount)) { lottoNumbers.add(createRandomNumber()) }
+        repeat(calculateLottoCount(amount)) { lottoNumbers.add(Lotto(createRandomNumber()).getNumber()) }
     }
 
     fun getLottoNumbers(): MutableList<List<Int>>{
