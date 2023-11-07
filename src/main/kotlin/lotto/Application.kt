@@ -10,12 +10,13 @@ fun main() {
     OutputView.outputLottos(purchasedLottos)
 
     val winningLotto = getWinningLotto()
-    val bonusNumber = getBonusNumber()
+    val winningResult = LottoShop.getWinningResult(winningLotto, purchasedLottos)
+    OutputView.outputWinningResult(winningResult)
 }
 
 private fun purchaseLottos(): Lottos {
     return try {
-        val money = getInputPurchaseAmount()
+        val money = getPurchaseAmount()
         LottoShop.purchaseLottos(money)
     } catch (e: IllegalArgumentException) {
         println(e.message)
@@ -23,25 +24,36 @@ private fun purchaseLottos(): Lottos {
     }
 }
 
-private fun getInputPurchaseAmount(): Money {
+private fun getPurchaseAmount(): Money {
     return try {
         val input = InputView.inputPurchaseAmount()
         InputValidator.validateInputPurchaseAmount(input)
         Money(input.toInt())
     } catch (e: IllegalArgumentException) {
         println(e.message)
-        getInputPurchaseAmount()
+        getPurchaseAmount()
     }
 }
 
-private fun getWinningLotto(): Lotto {
+private fun getWinningLotto(): WinningLotto {
     return try {
-        val input = InputView.inputWinningLotto()
-        InputValidator.validateInputWinningLotto(input)
-        Lotto(input.map { LottoNumber(it.toInt()) })
+        val winningNumbers = getWinningNumbers()
+        val bonusNumber = getBonusNumber()
+        WinningLotto(winningNumbers, bonusNumber)
     } catch (e: IllegalArgumentException) {
         println(e.message)
         getWinningLotto()
+    }
+}
+
+private fun getWinningNumbers(): Lotto {
+    return try {
+        val input = InputView.inputWinningNumbers()
+        InputValidator.validateInputWinningNumbers(input)
+        Lotto(input.map { LottoNumber(it.toInt()) })
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+        getWinningNumbers()
     }
 }
 
