@@ -28,6 +28,7 @@ class LottoShop {
                 val price = inputView.inputView()
                 validatePrice(price)
                 val lottoCount = price.toInt() / 1000
+                outputView.printLottoCount(lottoCount)
                 repeat(lottoCount) {
                     val numbers = randomUtils.pickLottoNum()
                     val lotto: Lotto = Lotto(numbers.sorted())
@@ -43,9 +44,9 @@ class LottoShop {
     }
 
     private fun validatePrice(price: String) {
-        require(price.isNotBlank())
-        require(price.all { it.isDigit() })
-        require(price.toInt() % 1000 == 0)
+        require(price.isNotBlank()) { "[ERROR] 로또 구입 금액은 천원 이상으로 입력 가능합니다." }
+        require(price.all { it.isDigit() }) { "[ERROR] 로또 구입 금액은 숫자로만 입력 가능합니다." }
+        require(price.toInt() % 1000 == 0) { "[ERROR] 로또 구입 금액은 천원 단위로만 입력 가능합니다." }
     }
 
     private fun startLottoProgram(price: Int) {

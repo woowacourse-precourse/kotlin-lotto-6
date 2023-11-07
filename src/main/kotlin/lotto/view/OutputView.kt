@@ -2,6 +2,10 @@ package lotto.view
 
 class OutputView {
 
+    fun printLottoCount(lottoCount: Int) {
+        println(String.format(LOTTO_COUNT, lottoCount))
+    }
+
     fun printLottoResult(
         threeMatch: Int,
         fourMatch: Int,
@@ -16,6 +20,7 @@ class OutputView {
     }
 
     companion object {
+        const val LOTTO_COUNT = "\n%d개를 구매했습니다."
         const val MATCH_COUNT_TITLE = "\n당첨 통계\n---"
         const val MATCH_COUNT = "3개 일치 (5,000원) - %d개\n" +
                 "4개 일치 (50,000원) - %d개\n" +
