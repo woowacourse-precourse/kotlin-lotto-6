@@ -31,7 +31,7 @@ class LottoGame() {
         printMessage("GetPurchaseAmount", 0)
         val purchaseAmount = getPurchaseAmount()
         InputValidator.validatePurchaseAmount(purchaseAmount)
-        val lottoCount = purchaseAmount / 1000
+        val lottoCount = purchaseAmount.toInt() / 1000
         printMessage("PrintCountNumber", lottoCount)
         return lottoCount
     }
@@ -41,8 +41,8 @@ class LottoGame() {
             Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6))
         }
     }
-    private fun getPurchaseAmount(): Int {
-        return Console.readLine().toInt()
+    private fun getPurchaseAmount(): String {
+        return Console.readLine()
     }
 
     private fun getWinnningNumber(): List<String> {
