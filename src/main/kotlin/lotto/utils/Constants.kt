@@ -8,5 +8,7 @@ object Constants {
     const val LOTTO_LAST_NUMBER = 45
     const val LOTTO_SIZE = 6
 
+    const val PERCENTAGE_NUMBER = 100
+
     const val DELIMITER = ","
 }
