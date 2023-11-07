@@ -15,24 +15,6 @@ fun main() {
     printResults(wonLottery, money)
 }
 
-fun printResults(wonLottery: Lotto, money: Int) {
-    println("당첨 통계")
-    println("---")
-    wonLottery.printStat()
-    println("총 수익률은 ${wonLottery.rateReturn(money)}입니다.")
-
-}
-
-fun checkLotto(lottery: List<List<Int>>, winningNums: List<Int>, bonusNum: Int): Lotto {
-    val result = lottery.map {
-        ticket -> val match = ticket.count() { it in winningNums }
-        val isBonus = bonusNum in ticket
-        // 매치 결과
-    }
-
-    return Lotto(result)
-}
-
 // 사용자가 구입 금액 입력 함수
 fun purchaseMoney(): Int {
     println("구입금액을 입력해 주세요.")
@@ -71,4 +53,24 @@ fun bonusNumber(): Int {
     println("보너스 번호를 입력해 주세요.")
     return Console.readLine().toIntOrNull()
         ?: throw IllegalArgumentException("[ERROR] 잘못된 입력입니다.")
+}
+
+// 당첨 통계 및 수익률 출력 함수
+fun printResults(wonLottery: Lotto, money: Int) {
+    println("당첨 통계")
+    println("---")
+    wonLottery.printStat()
+    println("총 수익률은 ${wonLottery.rateReturn(money)}입니다.")
+
+}
+
+// 당첨 번호 확인 함수
+fun checkLotto(lottery: List<List<Int>>, winningNums: List<Int>, bonusNum: Int): Lotto {
+    val result = Lotto(lottery)
+    for (ticket in lottery) {
+        val match = ticket.count { it in winningNums }
+        val isBounus = bonusNum in ticket
+        lotto.matchBonus(match, isBounus)
+    }
+    return lotto
 }

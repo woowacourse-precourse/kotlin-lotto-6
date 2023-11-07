@@ -29,4 +29,30 @@ class Lotto(private val numbers: List<Int>) {
         }
         return bonusNum in numbers
     }
+
+    // 당첨 결과에 따른 통계 출력
+    fun printStat() {
+        val stat = numbers.groupBy { it }
+        println("3개 일치 (5,000원) - ${stat[3] ?: 0}개")
+        println("4개 일치 (50,000원) - ${stat[4] ?: 0}개")
+        println("5개 일치 (1,500,000원) - ${stat[5] ?: 0}개")
+        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${stat[5 + 1] ?: 0}개")
+        println("6개 일치 (2,000,000,000원) - ${stat[6] ?: 0}개")
+    }
+
+    // 수익률 반환 함수
+    fun rateReturn(money: Int): String {
+        val winningMoney = mapOf(
+            3 to 5000, 4 to 50000, 5 to 1500000, 5 + 1 to 3000000, 6 to 2000000000
+        )
+        val totalMoney = numbers.sumOf { winningMoney[it] ?: 0 }
+        val rate = totalMoney.toDouble() / money.toDouble() * 100 // 수익률 계산
+        return "%.2f%%".format(rate)
+    }
+
+    fun matchBonus(matchCount: Int, isBonus: Boolean) {
+        if (matchCount == 5 && isBonus) {
+            numbers.a
+        }
+    }
 }
