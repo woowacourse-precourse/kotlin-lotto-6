@@ -10,7 +10,7 @@ fun main() {
     val bonusNumber = lottoNumberBonus()
 
     val result = lottoNumberCheck(lottoList, lottoNumber, bonusNumber)
-    print(result)
+    lottoResultPrint(result, count)
 
 
 
@@ -81,5 +81,13 @@ fun lottoNumberCheck(lottoList: List<List<Int>>, comNumber: List<Int>, bonusNumb
     }
     lottoMoneyList[5] = bonusNumberCnt
     return lottoMoneyList
+}
+
+fun lottoResultPrint(result: Map<Int, Int>, lottoCount: Int) {
+    println("당첨 통계")
+    println("---")
+    for ((key, value) in result) {
+        println("${key}개 일치 - ${value}개")
+    }
 }
 
