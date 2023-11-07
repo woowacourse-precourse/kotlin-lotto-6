@@ -5,19 +5,28 @@ import lotto.domain.validator.LottoShopValidator
 class LottoShop {
 
     private val lottoShopValidator: LottoShopValidator by lazy { LottoShopValidator() }
-    val lottoNumberGenerator: RandomNumberGenerator by lazy { RandomNumberGenerator() }
+    private val lottoNumberGenerator: RandomNumberGenerator by lazy { RandomNumberGenerator() }
 
-    fun purchaseLotto(input: String): List<Lotto> {
+    fun purchaseLottos(input: String): List<Lotto> {
         lottoShopValidator.validatePurchaseLottoInput(input)
+        val purchasedLottoCount = input.toInt() / LOTTO_PRICE
+        return createLottos(purchasedLottoCount)
+    }
 
+    private fun createLottos(purchasedLottoCount: Int): List<Lotto> {
         val lottos: MutableList<Lotto> = mutableListOf()
 
-        repeat(input.toInt() / LOTTO_PRICE) {
-            val lottoNumbers = lottoNumberGenerator.generateNumber()
-            lottos.add(Lotto(lottoNumbers))
+        repeat(purchasedLottoCount) {
+            val createdLotto = createLotto()
+            lottos.add(createdLotto)
         }
 
         return lottos.toList()
+    }
+
+    private fun createLotto(): Lotto {
+        val lottoNumbers = lottoNumberGenerator.generateNumber()
+        return Lotto(lottoNumbers)
     }
 
     companion object {

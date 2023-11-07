@@ -19,7 +19,7 @@ class LottoShopTest {
 
         //then
         assertThrows<IllegalArgumentException>{
-            lottoShop.purchaseLotto("abcd")
+            lottoShop.purchaseLottos("abcd")
         }
     }
 
@@ -34,7 +34,7 @@ class LottoShopTest {
 
         //then
         assertThrows<IllegalArgumentException> {
-            lottoShop.purchaseLotto(input)
+            lottoShop.purchaseLottos(input)
         }
     }
 
@@ -49,7 +49,7 @@ class LottoShopTest {
 
         //then
         assertDoesNotThrow {
-            lottoShop.purchaseLotto(input)
+            lottoShop.purchaseLottos(input)
         }
     }
 
@@ -63,7 +63,7 @@ class LottoShopTest {
 
         //then
         assertThrows<IllegalArgumentException> {
-            lottoShop.purchaseLotto("0")
+            lottoShop.purchaseLottos("0")
         }
     }
 
@@ -77,7 +77,7 @@ class LottoShopTest {
 
 
         //then
-        val actual = lottoShop.purchaseLotto(input).size
+        val actual = lottoShop.purchaseLottos(input).size
         val excepted = (input.toInt())/1000
         assertThat(actual).isEqualTo(excepted)
     }
