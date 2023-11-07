@@ -11,4 +11,10 @@ class InputView {
         return amount
     }
 
+    fun inputWinningNumber(): String {
+        val winningNumber = Console.readLine()
+        WinningNumber(winningNumber)
+        return winningNumber
+    }
+
 }
