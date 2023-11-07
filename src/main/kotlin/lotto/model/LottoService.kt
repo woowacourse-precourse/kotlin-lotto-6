@@ -29,12 +29,9 @@ object LottoService {
 
     private fun checkLotto(lottoNumber: Lotto, winningNumber: Lotto, bonusNumber: Int): Pair<Int, Boolean> {
         var count = 0
-        var isBonusNumberExist = false
+        val isBonusNumberExist = lottoNumber.getNumbers().contains(bonusNumber)
         lottoNumber.getNumbers().forEach { _number ->
-            when {
-                winningNumber.getNumbers().contains(_number) -> count += 1
-                _number == bonusNumber -> isBonusNumberExist = true
-            }
+            if (winningNumber.getNumbers().contains(_number)) count += 1
         }
         return Pair(count, isBonusNumberExist)
     }
@@ -47,12 +44,14 @@ object LottoService {
     private fun setWinningDetails(count: Int, isBonusNumber: Boolean) {
         when (count) {
             FIRST_GRADE.correspondNumber -> winningMap[FIRST_GRADE] = winningMap.getOrDefault(FIRST_GRADE, 0) + 1
-            SECOND_GRADE.correspondNumber -> {
-                val grade = if (isBonusNumber) SECOND_GRADE else THIRD_GRADE
-                winningMap[grade] = winningMap.getOrDefault(grade, 0) + 1
-            }
+            SECOND_GRADE.correspondNumber -> checkSecondAndThirdGrade(isBonusNumber)
             FOURTH_GRADE.correspondNumber -> winningMap[FOURTH_GRADE] = winningMap.getOrDefault(FOURTH_GRADE, 0) + 1
             FIFTH_GRADE.correspondNumber -> winningMap[FIFTH_GRADE] = winningMap.getOrDefault(FIFTH_GRADE, 0) + 1
         }
+    }
+
+    private fun checkSecondAndThirdGrade(isBonusNumber: Boolean) {
+        val grade = if (isBonusNumber) SECOND_GRADE else THIRD_GRADE
+        winningMap[grade] = winningMap.getOrDefault(grade, 0) + 1
     }
 }
