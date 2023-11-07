@@ -17,7 +17,7 @@ class LottoShopTest {
         // when
         val result = LottoShop.purchaseLottos(input)
         // then
-        assertEquals(result.size(), 5)
+        assertEquals(5, result.size())
     }
 
     @Test
@@ -61,11 +61,11 @@ class LottoShopTest {
         // then
         val winningResult = result.result
         val rateOfReturn = result.rateOfReturn
-        assertEquals(winningResult[WinningRank.FIRST].toString(), "1개")
-        assertEquals(winningResult[WinningRank.SECOND].toString(), "1개")
-        assertEquals(winningResult[WinningRank.THIRD].toString(), "1개")
-        assertEquals(winningResult[WinningRank.FOURTH].toString(), "1개")
-        assertEquals(winningResult[WinningRank.FIFTH].toString(), "1개")
-        assertEquals(rateOfReturn.toString(), "40631100.0%")
+        assertEquals("1개", winningResult[WinningRank.FIRST].toString())
+        assertEquals("1개", winningResult[WinningRank.SECOND].toString())
+        assertEquals("1개", winningResult[WinningRank.THIRD].toString())
+        assertEquals("1개", winningResult[WinningRank.FOURTH].toString())
+        assertEquals("1개", winningResult[WinningRank.FIFTH].toString())
+        assertEquals("40631100.0%", rateOfReturn.toString())
     }
 }
