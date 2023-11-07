@@ -5,6 +5,7 @@ import lotto.util.Error
 class Lotto(private val numbers: List<Int>) : Comparable<Lotto> {
     init {
         require(numbers.size == 6) { Error.InvalidLottoNumberCount.message }
+        require(numbers.size == numbers.toSet().size) { Error.HasDuplicateLottoNumber.message }
         numbers.forEach { number -> require(number in 1..45) { Error.InvalidLottoNumber.message } }
     }
 
