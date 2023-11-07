@@ -1,6 +1,6 @@
 package lottoranking
 
-enum class LottoRanking(val rank: Int, val reward: Int, val count: Int) {
+enum class LottoRanking(val rank: Int, val reward: Int, var count: Int) {
     FIRST(rank = 1, reward = 2_000_000_000, count = 0),
     SECOND(rank = 2, reward = 30_000_000, count = 0),
     THIRD(rank = 3, reward = 1_500_000, count = 0),
