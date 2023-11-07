@@ -63,6 +63,7 @@ fun userBonus(answers: List<Int>): Int {
     return try {
         Bonus().BonusFomatValidate(bonus)
         Bonus().BonuDuplicationValidate(bonus.toInt(), answers)
+        Bonus().BonusRangeValidate(bonus.toInt())
         bonus.toInt()
     } catch (e: IllegalArgumentException) {
         userBonus(answers)

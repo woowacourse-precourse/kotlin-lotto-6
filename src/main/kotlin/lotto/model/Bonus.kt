@@ -18,6 +18,12 @@ class Bonus {
             println(Constants.ERROR_BONUS_DUPLICATION)
             throw IllegalArgumentException(Constants.ERROR_BONUS_DUPLICATION)
         }
+    }
 
+    fun BonusRangeValidate(bonus: Int) {
+        if (bonus > 45 || bonus < 1) {
+            println(Constants.ERROR_BONUS_RANGE)
+            throw IllegalArgumentException(Constants.ERROR_BONUS_RANGE)
+        }
     }
 }
