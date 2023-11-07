@@ -1,6 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
+import org.assertj.core.util.VisibleForTesting
 
 class LottoMachine {
     private val view = View()
@@ -19,7 +20,8 @@ class LottoMachine {
         view.printWinRate(winRate)
     }
 
-    private fun winningLotteryResult(lottos: List<Lotto>, inputLottoNumber: Lotto, inputBonusNumber: BonusNumber): Prize {
+    @VisibleForTesting
+    fun winningLotteryResult(lottos: List<Lotto>, inputLottoNumber: Lotto, inputBonusNumber: BonusNumber): Prize {
         val inputNumber = inputLottoNumber.getLottoNumbers()
         val prize = Prize()
         lottos.forEach { lotto ->
@@ -41,7 +43,7 @@ class LottoMachine {
             5 -> checkBonusNumber(lottoNum, inputBonusNumber.getBonusNumber(), prize)
             4 -> prize.countPrize(Rank.FOURTH_RANK)
             3 -> prize.countPrize(Rank.FIFTH_RANK)
-            else -> Rank.MISS
+            else -> prize.countPrize(Rank.MISS)
         }
     }
 
