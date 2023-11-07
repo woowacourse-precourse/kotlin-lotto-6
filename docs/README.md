@@ -81,13 +81,13 @@
 
 ## ⚙️ 아키텍쳐 패턴 : MVC
 #### Model
-- [ ] Lotto - 로또
+- [x] Lotto - 로또
   - 1~45 숫자 중 중복되지 않는 6개의 숫자를 갖는 표.
-- [ ] LottoGenerator - 로또 생성기
+- [x] LottoGenerator - 로또 생성기
   - 로또 생성하는 기계.
 - [ ] WinningLotto - 당첨 로또
   - 사용자 입력에 의한 당첨 로또를 생성.
-- [ ] LottoRanking - 로또 랭킹
+- [x] LottoRanking - 로또 랭킹
   - 로또 랭킹관리.
 - [ ] LottoBank - 로또 은행
   - 로또 수익률 계산.
@@ -95,7 +95,7 @@
 #### View
 - [ ] InputView - 입력부
   - 사용자 입력 관리.
-- [ ] OutputView - 출력부
+- [x] OutputView - 출력부
   - 사용자 출력 관리.
 
 #### Controller
