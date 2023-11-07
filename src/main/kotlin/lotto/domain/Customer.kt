@@ -5,7 +5,7 @@ import java.lang.NumberFormatException
 class Customer {
 
 
-    private var lottoAmounts = 0
+    private var _lottoAmounts = 0
 
     private var _purchaseCounts = 0
 
@@ -14,10 +14,10 @@ class Customer {
 
     private var order = 1
 
-    init{
+    init {
 
-        lottoAmounts = inputToInt()
-        _purchaseCounts = lottoAmounts / 1000
+        _lottoAmounts = inputToInt()
+        _purchaseCounts = _lottoAmounts / 1000
 
         while(order<=_purchaseCounts){
 
@@ -60,5 +60,8 @@ class Customer {
         return _purchaseCounts
      }
 
+    fun getPurchaseAmounts() : Int {
+        return  _lottoAmounts
+    }
 
 }

@@ -1,20 +1,16 @@
 package lotto.ui
 
 import lotto.domain.Customer
-import lotto.domain.LottoManager
 
-class LottoScreen {
+class LottoCustomerScreen(lottoCounts : Int, lottoNumsList : List<List<Int>>) {
 
     private var lottoCounts = 0
     private var lottoNumsList = emptyList<List<Int>>()
 
     init {
-        val customer = Customer()
-        val lottoManager = LottoManager()
 
-        lottoCounts = customer.getPurchaseCounts()
-        lottoNumsList = customer.lottoNumsList
-
+        this.lottoCounts = lottoCounts
+        this.lottoNumsList = lottoNumsList
 
     }
 
