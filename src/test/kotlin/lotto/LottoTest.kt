@@ -1,5 +1,7 @@
 package lotto
 
+import lotto.Model.Lotto
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -21,4 +23,11 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @Test
+    fun `getNumbers returns correct numbers`() {
+        val numbers = listOf(1, 2, 3, 4, 5, 6)
+        val lotto = Lotto(numbers)
+        assertThat(lotto.getNumbers()).isEqualTo(numbers)
+    }
 }
