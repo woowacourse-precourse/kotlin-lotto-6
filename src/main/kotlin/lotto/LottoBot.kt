@@ -56,7 +56,7 @@ class LottoBot(
     }
 
     fun showLottos() {
-        println("${purchase_chance}개를 구매했습니다.")
+        println("\n${purchase_chance}개를 구매했습니다.")
         lottoWallet.map {
             println(it._numbers)
         }
@@ -66,7 +66,7 @@ class LottoBot(
         var flag = true
         while (flag) {
             runCatching {
-                println("당첨 번호를 입력해 주세요")
+                println("\n당첨 번호를 입력해 주세요")
                 val input = Console.readLine()
                 val numbers = Validator.mapToWinningNumbers(input)
                 winningNumbers.addAll(Validator.validateNumbers(numbers))
@@ -82,7 +82,7 @@ class LottoBot(
         var flag = true
         while (flag) {
             runCatching {
-                println("보너스 번호를 입력해 주세요.")
+                println("\n보너스 번호를 입력해 주세요.")
                 val input = Console.readLine()
                 bonusNumber = Validator.validateBonusNumber(input)
             }.onSuccess { flag = false }
@@ -90,5 +90,13 @@ class LottoBot(
         }
     }
 
-    
+    fun presentStatics() {
+        calculater.calculateAllJackpot(
+            _lottoWallet,
+            _bonusWallet,
+            _winningNumbers,
+            bonusNumber
+        )
+        calculater.showAllCalculation()
+    }
 }
