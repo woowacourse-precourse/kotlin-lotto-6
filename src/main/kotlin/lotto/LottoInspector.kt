@@ -9,7 +9,7 @@ class LottoInspector {
     }
 
     private fun makeLottoResultList(issuedLotto: List<Lotto>, winningNumber: List<Int>, bonusNumber: Int): Array<Int> {
-        val lottoResultList = Array(6) { 0 }
+        val lottoResultList = Array(LOTTO_RESULT_LIST_SIZE) { ZERO }
         for (lotto in issuedLotto) {
             val lottoResult = checkLotto(lotto,winningNumber,bonusNumber)
             lottoResultList[lottoResult]++
@@ -39,7 +39,7 @@ class LottoInspector {
 
     private fun getEarningRate(lottoResultList: Array<Int>, issuedLotto: List<Lotto>): Double {
         val earnedMoney = getEarnedMoney(lottoResultList)
-        val purchasedMoney = issuedLotto.size * 1000
+        val purchasedMoney = issuedLotto.size * LOTTO_PRICE
         return earnedMoney.toDouble() / purchasedMoney.toDouble()
     }
 
@@ -85,4 +85,9 @@ class LottoInspector {
         return mixedLotto.size - distinctMixedLotto.size
     }
 
+    companion object {
+        const val LOTTO_PRICE = 1000
+        const val LOTTO_RESULT_LIST_SIZE = 6
+        const val ZERO = 0
+    }
 }
