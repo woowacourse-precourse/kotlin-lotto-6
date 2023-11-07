@@ -12,6 +12,10 @@ class Lotto(private val numbers: List<Int>) {
         return numbers
     }
 
+    fun contains(number: Int): Boolean {
+        return numbers.contains(number)
+    }
+
     companion object {
         fun createRandomLotto(): Lotto {
             val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
@@ -19,3 +23,15 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 }
+
+enum class Prize(val matchedNumbers: Int, private val prizeMoney: Int) {
+
+    THIRD(3, 5000),
+    FOURTH(4, 50000),
+    FIFTH(5, 1_500_000),
+    SECOND(5, 30_000_000),
+    FIRST(6, 2_000_000_000),
+    NONE(0, 0);
+
+}
+

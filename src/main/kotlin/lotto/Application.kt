@@ -18,6 +18,7 @@ fun main() {
     val bonusNumber = readBonusNumber(winningNumbers)
     println()
 
+    val results = compareLottosWithWinningNumbers(myPurchaselottos, winningNumbers, bonusNumber)
 }
 
 fun readPurchaseAmount(): Int {
@@ -89,4 +90,15 @@ fun readBonusNumber(winningNumbers: List<Int>): Int {
             println(e.message)
         }
     }
+}
+
+fun compareLottosWithWinningNumbers(lottos: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): List<Prize> {
+    val results = mutableListOf<Prize>()
+    for (lotto in lottos) {
+        val matchedNumbers = lotto.getNumbers().intersect(winningNumbers).count()
+        val matchedBonus = lotto.contains(bonusNumber)
+        val prize = Prize.values().find { it.matchedNumbers == matchedNumbers && matchedBonus } ?: Prize.values().find { it.matchedNumbers == matchedNumbers }
+        results.add(prize ?: Prize.NONE)
+    }
+    return results
 }
