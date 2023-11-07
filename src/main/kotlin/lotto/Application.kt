@@ -6,6 +6,9 @@ fun main() {
     val lottoList = lottoNumberLimit(count)
     lottoNumberPrint(count, lottoList)
 
+    val lottoNumber = lottoNumberChoose()
+    println("당첨된 로또 번호: $lottoNumber")
+
 }
 fun lottoMoneyInput(): Int {
     println("구입금액을 입력해 주세요.")
@@ -37,5 +40,14 @@ fun lottoNumberPrint(lottoCount: Int, lottoList: List<List<Int>>) {
     for (lotto in lottoList) {
         println(lotto.sorted())
     }
+}
+
+fun lottoNumberChoose(): List<Int> {
+    println("당첨 번호를 입력해 주세요.")
+    val lottoNumber = readLine()!!.split(",").map { it.toInt() }
+    if (lottoNumber.size != 6) {
+        throw IllegalArgumentException("6개의 번호를 입력해 주세요.")
+    }
+    return lottoNumber
 }
 
