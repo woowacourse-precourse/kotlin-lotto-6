@@ -1,12 +1,23 @@
 package lotto.model
 
 import INVALID_WINNING_NUMBER_NUMERIC_MESSAGE
+import INVALID_WINNING_NUMBER_RANGE_MESSAGE
+import LOTTO_MAX_NUMBER
+import LOTTO_MIN_NUMBER
 
 class WinningNumber {
     fun isWinningNumberNumeric(input: List<String>) {
         for (number in input) {
             if (number.toIntOrNull() == null)
                 throw IllegalArgumentException(INVALID_WINNING_NUMBER_NUMERIC_MESSAGE)
+        }
+    }
+
+    fun isWinningNumberRange(input: List<Int>) {
+        for (number in input) {
+            if (number !in LOTTO_MIN_NUMBER..LOTTO_MAX_NUMBER) {
+                throw IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE_MESSAGE)
+            }
         }
     }
 }
