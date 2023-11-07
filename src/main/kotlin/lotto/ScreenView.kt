@@ -48,6 +48,7 @@ class ScreenView {
     }
 
     fun printWinningStatistics(result: LottoResult) {
+        val formattedRateOfReturn = "%.1f".format(result.rateOfReturn)
         println("당첨 통계")
         println("---")
         println("3개 일치 (5,000원) - ${result.win[0]}개")
@@ -55,6 +56,6 @@ class ScreenView {
         println("5개 일치 (1,500,000원) - ${result.win[2]}개")
         println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${result.win[3]}개")
         println("6개 일치 (2,000,000,000원) - ${result.win[4]}개")
-        println("총 수익률은 ${result.rateOfReturn}%입니다.")
+        println("총 수익률은 $formattedRateOfReturn%입니다.")
     }
 }

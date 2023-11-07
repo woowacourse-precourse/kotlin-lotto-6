@@ -68,7 +68,8 @@ class LottoController(private val view: ScreenView) {
         rateOfReturn += result.win[3] * 30000000
         rateOfReturn += result.win[4] * 2000000000
         rateOfReturn /= inputMoney
-        result.rateOfReturn = round(rateOfReturn*10)/10
+        rateOfReturn *= 100
+        result.rateOfReturn = rateOfReturn
     }
     enum class Winning {
         THREE, FOUR, FIVE, FIVEPLUSBONUS, SIX
