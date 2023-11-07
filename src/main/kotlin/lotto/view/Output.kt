@@ -2,6 +2,7 @@ package lotto.view
 
 import lotto.model.Lotto
 import lotto.utils.Notice
+import org.mockito.internal.matchers.Not
 
 class Output {
     fun startGameNotice() {
@@ -9,14 +10,14 @@ class Output {
     }
 
     fun showLottoTickets(generatedAutoLottoTickets: List<Lotto>) {
-        println(generatedAutoLottoTickets.size.toString()+"개를 구매했습니다.")
+        println(generatedAutoLottoTickets.size.toString()+Notice.PURCHASED_TICKET_NUMS)
         for (ticket in generatedAutoLottoTickets){
             println(ticket)
         }
     }
 
     fun getWinningInfoNotice() {
-        TODO("Not yet implemented")
+        println(Notice.ENTER_WINNING_INFO)
     }
 
     fun getBonusInfoNotice() {
