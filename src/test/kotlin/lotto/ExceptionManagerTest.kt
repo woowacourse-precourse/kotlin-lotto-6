@@ -33,4 +33,18 @@ class ExceptionManagerTest {
             exceptionManager.winningNum("a,b,c")
         }
     }
+
+    @Test
+    fun `보너스 번호가 숫자가 아니면 에러가 발생한다`() {
+        org.junit.jupiter.api.assertThrows<IllegalArgumentException> {
+            exceptionManager.bonusNum("abc")
+        }
+    }
+
+    @Test
+    fun `보너스 번호가 1~45가 아니면 에러가 발생한다`() {
+        org.junit.jupiter.api.assertThrows<IllegalArgumentException> {
+            exceptionManager.bonusNum("46")
+        }
+    }
 }
