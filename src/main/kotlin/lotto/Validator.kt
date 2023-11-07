@@ -5,7 +5,6 @@ object Validator {
     val MAX_RANGE = 45
     val LOTTO_PRICE = 1000
     val MAX_LOTTO_LENGTH = 6
-    val MAX_COUNT_OF_NUMBER_IN_LOTTO = 1
 
     fun isAvailableRange(input: Int): Boolean {
         require(input in MIN_RANGE..MAX_RANGE) {
@@ -74,19 +73,9 @@ object Validator {
     }
 
     fun isDuplicatedNumber(input: List<Int>): Boolean {
-        val countNumber: MutableList<Int> = mutableListOf(0)
-        val min = input.min()
-        val max = input.max()
-        for (i in min..max) {
-            countNumber.add(0)
+        require(input.distinct().size == MAX_LOTTO_LENGTH) {
+            ErrorCode.DUPLICATE_ERROR.message
         }
-
-        input.map {
-            val index = it + (1 - min)
-            countNumber[index] += 1
-            require(countNumber[index] <= MAX_COUNT_OF_NUMBER_IN_LOTTO) { ErrorCode.DUPLICATE_ERROR.message }
-        }
-
         return true
     }
 
