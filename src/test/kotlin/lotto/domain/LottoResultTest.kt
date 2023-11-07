@@ -1,4 +1,4 @@
-package lotto.domain.result
+package lotto.domain
 
 import domain.result.LottoResult
 import domain.result.Rank
