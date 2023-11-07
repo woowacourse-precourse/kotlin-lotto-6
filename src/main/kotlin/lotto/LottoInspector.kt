@@ -30,6 +30,31 @@ class LottoInspector {
                 "(${LottoRewardMoney.FIRST.rewardMoney}) - ${lottoResultList[LottoAward.FIRST.reward]}개")
     }
 
+    private fun printEarningRate(lottoResultList: Array<Int>, issuedLotto: List<Lotto>) {
+        val earningRate = getEarningRate(lottoResultList,issuedLotto)
+        println("총 수익률은 ${earningRate}%입니다.")
+    }
+
+    private fun getEarningRate(lottoResultList: Array<Int>, issuedLotto: List<Lotto>): Double {
+        val earnedMoney = getEarnedMoney(lottoResultList)
+        val purchasedMoney = issuedLotto.size * 1000
+        return earnedMoney.toDouble() / purchasedMoney.toDouble()
+    }
+
+    private fun getEarnedMoney(lottoResultList: Array<Int>): Int {
+        return getRewardMoneyToInt(LottoRewardMoney.FIRST.rewardMoney) * lottoResultList[LottoAward.FIRST.reward] +
+                getRewardMoneyToInt(LottoRewardMoney.SECOND.rewardMoney) * lottoResultList[LottoAward.SECOND.reward] +
+                getRewardMoneyToInt(LottoRewardMoney.THIRD.rewardMoney) * lottoResultList[LottoAward.THIRD.reward] +
+                getRewardMoneyToInt(LottoRewardMoney.FOURTH.rewardMoney) * lottoResultList[LottoAward.FOURTH.reward] +
+                getRewardMoneyToInt(LottoRewardMoney.FIFTH.rewardMoney) * lottoResultList[LottoAward.FIFTH.reward]
+    }
+
+    private fun getRewardMoneyToInt(lottoRewardMoney: String): Int {
+        lottoRewardMoney.replace("원","")
+        lottoRewardMoney.replace(",","")
+        return lottoRewardMoney.toInt()
+    }
+
     private fun checkLotto(lotto: Lotto, winningNumber: List<Int>, bonusNumber: Int): Int {
         val lottoNumber = lotto.getLottoNumber()
         val lottoResult = compareLotto(lottoNumber, winningNumber)
