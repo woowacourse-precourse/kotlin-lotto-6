@@ -9,11 +9,11 @@ class Lottos {
         val numberCreator = NumberCreator()
         val lottos = mutableListOf<Lotto>()
 
-        outputManager.lottos(lottoNum)
+        outputManager.printLottoNum(lottoNum)
 
         repeat(lottoNum){
             val lottoNumber = numberCreator.randoms()
-            println("${lottoNumber.sorted()}")
+            outputManager.printLottos(lottoNumber.sorted())
             val lotto = Lotto(lottoNumber)
             lottos.add(lotto)
         }
