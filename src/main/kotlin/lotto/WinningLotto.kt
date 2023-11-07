@@ -31,13 +31,9 @@ class WinningLotto {
     }
 
     // TODO 예외처리
-    private fun readWinningNumbers(): List<Int> {
-        return Console.readLine().trim().split(",").map { it.toInt() }
-    }
+    private fun readWinningNumbers(): List<Int> = Console.readLine().trim().split(",").map { it.toInt() }
 
-    private fun readBonusNumber(): Int {
-        return Console.readLine().toInt()
-    }
+    private fun readBonusNumber(): Int = Console.readLine().toInt()
 
     companion object {
         const val INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요."

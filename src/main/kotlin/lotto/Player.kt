@@ -11,13 +11,9 @@ class Player {
     }
 
     // TODO 지불한 돈 예외처리
-    private fun readTicketPayments(): Int {
-        return Console.readLine().trim().toInt()
-    }
+    private fun readTicketPayments(): Int = Console.readLine().trim().toInt()
 
-    private fun calculateTicketCounts(payment: Int): Int {
-        return payment / 1_000
-    }
+    private fun calculateTicketCounts(payment: Int): Int = payment / 1_000
 
     private fun createTickets(ticketCount: Int): List<Lotto> {
         val lottoTicketGenerator = LottoTicketGenerator()
