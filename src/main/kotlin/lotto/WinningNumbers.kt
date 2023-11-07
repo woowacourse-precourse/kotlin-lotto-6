@@ -28,7 +28,7 @@ class WinningNumbers(private val winningNumbers: List<Int>, private val bonusNum
                 bonus = true
             }
         }
-        return (count, bonus)
+        return Reward.getRank(count, bonus)
     }
 }
 

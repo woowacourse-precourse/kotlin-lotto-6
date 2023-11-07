@@ -14,8 +14,19 @@ class LottoResult() {
             "NOTHING" to 0
         )
         for (ticket in userTickets) {
-            result[ticket.check(winningNumbers)] = result[ticket.check(winningNumbers)]!! + 1
+            result[ticket.checkLotto(winningNumbers)] = result[ticket.checkLotto(winningNumbers)]!! + 1
         }
         return result
+    }
+
+    fun printResult(results: Map<String, Int>, UserCost: Int) {
+        println("당첨 통계\n---")
+        for (rank in ranks) {
+            if (rank == "SECOND") {
+                println("${count}개 일치, 보너스 볼 일치 (${bonus})원) - 개")
+                continue
+            }
+            println("{}개 일치 ( 원) - 개")
+        }
     }
 }
