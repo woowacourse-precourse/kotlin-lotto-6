@@ -1,4 +1,4 @@
-package lotto
+package lotto.domain
 
 import lotto.constants.ErrorConstants
 import lotto.constants.GameConstants.MAX_LOTTO_NUMBER
