@@ -9,7 +9,10 @@ class Output {
     }
 
     fun showLottoTickets(generatedAutoLottoTickets: List<Lotto>) {
-        TODO("Not yet implemented")
+        println(generatedAutoLottoTickets.size.toString()+"개를 구매했습니다.")
+        for (ticket in generatedAutoLottoTickets){
+            println(ticket)
+        }
     }
 
     fun getWinningInfoNotice() {
