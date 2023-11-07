@@ -6,7 +6,6 @@ import lotto.utils.Constants
 
 class LottoWrapper {
     private val lottoWrapper = mutableListOf<Lotto>()
-
     fun repeatLottoNumbers(ticket: Int): MutableList<Lotto> {
         repeat(ticket) {
             lottoWrapper.add(Lotto(generateLottoNumbers()))
