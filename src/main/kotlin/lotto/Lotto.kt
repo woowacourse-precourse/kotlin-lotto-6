@@ -5,7 +5,6 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
     }
 
-    fun printLottoNumbers() {
-        println(numbers.joinToString(prefix = "[", postfix = "]", separator = ","))
-    }
+    fun lottoNumberToString() = numbers.joinToString(prefix = "[", postfix = "]", separator = ",")
+
 }
