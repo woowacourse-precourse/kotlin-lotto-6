@@ -9,7 +9,15 @@ class ExceptionManager {
     }
 
     fun winningNum(str: String): List<Int> {
-        return convertToIntList(str)
+        val numbers = convertToIntList(str)
+        numbers.forEach { lottoNumberInRange(it) }
+        return numbers
+    }
+
+    fun bonusNum(str: String): Int {
+        val number = str.toInt()
+        lottoNumberInRange(number)
+        return number
     }
 
     private fun String.toInt(str: String): Int {
@@ -29,5 +37,9 @@ class ExceptionManager {
         catch (e: NumberFormatException) {
             throw IllegalArgumentException("[ERROR] 올바른 형식의 숫자 리스트가 아닙니다.")
         }
+    }
+
+    private fun lottoNumberInRange(number: Int) {
+        require(number in 1..45) {"[ERROR] 1~45 이내의 숫자를 입력 해야 합니다."}
     }
 }
