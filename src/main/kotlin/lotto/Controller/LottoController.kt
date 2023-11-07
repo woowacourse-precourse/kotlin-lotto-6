@@ -52,6 +52,12 @@ object LottoController {
                 println("[ERROR] ${e.message}")
             }
         }
+
+        println("\n보너스 번호를 입력해 주세요.")
+
+        val bonusNumbers = readLine()
+
+
     }
 }
 fun parseLottoNumbers(input: String?): List<Int> {
