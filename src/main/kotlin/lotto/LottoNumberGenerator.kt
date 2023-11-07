@@ -3,7 +3,7 @@ package lotto
 import camp.nextstep.edu.missionutils.Randoms
 
 class LottoNumberGenerator : NumberGenerator {
-    //제대로 된 랜덤로또 한장을 만들어 내는
+    //랜덤로또생성 후 제대로 된 로또 한장을 만들어 내는
 
     override fun generate(): List<Int> {
         //제대로 된 로또 내놔!에 대한 응답임
