@@ -9,7 +9,7 @@ object InputValidator {
         checkInteger(input)
     }
 
-    fun validateInputWinningLotto(input: List<String>) {
+    fun validateInputWinningNumbers(input: List<String>) {
         checkStringListBlank(input)
         checkIntegers(input)
     }
