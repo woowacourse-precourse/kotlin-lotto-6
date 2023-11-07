@@ -1,7 +1,6 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
-import lotto.View.LottoGameView
 
 class Lotto(private val numbers: List<Int>) {
     init {

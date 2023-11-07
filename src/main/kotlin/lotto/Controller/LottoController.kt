@@ -1,6 +1,8 @@
 package lotto.Controller
 
 import lotto.LottoGameModel
+import lotto.Utils.InputLottoNumsException
+import lotto.Utils.LottoException
 
 fun howManyBuyLotto(lottoPrice: String): Int {
     try {
@@ -9,10 +11,10 @@ fun howManyBuyLotto(lottoPrice: String): Int {
         if (price % 1000 == 0) {
             return price / 1000
         } else {
-            throw IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.")
+            throw IllegalArgumentException(LottoException.BUY_LOTTO_PRICE_1000)
         }
     } catch (e: NumberFormatException) {
-        throw IllegalArgumentException("[ERROR] 유효하지 않은 입력입니다. 구입 금액을 숫자로 입력해 주세요.")
+        throw IllegalArgumentException(LottoException.BUY_LOTTO_PRICE_INVALIDATE_NUMBER)
     }
 }
 
@@ -69,29 +71,29 @@ object LottoController {
 
 fun parseLottoNumbers(input: String?): List<Int> {
     if (input == null) {
-        throw IllegalArgumentException("[ERROR] 입력이 null입니다.")
+        throw IllegalArgumentException(LottoException.INPUT_NULL)
     }
 
     val numbers = input.split(",").map { it.trim() }.filter { it.isNotEmpty() }
 
     if (numbers.size != 6) {
-        throw IllegalArgumentException("[ERROR] 6개의 숫자를 입력해야 합니다.")
+        throw IllegalArgumentException(InputLottoNumsException.INPUT_LOTTO_6NUMBERS)
     }
 
     val lottoNumbers = numbers.map {
         try {
             val number = it.toInt()
             if (number < 1 || number > 45) {
-                throw IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자여야 합니다.")
+                throw IllegalArgumentException(LottoException.INPUT_LOTTO_1TO45)
             }
             number
         } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("[ERROR] 숫자가 아닌 값이 포함되어 있습니다.")
+            throw IllegalArgumentException(LottoException.INPUT_LOTTO_INVALID_TYPE)
         }
     }
 
     if (lottoNumbers.distinct().size != 6) {
-        throw IllegalArgumentException("[ERROR] 중복되지 않은 6개의 숫자를 입력해야 합니다.")
+        throw IllegalArgumentException(InputLottoNumsException.INPUT_LOTTO_ISDUPLICATED)
     }
 
     return lottoNumbers
@@ -99,16 +101,16 @@ fun parseLottoNumbers(input: String?): List<Int> {
 
 fun checkValidationBonusLottoNumbers(bonusNumber: String?): Int{
     if (bonusNumber == null) {
-        throw IllegalArgumentException("[ERROR] 입력이 null입니다.")
+        throw IllegalArgumentException(LottoException.INPUT_NULL)
     }
 
     try {
         val number = bonusNumber.toInt()
         if (number < 1 || number > 45) {
-            throw IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자여야 합니다.")
+            throw IllegalArgumentException(LottoException.INPUT_LOTTO_1TO45)
         }
         return number
     } catch (e: NumberFormatException) {
-        throw IllegalArgumentException("[ERROR] 숫자가 아닌 값이 포함되어 있습니다.")
+        throw IllegalArgumentException(LottoException.INPUT_LOTTO_INVALID_TYPE)
     }
 }
