@@ -5,15 +5,15 @@ import camp.nextstep.edu.missionutils.Console
 class Player {
 
     fun purchaseLottoTickets(): List<Lotto> {
-        val payment = readTicketPayments()
-        val ticketCounts = calculateTicketCounts(payment)
-        return createTickets(ticketCounts)
+        val payment = readTicketPayment()
+        val ticketCount = calculateTicketCount(payment)
+        return createTickets(ticketCount)
     }
 
     // TODO 지불한 돈 예외처리
-    private fun readTicketPayments(): Int = Console.readLine().trim().toInt()
+    private fun readTicketPayment(): Int = Console.readLine().trim().toInt()
 
-    private fun calculateTicketCounts(payment: Int): Int = payment / 1_000
+    private fun calculateTicketCount(payment: Int): Int = payment / 1_000
 
     private fun createTickets(ticketCount: Int): List<Lotto> {
         val lottoTicketGenerator = LottoTicketGenerator()
