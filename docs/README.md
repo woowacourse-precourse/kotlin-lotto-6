@@ -5,7 +5,7 @@
 
 
 ## 2. Application.kt를 작성한다.
-
+- LottoGame의 gameStart()메서드를 실행한다.
 
 ## 3. 로또 게임을 생성하는 클래스 LottoGame를 정의한다.
 ### 로또를 발행하는 함수 buyLotto()를 정의한다.
