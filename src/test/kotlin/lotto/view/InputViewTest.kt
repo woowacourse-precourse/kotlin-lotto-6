@@ -83,24 +83,36 @@ class InputViewTest {
     @Test
     fun `사용자로부터 입력받은 보너스 번호가 유효한 경우`() {
         val bonusNumber = "45"
+        val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
         assertDoesNotThrow {
-            InputView.getValidatedBonusNumber(bonusNumber)
+            InputView.getValidatedBonusNumber(bonusNumber, winningNumbers)
         }
     }
 
     @Test
-    fun `사용자로부터 입력받은 보너스 번호가 문자열 형태인 경우`() {
+    fun `사용자로부터 입력받은 보너스 번호가 문자열 형태인 경우 예외 발생`() {
         val bonusNumber = "k"
+        val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
         assertThrows<IllegalArgumentException> {
-            InputView.getValidatedBonusNumber(bonusNumber)
+            InputView.getValidatedBonusNumber(bonusNumber, winningNumbers)
         }
     }
 
     @Test
-    fun `사용자로부터 입력받은 보너스 번호가 허용 범위를 벗어난 경우`() {
+    fun `사용자로부터 입력받은 보너스 번호가 허용 범위를 벗어난 경우 예외 발생`() {
         val bonusNumber = "46"
+        val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
         assertThrows<IllegalArgumentException> {
-            InputView.getValidatedBonusNumber(bonusNumber)
+            InputView.getValidatedBonusNumber(bonusNumber, winningNumbers)
+        }
+    }
+
+    @Test
+    fun `사용자로부터 입력받은 보너스 번호가 이미 당첨번호에 존재하는 경우 예외 발생`() {
+        val bonusNumber = "1"
+        val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
+        assertThrows<IllegalArgumentException> {
+            InputView.getValidatedBonusNumber(bonusNumber, winningNumbers)
         }
     }
 }
