@@ -10,7 +10,7 @@ import lotto.exception.IllegalStateException
 class LottoManager {
 
     fun getMoneyToCount(money: Int): Int {
-        while (money < LOTTO_PRICE) {
+        while (money == -1) {
             println(IllegalStateException.stateNotInitialized)
         }
 
@@ -24,6 +24,10 @@ class LottoManager {
     fun classifyLotto(lottoList: List<Lotto>, winningLotto: Lotto, bonusNumber: Int): Map<LottoRank, Int> {
         val lottoMap = LottoRank.entries.associateWith { 0 }.toMutableMap()
 
+        while (bonusNumber == -1 || lottoList.isEmpty()) {
+            println(IllegalStateException.stateNotInitialized)
+        }
+
         lottoList.forEach { lotto ->
             val lottoRank = checkLotto(lotto, winningLotto, bonusNumber)
             lottoMap[lottoRank] = lottoMap[lottoRank]!! + 1
@@ -34,6 +38,11 @@ class LottoManager {
     }
 
     private fun checkLotto(lotto: Lotto, winningLotto: Lotto, bonusNumber: Int): LottoRank {
+
+        while (bonusNumber == -1) {
+            println(IllegalStateException.stateNotInitialized)
+        }
+
         return when (winningLotto.getLottoNumbers().intersect(lotto.getLottoNumbers().toSet()).size) {
             6 -> LottoRank.FIRST_RANK
             5 -> if (lotto.getLottoNumbers().contains(bonusNumber)) LottoRank.SECOND_RANK else LottoRank.THIRD_RANK
