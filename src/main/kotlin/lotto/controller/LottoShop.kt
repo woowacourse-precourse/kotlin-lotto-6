@@ -5,6 +5,7 @@ import lotto.domain.LottoMC
 import lotto.domain.Validator
 import lotto.utils.RandomUtils
 import lotto.view.InputView
+import lotto.view.OutputView
 
 class LottoShop {
 
@@ -12,6 +13,7 @@ class LottoShop {
     private val validator = Validator()
     private val randomUtils = RandomUtils()
     private val lottoMC = LottoMC(inputView)
+    private val outputView = OutputView()
 
     private val lottos = mutableListOf<Lotto>()
 
@@ -33,7 +35,6 @@ class LottoShop {
             println(lotto)
         }
         startLottoProgram()
-        printResult()
     }
 
     private fun startLottoProgram() {
@@ -44,12 +45,15 @@ class LottoShop {
         checkLottoCorrect(lottoNum, bonusNum)
     }
 
-    private fun checkLottoCorrect(lottoNum: List<String>, bonusNum: String) {
+    private fun checkLottoCorrect(lottoNum: List<Int>, bonusNum: String) {
         for (lotto in lottos) {
             val correctCnt = lotto.getNumbers().intersect(lottoNum.toSet()).size
             val bonusCnt = lotto.getNumbers().contains(bonusNum.toInt())
+            println("lotto.getNumbers() type: ${lotto.getNumbers()::class.simpleName}, lottoNum.toSet() type: ${lottoNum.toSet()::class.simpleName}")  // 로그 추가
+            println("lottoNum: $lottoNum, lotto: ${lotto.getNumbers()}, bonusNum: $bonusNum, correctCnt: $correctCnt, bonusCnt: $bonusCnt")
             lottoResult(correctCnt, bonusCnt)
         }
+        printResult(threeMatch, fourMatch, fiveMatch, bonusMatch, sixMatch)
     }
 
     private fun lottoResult(correctCnt: Int, bonusCnt: Boolean) {
@@ -66,11 +70,7 @@ class LottoShop {
         }
     }
 
-    private fun printResult() {
-        println(threeMatch)
-        println(fourMatch)
-        println(fiveMatch)
-        println(bonusMatch)
-        println(sixMatch)
+    private fun printResult(threeMatch: Int, fourMatch: Int, fiveMatch: Int, bonusMatch: Int, sixMatch: Int) {
+        outputView.printLottoResult(threeMatch, fourMatch, fiveMatch, bonusMatch, sixMatch)
     }
 }
