@@ -4,10 +4,11 @@ import lotto.model.Lotto
 import lotto.model.Prize
 import lotto.utils.Messages
 import lotto.utils.Messages.DIVIDER
-import lotto.utils.Messages.PROFIT_MESSAGE
 import lotto.utils.Messages.WINNING_STATISTICS_MESSAGE
+import lotto.controller.StringManager
 
 object OutputView {
+    private val stringConverter = StringManager()
     fun showInputBuyPriceMessage() {
         println(Messages.BUY_PRICE_MESSAGE)
     }
@@ -37,18 +38,14 @@ object OutputView {
 
     fun printResults(results: MutableMap<Prize, Int>) {
         Prize.entries.forEach {
-            println("${it.message} (${formatNumberWithComma(it.prizeAmount)}원) - ${results[it]}개")
+            println("${it.message} (${stringConverter.formatNumberWithComma(it.prizeAmount)}원) - ${results[it]}개")
         }
 
     }
 
-    private fun formatNumberWithComma(number: Int): String {
-        return "%,d".format(number)
-    }
-
 
     fun printProfitPercentage(profitPercentage: Double) {
-        println(String.format(PROFIT_MESSAGE, profitPercentage))
+        println(stringConverter.formatPercentage(profitPercentage))
     }
 
 }
