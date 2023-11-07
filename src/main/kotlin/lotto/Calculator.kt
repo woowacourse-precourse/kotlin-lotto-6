@@ -64,32 +64,34 @@ class Calculator {
             }
         }
 
+        if (winningNumbersTarget == lottoNumbersTarget) {
+            count += 1
+        }
+
         return count
     }
 
-    private fun is3Jackpot(lotto: Lotto, winningNumbers: List<Int>): Boolean {
+    fun is3Jackpot(lotto: Lotto, winningNumbers: List<Int>): Boolean {
         val matchCount = countMatchNumber(winningNumbers.iterator(), lotto._numbers.iterator())
         return matchCount == 3
     }
 
-    private fun is4Jackpot(lotto: Lotto, winningNumbers: List<Int>): Boolean {
+    fun is4Jackpot(lotto: Lotto, winningNumbers: List<Int>): Boolean {
         val matchCount = countMatchNumber(winningNumbers.iterator(), lotto._numbers.iterator())
         return matchCount == 4
     }
 
-    private fun is5Jackpot(lotto: Lotto, winningNumbers: List<Int>): Boolean {
+    fun is5Jackpot(lotto: Lotto, winningNumbers: List<Int>): Boolean {
         val matchCount = countMatchNumber(winningNumbers.iterator(), lotto._numbers.iterator())
         return matchCount == 5
     }
 
-    private fun is5JackpotWithBonus(lotto: Lotto, bonus: Int, winningNumbers: List<Int>, bonusNumber: Int): Boolean {
+    fun is5JackpotWithBonus(lotto: Lotto, bonus: Int, winningNumbers: List<Int>, bonusNumber: Int): Boolean {
         val matchCount = countMatchNumber(winningNumbers.iterator(), lotto._numbers.iterator())
         return matchCount == 5 && bonus == bonusNumber
     }
 
-    private fun is6Jackpot(lotto: Lotto, winningNumbers: List<Int>): Boolean {
-        val matchCount = countMatchNumber(winningNumbers.iterator(), lotto._numbers.iterator())
-        return matchCount == 6
+    fun is6Jackpot(lotto: Lotto, winningNumbers: List<Int>): Boolean {
+        return lotto._numbers == winningNumbers
     }
-
 }
