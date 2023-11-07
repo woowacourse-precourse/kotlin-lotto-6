@@ -31,7 +31,7 @@ class LottoResult(private val lottoTickets: LottoTickets, private val winningLot
     }
 
     private fun printWinningResult() {
-        val prizes = Prize.values().filterNot { it == Prize.Nothing }.reversed()
+        val prizes = Prize.values().filterNot { it == Prize.NOTHING }.reversed()
         prizes.forEach { printEachWinningResult(it) }
     }
 
@@ -53,7 +53,7 @@ class LottoResult(private val lottoTickets: LottoTickets, private val winningLot
     ): String = "${matchedNumberCount}개 일치, ${bonusInfo}(${winningPrizeMoney})원 - ${winTicketCount}개"
 
     private fun findMatchedNumberCount(prize: Prize) = Prize.findPrizeMatchNumberCount(prize)
-    private fun bonusInfoMessage(prize: Prize): String = if (prize == Prize.Second) BONUS_NUMBER_MATCH else ""
+    private fun bonusInfoMessage(prize: Prize): String = if (prize == Prize.SECOND) BONUS_NUMBER_MATCH else ""
     private fun Int.toWonFormat(): String = DecimalFormat("#,###").format(this)
     private fun findWinTicketCount(prize: Prize) = winningResults.count { it == prize }
 
