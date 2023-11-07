@@ -29,7 +29,6 @@ object LottoController {
                 val numberOfLottoTickets = howManyBuyLotto(lottoPrice)
                 println("\n$numberOfLottoTickets 개를 구매했습니다.")
                 lottoGameModel = LottoGameModel(numberOfLottoTickets)
-//                println(lottoGameModel.lottoList)
             } catch (e: IllegalArgumentException) {
                 println("[ERROR] ${e.message}")
             }
@@ -47,7 +46,6 @@ object LottoController {
         if (winningNumbers != null) {
             try {
                 val parsedWinningNumbers = parseLottoNumbers(winningNumbers)
-                // 여기에서 로또 번호 유효성 검사 및 로직을 추가하세요.
             } catch (e: IllegalArgumentException) {
                 println("[ERROR] ${e.message}")
             }
@@ -56,6 +54,14 @@ object LottoController {
         println("\n보너스 번호를 입력해 주세요.")
 
         val bonusNumbers = readLine()
+
+        if (bonusNumbers != null) {
+            try {
+                checkValidationBonusLottoNumbers(bonusNumbers)
+            } catch (e: IllegalArgumentException) {
+                println("[ERROR] ${e.message}")
+            }
+        }
 
 
     }
@@ -89,4 +95,22 @@ fun parseLottoNumbers(input: String?): List<Int> {
     }
 
     return lottoNumbers
+}
+
+fun checkValidationBonusLottoNumbers(bonusNumber: String?): Int{
+    if (bonusNumber == null) {
+        throw IllegalArgumentException("[ERROR] 입력이 null입니다.")
+    }
+
+    try {
+        val number = bonusNumber.toInt()
+        if (number < 1 || number > 45) {
+            throw IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자여야 합니다.")
+        }
+        return number
+
+    } catch (e: NumberFormatException) {
+        throw IllegalArgumentException("[ERROR] 숫자가 아닌 값이 포함되어 있습니다.")
+    }
+
 }
