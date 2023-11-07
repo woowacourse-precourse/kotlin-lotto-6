@@ -1,21 +1,22 @@
 package lotto.domain.service
 
 import lotto.Lotto
+import lotto.domain.enum.winning.RankCount
 import lotto.domain.model.Winning
 
 class LottoCalculator(private val winning:Winning) {
 
     fun checkWinningRank(lotto: Lotto): Int {
         return when (getWinningCount(lotto)) {
-            3 -> 5
-            4 -> 4
-            5 -> {
-                if (hasBonusNumber(lotto)) 2
-                else 3
+            RankCount.FIFTH.count -> RankCount.FIFTH.rank
+            RankCount.FOURTH.count -> RankCount.FOURTH.rank
+            RankCount.SECOND.count -> {
+                if (hasBonusNumber(lotto)) RankCount.SECOND.rank
+                else RankCount.THIRD.rank
             }
 
-            6 -> 1
-            else -> 6
+            RankCount.FIRST.count -> RankCount.FIRST.rank
+            else -> RankCount.NOT.rank
         }
     }
 
