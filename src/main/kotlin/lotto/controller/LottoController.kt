@@ -22,7 +22,7 @@ class LottoController(private val outputView: OutputView, private val inputView:
             val receipt = lottoPrizeCalculator.issueLottoResultReceipt(ticket)
             outputView.printResult(receipt)
             inputView.terminated()
-        }.onFailure {  throwable ->
+        }.onFailure { throwable ->
             outputView.printError(throwable.message)
         }
     }

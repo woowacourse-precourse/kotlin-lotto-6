@@ -6,6 +6,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class LottoPrizeCalculatorTest {
+
     @Test
     fun `로또 5개를 구매하여 5등에 당첨되었을 때, 수익률이 100%이다`() {
         val ticket = Ticket(5000.toMoney())
