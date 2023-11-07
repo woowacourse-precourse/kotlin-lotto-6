@@ -1,4 +1,4 @@
-package lotto
+package lotto.Model
 
 import camp.nextstep.edu.missionutils.Randoms
 
@@ -67,7 +67,6 @@ class LottoGameModel(howManyBuyLotto: Int) {
         return numbers.sorted()
     }
 
-    // lottoList에 저장된 Lotto 객체의 numbers를 출력하는 메서드
     fun printLottoNumbers() {
         for (lotto in lottoList) {
             println(lotto.getLottoNumbers())

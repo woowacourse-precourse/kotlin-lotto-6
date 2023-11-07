@@ -1,6 +1,7 @@
 package lotto.Controller
 
-import lotto.LottoGameModel
+import LottoGameView
+import lotto.Model.LottoGameModel
 import lotto.Utils.InputLottoNumsException
 import lotto.Utils.LottoException
 
@@ -19,22 +20,10 @@ fun howManyBuyLotto(lottoPrice: String): Int {
 }
 
 object LottoController {
-    private var lottoGameModel: LottoGameModel? = null
+    var lottoGameModel: LottoGameModel? = null
 
     fun gameStart() {
-        println("구입금액을 입력해 주세요.")
-        val lottoPrice = readLine()
-        var lottoGameModel: LottoGameModel? = null
-
-        if (lottoPrice != null) {
-            try {
-                val numberOfLottoTickets = howManyBuyLotto(lottoPrice)
-                println("\n$numberOfLottoTickets 개를 구매했습니다.")
-                lottoGameModel = LottoGameModel(numberOfLottoTickets)
-            } catch (e: IllegalArgumentException) {
-                println("[ERROR] ${e.message}")
-            }
-        }
+        LottoGameView.inputHowManyBuyLotto()
 
         lottoGameModel?.run {
             printLottoNumbers()

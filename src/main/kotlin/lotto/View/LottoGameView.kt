@@ -1,4 +1,15 @@
+import lotto.Exceptions.Exceptions
+
 object LottoGameView {
+    fun inputHowManyBuyLotto(){
+        println("구입금액을 입력해 주세요.")
+        val lottoPrice = readLine()
+
+        return Exceptions.checkHowManyLottoIsValid(lottoPrice)
+    }
+
+
+
     fun printGameResult(winning3: Int, winning4: Int, winning5: Int, winning5Bonus: Int, winning6: Int, lottoListSize: Int) {
         println("\n당첨 통계")
         println("---")
