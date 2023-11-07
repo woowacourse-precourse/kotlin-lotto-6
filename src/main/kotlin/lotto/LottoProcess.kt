@@ -25,12 +25,15 @@ class LottoProcess {
             println("${ticket.getDelimiter()}")
         }
     }
+
     private fun getWinningNumbers(): WinningNumbers {
         println("당첨 번호를 입력해 주세요.")
         val inputWinningNumber = Console.readLine()
         val winningNumbers = validateNumbersInput(inputWinningNumber)
-
-        return WinningNumbers(winningNumbers)
+        println("보너스 번호를 입력해 주세요.")
+        val inputBonus = Console.readLine()
+        val bonusNumber = validateNumberInput(inputBonus)
+        return WinningNumbers(winningNumbers, bonusNumber)
     }
 
     private fun validatePayment(userPayment: String): String {
@@ -50,6 +53,15 @@ class LottoProcess {
             return inputs.map { it.toInt() }
         } catch (e: NumberFormatException) {
             throw IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.")
+        }
+    }
+
+    private fun validateNumberInput(inputBonus: String): Int {
+        try {
+            return inputBonus.toInt()
+        } catch (e: NumberFormatException) {
+            println("[ERROR] 숫자만 입력해 주세요.")
+            throw IllegalArgumentException(e)
         }
     }
 }
