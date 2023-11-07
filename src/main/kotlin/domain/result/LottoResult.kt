@@ -17,10 +17,10 @@ class LottoResult(
         return FinalResult(winningData, rateOfReturn)
     }
 
-    private fun getWinningData(): Map<Rank, Int> {
+    fun getWinningData(): Map<Rank, Int> {
         val winningData = mutableMapOf<Rank, Int>()
         val resultRankData = lotties.mapNotNull {
-            it.getResultForEachLotto()
+            getResultForEachLotto(it)
         }
 
         val ranks = Rank.entries.toTypedArray()
@@ -32,7 +32,7 @@ class LottoResult(
         return winningData
     }
 
-    private fun getRateOfReturn(winningData: Map<Rank, Int>): String {
+    fun getRateOfReturn(winningData: Map<Rank, Int>): String {
         val purchasedAmount = lotties.size * LOTTO_PRICE.toDouble()
         val earnedAmount = winningData.entries.sumOf { (rank, count) ->
             rank.reward * count
@@ -41,9 +41,9 @@ class LottoResult(
         return FORMAT_ONE_DECIMAL_PLACE.format(earnedAmount / purchasedAmount * PERCENTILE)
     }
 
-    private fun List<Int>.getResultForEachLotto(): Rank? {
-        val winningCount = getWinningCount(this)
-        val containsBonus = getContainsBonusOrNot(this)
+    fun getResultForEachLotto(lotto: List<Int>): Rank? {
+        val winningCount = getWinningCount(lotto)
+        val containsBonus = getContainsBonusOrNot(lotto)
 
         return when (winningCount) {
             3 -> Rank.FIFTH
@@ -54,7 +54,7 @@ class LottoResult(
         }
     }
 
-    private fun getWinningCount(lotto: List<Int>): Int {
+    fun getWinningCount(lotto: List<Int>): Int {
         var winningCount = 0
         lotto.onEach {
             if (it in winningNumbers) winningCount++
@@ -63,6 +63,6 @@ class LottoResult(
         return winningCount
     }
 
-    private fun getContainsBonusOrNot(lotto: List<Int>): Boolean = bonusNumber in lotto
+    fun getContainsBonusOrNot(lotto: List<Int>): Boolean = bonusNumber in lotto
 
 }
