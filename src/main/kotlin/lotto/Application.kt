@@ -6,11 +6,14 @@ fun main() {
     val count = player.calculateLottoGenerateCount(amount)
 
     val lottoGenerator = LottoGenerator(count)
-    lottoGenerator.generateLottoTickets()
+    val lottoTickets = lottoGenerator.generateLottoTickets()
 
     val lottoMachine = LottoMachine()
     val winningNumbers = lottoMachine.inputWinningNumbers()
-    lottoMachine.inputBonusNumber(winningNumbers)
+    val bonusNumber = lottoMachine.inputBonusNumber(winningNumbers)
+
+    val winningResult = WinningResult(lottoTickets, winningNumbers, bonusNumber)
+    winningResult.printResults()
 }
 
 

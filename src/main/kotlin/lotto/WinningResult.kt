@@ -16,4 +16,13 @@ class WinningResult(
         return statistics
     }
 
+    fun printResults() {
+        val statistics = calculateStatistics()
+        println("당첨 통계")
+        println("---")
+        for (rank in LottoRank.entries) {
+            val count = statistics[rank] ?: 0
+            println("${rank.rankDescription} (${rank.prizeMoney}원) - ${count}개")
+        }
+    }
 }
