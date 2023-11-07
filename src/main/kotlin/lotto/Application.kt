@@ -34,6 +34,7 @@ fun main() {
     for (lotto in lottoBunch) {
 
         println(lotto.compareCountingMatchedWinningNumber(winningBonus))
+        println(lotto.compareCountingMatchedBonusNumber(winningBonus))
 
     }
 

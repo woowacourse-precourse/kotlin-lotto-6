@@ -11,8 +11,7 @@ class Lotto(private val numbers: List<Int>) {
         return (numbers.toSet().intersect(winningNumber.winningNumber.toSet()).size)
     }
 
-    fun compareCountingMatchedBonusNumber(number: WinningAndBonusNumber): Boolean {
-
-        return true
+    fun compareCountingMatchedBonusNumber(bonusNumber: WinningAndBonusNumber): Boolean {
+        return numbers.toSet().intersect(bonusNumber.bonusNumber.toSet()).size == 1
     }
 }

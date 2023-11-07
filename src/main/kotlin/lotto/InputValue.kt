@@ -61,7 +61,7 @@ class InputValue {
             break
         }
 
-        return listOf(0)
+        return changedBonusNumber
     }
 
     private fun changeStringInt(numbers: List<String>): List<Int> {
