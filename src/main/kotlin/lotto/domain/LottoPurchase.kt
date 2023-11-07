@@ -5,9 +5,6 @@ import lotto.view.OutputView.showInputBuyPriceMessage
 import lotto.view.InputView.inputBuyPrice
 
 class LottoPurchase {
-    init {
-        showInputBuyPriceMessage()
-    }
 
     fun buyLotto(): Int {
         return inputBuyPrice()

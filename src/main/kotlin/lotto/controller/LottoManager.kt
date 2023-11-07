@@ -20,6 +20,7 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
     }
 
     private fun purchaseLotto(): Int {
+        outputView.showInputBuyPriceMessage()
         val lottoPurchase = LottoPurchase()
         val amount = lottoPurchase.buyLotto()
         val ticket = lottoPurchase.calculateTicket(amount)
