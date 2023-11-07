@@ -48,4 +48,7 @@ fun main() {
             println("[ERROR] "+error.message)
         }
     }
+
+    val winningResult = Lotto(seller.winningNumbers)
+
 }

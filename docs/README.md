@@ -72,4 +72,5 @@
 * 로또 판매원 클래스 - LottoSeller
     - 사용자가 구매할 티켓 개수 구하는 함수 # getTickets()
     - 각 티켓의 복권 번호 구하는 함수 # createLotto()
-    - 당첨 번호와 보너스 번호 받는 함수 # getWinningNumbers()
+    - 당첨 번호 유효성 체크 # validateWinningNumbers()
+    - 보너스 번호 유효성 체크 # validateBonusNumbers()

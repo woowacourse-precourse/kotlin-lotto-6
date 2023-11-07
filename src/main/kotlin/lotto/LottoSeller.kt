@@ -27,10 +27,6 @@ class LottoSeller {
         }
     }
 
-    fun getWinningNumbers(numbers: List<Int>, bonus: Int) {
-
-    }
-
     fun validateWinningNumbers() {
         if (this.winningNumbers.size != this.winningNumbers.distinct().count())
             throw IllegalArgumentException("당첨 번호는 중복되지 않아야 합니다.")
