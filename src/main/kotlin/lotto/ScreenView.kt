@@ -1,7 +1,6 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.LottoController
 
 class ScreenView {
     private val inputMoneyMessage = "구입금액을 입력해 주세요."
@@ -10,10 +9,19 @@ class ScreenView {
 
     fun inputMoney(): Int {
         println(inputMoneyMessage)
-        val money: Int = Console.readLine().toInt()
-        println()
-        println("${money/1000}개를 구매했습니다.")
-        return money/1000
+        try {
+            val money = Console.readLine().toInt()
+
+            if (money % 1000 != 0) {
+                throw IllegalArgumentException("[ERROR] 1000으로 나누어 떨어지는 정수가 아닙니다.")
+            }
+            println()
+            println("${money/1000}개를 구매했습니다.")
+            return money/1000
+        } catch (e: NumberFormatException) {
+            println("[ERROR] 1000으로 나누어 떨어지는 정수가 아닙니다.")
+        }
+        return 0
     }
 
     fun inputLotto(): List<Int> {
