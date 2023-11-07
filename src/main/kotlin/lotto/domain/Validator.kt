@@ -5,12 +5,13 @@ import lotto.data.Lotto
 class Validator private constructor() {
     fun checkInputOfPurchasingCorrect(input: String): Boolean {
         val number = input.toUIntOrNull()
-        return number != null && number > 0u
+        return number != null && number > UNSIGNED_ZERO
     }
 
-    fun checkInputOfWinningNumCorrect(input: String): Boolean {
+    fun checkInputIsConsistOfPositiveNum(input: String): Boolean {
         return input.split(IO.INPUT_SPLITTER).all {
-            it.toUIntOrNull() != null
+            val num = it.toUIntOrNull()
+            num != null && num > UNSIGNED_ZERO
         }
     }
 
@@ -49,12 +50,14 @@ class Validator private constructor() {
     }
 
     companion object {
-        private const val DUPLICATE_IS_NOT_ALLOWED = "[ERROR] 번호는 중복될 수 없습니다."
-        private const val NUMBER_SHOULD_BE_ORDERED = "[ERROR] 오름차순으로 정렬해서 입력하세요."
-        private const val LENGTH_IS_NOT_CORRECT = "[ERROR] 여섯 개의 숫자를 입력하세요."
-        private const val BONUS_SHOULD_NOT_BE_DUPLICATE = "[ERROR] 보너스 번호는 기본 번호와 중복될 수 없습니다."
-        private var instance: Validator? = null
+        const val DUPLICATE_IS_NOT_ALLOWED = "[ERROR] 번호는 중복될 수 없습니다."
+        const val NUMBER_SHOULD_BE_ORDERED = "[ERROR] 오름차순으로 정렬해서 입력하세요."
+        const val LENGTH_IS_NOT_CORRECT = "[ERROR] 여섯 개의 숫자를 입력하세요."
+        const val BONUS_SHOULD_NOT_BE_DUPLICATE = "[ERROR] 보너스 번호는 기본 번호와 중복될 수 없습니다."
         const val NUMBER_IS_NOT_IN_LOTTO_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."
+        private const val UNSIGNED_ZERO = 0u
+
+        private var instance: Validator? = null
 
         fun getInstance(): Validator {
             val validator = instance

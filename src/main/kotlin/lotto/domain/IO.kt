@@ -37,7 +37,7 @@ class IO private constructor() {
         show(INPUT_WINNING_NUM, true)
 
         val input = getInput()
-        require(Validator.getInstance().checkInputOfWinningNumCorrect(input)) {
+        require(Validator.getInstance().checkInputIsConsistOfPositiveNum(input)) {
             SHOULD_BE_KEEP_LOTTO_INPUT_FORM
         }
         val nums = input.split(INPUT_SPLITTER).map { it.toInt() }
