@@ -4,20 +4,37 @@ import lotto.constants.Constants
 import camp.nextstep.edu.missionutils.Console
 import lotto.domain.ValidateLottoAmount
 import lotto.domain.ValidateLottoNumbers
+import java.lang.IllegalArgumentException
 
 class InputView {
     fun inputBuyAmount(): Int {
         println(Constants.INPUT_BUY_AMOUNT)
-        return ValidateLottoAmount().buyAmount(Console.readLine())
+        return try {
+           ValidateLottoAmount().buyAmount(Console.readLine())
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            inputBuyAmount()
+        }
     }
 
     fun inputWinningNumbers() : List<Int> {
         println(Constants.INPUT_WINNING_NUMBER)
-        return ValidateLottoNumbers().validateWinningNumbers(Console.readLine())
+        return try {
+            ValidateLottoNumbers().validateWinningNumbers(Console.readLine())
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            inputWinningNumbers()
+        }
+
     }
 
     fun inputBonusNumber(winningNumbers: List<Int>) : Int {
         println(Constants.INPUT_BONUS_NUMBER)
-        return ValidateLottoNumbers().validateBonusNumber(Console.readLine(), winningNumbers)
+        return try {
+            ValidateLottoNumbers().validateBonusNumber(Console.readLine(), winningNumbers)
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            inputBonusNumber(winningNumbers)
+        }
     }
 }
