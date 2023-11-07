@@ -2,6 +2,7 @@ package lotto
 
 class LottoMachine(private val amount: String) {
 
+    private val outputView = OutputView()
     private val lottoGenerator = LottoGenerator()
 
     fun calculateLottoQuantity(): Int {
@@ -9,7 +10,7 @@ class LottoMachine(private val amount: String) {
     }
 
     fun printNumbers(quantity: Int) {
-        repeat(quantity) { println(lottoGenerator.generateLotto()) }
+        repeat(quantity) { outputView.printLottoNumbers(lottoGenerator.generateLotto()) }
     }
 
     companion object {
