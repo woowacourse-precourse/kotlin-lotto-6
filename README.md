@@ -280,7 +280,8 @@ class Lotto(private val numbers: List<Int>) {
 
 ### WinningNumber
 
-- [ ] 당첨 번호
+- [x] 당첨 번호
+- [x] 보너스 번호
 
 ### LottoRanking
 
