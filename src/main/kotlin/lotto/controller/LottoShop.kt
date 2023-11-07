@@ -51,7 +51,6 @@ class LottoShop {
         while (true) {
             try {
                 lottoNum = lottoMC.pickLottoNum()
-                validator.validateLottoNum(lottoNum)
                 break
             } catch (e: IllegalArgumentException) {
                 println(e.message)
@@ -61,7 +60,7 @@ class LottoShop {
         var bonusNum: String
         while (true) {
             try {
-                bonusNum = lottoMC.pickBonusNum()
+                bonusNum = lottoMC.pickBonusNum(lottoNum)
                 validator.validateBonusNum(bonusNum, lottoNum)
                 break
             } catch (e: IllegalArgumentException) {
