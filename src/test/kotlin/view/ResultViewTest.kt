@@ -1,4 +1,4 @@
-package lotto.view
+package view
 
 import domain.chance.Chance
 import lotto.domain.purchase.Money
