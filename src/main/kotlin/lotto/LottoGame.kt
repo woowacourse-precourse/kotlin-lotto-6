@@ -126,7 +126,7 @@ class LottoGame(private val user: User) {
 
         winnings.forEach {
             val matchCount = winningRecord[it] ?: 0
-            if (it.isBonus) {
+            if (it.hasBonus) {
                 showMessage(WINNING_WITH_BONUS_MESSAGE.format(it.count, it.amount.withCommas(), matchCount))
             } else {
                 showMessage(WINNING_WITHOUT_BONUS_MESSAGE.format(it.count, it.amount.withCommas(), matchCount))

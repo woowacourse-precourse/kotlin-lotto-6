@@ -32,8 +32,8 @@ class WinningRecordTest {
 
     @Test
     fun `구매 로또 번호 중 일치하는 보너스 번호가 있으면 참이다`() {
-        val bonus = Bonus(1)
-        val winningLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val bonus = Bonus(7)
+        val winningLotto = Lotto(listOf(1, 2, 3, 4, 5, 7))
         val expectedResult = true
 
         val actualResult = winningRecord.hasMatchingBonusNumber(winningLotto, bonus)
@@ -44,36 +44,92 @@ class WinningRecordTest {
     @Test
     fun `구매 로또 번호 중 일치하는 보너스 번호가 없으면 거짓이다`() {
         val bonus = Bonus(7)
-        val winningLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val purchasedLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
         val expectedResult = false
 
-        val actualResult = winningRecord.hasMatchingBonusNumber(winningLotto, bonus)
+        val actualResult = winningRecord.hasMatchingBonusNumber(purchasedLotto, bonus)
 
         assertThat(actualResult).isEqualTo(expectedResult)
     }
 
 
-    @Test
-    fun `구매한 로또에 대해 당첨 결과들을 정확히 기록한다`() {
-        val purchasedLottos = listOf(
-            Lotto(listOf(1, 2, 3, 4, 5, 6)),
-            Lotto(listOf(1, 2, 3, 4, 5, 7)),
-        )
-        val winningLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
-        val bonus = Bonus(7)
-        val winningRecord = WinningRecord()
-        val expectedFirstWinningResult = 1
-        val expectedSecondWinningResult = 1
-
+    @ParameterizedTest
+    @MethodSource("generateExactWinningRecordTestCases")
+    fun `구매한 로또에 대해 당첨 결과들을 정확히 기록한다`(
+        purchasedLottos: List<Lotto>,
+        winningLotto: Lotto,
+        bonus: Bonus,
+        expectedRecord: Map<WinningRank, Int>
+    ) {
         winningRecord.recordWinningResults(purchasedLottos, winningLotto, bonus)
         val actualRecord = winningRecord.record
 
-        assertThat(actualRecord[WinningRank.FIRST]).isEqualTo(expectedFirstWinningResult)
-        assertThat(actualRecord[WinningRank.SECOND]).isEqualTo(expectedSecondWinningResult)
+        assertThat(actualRecord).isEqualTo(expectedRecord)
     }
 
 
     companion object {
+        @JvmStatic
+        fun generateExactWinningRecordTestCases(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(
+                    listOf(
+                        Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                        Lotto(listOf(1, 2, 3, 4, 5, 7))
+                    ),
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Bonus(7),
+                    mapOf(
+                        WinningRank.FIRST to 1,
+                        WinningRank.SECOND to 1,
+                        WinningRank.THIRD to 0,
+                        WinningRank.FOURTH to 0,
+                        WinningRank.FIFTH to 0,
+                        WinningRank.NOTHING to 0
+                    )
+                ),
+                Arguments.of(
+                    listOf(
+                        Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                        Lotto(listOf(1, 2, 3, 4, 5, 7)),
+                        Lotto(listOf(1, 2, 3, 4, 8, 9)),
+                        Lotto(listOf(1, 2, 3, 10, 11, 12))
+                    ),
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Bonus(7),
+                    mapOf(
+                        WinningRank.FIRST to 1,
+                        WinningRank.SECOND to 1,
+                        WinningRank.THIRD to 0,
+                        WinningRank.FOURTH to 1,
+                        WinningRank.FIFTH to 1,
+                        WinningRank.NOTHING to 0
+                    )
+                ),
+                Arguments.of(
+                    listOf(
+                        Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                        Lotto(listOf(1, 2, 3, 4, 5, 8)),
+                        Lotto(listOf(1, 2, 3, 4, 9, 10)),
+                        Lotto(listOf(1, 2, 3, 12, 13, 14)),
+                        Lotto(listOf(6, 15, 16, 17, 18, 19)),
+                        Lotto(listOf(20, 21, 22, 23, 24, 25))
+                    ),
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Bonus(7),
+                    mapOf(
+                        WinningRank.FIRST to 1,
+                        WinningRank.SECOND to 0,
+                        WinningRank.THIRD to 1,
+                        WinningRank.FOURTH to 1,
+                        WinningRank.FIFTH to 1,
+                        WinningRank.NOTHING to 2
+                    )
+                )
+            )
+        }
+
+
         @JvmStatic
         fun generateMatchingNumbersTestCases(): Stream<Arguments> {
             return Stream.of(

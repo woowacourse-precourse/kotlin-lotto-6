@@ -17,14 +17,20 @@ class WinningRecord {
         return purchasedLottoNumbers.count { it in winningLottoNumbers }
     }
 
-    fun hasMatchingBonusNumber(winningLotto: Lotto, bonus: Bonus): Boolean {
+    fun hasMatchingBonusNumber(purchasedLotto: Lotto, bonus: Bonus): Boolean {
         val bonusNumber = bonus.getNumber()
-        val winningLottoNumbers = winningLotto.getNumbers()
+        val purchasedLottoNumbers = purchasedLotto.getNumbers()
 
-        return bonusNumber in winningLottoNumbers
+        return bonusNumber in purchasedLottoNumbers
     }
 
     fun recordWinningResults(purchasedLottos: List<Lotto>, winningLotto: Lotto, bonus: Bonus) {
-        _record[WinningRank.NOTHING] = (_record[WinningRank.NOTHING] ?: 0) + 1
+        purchasedLottos.forEach { purchasedLotto ->
+            val matchedCount = calculateMatchingNumbers(purchasedLotto, winningLotto)
+            val hasMatchingBonus = hasMatchingBonusNumber(purchasedLotto, bonus)
+
+            val winningRank = WinningRank.find(matchedCount, hasMatchingBonus)
+            _record[winningRank] = (_record[winningRank] ?: 0) + 1
+        }
     }
 }
