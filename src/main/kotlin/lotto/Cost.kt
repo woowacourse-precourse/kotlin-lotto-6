@@ -9,6 +9,7 @@ class Cost(private val cost: Int) {
             throw NotPositiveCostException()
         if (!checkDivideByCostUnit())
             throw UnvalidCostException()
+        return true
     }
 
     private fun checkDivideByCostUnit(): Boolean {
