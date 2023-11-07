@@ -20,9 +20,14 @@ fun main() {
     val bonusNumber=getBonusNumber()
 
     val results=calculateResults(lottoNumbers,winningNumbers,bonusNumber)
-
+    println("\n당첨 통계")
+    println("---")
+    for ((key, value) in results) {
+        println("$key - ${value}개")
+    }
+    val totalProfitRate = calculateTotalProfitRate(purchaseAmount, results)
+    println("\n총 수익률은 ${String.format("%.1f", totalProfitRate)}%입니다.")
 }
-
 fun generateLottoNumbers(purchaseAmount: Int): List<Lotto> {
     val lottoNumbers = mutableListOf<Lotto>()
     for (i in 1..(purchaseAmount / 1000)) {
@@ -58,7 +63,6 @@ fun inputPurchase(amount: Int): Int {
 
 fun getWinningNumbers(): List<Int> {
     var numbers=listOf(0)
-    println("당첨 번호를 입력해 주세요.")
     while (numbers==listOf(0)) {
         numbers=inputWinningNumbers()
     }
@@ -119,12 +123,11 @@ fun validateBonusNumbers(number: Int){
 
 fun calculateResults(lottoNumbers: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): MutableMap<String, Int> {
     var results = mutableMapOf(
-        "6개 일치" to 0,
-        "5개 일치, 보너스 볼 일치" to 0,
-        "5개 일치" to 0,
-        "4개 일치" to 0,
-        "3개 일치" to 0
-    )
+        "3개 일치 (5,000원)" to 0,
+        "4개 일치 (50,000원)" to 0,
+        "5개 일치 (1,500,000원)" to 0,
+        "5개 일치, 보너스 볼 일치 (30,000,000원)" to 0,
+        "6개 일치 (2,000,000,000원)" to 0)
 
     for (lotto in lottoNumbers) {
         val numbers = lotto.getNumbers()
@@ -139,14 +142,34 @@ fun matchingNumber(results: MutableMap<String, Int>, numbers: List<Int>, winning
     val bonusMatch = if (numbers.contains(bonusNumber)) 1 else 0
 
     when (matchingNumbers.size) {
-        6 -> results["6개 일치"] = results["6개 일치"]!! + 1
-        5 -> results["5개 일치"] = results["5개 일치"]!! + 1
-        4 -> results["4개 일치"] = results["4개 일치"]!! + 1
-        3 -> results["3개 일치"] = results["3개 일치"]!! + 1
+        6 -> results["6개 일치 (2,000,000,000원)"] = results["6개 일치 (2,000,000,000원)"]!! + 1
+        5 -> results["5개 일치 (1,500,000원)"] = results["5개 일치 (1,500,000원)"]!! + 1
+        4 -> results["4개 일치 (50,000원)"] = results["4개 일치 (50,000원)"]!! + 1
+        3 -> results["3개 일치 (5,000원)"] = results["3개 일치 (5,000원)"]!! + 1
     }
 
     if (matchingNumbers.size == 5 && bonusMatch == 1) {
-        results["5개 일치, 보너스 볼 일치"] = results["5개 일치, 보너스 볼 일치"]!! + 1
+        results["5개 일치, 보너스 볼 일치 (30,000,000원)"] = results["5개 일치, 보너스 볼 일치 (30,000,000원)"]!! + 1
     }
     return results
+}
+
+fun calculatePrice(entry: Map.Entry<String, Int>): Int {
+    return when (entry.key) {
+        "6개 일치 (2,000,000,000원)" -> entry.value * 2_000_000_000
+        "5개 일치, 보너스 볼 일치 (30,000,000원)" -> entry.value * 30_000_000
+        "5개 일치 (1,500,000원)" -> entry.value * 1_500_000
+        "4개 일치 (50,000원)" -> entry.value * 50_000
+        "3개 일치 (5,000원)" -> entry.value * 5_000
+        else -> 0
+    }
+}
+
+fun calculateTotalProfitRate(purchaseAmount: Int, results: Map<String, Int>): Double {
+    val totalWinningAmount = results.entries.sumBy { entry ->
+        calculatePrice(entry)
+    }
+    val totalProfit = totalWinningAmount - purchaseAmount
+
+    return (totalProfit.toDouble() / purchaseAmount) * 100.0
 }
