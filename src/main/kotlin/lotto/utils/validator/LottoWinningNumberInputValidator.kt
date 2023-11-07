@@ -2,20 +2,19 @@ package lotto.utils.validator
 
 object LottoWinningNumberInputValidator {
 
-    fun validate(numbers: String): LottoWinningNumbersInputState {
-        var state : LottoWinningNumbersInputState = LottoWinningNumbersInputState.SUCCESSFUL
-        state = getState(numbers.toIntOrNull())
-        if (state != LottoWinningNumbersInputState.SUCCESSFUL) {
+    fun validate(number: String): LottoInputState.WinningNumber {
+        var numberState = getState(number.toIntOrNull())
+        if (numberState != LottoInputState.WinningNumber.SUCCESSFUL) {
             throw IllegalArgumentException()
         }
-        return state
+        return numberState
     }
-
-    private fun getState(number : Int?): LottoWinningNumbersInputState {
+    private fun getState(number : Int?): LottoInputState.WinningNumber {
         return when{
-            number == null -> LottoWinningNumbersInputState.IS_NULL
-            number <= 0 || number > 45 -> LottoWinningNumbersInputState.OUT_OF_RANGE
-            else -> LottoWinningNumbersInputState.SUCCESSFUL
+            number == null -> LottoInputState.WinningNumber.IS_NULL
+            number <= 0 || number > 45 -> LottoInputState.WinningNumber.OUT_OF_RANGE
+            else -> LottoInputState.WinningNumber.SUCCESSFUL
         }
     }
+
 }

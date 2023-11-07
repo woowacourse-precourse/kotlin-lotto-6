@@ -3,21 +3,21 @@ package lotto.utils.validator
 import lotto.LottoOutputHandler
 
 object LottoCostInputValidator{
-    fun validate(input: String) : LottoCostInputState {
-        val inputState = getState(input.toIntOrNull())
-        if (inputState != LottoCostInputState.SUCCESSFUL){
-            LottoOutputHandler.displayLottoCostErrorMessage(inputState)
+    fun validate(cost: String) : LottoInputState.Cost {
+        val costState = getState(cost.toIntOrNull())
+        if (costState != LottoInputState.Cost.SUCCESSFUL){
+            LottoOutputHandler.displayLottoCostErrorMessage(costState)
             throw IllegalArgumentException()
         }
-       return inputState
+       return costState
     }
 
-    private fun getState(cost: Int?): LottoCostInputState {
+    private fun getState(cost: Int?): LottoInputState.Cost {
         return when {
-            cost == null -> LottoCostInputState.IS_NULL
-            cost % 1000 != 0 -> LottoCostInputState.NOT_DIVISIBLE_BY_1000
-            cost <= 0 -> LottoCostInputState.IS_NOT_NATURAL_NUMBER
-            else -> LottoCostInputState.SUCCESSFUL
+            cost == null -> LottoInputState.Cost.IS_NULL
+            cost % 1000 != 0 -> LottoInputState.Cost.NOT_DIVISIBLE_BY_1000
+            cost <= 0 -> LottoInputState.Cost.IS_NOT_NATURAL_NUMBER
+            else -> LottoInputState.Cost.SUCCESSFUL
         }
     }
 
