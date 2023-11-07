@@ -170,7 +170,5 @@ fun calculateTotalProfitRate(purchaseAmount: Int, results: Map<String, Int>): Do
     val totalWinningAmount = results.entries.sumBy { entry ->
         calculatePrice(entry)
     }
-    val totalProfit = totalWinningAmount - purchaseAmount
-
-    return (totalProfit.toDouble() / purchaseAmount) * 100.0
+    return (totalWinningAmount.toDouble() / purchaseAmount) * 100.0
 }
