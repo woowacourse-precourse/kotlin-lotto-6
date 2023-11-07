@@ -1,6 +1,6 @@
 package lotto
 
-import lotto.domain.LottoPurchaseAmountParser
+import lotto.domain.purchase.LottoPurchaseAmountParser
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 

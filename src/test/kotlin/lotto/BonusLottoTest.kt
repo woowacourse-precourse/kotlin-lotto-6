@@ -1,7 +1,7 @@
 package lotto
 
-import lotto.domain.lotto.BonusLotto
-import lotto.domain.lotto.LottoNumberParser
+import lotto.domain.lotto.model.BonusLotto
+import lotto.domain.lotto.parser.LottoNumberParser
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 

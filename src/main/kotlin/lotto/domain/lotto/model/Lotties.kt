@@ -1,6 +1,4 @@
-package lotto.domain.lotto.collection
-
-import lotto.domain.lotto.Lotto
+package lotto.domain.lotto.model
 
 class Lotties {
     private val lotties: MutableList<Lotto> = mutableListOf()

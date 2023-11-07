@@ -1,4 +1,4 @@
-package lotto.domain.lotto
+package lotto.domain.lotto.model
 
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.constants.ErrorConstants.COUNT_LOTTO_ERROR_MESSAGE

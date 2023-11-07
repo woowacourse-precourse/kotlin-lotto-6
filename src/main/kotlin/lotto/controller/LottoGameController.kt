@@ -1,6 +1,6 @@
 package lotto.controller
 
-import lotto.domain.lotto.collection.Lotties
+import lotto.domain.lotto.model.Lotties
 import lotto.view.input.InputView
 import lotto.view.output.OutputView
 
@@ -30,6 +30,6 @@ object LottoGameController {
         outputView.requestWinningNumbersMessage()
         val winningNumber = inputView.readWinningNumber()
         outputView.requestBonusNumberMessage()
-//        val bonusNumber = inputView.readBonusNumber()
+        val bonusNumber = inputView.readBonusNumber()
     }
 }

@@ -1,6 +1,7 @@
-package lotto.domain.lotto
+package lotto.domain.winningNumber
 
 import lotto.constants.ErrorConstants
+import lotto.domain.lotto.parser.LottoNumberParser
 
 class WinningNumberParser {
 

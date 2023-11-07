@@ -1,4 +1,4 @@
-package lotto.domain.lotto
+package lotto.domain.lotto.parser
 
 import lotto.constants.ErrorConstants
 import lotto.constants.GameConstants.MAX_NUMBER
@@ -8,7 +8,7 @@ class LottoNumberParser(numberAsString: String) {
     val number: Int = parseNumber(numberAsString)
 
     companion object {
-        private fun parseNumber(numberAsString: String): Int {
+        fun parseNumber(numberAsString: String): Int {
             val number = numberAsString.toIntOrNull()
                 ?: throw IllegalArgumentException(ErrorConstants.INPUT_ERROR_MESSAGE)
 
