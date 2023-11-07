@@ -31,5 +31,15 @@ class WinningCalculatorTest {
         assertEquals(2,winningRanks[second])
     }
 
+    @Test
+    fun `총 수익률의 계산이 틀리면 오류가 발생 한다`(){
+        val customer = Customer()
+        customer.lotteries.add(Lotto(listOf(1,8,3,10,11,12)))
+        customer.lotteries.add(Lotto(listOf(1,4,6,10,15,18)))
+        winningCalculator = WinningCalculator(Winning(listOf(1,2,3,4,5,6),8), customer)
+        assertEquals("250.0%",winningCalculator.getTotalReturnPercent())
+
+    }
+
 
 }
