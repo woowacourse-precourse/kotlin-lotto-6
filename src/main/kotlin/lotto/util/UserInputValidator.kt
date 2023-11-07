@@ -11,10 +11,6 @@ class UserInputValidator {
 
     fun isPurchaseAmountFormat(userInput: String) {
         require(userInput.none { char -> !char.isDigit() }) { ErrorMessage.NOT_NUMBER_PURCHASE_AMOUNT.message }
-        val purchaseAmount = userInput.toInt()
-        require(
-            purchaseAmount >= MIN_PURCHASE_AMOUNT && purchaseAmount % MIN_PURCHASE_AMOUNT == PURCHASE_AMOUNT_CHANGES
-        ) { ErrorMessage.NOT_PURCHASE_AMOUNT_FORMAT.message }
     }
 
 
@@ -31,8 +27,6 @@ class UserInputValidator {
     }
 
     companion object {
-        private const val MIN_PURCHASE_AMOUNT = 1000
-        private const val PURCHASE_AMOUNT_CHANGES = 0
         private val NUMBER_PATTERN = Pattern.compile("^([0-9]+(,[0-9]+)+)\$")
     }
 }
