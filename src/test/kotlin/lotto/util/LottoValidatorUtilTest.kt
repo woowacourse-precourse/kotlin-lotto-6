@@ -142,33 +142,30 @@ internal class LottoValidatorUtilTest {
 
     companion object {
         @JvmStatic
-        fun winningNumberSizeInvalidProvider(): Stream<Arguments> {
-            return Stream.of(
+        fun winningNumberSizeInvalidProvider(): Stream<Arguments> =
+            Stream.of(
                 Arguments.of(listOf(1,2)),
                 Arguments.of(listOf(1,2,3,9)),
                 Arguments.of(listOf(1,2,3,4,5,6,7)),
                 Arguments.of(listOf(1,2,3,4)),
             )
-        }
 
         @JvmStatic
-        fun winningNumberOverlappedProvider(): Stream<Arguments> {
-            return Stream.of(
+        fun winningNumberOverlappedProvider(): Stream<Arguments> =
+            Stream.of(
                 Arguments.of(listOf(1,2,2,2,2,3)),
                 Arguments.of(listOf(1,2,3,9,9,4)),
                 Arguments.of(listOf(6,2,3,4,5,6)),
                 Arguments.of(listOf(1,2,3,4,3,2)),
             )
-        }
 
         @JvmStatic
-        fun winningNumberBonusNumberOverlappedProvider(): Stream<Arguments> {
-            return Stream.of(
+        fun winningNumberBonusNumberOverlappedProvider(): Stream<Arguments> =
+            Stream.of(
                 Arguments.of(Lotto(listOf(1,2,3,4,5,6)), 1),
                 Arguments.of(Lotto(listOf(1,22,31,19,23,41)), 41),
                 Arguments.of(Lotto(listOf(2,4,3,9,11,6)), 9),
                 Arguments.of(Lotto(listOf(1,2,3,4,7,9)), 2),
             )
-        }
     }
 }
