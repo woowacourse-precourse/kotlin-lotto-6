@@ -67,10 +67,11 @@
 * 로또 클래스 - Lotto
     - 당첨 내역 확인해주는 함수 # winningCount()
     - 총 수익률 계산 함수 # getProfitRate()
+    - 당첨 번호 유효성 체크 # validateWinningNumbers()
+
     <br/>
 
 * 로또 판매원 클래스 - LottoSeller
     - 사용자가 구매할 티켓 개수 구하는 함수 # getTickets()
     - 각 티켓의 복권 번호 구하는 함수 # createLotto()
-    - 당첨 번호 유효성 체크 # validateWinningNumbers()
     - 보너스 번호 유효성 체크 # validateBonusNumbers()

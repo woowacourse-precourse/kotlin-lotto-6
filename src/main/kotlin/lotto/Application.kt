@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 
 fun main() {
     val seller = LottoSeller()
+    var winningResult = Lotto(listOf(1,2,3,4,5,6))
     val winningPrint = arrayListOf("3개 일치 (5,000원) - ", "4개 일치 (50,000원) - ", "5개 일치 (1,500,000원) - ", "5개 일치, 보너스 볼 일치 (30,000,000원) - ", "6개 일치 (2,000,000,000원) - ")
     var userInput = ""
     var inputMoney = 0
@@ -12,8 +13,8 @@ fun main() {
     while (flag != 1) {
         println("구입금액을 입력해 주세요.")
         userInput = Console.readLine()
-        inputMoney = userInput.toInt()
         try {
+            inputMoney = userInput.toInt()
             seller.buyTickets(inputMoney)
             flag = 1
         } catch (error: IllegalArgumentException) {
@@ -24,12 +25,11 @@ fun main() {
 
     flag = 0
     while (flag != 1) {
-        var bonusNumber = 0
         println("당첨 번호를 입력해 주세요.")
         userInput = Console.readLine()
         seller.winningNumbers = userInput.split(",").map { it.toInt() }.toMutableList()
         try {
-            seller.validateWinningNumbers()
+            winningResult = Lotto(seller.winningNumbers)
             flag = 1
         } catch (error: IllegalArgumentException) {
             println("[ERROR] " + error.message)
@@ -38,7 +38,6 @@ fun main() {
 
     flag = 0
     while (flag != 1) {
-        var bonusNumber = 0
         println("보너스 번호를 입력해 주세요.")
         userInput = Console.readLine()
         seller.bonusNumber = userInput.toInt()
@@ -52,7 +51,6 @@ fun main() {
     }
 
     // winningCount는 index0부터 순서대로 3,4,5,5+보너스,6개 일치하는 개수 저장
-    val winningResult = Lotto(seller.winningNumbers)
     println("당첨 통계\n---")
     val winningCount = winningResult.winningCount(seller.tickets, seller.bonusNumber)
     println(winningCount)

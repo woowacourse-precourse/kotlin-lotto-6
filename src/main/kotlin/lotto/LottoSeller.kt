@@ -26,18 +26,6 @@ class LottoSeller {
             println(this.tickets[i])
         }
     }
-
-    fun validateWinningNumbers() {
-        if (this.winningNumbers.size != this.winningNumbers.distinct().count())
-            throw IllegalArgumentException("당첨 번호는 중복되지 않아야 합니다.")
-        if (this.winningNumbers.size != 6)
-            throw IllegalArgumentException("당첨 번호는 6개입니다.")
-        for (i in 0..this.winningNumbers.size-1) {
-            if (this.winningNumbers[i] < 1 || this.winningNumbers[i] > 45)
-                throw IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.")
-        }
-    }
-
     fun validateBonusNumber() {
         for (i in 0..this.winningNumbers.size-1){
             if(this.winningNumbers[i] == this.bonusNumber)
