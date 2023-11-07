@@ -1,20 +1,14 @@
 package lotto.domain.validator
 
 import lotto.domain.LottoShop
+import lotto.domain.validator.InputValidator.validateInputIsInt
+import lotto.domain.validator.InputValidator.validateInputIsNotZero
 
 class LottoShopValidator {
     fun validatePurchaseLottoInput(input: String) = input.let {
-        validateInputIsInt(it)
-        validateInputIsNotZero(it)
+        validateInputIsInt(it, message = "로또 구매 금액은 1000원 단위 정수형만 입력받을 수 있습니다.")
+        validateInputIsNotZero(it, message = "로또 구매 금액으로는 0원 은 입력하실 수 없습니다.")
         validateInputIsDivisibleByThousand(it)
-    }
-
-    private fun validateInputIsInt(input: String) = requireNotNull(input.toIntOrNull()) {
-        "[ERROR] 로또 구매 금액은 1000원 단위 정수형만 입력받을 수 있습니다."
-    }
-
-    private fun validateInputIsNotZero(input: String) = require(input.toInt() != 0) {
-        "[ERROR] 로또 구매 금액으로는 0원 은 입력하실 수 없습니다."
     }
 
     private fun validateInputIsDivisibleByThousand(input: String) {

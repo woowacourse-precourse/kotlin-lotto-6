@@ -14,7 +14,7 @@ class LottoManagerTest {
 
         //then
         assertThrows<IllegalArgumentException> {
-            lottoManager.setWinningNumbers(listOf("가", "나", "다", "라", "마", "바"))
+            lottoManager.setWinningNumbers("가,나,다,라,마,바")
         }
     }
 
@@ -27,7 +27,7 @@ class LottoManagerTest {
 
         //then
         assertThrows<IllegalArgumentException> {
-            lottoManager.setWinningNumbers(listOf(1, 1, 1, 1, 1, 1))
+            lottoManager.setWinningNumbers("1,1,1,1,1,1")
         }
     }
 
@@ -40,7 +40,7 @@ class LottoManagerTest {
 
         //then
         assertThrows<IllegalArgumentException> {
-            lottoManager.setWinningNumbers(listOf(-1, -2, -3, -4, -5, -6))
+            lottoManager.setWinningNumbers("-1,-2,-3,-4,-5,-6")
         }
     }
 
@@ -53,7 +53,7 @@ class LottoManagerTest {
 
         //then
         assertThrows<IllegalArgumentException> {
-            lottoManager.setWinningNumbers(listOf(46, 47, 48, 49, 50, 51))
+            lottoManager.setWinningNumbers("46,47,48,49,50,51")
         }
     }
 
@@ -66,7 +66,7 @@ class LottoManagerTest {
 
         //then
         assertThrows<IllegalArgumentException> {
-            lottoManager.setBonusNumber(46)
+            lottoManager.setBonusNumber("46")
         }
     }
 
@@ -79,7 +79,7 @@ class LottoManagerTest {
 
         //then
         assertThrows<IllegalArgumentException> {
-            lottoManager.setBonusNumber(-1)
+            lottoManager.setBonusNumber("-1")
         }
     }
 
@@ -87,13 +87,13 @@ class LottoManagerTest {
     fun `로또 보너스 번호는 당첨 번호와 중복될 수 없다`() {
         //given
         val lottoManager = LottoManager()
-        lottoManager.setWinningNumbers(listOf(1, 2, 3, 4, 5, 6))
+        lottoManager.setWinningNumbers("1,2,3,4,5,6")
 
         //when
 
         //then
         assertThrows<IllegalArgumentException> {
-            lottoManager.setBonusNumber(6)
+            lottoManager.setBonusNumber("6")
         }
     }
 }
