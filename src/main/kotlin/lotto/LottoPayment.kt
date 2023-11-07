@@ -2,7 +2,7 @@ package lotto
 
 
 fun buyLottoTickets(price: Int): List<Lotto> {
-    val lottoGameTicketCount = price / 1000
+    val lottoGameTicketCount = price / LottoConstraints.TICKET_PRICE
     displayPurchasement(lottoGameTicketCount)
     val tickets: MutableList<Lotto> = mutableListOf()
     repeat(lottoGameTicketCount) {
