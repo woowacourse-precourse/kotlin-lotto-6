@@ -9,6 +9,8 @@ object Validation {
     private const val COMMA_ERROR_MESSAGE = "[ERROR] 쉼표(,)를 기준으로 구분해주세요"
     private const val NUM_AMOUNT_ERROR_MESSAGE = "[ERROR] 6개의 숫자를 입력해주세요"
     private const val NUM_RANGE_ERROR_MESSAGE  = "[ERROR] 1에서 45 숫자만 입력 가능합니다."
+    private const val MULTI_NUM_ERROR_MESSAGE = "[ERROR] 하나의 숫자만 입력 가능합니다."
+    private const val UNIQUE_NUM_ERROR_MESSAGE = "서로 다른 숫자를 입력해주세요."
 
     fun purchaseAmount(input: String) {
         checkIsDigit(input)
@@ -16,10 +18,11 @@ object Validation {
     }
 
     fun answerNumber(input: String) {
-        checkIsDigit(input)
+        checkIsListDigit(input)
         checkContainComma(input)
         checkNumAmount(input)
         checkNumRange(input)
+        checkUniqueNum(input)
     }
 
     fun bonusNum(input: String) {
@@ -42,6 +45,14 @@ object Validation {
         }
     }
 
+
+    private fun checkIsListDigit(input:String){
+        val answerNums = input.split(",")
+        println("$answerNums")
+        for(num in answerNums){
+            checkIsDigit(num)
+        }
+    }
     private fun checkContainComma(input: String) {
         require(input.contains(",")) {
             COMMA_ERROR_MESSAGE
@@ -64,8 +75,15 @@ object Validation {
     }
 
     private fun checkNotContainComma(input: String){
-        require(input.contains(",")) {
-            COMMA_ERROR_MESSAGE
+        require(!input.contains(",")) {
+            MULTI_NUM_ERROR_MESSAGE
+        }
+    }
+
+    private fun checkUniqueNum(input: String){
+        val answerNums = input.split(",")
+        require(answerNums.toSet().size==answerNums.size){
+            UNIQUE_NUM_ERROR_MESSAGE
         }
     }
 }
