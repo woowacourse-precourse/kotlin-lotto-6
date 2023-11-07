@@ -5,15 +5,17 @@ class WinningResult(
     private val winningNumbers: List<Int>,
     private val bonusNumber: Int
 ) {
-    private fun calculateStatistics(): Map<LottoRank, Int> {
+    private fun calculateStatistics(): Pair<Map<LottoRank, Int>, Int> {
         val statistics = mutableMapOf<LottoRank, Int>()
+        var totalPrize = 0
         for (lotto in lottoTickets) {
             val rank = lotto.checkMatch(winningNumbers, bonusNumber)
             if (rank != null) {
                 statistics[rank] = statistics.getOrDefault(rank, 0) + 1
+                totalPrize += rank.prizeMoney
             }
         }
-        return statistics
+        return Pair(statistics, totalPrize)
     }
 
     private fun calculateProfitRate(amount: Int, totalPrize: Int): Double {
@@ -21,7 +23,7 @@ class WinningResult(
     }
 
     fun printResults() {
-        val statistics = calculateStatistics()
+        val (statistics, totalPrize) = calculateStatistics()
         println("당첨 통계")
         println("---")
         for (rank in LottoRank.entries) {
