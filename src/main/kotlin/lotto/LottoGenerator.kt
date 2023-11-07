@@ -12,11 +12,15 @@ class LottoGenerator(private val lottoGenerateCount: Int) {
         return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, CNT_LOTTO_NUMBER).sorted()
     }
 
-    fun printRandomLotto() {
-        for (count in 1..lottoGenerateCount) {
+    fun generateLottoTickets(): List<Lotto> {
+        val lottoTickets = mutableListOf<Lotto>()
+        repeat(lottoGenerateCount) {
             val lottoNumbers = generateRandomLotto()
             println(lottoNumbers)
+            val lotto = Lotto(lottoNumbers)
+            lottoTickets.add(lotto)
         }
+        return lottoTickets
     }
 
 }
