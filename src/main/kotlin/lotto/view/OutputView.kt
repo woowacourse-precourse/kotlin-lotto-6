@@ -1,6 +1,6 @@
 package lotto.view
 
-import lotto.Lotto
+import lotto.model.Lotto
 import lotto.domain.Prize
 import lotto.utils.Messages
 import lotto.utils.Messages.DIVIDER

@@ -1,6 +1,6 @@
 package lotto.domain
 
-import lotto.Lotto
+import lotto.model.Lotto
 import lotto.utils.Constants.FIVE
 import lotto.utils.Constants.FIVE_AMOUNT
 import lotto.utils.Constants.FIVE_BONUS_MATCH_MESSAGE

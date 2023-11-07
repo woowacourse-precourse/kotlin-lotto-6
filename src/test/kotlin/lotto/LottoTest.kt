@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.domain.LottoPurchase
+import lotto.model.Lotto
 import lotto.validate.ValidateNumbers
 import lotto.validate.ValidatePrice
 import lotto.validate.ValidateSplit

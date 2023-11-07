@@ -1,7 +1,7 @@
 package lotto.domain
 
 import camp.nextstep.edu.missionutils.Randoms
-import lotto.Lotto
+import lotto.model.Lotto
 import lotto.utils.Constants
 
 class LottoWrapper {
