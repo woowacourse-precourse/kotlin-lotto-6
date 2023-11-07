@@ -13,6 +13,7 @@ import lotto.model.WinningNumbers
 import lotto.model.WinningValidation
 import lotto.view.InputView
 import lotto.view.OutputView
+import java.lang.IllegalStateException
 
 class Task {
     var inputState: State = State.INPUT_PURCHASEA_MOUNT
@@ -40,7 +41,7 @@ class GameController {
         while (task.inputState != Task.State.DONE) {
             try {
                 mainProcess(task.inputState)
-            } catch (e: Exception) {
+            } catch (e: IllegalArgumentException) {
                 e.message?.let { outputView.printError(it) }
             }
         }
