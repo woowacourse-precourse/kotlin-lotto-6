@@ -8,6 +8,7 @@ object Messages {
 
     const val WINNING_STATISTICS_MESSAGE = "당첨 통계"
     const val DIVIDER = "---------"
+    const val PROFIT_MESSAGE = "총 수익률은 %.1f%%입니다."
 
     const val ERROR_MESSAGE = "[ERROR]"
     const val INVALID_INPUT = "유효한 값이 아닙니다."
