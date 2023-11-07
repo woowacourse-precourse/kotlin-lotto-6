@@ -3,8 +3,8 @@ package lotto
 import java.text.NumberFormat
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6){ "로또 번호는 6개여야 합니다." }
-        require(numbers.toSet().size == 6) { "로또 번호는 중복될 수 없습니다." }
+        require(numbers.size == 6) { "로또 번호는 6개여야 합니다." }
+        require(numbers.distinct().size == 6) { "로또 번호는 중복될 수 없습니다." }
     }
 //로또 리스트 크기와 중복 번호 유무 확인
     fun getMatchCount(winningNumbers: List<Int>): Int {
@@ -21,6 +21,10 @@ class Lotto(private val numbers: List<Int>) {
         return LottoResult.fromMatchCount(matchCount, isBonus)
     }
 //당첨 번호 및 보너스 번호로 로또 결과 반환
+fun checkBonus(bonusNumber: Int) {
+    require(!numbers.contains(bonusNumber)) { "보너스 번호는 로또 번호와 겹칠 수 없습니다." }
+}
+    //보너스 번호의 중복 여부 확인
     override fun toString(): String {
         return numbers.joinToString(separator = ", ", prefix = "[", postfix = "]")
     }
