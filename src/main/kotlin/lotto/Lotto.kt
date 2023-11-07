@@ -5,5 +5,9 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
     }
 
+    override fun toString(): String {
+        return "$numbers"
+    }
+
     // TODO: 추가 기능 구현
 }

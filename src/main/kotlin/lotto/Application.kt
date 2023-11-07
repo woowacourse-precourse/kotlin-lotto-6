@@ -1,6 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
 
 const val ERROR = "[ERROR]"
 const val NOT_MULTIPLE_OF_1000_ERROR = " 구입금액은 1000의 배수여야 합니다. 다시 입력해 주세요."
@@ -8,8 +9,14 @@ const val NOT_MULTIPLE_OF_1000_ERROR = " 구입금액은 1000의 배수여야 �
 fun main() {
     println("구입금액을 입력해 주세요.")
 
-    val numberOfLotto = getNumberOfLotto( validateInputMoney( getInputMoney() ) )
-    println("\n${numberOfLotto}개를 구매했습니다.")
+    val numberOfTickets = getNumberOfTickets( validateInputMoney( getInputMoney() ) )
+    println("\n${numberOfTickets}개를 구매했습니다.")
+
+
+    val tickets = generateAllTickets(numberOfTickets)
+
+    print(tickets)
+
 }
 
 fun getInputMoney(): Int {
@@ -41,7 +48,24 @@ fun validateInputMoney(inputMoney: Int): Int {
     return inputMoney
 }
 
-fun getNumberOfLotto( inputMoney: Int ): Int{
+fun getNumberOfTickets( inputMoney: Int ): Int{
 
     return inputMoney / 1000
+}
+
+fun generateLottoNumbers(): List<Int> {
+
+    return Randoms.pickUniqueNumbersInRange(1, 45, 6).sorted<Int>()
+}
+
+fun generateAllTickets(numberOfTickets: Int): List<Lotto> {
+    val tickets = mutableListOf<Lotto>()
+    repeat (numberOfTickets) {
+        val numbers = generateLottoNumbers()
+        val aTicket = Lotto(numbers)
+        tickets.add(aTicket)
+
+    }
+
+    return tickets
 }
