@@ -11,6 +11,7 @@ class LottoMaker {
             issuedLotto.add(newLotto)
         }
         printIssuedLotto(issuedLotto)
+        println()
         return issuedLotto
     }
 

@@ -14,6 +14,7 @@ class LottoInitializer {
     private fun getPurchaseMoney(): Int {
         purchaseInputMessage()
         val purchaseMoney = Console.readLine()
+        println()
         Validation().purchaseMoneyValidation(purchaseMoney)
         return purchaseMoney.toInt()
     }
@@ -21,12 +22,14 @@ class LottoInitializer {
     private fun getWinningNumbers(): List<Int> {
         winningNumbersInputMessage()
         val winningNumbersInput = Console.readLine()
+        println()
         return makeWinningNumbers(winningNumbersInput)
     }
 
     private fun getBonusNumber(): Int {
         bonusNumberInputMessage()
         val bonusNumber = Console.readLine()
+        println()
         Validation().lottoNumberValidation(bonusNumber)
         return bonusNumber.toInt()
     }
