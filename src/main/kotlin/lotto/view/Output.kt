@@ -5,43 +5,59 @@ import lotto.utils.Notice
 
 class Output {
     fun startGameNotice() {
-        println(Notice.PURCHASE_PAYMENT)
+        println(Notice.PURCHASE_PAYMENT.message)
     }
 
-    fun showLottoTickets(generatedAutoLottoTickets: List<Lotto>) {
-        println(generatedAutoLottoTickets.size.toString()+Notice.PURCHASED_TICKET_NUMS)
-        for (ticket in generatedAutoLottoTickets){
-            println(ticket)
-        }
+    fun showLottoCount(lottoCount: Int) {
+        println()
+        println(lottoCount.toString()+Notice.PURCHASED_TICKET_NUMS.message)
     }
 
     fun getWinningInfoNotice() {
-        println(Notice.ENTER_WINNING_INFO)
+        println()
+        println(Notice.ENTER_WINNING_INFO.message)
     }
 
     fun getBonusInfoNotice() {
-        println(Notice.ENTER_BONUS_INFO)
+        println()
+        println(Notice.ENTER_BONUS_INFO.message)
     }
 
     fun showResult(lottoResults: Pair<List<Int>, Double>) {
         val ranks = lottoResults.first
         val rate = lottoResults.second
-        println(Notice.WINNING_STATISTICS)
-        println(Notice.HYPHENS)
+        println()
+        println(Notice.WINNING_STATISTICS.message)
+        println(Notice.HYPHENS.message)
         for (i in 5 downTo 1){
-            println(getMatchCount(i) + ranks[i].toString() + Notice.COUNT)
+            println(getMatchCount(i) + ranks[i].toString() + Notice.COUNT.message)
         }
 
-        println(Notice.PRESENT_RATE_FIRST.toString() + rate.toString() + Notice.PRESENT_RATE_SECOND)
+        println(Notice.PRESENT_RATE_FIRST.message + rate.toString() + Notice.PRESENT_RATE_SECOND.message)
     }
 
     private fun getMatchCount(i: Int): String {
         val stringBuilder = StringBuilder()
-        stringBuilder.append(i)
-        stringBuilder.append("개 일치 (")
+        stringBuilder.append(getMatchNums(i))
+        stringBuilder.append("개 일치")
+        if (i == 2){
+            stringBuilder.append(", 보너스 볼 일치")
+        }
+        stringBuilder.append(" (")
         stringBuilder.append(getReward(i))
         stringBuilder.append("원) - ")
         return stringBuilder.toString()
+    }
+
+    private fun getMatchNums(i: Int): Int {
+        when(i){
+            5 -> return 3
+            4 -> return 4
+            3 -> return 5
+            2 -> return 5
+            1 -> return 6
+        }
+        return 0
     }
 
     private fun getReward(i: Int): String {
@@ -53,5 +69,11 @@ class Output {
             1 -> return "2,000,000,000"
         }
         return ""
+    }
+
+    fun showLottos(autoLottoTickets: List<Lotto>) {
+        autoLottoTickets.forEach {
+            println(it)
+        }
     }
 }

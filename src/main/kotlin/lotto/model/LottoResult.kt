@@ -1,23 +1,9 @@
 package lotto.model
 
-import camp.nextstep.edu.missionutils.Randoms
 import java.math.BigDecimal
 import java.math.RoundingMode
 
-class LottoRepository {
-    fun generateAutoLottoTickets(lottoTicketsNum: Int): List<Lotto> {
-        val tickets = buildList<Lotto>(lottoTicketsNum) {
-            repeat(lottoTicketsNum){
-                generateLotto()
-            }
-        }
-        return tickets
-    }
-
-    private fun generateLotto(): Lotto {
-        val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6).toList().sorted()
-        return Lotto(numbers)
-    }
+class LottoResult {
 
     fun calculateLottoResult(
         lottoTicketsNum: Int,
@@ -58,6 +44,4 @@ class LottoRepository {
         }
         return 0
     }
-
-
 }
