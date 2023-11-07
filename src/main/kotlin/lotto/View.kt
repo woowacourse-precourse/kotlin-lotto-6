@@ -6,7 +6,7 @@ class View {
 
     fun inputPayment(): Payment {
         while (true) {
-            println("구입금액을 입력해 주세요.")
+            println(INPUT_PAYMENT_MESSAGE)
             val input = Console.readLine()
             try {
                 return Payment(input)
@@ -19,7 +19,7 @@ class View {
 
     fun inputLottoNumber(): Lotto {
         while (true) {
-            println("\n당첨 번호를 입력해 주세요.")
+            println(INPUT_LOTTO_NUMBER_MESSAGE)
             val input = Console.readLine()
             val number = input.split(",").sorted()
             try {
@@ -32,12 +32,12 @@ class View {
     }
 
     fun inputBonusLottoNumber(inputLottoNumber: Lotto): BonusNumber {
-        while (true){
-            println("\n보너스 번호를 입력해 주세요.")
+        while (true) {
+            println(INPUT_BONUS_NUMBER_MESSAGE)
             val input = Console.readLine()
             try {
                 return BonusNumber(input, inputLottoNumber)
-            } catch (e: IllegalArgumentException){
+            } catch (e: IllegalArgumentException) {
                 printErrorMessage(e)
                 continue
             }
@@ -49,27 +49,36 @@ class View {
     }
 
     fun printLotto(lotto: List<Lotto>) {
-        println("\n${lotto.size}개를 구매했습니다.")
+        println(PRINT_LOTTO_MESSAGE.format(lotto.size))
         lotto.forEach {
             println(it.getLottoNumbers())
         }
     }
 
     fun printPrizeResult(prize: Prize) {
-        println("\n당첨 통계\n---")
-        println("3개 일치 (5,000원) - ${prize.fifth}개")
-        println("4개 일치 (50,000원) - ${prize.fourth}개")
-        println("5개 일치 (1,500,000원) - ${prize.third}개")
-        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${prize.second}개")
-        println("6개 일치 (2,000,000,000원) - ${prize.first}개")
+        println(PRINT_PRIZE_RESULT_MESSAGE)
+        println(FIFTH_PRIZE_RESULT.format(prize.fifth))
+        println(FORTH_PRIZE_RESULT.format(prize.fourth))
+        println(THIRD_PRIZE_RESULT.format(prize.third))
+        println(SECOND_PRIZE_RESULT.format(prize.second))
+        println(FIRST_PRIZE_RESULT.format(prize.first))
     }
 
     fun printWinRate(winRate: Double) {
-        val rateFormat = String.format("%.1f", winRate)
-        println("총 수익률은 ${rateFormat}%입니다.")
+        println(EARNINGS_RATE_MESSAGE.format(winRate))
     }
 
     companion object {
-
+        const val INPUT_PAYMENT_MESSAGE = "구입금액을 입력해 주세요."
+        const val INPUT_LOTTO_NUMBER_MESSAGE = "\n당첨 번호를 입력해 주세요."
+        const val INPUT_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요."
+        const val PRINT_LOTTO_MESSAGE = "\n%d개를 구매했습니다."
+        const val PRINT_PRIZE_RESULT_MESSAGE = "\n당첨 통계\n---"
+        const val FIFTH_PRIZE_RESULT = "3개 일치 (5,000원) - %d개"
+        const val FORTH_PRIZE_RESULT = "4개 일치 (50,000원) - %d개"
+        const val THIRD_PRIZE_RESULT = "5개 일치 (1,500,000원) - %d개"
+        const val SECOND_PRIZE_RESULT = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"
+        const val FIRST_PRIZE_RESULT = "6개 일치 (2,000,000,000원) - %d개"
+        const val EARNINGS_RATE_MESSAGE  = "총 수익률은 %.1f%%입니다."
     }
 }
