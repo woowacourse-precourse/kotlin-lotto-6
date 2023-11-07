@@ -20,30 +20,37 @@ import lotto.constants.Constants.LOTTO_PRICE
 import lotto.constants.Constants.LOTTO_SIZE
 import lotto.constants.Constants.WINNING_NUM_SEPARATOR
 
-object InputView {
+class InputView {
 
     fun inputPurchaseAmount(): Int {
+        val stepMessage = printStepMessage(INPUT_PURCHASE_AMOUNT)
+        println(stepMessage)
         return getUserAmount()
     }
 
     fun inputWinningNumberList(): List<Int> {
+        val stepMessage = printStepMessage(INPUT_WINNING_NUMBERS)
+        println(stepMessage)
         return getWinningNumbers()
     }
 
     fun inputBonusNumber(winningNumbers: List<Int>): Int {
+        val stepMessage = printStepMessage(INPUT_BONUS_NUMBER)
+        println(stepMessage)
         return getBonusNumber(winningNumbers)
     }
 
     private fun getUserAmount(): Int = try {
-        printStepMessage(INPUT_PURCHASE_AMOUNT)
-        val userInput = Console.readLine()
+        val userInput = Console.readLine().trim()
         validateUserAmount(userInput)
 
-        printStepMessage()
+        println()
 
         userInput.toInt()
     } catch (e: IllegalArgumentException) {
-        printErrorMessage(e.message)
+        e.message?.let {
+            println(printErrorMessage(it))
+        } ?: println()
         getUserAmount()
     }
 
@@ -59,12 +66,11 @@ object InputView {
     }
 
     fun getWinningNumbers(): List<Int> = try {
-        printStepMessage(INPUT_WINNING_NUMBERS)
-        val numbers = Console.readLine()
-        printStepMessage()
+        val numbers = Console.readLine().trim()
+        println()
         getWinningNumbersList(numbers)
     } catch (e: IllegalArgumentException) {
-        printErrorMessage(e.message)
+        println(printErrorMessage(e.message))
         getWinningNumbers()
     }
 
@@ -97,13 +103,12 @@ object InputView {
     }
 
     fun getBonusNumber(winningNumbers: List<Int>): Int = try {
-        printStepMessage(INPUT_BONUS_NUMBER)
-        val bonus = Console.readLine()
-        printStepMessage()
+        val bonus = Console.readLine().trim()
+        println()
         val bonusNum = getValidatedBonusNumber(bonus, winningNumbers)
         bonusNum
     } catch (e: IllegalArgumentException) {
-        printErrorMessage(e.message)
+        println(printErrorMessage(e.message))
         getBonusNumber(winningNumbers)
     }
 
@@ -117,15 +122,10 @@ object InputView {
     }
 
 
-    private fun printStepMessage(message: String? = null) {
-        message?.let {
-            println(message)
-        } ?: println()
-    }
+    private fun printStepMessage(message: String): String = message
 
-    private fun printErrorMessage(message: String? = EXCEPTION_UNEXPECTED) {
-        println("$ERROR $message")
-    }
+
+    private fun printErrorMessage(message: String? = EXCEPTION_UNEXPECTED) = "$ERROR $message"
 }
 
 

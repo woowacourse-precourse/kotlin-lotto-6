@@ -31,13 +31,13 @@ class LottoResult(
         return winningData
     }
 
-    private fun getRateOfReturn(winningData: Map<Rank, Int>): Double {
+    private fun getRateOfReturn(winningData: Map<Rank, Int>): String {
         val purchasedAmount = lotties.size * LOTTO_PRICE.toDouble()
         val earnedAmount = winningData.entries.sumOf { (rank, count) ->
             rank.amount * count
         }.toDouble()
 
-        return round(earnedAmount / purchasedAmount * 100.0 - 100.0)
+        return "%.1f".format(earnedAmount / purchasedAmount * 100.0)
     }
 
     private fun List<Int>.getResultForEachLotto(): Rank? {

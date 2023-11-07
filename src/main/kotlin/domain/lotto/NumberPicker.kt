@@ -4,16 +4,10 @@ import camp.nextstep.edu.missionutils.Randoms
 
 class NumberPicker(private val times: Int) {
 
-    var pickedLotties: List<List<Int>>
+    fun getRandomNumbers(): MutableList<MutableList<Int>> {
+        val currentPurchasedLotties = mutableListOf<MutableList<Int>>()
 
-    init {
-        pickedLotties = getRandomNumbers()
-    }
-
-    fun getRandomNumbers(): List<List<Int>> {
-        val currentPurchasedLotties = mutableListOf<List<Int>>()
-
-        repeat(times) {
+        for (i in 1..times) {
             val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
             currentPurchasedLotties.add(numbers)
         }

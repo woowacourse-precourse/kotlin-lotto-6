@@ -2,5 +2,6 @@ import camp.nextstep.edu.missionutils.Console
 import controller.LottoController
 
 fun main() {
-    LottoController.startGame()
+    val lottoController = LottoController()
+    lottoController.startGame()
 }

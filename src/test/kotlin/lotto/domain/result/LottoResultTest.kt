@@ -28,9 +28,9 @@ class LottoResultTest {
         lottoResult = LottoResult(lotties, winningNumbers, bonusNumber)
     }
 
-    @Test
+/*    @Test
     fun `로또 결과`() {
         val actualResult = lottoResult.getResultData()
         assertThat(actualResult).isEqualTo()
-    }
+    }*/
 }

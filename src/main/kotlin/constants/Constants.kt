@@ -6,6 +6,11 @@ object Constants {
     const val INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요."
 
     const val RESULT_PURCHASED_LOTTIES = "개를 구매했습니다."
+    const val RESULT_FINAL_STAT = "당첨 통계"
+    const val RESULT_SEPARATOR = "---"
+    const val RESULT_NUM_UNIT = "개"
+    const val RESULT_TOTAL_RATING_SUBJECT = "총 수익률은"
+    const val RESULT_TOTAL_RATING_COMPLEMENT = "%입니다."
 
     const val LOTTO_PRICE = 1000
     const val LOTTO_SIZE = 6
