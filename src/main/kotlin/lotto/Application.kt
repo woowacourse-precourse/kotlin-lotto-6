@@ -3,38 +3,50 @@ package lotto
 
 fun main() {
     var playingFlag = true
-    LottoSystem.gameStartMessage()
+    LottoSystem.informationMessage(LottoSystem.lottoGame)
+
     while (playingFlag) {
         LottoSystem.requestMessage(LottoSystem.buyPrice)
-        LottoSystem.inputResult = LottoSystem.userInput()
-        playingFlag =
-            LottoSystem.inputCheck(LottoSystem.inputResult, LottoSystem.caseBuyPrice)
+        Lotto.inputResult = Lotto.userInput()
+        playingFlag = CheckSystem.inputCheck(Lotto.inputResult, LottoSystem.caseBuyPrice)
     }
-    playingFlag = true
 
-    LottoSystem.inputResult.toInt()
-    val LottoSystemTimes = (LottoSystem.inputResult.toInt() / 1000)
-    LottoSystem.buyMessage((LottoSystemTimes))
-    while (LottoSystem.round < LottoSystemTimes) {
-        LottoSystem.SelectBall6 = LottoSystem.SelectBall()
-        if (LottoSystem.SelectBall6.distinct().size == 6) {
-            LottoSystem.round++
-            Lotto(LottoSystem.SelectBall6.sorted())
+    Lotto.InvestmentAmount = Lotto.inputResult.toInt()
+    Lotto.Times = (Lotto.InvestmentAmount / 1000)
+
+    playingFlag = true
+    LottoSystem.buyMessage(Lotto.Times)
+
+    while (Lotto.round < Lotto.Times ) {
+        Lotto.SelectBall6 = Lotto.SelectBall()
+        if (Lotto.SelectBall6.distinct().size == 6) {
+            Lotto.round++
+            Lotto(Lotto.SelectBall6.sorted())
         }
     }
     Lotto.allDisplay()
     while (playingFlag) {
         LottoSystem.requestMessage(LottoSystem.chosenNumber)
-        LottoSystem.inputResult = LottoSystem.userInput().replace(" ", "")
-        playingFlag = LottoSystem.inputCheck(LottoSystem.inputResult, LottoSystem.caseChoseNumber)
+        Lotto.inputResult = Lotto.userInput().replace(" ", "")
+        playingFlag = CheckSystem.inputCheck(Lotto.inputResult, LottoSystem.caseChoseNumber)
     }
+
+    Lotto.lastBall7 = Lotto.inputResult.split(",").toMutableList()
+
     playingFlag = true
 
     while (playingFlag) {
         LottoSystem.requestMessage(LottoSystem.bonusNumber)
-        LottoSystem.inputResult = LottoSystem.userInput().trim()
-        playingFlag = LottoSystem.inputCheck(LottoSystem.inputResult, LottoSystem.caseBonusNumber)
+        Lotto.inputResult = Lotto.userInput().trim()
+        playingFlag = CheckSystem.inputCheck(Lotto.inputResult, LottoSystem.caseBonusNumber)
     }
+
+    Lotto.lastBall7.add(Lotto.inputResult.trim())
+
+    Lotto.totalInventory = Lotto.contrastNumber(Lotto.numbersVowel)
+    LottoSystem.informationMessage(LottoSystem.lottoStatistics)
+    Lotto.tatisticsDisplay(Lotto.totalInventory ,Lotto.lastBall7,Lotto.InvestmentAmount)
+
 
 
 }
