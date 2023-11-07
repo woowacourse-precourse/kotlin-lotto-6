@@ -12,15 +12,6 @@ class Calculator {
     private var jackpot5WithBonus = 0
     private var jackpot6 = 0
 
-    fun showAllCalculation() {
-        print("\n당첨 통계\n---\n")
-        println("3개 일치 (${FIFTH_PRIZE}원) - ${jackpot3}개")
-        println("4개 일치 (${FOURTH_PRIZE}원) - ${jackpot4}개")
-        println("5개 일치 (${THRID_PRIZE}원) - ${jackpot5}개")
-        println("5개 일치, 보너스 볼 일치 (${SECOND_PRIZE}원) - ${jackpot5WithBonus}개")
-        println("6개 일치 (${FIRST_PRIZE}원) - ${jackpot6}개")
-    }
-
     fun calculateAllJackpot(
         lottos: List<Lotto>,
         bonuses: List<Int>,
@@ -69,6 +60,15 @@ class Calculator {
         }
 
         return count
+    }
+
+    fun showAllCalculation() {
+        print("\n당첨 통계\n---\n")
+        println("3개 일치 (${FIFTH_PRIZE}원) - ${jackpot3}개")
+        println("4개 일치 (${FOURTH_PRIZE}원) - ${jackpot4}개")
+        println("5개 일치 (${THRID_PRIZE}원) - ${jackpot5}개")
+        println("5개 일치, 보너스 볼 일치 (${SECOND_PRIZE}원) - ${jackpot5WithBonus}개")
+        println("6개 일치 (${FIRST_PRIZE}원) - ${jackpot6}개")
     }
 
     fun is3Jackpot(lotto: Lotto, winningNumbers: List<Int>): Boolean {
