@@ -14,4 +14,10 @@ class LottoPresentation {
         val winningNumbersInput = Console.readLine()
         return winningNumbersInput
     }
+
+    fun getBonusNumbersInput(): String {
+        println("보너스 번호를 입력해 주세요.")
+        val bonusNumbersInput = Console.readLine()
+        return bonusNumbersInput
+    }
 }
