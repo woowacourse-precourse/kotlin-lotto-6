@@ -26,7 +26,7 @@ class LottoView {
     fun displayLottoNumbers(lottoNumbers: List<List<Int>>) {
         println("${lottoNumbers.size}${OutPutMessage.PURCHASED}")
         lottoNumbers.forEach { numbers ->
-            println(numbers.sorted())
+            println(numbers)
         }
     }
 

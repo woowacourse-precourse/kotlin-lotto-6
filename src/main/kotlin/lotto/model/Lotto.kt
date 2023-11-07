@@ -7,7 +7,7 @@ class Lotto(private val numbers: List<Int>) {
         ValidationUtil.checkLottoNumbers(numbers)
     }
 
-    fun getNumber(): List<Int> {
-        return numbers
+    fun getSortedLottoNumber(): List<Int> {
+        return numbers.sorted()
     }
 }
