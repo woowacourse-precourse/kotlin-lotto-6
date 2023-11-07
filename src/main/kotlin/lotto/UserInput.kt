@@ -7,6 +7,7 @@ class UserInput() {
 
     fun purchasedAmountInput(): String {
         while(true) {
+            println(LottoGameMessage.PURCHASE_AMOUNT_INPUT)
             val userInput = Console.readLine()
             try {
                 userInputValidator.checkNumber(userInput)
@@ -21,11 +22,13 @@ class UserInput() {
 
     fun winningPriceInput(): List<String> {
         while (true) {
+            println(LottoGameMessage.WINNING_NUMBER_INPUT)
             val userInput = Console.readLine()
             val numberList = userInput.split(",")
             try {
                 userInputValidator.checkNumberListSize(numberList)
                 userInputValidator.checkNumberInList(numberList)
+                userInputValidator.checkDuplicatedNumberInList(numberList)
                 return numberList
             }
             catch (e: IllegalArgumentException) {
@@ -36,6 +39,7 @@ class UserInput() {
 
     fun bonusNumberInput(numberList: List<String>): String {
         while(true) {
+            println(LottoGameMessage.BONUS_NUMBER_INPUT)
             val userInput = Console.readLine()
             try {
                 userInputValidator.checkNumber(userInput)
