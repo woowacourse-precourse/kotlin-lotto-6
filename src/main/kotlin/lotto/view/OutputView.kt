@@ -7,12 +7,12 @@ import lotto.model.LottoCompare
 class OutputView {
     fun lottoPurchaseMessage() = println(OutputMessages.PURCHASE_MONEY.message)
     fun lottoPurchaseConfirm(purchaseLottoNumber: Int)= println("\n${OutputMessages.PURCHASE_CONFIRMATION.message.format(purchaseLottoNumber)}")
-    fun rightLottoNumberMessage() = println("\n${OutputMessages.CORRECT_LOTTO_NUMBER.message}")
-    fun rightLottoNumbersView(lottoNumbers: MutableList<List<Int>>){
+    fun lottoNumbersView(lottoNumbers: MutableList<List<Int>>){
         lottoNumbers.forEach {
             println(it)
         }
     }
+    fun rightLottoNumberMessage() = println("\n${OutputMessages.RIGHT_LOTTO_NUMBER.message}")
     fun bonusLottoNumberMessage() = println("\n${OutputMessages.BONUS_NUMBER.message}")
 
     fun lottoCompareResult(compareResult: LottoCompare) {

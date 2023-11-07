@@ -17,26 +17,22 @@ class LottoController(
         outputView.lottoPurchaseConfirm(lotto)
 
         val lottoNumbers=LottoNumberGenerator().lottoNumberCreation(lotto)
-        outputView.rightLottoNumbersView(lottoNumbers)
+        outputView.lottoNumbersView(lottoNumbers)
 
         outputView.rightLottoNumberMessage()
-        val correctLottoNumber=inputView.inputRightLottoNumber()
-        Lotto(correctLottoNumber)
+        val rightLottoNumber=inputView.inputRightLottoNumber()
+        Lotto(rightLottoNumber)
 
         outputView.bonusLottoNumberMessage()
         var bonusNumber=inputView.inputBonusNumber()
-        BonusNumberVerification(bonusNumber,correctLottoNumber)
+        BonusNumberVerification(bonusNumber,rightLottoNumber)
 
-        val compareResult=LottoCompare(bonusNumber,correctLottoNumber,lottoNumbers)
+        val compareResult=LottoCompare(bonusNumber,rightLottoNumber,lottoNumbers)
 
         outputView.lottoCompareResult(compareResult)
 
         outputView.lottoProfit(ProfitCalculation().profit(compareResult,lotto))
 
-
     }
 
-    fun gameProgress(){
-
-    }
 }
