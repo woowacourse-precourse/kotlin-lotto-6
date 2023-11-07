@@ -8,7 +8,7 @@ class BonusNumberTest {
     @Test
     fun `보너스 번호에 숫자가 아닌 문자를 입력했을 때`() {
         assertThrows<IllegalArgumentException> {
-            WinningNumber("a")
+            BonusNumber("a")
         }
     }
 
