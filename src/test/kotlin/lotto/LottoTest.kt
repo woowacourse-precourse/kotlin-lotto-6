@@ -13,6 +13,35 @@ import java.util.stream.Stream
 
 
 class LottoTest {
+    private lateinit var lotto: Lotto
+
+    companion object {
+        @JvmStatic
+        fun invalidLottos(): List<Arguments> {
+            return listOf(
+                Arguments.of(listOf(0, 1, 2, 3, 4, 5)),
+                Arguments.of(listOf(-10, 1, 2, 3, 4, 5)),
+                Arguments.of(listOf(62, 1, 2, 3, 4, 5))
+            )
+        }
+
+        @JvmStatic
+        fun winningNumberSet(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(Pair(listOf(1, 2, 3, 4, 5, 6), 45), 6, false),
+                Arguments.of(Pair(listOf(1, 2, 3, 4, 5, 7), 6), 5, true),
+                Arguments.of(Pair(listOf(1, 2, 3, 4, 5, 7), 45), 5, false),
+                Arguments.of(Pair(listOf(11, 2, 3, 4, 5, 15), 45), 4, false),
+                Arguments.of(Pair(listOf(1, 2, 3, 14, 15, 17), 45), 3, false)
+            )
+        }
+    }
+
+    @BeforeEach
+    fun setUp() {
+        lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+    }
+
     @Test
     fun `로또 번호의 개수가 6개가 넘어가면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
@@ -34,5 +63,18 @@ class LottoTest {
         assertThrows<IllegalArgumentException> {
             Lotto(numbers)
         }
+    }
+
+    @ParameterizedTest
+    @MethodSource("winningNumberSet")
+    fun `구매한 로또와 당첨 번호들과 보너스 번호를 비교기능 테스트`(
+        winningNumberSet: Pair<List<Int>, Int>,
+        expectedMatchNumber: Int,
+        expectedMatchBonus: Boolean
+    ) {
+        val result = lotto.compareNumber(winningNumberSet)
+
+        assertEquals(expectedMatchNumber, result.first)
+        assertEquals(expectedMatchBonus, result.second)
     }
 }
