@@ -9,7 +9,7 @@ class LottoMachine {
     var thirdPlace = 0
     var fourthPlace = 0
     var fifthPlace = 0
-    fun checkRank(){
+    fun checkRank() {
         val lotto = Lottos().makeLotto(lottoNum())
         val lottos = inputManager.inputWinningNumber()
         val bonusNum = inputManager.inputBonusNumber()
@@ -29,14 +29,18 @@ class LottoMachine {
         outputManager.printRate(calculateRate())
 
     }
+
     fun lottoNum(): Int {
         return money / 1000
     }
+
     fun calculatePrizeSum(): Int {
         return firstPlace * 2000000000 + secondPlace * 30000000 + thirdPlace * 1500000 + fourthPlace * 50000 + fifthPlace * 5000
     }
 
-    fun calculateRate(): Double{
-        return calculatePrizeSum()/money.toDouble()
+    fun calculateRate(): Double {
+        val sum = calculatePrizeSum()
+        val money = money.toDouble()
+        return sum / money
     }
 }
