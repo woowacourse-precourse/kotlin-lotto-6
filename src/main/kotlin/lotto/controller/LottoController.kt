@@ -21,14 +21,17 @@ class LottoController() {
             printPurchaseLottoCount(purchaseAmount)
 
             generateLottoTickets(purchaseAmount / LOTTO_PRICE)
-
-            printWinningNumberOfLotto()
-            inputWinningNumberOfLotto()
+            startWinningNumber()
 
         } catch (e: IllegalArgumentException) {
             println(e.message)
             start()
         }
+    }
+
+    fun startWinningNumber() {
+        printWinningNumberOfLotto()
+        inputWinningNumberOfLotto()
     }
 
     fun validateInputNumeric(input: String) {
