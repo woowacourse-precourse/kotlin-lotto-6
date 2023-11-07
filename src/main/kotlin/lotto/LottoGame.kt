@@ -7,9 +7,10 @@ class LottoGame() {
     fun start() {
         val lottoCount = purchaseSequence()
         var lottos = generateLottos(lottoCount)
-        val winningNumber = getWinnningNumberSequence()
+        val winningNumbers = getWinnningNumberSequence()
         val bonusNumber = getBonusNumberSequence()
-//        println("당첨 통계")
+
+        val lottoResult = LottoResult(lottos, winningNumbers, bonusNumber)
     }
 
     private fun printMessage(type: String, count: Int) {

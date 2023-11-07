@@ -32,6 +32,11 @@
      - [x] 정렬된 로또 번호 출력
    - [x] LottaGame.kt - LottaGame 객체 선언
      -  [x] count값에 맞는 Lottos 객체 생성
+   - [x] InputValidator.kt - 입력에 대한 유효성 검사 클래스
+   - [x] LottoResult.kt 당첨 여부 및 출력
+     - [x] 로또 번호 비교 및 등수 산정
+     - [ ] 수익률 계산
+     - [ ] 당첨 내역 및 수익률 출력
 
   - [ ] Lotto 및 Lottos 인스턴스 생성 실패 시 재입력 받게하기 
  
