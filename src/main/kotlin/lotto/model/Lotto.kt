@@ -3,6 +3,11 @@ package lotto.model
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
+        require(isAllUnique(this.numbers))
+    }
+
+    private fun isAllUnique(numbers: List<Int>): Boolean {
+        return numbers.size == numbers.toSet().size
     }
 
     override fun toString(): String {
