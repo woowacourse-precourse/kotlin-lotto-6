@@ -1,11 +1,11 @@
 package lotto.controller
 
 import LOTTO_PRICE
-import LottoView.inputPurchaseAmountOfLotto
-import LottoView.printPurchaseAmountOfLotto
-import LottoView.printPurchaseLottoCount
+import LottoPurchaseView.inputPurchaseAmountOfLotto
+import LottoPurchaseView.printPurchaseAmountOfLotto
 import lotto.model.LottoModel
 import lotto.model.LottoTicket
+import lotto.presentation.LottoGeneratorView.printPurchaseLottoCount
 
 class LottoController() {
     private val lottoModel = LottoModel()

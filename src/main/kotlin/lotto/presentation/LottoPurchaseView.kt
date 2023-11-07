@@ -1,7 +1,7 @@
 import camp.nextstep.edu.missionutils.Console
 import lotto.controller.LottoController
 
-object LottoView {
+object LottoPurchaseView {
     fun printPurchaseAmountOfLotto() {
         println(PURCHASE_LOTTO_MESSAGE)
     }
@@ -13,9 +13,5 @@ object LottoView {
         LottoController().validateInputDivisionPrice(purchaseAmount.toInt())
 
         return purchaseAmount.toInt()
-    }
-
-    fun printPurchaseLottoCount(amount: Int) {
-        println(PURCHASE_LOTTO_COUNT_MESSAGE.format(amount / LOTTO_PRICE))
     }
 }
