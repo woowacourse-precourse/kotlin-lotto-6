@@ -1,11 +1,11 @@
 package lotto
 
 fun hasSixNumbers(numbers: List<Int>): Boolean {
-    return numbers.size == 6
+    return numbers.size == LottoConstraints.NUMBER_COUNT
 }
 
 fun isInValidRange(numbers: List<Int>): Boolean {
-    return numbers.all { (1 <= it) and (it <= 45) }
+    return numbers.all { (LottoConstraints.NUMBER_START <= it) and (it <= LottoConstraints.NUMBER_END) }
 }
 
 fun isUnique(numbers: List<Int>): Boolean {
