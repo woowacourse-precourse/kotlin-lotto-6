@@ -12,4 +12,18 @@ class Lotto(private val numbers: List<Int>) {
     fun checkWinning(winningNumber: WinningNumber, checker: WinningStrategyEnum) : Boolean{
         return checker.calculate(numbers, winningNumber)
     }
+
+    override fun toString(): String {
+        val sorted = numbers.sorted()
+        val stringBuilder = StringBuilder()
+        stringBuilder.append("[")
+        sorted.forEachIndexed{ index, value ->
+            stringBuilder.append(value)
+            if(index != sorted.size - 1){
+                stringBuilder.append(", ");
+            }
+        }
+        stringBuilder.append("]")
+        return stringBuilder.toString()
+    }
 }
