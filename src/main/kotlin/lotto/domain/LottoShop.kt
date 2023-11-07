@@ -1,4 +1,4 @@
 package lotto.domain
 
-class LottoShop {
+class LottoShop() {
 }
