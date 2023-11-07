@@ -60,11 +60,11 @@ class CheckError {
 
         for (number in numbers) {
 
-            val numberInt = number.toInt()
+            val changedNumber = number.toInt()
 
             try {
 
-                require(numberInt in 1..45) { }
+                require(changedNumber in 1..45) { }
 
             } catch (e: IllegalArgumentException) {
 
@@ -94,6 +94,22 @@ class CheckError {
     }
 
     fun checkNonOverlapNumber(numbers: List<String>): Boolean {
+
+        try {
+
+            require(numbers.toSet().size == 6) { }
+
+        } catch (e: IllegalArgumentException) {
+
+            println("[ERROR] : 겹치는 숫자가 있습니다. 다시 입력해주세요")
+
+            return false
+        }
+
+        return true
+    }
+
+    fun checkNonOverlapBonusNumber(numbers: List<String>): Boolean {
 
         try {
 

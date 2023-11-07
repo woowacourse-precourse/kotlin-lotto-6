@@ -2,8 +2,8 @@ package lotto
 
 fun main() {
     val input = InputValue()
-    val winningBonusClass = WinningAndBonusNumber(input.inputWinningNumber(), input.inputWinningNumber())
+    val winningBonus = WinningAndBonusNumber(input.inputWinningNumber(), input.inputBonusNumber())
 
-    println(winningBonusClass.winningNumber)
-    println(winningBonusClass.bonusNumber)
+    println(winningBonus.winningNumber)
+    println(winningBonus.bonusNumber)
 }

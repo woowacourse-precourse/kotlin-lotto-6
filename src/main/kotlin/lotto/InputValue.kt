@@ -9,7 +9,7 @@ class InputValue {
 
     fun inputLottoMoney(): Int {
 
-        val moneyInt: Int
+        val changedMoney: Int
 
         while (true) {
 
@@ -18,17 +18,17 @@ class InputValue {
             if (!check.checkInputPositiveInt(money)) continue
             if (!check.checkCanDivide1000(money.toInt())) continue
 
-            moneyInt = money.toInt()
+            changedMoney = money.toInt()
 
             break
         }
 
-        return moneyInt
+        return changedMoney
     }
 
     fun inputWinningNumber(): List<Int> {
 
-        val winningNumberInt: List<Int>
+        val changedWinningNumber: List<Int>
 
         while (true) {
 
@@ -39,15 +39,27 @@ class InputValue {
             if (!check.checkInputSixNumbers(winningNumber)) continue
             if (!check.checkNonOverlapNumber(winningNumber)) continue
 
-            winningNumberInt = changeStringInt(winningNumber)
+            changedWinningNumber = changeStringInt(winningNumber)
 
             break
         }
 
-        return winningNumberInt
+        return changedWinningNumber
     }
 
-    fun inputBonusNumber(numbers: List<String>): List<Int> {
+    fun inputBonusNumber(): List<Int> {
+
+        val changedBonusNumber: List<Int>
+
+        while (true) {
+
+            val bonusNumber = readln().split(",")
+
+            if (!check.checkOnlyNumber(bonusNumber)) continue
+            if (!check.checkNumber1to45(bonusNumber)) continue
+
+            break
+        }
 
 
         return listOf(0)
@@ -55,13 +67,13 @@ class InputValue {
 
     private fun changeStringInt(numbers: List<String>): List<Int> {
 
-        val winningIntNumber: MutableList<Int> = mutableListOf()
+        val changedWinningNumber: MutableList<Int> = mutableListOf()
 
         for (number in numbers) {
-            winningIntNumber.add(number.toInt())
+            changedWinningNumber.add(number.toInt())
         }
 
-        return winningIntNumber
+        return changedWinningNumber
     }
 
 }
