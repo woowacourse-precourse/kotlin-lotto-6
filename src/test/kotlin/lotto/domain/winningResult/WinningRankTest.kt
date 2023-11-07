@@ -11,9 +11,9 @@ class WinningRankTest {
         val bonusNumberMatched = listOf(true, false, true, false)
 
         // when & then
-        assertEquals(WinningRank.getRank(matchingCounts[0], bonusNumberMatched[0]), WinningRank.FIFTH)
-        assertEquals(WinningRank.getRank(matchingCounts[1], bonusNumberMatched[1]), WinningRank.FOURTH)
-        assertEquals(WinningRank.getRank(matchingCounts[2], bonusNumberMatched[2]), WinningRank.SECOND)
-        assertEquals(WinningRank.getRank(matchingCounts[3], bonusNumberMatched[3]), WinningRank.FIRST)
+        assertEquals(WinningRank.FIFTH, WinningRank.getRank(matchingCounts[0], bonusNumberMatched[0]))
+        assertEquals(WinningRank.FOURTH, WinningRank.getRank(matchingCounts[1], bonusNumberMatched[1]))
+        assertEquals(WinningRank.SECOND, WinningRank.getRank(matchingCounts[2], bonusNumberMatched[2]))
+        assertEquals(WinningRank.FIRST, WinningRank.getRank(matchingCounts[3], bonusNumberMatched[3]))
     }
 }
