@@ -1,4 +1,4 @@
-package lotto
+package lotto.domain
 
 enum class Position(val winningPrize: Int, val message: String) {
     First(2000000000, "6개 일치"),

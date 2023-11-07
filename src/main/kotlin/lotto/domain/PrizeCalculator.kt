@@ -1,4 +1,4 @@
-package lotto
+package lotto.domain
 
 class PrizeCalculator(
     private val lottoList: List<Lotto>,

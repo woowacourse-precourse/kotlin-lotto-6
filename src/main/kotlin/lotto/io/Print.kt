@@ -1,5 +1,8 @@
-package lotto
+package lotto.io
 
+import lotto.Messages
+import lotto.Rate
+import lotto.domain.Position
 import java.text.DecimalFormat
 
 object Print {
