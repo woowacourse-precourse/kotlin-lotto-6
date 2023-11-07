@@ -16,13 +16,13 @@ enum class Rank {
 }
 fun main() {
     
-    println("구입금액을 입력해 주세요.")
     
     lateinit var inputPrice: String
     var price  = 0
     
     while (price == 0) {
         try {
+            println("구입금액을 입력해 주세요.")
             inputPrice = readLine()!!
             price = priceCheck(inputPrice)
         } catch (e: IllegalArgumentException) {
@@ -37,15 +37,58 @@ fun main() {
         lottoList.add(Lotto(randomValues))
     }
     
-    val result = Array(6) { 0 }
-    val test1 = setOf<Int>(1, 2, 3, 4, 5)
-    val test2 = setOf<Int>(12, 23, 41, 13, 6)
+    lateinit var inputWinNum: String
+    lateinit var inputBonusNum: String
+    lateinit var winNumList: List<Int>
+    var bonusNum = 0
 
-    val test3 = test1 + test2
+    var checkWinNum: Int = 0
+    while (checkWinNum == 0) {
+        try {
+            println("당첨 번호를 입력해 주세요.")
+            inputWinNum = readLine()!!
+            winNumList = winNumCheck(inputWinNum)
+            checkWinNum = 1
+        } catch (e: IllegalArgumentException) {
+            println(e)
+        }
+    }
     
-    print("set size : ${test3.size}")
-    println(lottoList.size)
+    while (bonusNum == 0) {
+        try {
+            println("보너스 번호를 입력해 주세요.")
+            inputBonusNum = readLine()!!
+            bonusNum = bonusNumCheck(inputBonusNum)
+        } catch (e: IllegalArgumentException) {
+            println(e)
+        }
+    }
 
+    val result = Array(6) { 0 }
+
+}
+
+fun winNumCheck(inputWinNum: String): List<Int> {
+    val numSplit = inputWinNum.split(",")
+    val winNumList = numSplit.map { it.toInt() }
+    
+    for (num in winNumList) {
+        if (num < 1 || num > 45 || winNumList.size != 6) {
+            throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+        }
+    }
+    
+    return winNumList
+}
+
+fun bonusNumCheck(inputBonusNum: String): Int {
+    val bonusNum = inputBonusNum.toInt()
+    
+    if (bonusNum < 1 || bonusNum > 45) {
+        throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+    }
+    
+    return bonusNum
 }
 
 fun priceCheck(inputPrice: String): Int {
