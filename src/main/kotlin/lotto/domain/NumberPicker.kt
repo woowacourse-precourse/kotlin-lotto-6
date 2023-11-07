@@ -1,9 +1,9 @@
-package domain.lotto
+package lotto.domain
 
 import camp.nextstep.edu.missionutils.Randoms
-import constants.Constants.LOTTO_SIZE
-import constants.Constants.MAX_NUM
-import constants.Constants.MIN_NUM
+import lotto.constants.Constants.LOTTO_SIZE
+import lotto.constants.Constants.MAX_NUM
+import lotto.constants.Constants.MIN_NUM
 
 class NumberPicker(private val times: Int) {
 

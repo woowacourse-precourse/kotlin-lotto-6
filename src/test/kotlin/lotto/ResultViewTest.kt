@@ -1,7 +1,7 @@
-package view
+package lotto
 
-import domain.chance.Chance
-import domain.purchase.Money
+import lotto.domain.Chance
+import lotto.domain.Money
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

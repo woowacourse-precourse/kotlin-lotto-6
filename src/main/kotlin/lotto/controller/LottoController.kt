@@ -1,12 +1,12 @@
-package controller
+package lotto.controller
 
-import domain.chance.Chance
-import domain.lotto.Lotto
-import domain.lotto.NumberPicker
-import domain.result.LottoResult
-import domain.purchase.Money
-import view.InputView
-import view.ResultView
+import lotto.domain.Chance
+import lotto.domain.Lotto
+import lotto.domain.NumberPicker
+import lotto.domain.LottoResult
+import lotto.domain.Money
+import lotto.view.InputView
+import lotto.view.ResultView
 
 class LottoController {
 

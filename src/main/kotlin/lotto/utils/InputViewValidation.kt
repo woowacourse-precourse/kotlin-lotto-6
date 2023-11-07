@@ -1,7 +1,7 @@
-package utils
+package lotto.utils
 
-import constants.ExceptionMessages
-import constants.Constants
+import lotto.constants.ExceptionMessages
+import lotto.constants.Constants
 
 object InputViewValidation {
 

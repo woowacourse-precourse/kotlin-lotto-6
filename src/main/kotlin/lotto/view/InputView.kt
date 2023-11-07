@@ -1,13 +1,13 @@
-package view
+package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
-import constants.ExceptionMessages.ERROR
-import constants.ExceptionMessages.EXCEPTION_UNEXPECTED
-import constants.Constants.INPUT_BONUS_NUMBER
-import constants.Constants.INPUT_PURCHASE_AMOUNT
-import constants.Constants.INPUT_WINNING_NUMBERS
-import constants.Constants.WINNING_NUM_SEPARATOR
-import utils.InputViewValidation
+import lotto.constants.ExceptionMessages.ERROR
+import lotto.constants.ExceptionMessages.EXCEPTION_UNEXPECTED
+import lotto.constants.Constants.INPUT_BONUS_NUMBER
+import lotto.constants.Constants.INPUT_PURCHASE_AMOUNT
+import lotto.constants.Constants.INPUT_WINNING_NUMBERS
+import lotto.constants.Constants.WINNING_NUM_SEPARATOR
+import lotto.utils.InputViewValidation
 
 class InputView {
 

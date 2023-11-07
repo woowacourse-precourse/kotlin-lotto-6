@@ -1,8 +1,8 @@
-package domain
+package lotto
 
-import domain.result.LottoResult
-import domain.result.Rank
-import constants.Constants.FORMAT_ONE_DECIMAL_PLACE
+import lotto.constants.Constants.FORMAT_ONE_DECIMAL_PLACE
+import lotto.domain.LottoResult
+import lotto.domain.Rank
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

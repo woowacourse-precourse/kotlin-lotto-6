@@ -1,4 +1,4 @@
-package constants
+package lotto.constants
 
 object ExceptionMessages {
     const val ERROR = "[ERROR]"

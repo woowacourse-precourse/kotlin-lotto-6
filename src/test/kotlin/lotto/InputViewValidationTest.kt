@@ -1,5 +1,6 @@
-package utils
+package lotto
 
+import lotto.utils.InputViewValidation
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows

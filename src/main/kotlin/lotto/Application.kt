@@ -1,5 +1,7 @@
+package lotto
+
 import camp.nextstep.edu.missionutils.Console
-import controller.LottoController
+import lotto.controller.LottoController
 
 fun main() {
     val lottoController = LottoController()
