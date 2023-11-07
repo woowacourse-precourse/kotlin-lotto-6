@@ -1,7 +1,6 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
-import java.lang.NumberFormatException
 
 object Input {
     private fun getInput(): String {
@@ -9,11 +8,11 @@ object Input {
         require(input.isNotEmpty())
         return input
     }
-    fun getBudget(): Int {
+    fun getBudget(): Int = repeatUntilGetValidInput {
         val budget = getInput().toInt()
         require(budget > 0)
         require(budget % Constants.PRICE_OF_LOTTO == 0)
-        return budget
+        budget
     }
     fun getWinningNumber(): List<Int> {
         val winningNumbers = repeatUntilGetValidInput {
@@ -29,7 +28,6 @@ object Input {
             ret = try {
                 inputFunction()
             } catch (e: Exception) {
-                // TODO: error message
                 continue
             }
             break
