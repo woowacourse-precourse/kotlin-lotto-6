@@ -216,3 +216,17 @@ class Lotto(private val numbers: List<Int>) {
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
   - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+## 구현할 기능 목록 정리**
+
+- 코틀린 1.9.0 에서 잘 돌아가도록 한다.
+- 가게를 차렸다 생각하고 코드를 만들어 보자 단, 당첨번호도 내가 발행한다는 점이 다르다.
+- 책임별로 역할을 분리한다.
+- 돈을 받는 역할을 구현한다.
+- 랜덤한 숫자를 뽑는 부분을 구현한다.
+- 당첨 숫자 입력 받는 부분을 구현한다.
+- 당첨 여부를 계산한다.
+- 수익률을 계산한다.
+- 결과를 보여준다.
+- 테스트를 한다.
+
