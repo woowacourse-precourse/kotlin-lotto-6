@@ -11,9 +11,9 @@ class InputView {
         return ValidateLottoAmount().buyAmount(Console.readLine())
     }
 
-    fun inputWinningNumbers() {
+    fun inputWinningNumbers() : List<Int> {
         println(Constants.INPUT_WINNING_NUMBER)
-        val winningNumbers = Console.readLine()
+        return ValidateLottoNumbers().validateWinningNumbers(Console.readLine())
     }
 
     fun inputBonusNumber() {
