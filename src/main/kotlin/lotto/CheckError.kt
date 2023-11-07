@@ -125,11 +125,14 @@ class CheckError {
         return true
     }
 
-    fun checkNonOverlapBonusNumber(numbers: List<String>): Boolean {
+    fun checkNonOverlapBonusNumber(winning : List<Int>, bonus: Int): Boolean {
 
         try {
 
-            require(numbers.toSet().size == 6) { }
+            println(winning.toString())
+            println(bonus)
+
+            require(!winning.contains(bonus)) {}
 
         } catch (e: IllegalArgumentException) {
 

@@ -47,9 +47,9 @@ class InputValue {
         return changedWinningNumber
     }
 
-    fun inputBonusNumber(): List<Int> {
+    fun inputBonusNumber(winning : List<Int>): List<Int> {
 
-        val changedBonusNumber: List<Int>
+        var changedBonusNumber: List<Int>
 
         while (true) {
 
@@ -58,6 +58,10 @@ class InputValue {
             if (!check.checkOnlyNumber(bonusNumber)) continue
             if (!check.checkNumber1to45(bonusNumber)) continue
             if (!check.checkInputOneNumbers(bonusNumber)) continue
+
+            changedBonusNumber = changeStringInt(bonusNumber)
+
+            if (!check.checkNonOverlapBonusNumber(winning,changedBonusNumber[0])) continue
 
             break
         }

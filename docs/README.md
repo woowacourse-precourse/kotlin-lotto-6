@@ -29,12 +29,12 @@
   - [O] 당첨 번호가 중복될 경우 오류 : CheckError#checkNonOverlapNumber()
   - [O] 입력 당첨 번호를 모두 정수로 바꿔주는 기능 : InputValue#changeStringInt()
   
-- [] 보너스 번호를 입력 : InputValue#inputBonusNumber()
+- [O] 보너스 번호를 입력 : InputValue#inputBonusNumber()
   - [O] 당첨 번호 숫자 모두가 양의 정수를 입력하지 않으면 오류 : CheckError#checkOnlyNumber() - 중복 사용
   - [O] 당첨 번호 숫자 모두 1~45 사이를 입력하지 않으면 오류 : CheckError#checkNumber1to45() - 중복 사용
-  - [] 1개의 숫자를 입력하지 않을 경우 오류 : CheckError#checkInputOneNumbers()
-  - [] 보너스 번호와 당첨 번호가 중복될 경우 오류 : CheckError#checkNonOverlapBonusNumber()
-  - [] 입력 당첨 번호를 모두 정수로 바꿔주는 기능 : InputValue#changeStringInt() - 중복 사용
+  - [O] 1개의 숫자를 입력하지 않을 경우 오류 : CheckError#checkInputOneNumbers()
+  - [O] 보너스 번호와 당첨 번호가 중복될 경우 오류 : CheckError#checkNonOverlapBonusNumber()
+  - [O] 입력 당첨 번호를 모두 정수로 바꿔주는 기능 : InputValue#changeStringInt() - 중복 사용
   
 - [] 구매 금액에 맞는 복권의 개수 계산 : MakeLotto#calculateCountingLotto()
 - [] 각 복권마다 중복되지 않는 번호 6개 생성 : MakeLotto#createNonOverlapSixNumbers()
