@@ -1,7 +1,9 @@
 package lotto.domain
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -16,7 +18,7 @@ class LottoShopTest {
 
 
         //then
-        assertThrows(IllegalArgumentException) {
+        assertThrows<IllegalArgumentException>{
             lottoShop.purchaseLotto("abcd")
         }
     }
@@ -31,7 +33,7 @@ class LottoShopTest {
 
 
         //then
-        assertThrows(IllegalArgumentException) {
+        assertThrows<IllegalArgumentException> {
             lottoShop.purchaseLotto(input)
         }
     }
@@ -60,7 +62,7 @@ class LottoShopTest {
 
 
         //then
-        assertThrows(IllegalArgumentException) {
+        assertThrows<IllegalArgumentException> {
             lottoShop.purchaseLotto("0")
         }
     }
@@ -75,7 +77,7 @@ class LottoShopTest {
 
 
         //then
-        val actual = lottoShop.purchaseLotto(input)
+        val actual = lottoShop.purchaseLotto(input).size
         val excepted = (input.toInt())/1000
         assertThat(actual).isEqualTo(excepted)
     }
