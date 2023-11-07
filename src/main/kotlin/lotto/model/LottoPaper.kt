@@ -17,7 +17,5 @@ class LottoPaper(lottoLineCount: Int) {
         return createdLottoNum
     }
 
-    fun getLottoPaper(): List<Lotto> {
-        return lottoNum
-    }
+    fun getLottoPaper(): List<Lotto> = lottoNum
 }

@@ -15,16 +15,14 @@ class Lotto(numbers: List<Int>) {
         lotto = numbers
     }
 
-    fun getLottoNumbers(): List<Int> {
-        return lotto
-    }
+    fun getLottoNumbers(): List<Int> = lotto
 
     fun getBonusNumbers(): Int? {
         bonusNum?.let { return it }
         return null
     }
 
-    private fun validateLottoNumbers(numbers: List<Int>){
+    private fun validateLottoNumbers(numbers: List<Int>) {
         LottoNumValidation().validateLottoNum(numbers)
     }
 }

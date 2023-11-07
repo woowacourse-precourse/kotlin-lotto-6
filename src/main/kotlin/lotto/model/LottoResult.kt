@@ -11,13 +11,9 @@ class LottoResult {
         LottoMatchNum.SIX_MATCH to 0
     )
 
-    fun getTotalLottoPrize(): Int {
-        return totalLottoPrize
-    }
+    fun getTotalLottoPrize(): Int = totalLottoPrize
+    fun getMatchingLottoResult(): MutableMap<LottoMatchNum, Int> = matchingLottoResult
 
-    fun getMatchingLottoResult(): MutableMap<LottoMatchNum, Int> {
-        return matchingLottoResult
-    }
 
     fun setMatchingLottoResult(matchingLottoNumCount: List<Int>) {
         val matchingLottoMatchNum = LottoMatchNum.values()
@@ -30,7 +26,7 @@ class LottoResult {
     fun calculateTotalLottoPrize() {
         val lottoPrize = LottoPrize()
         matchingLottoResult.forEach { (matchNum, matchResult) ->
-            val prize = LottoPrize().winningsPrizeMap[matchNum]
+            val prize = lottoPrize.winningsPrizeMap[matchNum]
             // 다른 방법이 없을까?
             if (prize != null) {
                 totalLottoPrize += prize * matchResult
