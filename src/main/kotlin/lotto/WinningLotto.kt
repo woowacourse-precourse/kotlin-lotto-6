@@ -35,10 +35,16 @@ class WinningLotto {
         do {
             input = Console.readLine().trim()
         } while (!Validator(input).isWinningNumbersValid())
-        return Console.readLine().trim().split(",").map { it.toInt() }
+        return input.split(",").map { it.toInt() }
     }
 
-    private fun readBonusNumber(): Int = Console.readLine().toInt()
+    private fun readBonusNumber(): Int {
+        var input: String
+        do {
+            input = Console.readLine()
+        } while (!Validator(input).isBonusBallValid(winningNumbers))
+        return input.toInt()
+    }
 
     companion object {
         const val INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요."
