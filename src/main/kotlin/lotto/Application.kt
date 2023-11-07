@@ -36,7 +36,12 @@ fun main() {
     val bonus = matchBonus(lottos, winningResult, BonusNumber)
 
     printWinningReport()
-    matchCheck(compareToLotto(lottos, winningResult), bonus)
+    val matches = compareToLotto(lottos, winningResult)
+    matchCheck(matches, bonus)
+
+    // 수익률 구하기
+    val totalAmount = getTotalAmount(matches, bonus)
+    getEarningRate(amount, totalAmount)
 
 }
 
@@ -71,7 +76,7 @@ fun matchBonus(lottos: MutableList<Lotto>, winningResult: List<Int>, BonusNumber
         val union = lottos[index].getNumbers() + winningResult
         val intersection = union.groupBy { it }.filter { it.value.size > 1 }.flatMap { it.value }.distinct()
 
-        if(intersection.size == 5 || lottos[index].getNumbers().contains(BonusNumber)) {
+        if(intersection.size == 5 && lottos[index].getNumbers().contains(BonusNumber)) {
             bonus++
         }
     }
@@ -100,4 +105,30 @@ fun matchCheck(matches: MutableList<Int>, bonus: Int) {
     println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${bonus}개")
     println("6개 일치 (2,000,000,000원) - ${matchSix}개")
 
+}
+
+// 당첨된 금액 합계
+fun getTotalAmount(matches: MutableList<Int>, bonus: Int): Int {
+    var total = 0
+    for (index in matches.indices) {
+        when(matches[index]) {
+            3 -> total =+ 5000
+            4 -> total =+ 50000
+            5 -> total =+ 1500000
+            6 -> total =+ 2000000000
+        }
+    }
+
+    if(bonus != 0) {
+        total -= 1500000 * bonus
+        total += 30000000 * bonus
+    }
+    return total
+}
+
+// 수익률 구하기
+fun getEarningRate(amount: Int, total: Int) {
+    val amount = amount.toFloat()
+    val total = total.toFloat()
+    println((total/amount)*100)
 }
