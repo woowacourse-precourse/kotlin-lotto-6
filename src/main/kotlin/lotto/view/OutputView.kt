@@ -23,9 +23,10 @@ class OutputView {
 
     fun printResult(prizeReceipt: PrizeReceipt) {
         val message = buildString {
+            appendLine()
             appendLine(Message.WinningStatsHeader)
-            appendLine(getPrizeReport(prizeReceipt))
-            appendLine("총 수익률은 ${String.format("%.1f", prizeReceipt.rate)}%입니다.")
+            append(getPrizeReport(prizeReceipt))
+            append("총 수익률은 ${String.format("%.1f", prizeReceipt.rate)}%입니다.")
         }
         print(message)
     }
@@ -41,7 +42,7 @@ class OutputView {
             if (rank == Rank.Second) {
                 append(Message.MatchBonus)
             }
-            append(format(Message.PrizeCountTemplate, prizeFormat, receipt.getCountByRank(rank)))
+            appendLine(format(Message.PrizeCountTemplate, prizeFormat, receipt.getCountByRank(rank)))
         }
     }
 
