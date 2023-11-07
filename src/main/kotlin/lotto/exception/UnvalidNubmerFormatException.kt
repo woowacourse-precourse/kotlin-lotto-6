@@ -1,0 +1,5 @@
+package lotto.exception
+
+import lotto.EXCEPTION_MESSAGE_UNVALID_NUMBER_FORMAT
+
+class UnvalidNubmerFormatException: NumberFormatException(EXCEPTION_MESSAGE_UNVALID_NUMBER_FORMAT)
