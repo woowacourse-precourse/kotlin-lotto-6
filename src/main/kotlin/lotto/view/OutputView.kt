@@ -37,8 +37,13 @@ object OutputView {
 
     fun printResults(results: MutableMap<Prize, Int>) {
         Prize.entries.forEach {
-            println("${it.message} (${it.prizeAmount}원) - ${results[it]}개")
+            println("${it.message} (${formatNumberWithComma(it.prizeAmount)}원) - ${results[it]}개")
         }
+
+    }
+
+    private fun formatNumberWithComma(number: Int): String {
+        return "%,d".format(number)
     }
 
 
