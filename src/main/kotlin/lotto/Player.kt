@@ -17,6 +17,11 @@ class Player {
     }
 
     private fun validatePurchaseAmount(amount: Int) {
-        require(amount % LOTTO_UNIT == 0) { throw IllegalArgumentException("[ERROR] 1,000원 단위로 입력해주세요.") }
+        require(amount % LOTTO_UNIT == 0) { throw IllegalArgumentException(PURCHASE_AMOUNT_UNIT_ERROR) }
     }
+
+    companion object {
+        const val PURCHASE_AMOUNT_UNIT_ERROR = "[ERROR] 1,000원 단위로 입력해야 합니다."
+    }
+
 }
