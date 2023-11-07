@@ -1,6 +1,6 @@
 package domain.result
 
 data class FinalResult(
-    val winningData: List<WinningData>,
-    val rateOfReturn: Float
+    val winningData: Map<Rank, Int>,
+    val rateOfReturn: Double
 )

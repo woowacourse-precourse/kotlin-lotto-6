@@ -27,10 +27,11 @@ object LottoController {
         val sortedLotties = pickedLotties.map {
             Lotto(it).getSortedNumbers()
         }
-
         ResultView.printPurchasedLotties(sortedLotties)
 
         val lottoResult = getLottoResult(sortedLotties)
+        val finalResult = getFinalResult(lottoResult)
+
 
     }
 
@@ -46,4 +47,6 @@ object LottoController {
 
         return LottoResult(lotties, winningNumbers, bonusNumber)
     }
+
+    private fun getFinalResult(lottoResult: LottoResult) = lottoResult.getFinalResult()
 }

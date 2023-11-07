@@ -1,5 +1,8 @@
 package domain.result
 
+import lotto.constants.Constants.LOTTO_PRICE
+import kotlin.math.round
+
 class LottoResult(
     private val lotties: List<List<Int>>,
     private val winningNumbers: List<Int>,
@@ -7,12 +10,14 @@ class LottoResult(
 ) {
 
     fun getFinalResult(): FinalResult {
+        val winningData = getWinningData()
+        val rateOfReturn = getRateOfReturn(winningData)
 
+        return FinalResult(winningData, rateOfReturn)
     }
 
-    fun getWinningData(): List<Map<Rank, Int>> {
-        val winningData = mutableListOf<Map<Rank, Int>>()
-
+    private fun getWinningData(): Map<Rank, Int> {
+        val winningData = mutableMapOf<Rank, Int>()
         val resultRankData = lotties.mapNotNull {
             it.getResultForEachLotto()
         }
@@ -20,15 +25,22 @@ class LottoResult(
         val ranks = Rank.entries.toTypedArray()
 
         for (rank in ranks) {
-            winningData.add(mapOf(rank to resultRankData.count { it == rank }))
+            winningData[rank] = resultRankData.count { it -> it == rank }
         }
+
+        return winningData
     }
 
-    fun getRateOfReturn(): Float {
+    private fun getRateOfReturn(winningData: Map<Rank, Int>): Double {
+        val purchasedAmount = lotties.size * LOTTO_PRICE.toDouble()
+        val earnedAmount = winningData.entries.sumOf { (rank, count) ->
+            rank.amount * count
+        }.toDouble()
 
+        return round(earnedAmount / purchasedAmount * 100.0 - 100.0)
     }
 
-    fun List<Int>.getResultForEachLotto(): Rank? {
+    private fun List<Int>.getResultForEachLotto(): Rank? {
         val winningCount = getWinningCount(this)
         val containsBonus = getContainsBonusOrNot(this)
 
