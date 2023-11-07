@@ -15,7 +15,7 @@ object InputValidator {
 
     fun validateWinningNumber(userInput: String) {
         require(userInput.all{ it.isDigit() ||  it == ',' || it == ' '})
-        val numbers = userInput.split(",").map{ it.toInt() }
+        val numbers = userInput.split(",").map{ it.trim().toInt() }
         require(numbers.size == 6)
         require(numbers.all { it in 1..45 })
         require(numbers.toSet().size == 6) // Set 자료구조로 변환해 중복 여부 확인

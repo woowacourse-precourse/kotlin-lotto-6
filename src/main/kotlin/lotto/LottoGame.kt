@@ -45,11 +45,10 @@ class LottoGame() {
         return Console.readLine()
     }
 
-
     private fun getWinnningNumberSequence(): List<Int> {
         printMessage("GetWinningNumber", 0)
         val winningNumber = getWinnningNumber()
-        return winningNumber.split(",").map{ it.toInt() }
+        return winningNumber.split(",").map{ it.trim().toInt() }
     }
     private fun getWinnningNumber(): String {
         val userInput = Console.readLine()
