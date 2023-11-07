@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class ApplicationTest : NsTest() {
 
@@ -47,6 +48,12 @@ class ApplicationTest : NsTest() {
         assertSimpleTest {
             runException("1000j")
             assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+    @Test
+    fun `보너스 번호가 이미 로또 번호에 있을 시`() {
+        assertThrows<IllegalArgumentException> {
+            Error().checkBonus(listOf(1,2,3,4,5,6).toMutableList(),6)
         }
     }
 
