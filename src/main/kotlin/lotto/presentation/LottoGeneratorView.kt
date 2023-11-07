@@ -11,5 +11,6 @@ object LottoGeneratorView {
 
     fun printLottoTickets(tickets: MutableList<LottoTicket>) {
         tickets.forEach { lotto -> println(lotto.ticket) }
+        println()
     }
 }

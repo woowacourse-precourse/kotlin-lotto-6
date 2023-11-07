@@ -7,6 +7,7 @@ import lotto.model.LottoModel
 import lotto.model.LottoTicket
 import lotto.presentation.LottoGeneratorView.printLottoTickets
 import lotto.presentation.LottoGeneratorView.printPurchaseLottoCount
+import lotto.presentation.LottoWinningView.printWinningNumberOfLotto
 
 class LottoController() {
     private val lottoModel = LottoModel()
@@ -19,6 +20,8 @@ class LottoController() {
             printPurchaseLottoCount(purchaseAmount)
 
             generateLottoTickets(purchaseAmount / LOTTO_PRICE)
+
+            printWinningNumberOfLotto()
 
         } catch (e: IllegalArgumentException) {
             println(e.message)
