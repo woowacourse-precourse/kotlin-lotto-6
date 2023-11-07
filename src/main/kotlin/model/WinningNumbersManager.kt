@@ -27,9 +27,6 @@ class WinningNumbersManager(numbers: List<String>) {
         InputValidation.NUMBER_FORMAT.isValid(number)
         InputValidation.NUMBER_RANGE.isValid(number)
         LottoValidation.UNIQUE_LOTTO_NUMBERS.isValid(winningNumbers.plus(number.toInt()))
-    }
-
-    fun setBonusNumber(number: String) {
         bonusNumber = number.toInt()
     }
 
