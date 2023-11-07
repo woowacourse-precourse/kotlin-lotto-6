@@ -11,6 +11,12 @@ class LottoGenerator {
         return this.lotto
     }
 
+    fun get(numbers: List<Int>): Lotto {
+        convertToLotto(numbers)
+
+        return this.lotto
+    }
+
     private fun generateLotto() {
         this.lotto = Lotto(generatedLottoNumber())
     }
@@ -18,4 +24,8 @@ class LottoGenerator {
     private fun generatedLottoNumber() = Randoms.pickUniqueNumbersInRange(
         Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER, Constants.LOTTO_NUMBER_COUNT
     )
+
+    private fun convertToLotto(numbers: List<Int>) {
+        this.lotto = Lotto(numbers)
+    }
 }

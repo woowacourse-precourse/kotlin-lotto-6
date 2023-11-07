@@ -4,34 +4,28 @@ import lotto.LottoGameState.*
 import lotto.LottoGameManagerState.*
 
 class LottoGame {
-    private var gameState = BUYING
+    private var gameState = LottoGameState.values().first()
     private val gameManager = LottoGameManager()
     private val gameViewer = LottoGameViewer()
 
     fun run() {
-        while (gameState != FINISHED) {
+        while (isGameNotFinished()) {
             setGameState()
-            if (isGameManagerOnReady()) updateGameState()
+            if (isGameManagerOnReady()) nextGameState()
         }
     }
 
     private fun setGameState() {
-        val gameManagerState = gameManager.getState()
-        val stateData = gameManager.getData()
-
         gameManager.set(gameState)
-        gameViewer.set(gameState, gameManagerState, stateData)
+        gameViewer.set(gameState, gameManager.getState(), gameManager.getData())
     }
 
-    private fun updateGameState() {
-        when (gameState) {
-            BUYING -> gameState = PICKING_WINNING
-            PICKING_WINNING -> gameState = PICKING_BONUS
-            PICKING_BONUS -> gameState = WINNING
-            WINNING -> gameState = FINISHED
-            FINISHED -> {}
-        }
+    private fun nextGameState() {
+        val index = LottoGameState.values().indexOf(gameState)
+
+        gameState = LottoGameState.values()[index + 1]
     }
 
+    private fun isGameNotFinished() = gameState != FINISHED
     private fun isGameManagerOnReady() = gameManager.getState() == READY
 }

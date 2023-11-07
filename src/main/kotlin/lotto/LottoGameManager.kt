@@ -5,14 +5,14 @@ import lotto.LottoGameManagerState.*
 import camp.nextstep.edu.missionutils.Console
 
 class LottoGameManager {
-    private var gameState = BUYING
-    private var gameManagerState = READY
+    private var gameState = LottoGameState.values().first()
+    private var gameManagerState = LottoGameManagerState.values().first()
     private val lottoGenerator = LottoGenerator()
     private var data: Any = ""
-    private var userMoney = 0
     private var userLotteryTickets = listOf<Lotto>()
     private var winningNumbers = listOf<Int>()
-    private var bonusNumber = 0
+    private lateinit var money: Money
+    private lateinit var winning: Winning
 
     fun getState() = this.gameManagerState
 
@@ -67,7 +67,7 @@ class LottoGameManager {
 
     private fun buyLotto() {
         getMoneyFromUser()
-        if (!isGameManagerOnError()) {
+        if (isGameManagerNotOnError()) {
             generateLottoAsMuchAsMoney()
             whenGameManagerOnResult(userLotteryTickets)
         }
@@ -77,7 +77,7 @@ class LottoGameManager {
         val input = Console.readLine()
 
         try {
-            userMoney = validatedNumberAsMoney(input)
+            money = Money(validatedAsNumber(input))
         } catch (e: IllegalArgumentException) {
             whenGameManagerOnRequestError(e)
         }
@@ -85,9 +85,9 @@ class LottoGameManager {
 
     private fun generateLottoAsMuchAsMoney() {
         val userLotteryTickets = mutableListOf<Lotto>()
-        val count = userMoney / 1000
+        val count = money.number / Constants.THOUSAND
 
-        for (i in 1..count) {
+        for (i in Constants.ZERO until count) {
             userLotteryTickets.add(lottoGenerator.get())
         }
 
@@ -96,14 +96,14 @@ class LottoGameManager {
 
     private fun pickWinningNumbers() {
         getWinningNumbersFromUser()
-        if (!isGameManagerOnError()) gameManagerState = READY
+        if (isGameManagerNotOnError()) gameManagerState = READY
     }
 
     private fun getWinningNumbersFromUser() {
         val input = Console.readLine()
 
         try {
-            winningNumbers = validatedNumbersAsWinning(input)
+            winningNumbers = validatedAsWinningNumbers(input)
         } catch (e: IllegalArgumentException) {
             whenGameManagerOnRequestError(e)
         }
@@ -111,14 +111,14 @@ class LottoGameManager {
 
     private fun pickBonusNumber() {
         getBonusNumberFromUser()
-        if (!isGameManagerOnError()) gameManagerState = READY
+        if (isGameManagerNotOnError()) gameManagerState = READY
     }
 
     private fun getBonusNumberFromUser() {
         val input = Console.readLine()
 
         try {
-            bonusNumber = validatedNumberAsBonus(input)
+            winning = Winning(winningNumbers, validatedAsNumber(input))
         } catch (e: IllegalArgumentException) {
             whenGameManagerOnRequestError(e)
         }
@@ -128,41 +128,34 @@ class LottoGameManager {
 
     }
 
-    private fun validatedNumberAsMoney(input: String): Int {
-        InputValidator.checkIsNotBlank(input)
-        InputValidator.checkIsDigit(input)
-        InputValidator.checkDividedAsThousand(input)
-        InputValidator.checkIsOverZero(input)
+    /**
+     * 당첨 번호 유효성 검사
+     *
+     * 당첨 번호는 기존 로또의 형태와 동일하므로, 로또 객체 생성을 통해 유효성을 검사한다.
+     */
+    private fun validatedAsWinningNumbers(input: String): List<Int> {
+        val numbers = validatedAsNumbers(input)
+        Lotto(numbers)
 
-        return input.toInt()
+        return numbers
     }
 
-    private fun validatedNumbersAsWinning(input: String): List<Int> {
+    private fun validatedAsNumbers(input: String): List<Int> {
         InputValidator.checkIsNotBlank(input)
-        InputValidator.checkHasSeparator(input, Constants.COMMA)
-        input.split(Constants.COMMA).map { validateAsLottoNumber(it) }
-        InputValidator.checkCountsOf(input.split(Constants.COMMA), Constants.LOTTO_NUMBER_COUNT)
+        InputValidator.checkHasCommaSeparator(input)
+        input.split(Constants.COMMA).map { InputValidator.checkIsDigit(it) }
 
         return input.split(Constants.COMMA).map { it.toInt() }
     }
 
-    private fun validatedNumberAsBonus(input: String): Int {
+    private fun validatedAsNumber(input: String): Int {
         InputValidator.checkIsNotBlank(input)
-        validateAsLottoNumber(input)
-        InputValidator.checkIsNotContained(input.toInt(), winningNumbers)
+        InputValidator.checkIsDigit(input)
 
         return input.toInt()
     }
 
-    private fun validateAsLottoNumber(input: String) {
-        InputValidator.checkIsDigit(input)
-        InputValidator.checkIsInBoundary(
-            Integer.valueOf(input),
-            Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER
-        )
-    }
-
-    private fun isGameManagerOnError() = gameManagerState == REQUEST_ERROR
+    private fun isGameManagerNotOnError() = gameManagerState != REQUEST_ERROR
 
     private fun whenGameManagerOnRequestError(error: IllegalArgumentException) {
         data = error
