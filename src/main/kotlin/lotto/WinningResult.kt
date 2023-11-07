@@ -16,6 +16,10 @@ class WinningResult(
         return statistics
     }
 
+    private fun calculateProfitRate(amount: Int, totalPrize: Int): Double {
+        return totalPrize.toDouble() / amount * 100
+    }
+
     fun printResults() {
         val statistics = calculateStatistics()
         println("당첨 통계")
