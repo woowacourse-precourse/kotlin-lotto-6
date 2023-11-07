@@ -20,5 +20,10 @@ class LottoTest {
         }
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `로또 번호가 오름차 순이 아니면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(6, 5, 4, 3, 2, 1))
+        }
+    }
 }
