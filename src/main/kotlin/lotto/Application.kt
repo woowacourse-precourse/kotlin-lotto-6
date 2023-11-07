@@ -4,7 +4,17 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
-    TODO("프로그램 구현")
+    val purchaseAmount = getPurchaseAmount()
+    val ticketCount = purchaseAmount / 1000
+    val tickets = List(ticketCount) { generateTicket() }
+    println("\n${ticketCount}개를 구매했습니다.")
+    tickets.forEach { println(it) }
+    val winningNumbers = getWinningNumbers()
+    val bonusNumber = getBonusNumber(winningNumbers)
+    val results = tickets.map { it.match(winningNumbers, bonusNumber) }
+    val earningsRate = calculateEarnings(results)
+    val countByRank = results.groupBy { it }.mapValues { it.value.size }
+    printResults(ticketCount, winningNumbers, bonusNumber, earningsRate, countByRank)
 }
 
 fun getPurchaseAmount(): Int {

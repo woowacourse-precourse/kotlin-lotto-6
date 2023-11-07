@@ -15,4 +15,6 @@ class Lotto(private val numbers: List<Int>) {
         return Rank.valueOf(matchCount, matchBonus)
     }
 
+    override fun toString(): String = numbers.sorted().toString()
+
 }
