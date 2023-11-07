@@ -19,6 +19,7 @@ class LottoResult(private val lottoTickets: LottoTickets, private val winningLot
     }
 
     private fun calculateMatchedNumberCounts(winningLotto: WinningLotto): List<Int> = lottoTickets.tickets.map { it.countMatchingNumbers(winningLotto.winningNumbers) }
+
     private fun checkForBonusNumber(winningLotto: WinningLotto): List<Boolean> = lottoTickets.tickets.map { it.hasBonusNumber(winningLotto.bonusNumber) }
 
     fun printResult() {
@@ -38,7 +39,7 @@ class LottoResult(private val lottoTickets: LottoTickets, private val winningLot
     }
 
     private fun printEachWinningResult(prize: Prize) {
-        val message = winCountMessage(matchedNumberCount = findMatchedNumberCount(prize), bonusInfo = if (prize == Prize.Second) BONUS_NUMBER_MATCH else "", winningPrizeMoney = prize.amount.toWonFormat(), winTicketCount = findWinTicketCount(prize))
+        val message = winCountMessage(matchedNumberCount = findMatchedNumberCount(prize), bonusInfo = bonusInfoMessage(prize), winningPrizeMoney = prize.amount.toWonFormat(), winTicketCount = findWinTicketCount(prize))
         println(message)
     }
 
@@ -46,7 +47,10 @@ class LottoResult(private val lottoTickets: LottoTickets, private val winningLot
 
     private fun findWinTicketCount(prize: Prize) = winningResult.count { it == prize }
 
+    private fun bonusInfoMessage(prize: Prize): String = if (prize == Prize.Second) BONUS_NUMBER_MATCH else ""
+
     private fun findMatchedNumberCount(prize: Prize) = Prize.findPrizeMatchNumberCount(prize)
+
     private fun Int.toWonFormat(): String = DecimalFormat("#,###").format(this)
 
     private fun printWinningProfitRate() = println(TOTAL_PROFIT.format(calculateTotalStaticsResult()))
