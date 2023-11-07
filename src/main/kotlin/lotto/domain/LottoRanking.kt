@@ -7,7 +7,6 @@ import lotto.util.round
 class LottoRanking(var countByRanking: MutableMap<LottoResult, Int>, var totalRevenue: Double) {
     companion object {
         fun of(lottoResults: List<LottoResult>): LottoRanking {
-
             val map = mutableMapOf<LottoResult, Int>()
             var prize = 0.0
 

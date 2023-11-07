@@ -7,7 +7,6 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
     }
 
-    // TODO: 추가 기능 구현
     override fun toString(): String {
         return numbers.joinToString(prefix = "[", postfix = "]", separator = ", ") { it.toString() }
     }
@@ -21,7 +20,6 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     companion object {
-
         fun fromInput(inputNumbers: String): Lotto {
             return fromList(inputNumbers.parseIntList())
         }

@@ -42,6 +42,6 @@ fun List<Int>.validateRange(start: Int, end: Int): List<Int> {
 }
 
 fun Double.round(decimalPlaces: Int): Double {
-    val factor = 10.0.pow(decimalPlaces)
+    val factor = 10.0.pow(decimalPlaces) // 10의 몇승
     return (this * factor).roundToInt() / factor
 }

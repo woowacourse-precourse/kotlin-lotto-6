@@ -12,7 +12,7 @@ import lotto.util.validateRange
 class LottoController(private val lottoView: LottoView) {
     fun run() {
         // 1단계 : 돈 지불하여 로또 구매
-        val lottoMoney = payMoney() // 돈 입력
+        val lottoMoney = payMoney() // 돈 지불
         val lottos = purchaseLottos(lottoMoney.money) // 로또 구매
         // 2단계 : 로또 당첨 번호 추첨
         val lottoResult = processLottoWinningNumbers()
@@ -23,8 +23,6 @@ class LottoController(private val lottoView: LottoView) {
         calculateRanks(results)
     }
 
-
-    // 입력 실패시 재시도
     private fun payMoney(): LottoMoney {
         return try {
             lottoView.printLottoMoneyRequest()
@@ -57,12 +55,12 @@ class LottoController(private val lottoView: LottoView) {
     private fun processLottoBonusNumber(lotto: Lotto): Int {
         return try {
             lottoView.printBonusNumberRequest()
-            val input = lottoView.inputBonusNumber()
+            val bonus = lottoView.inputBonusNumber()
                     .parseInt()
                     .validateRange(LottoStore.LOTTO_MIN_NUMBER, LottoStore.LOTTO_MAX_NUMBER)
 
-            if (lotto.contains(input)) throw IllegalArgumentException(ErrorConstants.NOT_UNIQUE)
-            input
+            if (lotto.contains(bonus)) throw IllegalArgumentException(ErrorConstants.NOT_UNIQUE)
+            bonus
         } catch (e: IllegalArgumentException) {
             lottoView.printError(e.message)
             return processLottoBonusNumber(lotto)
@@ -80,7 +78,6 @@ class LottoController(private val lottoView: LottoView) {
     }
 
     private fun calculateRanks(lottoResults: List<LottoResult>) {
-
         lottoView.printLottoRankHeader()
         val ranks = LottoRanking.of(lottoResults)
 
@@ -88,8 +85,6 @@ class LottoController(private val lottoView: LottoView) {
             if (rank == LottoResult.MISS) continue
             lottoView.printLottoRank(rank, count)
         }
-        lottoView.printProfit(ranks.totalRevenue)
+        lottoView.printRevenue(ranks.totalRevenue)
     }
-
-
 }
