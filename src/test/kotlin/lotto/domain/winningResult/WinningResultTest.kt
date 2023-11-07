@@ -24,6 +24,6 @@ class WinningResultTest {
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - 2개" + System.lineSeparator() +
                 "5개 일치 (1,500,000원) - 3개" + System.lineSeparator() +
                 "총 수익률은 62.5%입니다."
-        assertEquals(resultString, expectedString)
-    }
+        assertEquals(expectedString, resultString)
+}
 }
