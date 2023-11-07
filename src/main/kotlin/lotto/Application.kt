@@ -11,6 +11,9 @@ fun main() {
     val myPurchaselottos = purchaseLottos(purchaseAmount)
     println()
 
+    val winningNumbers = readWinningNumbers()
+    println()
+
 }
 
 fun readPurchaseAmount(): Int {
@@ -40,5 +43,28 @@ fun purchaseLottos(purchaseAmount: Int): List<Lotto> {
         println(lotto.getNumbers().sorted())
     }
     return myPurchaselottos
+}
+
+fun readWinningNumbers(): List<Int> {
+    return readNumbers("당첨 번호")
+}
+
+fun readNumbers(message: String): List<Int> {
+    while (true) {
+        try {
+            println("${message}를 입력해 주세요.")
+            val input = Console.readLine()
+            val numbers = input.split(",").map { it.trim().toInt() }
+
+            if (numbers.size != 6 || numbers.any { it !in 1..45 } || numbers.toSet().size < 6) {
+                throw IllegalArgumentException("[ERROR] 로또 번호는 6개이며, 1부터 45 사이의 서로 다른 숫자여야 합니다.")
+            }
+            return numbers
+        } catch (e: NumberFormatException) {
+            println("[ERROR] 유효한 숫자를 입력하세요.")
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+        }
+    }
 }
 
