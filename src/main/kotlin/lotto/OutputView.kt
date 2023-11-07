@@ -32,6 +32,10 @@ class OutputView {
         }
     }
 
+    fun printLottoCount(count: Int) {
+        println(LOTTO_COUNT_STRING.format(count))
+    }
+
     fun printTotalProfit(priceAmount: Int, totalPrize: Long) {
         val profit = (totalPrize.toDouble() / priceAmount.toDouble())
         val result = (Math.round(profit * 1000) / 10.0)
@@ -42,5 +46,6 @@ class OutputView {
         const val PRINT_PROFIT_STRING = "총 수익률은 %.1f%%입니다."
         const val PRINT_RESULT_STRING = "당첨 통계"
         const val PRINT_TRIPLE_MINUS = "---"
+        const val LOTTO_COUNT_STRING = "%d개를 구매했습니다."
     }
 }

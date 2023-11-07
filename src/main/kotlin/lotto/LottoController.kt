@@ -5,19 +5,18 @@ import camp.nextstep.edu.missionutils.Randoms
 class LottoController {
     private val inputView = InputView()
     private val outView = OutputView()
+    private val validator = Validator()
     private val lottoList = mutableListOf<List<Int>>()
     private val lottoResult = LottoResult()
 
     fun run() {
         val purchaseAmount = inputPurchaseAmount()
-        val lottoCount = inputView.calculateCount(purchaseAmount)
+        val lottoCount = calculateCount(purchaseAmount)
+        outView.printLottoCount(lottoCount)
         generateAllLotto(lottoCount)
         val lottoNumberInput = inputLottoNumber()
-        //println(lottoNumberInput) 결과 확인용
         val bonusNumberInput = inputBonusNumber(lottoNumberInput)
-        //println(bonusNumberInput) 결과 확인용
         val lottoResultList = lottoResult.calculateResult(lottoList, lottoNumberInput, bonusNumberInput)
-        //println(lottoResult) 결과 확인용
         outView.printLottoResult(lottoResultList)
         val totalPrize = lottoResult.calculateTotalPrize(lottoResultList)
         outView.printTotalProfit(purchaseAmount, totalPrize)
@@ -26,14 +25,19 @@ class LottoController {
     private fun inputPurchaseAmount(): Int {
         while (true) {
             try {
-                val purchaseAmountInput = inputView.validatePurchaseAmount()
-                val intPurchaseAmount = inputView.validatePurchaseInt(purchaseAmountInput)
-                val purchaseAmount = inputView.validatePurchaseRange(intPurchaseAmount)
-                return inputView.validatePriceUnit(purchaseAmount)
+                val purchaseAmountInput = inputView.purchaseAmountInput()
+                val purchaseAmountString = validator.validatePurchaseAmount(purchaseAmountInput)
+                val intPurchaseAmount = validator.validatePurchaseInt(purchaseAmountString)
+                val purchaseAmount = validator.validatePurchaseRange(intPurchaseAmount)
+                return validator.validatePriceUnit(purchaseAmount)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
+    }
+
+    private fun calculateCount(purchaseAmount: Int): Int {
+        return purchaseAmount / Validator.PURCHASE_AMOUNT_UNIT
     }
 
     private fun generateAllLotto(lottoCount: Int) {
@@ -62,11 +66,12 @@ class LottoController {
     private fun inputLottoNumber(): List<Int> {
         while (true) {
             try {
-                val lottoNumberInput = inputView.validateLottoNumberInput()
-                val splitLottoNumbers = inputView.validateLottoNumber(lottoNumberInput)
-                inputView.validateLottoSize(splitLottoNumbers)
-                val intLottoNumbers = inputView.validateLottoRange(splitLottoNumbers)
-                inputView.validateLottoRepeat(intLottoNumbers)
+                val lottoNumberInput = inputView.lottoNumbersInput()
+                val lottoNumber = validator.validateLottoNumberInput(lottoNumberInput)
+                val splitLottoNumbers = validator.validateLottoNumber(lottoNumber)
+                validator.validateLottoSize(splitLottoNumbers)
+                val intLottoNumbers = validator.validateLottoRange(splitLottoNumbers)
+                validator.validateLottoRepeat(intLottoNumbers)
                 return intLottoNumbers
             } catch (e: IllegalArgumentException) {
                 println(e.message)
@@ -77,10 +82,11 @@ class LottoController {
     private fun inputBonusNumber(lottoNumbers: List<Int>): Int {
         while (true) {
             try {
-                val bonusNumberInput = inputView.validateBonusNumberInput()
-                val intBonusNumber = inputView.validateBonusNumber(bonusNumberInput)
-                inputView.validateBonusNumberRange(intBonusNumber)
-                inputView.validateBonusRepeat(intBonusNumber, lottoNumbers)
+                val bonusNumberInput = inputView.bonusNumberInput()
+                val bonusNumber = validator.validateBonusNumberInput(bonusNumberInput)
+                val intBonusNumber = validator.validateBonusNumber(bonusNumber)
+                validator.validateBonusNumberRange(intBonusNumber)
+                validator.validateBonusRepeat(intBonusNumber, lottoNumbers)
                 return intBonusNumber
             } catch (e: IllegalArgumentException) {
                 println(e.message)
