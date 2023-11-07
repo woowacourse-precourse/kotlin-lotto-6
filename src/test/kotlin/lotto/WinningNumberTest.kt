@@ -36,4 +36,11 @@ class WinningNumberTest {
         }
     }
 
+    @Test
+    fun `당첨 번호에 중복된 숫자가 있을 때`() {
+        assertThrows<IllegalArgumentException> {
+            WinningNumber("1,2,2,3,4,5")
+        }
+    }
+
 }
