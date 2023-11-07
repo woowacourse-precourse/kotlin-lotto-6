@@ -50,4 +50,41 @@ class ResultTest {
         assertEquals(10, results["6"])
     }
 
+    @Test
+    fun testCalculateProfitRate() {
+        val results = mapOf("0" to 10, "1" to 20, "2" to 30, "3" to 40, "4" to 50, "5" to 60, "5.1" to 70, "6" to 80)
+        val profitRate = Result.calculateProfitRate(results)
+
+        val totalPrize = Result.calculateTotalPrize(results)
+        val totalPurchaseAmount = Result.calculateTotalPurchaseAmount(results)
+
+        val expectedProfitRate = (totalPrize / totalPurchaseAmount) * 100
+        assertEquals(expectedProfitRate, profitRate)
+    }
+
+    @Test
+    fun testCalculateTotalPrize() {
+        val results = mapOf("0" to 10, "1" to 20, "2" to 30, "3" to 40, "4" to 50, "5" to 60, "5.1" to 70, "6" to 80)
+
+        val totalPrize = Result.calculateTotalPrize(results)
+
+        val expectedTotalPrize = results.entries.sumByDouble { entry ->
+            val prize = Prize.getPrize(entry.key)
+            val prizeWithoutCommas = prize.replace(",", "").toDouble()
+            entry.value * prizeWithoutCommas
+        }
+
+        assertEquals(expectedTotalPrize, totalPrize)
+    }
+
+    @Test
+    fun testCalculateTotalPurchaseAmount() {
+        val results = mapOf("0" to 10, "1" to 20, "2" to 30, "3" to 40, "4" to 50, "5" to 60, "5.1" to 70, "6" to 80)
+
+        val totalPurchaseAmount = Result.calculateTotalPurchaseAmount(results)
+
+        val expectedTotalPurchaseAmount = results.values.sum() * 1000
+
+        assertEquals(expectedTotalPurchaseAmount, totalPurchaseAmount)
+    }
 }
