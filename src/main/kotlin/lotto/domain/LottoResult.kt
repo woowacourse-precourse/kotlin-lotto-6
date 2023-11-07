@@ -3,8 +3,8 @@ package lotto.domain
 import lotto.Lotto
 
 class LottoResult(private val lottos: List<Lotto>, private val winningNumberSet: Pair<List<Int>, Int>) {
-    private var resultLottos: MutableMap<LottoRank, Int> = mutableMapOf()
     private var profit: Double = 0.0
+    var resultLottos: MutableMap<LottoRank, Int> = mutableMapOf()
     var totalPrize: Long = 0L
 
     init {
@@ -30,9 +30,10 @@ class LottoResult(private val lottos: List<Lotto>, private val winningNumberSet:
         }
     }
 
-    fun computerProfit(cost: Int) {
+    fun computerProfit(cost: Int) :Double{
         val lottoProfit = (totalPrize.toDouble() / cost.toDouble()) * 100
         profit = "%.1f".format(lottoProfit).toDouble()
+        return profit
     }
 
     fun printProfit() {
