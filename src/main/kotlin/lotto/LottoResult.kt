@@ -13,10 +13,12 @@ class LottoResult() {
             "FIFTH" to 0,
             "NOTHING" to 0,
         )
-        for (ticket in userTickets)
+        for (ticket in userTickets) {
             result[ticket.checkLotto(winningNumbers)] =
                 result[ticket.checkLotto(winningNumbers)]!! + 1
+        }
         return result
+
     }
 
     fun printResult(results: Map<String, Int>, userCost: Int) {

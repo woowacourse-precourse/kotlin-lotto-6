@@ -4,7 +4,7 @@ enum class Reward(val matchedCount: Int, val bonus: Boolean, val money: String) 
     FIRST(6, false, "2,000,000,000"),
     SECOND(5, true, "30,000,000"),
     THIRD(5, false, "1,500,000"),
-    FORTH(4, false, "50,000"),
+    FOURTH(4, false, "50,000"),
     FIFTH(3, false, "5,000");
 
     companion object {
@@ -14,7 +14,7 @@ enum class Reward(val matchedCount: Int, val bonus: Boolean, val money: String) 
                 cnt == FIRST.matchedCount -> "FIRST"
                 cnt == SECOND.matchedCount && bonus == SECOND.bonus -> "SECOND"
                 cnt == THIRD.matchedCount -> "THIRD"
-                cnt == FORTH.matchedCount -> "FORTH"
+                cnt == FOURTH.matchedCount -> "FOURTH"
                 cnt == FIFTH.matchedCount -> "FIFTH"
                 else -> "NOTHING"
             }
@@ -25,7 +25,7 @@ enum class Reward(val matchedCount: Int, val bonus: Boolean, val money: String) 
                 "FIRST" -> FIRST.money
                 "SECOND" -> SECOND.money
                 "THIRD" -> THIRD.money
-                "FORTH" -> FORTH.money
+                "FOURTH" -> FOURTH.money
                 "FIFTH" -> FIFTH.money
                 else -> throw IllegalArgumentException(INPUT_EXCEPTION)
             }
@@ -36,7 +36,7 @@ enum class Reward(val matchedCount: Int, val bonus: Boolean, val money: String) 
                 "FIRST" -> FIRST.matchedCount
                 "SECOND" -> SECOND.matchedCount
                 "THIRD" -> THIRD.matchedCount
-                "FORTH" -> FORTH.matchedCount
+                "FOURTH" -> FOURTH.matchedCount
                 "FIFTH" -> FIFTH.matchedCount
                 else -> throw IllegalArgumentException(INPUT_EXCEPTION)
             }
