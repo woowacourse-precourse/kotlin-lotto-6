@@ -17,6 +17,7 @@ class Lottos {
             val lotto = Lotto(lottoNumber)
             lottos.add(lotto)
         }
+        println()
         return lottos
     }
 }
