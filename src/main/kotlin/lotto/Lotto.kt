@@ -31,6 +31,12 @@ class Lotto(private val numbers: List<Int>) {
         return numbers.joinToString(separator = ", ", prefix = "[", postfix = "]")
     }
 
+    fun checkMatchWinCount(lottery: List<Int>, bonusNumber: Int): WinCount {
+        val matchingNumbers = numbers.intersect(lottery.toSet()).count()
+        val bonusMatch = numbers.contains(bonusNumber)
+        return WinCount(matchingNumbers, bonusMatch)
+    }
+
     companion object {
         private val VALID_RANGE = 1..45
     }

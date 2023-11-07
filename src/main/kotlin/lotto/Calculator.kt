@@ -1,17 +1,20 @@
 package lotto
 
-class Calculator {
+class Calculator(
+    private var purchaseCost: Int = 0
+) {
 
     fun calculateLottoAvailableForPurchase(number: Int): Int {
-        return (number / 1000)
+        purchaseCost = number
+        return (purchaseCost / 1000)
     }
 
-    fun calculateYieldResult(purchaseCost: Int, types: List<LottoWinType>): String {
+    fun calculateYieldResult(types: List<LottoWinType>): String {
         val profits = types.sumOf { it.prize }
         val yield = (profits.toDouble() / purchaseCost * 100).takeIf { it.isFinite() } ?: 0.0
-        val formattedYield = String.format("%.2f", yield)
+        val formattedYield = String.format("%.1f%%", yield)
 
-        return "${formattedYield}%"
+        return formattedYield
     }
 
 }

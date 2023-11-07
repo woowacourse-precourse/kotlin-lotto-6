@@ -8,44 +8,50 @@ class Game(
 
     fun purchaseLotto(input: String): Int {
         requireIsInt(input)
-        return calculator.calculateLottoAvailableForPurchase(input.toInt())
+        val purchaseCost = input.toInt()
+        return calculator.calculateLottoAvailableForPurchase(purchaseCost)
     }
 
-    fun createLotteryRandomNumber(purchaseLottoNumber: Int): List<Lotto> {
+    fun createLotteryRandomNumber(purchaseNumber: Int): List<Lotto> {
         val lottery = mutableListOf<Lotto>()
-        repeat(purchaseLottoNumber) {
-            val numbers = sortLotteryRandomNumber(Randoms.pickUniqueNumbersInRange(1, 45, 6))
+        repeat(purchaseNumber) {
+            val numbers =
+                sortNumbers(Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, NUMBER_COUNT))
             lottery.add(Lotto(numbers))
         }
         return lottery
     }
 
-    private fun sortLotteryRandomNumber(numbers: List<Int>): List<Int> {
+    private fun sortNumbers(numbers: List<Int>): List<Int> {
         return numbers.sorted()
     }
 
-    fun inputUserPickNumbers(input: String): Lotto {
-        val splitNumber = input.split(",")
+    fun inputUserPickNumbers(input: String): List<Int> {
+        val splitNumber = input.trim().split(",")
         val numbers = mutableListOf<Int>()
         splitNumber.forEach {
             requireIsInt(it)
             numbers.add(it.toInt())
         }
-
-        return Lotto(sortLotteryRandomNumber(numbers))
+        require(numbers.size == 6)
+        requireDuplicateLottoNumber(numbers = numbers)
+        requireValidRange(numbers = numbers)
+        return numbers
     }
 
     fun inputBonusNumber(input: String, userPickNumbers: List<Int>): Int {
         requireIsInt(input)
         val bonusNumber = input.toInt()
-        requireDuplicateBonusNumber(bonusNumber, userPickNumbers)
+        requireDuplicateBonusNumber(userPickNumbers, bonusNumber)
         return input.toInt()
     }
 
-    fun checkWinningDetails(lottery: List<Int>, userPickNumbers: List<Int>, bonusNumber: Int): WinCount {
-        val matchingNumbers = userPickNumbers.intersect(lottery.toSet()).count()
-        val bonusMatch = userPickNumbers.contains(bonusNumber)
-        return WinCount(matchingNumbers, bonusMatch)
+    fun checkWinningDetails(lottery: List<Lotto>, userPickNumbers: List<Int>, bonusNumber: Int): List<WinCount> {
+        val winCounts = mutableListOf<WinCount>()
+        lottery.forEach { lotto ->
+            winCounts.add(lotto.checkMatchWinCount(userPickNumbers, bonusNumber))
+        }
+        return winCounts
     }
 
     fun checkLottoWinType(winCounts: List<WinCount>): List<LottoWinType> {
@@ -63,17 +69,41 @@ class Game(
         }.toList()
     }
 
+    fun checkYieldResult(types: List<LottoWinType>): String {
+        return calculator.calculateYieldResult(types = types)
+    }
+
     private fun requireIsInt(input: String) {
         val number = input.toIntOrNull() ?: throw IllegalArgumentException()
         require(number > 0)
     }
 
-    private fun requireDuplicateBonusNumber(bonusNumber: Int, userPickNumbers: List<Int>) {
+    private fun requireDuplicateBonusNumber(numbers: List<Int>, bonusNumber: Int) {
         val uniqueNumbers = HashSet<Int>()
-        for (number in userPickNumbers) {
+        for (number in numbers) {
             require(uniqueNumbers.add(number))
         }
         require(uniqueNumbers.add(bonusNumber))
+    }
+
+    private fun requireDuplicateLottoNumber(numbers: List<Int>) {
+        val uniqueNumbers = HashSet<Int>()
+        for (number in numbers) {
+            require(uniqueNumbers.add(number)) {Message.ERROR_USER_PICK_NUMBERS_DUPLICATION}
+        }
+    }
+
+    private fun requireValidRange(numbers: List<Int>) {
+        for (number in numbers) {
+            require(number in VALID_RANGE)
+        }
+    }
+
+    companion object {
+        const val START_NUMBER = 1
+        const val END_NUMBER = 45
+        const val NUMBER_COUNT = 6
+        val VALID_RANGE = 1..45
     }
 
 }
