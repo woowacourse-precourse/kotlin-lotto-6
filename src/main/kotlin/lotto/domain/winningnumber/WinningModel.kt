@@ -1,4 +1,4 @@
-package lotto.domain.winningNumber
+package lotto.domain.winningnumber
 
 enum class WinningModel(val matches: Int, val prize: Long, val withBonus: Boolean = false) {
     NONE(0, 0),

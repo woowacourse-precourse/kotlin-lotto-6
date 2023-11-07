@@ -3,8 +3,7 @@ package lotto.view.input
 import lotto.domain.purchase.LottoPurchaseAmountParser
 import camp.nextstep.edu.missionutils.Console
 import lotto.domain.lotto.parser.LottoNumberParser
-import lotto.domain.lotto.wrapper.LottoNumber
-import lotto.domain.winningNumber.WinningNumberParser
+import lotto.domain.winningnumber.WinningNumberParser
 
 object InputView {
     fun readPurchaseAmount(): Int {

@@ -1,4 +1,4 @@
-package lotto.domain.winningNumber
+package lotto.domain.winningnumber
 
 import lotto.constants.ErrorConstants
 import lotto.domain.lotto.parser.LottoNumberParser
