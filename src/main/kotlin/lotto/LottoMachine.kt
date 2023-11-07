@@ -35,12 +35,25 @@ class LottoMachine {
     }
 
     fun calculatePrizeSum(): Int {
-        return firstPlace * 2000000000 + secondPlace * 30000000 + thirdPlace * 1500000 + fourthPlace * 50000 + fifthPlace * 5000
+        return firstPlace * FIRST_PLACE_PRIZE +
+                secondPlace * SECOND_PLACE_PRIZE +
+                thirdPlace * THIRD_PLACE_PRIZE +
+                fourthPlace * FOURTH_PLACE_PRIZE +
+                fifthPlace * FIFTH_PLACE_PRIZE
     }
 
     fun calculateRate(): Double {
         val sum = calculatePrizeSum()
         val money = money.toDouble()
         return sum / money
+    }
+
+    companion object {
+        private const val FIFTH_PLACE_PRIZE = 5000
+        private const val FOURTH_PLACE_PRIZE = 50000
+        private const val THIRD_PLACE_PRIZE = 1500000
+        private const val SECOND_PLACE_PRIZE = 30000000
+        private const val FIRST_PLACE_PRIZE = 2000000000
+
     }
 }
