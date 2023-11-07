@@ -5,6 +5,13 @@ class Lotto(private val numbers: List<Int>) {
     // Lotto 내부 번호에 접근
     fun getNumbers(): List<Int> = numbers
 
+    fun matches(winningNums: Set<Int>): Int {
+        return numbers.count { it in winningNums }
+    }
+
+    fun contains(number: Int): Boolean {
+        return number in numbers
+    }
     // 객체가 문자열일 때 사용
     override fun toString(): String = numbers.joinToString(separator = ", ")
 }
