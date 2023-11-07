@@ -1,5 +1,8 @@
 package lotto
 
+import lotto.Controller.GameController
+
 fun main() {
-    TODO("프로그램 구현")
+    val gameController = GameController()
+    gameController.run()
 }
