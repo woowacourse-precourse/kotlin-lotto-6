@@ -23,7 +23,6 @@ class LottoTest {
     fun `일치하는 번호의 개수와 보너스 번호 여부에 따른 결과를 올바르게 반환해야 한다`() {
         val resultWithBonus = LottoResult.fromMatchCount(5, true)
         val resultWithoutBonus = LottoResult.fromMatchCount(5, false)
-
         assertThat(resultWithBonus).isEqualTo(LottoResult.FIVE_MATCHES_AND_BONUS)
         assertThat(resultWithoutBonus).isEqualTo(LottoResult.FIVE_MATCHES)
     }
@@ -32,7 +31,6 @@ class LottoTest {
     fun `상금을 올바르게 계산해야 한다`() {
         val result = LottoResult.FIVE_MATCHES
         val expectedPrize = 1500000
-
         assertThat(result.prize).isEqualTo(expectedPrize)
     }
 
@@ -49,8 +47,14 @@ class LottoTest {
         val tickets = listOf(Lotto(listOf(1, 2, 3, 4, 5, 6)))
         val winningNumbers = listOf(1, 2, 3, 7, 8, 9)
         val bonusNumber = 10
-
         val results = getResults(tickets, winningNumbers, bonusNumber)
         assertThat(results).containsExactly(LottoResult.THREE_MATCHES)
+    }
+
+    @Test
+    fun `로또 번호에 1~45 범위를 벗어난 숫자가 있으면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(46))
+        }
     }
 }
