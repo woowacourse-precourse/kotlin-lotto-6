@@ -26,25 +26,21 @@ import lotto.utils.InputViewValidation
 class InputView {
 
     fun inputPurchaseAmount(): Int {
-        val stepMessage = getStepMessage(INPUT_PURCHASE_AMOUNT)
-        println(stepMessage)
         return getUserAmount()
     }
 
     fun inputWinningNumberList(): List<Int> {
-        val stepMessage = getStepMessage(INPUT_WINNING_NUMBERS)
-        println(stepMessage)
         return getWinningNumbers()
     }
 
     fun inputBonusNumber(winningNumbers: List<Int>): Int {
-        val stepMessage = getStepMessage(INPUT_BONUS_NUMBER)
-        println(stepMessage)
         return getBonusNumber(winningNumbers)
     }
 
     private fun getUserAmount(): Int = try {
-        val userInput = Console.readLine().trim()
+        val stepMessage = getStepMessage(INPUT_PURCHASE_AMOUNT)
+        println(stepMessage)
+        val userInput = Console.readLine()
         InputViewValidation.validateUserAmount(userInput)
         println()
 
@@ -58,7 +54,9 @@ class InputView {
     }
 
     private fun getWinningNumbers(): List<Int> = try {
-        val numbers = Console.readLine().trim()
+        val stepMessage = getStepMessage(INPUT_WINNING_NUMBERS)
+        println(stepMessage)
+        val numbers = Console.readLine()
         println()
 
         getWinningNumbersList(numbers)
@@ -75,7 +73,9 @@ class InputView {
     }
 
     private fun getBonusNumber(winningNumbers: List<Int>): Int = try {
-        val bonus = Console.readLine().trim()
+        val stepMessage = getStepMessage(INPUT_BONUS_NUMBER)
+        println(stepMessage)
+        val bonus = Console.readLine()
         println()
         val bonusNum = InputViewValidation.getValidatedBonusNumber(bonus, winningNumbers)
 
