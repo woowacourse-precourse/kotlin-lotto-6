@@ -50,4 +50,19 @@ class WinningCheckTest {
         assertThat(testGrade[0]).isEqualTo(Grade.FIFTH)
     }
 
+    @Test
+    fun multiGradeCheck(){
+        val testList = mutableListOf<Lotto>()
+        testList.add(Lotto(listOf(1, 2, 3, 4, 5, 6)))
+        testList.add(Lotto(listOf(1, 2, 3, 4, 5, 7)))
+        testList.add(Lotto(listOf(1, 2, 3, 4, 7, 8)))
+        testList.add(Lotto(listOf(11, 21, 31, 41, 15, 16)))
+        val testCheck = WinningCheck()
+        val testGrade = testCheck.numbersCheck(testList, listOf(1, 2, 3, 4, 5, 6), 7)
+        assertThat(testGrade[0]).isEqualTo(Grade.FIRST)
+        assertThat(testGrade[1]).isEqualTo(Grade.SECOND)
+        assertThat(testGrade[2]).isEqualTo(Grade.FOURTH)
+        assertThat(testGrade[3]).isEqualTo(Grade.MISS)
+    }
+
 }
