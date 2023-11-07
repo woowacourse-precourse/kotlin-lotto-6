@@ -1,7 +1,6 @@
 package lotto.domain
 
-import lotto.model.LottoResult
-import lotto.model.MatchCount
+import lotto.data.LottoMatchInfo
 
 class Lotto(private val numbers: List<Int>) {
 
@@ -10,24 +9,23 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.distinct().size == 6)
     }
 
-    fun matchingLotto(winningNumbers: List<Int>, bonusNumber: Int) {
-        when (matchCount(winningNumbers)) {
-            MatchCount.Six -> LottoResult.MatchSix.value++
-            MatchCount.Five -> if (isBonusNumberMatch(bonusNumber)) {
-                LottoResult.MatchFiveWithBonus.value++
-            } else {
-                LottoResult.MatchFive.value++
+    fun matchingLotto(winningNumbers: List<Int>, bonusNumber: Int): LottoMatchInfo {
+        return when (countMatchNumber(winningNumbers)) {
+            6 -> LottoMatchInfo.MatchSix
+            5 -> {
+                if (isBonusNumberMatch(bonusNumber)) {
+                    LottoMatchInfo.MatchFiveWithBonus
+                } else {
+                    LottoMatchInfo.MatchFive
+                }
             }
-            MatchCount.Four -> LottoResult.MatchFour.value
-            MatchCount.Three -> LottoResult.MatchThree.value++
-            MatchCount.Remain -> return
+            4 -> LottoMatchInfo.MatchFour
+            3 -> LottoMatchInfo.MatchThree
+            else -> LottoMatchInfo.MatchUnderThree
         }
     }
 
-    private fun matchCount(winningNumbers: List<Int>): MatchCount {
-        val count = numbers.count { winningNumbers.contains(it) }
-        return MatchCount.entries.find { it.value.contains(count) } ?: MatchCount.Remain
-    }
+    private fun countMatchNumber(winningNumbers: List<Int>) = numbers.count { winningNumbers.contains(it) }
 
     private fun isBonusNumberMatch(bonusNumber: Int) = numbers.contains(bonusNumber)
 }
