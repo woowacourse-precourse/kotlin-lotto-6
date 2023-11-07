@@ -67,11 +67,10 @@ object Validator {
         input.map {
             isAvailableRange(it)
         }
-
         return input
     }
 
-    fun mapToWinningNumber(input: String): List<Int> {
+    fun mapToWinningNumbers(input: String): List<Int> {
         val list = input.split(',').map {
             convertToNumber(it)
         }
@@ -81,15 +80,19 @@ object Validator {
 
     fun isDuplicatedNumber(input: List<Int>): Boolean {
         var countNumber: MutableList<Int> = mutableListOf(0)
-        for (i in MIN_RANGE..MAX_RANGE) {
+        val MIN = input.min()
+        val MAX = input.max()
+        for (i in MIN..MAX) {
             countNumber.add(0)
         }
 
         input.map {
-            countNumber[it] += 1
-            require(countNumber[it] <= MAX_COUNT_OF_NUMBER_IN_LOTTO) { ErrorCode.DUPLICATE_ERROR.message }
+            val index = it + (1 - MIN)
+            countNumber[index] += 1
+            require(countNumber[index] <= MAX_COUNT_OF_NUMBER_IN_LOTTO) { ErrorCode.DUPLICATE_ERROR.message }
         }
 
         return true
     }
+    
 }

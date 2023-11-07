@@ -52,7 +52,7 @@ class LottoBot(
             runCatching {
                 println("당첨 번호를 입력해 주세요")
                 val input = Console.readLine()
-                val numbers = Validator.mapToWinningNumber(input)
+                val numbers = Validator.mapToWinningNumbers(input)
                 winningNumbers.addAll(Validator.validateNumbers(numbers))
             }
                 .onSuccess { flag = false }
