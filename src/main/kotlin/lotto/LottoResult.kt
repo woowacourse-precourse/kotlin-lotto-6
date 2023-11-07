@@ -4,14 +4,14 @@ import java.text.DecimalFormat
 
 class LottoResult(private val lottoTickets: LottoTickets, private val winningLotto: WinningLotto) {
 
-    private var winningResult: List<Prize> = listOf()
+    private var winningResults: List<Prize> = listOf()
 
-    fun createResult() = calculateWinningResult()
+    fun createResult() = calculateWinningResults()
 
-    private fun calculateWinningResult() {
+    private fun calculateWinningResults() {
         val matchedNumbersCounts = calculateMatchedNumberCounts(winningLotto)
         val bonusNumberExists = checkForBonusNumber(winningLotto)
-        winningResult = List(lottoTickets.tickets.size) { index ->
+        winningResults = List(lottoTickets.tickets.size) { index ->
             Prize.findPrizeResult(matchedNumbersCounts[index], bonusNumberExists[index])
         }
     }
@@ -55,13 +55,13 @@ class LottoResult(private val lottoTickets: LottoTickets, private val winningLot
     private fun findMatchedNumberCount(prize: Prize) = Prize.findPrizeMatchNumberCount(prize)
     private fun bonusInfoMessage(prize: Prize): String = if (prize == Prize.Second) BONUS_NUMBER_MATCH else ""
     private fun Int.toWonFormat(): String = DecimalFormat("#,###").format(this)
-    private fun findWinTicketCount(prize: Prize) = winningResult.count { it == prize }
+    private fun findWinTicketCount(prize: Prize) = winningResults.count { it == prize }
 
     private fun displayWinningProfitRate() = println(TOTAL_PROFIT.format(calculateTotalStaticsResult()))
 
     private fun calculateTotalStaticsResult(): Double {
-        val winnerCountMap = winningResult.groupingBy { it }.eachCount()
-        val totalProfit = winnerCountMap.map { it.key.amount * it.value }.sum()
+        val prizeCountMap = winningResults.groupingBy { it }.eachCount()
+        val totalProfit = prizeCountMap.map { it.key.amount * it.value }.sum()
         val payment = lottoTickets.tickets.count() * 1_000
         return (totalProfit.toDouble() / payment) * 100.0
     }
