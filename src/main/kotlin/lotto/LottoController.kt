@@ -55,6 +55,34 @@ object LottoController {
         LottoData.profitRatio = calculateEarnings()
     }
 
+    fun showResult() {
+        println("당첨 통계")
+        println("---")
+        showLottoStats()
+        println("총 수익률은 ${LottoData.profitRatio}%입니다.")
+    }
+
+    private fun showLottoStats() {
+        for (matchType in MatchType.values()) {
+            val prizeText = convertToMoneyFormat(matchType.prize)
+            val statCount = stats.getValue(matchType)
+            val matchTypeText = when (matchType) {
+                MatchType.THREE_MATCH -> "3개 일치"
+                MatchType.FOUR_MATCH -> "4개 일치"
+                MatchType.FIVE_MATCH -> "5개 일치"
+                MatchType.FIVE_MATCH_WITH_BONUS -> "5개 일치, 보너스 볼 일치"
+                MatchType.SIX_MATCH -> "6개 일치"
+            }
+            println("$matchTypeText ($prizeText) - $statCount 개")
+        }
+    }
+
+    private fun convertToMoneyFormat(number: Int): String {
+        val formatter: NumberFormat = NumberFormat.getCurrencyInstance(Locale.KOREA)
+        (formatter as DecimalFormat).applyPattern("###,###")
+        return formatter.format(number.toLong())
+    }
+
 
 
     private fun inputLottoNum(): MutableList<Int> {

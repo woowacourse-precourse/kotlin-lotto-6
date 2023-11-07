@@ -19,6 +19,8 @@ class LottoUI {
         LottoController.analyzeLotto()
         //로또 번호 분석
 
+        LottoController.showResult()
+        //로또 당첨 결과 출력
 
 
 
