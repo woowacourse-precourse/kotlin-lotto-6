@@ -8,6 +8,9 @@ fun main() {
     val purchaseAmount = readPurchaseAmount()
     println()
 
+    val myPurchaselottos = purchaseLottos(purchaseAmount)
+    println()
+
 }
 
 fun readPurchaseAmount(): Int {
@@ -24,5 +27,18 @@ fun readPurchaseAmount(): Int {
             println(e.message)
         }
     }
+}
+
+fun purchaseLottos(purchaseAmount: Int): List<Lotto> {
+    val numberOfLottos = purchaseAmount / 1000
+    val myPurchaselottos = mutableListOf<Lotto>()
+    for (i in 1..numberOfLottos) {
+        myPurchaselottos.add(Lotto.createRandomLotto())
+    }
+    println("${numberOfLottos}개를 구매했습니다.")
+    myPurchaselottos.forEach { lotto ->
+        println(lotto.getNumbers().sorted())
+    }
+    return myPurchaselottos
 }
 
