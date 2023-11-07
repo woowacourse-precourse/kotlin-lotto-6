@@ -17,4 +17,10 @@ class InputView {
         return winningNumber
     }
 
+    fun inputBonusNumber(winningNumbers: List<Int>): String {
+        val bonusNumber = Console.readLine()
+        BonusNumber(bonusNumber, winningNumbers)
+        return bonusNumber
+    }
+
 }
