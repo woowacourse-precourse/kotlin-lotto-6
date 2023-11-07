@@ -57,34 +57,4 @@ class LottoPrizeCalculator {
             BigDecimal.ZERO
         }
     }
-
-//    private fun calculatePrizeAndIncrementCount(
-//            lottoNumberMatch: Int,
-//            prizeCounts: IntArray
-//    ): Int {
-//        val prizeIndex = when (lottoNumberMatch) {
-//            6 -> 4
-//            5 -> if (bonusNumberMatch) 3 else 2
-//            4 -> 1
-//            3 -> 0
-//            else -> -1
-//        }
-//
-//        if (prizeIndex >= INITIAL_NUM) {
-//            prizeCounts[prizeIndex]++
-//            return calculatePrizeForMatch(lottoNumberMatch)
-//        }
-//
-//        return INITIAL_NUM
-//    }
-//
-//    private fun calculatePrizeForMatch(lottoNumberMatch: Int): Int {
-//        return when (lottoNumberMatch) {
-//            6 -> SIX_MATCH_PRIZE
-//            5 -> if (bonusNumberMatch) FIVE_AND_BONUS_MATCH_PRIZE else FIVE_MATCH_PRIZE
-//            4 -> FOUR_MATCH_PRIZE
-//            3 -> THREE_MATCH_PRIZE
-//            else -> INITIAL_NUM
-//        }
-//    }
 }

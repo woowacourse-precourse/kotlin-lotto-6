@@ -9,7 +9,6 @@ class LottoWinningNumbers {
 
     fun inputWinningNumbers(): List<Int> {
         var validWinningNumbers = false
-
         while (!validWinningNumbers) {
             println(MessageConstants.INPUT_WINNING_NUMBER)
             val input = Console.readLine()
@@ -32,7 +31,6 @@ class LottoWinningNumbers {
             val bonusInput = Console.readLine()
             try {
                 bonusNumber = bonusInput.trim().toInt()
-                //validateBonusNumber()
                 BonusNumber(bonusNumber, winningLotteryNumbers)
                 validBonusNumber = true
             } catch (e: NumberFormatException) {
@@ -43,15 +41,4 @@ class LottoWinningNumbers {
         }
         return bonusNumber
     }
-
-//    fun validateBonusNumber() {
-//        if (bonusNumber < 1 || bonusNumber > 45) {
-//            throw IllegalArgumentException(MessageConstants.ERROR_LESS_THAN_1_OR_MORE_THAN_45)
-//        }
-//        if (winningLotteryNumbers.contains(bonusNumber)) {
-//            throw IllegalArgumentException(MessageConstants.DUPLICATE_WINNING_AND_BONUS_NUMBER)
-//        }
-
-//        validBonusNumber = true
-//    }
 }

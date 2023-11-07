@@ -9,11 +9,11 @@ class PrintResults {
     }
     fun printResults(prizeCounts: IntArray, rateOfReturn: BigDecimal) {
         val prizeDescriptions = listOf(
-                MessageConstants.THREE_MATCHES,
-                MessageConstants.FOUR_MATCHES,
-                MessageConstants.FIVE_MATCHES,
-                MessageConstants.FIVE_MATCHES_AND_BONUS_NUMBER_MATCH,
-                MessageConstants.SIX_MATCHES
+            MessageConstants.THREE_MATCHES,
+            MessageConstants.FOUR_MATCHES,
+            MessageConstants.FIVE_MATCHES,
+            MessageConstants.FIVE_MATCHES_AND_BONUS_NUMBER_MATCH,
+            MessageConstants.SIX_MATCHES
         )
 
         println(MessageConstants.WINNING_STATISTICS)
@@ -25,7 +25,6 @@ class PrintResults {
     }
 
     fun roundDigit(number: BigDecimal, digits: Int): BigDecimal {
-        //return Math.round(number * Math.pow(10.0, digits.toDouble())) / Math.pow(10.0, digits.toDouble())
         return number.setScale(digits, BigDecimal.ROUND_HALF_UP)
     }
 }

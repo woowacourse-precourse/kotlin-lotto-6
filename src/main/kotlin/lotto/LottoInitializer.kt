@@ -4,11 +4,11 @@ import camp.nextstep.edu.missionutils.Console
 
 class LottoInitializer {
     private var purchaseAmount: Int = 0
-    private val prizeCounts = IntArray(5)
+    private val prizeCounts = IntArray(ARRAYS_SIZE)
     private var lottoPurchaseCount: Int = 0
     companion object {
         private const val LOTTO_UNIT = 1000
-        private const val ZERO = 0
+        private const val ARRAYS_SIZE = 5
     }
     fun initializeLotto(): Tuple {
         inputPurchaseAmount()
@@ -23,8 +23,6 @@ class LottoInitializer {
             println(MessageConstants.INPUT_PURCHASE_AMOUNT)
             try {
                 purchaseAmount = Console.readLine().toInt()
-//                if (validatePurchaseAmount(purchaseAmount))
-//                    break
                 if (PurchaseAmount().validateLottoNumbers(purchaseAmount))
                     break
             } catch (e: NumberFormatException) {
@@ -34,13 +32,4 @@ class LottoInitializer {
             }
         }
     }
-
-//    fun validatePurchaseAmount(purchaseAmount: Int) : Boolean {
-//        if (purchaseAmount < LOTTO_UNIT) {
-//            throw IllegalArgumentException(MessageConstants.ERROR_AMOUNT_LESS_THAN_1000)
-//        } else if (purchaseAmount % LOTTO_UNIT != ZERO) {
-//            throw IllegalArgumentException(MessageConstants.ERROR_NOT_A_MULTIPLE_OF_1000)
-//        }
-//        return true
-//    }
 }

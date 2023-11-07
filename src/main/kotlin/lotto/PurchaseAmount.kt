@@ -1,13 +1,13 @@
 package lotto
 import camp.nextstep.edu.missionutils.Randoms
 
-class PurchaseAmount(){
+class PurchaseAmount {
     companion object {
         private const val LOTTO_UNIT = 1000
         private const val ZERO = 0
     }
 
-    public fun validateLottoNumbers(purchaseAmount: Int) : Boolean {
+    fun validateLottoNumbers(purchaseAmount: Int) : Boolean {
         if (purchaseAmount < LOTTO_UNIT) {
             throw IllegalArgumentException(MessageConstants.ERROR_AMOUNT_LESS_THAN_1000)
         } else if (purchaseAmount % LOTTO_UNIT != ZERO) {
