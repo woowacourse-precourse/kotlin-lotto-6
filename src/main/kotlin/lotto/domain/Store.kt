@@ -31,7 +31,7 @@ class Store {
     }
 
     private fun printSuccessMessage(count: Int) {
-        println("${count}개를 구매했습니다.")
+        println("\n${count}개를 구매했습니다.")
     }
 
     private fun printErrorMessage(message: String) {

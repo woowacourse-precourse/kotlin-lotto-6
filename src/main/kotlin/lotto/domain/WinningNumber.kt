@@ -7,7 +7,7 @@ class WinningNumber {
     private var bonusNumber: Int = -1
 
     fun decideWinningNumbers() {
-        println("당첨 번호를 입력해 주세요.")
+        println("\n당첨 번호를 입력해 주세요.")
         winningNumbers = validateNumbers()
     }
 
@@ -19,7 +19,7 @@ class WinningNumber {
     }
 
     fun decideBonusNumber() {
-        println("보너스 번호를 입력해 주세요.")
+        println("\n보너스 번호를 입력해 주세요.")
         bonusNumber = validateBonus()
     }
 

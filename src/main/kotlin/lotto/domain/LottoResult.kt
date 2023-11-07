@@ -24,7 +24,7 @@ class LottoResult(private val lottos: List<Lotto>, private val winningNumberSet:
     }
 
     fun printResultStatistics() {
-        println("\n--- 당첨 통계 ---")
+        println("\n당첨 통계\n---")
         resultLottos.filterKeys { it != LottoRank.OUT_OF_RANK }.forEach { (key, value) ->
             println("${key.toString()} - ${value}개")
         }
