@@ -44,12 +44,10 @@ class LottoRanks {
             Prize.FIVE.matchingNumbers -> {
                 if (bonusMatch) {
                     results[Prize.FIVE_MATCH_WITH_BONUS] = results.getOrDefault(Prize.FIVE_MATCH_WITH_BONUS, 0) + 1
-                } else {
-                    results[Prize.FIVE] = results.getOrDefault(Prize.FIVE, 0) + 1
                 }
-            }
-
+                results[Prize.FIVE] = results.getOrDefault(Prize.FIVE, 0) + 1
+                }
             Prize.SIX.matchingNumbers -> results[Prize.SIX] = results.getOrDefault(Prize.SIX, 0) + 1
+            }
         }
     }
-}
