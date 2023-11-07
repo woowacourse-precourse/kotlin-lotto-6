@@ -31,22 +31,22 @@ class Validator(private val input: String) {
     private fun validateIsNotEndWithComma(): Boolean = !input.endsWith(",")
 
     private fun validateAreNumbers(): Boolean {
-        val winningNumbers = input.trim().split(",")
+        val winningNumbers = input.split(",")
         return winningNumbers.all { it.toIntOrNull() is Int }
     }
 
     private fun validateIsUnique(): Boolean {
-        val winningNumbers = input.trim().split(",").map { it.toInt() }
+        val winningNumbers = input.split(",").map { it.toInt() }
         return winningNumbers.toSet().size == winningNumbers.size
     }
 
     private fun validateNumberCount(): Boolean {
-        val winningNumbers = input.trim().split(",").map { it.toInt() }
+        val winningNumbers = input.split(",").map { it.toInt() }
         return winningNumbers.size == LOTTO_NUMBER_COUNT
     }
 
     private fun validateNumbersRange(): Boolean {
-        val winningNumbers = input.trim().split(",").map { it.toInt() }
+        val winningNumbers = input.split(",").map { it.toInt() }
         return winningNumbers.all { it in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER }
     }
 
