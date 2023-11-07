@@ -1,4 +1,5 @@
 import lotto.Exceptions.Exceptions
+import lotto.Model.WinningRank
 
 object LottoGameView {
     fun inputHowManyBuyLotto(){
@@ -22,14 +23,23 @@ object LottoGameView {
         return Exceptions.checkInputLottoBonusNumberIsValid(bonusNumber)
     }
 
-    fun printGameResult(winning3: Int, winning4: Int, winning5: Int, winning5Bonus: Int, winning6: Int, lottoListSize: Int) {
+    fun printGameResult(
+        winningCounts: MutableMap<WinningRank, Int>,
+        lottoListSize: Int
+    ) {
+        val winning3 = winningCounts[WinningRank.THIRD] ?: 0
+        val winning4 = winningCounts[WinningRank.FOURTH] ?: 0
+        val winning5 = winningCounts[WinningRank.FIFTH] ?: 0
+        val winning5Bonus = winningCounts[WinningRank.SECOND] ?: 0
+        val winning6 = winningCounts[WinningRank.FIRST] ?: 0
+
         println("\n당첨 통계")
         println("---")
-        println("3개 일치 (5,000원) - ${winning3}개")
-        println("4개 일치 (50,000원) - ${winning4}개")
-        println("5개 일치 (1,500,000원) - ${winning5}개")
-        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${winning5Bonus}개")
-        println("6개 일치 (2,000,000,000원) - ${winning6}개")
+        println("3개 일치 (5,000원) - $winning3" + "개")
+        println("4개 일치 (50,000원) - $winning4" + "개")
+        println("5개 일치 (1,500,000원) - $winning5" + "개")
+        println("5개 일치, 보너스 볼 일치 (30,000,000원) - $winning5Bonus" + "개")
+        println("6개 일치 (2,000,000,000원) - $winning6" + "개")
 
         val totalWinningCount = winning3 + winning4 + winning5 + winning5Bonus + winning6
         printProfitRate(totalWinningCount, lottoListSize)
@@ -40,5 +50,6 @@ object LottoGameView {
         val formattedProfitRate = String.format("%.2f", profitRate)
         println("총 수익률은 $formattedProfitRate%입니다.")
     }
+
 
 }

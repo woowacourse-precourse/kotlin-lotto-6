@@ -1,12 +1,28 @@
 package lotto.Model
 
+import LottoGameView.printGameResult
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.Utils.InputLottoNumsException
+import lotto.Utils.LottoException
 
+enum class WinningRank(val prize: Long, val description: String) {
+    FIRST(2000000000, "6개 일치"),
+    SECOND(30000000, "5개 일치, 보너스 볼 일치"),
+    THIRD(1500000, "5개 일치"),
+    FOURTH(50000, "4개 일치"),
+    FIFTH(5000, "3개 일치")
+}
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6)
-        require(numbers.distinct().size == 6)
-        require(numbers.all { it in 1..45 })
+        require(numbers.size == 6){
+            throw IllegalArgumentException(InputLottoNumsException.INPUT_LOTTO_6NUMBERS)
+        }
+        require(numbers.distinct().size == 6){
+            throw IllegalArgumentException(InputLottoNumsException.INPUT_LOTTO_ISDUPLICATED)
+        }
+        require(numbers.all { it in 1..45 }){
+            throw IllegalArgumentException(LottoException.INPUT_LOTTO_1TO45)
+        }
     }
 
     fun getLottoNumbers(): List<Int> {
@@ -74,21 +90,30 @@ class LottoGameModel(howManyBuyLotto: Int) {
     }
 
     fun checkWinnings() {
+        val winningCounts = mutableMapOf<WinningRank, Int>().withDefault { 0 }
+
         for (lotto in lottoList) {
             val result = lotto.checkWinnings(winningNumbers ?: emptyList(), bonusNumber)
-            when (result) {
-                3 -> winning3++
-                4 -> winning4++
-                5 -> winning5++
-                50 -> winning5WithBonus++
-                6 -> winning6++
+            val winningRank = getWinningRank(result)
+
+            if (winningRank != null) {
+                winningCounts[winningRank] = winningCounts.getValue(winningRank) + 1
             }
         }
-        printResult()
+
+        printGameResult(winningCounts, lottoList.size)
     }
 
-    fun printResult(){
-        LottoGameView.printGameResult(winning3,winning4,winning5,winning5WithBonus,winning6,lottoList.size)
+    fun getWinningRank(result: Int): WinningRank? {
+        return when (result) {
+            3 -> WinningRank.FIFTH
+            4 -> WinningRank.FOURTH
+            5 -> if (bonusNumber != null) WinningRank.SECOND else WinningRank.THIRD
+            6 -> WinningRank.FIRST
+            else -> null
+        }
     }
+
+
 
 }
