@@ -6,36 +6,46 @@ import lotto.validation.ExceptionMessageManager
 
 
 // 사용자 입력 관리
-class InputManager (
-    messenger: MessageManager
-){
+class InputManager {
     private val checkInputValidation = CheckInputValidation()
     private val exceptionManager = ExceptionMessageManager()
 
+    fun inputPurchaseCost(): Int? {
+        return try {
+            val userInput = getUserInput()
+            val cost = makePurchaseCost(userInput)
+            checkInputValidation.checkIsCorrectCost(cost)
+            cost
+        } catch (e: IllegalArgumentException) {
+            exceptionManager.printErrorMessage(e.message)
+            null
+        }
+    }
+
     fun inputLottoWinningNumber(): Set<Int>? {
-        try {
+        return try {
             val userInput = getUserInput()
             val lotto = splitUserInput(userInput)
             checkInputValidation.checkLottoCount(lotto)
             val numbers = makeLottoNumbers(lotto)
-            return numbers.toSet()
-        } catch (e : IllegalArgumentException){
+            numbers.toSet()
+        } catch (e: IllegalArgumentException) {
             exceptionManager.printErrorMessage(e.message)
+            null
         }
-        return null
     }
 
     fun inputBonusNumber(lottoNumber: Set<Int>): Int? {
-        try {
+        return try {
             val userInput = getUserInput()
             val bonusNumber = makeBonusNumber(userInput)
             checkInputValidation
                 .checkBonusNumberDuplication(lottoNumber, bonusNumber)
-            return bonusNumber
+            bonusNumber
         } catch (e: IllegalArgumentException) {
             exceptionManager.printErrorMessage(e.message)
+            null
         }
-        return null
     }
 
     private fun getUserInput(): String {
@@ -44,8 +54,19 @@ class InputManager (
         return userInput
     }
 
-    private fun splitUserInput(userInput: String): List<String> =
-        userInput.split(SPLIT_SEPARATOR)
+    private fun splitUserInput(
+        userInput: String
+    ): List<String> = userInput.split(SPLIT_SEPARATOR)
+
+    private fun makePurchaseCost(
+        userInput: String
+    ): Int {
+        checkInputValidation.apply {
+            checkIsNumber(userInput)
+            checkIsPositiveInteger(userInput)
+            return userInput.toInt()
+        }
+    }
 
     private fun makeLottoNumbers(
         lotto: List<String>
@@ -54,6 +75,7 @@ class InputManager (
             val numbers = lotto.map { number ->
                 checkIsNumber(number)
                 checkIsLottoNumber(number)
+                checkIsPositiveInteger(number)
                 number.toInt()
             }
             checkDuplication(numbers)
@@ -62,7 +84,10 @@ class InputManager (
     }
 
     private fun makeBonusNumber(userInput: String): Int {
-        checkInputValidation.checkIsNumber(userInput)
+        checkInputValidation.apply {
+            checkIsNumber(userInput)
+            checkIsPositiveInteger(userInput)
+        }
         return userInput.toInt()
     }
 

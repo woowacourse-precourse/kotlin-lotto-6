@@ -16,5 +16,6 @@ class LottoManager {
         const val LOTTO_START_INCLUSIVE = 1
         const val LOTTO_END_INCLUSIVE = 45
         const val LOTTO_COUNT = 6
+        const val LOTTO_COST = 1000
     }
 }
