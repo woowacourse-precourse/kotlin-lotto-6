@@ -10,8 +10,6 @@ class ValidateBonus {
         validateMyNumbersRange(bonusNumber.toInt())
     }
 
-
-
     private fun validateInputIsEmpty(bonusNumber: String) {
         require(bonusNumber.isNotEmpty()) {
             "${Messages.ERROR_MESSAGE} ${Messages.VALIDATE_INPUT_EMPTY}"
