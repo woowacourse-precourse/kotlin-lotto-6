@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.domain.Lotto
 import lotto.domain.LottoMoney
 import lotto.domain.LottoRanking
 import lotto.domain.LottoResult
