@@ -44,9 +44,10 @@ fun winningNumberErrorCheck(input: String, splitInput: List<String>): List<Int> 
 }
 
 fun winNumberCheck(splitInput: List<String>) {
-    splitInput.forEach {
-        runCatching { it.toInt() }
-            .onFailure { throw IllegalArgumentException(NUMBER_ERROR) }
+    for(input in splitInput){
+        if(input.toIntOrNull()==null){
+            throw IllegalArgumentException(NUMBER_ERROR)
+        }
     }
 }
 
