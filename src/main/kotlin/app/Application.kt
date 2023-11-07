@@ -31,5 +31,6 @@ fun main() {
     var onlyWinningNumber = winningNumber.inputWinningNumber()
     var addBonusNumber = bonusNumber.inputBonusNumber(onlyWinningNumber)
 
-    compareNumber.resultOfLotto(lottos,addBonusNumber)
+    var ranks = compareNumber.resultOfLotto(lottos,addBonusNumber)
+    compareNumber.showResult(ranks)
 }
