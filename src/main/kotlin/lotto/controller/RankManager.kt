@@ -26,14 +26,18 @@ class RankManager() {
             Constants.THREE -> results.compute(Prize.THREE_MATCH) { _, value -> (value ?: 0) + 1 }
             Constants.FOUR -> results.compute(Prize.FOUR_MATCH) { _, value -> (value ?: 0) + 1 }
             Constants.FIVE -> {
-                if (bonusMatch) {
-                    results.compute(Prize.FIVE_MATCH_WITH_BONUS) { _, value -> (value ?: 0) + 1 }
-                }
-                if (!bonusMatch) {
-                    results.compute(Prize.FIVE_MATCH) { _, value -> (value ?: 0) + 1 }
-                }
+                choiceSecondOrThird(results, bonusMatch)
             }
             Constants.SIX -> results.compute(Prize.SIX_MATCH) { _, value -> (value ?: 0) + 1 }
         }
+    }
+}
+
+private fun choiceSecondOrThird(results: MutableMap<Prize, Int>, bonusMatch: Boolean) {
+    if (bonusMatch) {
+        results.compute(Prize.FIVE_MATCH_WITH_BONUS) { _, value -> (value ?: 0) + 1 }
+    }
+    if (!bonusMatch) {
+        results.compute(Prize.FIVE_MATCH) { _, value -> (value ?: 0) + 1 }
     }
 }
