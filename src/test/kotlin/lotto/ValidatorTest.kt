@@ -11,7 +11,7 @@ import org.junit.jupiter.api.assertThrows
 class ValidatorTest {
     @Test
     @DisplayName("구입 금액 입력이 유효하지 않다면 예외가 발생한다")
-    fun validatePurchaseAmount() {
+    fun validatePurchaseAmountTest() {
         assertSimpleTest {
             assertThrows<IllegalArgumentException> {
                 isValidPurchaseAmount("abcd")
@@ -36,7 +36,7 @@ class ValidatorTest {
 
     @Test
     @DisplayName("당첨 번호 입력이 유효하지 않는다면 예외를 발생한다")
-    fun validateWinningNums() {
+    fun validateWinningNumsTest() {
         assertSimpleTest {
             assertThrows<IllegalArgumentException> {
                 isValidWinningNums("")
@@ -60,7 +60,7 @@ class ValidatorTest {
     }
     @Test
     @DisplayName("보너스 번호 입력이 유효하지 않는다면 예외를 발생한다")
-    fun validateBonusNum() {
+    fun validateBonusNumTest() {
         assertSimpleTest {
             val winningNums = listOf(1,23,13,44,5,36)
             assertThrows<IllegalArgumentException> {
