@@ -6,20 +6,20 @@ class LottoInspector {
         val lottoNumber = lotto.getLottoNumber()
         val lottoResult = compareLotto(lottoNumber, winningNumber)
         when (lottoResult) {
-            LottoMatched.SIX.matchedNumbers -> return 1
+            LottoMatched.SIX.matchedNumbers -> return LottoAward.FIRST.reward
             LottoMatched.FIVE.matchedNumbers -> return bonusCheck(lotto, bonusNumber)
-            LottoMatched.FOUR.matchedNumbers -> return 4
-            LottoMatched.THREE.matchedNumbers -> return 5
+            LottoMatched.FOUR.matchedNumbers -> return LottoAward.FOURTH.reward
+            LottoMatched.THREE.matchedNumbers -> return LottoAward.FIFTH.reward
         }
-        return 0
+        return LottoAward.NO_REWARD.reward
     }
 
     private fun bonusCheck(lotto: Lotto, bonusNumber: Int): Int {
         val lottoNumbers = lotto.getLottoNumber()
         if (lottoNumbers.contains(bonusNumber)) {
-            return 2
+            return LottoAward.SECOND.reward
         }
-        return 3
+        return LottoAward.THIRD.reward
     }
 
     private fun compareLotto(lottoNumber: List<Int>, winningNumber: List<Int>): Int {
