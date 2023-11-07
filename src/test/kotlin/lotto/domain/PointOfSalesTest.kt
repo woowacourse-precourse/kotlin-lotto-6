@@ -8,11 +8,15 @@ import org.junit.jupiter.api.Test
 
 class PointOfSalesTest {
 
+    private lateinit var calculator: Calculator
+    private lateinit var analyzer: Analyzer
     private lateinit var pos: PointOfSales
 
     @BeforeEach
     fun setUp() {
-        pos = PointOfSales()
+        calculator = Calculator()
+        analyzer = Analyzer(calculator)
+        pos = PointOfSales(analyzer)
     }
 
     @Test
@@ -90,47 +94,5 @@ class PointOfSalesTest {
         // then
         val expected = 100
         assertThat(actual).hasSize(expected)
-    }
-
-    @Test
-    fun `몫과 나머지를 구하는 함수에 10,000과 1,000을 입력하면 10, 0을 반환한다`() {
-        // given
-        val dividend = 10_000u
-        val divisor = 1_000u
-
-        // when
-        val actual = pos.getQuotientAndRemainder(dividend, divisor)
-
-        // then
-        val expected = 10 to 0
-        assertThat(actual).isEqualTo(expected)
-    }
-
-    @Test
-    fun `몫과 나머지를 구하는 함수에 9,123과 1,000을 입력하면 9, 123을 반환한다`() {
-        // given
-        val dividend = 9_123u
-        val divisor = 1_000u
-
-        // when
-        val actual = pos.getQuotientAndRemainder(dividend, divisor)
-
-        // then
-        val expected = 9 to 123
-        assertThat(actual).isEqualTo(expected)
-    }
-
-    @Test
-    fun `몫과 나머지를 구하는 함수에 999과 1,000을 입력하면 0, 999를 반환한다`() {
-        // given
-        val dividend = 999u
-        val divisor = 1_000u
-
-        // when
-        val actual = pos.getQuotientAndRemainder(dividend, divisor)
-
-        // then
-        val expected = 0 to 999
-        assertThat(actual).isEqualTo(expected)
     }
 }

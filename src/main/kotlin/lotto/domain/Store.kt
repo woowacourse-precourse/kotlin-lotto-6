@@ -4,11 +4,12 @@ import lotto.data.Lotto
 
 class Store(
     private val io: IO,
+    private val calculator: Calculator,
     private val pos: PointOfSales,
 ) {
     fun buyLotto(): List<Lotto> {
         val chargeAmount: UInt = io.getPurchaseAmount()
-        val (quantity, change) = pos.getQuotientAndRemainder(chargeAmount, LOTTO_PRICE)
+        val (quantity, change) = calculator.getQuotientAndRemainder(chargeAmount, LOTTO_PRICE)
 
         require(change == NO_CHANGE) {
             SHOULD_BE_NO_CHANGE.format(LOTTO_PRICE.toLong())
