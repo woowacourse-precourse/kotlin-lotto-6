@@ -7,7 +7,9 @@ const val NOT_MULTIPLE_OF_1000_ERROR = " 구입금액은 1000의 배수여야 �
 
 fun main() {
     println("구입금액을 입력해 주세요.")
-    validateInputMoney( getInputMoney() )
+
+    val numberOfLotto = getNumberOfLotto( validateInputMoney( getInputMoney() ) )
+    println("\n${numberOfLotto}개를 구매했습니다.")
 }
 
 fun getInputMoney(): Int {
@@ -20,7 +22,7 @@ fun checkException(inputMoney: Int) {
 
 }
 
-fun validateInputMoney(inputMoney: Int) {
+fun validateInputMoney(inputMoney: Int): Int {
     var isValidInput = false
 
     while (!isValidInput) {
@@ -35,4 +37,11 @@ fun validateInputMoney(inputMoney: Int) {
         }
 
     }
+
+    return inputMoney
+}
+
+fun getNumberOfLotto( inputMoney: Int ): Int{
+
+    return inputMoney / 1000
 }
