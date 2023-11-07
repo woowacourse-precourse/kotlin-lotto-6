@@ -32,9 +32,9 @@ class LottoController(private val view: ScreenView) {
         return count
     }
 
-    fun countWinningNums(lottos: Lottos, answer: List<Int>, bonusNum: BonusNum, result: LottoResult){
+    fun countWinningNums(lottos: Lottos, answer: Lotto, bonusNum: BonusNum, result: LottoResult){
         lottos.lottos.forEach{
-            var count = countEqualNums(answer, it.getNumbers())
+            var count = countEqualNums(answer.getNumbers(), it.getNumbers())
             if (count == 5 && it.getNumbers().contains(bonusNum.getBonusNum())){
                 count = 51
             }

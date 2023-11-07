@@ -16,16 +16,7 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun isLottoRepeated(answer: List<Int>): Boolean {
-        if (isNumRepeated(answer)) {
-            throw IllegalArgumentException()
-        }
-        return false
+        return answer.size != answer.distinct().count()
     }
 
-    fun isNumRepeated(numbers: List<Int>): Boolean {
-        if (numbers.size != numbers.distinct().count()){
-            return true
-        }
-        return false
-    }
 }

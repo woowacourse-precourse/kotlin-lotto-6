@@ -12,11 +12,10 @@ class LottoGame {
         boughtLottos.print()
 
         // 당첨 번호를 입력 받는다.
-        val answerLotto = view.inputLotto()
+        val answerLotto = Lotto(view.inputLotto())
 
         // 보너스 번호를 입력 받는다.
-        val bonusNum = view.inputBonusNum()
-        val BonusNum = BonusNum(bonusNum)
+        val BonusNum = BonusNum(view.inputBonusNum())
 
         // 당첨 현황을 계산한다.
         val result = LottoResult()
