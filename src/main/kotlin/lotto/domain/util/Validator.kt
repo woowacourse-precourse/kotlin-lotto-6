@@ -1,7 +1,7 @@
 package lotto.domain.util
 
 class Validator {
-    fun validateAmount(amount: String): Int {
+    fun amount(amount: String): Int {
         require(isNotEmpty(amount)) { NOT_EMPTY }
         require(isNotBlank(amount)) { NOT_BLANK }
         requireNotNull(isNumber(amount)) { ONLY_INT }

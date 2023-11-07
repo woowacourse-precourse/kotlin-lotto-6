@@ -3,8 +3,10 @@ package lotto.domain
 import lotto.domain.util.Validator
 
 class Purchase {
+    private val validator = Validator()
+
     fun payMoney(amount: String): Int {
-        return Validator().validateAmount(amount)
+        return validator.amount(amount)
     }
 
     fun calculateLottoTicketCount(amount: Int): Int {

@@ -13,7 +13,6 @@ class ResultScreen {
         })
     }
 
-
     fun outputWinningRate(winRate: String) {
         println(TOTAL_WIN_RATE.format(winRate))
     }
