@@ -3,13 +3,17 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 
 class LottoInitializer {
-    var purchaseAmount: Int = 0
-    val prizeCounts = IntArray(5)
-    var lottoPurchaseCount: Int = 0
+    private var purchaseAmount: Int = 0
+    private val prizeCounts = IntArray(5)
+    private var lottoPurchaseCount: Int = 0
+    companion object {
+        private const val LOTTO_UNIT = 1000
+        private const val ZERO = 0
+    }
     fun initializeLotto(): Tuple {
         inputPurchaseAmount()
 
-        lottoPurchaseCount = purchaseAmount / 1000
+        lottoPurchaseCount = purchaseAmount / LOTTO_UNIT
         println("\n${lottoPurchaseCount}${MessageConstants.PURCHASE_COMPLETED}")
         return Tuple(purchaseAmount, lottoPurchaseCount, prizeCounts)
     }
@@ -30,9 +34,9 @@ class LottoInitializer {
     }
 
     fun validatePurchaseAmount(purchaseAmount: Int) : Boolean {
-        if (purchaseAmount < 1000) {
+        if (purchaseAmount < LOTTO_UNIT) {
             throw IllegalArgumentException(MessageConstants.ERROR_AMOUNT_LESS_THAN_1000)
-        } else if (purchaseAmount % 1000 != 0) {
+        } else if (purchaseAmount % LOTTO_UNIT != ZERO) {
             throw IllegalArgumentException(MessageConstants.ERROR_NOT_A_MULTIPLE_OF_1000)
         }
         return true
