@@ -22,5 +22,5 @@ class Lotto(private val numbers: List<LottoNumber>) {
 
     fun getLottoMatchCount(input: Lotto) = numbers.count { input.isContainLottoNumber(it) }
 
-    override fun toString(): String = numbers.toString()
+    override fun toString(): String = numbers.sortedBy { it.value }.toString()
 }
