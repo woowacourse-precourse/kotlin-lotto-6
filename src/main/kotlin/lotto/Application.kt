@@ -5,16 +5,28 @@ import camp.nextstep.edu.missionutils.Randoms
 
 var numberOfLottoTickets = 0
 val lottos = mutableListOf<Lotto>()
-val userLottoNumbers = mutableSetOf<Int>()
-var userLottoBonusNumber = 0
+val userSelectedNumbers = mutableSetOf<Int>()
+var userSelectedBonusNumber = 0
 val winnings = Winning.values()
 
 fun main() {
-    doLogic { getLottoPurchaseAmount() }
+    doLotto()
+}
+
+fun doLotto() {
+    doLogic {
+        val lottoPurchaseAmount = getLottoPurchaseAmount()
+        getNumberOfLottoTickets(lottoPurchaseAmount) }
     getLottoWinningNumbers()
     showLottoWinningNumbers()
-    doLogic { getUserLottoNumbers() }
-    doLogic { getUserBonusLottoNumber() }
+    doLogic {
+        val userInputNumbers = getUserLottoNumbers()
+        validateUserLottoNumbers(userInputNumbers)
+    }
+    doLogic {
+        val userInputBonusNumber = getUserBonusLottoNumber()
+        validateUserBonusLottoNumber(userInputBonusNumber)
+    }
     checkWinning()
     showWinningResult()
     showRateOfReturn()
@@ -26,21 +38,25 @@ fun showLottoWinningNumbers() {
     }
 }
 
-fun getLottoPurchaseAmount() {
+fun getLottoPurchaseAmount(): String {
     println("구입금액을 입력해 주세요.")
     val lottoPurchaseAmount = Console.readLine()
     println()
+    return lottoPurchaseAmount
+}
+
+fun getNumberOfLottoTickets(lottoPurchaseAmount: String) {
     val lottoTickets = lottoPurchaseAmount.toIntOrNull()
     lottoTickets?.let {
-        if (lottoTickets % 1000 == 0) {
-            println("${lottoTickets / 1000}개를 구매했습니다.")
+        if (lottoTickets % amountUnit == 0) {
+            println("${lottoTickets / amountUnit}개를 구매했습니다.")
             numberOfLottoTickets = lottoTickets / 1000
         } else {
-            throw IllegalArgumentException("$errorPrefix 구입금액은 1000원 단위의 숫자 여야합니다.")
+            throw IllegalArgumentException("$errorPrefix 구입금액은 ${amountUnit}원 단위의 숫자 여야합니다.")
         }
         return
     }
-    throw IllegalArgumentException("$errorPrefix 구입금액은 1000원 단위의 숫자 여야합니다.")
+    throw IllegalArgumentException("$errorPrefix 구입금액은 $amountUnit 단위의 숫자 여야합니다.")
 }
 
 fun getLottoWinningNumbers() {
@@ -56,53 +72,53 @@ fun getLottoWinningNumbers() {
     }
 }
 
-fun getUserLottoNumbers() {
+fun getUserLottoNumbers(): String {
     println("당첨 번호를 입력해 주세요.")
-    val userInput = Console.readLine()
-    val userInputLottoNumbers = userInput.split(",").filter {
+    return Console.readLine()
+}
+
+fun validateUserLottoNumbers(userInputNumbers: String) {
+
+    val parsedUserInputNumbers = userInputNumbers.split(",").filter {
         it.isNotEmpty()
     }.map {
         it.toIntOrNull()
     }
-    val validatedUserInputLottoNumbers = validateUserLottoNumbers(userInputLottoNumbers)
-    userLottoNumbers.addAll(validatedUserInputLottoNumbers)
+
+    val isUserInputNumberType = !parsedUserInputNumbers.contains(null)
+    val isUserInputInRange =
+        parsedUserInputNumbers.filter { it in minLottoWinningNumber..maxLottoWinningNumber }.size == lottoWinningNumberQuantity
+    val isUerInputRightQuantity = parsedUserInputNumbers.size == lottoWinningNumberQuantity
+    if (isUserInputNumberType && isUserInputInRange && isUerInputRightQuantity) {
+        parsedUserInputNumbers.map { it!! }.apply {
+            userSelectedNumbers.addAll(this)
+        }
+    } else throw IllegalArgumentException("$errorPrefix 당첨 번호는 $minLottoWinningNumber~$maxLottoWinningNumber 사이의 중복되지 않는 숫자를 , 로 구분하여 ${lottoWinningNumberQuantity}개를 입력해야 합니다.")
 }
 
-fun validateUserLottoNumbers(userInputLottoNumbers: List<Int?>): List<Int> {
-    val isUserInputNumber = !userInputLottoNumbers.contains(null)
-    val isRangedNumber =
-        userInputLottoNumbers.filter { it in minLottoWinningNumber..maxLottoWinningNumber }.size == lottoWinningNumberQuantity
-    val isAppropriateCnt = userInputLottoNumbers.size == lottoWinningNumberQuantity
-    if (isUserInputNumber && isRangedNumber && isAppropriateCnt) return userInputLottoNumbers.map { it!! }
-    else throw IllegalArgumentException("$errorPrefix 당첨 번호는 $minLottoWinningNumber~$maxLottoWinningNumber 사이의 중복되지 않는 숫자를 , 로 구분하여 ${lottoWinningNumberQuantity}개를 입력해야 합니다.")
-}
-
-fun getUserBonusLottoNumber() {
+fun getUserBonusLottoNumber(): String {
     println()
     println("보너스 번호를 입력해 주세요.")
-    val userBonusLottoNumberInput = Console.readLine()
-    userLottoBonusNumber = validateUserBonusLottoNumber(userBonusLottoNumberInput)
+    return Console.readLine()
 }
 
-fun validateUserBonusLottoNumber(userBonusInput: String): Int {
-    val userLottoNumber = userBonusInput.toIntOrNull()
-    val isNumber = userLottoNumber != null
-    val isRangedNumber = userLottoNumber in minLottoWinningNumber..maxLottoWinningNumber
-    val isNotDuplicatedNumber = !userLottoNumbers.contains(userLottoNumber)
-    if (isNumber && isRangedNumber && isNotDuplicatedNumber) return userLottoNumber.toString()
-        .toInt()
-    else throw IllegalArgumentException("$errorPrefix 보너스 번호는 $minLottoWinningNumber~$maxLottoWinningNumber 사이의 숫자 중 당첨 번호와 중복 되지 않는 수 하나를 입력해야 합니다.")
+fun validateUserBonusLottoNumber(userInputBonusNumber: String) {
+    val bonusNumber = userInputBonusNumber.toIntOrNull()
+    val isUerInputNumberType = bonusNumber != null
+    val isUserInputInRange = bonusNumber in minLottoWinningNumber..maxLottoWinningNumber
+    val isUerInputDistinct = !userSelectedNumbers.contains(bonusNumber)
+    if (isUerInputNumberType && isUserInputInRange && isUerInputDistinct) {
+        bonusNumber.toString().toInt().apply {
+            userSelectedBonusNumber = this
+        }
+    } else throw IllegalArgumentException("$errorPrefix 보너스 번호는 $minLottoWinningNumber~$maxLottoWinningNumber 사이의 숫자 중 당첨 번호와 중복 되지 않는 수 하나를 입력해야 합니다.")
 }
 
 fun checkWinning() {
     lottos.forEach {
-        when (it.checkWinning(userLottoNumbers, userLottoBonusNumber)) {
-            Winning.MatchingThreeCount -> winnings[0].winningCnt++
-            Winning.MatchingFourCount -> winnings[1].winningCnt++
-            Winning.MatchingFiveCount -> winnings[2].winningCnt++
-            Winning.MatchingFiveCountWithBonus -> winnings[3].winningCnt++
-            Winning.MatchingSixCount -> winnings[4].winningCnt++
-            else -> {}
+        val winningResult = it.checkWinning(userSelectedNumbers, userSelectedBonusNumber)
+        winnings.toList().indexOf(winningResult).apply {
+            if (this >= 0) winnings[this].winningCnt++
         }
     }
 }
@@ -124,7 +140,7 @@ fun showRateOfReturn() {
     println("총 수익률은 ${totalRateOfReturn}%입니다.")
 }
 
-fun calculateRateOfReturn(totalWinningPrice:Int): String{
+fun calculateRateOfReturn(totalWinningPrice: Int): String {
     val rateOfReturn = totalWinningPrice.toDouble() / (numberOfLottoTickets * 1000) * 100
     return String.format("%.1f", rateOfReturn)
 }
