@@ -40,10 +40,10 @@
 - [O] 각 복권마다 중복되지 않는 번호 6개 생성 : MakeLotto#createNonOverlapSixNumbers()
 
 - [O] 각 로또마다 당첨 번호 일치 개수 확인 : Lotto#compareCountingMatchedWinningNumber()
-- [] 각 로또마다 보너스 번호 일치 확인 : Lotto#compareCountingMatchedBonusNumber()
+- [O] 각 로또마다 보너스 번호 일치 확인 : Lotto#compareCountingMatchedBonusNumber()
 - [] 총 당첨 금액 대비 수익률 계산 : Lotto#calculateRateReturn()
 - 
-- [] 당첨 1등 ~ 6등 까지 계산하는 기능을 Enum으로 구현한다. DivideStandard1to6 클래스 활용
+- [O] 당첨 1등 ~ 6등 까지 계산. Lotto#DivideStandard1to6 클래스 활용
 - [] 일치 개수 만큼 당첨 금액 계산 : DivideStandard1to6#calculateWinningAmount()
 
 - [O] 로또 클래스 생성 : main 함수에서 MakeLotto클래스를 통해 생성
