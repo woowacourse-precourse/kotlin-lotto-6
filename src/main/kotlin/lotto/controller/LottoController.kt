@@ -1,8 +1,6 @@
 package lotto.controller
 
-import lotto.model.BonusNumberVerification
-import lotto.model.Lotto
-import lotto.model.PurchaseMoneyVerification
+import lotto.model.*
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -13,24 +11,28 @@ class LottoController(
 
     fun lottoGameStarter(){
 
-
-
         outputView.lottoPurchaseMessage()
-        val lotto=PurchaseMoneyVerification().inputMoneyCheck(inputView.lottoPurchase())
-
-
+        val moneyInput=inputView.lottoPurchase()
+        val lotto=PurchaseMoneyVerification().inputMoneyCheck(moneyInput)
         outputView.lottoPurchaseConfirm(lotto)
 
+        val lottoNumbers=LottoNumberGenerator().lottoNumberCreation(lotto)
+        outputView.rightLottoNumbersView(lottoNumbers)
 
         outputView.rightLottoNumberMessage()
         val correctLottoNumber=inputView.inputRightLottoNumber()
-        val lottoNumber=Lotto(correctLottoNumber)
-
+        Lotto(correctLottoNumber)
 
         outputView.bonusLottoNumberMessage()
         var bonusNumber=inputView.inputBonusNumber()
-
         BonusNumberVerification(bonusNumber,correctLottoNumber)
+
+        val compareResult=LottoCompare(bonusNumber,correctLottoNumber,lottoNumbers)
+
+        outputView.lottoCompareResult(compareResult)
+
+        outputView.lottoProfit(ProfitCalculation().profit(compareResult,moneyInput))
+
 
     }
 

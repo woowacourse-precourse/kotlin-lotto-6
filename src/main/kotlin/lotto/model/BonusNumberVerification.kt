@@ -9,7 +9,6 @@ import lotto.config.ExceptionMessage.DUPLICATE_VALUES
 class BonusNumberVerification(private val bonusNumber: Int, private val lottoNumber: List<Int>){
 
     init {
-
         lottoNumberRangeCheck()
         duplicateNumberCheck()
     }

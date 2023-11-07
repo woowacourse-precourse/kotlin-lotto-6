@@ -5,7 +5,7 @@ import lotto.config.GameConfigValue.FIVE_NUMBER_AND_BONUS_NUMBER_PRICE
 import lotto.config.GameConfigValue.FIVE_NUMBER_NUMBER_PRICE
 import lotto.config.GameConfigValue.FOUR_NUMBER_NUMBER_PRICE
 import lotto.config.GameConfigValue.THREE_NUMBER_NUMBER_PRICE
-import lotto.view.OutputMessages
+import lotto.config.OutputMessages
 
 class ProfitCalculation {
 

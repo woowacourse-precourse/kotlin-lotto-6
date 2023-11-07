@@ -13,7 +13,6 @@ class Lotto(private val numbers: List<Int>) {
         lottoNumberRangeCheck()
         duplicateNumberCheck()
     }
-
     private fun checkLottoNumberSize() {
         if (numbers.size != LOTTO_DEFAULT_DIGIT) {
             throw IllegalArgumentException(LOTTO_DEFAULT_DIGIT_ERROR)
@@ -31,6 +30,6 @@ class Lotto(private val numbers: List<Int>) {
             throw IllegalArgumentException(DUPLICATE_VALUES)
         }
     }
-
-
 }
+
+

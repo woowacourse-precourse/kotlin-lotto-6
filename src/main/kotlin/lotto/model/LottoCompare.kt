@@ -4,7 +4,7 @@ import lotto.config.GameConfigValue.SIX_NUMBER
 import lotto.config.GameConfigValue.FIVE_NUMBER
 import lotto.config.GameConfigValue.FOUR_NUMBER
 import lotto.config.GameConfigValue.THREE_NUMBER
-import lotto.view.OutputMessages
+import lotto.config.OutputMessages
 
 class LottoCompare(
     private val bonusNumber: Int,
