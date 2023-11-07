@@ -22,7 +22,9 @@ class WinningResult(
         println("---")
         for (rank in LottoRank.entries) {
             val count = statistics[rank] ?: 0
-            println("${rank.rankDescription} (${rank.prizeMoney}원) - ${count}개")
+            val prizeMoney = rank.prizeMoney
+            val formattedPrizeMoney = String.format("%,d", prizeMoney)
+            println("${rank.rankDescription} (${formattedPrizeMoney}원) - ${count}개")
         }
     }
 }
