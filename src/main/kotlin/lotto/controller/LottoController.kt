@@ -22,7 +22,7 @@ class LottoController(
     }
 
     private fun getPurchaseMoney(): Money {
-        outputView.printPurchaseMoney()
+        outputView.printAskPurchaseMoney()
         val money = inputView.inputMoney()
         return Money(money)
     }
@@ -32,6 +32,7 @@ class LottoController(
     }
 
     private fun getBonusNumber(): LottoNumber {
+        outputView.printAskBonusNumber()
         val number = inputView.inputBonusNumber()
         return LottoNumber(number)
     }
@@ -47,6 +48,7 @@ class LottoController(
     }
 
     private fun getWinningLotto(): WinningLotto {
+        outputView.printAskWinningNumber()
         val winningNumbers = inputView.inputWinningNumbers().map { LottoNumber(it) }
         return WinningLotto(winningNumbers)
     }
