@@ -13,10 +13,17 @@ class Lotto(private val numbers: List<Int>) {
 
     private fun List<Int>.isInRange() = all { it in RANGE }
 
+    override fun toString() = numbers.toString()
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Lotto) return false
+        return numbers == other.numbers
     }
 
     override fun hashCode(): Int {
-}
+        return numbers.hashCode()
+    }
 
     companion object {
         private const val MIN_LENGTH = 1
