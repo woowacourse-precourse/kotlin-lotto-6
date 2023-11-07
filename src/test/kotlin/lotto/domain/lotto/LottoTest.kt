@@ -1,5 +1,6 @@
 package lotto.domain.lotto
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -21,4 +22,35 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `로또에 특정 로또 번호가 있는지 검사`() {
+        // given
+        val lottoNumer = LottoNumber(5)
+        val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6).map { LottoNumber(it) })
+        // when
+        val result = lotto.isContainLottoNumber(lottoNumer)
+        // then
+        assertEquals(result, true)
+    }
+
+    @Test
+    fun `특정 로또와 중복되는 숫자가 몇개 있는지 검사`() {
+        // given
+        val inputLotto = Lotto(listOf(1, 2, 3, 4, 5, 6).map { LottoNumber(it) })
+        val lotto = Lotto(listOf(5, 6, 7, 8, 9, 10).map { LottoNumber(it) })
+        // when
+        val result = lotto.getLottoMatchCount(inputLotto)
+        // then
+        assertEquals(result, 2)
+    }
+
+    @Test
+    fun `문자열 출력시 오름차순으로 정렬하여 출력`() {
+        // given
+        val lotto = Lotto(listOf(10, 1, 7, 43, 38, 12).map { LottoNumber(it) })
+        // when
+        val result = lotto.toString()
+        // then
+        assertEquals(result, "[1, 7, 10, 12, 38, 43]")
+    }
 }
