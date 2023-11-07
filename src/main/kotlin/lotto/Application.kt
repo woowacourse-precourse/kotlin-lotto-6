@@ -76,25 +76,17 @@ fun inputWinningNumbers(): List<Int> {
         val input = Console.readLine()
         numbers = input?.split(",")!!.mapNotNull { it.trim().toIntOrNull() }
         validateLottoNumbers(numbers)
-        return numbers // 유효한 입력이 들어왔으면 루프를 종료
-    } catch (e: NumberFormatException) {
-        println("[ERROR] 잘못된 입력 형식입니다.")
+        return numbers?: throw NumberFormatException("[ERROR] 잘못된 입력 형식입니다.")// 유효한 입력이 들어왔으면 루프를 종료
     } catch (e: IllegalArgumentException) {
         println(e.message)
     }
     return listOf(0)
 }
-fun validateLottoNumbers(numbers: List<Int>) {
-    if (numbers.any { it < 1 || it > 45 } || numbers.size != 6) {
-        throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자 6개를 입력해야 합니다.")
-    }
-
-    val uniqueNumbers = numbers.toSet()
-    if (uniqueNumbers.size != 6) {
-        throw IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 포함되어 있습니다.")
+fun validateLottoNumbers(numbers: List<Int>?) {
+    if (numbers == null || numbers.size != 6 || numbers.any { it < 1 || it > 45 } || numbers.size != numbers.distinct().size) {
+        throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자 6개를 입력해야 하며 중복이 없어야 합니다.")
     }
 }
-
 fun getBonusNumber(): Int {
     var number = 0
     while (number < 1 || number > 45) {
