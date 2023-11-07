@@ -62,6 +62,10 @@ fun parseLottoNumbers(input: String?): List<Int> {
     // 쉼표로 문자열을 분할하고 빈 문자열을 제거합니다.
     val numbers = input.split(",").map { it.trim() }.filter { it.isNotEmpty() }
 
+    if (numbers.size != 6) {
+        throw IllegalArgumentException("[ERROR] 6개의 숫자를 입력해야 합니다.")
+    }
+
     val lottoNumbers = numbers.map {
         try {
             val number = it.toInt()
