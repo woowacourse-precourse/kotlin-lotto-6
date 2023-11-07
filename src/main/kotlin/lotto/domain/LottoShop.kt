@@ -1,17 +1,13 @@
 package lotto.domain
 
+import lotto.domain.validator.LottoShopValidator
+
 class LottoShop() {
 
+    private val lottoShopValidator = LottoShopValidator()
+
     fun purchaseLotto(input : String) : List<Lotto>{
-        requireNotNull(input.toIntOrNull()){
-            "로또 구매 금액은 1000원 단위 정수형만 입력받을 수 있습니다."
-        }
-        require(input.toInt() != 0){
-            "로또 구매 금액으로는 0원 은 입력하실 수 없습니다."
-        }
-        require(input.toInt() % LOTTO_PRICE == 0){
-            "로또 구매 금액으로는 1000원 단위로만 입력받을 수 있습니다."
-        }
+        lottoShopValidator.validatePurchaseLottoInput(input)
 
         val lottos : MutableList<Lotto> = mutableListOf()
 
