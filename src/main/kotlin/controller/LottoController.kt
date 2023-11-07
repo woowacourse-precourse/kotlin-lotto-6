@@ -4,8 +4,8 @@ import domain.chance.Chance
 import domain.lotto.Lotto
 import domain.lotto.NumberPicker
 import domain.result.LottoResult
-import lotto.domain.purchase.Money
-import lotto.view.InputView
+import domain.purchase.Money
+import view.InputView
 import view.ResultView
 
 class LottoController {

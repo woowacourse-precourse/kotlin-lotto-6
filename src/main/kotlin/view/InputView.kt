@@ -1,27 +1,13 @@
-package lotto.view
+package view
 
-import constants.ExceptionMessages.EXCEPTION_WINNING_NUMBERS_DUPLICATED
-import constants.ExceptionMessages.EXCEPTION_WINNING_NUMBERS_RANGE
-import constants.ExceptionMessages.EXCEPTION_WINNING_NUMBERS_SIZE
-import constants.ExceptionMessages.EXCEPTION_WINNING_NUMBERS_TYPE
 import camp.nextstep.edu.missionutils.Console
 import constants.ExceptionMessages.ERROR
-import constants.ExceptionMessages.EXCEPTION_BONUS_NUMBER_DUPLICATED
-import constants.ExceptionMessages.EXCEPTION_BONUS_NUMBER_RANGE
-import constants.ExceptionMessages.EXCEPTION_BONUS_NUMBER_TYPE
-import constants.ExceptionMessages.EXCEPTION_PURCHASE_DIVISION
-import constants.ExceptionMessages.EXCEPTION_PURCHASE_NO_MORE_THAN_ZERO
-import constants.ExceptionMessages.EXCEPTION_PURCHASE_STRING
 import constants.ExceptionMessages.EXCEPTION_UNEXPECTED
-import lotto.constants.Constants.INPUT_BONUS_NUMBER
-import lotto.constants.Constants.INPUT_PURCHASE_AMOUNT
-import lotto.constants.Constants.INPUT_WINNING_NUMBERS
-import lotto.constants.Constants.LOTTO_PRICE
-import lotto.constants.Constants.LOTTO_SIZE
-import lotto.constants.Constants.MAX_NUM
-import lotto.constants.Constants.MIN_NUM
-import lotto.constants.Constants.WINNING_NUM_SEPARATOR
-import lotto.utils.InputViewValidation
+import constants.Constants.INPUT_BONUS_NUMBER
+import constants.Constants.INPUT_PURCHASE_AMOUNT
+import constants.Constants.INPUT_WINNING_NUMBERS
+import constants.Constants.WINNING_NUM_SEPARATOR
+import utils.InputViewValidation
 
 class InputView {
 

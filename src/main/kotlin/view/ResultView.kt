@@ -3,13 +3,13 @@ package view
 import domain.chance.Chance
 import domain.result.FinalResult
 import domain.result.Rank
-import lotto.constants.Constants.PRIZE_SEPARATOR
-import lotto.constants.Constants.RESULT_FINAL_STAT
-import lotto.constants.Constants.RESULT_NUM_UNIT
-import lotto.constants.Constants.RESULT_PURCHASED_LOTTIES
-import lotto.constants.Constants.RESULT_SEPARATOR
-import lotto.constants.Constants.RESULT_TOTAL_RATING_COMPLEMENT
-import lotto.constants.Constants.RESULT_TOTAL_RATING_SUBJECT
+import constants.Constants.PRIZE_SEPARATOR
+import constants.Constants.RESULT_FINAL_STAT
+import constants.Constants.RESULT_NUM_UNIT
+import constants.Constants.RESULT_PURCHASED_LOTTIES
+import constants.Constants.RESULT_SEPARATOR
+import constants.Constants.RESULT_TOTAL_RATING_COMPLEMENT
+import constants.Constants.RESULT_TOTAL_RATING_SUBJECT
 
 class ResultView {
 

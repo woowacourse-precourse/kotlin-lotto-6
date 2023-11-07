@@ -1,8 +1,8 @@
 package domain.result
 
-import lotto.constants.Constants.FORMAT_ONE_DECIMAL_PLACE
-import lotto.constants.Constants.LOTTO_PRICE
-import lotto.constants.Constants.PERCENTILE
+import constants.Constants.FORMAT_ONE_DECIMAL_PLACE
+import constants.Constants.LOTTO_PRICE
+import constants.Constants.PERCENTILE
 
 class LottoResult(
     private val lotties: List<List<Int>>,

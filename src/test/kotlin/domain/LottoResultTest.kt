@@ -2,7 +2,7 @@ package domain
 
 import domain.result.LottoResult
 import domain.result.Rank
-import lotto.constants.Constants.FORMAT_ONE_DECIMAL_PLACE
+import constants.Constants.FORMAT_ONE_DECIMAL_PLACE
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

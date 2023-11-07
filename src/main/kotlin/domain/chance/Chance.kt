@@ -1,7 +1,7 @@
 package domain.chance
 
-import lotto.constants.Constants.LOTTO_PRICE
-import lotto.domain.purchase.Money
+import constants.Constants.LOTTO_PRICE
+import domain.purchase.Money
 
 data class Chance(val money: Money) {
     private var times = money.amount / LOTTO_PRICE

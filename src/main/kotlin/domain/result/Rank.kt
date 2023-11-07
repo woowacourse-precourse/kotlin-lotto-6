@@ -1,20 +1,20 @@
 package domain.result
 
-import lotto.constants.Constants.NOTIFICATION_FIFTH
-import lotto.constants.Constants.NOTIFICATION_FIRST
-import lotto.constants.Constants.NOTIFICATION_FOURTH
-import lotto.constants.Constants.NOTIFICATION_SECOND
-import lotto.constants.Constants.NOTIFICATION_THIRD
-import lotto.constants.Constants.REWARD_FIFTH
-import lotto.constants.Constants.REWARD_FIRST
-import lotto.constants.Constants.REWARD_FOURTH
-import lotto.constants.Constants.REWARD_SECOND
-import lotto.constants.Constants.REWARD_THIRD
-import lotto.constants.Constants.WINNING_COUNT_FIFTH
-import lotto.constants.Constants.WINNING_COUNT_FIRST
-import lotto.constants.Constants.WINNING_COUNT_FOURTH
-import lotto.constants.Constants.WINNING_COUNT_SECOND
-import lotto.constants.Constants.WINNING_COUNT_THIRD
+import constants.Constants.NOTIFICATION_FIFTH
+import constants.Constants.NOTIFICATION_FIRST
+import constants.Constants.NOTIFICATION_FOURTH
+import constants.Constants.NOTIFICATION_SECOND
+import constants.Constants.NOTIFICATION_THIRD
+import constants.Constants.REWARD_FIFTH
+import constants.Constants.REWARD_FIRST
+import constants.Constants.REWARD_FOURTH
+import constants.Constants.REWARD_SECOND
+import constants.Constants.REWARD_THIRD
+import constants.Constants.WINNING_COUNT_FIFTH
+import constants.Constants.WINNING_COUNT_FIRST
+import constants.Constants.WINNING_COUNT_FOURTH
+import constants.Constants.WINNING_COUNT_SECOND
+import constants.Constants.WINNING_COUNT_THIRD
 
 enum class Rank(
     val winningCount: Int,
