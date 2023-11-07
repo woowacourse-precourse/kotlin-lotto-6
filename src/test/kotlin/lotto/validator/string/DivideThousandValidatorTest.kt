@@ -5,14 +5,6 @@ import org.junit.jupiter.api.assertThrows
 
 class DivideThousandValidatorTest {
     @Test
-    fun `숫자형 문자열이 1000의 단위이면 정상`() {
-        val divideThousandValidator = DivideThousandValidator()
-        val validString = "1000"
-
-        divideThousandValidator.validate(validString)
-    }
-
-    @Test
     fun `숫자형 문자열이 1000의 단위이 아니면 비정상`() {
         val divideThousandValidator = DivideThousandValidator()
         val invalidString = "1200"

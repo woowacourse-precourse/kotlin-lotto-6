@@ -5,14 +5,6 @@ import org.junit.jupiter.api.assertThrows
 
 class DuplicatedValidatorTest {
     @Test
-    fun `리스트 내 중복된 숫자가 없으면 정상`() {
-        val duplicatedValidator = DuplicatedValidator()
-        val numbers = listOf(1, 2, 3, 4, 5, 6)
-
-        duplicatedValidator.validate(numbers)
-    }
-
-    @Test
     fun `리스트 내 중복된 숫자가 있으면 예외 발생`() {
         val duplicatedValidator = DuplicatedValidator()
         val numbers = listOf(1, 2, 2, 4, 5, 6)

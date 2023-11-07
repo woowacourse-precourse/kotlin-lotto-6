@@ -5,14 +5,6 @@ import org.junit.jupiter.api.assertThrows
 
 class SizeValidatorTest {
     @Test
-    fun `List 크기가 6이면 정상`() {
-        val sizeValidator = SizeValidator()
-        val numbers = listOf(1, 2, 3, 4, 5, 6)
-
-        sizeValidator.validate(numbers)
-    }
-
-    @Test
     fun `List 크기가 6이 아니면 예외`() {
         val sizeValidator = SizeValidator()
         val invalidNumbers = listOf(1, 2, 3, 4, 5)

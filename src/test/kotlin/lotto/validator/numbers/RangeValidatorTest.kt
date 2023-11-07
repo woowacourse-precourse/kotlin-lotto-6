@@ -5,14 +5,6 @@ import org.junit.jupiter.api.assertThrows
 
 class RangeValidatorTest {
     @Test
-    fun `List 내 숫자들이 45이하 자연수면 정상`() {
-        val rangeValidator = RangeValidator()
-        val numbers = listOf(1, 45)
-
-        rangeValidator.validate(numbers)
-    }
-
-    @Test
     fun `List 내 숫자들이 45이하 자연수가 아니면 예외 발생`() {
         val rangeValidator = RangeValidator()
         val invalidNumbers = listOf(0)

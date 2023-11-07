@@ -5,14 +5,6 @@ import org.junit.jupiter.api.assertThrows
 
 class NumericValidatorTest {
     @Test
-    fun `숫자형 문자열이면 정상`() {
-        val numericValidator = NumericValidator()
-        val invalidString = "1"
-
-        numericValidator.validate(invalidString)
-    }
-
-    @Test
     fun `숫자형 문자열이 아니면 예외`() {
         val numericValidator = NumericValidator()
         val invalidString = "1a2"

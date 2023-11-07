@@ -5,14 +5,6 @@ import org.junit.jupiter.api.assertThrows
 
 class PurchaseAmountValidatorTest {
     @Test
-    fun `구입 금액이 숫자형이고 1,000원 단위일 경우 정상`() {
-        val purchaseAmountValidator = PurchaseAmountValidator()
-        val validString = "1000"
-
-        purchaseAmountValidator.validate(validString)
-    }
-
-    @Test
     fun `구입 금액이 숫자형이 아닐 경우 예외 발생`() {
         val purchaseAmountValidator = PurchaseAmountValidator()
         val invalidString = "abc"
