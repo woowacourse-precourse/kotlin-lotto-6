@@ -19,6 +19,7 @@ class LottoGame {
             }
         }
         val boughtAmountToInt = boughtAmount.toInt()
+        print("\n")
         // 구입금액을 1000으로 나눈 나머지가 구입한 로또의 개수
         return boughtAmountToInt / 1000
     }
@@ -71,7 +72,7 @@ class LottoGame {
         val profitRate: Float =
             (5000 * winningMap[3]!! + 50000 * winningMap[4]!! + 1500000 * winningMap[5]!!
                     + 30000000 * winningMap[-1]!! + 2000000000 * winningMap[6]!!).toFloat() / (numberOfLottos * 1000)
-        println("총 수익률은 ${profitRate}%입니다.")
+        println(String.format("총 수익률은 %.1f%%입니다.", profitRate))
     }
 
     fun gameStart() {
