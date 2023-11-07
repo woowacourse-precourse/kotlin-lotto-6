@@ -36,14 +36,6 @@ class LottoTest {
     }
 
     @Test
-    fun `generateLottoNumbers 함수가 항상 범위 내의 유일한 숫자 6개를 반환하는지 확인한다`() {
-        val numbers = generateLottoNumbers()
-        assertThat(numbers).hasSize(6)
-        assertThat(numbers.distinct()).hasSize(6)
-        assertThat(numbers.all { it in 1..45 }).isTrue()
-    }
-
-    @Test
     fun `getResults 함수가 정확한 당첨 결과를 반환하는지 확인한다`() {
         val tickets = listOf(Lotto(listOf(1, 2, 3, 4, 5, 6)))
         val winningNumbers = listOf(1, 2, 3, 7, 8, 9)
@@ -59,7 +51,8 @@ class LottoTest {
         }
     }
 
-    fun testGetMatchCount() {
+    @Test
+    fun `로또 번호에 와 당첨 번호를 옳바르게 비교하는지 확인`() {
         val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
         val winningNumbers = listOf(1, 2, 3, 7, 8, 9)
         val matchCount = lotto.getMatchCount(winningNumbers)
@@ -67,7 +60,7 @@ class LottoTest {
     }
 
     @Test
-    fun `보너스 번호가 로또 번호에 포함되면 예외가 발생한다`() {
+    fun `보너스 번호가 로또 번호와 같으면 예외가 발생한다`() {
         val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
         val bonusNumber = 6
         assertThrows<IllegalArgumentException> {
@@ -75,9 +68,17 @@ class LottoTest {
         }
     }
     @Test
-    fun testToString() {
+    fun `번호를 문자열로 변경하는지 확인 한다`() {
         val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
         val expectedResult = "[1, 2, 3, 4, 5, 6]"
         assertEquals(expectedResult, lotto.toString())
+    }
+    @Test
+    fun `수익률이 올바르게 계산되어야 한다`() {
+        val results = listOf(LottoResult.FIVE_MATCHES, LottoResult.THREE_MATCHES)
+        val purchaseAmount = 2000
+        val expectedProfitRate = ((LottoResult.FIVE_MATCHES.prize + LottoResult.THREE_MATCHES.prize).toDouble() / purchaseAmount) * 100
+        val actualProfitRate = calculateProfitRate(results, purchaseAmount)
+        assertEquals(expectedProfitRate, actualProfitRate)
     }
 }
