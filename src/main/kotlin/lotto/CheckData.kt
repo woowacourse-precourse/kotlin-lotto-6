@@ -1,6 +1,6 @@
 package lotto
 
-import LottoData.lottoResult
+import lotto.LottoData.lottoResult
 
 object CheckData {
 
