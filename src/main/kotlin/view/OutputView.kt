@@ -22,6 +22,7 @@ object OutputView {
     private const val REST = ","
     private const val TOTAL_RETURN = "총 수익률은"
     private const val IT_IS_PERCENT = "%입니다."
+    private const val ERROR = "[ERROR]"
 
     fun pleaseEnterPurchaseAmount() {
         println(PLEASE_ENTER_PURCHASE_AMOUNT)
@@ -63,5 +64,9 @@ object OutputView {
 
     fun totalReturn(totalReturn: Double) {
         println("$TOTAL_RETURN $totalReturn$IT_IS_PERCENT")
+    }
+
+    fun error(message: String) {
+        println("$ERROR $message")
     }
 }
