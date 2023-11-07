@@ -1,17 +1,18 @@
 package lotto.model.seller
 
 import lotto.model.Lotto
+import lotto.model.PaymentAmount
 import lotto.model.random.DefaultRandomGenerator
 import lotto.model.random.RandomGenerator
 import lotto.model.toBalls
 
 class LottoGenerator private constructor(private val generator: RandomGenerator) {
 
-    fun createLottos(count: Int): Ticket {
-        val ticket = Ticket()
-        repeat(count) {
+    fun createLottos(payment: PaymentAmount): Ticket {
+        val ticket = Ticket(payment.cost)
+        repeat(payment.purchase) {
             val randomNumbers = generator.pickUniqueNumberInRange(START_NUMBER, END_NUMBER, LOTTO_NUMBER_COUNT)
-            ticket.record(lotto = Lotto(randomNumbers.toBalls()))
+            ticket.record(Lotto(randomNumbers.toBalls()))
         }
         return ticket
     }

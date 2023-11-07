@@ -2,7 +2,7 @@ package lotto.model.seller
 
 import lotto.model.Lotto
 
-class Ticket {
+class Ticket(val cost: Money) {
 
     private val lottos = arrayListOf<Lotto>()
 

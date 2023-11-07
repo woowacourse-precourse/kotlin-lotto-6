@@ -12,7 +12,7 @@ class TicketTest {
     private val testLotto1 = Lotto.of(1, 2, 3, 4, 5, 6)
     private val testLotto2 = Lotto.of(7, 2, 3, 4, 5, 6)
 
-    private val ticket = Ticket()
+    private val ticket = Ticket(Money(1000))
 
     @BeforeEach
     fun setupTicket() {
