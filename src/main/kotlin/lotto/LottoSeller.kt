@@ -22,7 +22,7 @@ class LottoSeller {
         println("\n${this.numTickets}개를 구매했습니다.")
 
         for (i in 0..numTickets-1){
-            this.tickets.add(Randoms.pickUniqueNumbersInRange(1, 45, 6))
+            this.tickets.add(Randoms.pickUniqueNumbersInRange(1, 45, 6).sorted())
             println(this.tickets[i])
         }
     }
