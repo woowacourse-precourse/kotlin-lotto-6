@@ -85,11 +85,20 @@ fun lottoResultPrint(result: Map<String, Int>, lottoCount: Int) {
     println("당첨 통계")
     println("---")
     val prizeMoney = mapOf("3개 일치" to 5000, "4개 일치" to 50000, "5개 일치" to 1500000, "5개 일치, 보너스 볼 일치" to 30000000, "6개 일치" to 2000000000)
+    var totalPrize = 0
     for ((key, value) in result) {
         val prize = when (key) {
             "5개 일치" -> if (result["5개 일치, 보너스 볼 일치"] == 0) "1,500,000원" else "30,000,000원"
             else -> "${prizeMoney[key]}원"
         }
         println("$key ($prize) - ${value}개")
+        totalPrize += if (key == "5개 일치") {
+            if (result["5개 일치, 보너스 볼 일치"] == 0) prizeMoney["5개 일치"]!! * value else prizeMoney["5개 일치, 보너스 볼 일치"]!! * value
+        } else {
+            prizeMoney[key]!! * value
+        }
     }
+    val inputMoney = lottoCount * 1000
+    val rateOfReturn = ((totalPrize - inputMoney) / inputMoney.toDouble() * 100).coerceAtLeast(0.0)
+    println("총 수익률은 ${"%.1f".format(rateOfReturn)}%입니다.")
 }
