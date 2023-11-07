@@ -1,5 +1,6 @@
 package lotto
 
+import camp.nextstep.edu.missionutils.test.NsTest
 import lotto.utils.validator.LottoWinningNumberInputValidator
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
@@ -11,9 +12,18 @@ import org.junit.jupiter.params.provider.ValueSource
 class LottoWinningNumbersValidatorTest {
     private lateinit var lottoWinningNumberInputValidator : LottoWinningNumberInputValidator
 
-    @BeforeAll
+    @BeforeEach
     fun `셋팅`(){
         lottoWinningNumberInputValidator = LottoWinningNumberInputValidator()
+    }
+
+    @Test
+    fun `정상적인 로또 번호 입력`(){
+        assert(lottoWinningNumberInputValidator.validate(listOf("1","2","33","44","12","15")))
+    }
+
+    fun `로또 번호가 6개 아닐 때`(){
+        assert(!lottoWinningNumberInputValidator.validate(listOf("1","2","33","44","12")))
     }
 
     @ParameterizedTest
@@ -30,5 +40,6 @@ class LottoWinningNumbersValidatorTest {
             lottoWinningNumberInputValidator.validate(input)
         }
     }
+
 
 }
