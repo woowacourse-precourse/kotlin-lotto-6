@@ -20,6 +20,16 @@ class Lotto(private val numbers: List<Int>) {
 
     fun containBonusNumber(bonusNumber: Int): Boolean = numbers.contains(bonusNumber)
 
-    fun calculateLottoRank(matchingNumberCount: Int, bonusNumberMatch: Boolean): WinningRank = WinningRank.FAILURE
+    fun calculateLottoRank(matchingNumberCount: Int, bonusNumberMatch: Boolean): WinningRank {
+        val conditions = listOf(
+            (matchingNumberCount == 6) to WinningRank.FIRST,
+            (matchingNumberCount == 5 && bonusNumberMatch) to WinningRank.SECOND,
+            (matchingNumberCount == 5) to WinningRank.THIRD,
+            (matchingNumberCount == 4) to WinningRank.FOURTH,
+            (matchingNumberCount == 3) to WinningRank.FIFTH
+        )
+
+        return conditions.firstOrNull { it.first }?.second ?: WinningRank.FAILURE
+    }
 
 }
