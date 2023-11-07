@@ -1,6 +1,7 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.Constants
 
 class InputView {
     fun purchaseAmountPrompt() =
@@ -9,7 +10,8 @@ class InputView {
     fun winningNumbersPrompt() =
         promptInput(WINNING_NUMBERS_INPUT_MESSAGE, WINNING_NUMBERS_IS_EMPTY)
 
-    fun bonusNumberPrompt() = promptInput(BOUNS_NUMBER_INPUT_MESSAGE, BOUNS_NUMBER_IS_EMPTY)
+    fun bonusNumberPrompt() =
+        promptInput(BOUNS_NUMBER_INPUT_MESSAGE, BOUNS_NUMBER_IS_EMPTY)
 
     fun promptInput(message: String, errorMessage: String): String {
         println(message)
@@ -22,7 +24,7 @@ class InputView {
 
     private fun String.validateEmpty(errorMessage: String) {
         if (this.isEmpty()) {
-            throw IllegalArgumentException("ERROR" + errorMessage)
+            throw IllegalArgumentException(errorMessage)
         }
     }
 
@@ -32,6 +34,7 @@ class InputView {
 
         private const val WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요."
         private const val WINNING_NUMBERS_IS_EMPTY = "당첨 번호가 입력되지 않았습니다."
+
         private const val BOUNS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요."
         private const val BOUNS_NUMBER_IS_EMPTY = "보너스 번호가 입력되지 않았습니다."
     }

@@ -1,5 +1,6 @@
 package lotto.controller
 
+import lotto.Constants
 import lotto.model.BonusNumber
 import lotto.model.Lotto
 import lotto.model.LottoResults
@@ -48,9 +49,9 @@ class GameController {
         purchaseAmount = inputToClassInstance({ it.purchaseAmountPrompt() }, ::PurchaseAmount)
         task.inputState = Task.State.INPUT_WINNING_AND_BONUS_NUMBERS
 
-        lottos = Lottos.create(purchaseAmount.amount / 1000)
+        lottos = Lottos.create(purchaseAmount.amount / Constants.LOTTO_PRICE)
 
-        outputView.printPurchaseResults(lottos.lottoNumbers)
+        outputView.printPurchaseResults(lottos)
     }
 
     private fun processWinningAndBonusNumbers(task: Task, lottos: List<Lotto>) {
@@ -65,7 +66,7 @@ class GameController {
         }
 
         val reward = RateOfReturn(lottoResults.result, purchaseAmount.amount)
-        outputView.printWinnigResults(lottoResults.result)
+        outputView.printWinningResults(lottoResults.result)
         outputView.printRateOfReturn(reward.get())
     }
 

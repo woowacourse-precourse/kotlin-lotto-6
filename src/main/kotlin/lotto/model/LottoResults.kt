@@ -4,30 +4,33 @@ import lotto.model.dto.LottoResult
 import lotto.util.Match
 
 class LottoResults(
-    var _result: MutableMap<Int, Int> = mutableMapOf(
-        Match.THIRD.count to FOR_INIT_ZERO_NUMBER,
-        Match.FOURTH.count to FOR_INIT_ZERO_NUMBER,
-        Match.FIFTH.count to FOR_INIT_ZERO_NUMBER,
-        Match.FIFTH_BONUS.count to FOR_INIT_ZERO_NUMBER,
-        Match.SIX.count to FOR_INIT_ZERO_NUMBER,
-    )
+    var _result: MutableMap<Int, Int> = Match.values()
+        .associate { it.count to RESULT_DEFAULT_VALUE }
+        .toMutableMap()
 ) {
     val result get() = _result.toMap()
 
     fun update(lottoResult: LottoResult) {
-        if (lottoResult.winningMatchCount !in 3..6) {
+        if (lottoResult.winningMatchCount !in MIN_WINNING_MATCHES..MAX_WINNING_MATCHES) {
             return
         }
 
         var key = lottoResult.winningMatchCount
-        if (lottoResult.winningMatchCount == 5) {
-            key = Match.FIFTH.count.takeIf { lottoResult.bonusMatchCount == 0 } ?: Match.FIFTH_BONUS.count
+        if (lottoResult.winningMatchCount == SPECIAL_MATCH_COUNT) {
+            key = Match.FIFTH.count.takeIf { lottoResult.bonusMatchCount == NO_BONUS_MATCH } ?: Match.FIFTH_BONUS.count
         }
 
-        _result[key] = _result.getOrDefault(key, 0) + 1
+        _result[key] = _result.getOrDefault(key, RESULT_DEFAULT_VALUE) + 1
     }
 
     companion object {
-        private const val FOR_INIT_ZERO_NUMBER = 0
+        private const val RESULT_DEFAULT_VALUE = 0
+
+        private const val MIN_WINNING_MATCHES = 3
+        private const val MAX_WINNING_MATCHES = 6
+
+        private const val SPECIAL_MATCH_COUNT = 5
+        private const val NO_BONUS_MATCH = 0
     }
 }
+

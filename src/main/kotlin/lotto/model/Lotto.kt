@@ -45,7 +45,8 @@ open class Lotto(private val _numbers: List<Int>) {
     }
 
     companion object {
-        const val LOTTO_NUMBERS_OUT_OF_SIZE = "로또 번호는 6개의 숫자로 이루어져야 합니다."
+        const val LOTTO_NUMBERS_OUT_OF_SIZE =
+            "로또 번호는 ${Constants.LOTTO_NUMBER_SIZE}개의 숫자로 이루어져야 합니다."
         const val LOTTO_NUMBERS_NON_DUPLICATE = "로또 번호는 중복될 수 없습니다."
     }
 }

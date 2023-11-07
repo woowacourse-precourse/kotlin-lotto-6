@@ -1,5 +1,8 @@
 package lotto.util
 
+import java.lang.IllegalArgumentException
+import javax.swing.ComponentInputMap
+
 enum class Match(val count: Int, val info: String, val amount: String) {
     THIRD(3, "3개 일치", "5,000"),
     FOURTH(4, "4개 일치", "50,000"),
@@ -13,9 +16,14 @@ enum class Match(val count: Int, val info: String, val amount: String) {
         }
 
         fun getAmountForCount(count: Int): Long {
-            val count = findByCount(count)?.amount ?: "0"
-            val countDigit = count.replace(",", "").toLong()
-            return countDigit
+            val count = findByCount(count)?.amount
+                ?: throw IllegalArgumentException(NO_MATCH_FOUND_FOR_COUNT.format(count))
+
+            return count.replace(COMMA, "").toLong()
         }
+
+        private const val COMMA = ","
+        private const val NO_MATCH_FOUND_FOR_COUNT = "count: %d와 일치하는 항목을 찾을 수 없습니다."
+
     }
 }

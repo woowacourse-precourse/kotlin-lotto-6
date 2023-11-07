@@ -1,41 +1,38 @@
 package lotto.view
 
 import lotto.Constants
-import lotto.model.Lotto
+import lotto.model.Lottos
 import lotto.util.Match
 
 class OutputView {
-    fun printPurchaseResults(lottoNumbers: List<Lotto>) {
-        println(
-            PURCHASE_COUNT_CONFIRMATION.format(
-                lottoNumbers.size
-            )
-        )
+    fun printPurchaseResults(lottos: Lottos) {
+        println(PURCHASE_COUNT_CONFIRMATION.format(lottos.lottoNumbers.size))
 
-        println("${lottoNumbers}\n")
+        println("${lottos}\n")
     }
 
-    fun printWinnigResults(result: Map<Int, Int>) {
-        println(
-            """
-                당첨 통계
-                ---
-                ${Match.THIRD.info} (${Match.THIRD.amount}원) - ${result[Match.THIRD.count]}개
-                ${Match.FOURTH.info} (${Match.FOURTH.amount}원) - ${result[Match.FOURTH.count]}개
-                ${Match.FIFTH.info} (${Match.FIFTH.amount}원) - ${result[Match.FIFTH.count]}개
-                ${Match.FIFTH_BONUS.info} (${Match.FIFTH_BONUS.amount}원) - ${result[Match.FIFTH_BONUS.count]}개
-                ${Match.SIX.info} (${Match.SIX.amount}원) - ${result[Match.SIX.count]}개
-            """.trimIndent()
-        )
+    fun printWinningResults(result: Map<Int, Int>) {
+        println("$WINNING_STATISTICS\n$DIVIDING_LINE")
+        Match.values().forEach { match ->
+            println("${match.info} (${match.amount}$MONEY_UNIT) - ${result[match.count] ?: 0}개")
+        }
     }
 
     fun printRateOfReturn(reward: Double) {
-        println("총 수익률은 ${reward}%입니다.")
+        println(TOTAL_RATE_OF_RETURN.format(reward))
     }
 
     fun printError(errorMessage: String) = println("${Constants.ERROR_TAG} $errorMessage")
 
     companion object {
         const val PURCHASE_COUNT_CONFIRMATION = "%d개를 구매했습니다."
+
+
+
+        const val WINNING_STATISTICS = "당첨 통계"
+        const val DIVIDING_LINE = "---"
+        const val MONEY_UNIT = "원"
+
+        const val TOTAL_RATE_OF_RETURN = "총 수익률은 %.1f%%입니다."
     }
 }
