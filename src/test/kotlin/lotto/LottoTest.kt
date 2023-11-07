@@ -1,7 +1,10 @@
 package lotto
 
+import camp.nextstep.edu.missionutils.Randoms
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
 
 
 class LottoTest {
@@ -21,4 +24,9 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `랜덤넘버 테스트`() {
+        val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        println(numbers)
+    }
 }
