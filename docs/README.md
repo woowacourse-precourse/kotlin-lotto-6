@@ -42,5 +42,5 @@
 - [ ] 메시지 출력
 
 ### Controller
-- [ ] LottoController : 숫자 입력 받은 것 처리 및 게임 실행
-- [ ] 사용자에게 숫자 입력 받기
+- [x] LottoController : 숫자 입력 받은 것 처리 및 게임 실행
+- [x] 사용자에게 숫자 입력 받기
