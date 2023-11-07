@@ -17,7 +17,7 @@ class LottoResult() {
         return resultList
     }
 
-    private fun calculateResultOnce(lottoList: List<Int>, lottoNumber: List<Int>, bonusNumber: Int): List<Int> {
+    fun calculateResultOnce(lottoList: List<Int>, lottoNumber: List<Int>, bonusNumber: Int): List<Int> {
         var count = 0
         var flag = 0
         for (element in lottoList) {
