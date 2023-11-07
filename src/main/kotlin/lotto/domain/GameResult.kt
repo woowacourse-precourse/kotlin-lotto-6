@@ -1,9 +1,9 @@
 package lotto.domain
 
 enum class GameResult(
-    val matchNumber : Int,
-    val price : Int,
-    val comment : String
+    val matchNumber: Int,
+    val price: Int,
+    val comment: String
 ) {
     FIRST(6, 2000000000, "6개 일치 (2,000,000,000원) - "),
     SECOND(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
