@@ -1,16 +1,32 @@
 package lotto.Exceptions
 
 import lotto.Controller.LottoController
-import lotto.Controller.howManyBuyLotto
 import lotto.Model.LottoGameModel
 import lotto.Utils.InputLottoNumsException
 import lotto.Utils.LottoException
 
 object Exceptions {
 
+    fun howManyBuyLottoIsValid(lottoPrice: String): Int {
+        try {
+            val price = lottoPrice.toInt()
+            checkHowManyBuyLottoBy1000(price)
+            return price / 1000
+
+        } catch (e: NumberFormatException) {
+            throw IllegalArgumentException(LottoException.BUY_LOTTO_PRICE_INVALIDATE_NUMBER)
+        }
+    }
+
+    fun checkHowManyBuyLottoBy1000(input: Int){
+        if (input % 1000 != 0) {
+            throw IllegalArgumentException(LottoException.BUY_LOTTO_PRICE_1000)
+        }
+    }
+
     fun checkHowManyBuyLottoIsValid(lottoPrice : String?){
         lottoPrice?.let {
-            val numberOfLottoTickets = howManyBuyLotto(it)
+            val numberOfLottoTickets = howManyBuyLottoIsValid(it)
             println("\n$numberOfLottoTickets 개를 구매했습니다.")
             LottoController.lottoGameModel = LottoGameModel(numberOfLottoTickets)
         }
@@ -51,6 +67,7 @@ object Exceptions {
             throw IllegalArgumentException(LottoException.INPUT_LOTTO_1TO45)
         }
     }
+
     fun parseLottoNumbers(input: String?): List<Int> {
         checkInputNull(input)
 
@@ -67,7 +84,6 @@ object Exceptions {
                 throw IllegalArgumentException(LottoException.INPUT_LOTTO_INVALID_TYPE)
             }
         }
-
         checkInputIsDistinct(lottoNumbers)
 
         return lottoNumbers
