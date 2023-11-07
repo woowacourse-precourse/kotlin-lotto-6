@@ -34,7 +34,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
             try {
                 money = Money(inputPrice)
             } catch (e: IllegalArgumentException) {
-                outputView.printError(e)
+                outputView.printErrorMessage(e)
                 continue
             }
             break
@@ -46,7 +46,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
             try {
                 purchasedLottoTickets.add(generateLottoTickets())
             } catch (e: IllegalArgumentException) {
-                outputView.printError(e)
+                outputView.printErrorMessage(e)
                 continue
             }
         } while (purchasedLottoTickets.size != money.getPurchasableLottoTicketCount())
@@ -65,7 +65,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
             try {
                 winningNumbersManager = WinningNumbersManager(inputView.getValue().split(","))
             } catch (e: IllegalArgumentException) {
-                outputView.printError(e)
+                outputView.printErrorMessage(e)
                 continue
             }
             break
@@ -78,7 +78,7 @@ class LottoController(private val inputView: InputView, private val outputView: 
             try {
                 winningNumbersManager.isBonusNumberValid(inputView.getValue())
             } catch (e: IllegalArgumentException) {
-                outputView.printError(e)
+                outputView.printErrorMessage(e)
                 continue
             }
             break

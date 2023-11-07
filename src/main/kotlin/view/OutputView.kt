@@ -2,7 +2,7 @@ package view
 
 class OutputView {
 
-    fun printError(exception: Exception) {
+    fun printErrorMessage(exception: Exception) {
         exception.printStackTrace()
         println(exception.message)
     }
