@@ -4,6 +4,7 @@ class Lotto(private val numbers: List<Int>) {
     init {
         val testing_copy = numbers.distinct()
         require(testing_copy.size == 6)
+        println(numbers)
     }
 
     public fun roundStart(bonus: Int, count: Int) {

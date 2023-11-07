@@ -9,11 +9,11 @@ class LotteryGame {
     fun gameStart() {
         val count: Int = insertAmount() / 1000
         if (count == 0) return
-        val lotto = Lotto(makeWinningNumber())
+
+        val tickets = makeTickets(count)
+
+        val winning_num = makeWinningNumber()
         val bonus: Int = readLine()!!.toInt()
-
-        lotto.roundStart(bonus, count)
-
 
     }
 
@@ -41,6 +41,19 @@ class LotteryGame {
             numbers.add(win_input[i].toInt())
         }
         return numbers.distinct().sorted()
+    }
+
+    private fun makeTickets(count: Int): MutableList<Lotto> {
+        val tickets = mutableListOf<Lotto>()
+        val generator = NumberGenerator()
+
+        println("$count" + "개를 구매했습니다.")
+
+        for (i in 1..count) {
+            tickets.add(Lotto(generator.numberGenerate()))
+        }
+
+        return tickets
     }
 
 
