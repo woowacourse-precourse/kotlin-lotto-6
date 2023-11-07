@@ -15,9 +15,6 @@ class LottoResultAnalyzerTest {
     private val lottoResultAnalyzer = LottoResultAnalyzer()
     private val result = listOf(0,3,4,4,5,6,100)
 
-    init {
-    }
-
     @Test
     @DisplayName("발행된 로또와 일치하는 갯수를 가진 결과 리스트를 로또 등수에 맞게 분류")
     fun analyzeLottoResultsTest() {
@@ -25,7 +22,7 @@ class LottoResultAnalyzerTest {
 
         val actualValue = lottoResultAnalyzer.analyzedLottoResults
         val expected = listOf(1, 2, 1, 1, 1)
-        assertEquals(actualValue,expected)
+        assertEquals(expected,actualValue)
     }
 
     @Test
@@ -37,6 +34,6 @@ class LottoResultAnalyzerTest {
         val expected:String = "40632100.0"
         lottoResultAnalyzer.calculateProfitRate(purchaseAmount)
         val actualValue = lottoResultAnalyzer.profitRate
-        assertEquals(actualValue,expected)
+        assertEquals(expected,actualValue)
     }
 }
