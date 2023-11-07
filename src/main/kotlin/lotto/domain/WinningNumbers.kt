@@ -6,7 +6,6 @@ class WinningNumbers(numbers: List<Int>) {
     private var winningNumbers: List<Int>? = null
 
     init {
-        println(numbers)
         validateWinningNumbers(numbers)
         winningNumbers = numbers
     }
