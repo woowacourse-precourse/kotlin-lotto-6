@@ -60,11 +60,6 @@ class LottoCalculator {
     }
 }
 
-data class MatchedData(
-    var winningMatchCount: Int,
-    var bonusNumber: Int,
-)
-
 data class WinningRate(
     var threeMatchedCount: Int = 0,
     var fourMatchedCount: Int = 0,
