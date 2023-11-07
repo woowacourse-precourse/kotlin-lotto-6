@@ -1,4 +1,6 @@
-package lotto
+package lotto.data
+
+import lotto.Constants
 
 data class Winning(val numbers: List<Int>, val bonus: Int) {
     /**

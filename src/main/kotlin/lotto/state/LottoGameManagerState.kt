@@ -1,4 +1,4 @@
-package lotto
+package lotto.state
 
 enum class LottoGameManagerState {
     READY,

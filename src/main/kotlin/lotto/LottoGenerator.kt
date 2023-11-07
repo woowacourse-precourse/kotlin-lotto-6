@@ -1,6 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.data.Lotto
 
 class LottoGenerator {
     private lateinit var lotto: Lotto

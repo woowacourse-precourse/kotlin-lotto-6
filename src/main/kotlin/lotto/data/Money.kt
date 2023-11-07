@@ -1,4 +1,6 @@
-package lotto
+package lotto.data
+
+import lotto.Constants
 
 data class Money(val number: Int) {
 

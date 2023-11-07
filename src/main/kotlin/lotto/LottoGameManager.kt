@@ -1,8 +1,13 @@
 package lotto
 
-import lotto.LottoGameState.*
-import lotto.LottoGameManagerState.*
+import lotto.state.LottoGameState.*
+import lotto.state.LottoGameManagerState.*
 import camp.nextstep.edu.missionutils.Console
+import lotto.data.Lotto
+import lotto.data.Money
+import lotto.data.Winning
+import lotto.state.LottoGameManagerState
+import lotto.state.LottoGameState
 
 class LottoGameManager {
     private var gameState = LottoGameState.values().first()

@@ -1,7 +1,8 @@
 package lotto
 
-import lotto.LottoGameState.*
-import lotto.LottoGameManagerState.*
+import lotto.state.LottoGameState.*
+import lotto.state.LottoGameManagerState.*
+import lotto.state.LottoGameState
 
 class LottoGame {
     private var gameState = LottoGameState.values().first()
