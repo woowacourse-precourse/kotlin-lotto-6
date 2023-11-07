@@ -1,6 +1,9 @@
 package lotto.model
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.constants.LottoConstants.LOTTO_SIZE
+import lotto.constants.LottoConstants.MAX_LOTTO_NUMBER
+import lotto.constants.LottoConstants.MIN_LOTTO_NUMBER
 import lotto.constants.LottoConstants.THOUSAND_WON
 import lotto.enums.LottoResult
 
@@ -73,6 +76,6 @@ class LottoModel {
     }
 
     private fun createRandomNumber(): List<Int> {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE)
     }
 }
