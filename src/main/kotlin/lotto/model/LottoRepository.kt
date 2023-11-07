@@ -16,4 +16,12 @@ class LottoRepository {
         val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6).toList().sorted()
         return Lotto(numbers)
     }
+
+    fun calculateLottoTickets(
+        generatedAutoLottoTickets: List<Lotto>,
+        winningLottoInfo: Lotto,
+        bonusInfo: Int
+    ): Pair<List<Int>, Double> {
+
+    }
 }

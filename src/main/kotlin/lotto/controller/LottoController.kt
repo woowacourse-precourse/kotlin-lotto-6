@@ -20,7 +20,8 @@ class LottoController {
         output.getBonusInfoNotice()
         val bonusInfo = input.getbonusInfo()
 
-        output.showResult(generatedAutoLottoTickets, winningLottoInfo, bonusInfo)
+        val lottoResult = lottoRepository.calculateLottoTickets(generatedAutoLottoTickets, winningLottoInfo, bonusInfo)
+        output.showResult(lottoResult)
     }
 
 

@@ -2,7 +2,6 @@ package lotto.view
 
 import lotto.model.Lotto
 import lotto.utils.Notice
-import org.mockito.internal.matchers.Not
 
 class Output {
     fun startGameNotice() {
@@ -24,7 +23,7 @@ class Output {
         println(Notice.ENTER_BONUS_INFO)
     }
 
-    fun showResult(generatedAutoLottoTickets: List<Lotto>, winningLottoInfo: Lotto, bonusInfo: Int) {
+    fun showResult(generatedAutoLottoTickets: Pair<List<Int>, Double>) {
 
     }
 }
