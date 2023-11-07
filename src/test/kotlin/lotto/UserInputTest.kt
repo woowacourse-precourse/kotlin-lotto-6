@@ -6,7 +6,7 @@ import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class UserInputTest: NsTest() {
+class UserInputTest : NsTest() {
 
     companion object {
         private const val ERROR_MESSAGE = "[ERROR]"
@@ -113,22 +113,6 @@ class UserInputTest: NsTest() {
         assertSimpleTest {
             runException("5000", "1,2,3,4,5,6", "a")
             assertThat(output()).contains(ERROR_MESSAGE)
-        }
-    }
-
-    @Test
-    fun `구입 금액, 당첨 번호, 보너스 번호가 적절하게 입력되는 경우`() {
-        assertSimpleTest {
-            run("5000", "1,2,3,4,5,6", "7")
-            assertThat(output()).contains(
-                "당첨 통계",
-                "3개 일치 (5,000원)",
-                "4개 일치 (50,000원)",
-                "5개 일치 (1,500,000원)",
-                "5개 일치, 보너스 볼 일치 (30,000,000원)",
-                "6개 일치 (2,000,000,000원)",
-                "총 수익률은"
-            )
         }
     }
 

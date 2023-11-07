@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class UserInputMessageTest: NsTest() {
+class UserInputMessageTest : NsTest() {
 
     @Test
     fun `구입금액, 당첨 번호, 보너스번호 입력 메시지가 적절하게 나오는지 여부`() {
