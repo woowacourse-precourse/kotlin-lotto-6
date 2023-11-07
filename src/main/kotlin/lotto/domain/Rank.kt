@@ -1,7 +1,7 @@
 package lotto.domain
 
 enum class Rank(
-    private val count: Int,
+    private val matchedCount: Int,
     private val prize: Int,
     private val message: String,
 ) {
@@ -21,13 +21,13 @@ enum class Rank(
     }
 
     companion object {
-        fun checkRank(count: Int, bonusMatch: Boolean): Rank {
+        fun checkRank(matchedCount: Int, bonusMatch: Boolean): Rank {
             return when {
-                count == FIRST.count -> FIRST
-                count == SECOND.count && bonusMatch -> SECOND
-                count == THIRD.count -> THIRD
-                count == FOURTH.count -> FOURTH
-                count == FIFTH.count -> FIFTH
+                matchedCount == FIRST.matchedCount -> FIRST
+                matchedCount == SECOND.matchedCount && bonusMatch -> SECOND
+                matchedCount == THIRD.matchedCount -> THIRD
+                matchedCount == FOURTH.matchedCount -> FOURTH
+                matchedCount == FIFTH.matchedCount -> FIFTH
                 else -> NONE
             }
         }

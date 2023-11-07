@@ -16,6 +16,7 @@ class OutputView {
     }
 
     fun printWinningStatistics(lottoResult: LottoResult) {
+        println()
         println("당첨 통계")
         println("---")
         print(lottoResult)
