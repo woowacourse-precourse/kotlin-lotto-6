@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.domain.LottoRank
 import lotto.domain.WinningNumber
 
 class Lotto(private val numbers: List<Int>) {
@@ -21,16 +22,7 @@ class Lotto(private val numbers: List<Int>) {
         println(numbers.joinToString(separator = ", ", prefix = "[", postfix = "]"))
     }
 
-    fun resultOfLotto(result: Pair<Int, Boolean>): String {
-        val (matchNumbers, matchBonus) = result
-        return when {
-            matchNumbers == 6 -> "1등"
-            matchNumbers == 5 && matchBonus -> "2등"
-            matchNumbers == 5 -> "3등"
-            matchNumbers == 4 -> "4등"
-            matchNumbers == 3 -> "5등"
-            else -> "낙첨"
-        }
+    fun resultOfLotto(compareResult: Pair<Int, Boolean>): LottoRank {
+        return LottoRank.fromMatches(compareResult.first, compareResult.second)
     }
-
 }
