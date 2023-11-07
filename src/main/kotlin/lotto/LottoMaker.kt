@@ -9,6 +9,6 @@ object LottoMaker {
     }
 
     fun createRandomBonusNumbers(): Int {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 1).get(0)
+        return Randoms.pickUniqueNumbersInRange(1, 45, 1)[0]
     }
 }

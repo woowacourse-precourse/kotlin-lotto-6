@@ -1,11 +1,11 @@
 package lotto
 
 class Calculator {
-    val FIFTH_PRIZE = 5000
-    val FOURTH_PRIZE = 50000
-    val THRID_PRIZE = 1500000
-    val SECOND_PRIZE = 30000000
-    val FIRST_PRIZE = 2000000000
+    private val FIFTH_PRIZE = 5000
+    private val FOURTH_PRIZE = 50000
+    private val THRID_PRIZE = 1500000
+    private val SECOND_PRIZE = 30000000
+    private val FIRST_PRIZE = 2000000000
     private var jackpot3 = 0
     private var jackpot4 = 0
     private var jackpot5 = 0

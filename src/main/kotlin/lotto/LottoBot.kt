@@ -10,7 +10,7 @@ class LottoBot(
     private var bonusWallet: MutableList<Int> = mutableListOf(),
     private var calculater: Calculator = Calculator()
 ) {
-    private var purchase_chance = 0
+    private var purchaseChance = 0
     private val _winningNumbers: List<Int> = winningNumbers
     private val _lottoWallet: List<Lotto> = lottoWallet
     private val _bonusWallet: List<Int> = bonusWallet
@@ -24,7 +24,7 @@ class LottoBot(
         presentStatics()
     }
 
-    fun receiveBudget() {
+    private fun receiveBudget() {
         var flag = true
         while (flag) {
             runCatching {
@@ -37,10 +37,10 @@ class LottoBot(
         }
     }
 
-    fun purchaseLotto() {
-        purchase_chance = budget / Validator.LOTTO_PRICE
+    private fun purchaseLotto() {
+        purchaseChance = budget / Validator.LOTTO_PRICE
 
-        for (i in 1..purchase_chance) {
+        for (i in 1..purchaseChance) {
             var flag = true
             while (flag) {
                 runCatching {
@@ -55,14 +55,14 @@ class LottoBot(
         }
     }
 
-    fun showLottos() {
-        println("\n${purchase_chance}개를 구매했습니다.")
+    private fun showLottos() {
+        println("\n${purchaseChance}개를 구매했습니다.")
         lottoWallet.map {
             println(it._numbers)
         }
     }
 
-    fun receiveWinningNumbers() {
+    private fun receiveWinningNumbers() {
         var flag = true
         while (flag) {
             runCatching {
@@ -78,7 +78,7 @@ class LottoBot(
     }
 
 
-    fun receiveBonusNumbers() {
+    private fun receiveBonusNumbers() {
         var flag = true
         while (flag) {
             runCatching {
@@ -90,7 +90,7 @@ class LottoBot(
         }
     }
 
-    fun presentStatics() {
+    private fun presentStatics() {
         calculater.calculateAllJackpot(
             _lottoWallet,
             _bonusWallet,
