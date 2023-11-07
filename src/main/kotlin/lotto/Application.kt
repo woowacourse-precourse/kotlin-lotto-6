@@ -24,18 +24,19 @@ fun printResults(results: List<LottoResult>, purchaseAmount: Int) {
     val profitRate = totalPrize.toDouble() / purchaseAmount * 100
     println("총 수익률은 ${profitRate}%입니다.")
 }
-
+//결과값 출력
 fun buyTickets(): Pair<List<Lotto>, Int> {
     val purchaseAmount = getValidPurchaseAmount()
     val tickets = buyLottoTickets(purchaseAmount)
     return tickets to purchaseAmount
 }
-
+//로또 구매
 fun getWinningNumbersAndBonus(): Pair<List<Int>, Int> {
     val winningNumbers = getValidWinningNumbers()
     val bonusNumber = getValidBonusNumber()
     return winningNumbers to bonusNumber
 }
+//당첨번호 및 보너스 번호 확인
 
 fun getResults(tickets: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): List<LottoResult> {
     return tickets.map { it.getLottoResult(winningNumbers, bonusNumber) }
@@ -50,10 +51,12 @@ fun buyLottoTickets(purchaseAmount: Int): List<Lotto> {
         lotto
     }
 }
+//로또티켓구매
 fun inputPurchaseAmount(): String {
     println("구입금액을 입력해 주세요.")
     return Console.readLine()
 }
+//로또구매장수 입력받기
 
 fun getValidPurchaseAmount(): Int {
     while (true) {
@@ -71,15 +74,17 @@ fun getValidPurchaseAmount(): Int {
         }
     }
 }
+//사용자 구매 유효성 체크
 
 fun generateLottoNumbers(): List<Int> {
     return Randoms.pickUniqueNumbersInRange(1, 45, 6)
 }
-
+//로또번호 랜덤 생성
 fun inputWinningNumbers(): String {
     println("당첨 번호를 입력해 주세요.")
     return Console.readLine()
 }
+//당첨 번호 입력 받기
 
 fun getValidWinningNumbers(): List<Int> {
     while (true) {
@@ -100,12 +105,12 @@ fun getValidWinningNumbers(): List<Int> {
         }
     }
 }
-
+//당첨번호 입력 및 유효성 검사
 fun inputBonusNumber(): String {
     println("보너스 번호를 입력해 주세요.")
     return Console.readLine()
 }
-
+//보너스 번호 입력 받기
 fun getValidBonusNumber(): Int {
     while (true) {
         val input = inputBonusNumber()
@@ -122,3 +127,4 @@ fun getValidBonusNumber(): Int {
         }
     }
 }
+//보너스 번호 입력 및 유효성 검사
