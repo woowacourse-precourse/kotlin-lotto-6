@@ -14,5 +14,9 @@ class Ticket(val cost: Money) {
 
     override fun toString(): String = buildString {
         lottos.forEach { lotto -> appendLine(lotto.toStringNumbers()) }
-    }.removeSuffix("\n")
+    }.removeSuffix(SUFFIX)
+
+    companion object {
+        private const val SUFFIX = "\n"
+    }
 }
