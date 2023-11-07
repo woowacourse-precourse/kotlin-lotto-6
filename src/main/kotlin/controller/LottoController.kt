@@ -14,7 +14,6 @@ class LottoController(private val inputView: InputView, private val outputView: 
     private lateinit var money: Money
     private lateinit var winningNumbersManager: WinningNumbersManager
     private var purchasedLottoTickets = mutableListOf<Lotto>()
-    private var winningAmount = 0L
     fun run() {
         do {
             outputView.printPurchaseAmount()
