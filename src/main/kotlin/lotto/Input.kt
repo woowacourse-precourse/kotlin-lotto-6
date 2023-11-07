@@ -8,8 +8,13 @@ object Input {
         require(input.isNotEmpty())
         return input
     }
+    private fun getNumberInput(): Int {
+        val input = getInput()
+        require(isNumeric(input))
+        return input.toInt()
+    }
     fun getBudget(): Int = repeatUntilGetValidInput {
-        val budget = getInput().toInt()
+        val budget = getNumberInput()
         require(budget > 0)
         require(budget % Constants.PRICE_OF_LOTTO == 0)
         budget
@@ -24,9 +29,7 @@ object Input {
         }
     }
     fun getBonusNumber(): Int = repeatUntilGetValidInput {
-        val input = getInput()
-        require(isNumeric(input))
-        val bonusNumber = input.toInt()
+        val bonusNumber = getNumberInput()
         require(bonusNumber > 0)
         require(isValidLottoNum(bonusNumber))
         bonusNumber
