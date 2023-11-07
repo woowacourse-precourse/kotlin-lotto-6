@@ -11,14 +11,14 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.all { it in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER })
     }
 
-    fun checkMatch(winningNumbers: List<Int>, bonusNumber: Int): Int {
+    fun checkMatch(winningNumbers: List<Int>, bonusNumber: Int): LottoRank? {
         val matchingNumbers = numbers.intersect(winningNumbers.toSet())
         return when (matchingNumbers.size) {
-            6 -> 1
-            5 -> if (numbers.contains(bonusNumber)) 2 else 3
-            4 -> 4
-            3 -> 5
-            else -> 0
+            6 -> LottoRank.FIRST
+            5 -> if (numbers.contains(bonusNumber)) LottoRank.SECOND else LottoRank.THIRD
+            4 -> LottoRank.FOURTH
+            3 -> LottoRank.FIFTH
+            else -> null
         }
 
     }
