@@ -2,14 +2,17 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 
-class LottoBot {
-    private var budget = 0
-    private var winningNumbers: MutableList<Int> = mutableListOf()
-    private var bonusNumber = 0
-    private lateinit var lottoWallet: LottoWallet
+class LottoBot(
+    private var budget: Int = 0,
+    private var winningNumbers: MutableList<Int> = mutableListOf(),
+    private var bonusNumber: Int = 0,
+    private var _lottoWallet: LottoWallet = LottoWallet()
+) {
+    val lottoWallet: LottoWallet = _lottoWallet
 
     fun startLotto() {
         receiveBudget()
+        purchaseLotto()
         receiveWinningNumbers()
         receiveBonusNumbers()
     }
@@ -24,6 +27,22 @@ class LottoBot {
             }
                 .onSuccess { flag = false }
                 .onFailure { exception -> println(exception.message) }
+        }
+    }
+
+    fun purchaseLotto() {
+        val chance = budget / Validator.LOTTO_PRICE
+
+        for (i in 1..chance) {
+            var flag = true
+            while (flag) {
+                runCatching {
+                    val newLotto = Lotto(LottoMaker.createRandomNumbers())
+                    lottoWallet.addLotto(newLotto)
+                }
+                    .onSuccess { flag = false }
+                    .onFailure { exception -> println(exception.message) }
+            }
         }
     }
 
