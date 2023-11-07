@@ -18,16 +18,15 @@ class LottoMachine {
             val correctNum = l.compareNumber(lottos)
             val correctBonusNum = l.compareBonusNumber(bonusNum)
             when {
-                correctNum == 3 -> fifthPlace++
-                correctNum == 4 -> fourthPlace++
-                correctNum == 5 && !correctBonusNum -> thirdPlace++
-                correctNum == 5 && correctBonusNum -> secondPlace++
-                correctNum == 6 -> firstPlace++
+                correctNum == THREE -> fifthPlace++
+                correctNum == FOUR -> fourthPlace++
+                correctNum == FIVE && !correctBonusNum -> thirdPlace++
+                correctNum == FIVE && correctBonusNum -> secondPlace++
+                correctNum == SIX -> firstPlace++
             }
         }
         outputManager.printLottoStatistic(firstPlace, secondPlace, thirdPlace, fourthPlace, fifthPlace)
         outputManager.printRate(calculateRate())
-
     }
 
     fun lottoNum(): Int {
@@ -56,6 +55,10 @@ class LottoMachine {
         private const val THIRD_PLACE_PRIZE = 1500000
         private const val SECOND_PLACE_PRIZE = 30000000
         private const val FIRST_PLACE_PRIZE = 2000000000
+        private const val THREE = 3
+        private const val FOUR = 4
+        private const val FIVE = 5
+        private const val SIX = 6
 
     }
 }
