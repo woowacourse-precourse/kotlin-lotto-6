@@ -4,11 +4,17 @@ import camp.nextstep.edu.missionutils.Randoms
 import kotlin.math.round
 
 fun lottoMoney(): Int{
-    val moneyinput: String? = readLine()
-    requireNotNull(moneyinput){"[ERROR"}
-    val money:Int? = moneyinput.toIntOrNull()
-    require(money != null && money != 0 && money % 1000 == 0){"[ERROR"}
-    return money.div(1000)
+    try {
+        val moneyinput: String? = readLine()
+        requireNotNull(moneyinput) { "[ERROR" }
+        val money: Int? = moneyinput.toIntOrNull()
+        require(money != null && money != 0 && money % 1000 == 0) { "[ERROR]" }
+        return money.div(1000)
+    }
+    catch(e:IllegalArgumentException){
+        println("[ERROR]")
+        return lottoMoney()
+    }
 }
 
 fun lotto_dispenser(money: Int): MutableList<Lotto>{
@@ -22,21 +28,33 @@ fun lotto_dispenser(money: Int): MutableList<Lotto>{
 }
 
 fun winInput(): MutableList<Int>{
-    var win_number:MutableList<Int> = mutableListOf<Int>()
-    val input_number:List<String> = requireNotNull(readLine()).split(',')
-    for (i in input_number){
-        val num = requireNotNull(i.toIntOrNull()){"[ERROR]"}
-        require(num >= 1 && num <= 45)
-        win_number.add(num)
+    try {
+        var win_number: MutableList<Int> = mutableListOf<Int>()
+        val input_number: List<String> = requireNotNull(readLine()) { "[ERROR]" }.split(',')
+        for (i in input_number) {
+            val num = requireNotNull(i.toIntOrNull()) { "[ERROR]" }
+            require(num >= 1 && num <= 45)
+            win_number.add(num)
+        }
+        require(input_number.distinct().size == 6) { "[ERROR]" }
+        return win_number
     }
-    require(input_number.distinct().size == 6){"[ERROR]"}
-    return win_number
+    catch(e: IllegalArgumentException){
+        println("[ERROR]")
+        return winInput()
+    }
 }
 
 fun bonusChecker(win_num:MutableList<Int>): Int{
-    val input_bonus:Int? = requireNotNull(readLine()){"[ERROR]"}.toIntOrNull()
-    require(input_bonus != null && input_bonus !in win_num)
-    return input_bonus
+    try {
+        val input_bonus: Int? = requireNotNull(readLine()) { "[ERROR]" }.toIntOrNull()
+        require(input_bonus != null && input_bonus !in win_num)
+        return input_bonus
+    }
+    catch(e:IllegalArgumentException){
+        println("[ERROR]")
+        return bonusChecker(win_num)
+    }
 }
 
 fun win_checker(lottos: MutableList<Lotto>, win_num: MutableList<Int>, bonus: Int): Int{
