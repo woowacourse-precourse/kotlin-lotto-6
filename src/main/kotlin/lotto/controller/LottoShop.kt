@@ -34,18 +34,18 @@ class LottoShop {
             lottos.add(lotto)
             println(lotto)
         }
-        startLottoProgram()
+        startLottoProgram(price.toInt())
     }
 
-    private fun startLottoProgram() {
+    private fun startLottoProgram(price: Int) {
         val lottoNum = lottoMC.pickLottoNum()
         validator.validateLottoNum(lottoNum)
         val bonusNum = lottoMC.pickBonusNum()
         validator.validateBonusNum(bonusNum, lottoNum)
-        checkLottoCorrect(lottoNum, bonusNum)
+        checkLottoCorrect(lottoNum, bonusNum, price)
     }
 
-    private fun checkLottoCorrect(lottoNum: List<Int>, bonusNum: String) {
+    private fun checkLottoCorrect(lottoNum: List<Int>, bonusNum: String, price: Int) {
         for (lotto in lottos) {
             val correctCnt = lotto.getNumbers().intersect(lottoNum.toSet()).size
             val bonusCnt = lotto.getNumbers().contains(bonusNum.toInt())
@@ -53,7 +53,7 @@ class LottoShop {
             println("lottoNum: $lottoNum, lotto: ${lotto.getNumbers()}, bonusNum: $bonusNum, correctCnt: $correctCnt, bonusCnt: $bonusCnt")
             lottoResult(correctCnt, bonusCnt)
         }
-        printResult(threeMatch, fourMatch, fiveMatch, bonusMatch, sixMatch)
+        printResult(threeMatch, fourMatch, fiveMatch, bonusMatch, sixMatch, price)
     }
 
     private fun lottoResult(correctCnt: Int, bonusCnt: Boolean) {
@@ -70,7 +70,34 @@ class LottoShop {
         }
     }
 
-    private fun printResult(threeMatch: Int, fourMatch: Int, fiveMatch: Int, bonusMatch: Int, sixMatch: Int) {
-        outputView.printLottoResult(threeMatch, fourMatch, fiveMatch, bonusMatch, sixMatch)
+    private fun printResult(
+        threeMatch: Int,
+        fourMatch: Int,
+        fiveMatch: Int,
+        bonusMatch: Int,
+        sixMatch: Int,
+        price: Int,
+    ) {
+        val totalPrize = (threeMatch * THREE_MATCH_PRIZE) +
+                (fourMatch * FOUR_MATCH_PRIZE) +
+                (fiveMatch * FIVE_MATCH_PRIZE) +
+                (bonusMatch * BONUS_MATCH_PRIZE) +
+                (sixMatch * SIX_MATCH_PRIZE)
+
+        val earningRate = ((totalPrize.toDouble() / price.toDouble()) * 100)
+        val roundedEarningRate = String.format("%.1f", earningRate).toDouble()
+        println(earningRate)
+        println(roundedEarningRate)
+        outputView.printLottoResult(threeMatch, fourMatch, fiveMatch, bonusMatch, sixMatch, roundedEarningRate)
     }
+
+
+    companion object {
+        const val THREE_MATCH_PRIZE = 5_000
+        const val FOUR_MATCH_PRIZE = 50_000
+        const val FIVE_MATCH_PRIZE = 1_500_000
+        const val BONUS_MATCH_PRIZE = 30_000_000
+        const val SIX_MATCH_PRIZE = 2_000_000_000
+    }
+
 }
