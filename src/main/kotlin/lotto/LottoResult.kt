@@ -6,11 +6,9 @@ class LottoResult(private val lottoTickets: LottoTickets, private val winningLot
 
     private var winningResult: List<Prize> = listOf()
 
-    init {
-        findWinningResult()
-    }
+    fun createResult() = calculateWinningResult()
 
-    private fun findWinningResult() {
+    private fun calculateWinningResult() {
         val matchedNumbersCounts = calculateMatchedNumberCounts(winningLotto)
         val bonusNumberExists = checkForBonusNumber(winningLotto)
         winningResult = List(lottoTickets.tickets.size) { index ->
@@ -19,21 +17,20 @@ class LottoResult(private val lottoTickets: LottoTickets, private val winningLot
     }
 
     private fun calculateMatchedNumberCounts(winningLotto: WinningLotto): List<Int> = lottoTickets.tickets.map { it.countMatchingNumbers(winningLotto.winningNumbers) }
-
     private fun checkForBonusNumber(winningLotto: WinningLotto): List<Boolean> = lottoTickets.tickets.map { it.hasBonusNumber(winningLotto.bonusNumber) }
 
-    fun printResult() {
-        printWinningResults()
-        printWinningProfitRate()
+    fun displayResult() {
+        displayWinningResults()
+        displayWinningProfitRate()
     }
 
-    private fun printWinningResults() {
+    private fun displayWinningResults() {
         println(WIN_STATICS)
         println(STATICS_DIVIDER)
-        displayWinningResult()
+        printWinningResult()
     }
 
-    private fun displayWinningResult() {
+    private fun printWinningResult() {
         val prizes = Prize.values().filterNot { it == Prize.Nothing }.reversed()
         prizes.forEach { printEachWinningResult(it) }
     }
@@ -55,15 +52,12 @@ class LottoResult(private val lottoTickets: LottoTickets, private val winningLot
             winTicketCount: Int
     ): String = "${matchedNumberCount}개 일치, ${bonusInfo}(${winningPrizeMoney})원 - ${winTicketCount}개"
 
+    private fun findMatchedNumberCount(prize: Prize) = Prize.findPrizeMatchNumberCount(prize)
+    private fun bonusInfoMessage(prize: Prize): String = if (prize == Prize.Second) BONUS_NUMBER_MATCH else ""
+    private fun Int.toWonFormat(): String = DecimalFormat("#,###").format(this)
     private fun findWinTicketCount(prize: Prize) = winningResult.count { it == prize }
 
-    private fun bonusInfoMessage(prize: Prize): String = if (prize == Prize.Second) BONUS_NUMBER_MATCH else ""
-
-    private fun findMatchedNumberCount(prize: Prize) = Prize.findPrizeMatchNumberCount(prize)
-
-    private fun Int.toWonFormat(): String = DecimalFormat("#,###").format(this)
-
-    private fun printWinningProfitRate() = println(TOTAL_PROFIT.format(calculateTotalStaticsResult()))
+    private fun displayWinningProfitRate() = println(TOTAL_PROFIT.format(calculateTotalStaticsResult()))
 
     private fun calculateTotalStaticsResult(): Double {
         val winnerCountMap = winningResult.groupingBy { it }.eachCount()

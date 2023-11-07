@@ -4,11 +4,12 @@ class LottoMachine {
 
     private var lottoTickets = LottoTickets()
     private var winningLotto = WinningLotto()
+    private lateinit var lottoResult: LottoResult
 
     fun init() {
         generateLottoTickets()
         generateWinningNumbers()
-        showResult()
+        generateResult()
     }
 
     private fun generateLottoTickets() {
@@ -21,8 +22,10 @@ class LottoMachine {
         winningLotto.createBonusNumber().also { println() }
     }
 
-    private fun showResult() {
-        LottoResult(lottoTickets, winningLotto).printResult()
+    private fun generateResult() {
+        lottoResult = LottoResult(lottoTickets, winningLotto)
+        lottoResult.createResult()
+        lottoResult.displayResult()
     }
 
 }
