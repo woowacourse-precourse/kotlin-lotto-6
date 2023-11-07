@@ -1,9 +1,12 @@
 package lotto
 
+import camp.nextstep.edu.missionutils.Randoms
+
 class LottoSeller {
     var numTickets = 0
-    var lottoNumbers = mutableListOf<Int>()
+    var winningNumbers = mutableListOf<Int>()
     var bonumNumber = 0
+    var tickets = ArrayList<List<Int>>()
     fun buyTickets(inputMoney: Int) {
         if (inputMoney <= 1000) {
             throw IllegalArgumentException("구입금액은 1000원 이상이어야 합니다.")
@@ -15,17 +18,19 @@ class LottoSeller {
         this.numTickets = inputMoney / 1000
     }
 
-    fun getLottoNumbers(numbers: List<Int>, bonus: Int) {
+    fun createLotto() {
+        println("\n${this.numTickets}개를 구매했습니다.")
+
+        for (i in 0..numTickets-1){
+            this.tickets.add(Randoms.pickUniqueNumbersInRange(1, 45, 6))
+            println(this.tickets[i])
+        }
+    }
+
+    fun getWinningNumbers(numbers: List<Int>, bonus: Int) {
 
     }
 
-    fun winningCount() {
-
-    }
-
-    fun getProfitRate() {
-
-    }
 
 
 }

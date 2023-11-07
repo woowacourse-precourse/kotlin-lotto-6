@@ -16,6 +16,5 @@ fun main() {
             println("[ERROR]"+error)
         }
     }
-
-    println("hello")
+    seller.createLotto()
 }
