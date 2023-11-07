@@ -6,7 +6,7 @@ import lotto.requireAndReturn
 import lotto.toValidInt
 import lotto.validPositiveNumber
 
-class Payment private constructor(val lottoPrice: Money, val cost: Money) {
+class Payment private constructor(lottoPrice: Money, val cost: Money) {
 
     val purchase: Int = cost.value / lottoPrice.value
 

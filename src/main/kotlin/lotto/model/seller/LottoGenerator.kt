@@ -18,7 +18,7 @@ class LottoGenerator private constructor(private val generator: RandomGenerator)
     }
 
     companion object {
-        const val START_NUMBER = 1
+        private const val START_NUMBER = 1
         private const val END_NUMBER = 45
         private const val LOTTO_NUMBER_COUNT = 6
 
