@@ -39,11 +39,21 @@ class LottoResult(private val lottoTickets: LottoTickets, private val winningLot
     }
 
     private fun printEachWinningResult(prize: Prize) {
-        val message = winCountMessage(matchedNumberCount = findMatchedNumberCount(prize), bonusInfo = bonusInfoMessage(prize), winningPrizeMoney = prize.amount.toWonFormat(), winTicketCount = findWinTicketCount(prize))
+        val message = winCountMessage(
+                matchedNumberCount = findMatchedNumberCount(prize),
+                bonusInfo = bonusInfoMessage(prize),
+                winningPrizeMoney = prize.amount.toWonFormat(),
+                winTicketCount = findWinTicketCount(prize)
+        )
         println(message)
     }
 
-    private fun winCountMessage(matchedNumberCount: Int, bonusInfo: String, winningPrizeMoney: String, winTicketCount: Int): String = "${matchedNumberCount}개 일치, ${bonusInfo}(${winningPrizeMoney})원 - ${winTicketCount}개"
+    private fun winCountMessage(
+            matchedNumberCount: Int,
+            bonusInfo: String,
+            winningPrizeMoney: String,
+            winTicketCount: Int
+    ): String = "${matchedNumberCount}개 일치, ${bonusInfo}(${winningPrizeMoney})원 - ${winTicketCount}개"
 
     private fun findWinTicketCount(prize: Prize) = winningResult.count { it == prize }
 
