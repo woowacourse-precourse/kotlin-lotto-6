@@ -1,5 +1,8 @@
 package lotto
 
+import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -12,7 +15,6 @@ class LottoTest {
         }
     }
 
-    // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
     @Test
     fun `로또 번호에 중복된 숫자가 있으면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
@@ -20,5 +22,17 @@ class LottoTest {
         }
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `구매한 로또 번호 테스트`() {
+        assertSimpleTest {
+            val result = Purchase().lottoNum(3000)
+            result.forEach { lottoNumbers ->
+                assertTrue(lottoNumbers.size == 6)
+                assertTrue(lottoNumbers.toSet().size == 6)
+                assertTrue(lottoNumbers.all { it in 1..45 })
+                assertTrue(lottoNumbers.sorted() == lottoNumbers)
+            }
+            assertTrue(result.size == 3)
+        }
+    }
 }
