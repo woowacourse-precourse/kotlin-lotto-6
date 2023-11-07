@@ -1,16 +1,16 @@
 package lotto.util
 
-const val PURCHASE_PRICE_INPUT_TEXT = "구입금액을 입력해 주세요."
-const val PURCHASE_NUMBER_OUTPUT_TEXT = "개를 구매했습니다."
-const val WINNING_NUMBER_INPUT_TEXT = "당첨 번호를 입력해 주세요."
-const val BONUS_NUMBER_INPUT_TEXT = "보너스 번호를 입력해 주세요."
+const val PURCHASE_PRICE_TEXT = "구입금액을 입력해 주세요."
+const val PURCHASE_NUMBER_TEXT = "개를 구매했습니다."
+const val WINNING_NUMBER_TEXT = "당첨 번호를 입력해 주세요."
+const val BONUS_NUMBER_TEXT = "보너스 번호를 입력해 주세요."
 const val WINNING_STATISTICS_TEXT = "당첨 통계"
 const val WINNING_RESULT_THREE_TEXT = "3개 일치 (5,000원) - "
 const val WINNING_RESULT_FOUR_TEXT = "4개 일치 (50,000원) - "
 const val WINNING_RESULT_FIVE_TEXT = "5개 일치 (1,500,000원) - "
 const val WINNING_RESULT_FIVE_BONUS_TEXT = "5개 일치, 보너스 볼 일치 (30,000,000원) - "
 const val WINNING_RESULT_SIX_TEXT = "6개 일치 (2,000,000,000원) - "
-const val RATE_OF_RETURN_TEXT = "총 수익률은 %입니다."
+const val PROFIT_RATE_TEXT = "총 수익률은 %입니다."
 
 const val LOTTO_NUMBER_MIN = 1
 const val LOTTO_NUMBER_MAX = 45
