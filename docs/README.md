@@ -10,7 +10,7 @@
     - [ ] 사용자가 구입할 금액을 입력한다. (`InputView.purchaseAmount`)
         - [ ] 구입할 금액은 1,000 원 단위여야 한다.
 
-- [x] 로또 수량을 계산한다.구입할 금액이 10,000 원이면 10 개이다. (`Lottoes.calculateQuantity`)
+- [x] 로또 수량을 계산한다.구입할 금액이 10,000 원이면 10 개이다. (`Lottoes` 의 `lottoTicketCount` 속성)
 
 - [ ] 구입한 로또에 대한 정보를 출력한다.
     - [ ] 발행한 로또 수량을 가지고 안내 메시지를 출력한다. (`OutputuView.lottoQuantityPrompt`)
@@ -57,7 +57,7 @@
 
 - [ ] 당첨 기준에 따라 당첨 내역을 계산한다.
     - [ ] 입력 번호와, 로또 번호를 비교해서 같은 숫자 개수를 계산한다. (`Lotto.calculateMathingCount`)
-    - [ ] 입력 번호와 매칟 숫자를 비교해서 총 당첨 내역을 계산한다. (`Lottoes.calculateWinningResult`)
+    - [ ] 총 로또 당첨 결과를 계산한다. (`Lottoes.getLottoesResult`)
 
 - [ ] 당첨 통계
     - [ ] 당첨 통계 안내 메시지를 출력한다. (`OutputView.winningResultPrompt`)
@@ -78,3 +78,7 @@
 ## 코딩 전 UML 작성
 
 ![lotto_game_uml_ver1.png](lotto_game_uml_ver1.png)
+
+## 중간 UML 수정
+
+![img.png](lotto_game_uml_ver2.png)
