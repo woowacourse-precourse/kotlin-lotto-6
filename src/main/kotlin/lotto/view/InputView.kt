@@ -1,11 +1,21 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.utils.UserInputException
+import java.lang.IllegalArgumentException
 
 class InputView {
     fun inputPurchaseAmount(): Int {
-        val purchaseAmount = Console.readLine()
-        return purchaseAmount.toInt()
+        while (true) {
+            val purchaseAmount = Console.readLine()
+            try {
+                return UserInputException.purchaseAmountException(purchaseAmount) ?: continue
+            }catch (e: IllegalArgumentException){
+                println(e.message)
+            }
+
+        }
+
     }
 
     fun inputPrizeLottoNumber(): List<Int> {
