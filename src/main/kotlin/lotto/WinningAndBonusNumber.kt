@@ -1,5 +1,4 @@
 package lotto
 
-class WinningAndBonusNumber(winningNumber: List<Int>, bonusNumber: List<Int>) {
-
+class WinningAndBonusNumber(var winningNumber: List<Int>, var bonusNumber: List<Int>) {
 }
