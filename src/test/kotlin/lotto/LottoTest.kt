@@ -2,6 +2,7 @@ package lotto
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.assertj.core.api.Assertions.assertThat
 
 
 class LottoTest {
@@ -20,6 +21,7 @@ class LottoTest {
         }
     }
 
+    // 아래에 추가 테스트 작성 가능
     @Test
     fun `로또 번호는 1~45 사이의 숫자가 아니면 예외를 발생시킨다`() {
         assertThrows<IllegalArgumentException> {
@@ -27,5 +29,18 @@ class LottoTest {
         }
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `로또 번호 정상 출력 테스트`() {
+        val lotto = Lotto(listOf(3, 4, 1, 2, 6, 5))
+        assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]")
+    }
+
+
+    @Test
+    fun `로또 번호 정상 입력 테스트`() {
+        val numbers = listOf(1, 2, 3, 4, 5, 6)
+        val lotto = Lotto(numbers)
+        assertThat(lotto.toString()).isEqualTo(numbers.sorted().toString())
+    }
+
 }
