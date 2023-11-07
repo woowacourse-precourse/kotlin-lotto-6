@@ -5,8 +5,14 @@ import camp.nextstep.edu.missionutils.Randoms
 class NumberGenerator {
     fun createRandomNumbers(): List<Int> =
         Randoms.pickUniqueNumbersInRange(
-            Constants.Numbers.RANDOM_NUMBERS_RANGE_START.value,
-            Constants.Numbers.RANDOM_NUMBERS_RANGE_END.value,
-            Constants.Numbers.RANDOM_NUMBERS_SIZE.value
+            RANDOM_NUMBERS_RANGE_START,
+            RANDOM_NUMBERS_RANGE_END,
+            RANDOM_NUMBERS_SIZE
         )
+
+    companion object {
+        const val RANDOM_NUMBERS_RANGE_START: Int = 1
+        const val RANDOM_NUMBERS_RANGE_END: Int = 45
+        const val RANDOM_NUMBERS_SIZE: Int = 6
+    }
 }
