@@ -1,6 +1,7 @@
 package lotto.model
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.constants.LottoConstants.THOUSAND_WON
 import lotto.enums.LottoResult
 
 class LottoModel {
@@ -23,7 +24,7 @@ class LottoModel {
     }
 
     private fun calculateLottoCount(amount: Int): Int {
-        return amount / 1000
+        return amount / THOUSAND_WON
     }
 
     fun setWinningNumbers(winningNumbers: String) {
