@@ -3,6 +3,10 @@ package lotto
 import lotto.controller.LottoController
 
 fun main() {
-    val lottoController = LottoController()
-    lottoController.start()
+    try {
+        val lottoController = LottoController()
+        lottoController.start()
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+    }
 }
