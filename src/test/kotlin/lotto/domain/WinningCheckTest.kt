@@ -10,7 +10,7 @@ class WinningCheckTest {
         val testList = mutableListOf<Lotto>()
         testList.add(Lotto(listOf(1, 2, 3, 4, 5, 6)))
         val testCheck = WinningCheck()
-        val testGrade = testCheck.numbersCheck(testList,listOf(1,2,3,4,5,6),7)
+        val testGrade = testCheck.numbersCheck(testList, listOf(1, 2, 3, 4, 5, 6), 7)
         assertThat(testGrade[0]).isEqualTo(Grade.FIRST)
     }
 
@@ -19,7 +19,7 @@ class WinningCheckTest {
         val testList = mutableListOf<Lotto>()
         testList.add(Lotto(listOf(1, 2, 3, 4, 5, 6)))
         val testCheck = WinningCheck()
-        val testGrade = testCheck.numbersCheck(testList,listOf(1,2,3,4,5,8),6)
+        val testGrade = testCheck.numbersCheck(testList, listOf(1, 2, 3, 4, 5, 8), 6)
         assertThat(testGrade[0]).isEqualTo(Grade.SECOND)
     }
 
@@ -28,15 +28,16 @@ class WinningCheckTest {
         val testList = mutableListOf<Lotto>()
         testList.add(Lotto(listOf(1, 2, 3, 4, 5, 6)))
         val testCheck = WinningCheck()
-        val testGrade = testCheck.numbersCheck(testList,listOf(1,2,3,4,5,8),9)
+        val testGrade = testCheck.numbersCheck(testList, listOf(1, 2, 3, 4, 5, 8), 9)
         assertThat(testGrade[0]).isEqualTo(Grade.THIRD)
     }
+
     @Test
     fun gradeFourthCheck() {
         val testList = mutableListOf<Lotto>()
         testList.add(Lotto(listOf(1, 2, 3, 4, 5, 6)))
         val testCheck = WinningCheck()
-        val testGrade = testCheck.numbersCheck(testList,listOf(1,2,3,4,9,10),8)
+        val testGrade = testCheck.numbersCheck(testList, listOf(1, 2, 3, 4, 9, 10), 8)
         assertThat(testGrade[0]).isEqualTo(Grade.FOURTH)
     }
 
@@ -45,7 +46,7 @@ class WinningCheckTest {
         val testList = mutableListOf<Lotto>()
         testList.add(Lotto(listOf(1, 2, 3, 4, 5, 6)))
         val testCheck = WinningCheck()
-        val testGrade = testCheck.numbersCheck(testList,listOf(1,2,3,10,11,12),7)
+        val testGrade = testCheck.numbersCheck(testList, listOf(1, 2, 3, 10, 11, 12), 7)
         assertThat(testGrade[0]).isEqualTo(Grade.FIFTH)
     }
 

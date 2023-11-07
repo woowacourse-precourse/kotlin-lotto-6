@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 class LottoManagerTest {
     @Test
-    fun managerTest(){
+    fun managerTest() {
         val testManager = LottoManager()
         testManager.generateLotto()
         testManager.generateLotto()

@@ -23,13 +23,13 @@ fun enterBonusNumber(winningNumber: List<Int>): Int {
     return InputView.enterBonusNumber(winningNumber)
 }
 
-fun printPrize(reward : List<Grade>,myMoney : Int){
+fun printPrize(reward: List<Grade>, myMoney: Int) {
     val prizeChecker = Prize()
     OutputView.printPrize(reward)
     OutputView.printYield(prizeChecker.getPrizeRatio(reward, myMoney))
 }
 
-fun playLotto(){
+fun playLotto() {
     val consumer = Consumer()
     val manage = consumer.getManager()
     val myMoney = enterMoney()
@@ -39,7 +39,7 @@ fun playLotto(){
     val bonusNumber = enterBonusNumber(winningNumber)
     val winningChecker = WinningCheck()
     val reward = winningChecker.numbersCheck(manage.getLotto(), winningNumber, bonusNumber)
-    printPrize(reward,myMoney)
+    printPrize(reward, myMoney)
 }
 
 fun main() {

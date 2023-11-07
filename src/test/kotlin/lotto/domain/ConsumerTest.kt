@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 class ConsumerTest {
     @Test
-    fun consumerTest(){
+    fun consumerTest() {
         val testConsumer = Consumer()
         testConsumer.purchaseLotto(3)
         val testManager = testConsumer.getManager()

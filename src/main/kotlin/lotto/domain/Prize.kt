@@ -2,7 +2,7 @@ package lotto.domain
 
 class Prize {
     fun getPrizeRatio(grades: List<Grade>, money: Int): String {
-        if(money==0){
+        if (money == 0) {
             return "0.0"
         }
         val totalPrize = countPrize(grades)

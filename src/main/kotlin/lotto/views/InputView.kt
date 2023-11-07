@@ -5,7 +5,7 @@ import lotto.domain.*
 
 object InputView {
     fun enterMoney(): Int {
-        while(true) {
+        while (true) {
             val input = Console.readLine()
             try {
                 moneyErrorCheck(input)
@@ -17,7 +17,7 @@ object InputView {
     }
 
     fun enterWinningNumber(): List<Int> {
-        while(true) {
+        while (true) {
             val input = Console.readLine()
             val splitInput = input.split(",")
             try {
@@ -29,7 +29,7 @@ object InputView {
     }
 
     fun enterBonusNumber(winningNumber: List<Int>): Int {
-        while(true) {
+        while (true) {
             val bonus = Console.readLine()
             try {
                 return bonusNumberErrorCheck(winningNumber, bonus)

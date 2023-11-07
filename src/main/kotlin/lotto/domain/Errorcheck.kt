@@ -27,8 +27,8 @@ fun moneyCheck(money: Int) {
     }
 }
 
-fun moneyNegativeCheck(money : Int){
-    if(money<0){
+fun moneyNegativeCheck(money: Int) {
+    if (money < 0) {
         throw IllegalArgumentException(NEGATIVE_ERROR)
     }
 }
@@ -44,8 +44,8 @@ fun winningNumberErrorCheck(input: String, splitInput: List<String>): List<Int> 
 }
 
 fun winNumberCheck(splitInput: List<String>) {
-    for(input in splitInput){
-        if(input.toIntOrNull()==null){
+    for (input in splitInput) {
+        if (input.toIntOrNull() == null) {
             throw IllegalArgumentException(NUMBER_ERROR)
         }
     }

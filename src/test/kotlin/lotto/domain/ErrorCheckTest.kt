@@ -5,85 +5,85 @@ import org.junit.jupiter.api.assertThrows
 
 class ErrorCheckTest {
     @Test
-    fun blankTest(){
+    fun blankTest() {
         assertThrows<IllegalArgumentException> {
             blankCheck("")
         }
     }
 
     @Test
-    fun numberCheckTest(){
+    fun numberCheckTest() {
         assertThrows<IllegalArgumentException> {
             numberCheck("w2")
         }
     }
 
     @Test
-    fun moneyCheckTest(){
+    fun moneyCheckTest() {
         assertThrows<IllegalArgumentException> {
             moneyCheck(300)
         }
     }
 
     @Test
-    fun winNumberCheckTest(){
+    fun winNumberCheckTest() {
         assertThrows<IllegalArgumentException> {
-            winNumberCheck(listOf("1","2","3","4","5","j"))
+            winNumberCheck(listOf("1", "2", "3", "4", "5", "j"))
         }
     }
 
     @Test
-    fun winBlankCheckTest(){
+    fun winBlankCheckTest() {
         assertThrows<IllegalArgumentException> {
-            winBlankCheck(listOf("1","","2","3","4","5"))
+            winBlankCheck(listOf("1", "", "2", "3", "4", "5"))
         }
     }
 
     @Test
-    fun winNumberIndexCheckTest(){
+    fun winNumberIndexCheckTest() {
         assertThrows<IllegalArgumentException> {
-            winNumberIndexCheck(listOf("2","3","4"))
+            winNumberIndexCheck(listOf("2", "3", "4"))
         }
     }
 
     @Test
-    fun winValidNumberCheckTest(){
+    fun winValidNumberCheckTest() {
         assertThrows<IllegalArgumentException> {
-            winNumberRangeCheck(listOf(1,2,3,4,5,46))
+            winNumberRangeCheck(listOf(1, 2, 3, 4, 5, 46))
         }
     }
 
     @Test
-    fun winChangeNumberCheck(){
+    fun winChangeNumberCheck() {
         assertThrows<IllegalArgumentException> {
-            winNumberDistinctCheck(listOf(1,1,2,3,4,5))
+            winNumberDistinctCheck(listOf(1, 1, 2, 3, 4, 5))
         }
     }
 
     @Test
-    fun bonusBlankCheckTest(){
+    fun bonusBlankCheckTest() {
         assertThrows<IllegalArgumentException> {
             bonusBlankCheck("")
         }
     }
 
     @Test
-    fun bonusRangeCheckTest(){
+    fun bonusRangeCheckTest() {
         assertThrows<IllegalArgumentException> {
             bonusRangeCheck(46)
         }
     }
 
     @Test
-    fun bonusWinningDuplicateCheckTest(){
-        val testWinningList = listOf(1,2,3,4,5,6)
+    fun bonusWinningDuplicateCheckTest() {
+        val testWinningList = listOf(1, 2, 3, 4, 5, 6)
         assertThrows<IllegalArgumentException> {
-            bonusWinningDuplicateCheck(testWinningList,4)
+            bonusWinningDuplicateCheck(testWinningList, 4)
         }
     }
 
     @Test
-    fun bonusNumberCheck(){
+    fun bonusNumberCheck() {
         assertThrows<IllegalArgumentException> {
             bonusNumberCheck("k")
         }
