@@ -9,6 +9,7 @@ class GameController {
     fun run() {
         val purchaseAmount = readPurchaseAmount()
         val lottoTickets = LottoTicket.generateLottoTickets(purchaseAmount)
+        Output.printLotto(lottoTickets)
 
     }
 
