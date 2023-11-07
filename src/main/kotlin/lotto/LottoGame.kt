@@ -2,6 +2,7 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.models.Lotto
+import lotto.models.WinningRank
 import kotlin.math.roundToInt
 
 class LottoGame(private val user: User) {
@@ -86,8 +87,8 @@ class LottoGame(private val user: User) {
 
     private fun formatLottoNumbers(lotto: Lotto): String = lotto.getNumbers().joinToString(LOTTO_NUMBER_SEPARATOR)
 
-    private fun recordWinning(lottos: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): Map<Winning, Int> {
-        val winningRecord = mutableMapOf<Winning, Int>()
+    private fun recordWinning(lottos: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): Map<WinningRank, Int> {
+        val winningRecord = mutableMapOf<WinningRank, Int>()
 
         lottos.forEach { lotto ->
             val winning = calculateWinningResult(lotto, winningNumbers, bonusNumber)
@@ -99,14 +100,14 @@ class LottoGame(private val user: User) {
         return winningRecord
     }
 
-    private fun calculateWinningResult(lotto: Lotto, winningNumbers: List<Int>, bonusNumber: Int): Winning? {
+    private fun calculateWinningResult(lotto: Lotto, winningNumbers: List<Int>, bonusNumber: Int): WinningRank? {
         val (matchCount, isMatchBonus) = matchLottoWithWinningNumbers(
             lotto.getNumbers(),
             winningNumbers,
             bonusNumber
         )
 
-        return Winning.get(matchCount, isMatchBonus)
+        return WinningRank.find(matchCount, isMatchBonus)
     }
 
     private fun matchLottoWithWinningNumbers(
@@ -120,8 +121,8 @@ class LottoGame(private val user: User) {
         return Pair(matchedCount, isMatchedBonus)
     }
 
-    private fun showWinningRecordMessages(winningRecord: Map<Winning, Int>) {
-        val winnings = Winning.getSortedWinnings()
+    private fun showWinningRecordMessages(winningRecord: Map<WinningRank, Int>) {
+        val winnings = WinningRank.getSortedWinnings()
 
         winnings.forEach {
             val matchCount = winningRecord[it] ?: 0
@@ -133,7 +134,7 @@ class LottoGame(private val user: User) {
         }
     }
 
-    private fun calculateROI(purchasedAmount: Int, winningRecord: Map<Winning, Int>): Double {
+    private fun calculateROI(purchasedAmount: Int, winningRecord: Map<WinningRank, Int>): Double {
         val totalWinningAmount = winningRecord.entries.sumOf { (winning, count) -> winning.amount * count }
         val roi = ((totalWinningAmount.toDouble() - purchasedAmount) / purchasedAmount) * 100
 
