@@ -38,6 +38,4 @@ class Lotto(private val numbers: List<Int>) {
         val rank = getMatchCount(winningLottoInfo, bonusInfo)
         return rank
     }
-
-    // TODO: 추가 기능 구현
 }

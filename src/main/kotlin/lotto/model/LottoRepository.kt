@@ -3,7 +3,6 @@ package lotto.model
 import camp.nextstep.edu.missionutils.Randoms
 import java.math.BigDecimal
 import java.math.RoundingMode
-import kotlin.math.ceil
 
 class LottoRepository {
     fun generateAutoLottoTickets(lottoTicketsNum: Int): List<Lotto> {
