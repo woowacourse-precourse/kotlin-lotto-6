@@ -15,7 +15,8 @@ class LottoProcess {
     private fun payLottery(): Int {
         println("구입금액을 입력해 주세요.")
         val userPayment = Console.readLine()
-        validatePayment(userPayment)
+        validateNumberInput(userPayment)
+        println()
         return userPayment.toInt()
     }
 
@@ -48,17 +49,6 @@ class LottoProcess {
 
     private fun printResult(result: Map<String, Int>, userCost: Int) {
         LottoResult().printResult(result, userCost)
-    }
-
-    private fun validatePayment(userPayment: String): String {
-        if (userPayment.isEmpty()) throw IllegalArgumentException("[ERROR] 값을 입력해주세요.")
-        if (userPayment.isBlank()) throw IllegalArgumentException("[ERROR] 값을 입력해주세요.")
-        if (!userPayment.matches(Regex("^\\d*\$"))) {
-            throw IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.")
-        }
-        if ((userPayment.toInt() % 1000) != 0) throw IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.")
-        if (userPayment.toInt() < 1000) throw IllegalArgumentException("[ERROR] 최소 1000원 이상 입력해주세요.")
-        return userPayment
     }
 
     private fun validateNumbersInput(inputWinningNumbers: String): List<Int> {

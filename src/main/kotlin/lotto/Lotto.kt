@@ -8,7 +8,7 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun getDelimiter(): String {
-        return numbers.joinToString(",")
+        return numbers.joinToString(", ")
     }
     fun checkLotto(winning: WinningNumbers): String {
         var count = 0

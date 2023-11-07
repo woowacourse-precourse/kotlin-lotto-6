@@ -14,9 +14,7 @@ class LottoMachine(payment: Int) {
             val sortedLotto = Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6).sorted())
             lottoTickets.add(sortedLotto)
         }
-
-        println("\n${numberOfTicket}개를 구매했습니다.")
+        println("${numberOfTicket}개를 구매했습니다.")
         return lottoTickets
     }
 }
-

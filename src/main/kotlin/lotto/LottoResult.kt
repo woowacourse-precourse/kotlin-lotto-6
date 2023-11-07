@@ -42,6 +42,7 @@ class LottoResult() {
             sum += (prize.toLong() * results[rank]!!)
         }
 
-        return (sum / userCost * 100).toString()
+        val profitRate = sum / userCost * 100
+        return String.format("%.1f", profitRate)
     }
 }
