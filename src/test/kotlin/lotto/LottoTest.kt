@@ -1,18 +1,8 @@
 package lotto
 
-import lotto.controller.LottoManager
 import lotto.domain.LottoPurchase
-import lotto.model.Bonus
 import lotto.model.Lotto
-import lotto.utils.Messages
-import lotto.validate.ValidateNumbers
 import lotto.validate.ValidatePrice
-import lotto.validate.ValidateSplit
-import lotto.validate.ValidateBonus
-import lotto.view.InputView
-import lotto.view.OutputView
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 

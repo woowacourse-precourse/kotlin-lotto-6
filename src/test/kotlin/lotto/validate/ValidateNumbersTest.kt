@@ -1,6 +1,5 @@
 package lotto.validate
 
-import lotto.model.Bonus
 import lotto.utils.Messages
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test

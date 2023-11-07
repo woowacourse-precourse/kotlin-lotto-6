@@ -2,9 +2,9 @@ package lotto.validate
 
 import lotto.controller.LottoManager
 import lotto.model.Bonus
-import lotto.utils.Messages
 import lotto.utils.Messages.ERROR_MESSAGE
 import lotto.utils.Messages.INVALID_INPUT
+import lotto.utils.Messages.MY_NUMBERS_DUPLICATED_MESSAGE
 import lotto.utils.Messages.MY_NUMBERS_OVER_RANGE_MESSAGE
 import lotto.utils.Messages.VALIDATE_INPUT_EMPTY
 import lotto.view.InputView
@@ -46,7 +46,7 @@ class ValidateBonusTest {
         try {
             lottoManager.validateDuplicateBonusNumber(listOf(1,2,3,4,5,6), 1)
         } catch (e: IllegalArgumentException) {
-            assertEquals("${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_DUPLICATED_MESSAGE}", e.message)
+            assertEquals("$ERROR_MESSAGE ${MY_NUMBERS_DUPLICATED_MESSAGE}", e.message)
         }
 
     }
