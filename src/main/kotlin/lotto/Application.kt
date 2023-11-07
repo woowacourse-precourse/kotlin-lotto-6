@@ -14,6 +14,10 @@ fun main() {
     val winningNumbers = readWinningNumbers()
     println()
 
+    println("보너스 번호를 입력해 주세요.")
+    val bonusNumber = readBonusNumber(winningNumbers)
+    println()
+
 }
 
 fun readPurchaseAmount(): Int {
@@ -68,3 +72,21 @@ fun readNumbers(message: String): List<Int> {
     }
 }
 
+fun readBonusNumber(winningNumbers: List<Int>): Int {
+    while (true) {
+        try {
+            val bonusNumber = Console.readLine().toInt()
+            if (bonusNumber !in 1..45) {
+                throw IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.")
+            }
+            if (bonusNumber in winningNumbers) {
+                throw IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.")
+            }
+            return bonusNumber
+        } catch (e: NumberFormatException) {
+            println("[ERROR] 유효한 숫자를 입력하세요.")
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+        }
+    }
+}
