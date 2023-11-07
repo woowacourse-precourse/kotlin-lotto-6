@@ -8,4 +8,8 @@ class WinningRecord {
 
         return purchasedLottoNumbers.count { it in winningLottoNumbers }
     }
+
+    fun hasMatchingBonusNumber(winningLotto: Lotto, bonus: Bonus): Boolean {
+        return false
+    }
 }
