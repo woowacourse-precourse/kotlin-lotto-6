@@ -30,8 +30,13 @@ class WinningLotto {
         _bonusNumber = readBonusNumber()
     }
 
-    // TODO 예외처리
-    private fun readWinningNumbers(): List<Int> = Console.readLine().trim().split(",").map { it.toInt() }
+    private fun readWinningNumbers(): List<Int> {
+        var input: String
+        do {
+            input = Console.readLine().trim()
+        } while (!Validator(input).isWinningNumbersValid())
+        return Console.readLine().trim().split(",").map { it.toInt() }
+    }
 
     private fun readBonusNumber(): Int = Console.readLine().toInt()
 
