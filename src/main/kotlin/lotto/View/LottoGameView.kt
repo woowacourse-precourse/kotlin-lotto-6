@@ -15,8 +15,12 @@ object LottoGameView {
         return Exceptions.checkInputLottoNumbersAreValid(winningNumbers)
     }
 
+    fun inputLottoBonusNumbers(){
+        println("\n보너스 번호를 입력해 주세요.")
+        val bonusNumber = readLine()
 
-
+        return Exceptions.checkInputLottoBonusNumberIsValid(bonusNumber)
+    }
 
     fun printGameResult(winning3: Int, winning4: Int, winning5: Int, winning5Bonus: Int, winning6: Int, lottoListSize: Int) {
         println("\n당첨 통계")

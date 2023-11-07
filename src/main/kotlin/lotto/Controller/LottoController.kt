@@ -31,18 +31,7 @@ object LottoController {
 
         LottoGameView.inputLottoNumbers()
 
-        println("\n보너스 번호를 입력해 주세요.")
-
-        val bonusNumber = readLine()
-
-        if (bonusNumber != null) {
-            try {
-                val bonus = checkValidationBonusLottoNumbers(bonusNumber)
-                lottoGameModel?.setBonusNumber(bonus)
-            } catch (e: IllegalArgumentException) {
-                println("[ERROR] ${e.message}")
-            }
-        }
+        LottoGameView.inputLottoBonusNumbers()
 
         lottoGameModel!!.checkWinnings()
     }
