@@ -27,7 +27,6 @@ object OutputView {
     fun printPrize(reward: List<Grade>) {
         val countMap = reward.groupingBy { it }.eachCount()
         val correctNumber = mutableListOf<Int>()
-
         for (entry in Grade.entries) {
             val count = countMap[entry] ?: 0
             correctNumber.add(count)
