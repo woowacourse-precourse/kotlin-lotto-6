@@ -11,10 +11,10 @@ class Jackpot {
         return rank
     }
 
-    fun rankUpdate(count: Int, rank: MutableList<Int>, bonusCount: Int): MutableList<Int> {
+    fun rankUpdate(count: Int, rank: MutableList<Int>, bonusCount: Boolean): MutableList<Int> {
         if (count == NumberConstants.THREE.value) {
             rank[NumberConstants.ZERO.value]++
-        } else if (count == NumberConstants.FIVE.value && bonusCount == NumberConstants.ONE.value) {
+        } else if (count == NumberConstants.FIVE.value && bonusCount) {
             rank[NumberConstants.THREE.value]++
         } else if (count == NumberConstants.FIVE.value) {
             rank[NumberConstants.ONE.value]++
@@ -44,11 +44,11 @@ class Jackpot {
         return count
     }
 
-    fun bonusDiscriminate(answers: List<Int>, eachLotto: List<Int>, bonus: Int): Int {
-        var bonusCount = NumberConstants.ZERO.value
+    fun bonusDiscriminate(answers: List<Int>, eachLotto: List<Int>, bonus: Int): Boolean {
+        var bonusCount = false
         for (number in answers) {
             if (eachLotto.contains(bonus)) {
-                bonusCount++
+                bonusCount = !bonusCount
             }
         }
         return bonusCount
