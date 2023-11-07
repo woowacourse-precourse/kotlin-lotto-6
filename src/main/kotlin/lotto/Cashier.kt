@@ -19,12 +19,12 @@ class Cashier {
         } catch (iae: IllegalArgumentException) {
             printError(iae.message ?: "")
             getPriceSafely()
-        } catch (ise: IllegalStateException) {
-            printError(SYSTEM_ERROR)
-            getPriceSafely()
-        } catch (nse: NoSuchElementException) {
-            printError(SYSTEM_ERROR)
-            getPriceSafely()
+//        } catch (ise: IllegalStateException) {
+//            printError(SYSTEM_ERROR)
+//            getPriceSafely()
+//        } catch (nse: NoSuchElementException) {
+//            printError(SYSTEM_ERROR)
+//            getPriceSafely()
         }
 
     private fun getPrice(): Int {
