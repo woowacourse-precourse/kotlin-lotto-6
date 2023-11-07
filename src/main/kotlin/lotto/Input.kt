@@ -23,6 +23,14 @@ object Input {
             num
         }
     }
+    fun getBonusNumber(): Int = repeatUntilGetValidInput {
+        val input = getInput()
+        require(isNumeric(input))
+        val bonusNumber = input.toInt()
+        require(bonusNumber > 0)
+        require(isValidLottoNum(bonusNumber))
+        bonusNumber
+    }
     private fun isValidLottoNum(num: Int): Boolean = num in Constants.MIN_LOTTO_NUMBER ..< Constants.MAX_LOTTO_NUMBER
     private fun isNumeric(string: String): Boolean = string.all { it.isDigit() }
     private fun <T>repeatUntilGetValidInput(inputFunction: () -> T): T {
