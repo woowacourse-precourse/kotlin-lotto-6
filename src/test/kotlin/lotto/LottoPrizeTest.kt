@@ -48,7 +48,7 @@ class LottoPrizeTest {
     @Test
     fun `당첨 안됨`() {
         val result = LottoPrize.getLottoPrize(2, false)
-        Assertions.assertThat(result).isEqualTo(LottoPrize.NOTING)
+        Assertions.assertThat(result).isEqualTo(LottoPrize.NOTTING)
     }
 
 }

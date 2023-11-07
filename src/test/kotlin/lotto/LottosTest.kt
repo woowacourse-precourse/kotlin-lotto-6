@@ -21,7 +21,7 @@ class LottosTest {
         val result = Lottos(1, ExampleLottoGenerator()).getLottoPrizes(
             Lotto(listOf(8, 19, 20, 37, 38, 45)), 21
         )
-        Assertions.assertThat(result).isEqualTo(listOf(LottoPrize.NOTING))
+        Assertions.assertThat(result).isEqualTo(listOf(LottoPrize.NOTTING))
     }
 
 }
