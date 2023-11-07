@@ -275,8 +275,8 @@ class Lotto(private val numbers: List<Int>) {
 
 ### LottoReturns
 
-- [ ] 수익률 구하는 기능
-- [ ] 수익률 소수점 둘째 자리에서 반올림하는 기능
+- [x] 수익률 구하는 기능
+- [x] 수익률 소수점 둘째 자리에서 반올림하는 기능
 
 ### WinningNumber
 
