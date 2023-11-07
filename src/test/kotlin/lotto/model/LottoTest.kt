@@ -44,7 +44,7 @@ class LottoTest {
     fun `getNumber 프로퍼티 테스트`() {
         val expectedNumbers = listOf(1, 2, 3, 4, 5, 6)
         val lotto = Lotto(expectedNumbers)
-        val actualNumbers = lotto.getNumber
+        val actualNumbers = lotto.getNumbers
         assertEquals(expectedNumbers, actualNumbers)
     }
 }

@@ -1,13 +1,13 @@
 package lotto.view
 
-import lotto.Constants.Companion.OUTPUT_FIVE_MATCH_MESSAGE
-import lotto.Constants.Companion.OUTPUT_FIVE_WITH_BONUS_MATCH_MESSAGE
-import lotto.Constants.Companion.OUTPUT_FOUR_MATCH_MESSAGE
-import lotto.Constants.Companion.OUTPUT_PROFIT_PERCENTAGE_MESSAGE
-import lotto.Constants.Companion.OUTPUT_PURCHASE_COUNT_MESSAGE
-import lotto.Constants.Companion.OUTPUT_SIX_MATCH_MESSAGE
-import lotto.Constants.Companion.OUTPUT_THREE_MATCH_MESSAGE
-import lotto.Constants.Companion.OUTPUT_WINNING_STATISTICS_MESSAGE
+import lotto.Constants.OUTPUT_FIVE_MATCH_MESSAGE
+import lotto.Constants.OUTPUT_FIVE_WITH_BONUS_MATCH_MESSAGE
+import lotto.Constants.OUTPUT_FOUR_MATCH_MESSAGE
+import lotto.Constants.OUTPUT_PROFIT_PERCENTAGE_MESSAGE
+import lotto.Constants.OUTPUT_PURCHASE_COUNT_MESSAGE
+import lotto.Constants.OUTPUT_SIX_MATCH_MESSAGE
+import lotto.Constants.OUTPUT_THREE_MATCH_MESSAGE
+import lotto.Constants.OUTPUT_WINNING_STATISTICS_MESSAGE
 import lotto.model.LottoRank
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -22,7 +22,7 @@ class OutputViewTest {
         val ticket = 5 // 예상 티켓 개수
         val expectedOutput = "\n" + String.format(OUTPUT_PURCHASE_COUNT_MESSAGE, ticket) + "\n"
         System.setOut(PrintStream(outputStream))
-        outputView.outputPurchaseCountMessage(ticket)
+        outputView.ticketCountMessage(ticket)
         System.setOut(System.out)
         assertEquals(expectedOutput, outputStream.toString())
     }
@@ -41,7 +41,7 @@ class OutputViewTest {
                 "\n" + String.format(OUTPUT_FIVE_WITH_BONUS_MATCH_MESSAGE, lottoFiveWithBonusMatch.getCount()) +
                 "\n" + String.format(OUTPUT_SIX_MATCH_MESSAGE, lottoSixMatch.getCount())
         System.setOut(PrintStream(outputStream))
-        outputView.outputWinningStatisticsMessage()
+        outputView.winningStatisticsMessage()
         System.setOut(System.out)
     }
 
@@ -51,7 +51,7 @@ class OutputViewTest {
         val profitPercentage = 0.5 // 예상 수익률
         val expectedOutput = String.format(OUTPUT_PROFIT_PERCENTAGE_MESSAGE, profitPercentage) + "\n"
         System.setOut(PrintStream(outputStream))
-        outputView.outputProfitPercentageMessage(profitPercentage)
+        outputView.profitPercentageMessage(profitPercentage)
         System.setOut(System.out)
         assertEquals(expectedOutput, outputStream.toString())
     }
@@ -68,7 +68,7 @@ class OutputViewTest {
             [7, 8, 9, 10, 11, 12]
         """.trimIndent()
         System.setOut(PrintStream(outputStream))
-        outputView.outputRandomLottoList(lottoList)
+        outputView.randomLottoLists(lottoList)
         System.setOut(System.out)
         val actualOutput = outputStream.toString().trim()
         assertEquals(expectedOutput, actualOutput)
