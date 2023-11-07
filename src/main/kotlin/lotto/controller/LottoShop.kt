@@ -2,6 +2,7 @@ package lotto.controller
 
 import lotto.domain.Lotto
 import lotto.domain.LottoMC
+import lotto.domain.LottoPrice
 import lotto.utils.RandomUtils
 import lotto.view.InputView
 import lotto.view.OutputView
@@ -20,6 +21,7 @@ class LottoShop {
     private var fiveMatch = 0
     private var bonusMatch = 0
     private var sixMatch = 0
+    private var noMatch = 0
 
     fun buyLotto() {
         inputView.buyMessage()
@@ -86,16 +88,14 @@ class LottoShop {
     }
 
     private fun lottoResult(correctCnt: Int, bonusCnt: Boolean) {
-        when (correctCnt) {
-            3 -> threeMatch++
-            4 -> fourMatch++
-            5 -> if (bonusCnt) {
-                bonusMatch++
-            } else {
-                fiveMatch++
-            }
-
-            6 -> sixMatch++
+        when (LottoPrice.values()
+            .firstOrNull { it.matchCount == correctCnt && !(it == LottoPrice.BONUS_MATCH && !bonusCnt) }) {
+            LottoPrice.THREE_MATCH -> threeMatch++
+            LottoPrice.FOUR_MATCH -> fourMatch++
+            LottoPrice.FIVE_MATCH -> fiveMatch++
+            LottoPrice.BONUS_MATCH -> bonusMatch++
+            LottoPrice.SIX_MATCH -> sixMatch++
+            else -> noMatch++
         }
     }
 
@@ -108,20 +108,10 @@ class LottoShop {
         price: Int,
     ) {
         val totalPrize =
-            (threeMatch * THREE_MATCH_PRIZE) + (fourMatch * FOUR_MATCH_PRIZE) + (fiveMatch * FIVE_MATCH_PRIZE) + (bonusMatch * BONUS_MATCH_PRIZE) + (sixMatch * SIX_MATCH_PRIZE)
+            (threeMatch * LottoPrice.THREE_MATCH.price) + (fourMatch * LottoPrice.FOUR_MATCH.price + fiveMatch * LottoPrice.FIVE_MATCH.price + bonusMatch * LottoPrice.BONUS_MATCH.price + sixMatch * LottoPrice.SIX_MATCH.price)
 
         val earningRate = ((totalPrize.toDouble() / price.toDouble()) * 100)
         val roundedEarningRate = String.format("%.1f", earningRate).toDouble()
         outputView.printLottoResult(threeMatch, fourMatch, fiveMatch, bonusMatch, sixMatch, roundedEarningRate)
     }
-
-
-    companion object {
-        const val THREE_MATCH_PRIZE = 5_000
-        const val FOUR_MATCH_PRIZE = 50_000
-        const val FIVE_MATCH_PRIZE = 1_500_000
-        const val BONUS_MATCH_PRIZE = 30_000_000
-        const val SIX_MATCH_PRIZE = 2_000_000_000
-    }
-
 }
