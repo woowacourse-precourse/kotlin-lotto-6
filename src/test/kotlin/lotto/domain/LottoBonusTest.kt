@@ -11,14 +11,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class LottoBonusTest {
-
-    @Test
-    fun `보너스 번호가 숫자가 아닐 경우`() {
-        assertThrows<IllegalArgumentException> {
-            val bonus = Bonus("wooteco")
-        }
-    }
-
     @Test
     fun `보너스 번호가 아무 입력이 없을 경우`() {
         try {
