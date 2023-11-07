@@ -50,6 +50,11 @@ object LottoController {
         LottoData.bonusNum = inputBonusNum()
     }
 
+    fun analyzeLotto() {
+        calculateStats(LottoData.lottoNums, LottoData.lottoResult, LottoData.bonusNum)
+        LottoData.profitRatio = calculateEarnings()
+    }
+
 
 
     private fun inputLottoNum(): MutableList<Int> {
