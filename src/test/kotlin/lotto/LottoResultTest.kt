@@ -27,6 +27,7 @@ class LottoResultTest {
 
         assertThat(count).isEqualTo(LottoPrize.THIRD_PRIZE.value)
     }
+
     @Test
     fun `구입한 로또 번호와 당첨 번호 4개가 일치하는 경우`() {
         val lotto = Lotto(listOf(1, 2, 3, 4, 7, 8))
@@ -34,6 +35,7 @@ class LottoResultTest {
 
         assertThat(count).isEqualTo(LottoPrize.FOURTH_PRIZE.value)
     }
+
     @Test
     fun `구입한 로또 번호와 당첨 번호 3개가 일치하는 경우`() {
         val lotto = Lotto(listOf(1, 2, 3, 7, 8, 9))
@@ -41,6 +43,7 @@ class LottoResultTest {
 
         assertThat(count).isEqualTo(LottoPrize.FIFTH_PRIZE.value)
     }
+
     @Test
     fun `구입한 로또 번호에 보너스 번호가 있는지 확인한다`() {
         val lotto = Lotto(listOf(1, 2, 3, 7, 8, 42))
@@ -57,6 +60,7 @@ class LottoResultTest {
             )
         }
     }
+
     @Test
     fun `당첨 번호 중 1 ~ 45 범위를 벗어나는 숫자가 있으면 예외 발생`() {
         assertThrows<IllegalArgumentException> {
@@ -76,6 +80,7 @@ class LottoResultTest {
             )
         }
     }
+
     @Test
     fun `보너스 번호가 당첨 번호와 중복되면 예외 발생`() {
         assertThrows<IllegalArgumentException> {
