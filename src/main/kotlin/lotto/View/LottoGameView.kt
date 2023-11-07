@@ -37,6 +37,8 @@ object LottoGameView {
 
     fun printProfitRate(totalWinningCount: Int, lottoListSize: Int) {
         val profitRate = (totalWinningCount.toDouble() / lottoListSize) * 100
-        println("총 수익률은 ${profitRate}%입니다.")
+        val formattedProfitRate = String.format("%.2f", profitRate)
+        println("총 수익률은 $formattedProfitRate%입니다.")
     }
+
 }
