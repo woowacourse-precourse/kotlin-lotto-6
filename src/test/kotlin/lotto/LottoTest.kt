@@ -42,4 +42,17 @@ class LottoTest {
         assertThat(matchBonus).isTrue()
         assertThat(matchBall).isEqualTo(5)
     }
+
+    @Test
+    fun `당첨 번호가 일치할 때, 당첨 결과(등수)를 알 수 있다`() {
+        val winResult = LottoWinResult()
+        val luckyNumbers = listOf(1, 2, 3, 4, 5, 6)
+        val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+
+        val matchCount = lotto.matchNumbers(luckyNumbers)
+        winResult.calculateRank(matchCount, false)
+        val ranks = winResult.getRanks()
+
+        assertThat(ranks[Rank.ALL_MATCH.grade]).isEqualTo(1)
+    }
 }
