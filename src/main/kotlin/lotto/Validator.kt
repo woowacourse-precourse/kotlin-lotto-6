@@ -9,7 +9,7 @@ class Validator(private val input: String) {
 
     private fun validateIsUpperToThousand(): Boolean {
         val payment = input.toInt()
-        return payment >= 1000
+        return payment >= 1_000
     }
 
     private fun validateIsCorrectUnit(): Boolean {
