@@ -69,7 +69,7 @@ class LottoManager(private val inputView: InputView, private val outputView: Out
         outputView.printProfitPercentage(profitPercentage)
     }
 
-    private fun validateDuplicateBonusNumber(userWinningNumbers: List<Int>, bonusNumber: Int) {
+    fun validateDuplicateBonusNumber(userWinningNumbers: List<Int>, bonusNumber: Int) {
         require(!userWinningNumbers.contains(bonusNumber)) {
             "${Messages.ERROR_MESSAGE} ${Messages.MY_NUMBERS_DUPLICATED_MESSAGE}"
         }
