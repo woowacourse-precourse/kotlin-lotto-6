@@ -5,17 +5,18 @@ import lotto.constants.Error.EXCEPTION_MESSAGE_MONEY_NOT_NUMBER
 import lotto.constants.Error.EXCEPTION_MESSAGE_NOT_IN_RANGE
 import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST
 import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_SIZE_INVALID
+import lotto.constants.LottoConstants.LOTTO_SIZE
+import lotto.model.Lotto
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
-import java.lang.IllegalArgumentException
 import java.util.stream.Stream
+import kotlin.IllegalArgumentException
 
 internal class LottoValidatorUtilTest {
 
@@ -111,8 +112,32 @@ internal class LottoValidatorUtilTest {
         assertEquals(expectedExceptionMessage, exception.message)
     }
 
-    @Test
-    fun checkNumberOverlap() {
+
+
+    @DisplayName("당첨번호가 올바른 형식으로 입력을 때")
+    @ParameterizedTest
+    @ValueSource(strings = ["1,2,3,4,5,6", "4,5,7,9,11,43", "23,27,3,41,15,12", "12,31,41,25,18,9"])
+    fun `checkWinningNumberAvailable - 당첨번호가 올바른 형식으로 입력되었을 때`(winningNumberString: String) {
+        // given
+        val lotto = LottoValidatorUtil.checkWinningNumberAvailable(winningNumberString)
+        // when
+        val expectedLottoSize = LOTTO_SIZE
+        // then
+        assertEquals(lotto.getNumbers().size, expectedLottoSize)
+    }
+
+    @DisplayName("보너스 번호가 중복되는지 검증")
+    @ParameterizedTest
+    @MethodSource("winningNumberBonusNumberOverlappedProvider")
+    fun `checkNumberOverlap - 보너스 넘버와 당첨번호의 중복 여부 확인 및 예외처리`(winningNumber: Lotto, number: Int) {
+        // given
+        val exception = assertThrows<IllegalArgumentException> {
+            LottoValidatorUtil.checkNumberOverlap(winningNumber, number)
+        }
+        // when
+        val expectedExceptionMessage = EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST
+        // then
+        assertEquals(expectedExceptionMessage, exception.message)
     }
 
     companion object {
@@ -133,6 +158,16 @@ internal class LottoValidatorUtilTest {
                 Arguments.of(listOf(1,2,3,9,9,4)),
                 Arguments.of(listOf(6,2,3,4,5,6)),
                 Arguments.of(listOf(1,2,3,4,3,2)),
+            )
+        }
+
+        @JvmStatic
+        fun winningNumberBonusNumberOverlappedProvider(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(Lotto(listOf(1,2,3,4,5,6)), 1),
+                Arguments.of(Lotto(listOf(1,22,31,19,23,41)), 41),
+                Arguments.of(Lotto(listOf(2,4,3,9,11,6)), 9),
+                Arguments.of(Lotto(listOf(1,2,3,4,7,9)), 2),
             )
         }
     }
