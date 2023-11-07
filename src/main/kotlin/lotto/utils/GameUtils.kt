@@ -25,8 +25,7 @@ object GameUtils {
         return calculateTotalPrizeRate(lottoState)
     }
 
-
-    private fun calculateTotalPrizeRate(lottoState: UserLottoState): UserLottoState {
+    fun calculateTotalPrizeRate(lottoState: UserLottoState): UserLottoState {
         return lottoState.apply {
             this.totalPrizeAmount = calculateTotalPrize(lottoState)
             this.totalPrizeRate = parseToRate(totalPrizeAmount.toDouble(), lottoState.lottoTickets.size)
