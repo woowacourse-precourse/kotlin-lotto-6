@@ -9,16 +9,16 @@ fun howManyBuyLotto(lottoPrice: String): Int {
         if (price % 1000 == 0) {
             return price / 1000
         } else {
-            // 1000으로 나누어 떨어지지 않는 경우 예외 던지기
             throw IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.")
         }
     } catch (e: NumberFormatException) {
-        // 문자열을 정수로 변환할 수 없는 경우 예외 던지기
         throw IllegalArgumentException("[ERROR] 유효하지 않은 입력입니다. 구입 금액을 숫자로 입력해 주세요.")
     }
 }
 
 object LottoController {
+    private var lottoGameModel: LottoGameModel? = null
+
     fun gameStart() {
         println("구입금액을 입력해 주세요.")
         val lottoPrice = readLine()
@@ -34,10 +34,8 @@ object LottoController {
             }
         }
 
-        // lottoGameModel가 null이 아닌 경우에만 사용
         lottoGameModel?.run {
-            // LottoGameModel에 대한 작업 수행
-            lottoGameModel.printLottoNumbers()
+            printLottoNumbers()
         }
         println("\n당첨 번호를 입력해 주세요.")
 
@@ -46,6 +44,7 @@ object LottoController {
         if (winningNumbers != null) {
             try {
                 val parsedWinningNumbers = parseLottoNumbers(winningNumbers)
+                lottoGameModel?.setWinningNumbers(parsedWinningNumbers)
             } catch (e: IllegalArgumentException) {
                 println("[ERROR] ${e.message}")
             }
@@ -53,25 +52,24 @@ object LottoController {
 
         println("\n보너스 번호를 입력해 주세요.")
 
-        val bonusNumbers = readLine()
+        val bonusNumber = readLine()
 
-        if (bonusNumbers != null) {
+        if (bonusNumber != null) {
             try {
-                checkValidationBonusLottoNumbers(bonusNumbers)
+                val bonus = checkValidationBonusLottoNumbers(bonusNumber)
+                lottoGameModel?.setBonusNumber(bonus)
             } catch (e: IllegalArgumentException) {
                 println("[ERROR] ${e.message}")
             }
         }
-
-
     }
 }
+
 fun parseLottoNumbers(input: String?): List<Int> {
     if (input == null) {
         throw IllegalArgumentException("[ERROR] 입력이 null입니다.")
     }
 
-    // 쉼표로 문자열을 분할하고 빈 문자열을 제거합니다.
     val numbers = input.split(",").map { it.trim() }.filter { it.isNotEmpty() }
 
     if (numbers.size != 6) {
@@ -108,9 +106,7 @@ fun checkValidationBonusLottoNumbers(bonusNumber: String?): Int{
             throw IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자여야 합니다.")
         }
         return number
-
     } catch (e: NumberFormatException) {
         throw IllegalArgumentException("[ERROR] 숫자가 아닌 값이 포함되어 있습니다.")
     }
-
 }

@@ -12,11 +12,21 @@ class Lotto(private val numbers: List<Int>) {
     fun getLottoNumbers(): List<Int> {
         return numbers
     }
+
+    fun checkWinnings() {
+
+    }
     // TODO: 추가 기능 구현
 }
 
 class LottoGameModel(howManyBuyLotto: Int) {
     val lottoList: List<Lotto>
+    private var winningNumbers: List<Int>? = null
+    private var bonusNumber: Int? = null
+
+    companion object {
+        var instance: LottoGameModel? = null
+    }
 
     init {
         require(howManyBuyLotto >= 0)
@@ -25,6 +35,14 @@ class LottoGameModel(howManyBuyLotto: Int) {
             val lottoNumbers = createLottoNumbers()
             Lotto(lottoNumbers)
         }
+    }
+
+    fun setWinningNumbers(winningNumbers: List<Int>) {
+        this.winningNumbers = winningNumbers
+    }
+
+    fun setBonusNumber(bonusNumber: Int) {
+        this.bonusNumber = bonusNumber
     }
 
     fun createLottoNumbers(): List<Int> {
