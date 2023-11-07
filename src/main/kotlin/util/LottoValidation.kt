@@ -7,7 +7,7 @@ enum class LottoValidation(val message: String, val isValid: (List<Int>) -> Unit
     ),
     UNIQUE_LOTTO_NUMBERS(
         "[ERROR] 중복된 번호가 존재합니다.",
-        fun(numbers: List<Int>) = require(numbers.toSet().size == 6) { UNIQUE_LOTTO_NUMBERS.message },
+        fun(numbers: List<Int>) = require(numbers.toSet().size == numbers.size) { UNIQUE_LOTTO_NUMBERS.message },
     ),
     LOTTO_NUMBER_RANGE(
         "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
