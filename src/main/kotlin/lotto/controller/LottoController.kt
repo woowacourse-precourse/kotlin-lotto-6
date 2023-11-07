@@ -1,6 +1,5 @@
 package lotto.controller
 
-import lotto.DIVIDE_MONEY_NUMBER
 import lotto.domain.RandomLottoGenerator
 import lotto.model.Lotto
 import lotto.model.LottoPrize
@@ -8,6 +7,7 @@ import lotto.model.LottoResults
 import lotto.model.Lottos
 import lotto.repeatInputIncorrect
 import lotto.view.InputView
+import lotto.view.InputView.DIVIDE_MONEY_NUMBER
 import lotto.view.OutputView
 
 class LottoController {

@@ -1,8 +1,5 @@
 package lotto.model
 
-import lotto.MAX_LOTTO_RANGE
-import lotto.MAX_LOTTO_SIZE
-import lotto.MIN_LOTTO_RANGE
 import lotto.domain.RandomGenerator
 import lotto.errorMessageFormat
 import lotto.view.InputView.ERROR_PRIZE_SIZE_MESSAGE
@@ -42,6 +39,9 @@ class Lotto(private val numbers: List<Int>) {
 
 
     companion object {
+        const val MAX_LOTTO_SIZE = 6
+        const val MAX_LOTTO_RANGE = 45
+        const val MIN_LOTTO_RANGE = 1
         fun makeLotto(randomLottoGenerator: RandomGenerator): Lotto {
             return Lotto(randomLottoGenerator.pickNumberInRange(MIN_LOTTO_RANGE, MAX_LOTTO_RANGE, MAX_LOTTO_SIZE))
         }

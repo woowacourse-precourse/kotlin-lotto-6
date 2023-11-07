@@ -1,7 +1,7 @@
 package lotto.domain
 
 import camp.nextstep.edu.missionutils.Randoms
-import lotto.MAX_LOTTO_SIZE
+import lotto.model.Lotto.Companion.MAX_LOTTO_SIZE
 
 class RandomLottoGenerator : RandomGenerator {
     override fun pickNumberInRange(startNum: Int, endNum: Int, size: Int): List<Int> {

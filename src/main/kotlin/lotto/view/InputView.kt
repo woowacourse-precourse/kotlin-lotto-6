@@ -1,10 +1,9 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.DIVIDE_MONEY_NUMBER
-import lotto.MAX_LOTTO_RANGE
-import lotto.MAX_LOTTO_SIZE
 import lotto.errorMessageFormat
+import lotto.model.Lotto.Companion.MAX_LOTTO_RANGE
+import lotto.model.Lotto.Companion.MAX_LOTTO_SIZE
 
 object InputView {
     private const val PURCHASE_MONEY_MESSAGE = "구입금액을 입력해 주세요."
@@ -16,7 +15,9 @@ object InputView {
     private const val ERROR_PRIZE_RANGE_MESSAGE = "당첨 번호는 1~45입니다."
     private const val ERROR_PRIZE_REPEAT_MESSAGE = "당첨 번호에 중복이 있으면 안됩니다."
     private const val ERROR_BONUS_REPEAT_MESSAGE = "보너스 번호와 당첨 번호에 중복이 있으면 안됩니다."
+
     const val ERROR_PRIZE_SIZE_MESSAGE = "당첨 번호 길이는 6입니다."
+    const val DIVIDE_MONEY_NUMBER = 1000
 
     fun getPurchaseMoney(): Int {
         println(PURCHASE_MONEY_MESSAGE)
