@@ -5,6 +5,7 @@ import lotto.constants.Error.EXCEPTION_MESSAGE_MONEY_NOT_NUMBER
 import lotto.constants.Error.EXCEPTION_MESSAGE_NOT_IN_RANGE
 import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_DUPLICATED_NUMBER_EXIST
 import lotto.constants.Error.EXCEPTION_MESSAGE_WINNING_NUMBER_SIZE_INVALID
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -13,6 +14,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
+import java.lang.IllegalArgumentException
 import java.util.stream.Stream
 
 internal class LottoValidatorUtilTest {
@@ -22,7 +24,7 @@ internal class LottoValidatorUtilTest {
     @MethodSource("winningNumberSizeInvalidProvider")
     fun `checkWinningNumberSize - 당첨번호의 갯수가 유효하지 않으면 예외가 발생한다`(winningNumber: List<Int>) {
         // given
-        val exception = assertThrows<java.lang.IllegalArgumentException> {
+        val exception = assertThrows<IllegalArgumentException> {
             LottoValidatorUtil.checkWinningNumberSize(winningNumber)
         }
         // when
@@ -36,7 +38,7 @@ internal class LottoValidatorUtilTest {
     @MethodSource("winningNumberOverlappedProvider")
     fun `checkWinningNumberSize - 당첨번호에 중복되는 숫자가 존재하면 예외가 발생한다`(winningNumber: List<Int>) {
         // given
-        val exception = assertThrows<java.lang.IllegalArgumentException> {
+        val exception = assertThrows<IllegalArgumentException> {
             LottoValidatorUtil.checkWinningNumberSize(winningNumber)
         }
         // when
@@ -50,7 +52,7 @@ internal class LottoValidatorUtilTest {
     @ValueSource(ints = [0, -1, 46, 323, 77])
     fun `checkNumberInRange - 로또 번호는 1 ~ 45 사이의 숫자여야한다`(number: Int) {
         // given
-        val exception = assertThrows<java.lang.IllegalArgumentException> {
+        val exception = assertThrows<IllegalArgumentException> {
             LottoValidatorUtil.checkNumberInRange(number)
         }
         // when
@@ -64,7 +66,7 @@ internal class LottoValidatorUtilTest {
     @ValueSource(strings = ["1100", "2100", "3300", "4400"])
     fun `checkMoneyAvailable - 입력금액은 1000으로 나눠져야한다`(moneyString: String) {
         // given
-        val exception = assertThrows<java.lang.IllegalArgumentException> {
+        val exception = assertThrows<IllegalArgumentException> {
             LottoValidatorUtil.checkMoneyAvailable(moneyString)
         }
         // when
@@ -78,13 +80,21 @@ internal class LottoValidatorUtilTest {
     @ValueSource(strings = ["숫자", "문자", "로또", "bamin0422"])
     fun `checkMoneyAvailable - 입력금액은 숫자로만 입력되어야한다`(moneyString: String) {
         // given
-        val exception = assertThrows<java.lang.IllegalArgumentException> {
+        val exception = assertThrows<IllegalArgumentException> {
             LottoValidatorUtil.checkMoneyAvailable(moneyString)
         }
         // when
         val expectedExceptionMessage = EXCEPTION_MESSAGE_MONEY_NOT_NUMBER
         // then
         assertEquals(expectedExceptionMessage, exception.message)
+    }
+
+    @DisplayName("입력금액이 유효한 값인지 검증")
+    @ParameterizedTest
+    @ValueSource(strings = ["1000", "2000", "3000", "4000"])
+    fun `checkMoneyAvailable - 입력금액이 유효한 값인지 검증`(moneyString: String) {
+        val money = LottoValidatorUtil.checkMoneyAvailable(moneyString)
+        assertThat(money % 1000 == 0).isTrue
     }
 
     @Test
