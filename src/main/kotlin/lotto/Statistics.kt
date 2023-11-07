@@ -11,23 +11,34 @@ import lotto.Constants.SECOND_PRIZE
 import lotto.Constants.THIRD_PLACE
 import lotto.Constants.THIRD_PRIZE
 
-class Statistics(private val winStat: List<Int>) {
-
-    fun stat(amount: Int) {
-        println("\n당첨 통계\n---")
-        println("3개 일치 (5,000원) - ${winStat[FIFTH_PLACE]}개")
-        println("4개 일치 (50,000원) - ${winStat[FOURTH_PLACE]}개")
-        println("5개 일치 (1,500,000원) - ${winStat[THIRD_PLACE]}개")
-        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${winStat[SECOND_PLACE]}개")
-        println("6개 일치 (2,000,000,000원) - ${winStat[FIRST_PLACE]}개")
-        rateOfReturn(amount)
+class Statistics(private val amount: Int) {
+    enum class Rank(val place: Int, val prize: Int, val str: String) {
+        FIFTH(FIFTH_PLACE, FIFTH_PRIZE, "3개 일치"),
+        FOURTH(FOURTH_PLACE, FOURTH_PRIZE, "4개 일치"),
+        THIRD(THIRD_PLACE, THIRD_PRIZE, "5개 일치"),
+        SECOND(SECOND_PLACE, SECOND_PRIZE, "5개 일치, 보너스 볼 일치"),
+        FIRST(FIRST_PLACE, FIRST_PRIZE, "6개 일치")
     }
 
-    private fun rateOfReturn(amount: Int) {
-        val total =
-            FIFTH_PRIZE * winStat[FIFTH_PLACE] + FOURTH_PRIZE * winStat[FOURTH_PLACE]
-        +THIRD_PRIZE * winStat[THIRD_PLACE] + SECOND_PRIZE * winStat[SECOND_PLACE]
-        +FIRST_PRIZE * winStat[FIRST_PLACE]
+    private val winStat = mutableListOf<Int>(0, 0, 0, 0, 0, 0)
+
+    fun winLotto(purchasedLotto: MutableList<List<Int>>, winNum: List<Int>, bonusNum: Int) {
+        purchasedLotto.map { winStat[Lotto(it).isWin(winNum, bonusNum)]++ }
+        stat()
+    }
+
+    private fun stat() {
+        println("\n당첨 통계\n---")
+        Rank.values().forEach { rank ->
+            println("${rank.str} (${String.format("%,d", rank.prize)}원) - ${winStat[rank.place]}개")
+        }
+        rateOfReturn()
+    }
+
+    private fun rateOfReturn() {
+        val total = Rank.values().sumOf { rank ->
+            rank.prize * winStat[rank.place]
+        }
         val rate = String.format("%.1f", (total / amount.toDouble()) * 100)
         println("총 수익률은 ${rate}%입니다.")
     }

@@ -16,7 +16,6 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.toSet().size == COUNT) { DUPLICATE_ERROR }
     }
 
-
     fun isWin(winNum: List<Int>, bonusNum: Int): Int {
         when (winNum.intersect(numbers).size) {
             3 -> return FIFTH_PLACE
