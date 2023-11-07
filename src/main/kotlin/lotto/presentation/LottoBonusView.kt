@@ -2,6 +2,7 @@ package lotto.presentation
 
 import BONUS_NUMBER_MESSAGE
 import camp.nextstep.edu.missionutils.Console
+import lotto.controller.LottoController
 
 object LottoBonusView {
     fun printBonusNumberOfLotto() {
@@ -10,6 +11,6 @@ object LottoBonusView {
 
     fun inputBonusNumberOfLotto() {
         val bonusNumber = Console.readLine()
-        println(bonusNumber)
+        LottoController().validateInputBonusNumberNumeric(bonusNumber)
     }
 }

@@ -3,6 +3,7 @@ package lotto.controller
 import LOTTO_PRICE
 import LottoPurchaseView.inputPurchaseAmountOfLotto
 import LottoPurchaseView.printPurchaseAmountOfLotto
+import lotto.model.BonusNumber
 import lotto.model.LottoModel
 import lotto.model.LottoTicket
 import lotto.model.WinningNumber
@@ -16,6 +17,7 @@ import lotto.presentation.LottoWinningView.printWinningNumberOfLotto
 class LottoController() {
     private val lottoModel = LottoModel()
     private val winningNumber = WinningNumber()
+    private val bonusNumber = BonusNumber()
     val lottoTickets = mutableListOf<LottoTicket>()
     fun start() {
         try {
@@ -46,8 +48,13 @@ class LottoController() {
     }
 
     fun startBonusNumber() {
-        printBonusNumberOfLotto()
-        val bonusNumber = inputBonusNumberOfLotto()
+        try {
+            printBonusNumberOfLotto()
+            val bonusNumber = inputBonusNumberOfLotto()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            startBonusNumber()
+        }
     }
 
     fun validateInputPurchaseAmountOfLottoNumeric(input: String) {
@@ -84,5 +91,9 @@ class LottoController() {
 
     fun validateInputWinningNumberDuplicate(input: List<Int>) {
         winningNumber.isWinningNumberDuplicate(input)
+    }
+
+    fun validateInputBonusNumberNumeric(input: String) {
+        bonusNumber.isBonusNumberNumeric(input)
     }
 }
