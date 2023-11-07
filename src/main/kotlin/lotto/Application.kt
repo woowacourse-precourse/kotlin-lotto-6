@@ -24,7 +24,7 @@ fun main() {
 
     printPurchaseTotal(amount)
     repeat(amount/1000) {
-        lottos.add(Lotto(makeLotto()))
+        lottos.add(Lotto(makeNumber()))
     }
 
     printWinningMessage()
@@ -35,17 +35,15 @@ fun main() {
     val BonusNumber = inputMessage().trim()
 
     printWinningReport()
-    compareToLotto(lottos, winningResult)
+    matchCheck(compareToLotto(lottos, winningResult))
 
 }
-
-
 
 fun inputMessage(): String {
     return Console.readLine().trim()
 }
 
-fun makeLotto(): List<Int> {
+fun makeNumber(): List<Int> {
     return Randoms.pickUniqueNumbersInRange(1, 45, 6)
 }
 
@@ -56,8 +54,35 @@ fun parser(s: String): List<Int> {
 }
 
 // 당첨 번호와 로또 번호 비교
-fun compareToLotto(lottos: MutableList<Lotto>, winningResult: List<Int>) {
-    val union = lottos + winningResult
-    val intersection = union.groupBy { it }.filter { it.value.size > 1 }.flatMap { it.value }
-    println(intersection.size)
+fun compareToLotto(lottos: MutableList<Lotto>, winningResult: List<Int>): MutableList<Int> {
+    var matchSize : MutableList<Int> = mutableListOf()
+    for(index in lottos.indices) {
+        var union = lottos[index].getNumbers() + winningResult
+        val intersection = union.groupBy { it }.filter { it.value.size > 1 }.flatMap { it.value }.distinct()
+        matchSize.add(intersection.size)
+    }
+    return matchSize
+}
+
+// 당첨된 횟수 적립
+fun matchCheck(matches : MutableList<Int>) {
+    var matchThree = 0
+    var matchFour = 0
+    var matchFive = 0
+    var matchSix = 0
+
+    for (index in matches.indices) {
+        when(matches[index]) {
+            3 -> matchThree++
+            4 -> matchFour++
+            5 -> matchFive++
+            6 -> matchSix++
+        }
+    }
+
+    println("3개 일치 (5,000원) - ${matchThree}개")
+    println("4개 일치 (50,000원) - ${matchFour}개")
+    println("5개 일치 (1,500,000원) - ${matchFive}개")
+    println("6개 일치 (2,000,000,000원) - ${matchSix}개")
+
 }
