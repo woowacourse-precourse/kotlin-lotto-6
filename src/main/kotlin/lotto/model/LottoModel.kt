@@ -13,7 +13,7 @@ class LottoModel {
     }
 
     fun isPurchaseAmountPositive(value: Int) {
-        if (value < ZERO)
+        if (value <= ZERO)
             throw IllegalArgumentException(INVALID_POSITIVE_MESSAGE)
     }
 
