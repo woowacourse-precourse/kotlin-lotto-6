@@ -8,6 +8,7 @@ fun main() {
 
     val lottoNumber = lottoNumberChoose()
     println("당첨된 로또 번호: $lottoNumber")
+    val bonusNumber = lottoNumberBonus()
 
 }
 fun lottoMoneyInput(): Int {
@@ -50,4 +51,9 @@ fun lottoNumberChoose(): List<Int> {
     }
     return lottoNumber
 }
+fun lottoNumberBonus(): Int {
+    println("보너스 번호를 입력해 주세요.")
+    return readLine()!!.toInt()
+}
+
 
