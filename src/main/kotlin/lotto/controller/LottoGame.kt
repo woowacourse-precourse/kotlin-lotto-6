@@ -40,7 +40,7 @@ class LottoGame(private val input : Input, private val output: Output) {
         println(WINNING_STATISTICS)
         println(SEPARATOR)
 
-        val reward = WinningStatistics().computeStatisics(lottoTickets, winningNumbers, bonusNumber)
+        val reward = WinningStatistics().computeStatistics(lottoTickets, winningNumbers, bonusNumber)
         output.outputReward(reward)
         output.outputYield(amount, reward)
     }

@@ -4,16 +4,16 @@ import lotto.model.LottoRecord
 
 class Calculator {
 
-    fun calculateYield(amount : Int, reward: List<Int>) : String{
+    fun calculateYield(amount : Int, reward: HashMap<LottoRecord, Int>) : String{
         return "%.1f".format(addTotalEarnings(reward).toDouble() / amount.toDouble() * 100)
     }
 
-    private fun addTotalEarnings(reward: List<Int>): Int {
+    private fun addTotalEarnings(reward: HashMap<LottoRecord, Int>): Int {
 
-        return reward[0] * LottoRecord.FIFTH.reward +
-                reward[1] * LottoRecord.FOURTH.reward +
-                reward[2] * LottoRecord.THIRD.reward +
-                reward[3] * LottoRecord.SECOND.reward +
-                reward[4] * LottoRecord.FIRST.reward
+        return reward.getOrDefault(LottoRecord.FIFTH,0) * LottoRecord.FIFTH.reward +
+                reward.getOrDefault(LottoRecord.FOURTH,0) * LottoRecord.FOURTH.reward +
+                reward.getOrDefault(LottoRecord.THIRD,0) * LottoRecord.THIRD.reward +
+                reward.getOrDefault(LottoRecord.SECOND,0) * LottoRecord.SECOND.reward +
+                reward.getOrDefault(LottoRecord.FIRST,0) * LottoRecord.FIRST.reward
     }
 }

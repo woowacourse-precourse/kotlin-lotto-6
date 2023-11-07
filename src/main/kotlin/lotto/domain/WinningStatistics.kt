@@ -5,25 +5,18 @@ import lotto.model.LottoRecord
 
 class WinningStatistics() {
 
-    fun computeStatisics(
-        lottoNumbers: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): List<Int> {
+    fun computeStatistics(
+        lottoNumbers: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): HashMap<LottoRecord, Int> {
 
-        val reward = IntArray(5) {0}
+        val reward = HashMap<LottoRecord, Int>()
 
         lottoNumbers.forEach {
             var countMatch = compareLotto(it.issueNumbers(), winningNumbers)
 
-            when{
-                countMatch == LottoRecord.FIRST.match -> reward[4]++
-                countMatch == LottoRecord.SECOND.match && compareBonus(it.issueNumbers(),bonusNumber) -> reward[3]++
-                countMatch == LottoRecord.THIRD.match -> reward[2]++
-                countMatch == LottoRecord.FOURTH.match -> reward[1]++
-                countMatch == LottoRecord.FIFTH.match -> reward[0]++
-
-
-            }
+            var match = LottoRecord.makeRewardStatistics(countMatch,compareBonus(it.issueNumbers(),bonusNumber))
+            reward[match] = reward.getOrDefault(match, 0) + 1
         }
-        return reward.toList()
+        return reward
     }
 
     private fun compareLotto(lottoTicket: List<Int>, winningNumbers: List<Int>): Int {
