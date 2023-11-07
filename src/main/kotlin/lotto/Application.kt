@@ -7,8 +7,12 @@ fun main() {
     lottoNumberPrint(count, lottoList)
 
     val lottoNumber = lottoNumberChoose()
-    println("당첨된 로또 번호: $lottoNumber")
     val bonusNumber = lottoNumberBonus()
+
+    val result = lottoNumberCheck(lottoList, lottoNumber, bonusNumber)
+    print(result)
+
+
 
 }
 fun lottoMoneyInput(): Int {
@@ -56,4 +60,26 @@ fun lottoNumberBonus(): Int {
     return readLine()!!.toInt()
 }
 
+
+fun lottoNumberCheck(lottoList: List<List<Int>>, comNumber: List<Int>, bonusNumber: Int): Map<Int, Int> {
+    val lottoMoneyList = mutableMapOf(3 to 0, 4 to 0, 5 to 0, 6 to 0)
+    var bonusNumberCnt = 0
+    for (lotto in lottoList) {
+        val sameNumber = lotto.filter { it in comNumber }.size
+        when (sameNumber) {
+            3 -> lottoMoneyList[3] = lottoMoneyList.getValue(3) + 1
+            4 -> lottoMoneyList[4] = lottoMoneyList.getValue(4) + 1
+            5 -> {
+                if (lotto.contains(bonusNumber)) {
+                    bonusNumberCnt++
+                } else {
+                    lottoMoneyList[5] = lottoMoneyList.getValue(5) + 1
+                }
+            }
+            6 -> lottoMoneyList[6] = lottoMoneyList.getValue(6) + 1
+        }
+    }
+    lottoMoneyList[5] = bonusNumberCnt
+    return lottoMoneyList
+}
 
