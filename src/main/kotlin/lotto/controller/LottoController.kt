@@ -6,6 +6,7 @@ import LottoPurchaseView.printPurchaseAmountOfLotto
 import lotto.model.LottoModel
 import lotto.model.LottoTicket
 import lotto.model.WinningNumber
+import lotto.presentation.LottoBonusView.printBonusNumberOfLotto
 import lotto.presentation.LottoGeneratorView.printLottoTickets
 import lotto.presentation.LottoGeneratorView.printPurchaseLottoCount
 import lotto.presentation.LottoWinningView.inputWinningNumberOfLotto
@@ -23,8 +24,8 @@ class LottoController() {
             printPurchaseLottoCount(purchaseAmount)
 
             generateLottoTickets(purchaseAmount / LOTTO_PRICE)
-            startWinningNumber()
 
+            startWinningNumber()
         } catch (e: IllegalArgumentException) {
             println(e.message)
             start()
@@ -35,10 +36,16 @@ class LottoController() {
         try {
             printWinningNumberOfLotto()
             val winningNumber = inputWinningNumberOfLotto()
+
+            startBonusNumber()
         } catch (e: IllegalArgumentException) {
             println(e.message)
             startWinningNumber()
         }
+    }
+
+    fun startBonusNumber() {
+        printBonusNumberOfLotto()
     }
 
     fun validateInputPurchaseAmountOfLottoNumeric(input: String) {
