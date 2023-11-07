@@ -1,6 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
+import kotlin.math.roundToInt
 
 class LottoGame(private val user: User) {
 
@@ -19,6 +20,10 @@ class LottoGame(private val user: User) {
 
         showMessage(INPUT_BONUS_NUMBER_MESSAGE)
         val bonusNumber = inputBonusNumberFromUser()
+
+        val winningRecord = recordWinning(lottos, winningNumbers, bonusNumber)
+        showMessage(WINNING_STATISTICS_LABEL)
+        showWinningRecordMessages(winningRecord)
     }
 
     private fun inputAmountFromUser(): Int {
@@ -77,6 +82,54 @@ class LottoGame(private val user: User) {
 
     private fun formatLottoNumbers(lotto: Lotto): String = lotto.getSortedNumbers().joinToString(LOTTO_NUMBER_SEPARATOR)
 
+    private fun recordWinning(lottos: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): Map<Winning, Int> {
+        val winningRecord = mutableMapOf<Winning, Int>()
+
+        lottos.forEach { lotto ->
+            val winning = calculateWinningResult(lotto, winningNumbers, bonusNumber)
+            winning?.let {
+                winningRecord[it] = (winningRecord[it] ?: 0) + 1
+            }
+        }
+
+        return winningRecord
+    }
+
+    private fun calculateWinningResult(lotto: Lotto, winningNumbers: List<Int>, bonusNumber: Int): Winning? {
+        val (matchCount, isMatchBonus) = matchLottoWithWinningNumbers(
+            lotto.getSortedNumbers(),
+            winningNumbers,
+            bonusNumber
+        )
+
+        return Winning.get(matchCount, isMatchBonus)
+    }
+
+    private fun matchLottoWithWinningNumbers(
+        lottoNumbers: List<Int>,
+        winningNumbers: List<Int>,
+        bonusNumber: Int
+    ): Pair<Int, Boolean> {
+        val matchedCount = lottoNumbers.count { it in winningNumbers }
+        val isMatchedBonus = bonusNumber !in winningNumbers && bonusNumber in lottoNumbers
+
+        return Pair(matchedCount, isMatchedBonus)
+    }
+
+    private fun showWinningRecordMessages(winningRecord: Map<Winning, Int>) {
+        val winnings = Winning.getSortedWinnings()
+
+        winnings.forEach {
+            val matchCount = winningRecord[it] ?: 0
+            if (it.isWithBonus) {
+                showMessage(WINNING_WITH_BONUS_MESSAGE.format(it.count, it.amount.withCommas(), matchCount))
+            } else {
+                showMessage(WINNING_WITHOUT_BONUS_MESSAGE.format(it.count, it.amount.withCommas(), matchCount))
+            }
+        }
+    }
+
+
     private fun showMessage(message: String) = println(message)
 
     private fun showErrorMessage(errorMessage: String) = println("$PREFIX_ERROR_MESSAGE $errorMessage")
@@ -92,5 +145,13 @@ class LottoGame(private val user: User) {
 
         const val LOTTO_NUMBERS_MESSAGE = "[%s]"
         const val LOTTO_NUMBER_SEPARATOR = ", "
+
+        const val WINNING_STATISTICS_LABEL = "당첨 통계\n---"
+        const val WINNING_WITHOUT_BONUS_MESSAGE = "%d개 일치 (%s원) - %d개"
+        const val WINNING_WITH_BONUS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개"
     }
+}
+
+fun Int.withCommas(): String {
+    return "%,d".format(this)
 }
