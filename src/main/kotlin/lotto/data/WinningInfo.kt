@@ -22,15 +22,15 @@ data class WinningInfo(
         private const val SHOULD__FIT_SIZE = "[ERROR] 데이터 크기가 맞지 않습니다."
 
         fun from(counts: List<Int>): WinningInfo {
-            require(counts.size == GRADE.entries.size - 1) {
+            require(counts.size == GRADE.entries.size) {
                 SHOULD__FIT_SIZE
             }
             return WinningInfo(
-                first = counts[0],
-                second = counts[1],
-                third = counts[2],
-                fourth = counts[3],
-                fifth = counts[4],
+                first = counts[GRADE.ONE.rank()],
+                second = counts[GRADE.TWO.rank()],
+                third = counts[GRADE.THREE.rank()],
+                fourth = counts[GRADE.FOUR.rank()],
+                fifth = counts[GRADE.FIVE.rank()],
             )
         }
     }

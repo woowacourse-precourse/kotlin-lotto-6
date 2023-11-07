@@ -11,8 +11,8 @@ class Analyzer(private val calculator: Calculator) {
             countOfWin[ticket.checkGrade(winningLotto).rank()]++
         }
         return Stats(
-            info = WinningInfo.from(countOfWin.slice(1..countOfWin.size)),
-            profitRate = calculator.calculateProfitRate(countOfWin, tickets.size)
+            info = WinningInfo.from(countOfWin.toList()),
+            profitRate = calculator.calculateProfitRate(countOfWin.toList(), tickets.size)
         )
     }
 }

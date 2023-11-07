@@ -13,9 +13,9 @@ class Calculator {
         return quotient to remainder
     }
 
-    fun calculateProfitRate(countOfWin: IntArray, countOfBuying: Int): Float {
+    fun calculateProfitRate(countOfWin: List<Int>, countOfBuying: Int): Float {
         val totalProfit = countOfWin.reduceIndexed { rank: Int, sum: Int, count: Int ->
-            if (rank == 0) {
+            if (rank == GRADE.LOSE.rank()) {
                 return@reduceIndexed sum
             }
             sum + GRADE.fromRank(rank).price() * count
