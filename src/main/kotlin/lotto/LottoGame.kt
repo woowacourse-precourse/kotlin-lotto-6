@@ -5,12 +5,19 @@ import camp.nextstep.edu.missionutils.Console
 
 class LottoGame() {
     fun start() {
-        val lottoCount = purchaseSequence()
-        var lottos = generateLottos(lottoCount)
-        val winningNumbers = getWinnningNumberSequence()
-        val bonusNumber = getBonusNumberSequence()
+        while (true) {
+            try {
+                val lottoCount = purchaseSequence()
+                var lottos = generateLottos(lottoCount)
+                val winningNumbers = getWinnningNumberSequence()
+                val bonusNumber = getBonusNumberSequence()
 
-        val lottoResult = LottoResult(lottos, winningNumbers, bonusNumber)
+                val lottoResult = LottoResult(lottos, winningNumbers, bonusNumber)
+            } catch (e: IllegalArgumentException) {
+                println("[ERROR] ${e.message}")
+            }
+            break
+        }
     }
 
     private fun purchaseSequence(): Int{

@@ -10,7 +10,9 @@ object InputValidator {
     }
 
     fun validatePurchaseAmount(userInput: String) {
-        require(userInput.all { it.isDigit() }) { "[ERROR] 로또 구입 금액은 0보다 큰 숫자여야 합니다?" }
+        require(userInput.all { it.isDigit() }) {
+            "[ERROR]"
+        }
         val amount = userInput.toInt()
         require(amount % 1000 == 0) { "[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다." }
     }
