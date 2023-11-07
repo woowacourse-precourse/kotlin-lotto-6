@@ -19,7 +19,7 @@ fun main() {
 fun getPurchaseAmount(): Int {
     while (true) {
         try {
-            println("구입 금액을 입력해 주세요: ")
+            println("구입 금액을 입력해 주세요.")
             val amount = Console.readLine().toInt()
             if (amount % 1000 == 0) {
                 return amount
@@ -55,7 +55,7 @@ fun generateLotto(purchaseAmount: Int): List<Lotto> {
 fun getWinningNumbers(): List<Int> {
     while (true) {
         try {
-            println("\n당첨 번호를 입력해 주세요: ")
+            println("\n당첨 번호를 입력해 주세요.")
             val input = Console.readLine()
             val numbers = input.split(",").map { it.toInt() }
             if (numbers.size == 6 && numbers.all { it in 1..45 }) {
@@ -74,7 +74,7 @@ fun getWinningNumbers(): List<Int> {
 fun getBonusNumber(): Int {
     while (true) {
         try {
-            println("\n보너스 번호를 입력해 주세요: ")
+            println("\n보너스 번호를 입력해 주세요.")
             val number = Console.readLine().toInt()
             if (number in 1..45) {
                 return number
