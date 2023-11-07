@@ -1,6 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.View.LottoGameView
 
 class Lotto(private val numbers: List<Int>) {
     init {
@@ -89,19 +90,7 @@ class LottoGameModel(howManyBuyLotto: Int) {
     }
 
     fun printResult(){
-        println("\n당첨 통계")
-        println("---")
-        println("3개 일치 (5,000원) - ${winning3}개")
-        println("4개 일치 (50,000원) - ${winning4}개")
-        println("5개 일치 (1,500,000원) - ${winning5}개")
-        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${winning5WithBonus}개")
-        println("6개 일치 (2,000,000,000원) - ${winning6}개")
-        printProfitRate()
+        LottoGameView.printGameResult(winning3,winning4,winning5,winning5WithBonus,winning6,lottoList.size)
     }
 
-    fun printProfitRate(){
-        val totalWinningCount = winning3 + winning4 + winning5 + winning5WithBonus + winning6
-        val profitRate = (totalWinningCount.toDouble()/lottoList.size) * 100
-        println("총 수익률은 ${profitRate}%입니다.")
-    }
 }
