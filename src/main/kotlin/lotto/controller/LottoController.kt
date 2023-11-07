@@ -6,11 +6,18 @@ import lotto.view.LottoView
 
 class LottoController(private val view: LottoView, private val model: LottoModel) {
     fun run() {
+        buyLottoPhase()
+        setLottoNumbersPhase()
+        displayResultPhase()
+    }
+    private fun buyLottoPhase() {
         view.requestPurchaseMoneyValueMessage()
         while (model.isPurchaseMoneyValueValid(setPurchaseMoneyValue())) {
             view.displayInappropriateValueError()
         }
         view.displayPurchasedLotteryAmountMessage(model.getLotteryAmount())
+    }
+    private fun setLottoNumbersPhase() {
         model.setLotteryNumbers()
         view.displayLotteryNumbers(model.getLotteryNumbers())
         view.requestWinningNumbersMessage()
@@ -21,6 +28,8 @@ class LottoController(private val view: LottoView, private val model: LottoModel
         while (model.setBonus(setBonusNumber())) {
             view.displayInappropriateBonusValueERROR()
         }
+    }
+    private fun displayResultPhase() {
         view.displayLotteryStatisticsMessage()
         model.calculateWinningLottery()
         view.displayWinningResult(model.getLottoResult())

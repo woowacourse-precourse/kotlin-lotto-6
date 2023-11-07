@@ -43,8 +43,8 @@ class LottoView {
         displayWinningAmount(WinningLottery.FIRST, lottoRank.component1())
     }
     private fun displayWinningAmount(winning: WinningLottery, rank: Int) {
-        print("${winning.conditionValue}${ConsoleMessage.WINNING_MESSAGE_PHASE_1} ")
-        if(rank == Values.WINNING_PRIZE_SECOND) {
+        print("${winning.conditionValue}${ConsoleMessage.WINNING_MESSAGE_PHASE_1}")
+        if(winning == WinningLottery.SECOND) {
             print(ConsoleMessage.WINNING_MESSAGE_PHASE_BONUS)
         }
         print(ConsoleMessage.WINNING_MESSAGE_PHASE_2)

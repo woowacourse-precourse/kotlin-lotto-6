@@ -8,7 +8,7 @@ object ConsoleMessage {
     const val INDICATE_LOTTERY_STATISTICS = "\n당첨 통계\n---"
     const val WINNING_MESSAGE_PHASE_1 = "개 일치"
     const val WINNING_MESSAGE_PHASE_BONUS = ", 보너스 볼 일치"
-    const val WINNING_MESSAGE_PHASE_2 = "("
+    const val WINNING_MESSAGE_PHASE_2 = " ("
     const val WINNING_MESSAGE_PHASE_3 = "원) - "
     const val WINNING_MESSAGE_PHASE_4 = "개"
     const val BENEFIT_RATE_MESSAGE_PHASE_1 = "총 수익률은 "
