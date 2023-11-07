@@ -1,5 +1,8 @@
 package lotto
 
+import lotto.domain.Customer
+
 fun main() {
-    TODO("프로그램 구현")
+    val customer = Customer()
+
 }
