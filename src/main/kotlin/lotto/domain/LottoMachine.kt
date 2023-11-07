@@ -1,12 +1,13 @@
 package lotto.domain
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.Constants
 
 class LottoMachine(private val inputMoney: Int) {
     fun issueLottos(): List<Lotto> {
         val lottos = mutableListOf<Lotto>()
 
-        repeat(inputMoney / 1000) {
+        repeat(inputMoney / LOTTO_PRICE) {
             lottos.add(createLotto())
         }
         return lottos.toList()
@@ -17,7 +18,9 @@ class LottoMachine(private val inputMoney: Int) {
     }
 
     private fun generateNumbers(): List<Int> {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        return Randoms.pickUniqueNumbersInRange(
+            Constants.NUMBER_START_RANGE, Constants.NUMBER_END_RANGE, Constants.NUMBERS_SIZE
+        )
     }
 
     fun calculateResult(lottos: List<Lotto>, winningLotto: WinningLotto): LottoResult {
@@ -33,12 +36,17 @@ class LottoMachine(private val inputMoney: Int) {
 
     fun getRateOfReturn(result: LottoResult): Double {
         val totalPrize = calculateTotalPrize(result)
-        return (totalPrize.toDouble() / inputMoney) * 100
+        return (totalPrize.toDouble() / inputMoney) * PERCENTAGE_MULTIPLIER
     }
 
     private fun calculateTotalPrize(result: LottoResult): Int {
         return Rank.entries.sumOf { rank ->
             result.getCount(rank) * rank.getPrize(rank)
         }
+    }
+
+    companion object {
+        private const val LOTTO_PRICE = 1000
+        private const val PERCENTAGE_MULTIPLIER = 100
     }
 }

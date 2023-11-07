@@ -1,5 +1,7 @@
 package lotto.validator
 
+import lotto.Constants
+
 class BonusNumberValidator {
     fun validate(inputBonusNumber: String, winningNumbers: List<Int>) {
         val bonusNumber = parseToInt(inputBonusNumber)
@@ -11,15 +13,21 @@ class BonusNumberValidator {
         return try {
             inputBonusNumber.toInt()
         } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("[ERROR] 숫자가 아닌 다른 형식을 입력할 수 없습니다.")
+            throw IllegalArgumentException(INVALID_BONUS_NUMBER_FORMAT_ERROR_MESSAGE)
         }
     }
 
-    private fun requireValidNumberRange(inputBonusNumber: Int) {
-        require(inputBonusNumber in 1..45) { "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다." }
+    private fun requireValidNumberRange(bonusNumber: Int) {
+        require(bonusNumber in Constants.NUMBER_START_RANGE..Constants.NUMBER_END_RANGE) { BONUS_NUMBER_OUT_OF_RANGE_ERROR_MESSAGE }
     }
 
-    private fun requireUniqueNumber(inputBonusNumber: Int, winningNumbers: List<Int>) {
-        require(!winningNumbers.contains(inputBonusNumber)) { "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다." }
+    private fun requireUniqueNumber(bonusNumber: Int, winningNumbers: List<Int>) {
+        require(!winningNumbers.contains(bonusNumber)) { DUPLICATED_BONUS_NUMBER_ERROR_MESSAGE }
+    }
+
+    companion object {
+        private const val INVALID_BONUS_NUMBER_FORMAT_ERROR_MESSAGE = "[ERROR] 숫자가 아닌 다른 형식을 입력할 수 없습니다."
+        private const val BONUS_NUMBER_OUT_OF_RANGE_ERROR_MESSAGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.."
+        private const val DUPLICATED_BONUS_NUMBER_ERROR_MESSAGE = "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다."
     }
 }

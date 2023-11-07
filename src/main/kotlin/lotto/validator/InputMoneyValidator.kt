@@ -11,11 +11,12 @@ class InputMoneyValidator {
         require(money.isNotBlank()) { "[ERROR] 공백을 입력할 수 없습니다." }
     }
 
-    private fun requireNumericString(money: String) {
-        require(money.all { it.isDigit() }) { "[ERROR] 숫자가 아닌 다른 형식을 입력할 수 없습니다." }
+    private fun requireAmountDivisibleBy1000(money: Int) {
+        require(money % 1000 == 0) { NOT_DIVISIBLE_BY_THOUSAND_ERROR_MESSAGE }
     }
 
-    private fun requireAmountDivisibleBy1000(money: String) {
-        require(money.toInt() % 1000 == 0) { "[ERROR] 1000으로 나누어 떨어지는 금액 입력해야 합니다." }
+    companion object {
+        private const val INVALID_INPUT_MONEY_FORMAT_ERROR_MESSAGE = "[ERROR] 숫자가 아닌 다른 형식을 입력할 수 없습니다."
+        private const val NOT_DIVISIBLE_BY_THOUSAND_ERROR_MESSAGE = "[ERROR] 1000으로 나누어 떨어지는 금액 입력해야 합니다."
     }
 }
