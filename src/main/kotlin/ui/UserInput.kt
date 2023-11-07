@@ -39,7 +39,7 @@ object UserInput {
         while (true) {
             try {
                 println(MSG_INPUT_WIN_NUMBERS)
-                val winNumbers = inputToNumbersByComma(Console.readLine())
+                val winNumbers = inputToNumbersByDelimiter(Console.readLine(), ",")
                 InputValidator
                     .checkProperNumbersSize(winNumbers)
                     .checkNumberListInRange(winNumbers)
@@ -71,8 +71,8 @@ object UserInput {
         }
     }
 
-    private fun inputToNumbersByComma(input: String): List<Int> {
-        return input.split(",")
+    private fun inputToNumbersByDelimiter(input: String, delimiter: String): List<Int> {
+        return input.split(delimiter)
             .filter { it.isNotBlank() || it.isNotEmpty() }
             .map {
                 val digit = it.trim()
