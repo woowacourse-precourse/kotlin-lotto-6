@@ -28,4 +28,10 @@ class LottoUI {
         }
     }
 
+    fun printBuyLottoCount(buyPrice: String) {
+        println()
+        print(buyPrice.toInt() / 1000)
+        println(Buy.HOW_MANY.value)
+    }
+
 }
