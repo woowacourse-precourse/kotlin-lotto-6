@@ -8,7 +8,17 @@ enum class LottoRanking (val message: String, val price: Int, val matchingNumber
     FIRST_RANK("6개 일치", 2_000_000_000, 6, false, 0);
 
     companion object{
-        fun matchLottoRank(winningLottoNumbers: Lotto, bonusLottoNumber: Int, userLottoNumbers: Lotto): Pair<Int, Boolean>{
+
+        fun calculateMatchingLottoRank(winningLottoNumbers: Lotto, bonusLottoNumber: Int, userLottoList: List<Lotto>){
+            for(userLotto in userLottoList) {
+                val matchedLottoNumbers = matchLottoRank(winningLottoNumbers, bonusLottoNumber, userLotto)
+                if (matchedLottoNumbers.first >= 3){
+                    countUserLottoRank(findRank(matchedLottoNumbers))
+                }
+
+            }
+        }
+        private fun matchLottoRank(winningLottoNumbers: Lotto, bonusLottoNumber: Int, userLottoNumbers: Lotto): Pair<Int, Boolean>{
             var matchingNumberCnt = 0
             var matchingBonus = false
             for (userLottoNum in userLottoNumbers.getLotto()){
@@ -21,24 +31,24 @@ enum class LottoRanking (val message: String, val price: Int, val matchingNumber
             }
             return Pair(matchingNumberCnt, matchingBonus)
         }
-        fun countUserLottoRank(userLottoRank: LottoRanking) {
+        private fun countUserLottoRank(userLottoRank: LottoRanking) {
             when(userLottoRank) {
-                LottoRanking.FIFTH_RANK -> FIFTH_RANK.userLottoRankCnt + 1
-                LottoRanking.FORTH_RANK -> FORTH_RANK.userLottoRankCnt + 1
-                LottoRanking.THIRD_RANK -> THIRD_RANK.userLottoRankCnt + 1
-                LottoRanking.SECOND_RANK -> SECOND_RANK.userLottoRankCnt + 1
-                LottoRanking.FIRST_RANK -> FIRST_RANK.userLottoRankCnt + 1
+                FIFTH_RANK -> FIFTH_RANK.userLottoRankCnt ++
+                FORTH_RANK -> FORTH_RANK.userLottoRankCnt ++
+                THIRD_RANK -> THIRD_RANK.userLottoRankCnt ++
+                SECOND_RANK -> SECOND_RANK.userLottoRankCnt ++
+                FIRST_RANK -> FIRST_RANK.userLottoRankCnt ++
                 else -> throw IllegalArgumentException("존재하지 않는 로또 등수입니다.")
             }
         }
-        fun findRank(matchingResult: Pair<Int, Boolean>): LottoRanking {
+        private fun findRank(matchingResult: Pair<Int, Boolean>): LottoRanking {
             return when(matchingResult) {
-                Pair(3, false) -> LottoRanking.FIFTH_RANK
-                Pair(4, false) -> LottoRanking.FORTH_RANK
-                Pair(5, false) -> LottoRanking.THIRD_RANK
-                Pair(5, true) -> LottoRanking.SECOND_RANK
-                Pair(6, false) -> LottoRanking.FIRST_RANK
-                else -> throw IllegalArgumentException("존재하지 않는 로또 당첨 여부입니다.")
+                Pair(3, false) -> FIFTH_RANK
+                Pair(4, false) -> FORTH_RANK
+                Pair(5, false) -> THIRD_RANK
+                Pair(5, true) -> SECOND_RANK
+                Pair(6, false) -> FIRST_RANK
+                else -> throw IllegalArgumentException("존재하지 않는 로또 당첨 등급입니다.")
             }
         }
     }
