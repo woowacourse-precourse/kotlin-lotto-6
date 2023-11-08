@@ -2,6 +2,9 @@ package lotto.domain
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 
 
 class LottoTest {
@@ -20,5 +23,22 @@ class LottoTest {
         }
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @ParameterizedTest
+    @MethodSource("1~45 이외의 숫자")
+    fun `로또 번호에 1~45 이외의 숫자가 있으면 예외가 발생한다`(exceptionNumbers: List<Int>) {
+        assertThrows<IllegalArgumentException> {
+            Lotto(exceptionNumbers)
+        }
+    }
+
+    companion object {
+        @JvmStatic
+        fun `1~45 이외의 숫자`(): List<Arguments> {
+            return listOf(
+                Arguments.of(listOf(1, 2, 3, 4, 5, 46)),
+                Arguments.of(listOf(1, 2, 3, 4, 5, 0)),
+                Arguments.of(listOf(1, 2, 3, 4, 5, -1))
+            )
+        }
+    }
 }
