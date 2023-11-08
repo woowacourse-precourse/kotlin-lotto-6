@@ -114,6 +114,7 @@ class LottoShop {
         const val PRICE_LIMIT = 100_000
         const val ONE_MATCH_INCREMENT = 1
         const val PERCENTAGE = 100
+        const val ERROR_PRICE_ENTER = "[ERROR] 로또 구입 금액을 입력하세요"
         const val ERROR_PRICE_BLANK = "[ERROR] 로또 구입 금액은 천원 이상으로 입력 가능합니다."
         const val ERROR_PRICE_NOT_NUM = "[ERROR] 로또 구입 금액은 숫자로만 입력 가능합니다."
         const val ERROR_PRICE_NOT_1000_UNIT = "[ERROR] 로또 구입 금액은 천원 단위로만 입력 가능합니다."
