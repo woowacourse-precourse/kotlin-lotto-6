@@ -7,11 +7,12 @@ fun main() {
     println("구입금액을 입력해 주세요.")
 
     try {
+        //발행한 로또 수량 출력
         val purchaseAmount = getValidPurchaseAmount()
         val purchasedTickets = generateLottoTickets(purchaseAmount)
         println("${purchasedTickets}개를 구매했습니다.")
 
-        // 사용자 로또 객체 배열 생성
+        // 발행한 로또 번호 출력
         val lottoTickets = mutableListOf<Lotto>()
 
         for (i in 1..purchasedTickets) {
@@ -21,11 +22,47 @@ fun main() {
         }
 
         for (lotto in lottoTickets) {
-            lotto.printNumbers()
+            println(lotto.printNumbers())
         }
 
-        val winningNumbers = getWinningNumbers()
-        val bonusNumber = getBonusNumber()
+        //당첨 번호와 보너스 번호 입력
+        val winningNumbers = getWinningNumbers() //당첨 번호
+        val bonusNumber = getBonusNumber() // 보너스번호
+
+        // 당첨 번호와 보너스 번호를 기반으로 당첨 결과 출력
+        val winningStatistics = WinningStatistics(winningNumbers, bonusNumber)
+        val totalPrize = winningStatistics.calculateTotalPrize(lottoTickets)
+        val winningRate = winningStatistics.calculateWinningRate(purchaseAmount, totalPrize)
+
+
+        println("당첨 통계")
+        for (index in WinningPrize.values().filter{ it != WinningPrize.NONE }) {
+            val prize = index.prize
+            // 여기서 "i" 대신 "prizeCase"의 ordinal 값을 사용하여 일치하는 숫자 개수를 가져옵니다.
+            val bonusMatchedCount = lottoTickets.count { it.containsNumber(bonusNumber)}
+
+            val count = if (index == WinningPrize.FIVE_MATCH && bonusMatchedCount > 0) {
+                0 // 만족하는 경우 count를 0으로 설정
+            } else {
+                lottoTickets.count { it.getMatchedNumbers(winningNumbers) == index.ordinal + 2 }
+            }
+
+            if(index == WinningPrize.FIVE_MATCH_WITH_BONUS) {
+                println("5개 일치, 보너스 볼 일치 (${winningStatistics.getPrizeString(prize)}) - ${bonusMatchedCount}개")
+                continue
+            }
+            if(index.ordinal+2 == 7)
+                print("${index.ordinal + 1 }개 일치")
+            else {
+                print("${index.ordinal + 2 }개 일치")
+            }
+            println(" (${winningStatistics.getPrizeString(prize)}) - ${count}개")
+
+
+
+        }
+
+        println("총 수익률은 ${winningRate}%입니다.")
 
     } catch (e: IllegalArgumentException) {
         println(e.message)
