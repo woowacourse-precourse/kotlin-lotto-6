@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.model.Jackpot
+import lotto.model.Rank
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -20,12 +21,19 @@ class FunctionTest {
         Assertions.assertEquals(expectedRank, result)
     }
 
+
     @Test
     fun testRankUpdate() {
-        val initialRank = mutableListOf(0, 0, 0, 0, 0)
+        val rank = mutableMapOf(
+            Rank.THIRD to 2,
+            Rank.FOURTH to 1,
+            Rank.FIFTH to 3,
+            Rank.FIFTH_WITH_BONUS to 0,
+            Rank.SIXTH to 5
+        )
 
-        val rank4 = Jackpot().rankUpdate(5, initialRank, false)
-        Assertions.assertIterableEquals(listOf(0, 0, 1, 0, 0), rank4)
-
+        // 테스트 케이스 1: 3개 일치 추가
+        val updatedRank1 = Jackpot().rankUpdate(3, rank, false)
+        Assertions.assertEquals(3, updatedRank1[Rank.THIRD])
     }
 }
