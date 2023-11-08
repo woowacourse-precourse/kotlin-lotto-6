@@ -1,17 +1,15 @@
 package lotto.domain
 
 
-enum class WinningNumber(message: String) {
+enum class WinningNumber(val message: String) {
     DUPLICATE("[ERROR] 중복 되는 숫자 없이 입력해 주세요."),
     NON_SIX_NUMBER("[ERROR] 6개의 숫자를 입력해 주세요."),
     NON_COMMA("[ERROR] 각 숫자를 쉼표(,)로 나눠주세요."),
+    COMMA(",")
 }
 
-// 쉼표로 나누기, 정수로 변경
 fun parser(input: String): List<String> {
-    val win = input.split(",")
-    require(win.any { it.isBlank() }) {"쉼표로나눠"}
-//    return win.map { it.toInt() }
+    val win = input.split(WinningNumber.COMMA.message)
     return win
 }
 
@@ -28,30 +26,30 @@ fun winningNumberValidators(input: String): List<Int> {
 
 fun handleNonInteger(numbers: List<String>): List<Int> {
     val numericNumbers = numbers.mapNotNull { it.toIntOrNull() }
-    require(numericNumbers.size == numbers.size) { Number.NON_INTEGER }
+    require(numericNumbers.size == numbers.size) { Number.NON_INTEGER.message }
     return numericNumbers
 }
 
 fun handleInvalidNumberOfNumbers(numbers: List<Int>) {
-    require(numbers.size == 6) { WinningNumber.NON_SIX_NUMBER }
+    require(numbers.size == 6) { WinningNumber.NON_SIX_NUMBER.message }
 }
 
 fun handleEmptyString(numbers: List<String>) {
     for(index in numbers.indices) {
-        require(numbers[index].isNotEmpty() && numbers[index].isNotBlank()) { Number.EMPTY }
+        require(numbers[index].isNotEmpty() && numbers[index].isNotBlank()) { Number.EMPTY.message }
     }
 }
 
 fun handleDuplicateNumbers(numbers: List<Int>) {
-    require(numbers.size == numbers.distinct().size) { WinningNumber.DUPLICATE }
+    require(numbers.size == numbers.distinct().size) { WinningNumber.DUPLICATE.message }
 }
 
 fun handleInvalidRange(numbers: List<Int>) {
     val validNumbers = numbers.filter { it in 1..45 }
-    require(validNumbers.size == numbers.size) { Number.INVALID_RANGE }
+    require(validNumbers.size == numbers.size) { Number.INVALID_RANGE.message }
 }
 
 fun handleNonCommaSeparated(input: String) {
     val regex = Regex("^(?!.*,{2})[0-9,]+$")
-    require(regex.matches(input)) { WinningNumber.NON_COMMA }
+    require(regex.matches(input)) { WinningNumber.NON_COMMA.message }
 }
