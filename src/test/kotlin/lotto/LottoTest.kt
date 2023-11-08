@@ -1,6 +1,6 @@
 package lotto
 
-import lotto.data.LottoMatchInfo
+import lotto.data.LottoWinnerInfo
 import lotto.domain.Lotto
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeAll
@@ -43,6 +43,6 @@ class LottoTest {
             winningNumbers = listOf(1, 7, 8, 9, 10, 11),
             bonusNumber = 12
         )
-        Assertions.assertThat(received).isEqualTo(LottoMatchInfo.MatchUnderThree)
+        Assertions.assertThat(received).isEqualTo(LottoWinnerInfo.MatchUnderThree)
     }
 }
