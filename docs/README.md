@@ -9,6 +9,7 @@
 - [x] 로또 번호 출력 - printNumbers() O
 - [x] 로또 번호 비교 - compareLottoNumber() O
 - [x] 보너스 번호와 자신의 로또 번호를 비교하는 기능 - compareBonusNumber() O
+- [x] 로또의 숫자 리스트를 반환하는 기능 - getNumbers() O
 
 ### 판매자: Seller - O
 - [x] 로또 판매 기능 - sellLotto() O
