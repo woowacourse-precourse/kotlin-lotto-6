@@ -6,6 +6,8 @@ import lotto.Lotto
 import lotto.domain.PurchaseAmount
 import lotto.domain.compareToLotto
 import lotto.domain.matchCheck
+import lotto.domain.parser
+import lotto.domain.winningNumberValidators
 import lotto.view.OutputView
 import lotto.view.printBonusMessage
 import lotto.view.printEarningRate
@@ -23,17 +25,18 @@ class LottoController {
         val lottos = makeLottos(amount)
 
         printWinningMessage()
-        val winningNumber = parser(inputMessage())
+        val winningNumbers = winningNumberValidators(inputMessage())
 
-        printBonusMessage()
-        val bonusNumber = inputMessage().toInt()
-        printWinningReport()
-        val matches = compareToLotto(lottos, winningNumber, bonusNumber) // 몇 개씩 당첨되었는지 갯수 반환
-        matchCheck(matches)
 
-        // 수익률 구하기
-        val totalAmount = getTotalAmount(matches)
-        printEarningRate(getEarningRate(amount, totalAmount))
+//        printBonusMessage()
+//        val bonusNumber = inputMessage().toInt()
+//        printWinningReport()
+//        val matches = compareToLotto(lottos, winningNumber, bonusNumber) // 몇 개씩 당첨되었는지 갯수 반환
+//        matchCheck(matches)
+//
+//        // 수익률 구하기
+//        val totalAmount = getTotalAmount(matches)
+//        printEarningRate(getEarningRate(amount, totalAmount))
     }
 }
 
@@ -53,11 +56,7 @@ fun makeLottos(amount: Int): MutableList<Lotto> {
     return lottos
 }
 
-// 쉼표로 나누기, 정수로 변경
-fun parser(s: String): List<Int> {
-    val win = s.split(",")
-    return win.map { it.toInt() }
-}
+
 
 // 당첨된 금액 합계
 fun getTotalAmount(matches: Pair<MutableList<Int>, Int>): Int {
