@@ -1,5 +1,6 @@
 package lotto.controller
 
+
 import lotto.domain.*
 import lotto.model.Lotto
 import lotto.model.WinningLotto
