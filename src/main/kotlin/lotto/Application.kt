@@ -87,3 +87,18 @@ fun getBonusNumber(winningNumbers: List<Int>): Int {
         } catch (e: IllegalArgumentException) { println(e.message) }
     }
 }
+
+data class Result(val prizes: MutableList<Prize> = mutableListOf()) {
+    fun addPrize(prize: Prize) {
+        prizes.add(prize)
+    }
+}
+
+// 당첨 등수와 상금
+enum class Prize(val matchCount: Int, val prizeName: String, val amount: String) {
+    FIRST(6, "1등", "2,000,000,000"),
+    SECOND(5, "2등", "30,000,000"),
+    THIRD(5, "3등", "1,500,000"),
+    FOURTH(4, "4등", "50,000"),
+    FIFTH(3, "5등", "5,000")
+}
