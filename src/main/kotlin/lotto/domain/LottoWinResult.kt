@@ -13,7 +13,7 @@ enum class LottoWinResult(
 
     companion object {
         private val ranks = mutableListOf(0, 0, 0, 0, 0, 0)
-        private var money: Long = 0
+        private var money: Long = 0L
 
         fun getRanks(): List<Int> = ranks.toList()
         fun getMoney(): Long = this.money
