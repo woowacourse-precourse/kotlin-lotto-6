@@ -1,8 +1,9 @@
 package lotto
 
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-
+import org.assertj.core.api.Assertions.assertThat
 
 class LottoTest {
     @Test
@@ -21,4 +22,17 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @Test
+    @DisplayName("로또 번호에 중복 숫자 있는 경우")
+    fun hasDuplicateLottoNumber() {
+        assertThrows<IllegalArgumentException> { Lotto(listOf(1, 2, 3, 4, 5, 5)) }
+    }
+
+    @Test
+    @DisplayName("1 ~ 45 사이의 아닌 로또 번호가 있는 경우")
+    fun lottoNumbersInRange() {
+        assertThrows<IllegalArgumentException> { Lotto(listOf(1, 2, 3, 4, 5, 46)) }
+    }
+
 }
