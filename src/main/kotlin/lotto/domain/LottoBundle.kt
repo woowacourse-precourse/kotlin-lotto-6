@@ -32,7 +32,7 @@ class LottoBundle(private val lottos: List<Lotto>) {
             val lottoRank = lotto.lottoRank
 
             _winningRanksCount[lottoRank] = _winningRanksCount.getValue(lottoRank) + 1
-            totalRevenue += lottoRank.prize
+            totalRevenue += lottoRank.prize.money
         }
     }
 
