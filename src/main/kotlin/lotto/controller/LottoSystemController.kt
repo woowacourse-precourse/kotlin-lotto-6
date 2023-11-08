@@ -16,6 +16,8 @@ class LottoSystemController(lottoSystemView: LottoSystemView) {
     fun run() {
         var lottoPaper = createLottoPaper()
         printLottoPaper(lottoPaper)
+        inputWinningNumbers()
+        inputBonusNumbers()
     }
 
     private fun createLottoPaper(): LottoPaper {
@@ -36,16 +38,14 @@ class LottoSystemController(lottoSystemView: LottoSystemView) {
         lottoSystemView.printLottoNumList(lottoPaper)
     }
 
-    private fun inputWinningNumbers(): Lotto {
+    private fun inputWinningNumbers() {
         var inputWinningNum = lottoSystemView.getWinningLottoNum()
-        InputValidation().validateInputWinningLottoNum(inputWinningNum)
-
-        return Lotto(inputWinningNum.split(",").map { it.toInt() })
+        winningLottoNum = InputValidation().validateInputWinningLottoNum(inputWinningNum)
     }
 
-    private fun inputBonusNumbers(): Int {
+    private fun inputBonusNumbers(){
         var inputBonusNum = lottoSystemView.getBonusLottoNum()
         var bonusNum = InputValidation().validateInputBonusNum(inputBonusNum)
-        return bonusNum
+        winningLottoNum.setBonusNum(bonusNum)
     }
 }
