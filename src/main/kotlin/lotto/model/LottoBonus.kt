@@ -18,17 +18,5 @@ class LottoBonus {
         if(bonusNumber in prizeNumber)
             throw IllegalArgumentException(BonusErrorCode.BONUS_REPEATED.message)
     }
-    fun bonusPickNumber(prizeNumber:List<Int>): Int {
-        LottoView().bonusView()
-        while (true) {
-            try {
-                val bonusNumber = Console.readLine()
-                bonusCheck(bonusNumber)
-                bonusRepeat(bonusNumber.toInt(), prizeNumber)
-                return bonusNumber.toInt()
-            } catch (e: IllegalArgumentException) {
-                println(e.message)
-            }
-        }
-    }
+
 }
