@@ -57,7 +57,7 @@ class ConsoleLottoView : LottoView {
     }
 
     override fun displayResults(results: Map<Result, Int>) {
-        val resultsToPrint = Result.values().dropLast(n = 1) // NOTHING은 출력하지 않는다
+        val resultsToPrint = Result.entries.dropLast(n = 1) // NOTHING은 출력하지 않는다
 
         resultsToPrint.forEach {
             val resultCount = results[it] ?: 0
