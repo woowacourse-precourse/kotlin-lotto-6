@@ -10,7 +10,7 @@ class LottoResult {
         autoLottoTickets: List<Lotto>,
         winningLottoInfo: Lotto,
         bonusInfo: Int
-    ): Pair<List<Int>, Double> {
+    ): Pair<List<Int>, String> {
         val ranks = calculateLottos(autoLottoTickets, winningLottoInfo, bonusInfo)
         val returnRate = calculateReturnRate(lottoTicketsNum, ranks)
         return Pair(ranks, returnRate)
@@ -24,14 +24,14 @@ class LottoResult {
         return ranks.toList()
     }
 
-    private fun calculateReturnRate(lottoTicketsNum: Int, ranks: List<Int>): Double {
+    private fun calculateReturnRate(lottoTicketsNum: Int, ranks: List<Int>): String {
         var result = BigDecimal.valueOf(0)
         ranks.forEachIndexed { idx, it ->
             result += BigDecimal.valueOf(getMoneyByRank(idx) * it)
         }
         result = result.divide(BigDecimal(lottoTicketsNum * 10), 2, RoundingMode.HALF_UP)
 
-        return result.toDouble()
+        return result.toString()
     }
 
     private fun getMoneyByRank(idx: Int): Long {

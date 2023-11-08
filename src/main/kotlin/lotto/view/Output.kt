@@ -23,7 +23,7 @@ class Output {
         println(Notice.ENTER_BONUS_INFO.message)
     }
 
-    fun showResult(lottoResults: Pair<List<Int>, Double>) {
+    fun showResult(lottoResults: Pair<List<Int>, String>) {
         val ranks = lottoResults.first
         val rate = lottoResults.second
         println()
@@ -33,7 +33,7 @@ class Output {
             println(getMatchCount(i) + ranks[i].toString() + Notice.COUNT.message)
         }
 
-        println(Notice.PRESENT_RATE_FIRST.message + rate.toString() + Notice.PRESENT_RATE_SECOND.message)
+        println(Notice.PRESENT_RATE_FIRST.message + rate + Notice.PRESENT_RATE_SECOND.message)
     }
 
     private fun getMatchCount(i: Int): String {
