@@ -18,6 +18,7 @@ class GameManager {
         winningNumbers = inputManager.getWinningNumber()
         bonusNumber = inputManager.getBonusNumber()
         calculateWinningOfAllLotto()
+        printWinningContent()
     }
 
 
@@ -76,6 +77,26 @@ class GameManager {
         for (lotto in lottos) {
             calculateRanking(calculateNumberOfCorrection(lotto))
         }
+    }
+
+    // 발행 로또 등수별 당첨 갯수 계산
+    private fun calculateNumberOfRanking(ranking: Ranking): Int {
+        return rankings.count {
+            it.grade == ranking.grade
+        }
+    }
+
+    // 당첨 내역 출력
+    private fun printWinningContent() {
+        println()
+        println("당첨 통계")
+        println("---")
+        println("3개 일치 (5,000원) - ${calculateNumberOfRanking(Ranking.FIFTH)}개")
+        println("4개 일치 (50,000원) - ${calculateNumberOfRanking(Ranking.FOURTH)}개")
+        println("5개 일치 (1,500,000원) - ${calculateNumberOfRanking(Ranking.THIRD)}개")
+        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${calculateNumberOfRanking(Ranking.SECOND)}개")
+        println("6개 일치 (2,000,000,000원) - ${calculateNumberOfRanking(Ranking.FIRST)}개")
+        println("총 수익률은 62.5%입니다.")
     }
 
     companion object {
