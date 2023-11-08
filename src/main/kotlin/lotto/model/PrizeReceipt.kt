@@ -9,11 +9,10 @@ class PrizeReceipt(private val cost: Money) {
     val rate: Double get() = getRateResult()
 
     fun recordRank(rank: Rank) {
-        val currentCount = countByRank[rank] ?: INITIAL_COUNT
-        countByRank[rank] = currentCount + 1
+        countByRank[rank] = countByRank.getOrDefault(rank, INITIAL_COUNT) + 1
     }
 
-    fun getCountByRank(rank: Rank): Int = countByRank[rank] ?: 0
+    fun getCountByRank(rank: Rank): Int = countByRank.getOrDefault(rank, INITIAL_COUNT)
 
     private fun getRateResult(): Double {
         val sum = getPrizeSum()
