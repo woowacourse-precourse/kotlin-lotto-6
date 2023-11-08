@@ -55,7 +55,7 @@
 7
 ```
 
-5. 당첨 내역으로 각 등수에 따른 당첨 로또의 개수를 출력한다.
+5. 당첨 내역으로 각 등수에 따른 당첨 로또의 개수를 출력하기
     - 당첨 번호와 구매한 번호를 비교하여, 일치하는 번호의 개수가 따라 등수를 결정한다.
     - 5개의 숫자가 일치한다면 보너스 번호까지 비교하고, 그 결과에 따라 2등과 3등으로 나눈다.
     - 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
@@ -86,9 +86,9 @@
 #### 공통 예외 사항
 
 1. 입력 오류
-    - IllegalArgumentException을 발생시킨 후, "[ERROR]"로 시작하는 에러 메시지를 출력한다.
-```markdown
+   - IllegalArgumentException을 발생시킨 후, "[ERROR]"로 시작하는 에러 메시지를 출력한다.
+   - 입력 오류가 발생하더라도 종료하지 않고, 오류가 발생한 부분부터 다시 입력을 받는다.
+   - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형으로 처리한다.
+```markdown 
 [ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.
 ```
-    - 입력 오류가 발생하더라도 종료하지 않고, 오류가 발생한 부분부터 다시 입력을 받는다.
-    - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형으로 처리한다.
