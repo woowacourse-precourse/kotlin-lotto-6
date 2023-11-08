@@ -28,13 +28,15 @@
 1. 사용자 입력
     1. 로또 구입 금액을 받는 `lotto_pay` 메서드 
         - 로또 금액 반환 : Int
-        - `lotto_pay`에 대한 입력 오류를 처리하는 `lotto_pay_except` 메서드
+        - 사용자 입력 오류 처리를 위해 `IllegalArgumentException` 사용
+           - null : 사용자 입력이 없는 경우
+           - (input%1000)!= 0 : 1000으로 나눠 떨어지지 않는 경우
     2. 당첨 번호를 입력 받는 `lotto_input` 메서드
         - 당첨 번호 반환 : List<Int>
-        - `lotto_input` 에 대한 입력 오류를 처리하는 `lotto_input_except` 메서드 
+        - 사용자 입력 오류 처리를 위해 `IllegalArgumentException` 사용
     3. 보너스 번호를 입력 받는 `lotto_inputbonus` 메서드
         - 보너스 번호 반환 : Int
-        - `lotto_inputbonus` 에 대한 입력 오류를 처리하는 `lotto_inputbonus_except` 메서드
+        - 사용자 입력 오류 처리를 위해 `IllegalArgumentException` 사용
 2. 1..45인 6개의 난수를 생성해주는 `Lotto` 클래스
     - `Randoms.pickUniqueNumbersInRange` 사용
     - 번호 중복을 체크해주는 `dup_check` 메서드
