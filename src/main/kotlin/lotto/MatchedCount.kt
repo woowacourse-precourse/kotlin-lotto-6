@@ -7,7 +7,7 @@ enum class MatchedCount(val title: String, val prize: Long, val statement: Strin
     SECOND("2등", 30_000_000, "5개 일치, 보너스 볼 일치"),
     FIRST("1등", 2_000_000_000, "6개 일치"),
 
-    NONE("낙첨", 0, "2개 이하 일치");
+    NONE("꽝", 0, "2개 이하 일치");
 
     companion object {
         fun fromMatchedNumbers(matchedNumbers: Int, isBonusNumberMatched: Boolean): MatchedCount {
