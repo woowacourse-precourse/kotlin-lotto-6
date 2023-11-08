@@ -18,7 +18,7 @@ class Calculator {
     fun compareNum(
         userLotto: List<Int>,
         bonusNum: Int,
-        lottoMachine: MutableList<List<Int>>
+        lottoMachine: List<List<Int>>
     ) {
         //로또속 번호와 사용자가 입력한 번호를 비교해서 몇개가 당첨인지를 알수 있다.
         lottoTicketCount = lottoMachine.size

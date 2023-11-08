@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Console
 private const val COMMA = ","
 
 class User {
-    private val _purchasedLotto = mutableListOf<Lotto>()
 
     fun inputBonusNum(): Int {
         return Console.readLine().toInt()
