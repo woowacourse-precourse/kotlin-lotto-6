@@ -1,21 +1,19 @@
 package lotto.domain
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class LottoShopTest {
-
     @Test
     fun `로또 구매 가격으로 문자를 입력받을 수 없다`() {
         //given
         val lottoShop = LottoShop()
 
         //when
-
 
         //then
         assertThrows<IllegalArgumentException>{
@@ -31,7 +29,6 @@ class LottoShopTest {
 
         //when
 
-
         //then
         assertThrows<IllegalArgumentException> {
             lottoShop.purchaseLottos(input)
@@ -46,7 +43,6 @@ class LottoShopTest {
 
         //when
 
-
         //then
         assertDoesNotThrow {
             lottoShop.purchaseLottos(input)
@@ -59,7 +55,6 @@ class LottoShopTest {
         val lottoShop = LottoShop()
 
         //when
-
 
         //then
         assertThrows<IllegalArgumentException> {
@@ -75,10 +70,9 @@ class LottoShopTest {
 
         //when
 
-
         //then
         val actual = lottoShop.purchaseLottos(input).size
-        val excepted = (input.toInt())/1000
-        assertThat(actual).isEqualTo(excepted)
+        val expected = (input.toInt())/1000
+        assertThat(actual).isEqualTo(expected)
     }
 }
