@@ -64,7 +64,7 @@ class LottoResultTest {
     ) {
         val lottoResult = LottoResult(emptyList(), winningNumberSet)
         lottoResult.totalPrize = prize.toLong()
-        val profit = lottoResult.computerProfit(cost)
+        val profit = lottoResult.computeProfit(cost)
         assertEquals(expectedProfit, profit)
     }
 }
