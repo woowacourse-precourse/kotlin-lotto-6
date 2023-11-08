@@ -2,44 +2,49 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 
-object InputManagement {
+class InputManagement {
     var lottoNumbers = mutableListOf<Int>()
+    var bonusNumber: Int = 0
 
-    fun inputLottoNumbers(): List<Int> {
-        var isValidLottoNumber = false
-        while (!isValidLottoNumber) {
-            println(LOTTO_NUMBER_INPUT_MESSAGE)
-            val inputNumbers = Console.readLine()
-            isValidLottoNumber = validateNumbers(inputNumbers)
-        }
-        return lottoNumbers
+    fun inputBonusNumbers(): Int {
+        println(LottoResource.BONUS_NUMBER_INPUT_MESSAGE)
+        val inputNumber = Console.readLine()
+        bonusNumber = validateNumber(inputNumber)
+        validateBonusNumberIsDuplicateWithLottoNumbers()
+        return bonusNumber
     }
 
-    private fun putValidNumberIntoLottoNumbers(numbers: List<String>) {
+    fun inputLottoNumbers() {
         lottoNumbers.clear()
-        numbers.forEach {
-            lottoNumbers.add(it.toInt())
-        }
+        println(LottoResource.LOTTO_NUMBER_INPUT_MESSAGE)
+        val inputNumbers = Console.readLine()
+        putValidNumberIntoLottoNumbers(inputNumbers)
     }
 
-    private fun validateNumbers(inputNumbers: String): Boolean {
+    private fun putValidNumberIntoLottoNumbers(inputNumbers: String) {
         val numbers = inputNumbers.split(",")
         numbers.forEach {
-            require(it.toIntOrNull() != null) {
-                printErrorMessage(ERROR_LOTTO_NUMBER_TYPE_IS_NOT_INT)
-                return false
-            }
-            val currentNumber = it.toInt()
-            require(currentNumber in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER) {
-                printErrorMessage(ERROR_LOTTO_NUMBER_IS_OUT_OF_RANGE)
-                return false
-            }
+            val number = validateNumber(it)
+            lottoNumbers.add(number)
         }
-        putValidNumberIntoLottoNumbers(numbers)
-        return true
     }
 
-    private fun printErrorMessage(msg: String) {
-        println(ERROR_MESSAGE_HEADER + msg)
+    fun validateNumber(number: String): Int {
+        require(number.toIntOrNull() != null) {
+            Error.printErrorMessage(Error.LOTTO_NUMBER_TYPE_IS_NOT_INT)
+        }
+        val currentNumber = number.toInt()
+        require(currentNumber in LottoResource.MIN_LOTTO_NUMBER..LottoResource.MAX_LOTTO_NUMBER) {
+            Error.printErrorMessage(Error.LOTTO_NUMBER_IS_OUT_OF_RANGE)
+        }
+        return currentNumber
+    }
+
+    fun validateBonusNumberIsDuplicateWithLottoNumbers() {
+        lottoNumbers.forEach {
+            require(it != bonusNumber) {
+                Error.printErrorMessage(Error.LOTTO_NUMBER_CANT_DUPLICATE)
+            }
+        }
     }
 }
