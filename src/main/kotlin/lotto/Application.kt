@@ -17,6 +17,11 @@ fun main() {
 
         for (i in 1..purchasedTickets) {
             val randomNumbers = generateRandomNumbers()
+            if (randomNumbers is IllegalArgumentException) {
+                println("애플리케이션을 종료합니다.")
+                return
+            }
+            System.out.println(randomNumbers)
             val lotto = Lotto(randomNumbers)
             lottoTickets.add(lotto)
         }
@@ -48,7 +53,7 @@ fun main() {
             }
 
             if(index == WinningPrize.FIVE_MATCH_WITH_BONUS) {
-                println("5개 일치, 보너스 볼 일치 (${winningStatistics.getPrizeString(prize)}) - ${bonusMatchedCount}개")
+                println("5개 일치, 보너스 볼 일치 (${winningStatistics.getPrizeString(prize)}) - ${count}개")
                 continue
             }
             if(index.ordinal+2 == 7)
@@ -71,15 +76,18 @@ fun main() {
 
 fun generateRandomNumbers(): List<Int> { // 사용자 로또 생성
     val randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
-
-    if (!isValidNumbers(randomNumbers)) {
+    val generateResults = isValidNumbers(randomNumbers)
+    if (generateResults is IllegalArgumentException) {
         throw IllegalArgumentException("랜덤 숫자가 유효하지 않습니다.")
     }
 
     return randomNumbers
 }
-fun isValidNumbers(numbers: List<Int>): Boolean {
-    return numbers.all { it in 1..45 } && numbers.toSet().size == 6
+fun isValidNumbers(numbers: List<Int>): List<Int> {
+    if (numbers.any { it < 1 || it > 45 } || numbers.toSet().size != 6) {
+        throw IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    }
+    return numbers
 }
 fun getValidPurchaseAmount(): Int { // 로또 구입 금액 및 유효성 검사
     try {
