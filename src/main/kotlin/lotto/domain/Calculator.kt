@@ -13,17 +13,15 @@ class Calculator {
         return quotient to remainder
     }
 
-    fun calculateTotalProfit(countOfWin: List<Int>) =
-        countOfWin.foldIndexed(0) { rank: Int, sum: Long, count: Int ->
-            if (rank == GRADE.LOSE.rank()) {
-                return@foldIndexed sum
-            }
-            sum + GRADE.fromRank(rank).price().toLong() * count
+    fun calculateTotalProfit(countOfWin: List<Int>) = countOfWin.foldIndexed(0) { rank: Int, sum: Long, count: Int ->
+        if (rank == GRADE.LOSE.rank()) {
+            return@foldIndexed sum
         }
-
-    fun calculateProfitRate(totalProfit: Long, sizeOfTicket: Int): Double {
-        return ((totalProfit.toDouble() / (Lotto.PRICE.toDouble() * sizeOfTicket) * ROUND_FACTOR)).roundToInt() / ROUND_FACTOR
+        sum + GRADE.fromRank(rank).price().toLong() * count
     }
+
+    fun calculateProfitRate(totalProfit: Long, sizeOfTicket: Int) =
+        ((totalProfit.toDouble() / (Lotto.PRICE.toDouble() * sizeOfTicket) * ROUND_FACTOR)).roundToInt() / ROUND_FACTOR
 
     companion object {
         private const val ROUND_FACTOR = 1_000.0
