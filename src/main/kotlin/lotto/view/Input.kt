@@ -29,7 +29,6 @@ class Input {
 
     }
 
-
     fun inputBonusNumber(winningNumbers: List<Int>): Int {
         return try {
             val bonusNumber = Console.readLine()

@@ -20,17 +20,38 @@ class Output {
     }
 
     fun outputReward(reward: HashMap<Winning, Int>) {
-        println(MATCH_THREE + reward.getOrDefault(Winning.FIFTH,0) + "개")
-        println(MATCH_FOUR + reward.getOrDefault(Winning.FOURTH,0) + "개")
-        println(MATCH_FIVE + reward.getOrDefault(Winning.THIRD,0) + "개")
-        println(MATCH_FIVE_WITH_BONUS + reward.getOrDefault(Winning.SECOND,0) + "개")
-        println(MATCH_SIX + reward.getOrDefault(Winning.FIRST,0) + "개")
+        Winning.entries.filter { it != Winning.NONE }.forEach {
+            when (it) {
+                Winning.SECOND ->
+                    println(
+                        "${it.match}개 일치, 보너스 볼 일치 (${formatMoney(it.reward)}원) - ${
+                            reward.getOrDefault(
+                                it,
+                                0
+                            )
+                        }개"
+                    )
+
+                else -> println(
+                    "${it.match}개 일치 (${formatMoney(it.reward)}원) - ${
+                        reward.getOrDefault(
+                            it,
+                            0
+                        )
+                    }개"
+                )
+            }
+        }
     }
 
     fun outputYield(amount: Int, rewardResult: HashMap<Winning, Int>) {
         val earnings = Calculator().calculateYield(amount, rewardResult)
 
         println("총 수익률은 ${earnings}%입니다.")
+    }
+
+    private fun formatMoney(money: Int): String {
+        return "%,d".format(money)
     }
 
 }
