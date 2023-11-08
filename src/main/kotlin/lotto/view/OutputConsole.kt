@@ -56,10 +56,15 @@ object OutputConsole {
         return numberFormat.format(number)
     }
 
+    fun printProfit(profit: Double) {
+        println(String.format(PROFIT_STRING_FORMAT, profit))
+    }
+
     private const val INPUT_MONEY = "구입금액을 입력해 주세요."
     private const val INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요."
     private const val INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요."
     private const val INVALID_NUMBERS = "숫자만 입력해 주세요"
     private const val INVALID_FORMAT_FOR_NUMBERS = "콤마로 구분된 숫자만 입력해 주세요"
+    private const val PROFIT_STRING_FORMAT = "총 수익률은 %.1f%%입니다."
     private const val ERROR_MESSAGE_START_PAD = "[ERROR] "
 }
