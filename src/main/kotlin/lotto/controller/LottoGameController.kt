@@ -1,9 +1,6 @@
 package lotto.controller
 
-import lotto.models.Bonus
-import lotto.models.Lotto
-import lotto.models.Publisher
-import lotto.models.Purchase
+import lotto.models.*
 import lotto.views.InputView
 import lotto.views.OutputView
 
@@ -13,6 +10,7 @@ class LottoGameController() {
 
     fun start() {
         val publisher = Publisher()
+        val winningRecord = WinningRecord()
 
         val purchaseAmount = inputPurchaseAmount()
         val purchasedLottos = publisher.publishLottos(purchaseAmount)
@@ -21,7 +19,8 @@ class LottoGameController() {
 
         val winningLotto = inputWinningLottoNumbers()
         val bonus = inputBonusNumber(winningLotto)
-        println(bonus.getNumber())
+
+        winningRecord.updateWinningResults(purchasedLottos, winningLotto, bonus)
     }
 
     private fun inputPurchaseAmount(): Int {
