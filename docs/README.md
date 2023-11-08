@@ -14,7 +14,7 @@
 ## 기능 구현 목록
 
     - [x] 당첨로또 생성기능
-        - [x] 당첨 번호와 보너스 번호 생성 Service#generateWinningLotto
+        - [x] 당첨 번호와 보너스 번호 생성 Service#generateWinningLottoByInput
 
     - [x] input로또와 당첨로또 비교 기능 Service#compareLotto
         - [x] 1등 ~ 5등 등수 및 당첨금 Class 출력
@@ -23,6 +23,7 @@
         - [ ] 로또 1장 가격은 1,000원
         - [ ] 예외 처리 ) 1000으로 나누어떨어지지 않는 금액
         - [ ] 예외 처리 ) 1000 이하의 금액
+        - [x] 개수만큼의 로또 발행 Service#generateLottos
 
     - [ ] 로또 번호(당첨 번호, 보너스 번호) 입력 받기
         - [ ] 당첨번호 입력받기 ( 쉼표를 기준으로 구분 )

@@ -6,6 +6,23 @@ import lotto.model.domain.Rank
 import lotto.model.domain.WinningLotto
 
 class Service {
+    fun generateLotto(): Lotto {
+        val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        return Lotto(numbers)
+    }
+
+    fun generateLottos(count: Int): List<Lotto> {
+        val lottoList: MutableList<Lotto> = mutableListOf()
+        for (i in 1..count) {
+            lottoList.add(generateLotto())
+        }
+        return lottoList
+    }
+
+    fun generateWinningLottoFromInput(numbers: List<Int>, bonusNumber: Int): WinningLotto {
+        return WinningLotto(Lotto(numbers), bonusNumber)
+    }
+
     fun generateWinningLotto(): WinningLotto {
         val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
         val bonusNumber: Int = Randoms.pickNumberInList((1..45).toList().minus(numbers))
