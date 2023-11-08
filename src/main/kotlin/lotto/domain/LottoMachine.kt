@@ -7,7 +7,7 @@ import lotto.util.Constants
 class LottoMachine {
 
     fun inputWinningNumbers(): List<Int> {
-        val winningNumbers = Console.readLine().split(",").map { it.toInt() }.toList()
+        val winningNumbers = Console.readLine().split(",").map { it.toInt() }
         validateWinningNumbers(winningNumbers)
         return winningNumbers
     }

@@ -3,7 +3,7 @@ package lotto.domain
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.util.Constants
 
-class LottoGenerator(private val lottoGenerateCount: Int) {
+class LottoGenerator(private val lottoCount: Int) {
 
     private fun generateRandomLotto(): List<Int> {
         return Randoms.pickUniqueNumbersInRange(
@@ -15,7 +15,7 @@ class LottoGenerator(private val lottoGenerateCount: Int) {
 
     fun generateLottoTickets(): List<Lotto> {
         val lottoTickets = mutableListOf<Lotto>()
-        repeat(lottoGenerateCount) {
+        repeat(lottoCount) {
             val lottoNumbers = generateRandomLotto()
             val lotto = Lotto(lottoNumbers)
             lottoTickets.add(lotto)

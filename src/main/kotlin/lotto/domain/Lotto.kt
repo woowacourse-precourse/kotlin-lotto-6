@@ -2,7 +2,6 @@ package lotto.domain
 
 import lotto.util.Constants
 
-
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == Constants.CNT_LOTTO_NUMBER)
@@ -22,8 +21,6 @@ class Lotto(private val numbers: List<Int>) {
 
     }
 
-    fun returnLottoNumbers(): List<Int> {
-        return numbers
-    }
+    fun returnLottoNumbers(): List<Int> = numbers
 
 }
