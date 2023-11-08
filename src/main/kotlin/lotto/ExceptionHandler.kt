@@ -2,12 +2,17 @@ package lotto
 
 object ExceptionHandler {
     fun checkWinningNumber(numbers: String): Boolean {
-        for (i in numbers) {
-            if (!(i-'0' in 1..9 || i == ',')) {
+        val numberList = numbers.split(",").map { it.trim() }
+
+        for (numberStr in numberList) {
+            val number = numberStr.toIntOrNull()
+
+            if (number == null || number !in 1..45) {
                 println("[ERROR]")
                 throw IllegalArgumentException("[ERROR]")
             }
-         }
+        }
+
         return true
     }
 
