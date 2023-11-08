@@ -2,6 +2,14 @@ package lotto
 
 // 로또 번호를 관리하는 Lotto 클래스 정의
 class Lotto(private val numbers: List<Int>) {
+    init {
+        require(numbers.size == 6) {
+            "로또 번호의 개수는 6개여야 합니다."
+        }
+        require(numbers.toSet().size == 6) {
+            "로또 번호에 중복된 숫자가 있습니다."
+        }
+    }
     // Lotto 내부 번호에 접근
     fun getNumbers(): List<Int> = numbers
 
@@ -24,7 +32,7 @@ enum class Rank(val matchNum: Int, val winningMoney: Long) {
     Rank3(5, 1_500_000), // 보너스 번호 불일치 시
     Rank4(4, 50_000),
     Rank5(3, 5_000),
-    NONE(0, 0);
+    None(0, 0);
 
     // 보너스 번호 일치에 따라 등수 반환하는 함수
     companion object {
@@ -34,7 +42,7 @@ enum class Rank(val matchNum: Int, val winningMoney: Long) {
                 5 -> if (matchBonus) Rank2 else Rank3
                 4 -> Rank4
                 3 -> Rank5
-                else -> NONE
+                else -> None
             }
         }
     }
