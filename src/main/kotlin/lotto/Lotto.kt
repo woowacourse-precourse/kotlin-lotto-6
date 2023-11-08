@@ -8,16 +8,16 @@ class Lotto(private val numbers: List<Int>) {
 
     }
 
-    fun printNumbers() : List<Int>
+    fun printNumbers() : List<Int> // 오름차순 정렬
     {
         return numbers.sorted()
     }
 
-    fun getMatchedNumbers(winningNumbers: List<Int>): Int {
+    fun getMatchedNumbers(winningNumbers: List<Int>): Int { // 몇 개 겹쳤는 지 확인
         return numbers.intersect(winningNumbers).count()
     }
 
-    fun containsNumber(bonusNumber: Int): Boolean {
+    fun containsNumber(bonusNumber: Int): Boolean { // 보너스 숫자 확인
         return bonusNumber in numbers
     }
 }
