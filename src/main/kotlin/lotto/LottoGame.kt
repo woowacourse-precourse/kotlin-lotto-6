@@ -12,33 +12,33 @@ class LottoGame(
     private lateinit var userWinningNumbers: UserWinningNumbers
 
     fun execute() {
-        purchaseLottery()
-        createRandomLottery()
+        inputPurchaseCost()
+        createRandomLotto()
         inputUserPickNumbersAndBonus()
-        getLotteryWinning()
+        getLottoWinning()
     }
 
-    private fun purchaseLottery() {
+    private fun inputPurchaseCost() {
         try {
             printer.printEnterPurchaseAnnouncement()
-            val input = Console.readLine()
-            purchaseNumber = controller.purchaseLotto(input)
+            val purchaseCostInput = Console.readLine()
+            purchaseNumber = controller.purchaseLotto(purchaseCostInput)
             println()
         } catch (e: IllegalArgumentException) {
             println(e.localizedMessage)
-            purchaseLottery()
+            inputPurchaseCost()
         }
     }
 
-    private fun createRandomLottery() {
+    private fun createRandomLotto() {
         try {
             printer.printBuyNPiecesAnnouncement(purchaseNumber)
-            randomLottoNumbers = controller.createLotteryRandomNumber(purchaseNumber)
-            printer.printRandomLottoNumber(randomLottoNumbers)
+            randomLottoNumbers = controller.createLottoRandomNumbers(purchaseNumber)
+            printer.printRandomLottoNumbers(randomLottoNumbers)
             println()
         } catch (e: IllegalArgumentException) {
             println(e.localizedMessage)
-            createRandomLottery()
+            createRandomLotto()
         }
     }
 
@@ -49,7 +49,7 @@ class LottoGame(
             printer.printEnterBonusNumberAnnouncement()
             val bonusNumberInput = Console.readLine().trim()
 
-            userWinningNumbers = controller.createLottoWinningNumbers(userPickNumberInput, bonusNumberInput)
+            userWinningNumbers = controller.createUserWinningNumbers(userPickNumberInput, bonusNumberInput)
             println()
         } catch (e: IllegalArgumentException) {
             println(e.localizedMessage)
@@ -57,15 +57,15 @@ class LottoGame(
         }
     }
 
-    private fun getLotteryWinning() {
+    private fun getLottoWinning() {
         try {
             val winCount = controller.checkWinningDetails(randomLottoNumbers, userWinningNumbers)
             val winTypes = controller.checkLottoWinType(winCount)
-            val yield = controller.checkYieldResult(winTypes)
+            val yieldResult = controller.checkYieldResult(winTypes)
 
             printer.printWinningStatisticsAnnouncement()
             printer.printCommaAnnouncement()
-            printer.printWinningStatistics(winTypes, yield)
+            printer.printWinningStatistics(winTypes, yieldResult)
         } catch (e: IllegalArgumentException) {
             println(e.localizedMessage)
             execute()

@@ -14,7 +14,7 @@ class Printer {
 
     fun printCommaAnnouncement() = println(Message.COMMA)
 
-    fun printRandomLottoNumber(lottery: List<Lotto>) {
+    fun printRandomLottoNumbers(lottery: List<Lotto>) {
         repeat(lottery.size) {
             println(lottery[it].formatNumbers())
         }

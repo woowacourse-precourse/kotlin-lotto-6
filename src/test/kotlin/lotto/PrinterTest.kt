@@ -66,7 +66,7 @@ class PrinterTest : NsTest() {
 
     @Test
     fun `구매 복권 출력하기`() {
-        printer.printRandomLottoNumber(lotto)
+        printer.printRandomLottoNumbers(lotto)
         Assertions.assertThat(output()).contains("[1, 2, 3, 4, 5, 6]\n")
             .contains("[7, 8, 9, 10, 11, 12]\n")
             .contains("[13, 14, 15, 16, 17, 18]\n")

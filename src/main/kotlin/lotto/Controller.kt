@@ -13,7 +13,7 @@ class Controller(
         return calculator.calculateLottoAvailableForPurchase(purchaseCost)
     }
 
-    fun createLotteryRandomNumber(purchaseNumber: Int): List<Lotto> {
+    fun createLottoRandomNumbers(purchaseNumber: Int): List<Lotto> {
         val lottery = mutableListOf<Lotto>()
         repeat(purchaseNumber) {
             val numbers = sortNumbers(Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, NUMBER_COUNT))
@@ -22,15 +22,10 @@ class Controller(
         return lottery
     }
 
-    fun createLottoWinningNumbers(userPickInput: String, bonusInput: String): UserWinningNumbers {
-        val splitNumber = userPickInput.trim().split(",")
-        val userPickNumbers = mutableListOf<Int>()
-        splitNumber.forEach { number ->
-            requireIsInt(number)
-            userPickNumbers.add(number.toInt())
-        }
-        requireIsInt(bonusInput)
+    fun createUserWinningNumbers(userPickInput: String, bonusInput: String): UserWinningNumbers {
+        val userPickNumbers = userPickInput.split(",").map { it.toInt() }
         val bonusNumber = bonusInput.toInt()
+        requireIsInt(bonusInput)
         return UserWinningNumbers(userPickNumbers, bonusNumber)
     }
 
@@ -58,7 +53,7 @@ class Controller(
     }
 
     fun checkYieldResult(types: List<LottoWinType>): String {
-        return calculator.calculateYieldResult(types = types)
+        return calculator.calculateYieldResult(lottoWinTypes = types)
     }
 
     private fun sortNumbers(numbers: List<Int>): List<Int> {

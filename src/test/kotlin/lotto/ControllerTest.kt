@@ -40,7 +40,7 @@ class ControllerTest {
     @DisplayName("createLotteryRandomNumber 함수 - 유효한 입력값일 때")
     fun `createLotteryRandomNumber 함수 - 유효한 입력값일 때`() {
         val purchaseNumber = 5
-        val lottery = controller.createLotteryRandomNumber(purchaseNumber)
+        val lottery = controller.createLottoRandomNumbers(purchaseNumber)
         assertEquals(lottery.size, purchaseNumber)
     }
 
@@ -49,7 +49,7 @@ class ControllerTest {
     fun `createLottoWinningNumbers 함수 - 유효한 입력값일 때`() {
         val userPickInput = "1,2,3,4,5,6"
         val bonusInput = "7"
-        val userWinningNumbers = controller.createLottoWinningNumbers(userPickInput, bonusInput)
+        val userWinningNumbers = controller.createUserWinningNumbers(userPickInput, bonusInput)
         assertEquals(userWinningNumbers.userPickNumbers.size, 6)
         assertEquals(userWinningNumbers.bonusNumber, 7)
     }
@@ -60,7 +60,7 @@ class ControllerTest {
         val userPickInput = "1,2,3,4,5"
         val bonusInput = "abc"
         assertThrows<IllegalArgumentException> {
-            controller.createLottoWinningNumbers(userPickInput, bonusInput)
+            controller.createUserWinningNumbers(userPickInput, bonusInput)
         }
     }
 
