@@ -25,7 +25,7 @@ fun main() {
     LottoSystem.buyMessage(Lotto.Times)
 
     while (Lotto.presentRound < Lotto.Times) {
-        Lotto.randomBall6 = Lotto.randomBall()
+        Lotto.randomBall6 = Lotto.getRandomBall()
         if (Lotto.randomBall6.distinct().size == 6) {
             Lotto.presentRound++
             Lotto(Lotto.randomBall6.sorted())

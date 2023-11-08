@@ -8,6 +8,7 @@ import kotlin.math.roundToInt
 class Lotto(val numbers: List<Int>) {
     // 작성순서 : 프로퍼티, init 블록, 부 생성자, 메서드, 동반 객체
 
+
     init {
         require(numbers.size == 6 && (numbers.size == numbers.distinct().size)) {
             try {
@@ -16,7 +17,8 @@ class Lotto(val numbers: List<Int>) {
                 println(e.message)
             }
         }
-        randomBallVowel["${Lotto.presentRound}"] = numbers
+        testLottoBall6 = numbers
+        randomBallVowel["${presentRound}"] = testLottoBall6
     }
 
     enum class Place(val text: String) {
@@ -34,6 +36,7 @@ class Lotto(val numbers: List<Int>) {
         var randomBallVowel = mutableMapOf<String, List<Int>>()
         var presentRound = 0
 
+        var testLottoBall6 = listOf<Int>()
         var selectBall6 = listOf<Int>()
         var selectBonusBall = 0
 
@@ -50,13 +53,14 @@ class Lotto(val numbers: List<Int>) {
 
 
         fun userInput(): String {
-            Lotto.inputResult = Console.readLine()
-            return Lotto.inputResult
+            inputResult = Console.readLine()
+            return inputResult
         }
 
-        fun randomBall(): List<Int> {
+        fun getRandomBall(): List<Int> {
             return Randoms.pickUniqueNumbersInRange(1, 45, 6)
         }
+
 
         fun allDisplay() {
             for (clue in randomBallVowel.keys) {
