@@ -1,8 +1,6 @@
-package app
+package lotto
 
 import compareNumber.CompareNumber
-import lotto.Lotto
-import lotto.LottoInitializer
 import revenue.Revenue
 import winningNumber.BonusNumber
 import winningNumber.WinningNumber
