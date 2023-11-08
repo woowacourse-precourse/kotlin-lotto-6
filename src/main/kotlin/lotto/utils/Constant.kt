@@ -11,4 +11,5 @@ object Constant {
     const val NOT_DIGIT_EXCEPTION_MESSAGE = "[ERROR] 정수가 입력되지 않았습니다!"
     const val BLANK_INPUT_EXCEPTION_MESSAGE = "[ERROR] 비어있는 값을 입력했습니다!"
     const val BONUS_NUMBER_DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] 보너스 번호가 정답 로또에 중복됩니다!"
+    const val WINNING_NUMBERS_NOT_DIGIT_MESSAGE = "[ERROR] 당첨 로또 번호는 정수여야 합니다 !"
 }
