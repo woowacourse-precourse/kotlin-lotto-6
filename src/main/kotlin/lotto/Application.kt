@@ -1,7 +1,6 @@
 package lotto
 
 fun main() {
-    val purchaseLotto = PurchasedLottoList()
+    val lottoRunner = LottoOperator()
 
-    purchaseLotto.purchasingLotto()
 }

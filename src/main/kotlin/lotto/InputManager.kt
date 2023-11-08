@@ -6,6 +6,7 @@ const val ONE_LOTTO_PRICE = 1000
 const val MIN_NUMBER = 1
 const val MAX_NUMBER = 45
 const val LOTTO_SIZE = 6
+const val IDX_ZERO = 0
 
 class InputManager {
     private lateinit var winningNumber: List<String>
@@ -42,6 +43,7 @@ class InputManager {
             try {
                 winningNumber = Console.readLine().split(",").toList()
                 checkWinningNumberRange()
+                winningNumber.sorted()
                 break
             }
             catch (e: IllegalArgumentException) {
