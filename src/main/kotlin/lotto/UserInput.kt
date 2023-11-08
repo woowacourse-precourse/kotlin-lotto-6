@@ -4,6 +4,11 @@ import camp.nextstep.edu.missionutils.Console
 
 fun getPromptInput() = Console.readLine()
 fun convertNumber(input:String) = input.toIntOrNull() ?: throw IllegalArgumentException(ErrorMsg.NOT_INT)
+fun convertNumberList(input:String) = input
+    .split(",")
+    .map {
+        it.toIntOrNull() ?: throw IllegalArgumentException(ErrorMsg.NOT_INT)
+    }
 fun catchErrorIntInput():Int
 {
     var ret:Int
@@ -30,6 +35,17 @@ fun catchErrorValidBonusNumber(input:Int,lotto: Lotto):Int
     }
     return ret
 }
+
+fun catchErrorLotto(input:String): Lotto?
+{
+    try {
+        return Lotto(convertNumberList(input))
+    }catch (e:IllegalArgumentException)
+    {
+        print(e.message)
+        return null
+    }
+}
 fun getAmount():Int{
     var amount:Int
     do {
@@ -45,6 +61,15 @@ fun getBonusNumber(lotto:Lotto):Int{
         bonusNumber = catchErrorValidBonusNumber(bonusNumber,lotto)
     }while(bonusNumber == -1)
     return bonusNumber
+}
+fun getWinningNumber():Lotto
+{
+    var lotto:Lotto?
+    do{
+        val input = getPromptInput()
+        lotto = catchErrorLotto(input)
+    }while(lotto == null)
+    return lotto
 }
 
 

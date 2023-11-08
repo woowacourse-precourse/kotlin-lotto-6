@@ -10,7 +10,7 @@ fun main() {
     var amount = getAmount()
 
     println("당첨 번호를 입력해 주세요.")
-    val lotto = getLotto()
+    val lotto = getWinningNumber()
 
     println("보너스 번호를 입력해 주세요.")
     var bonusNumber = getBonusNumber(lotto)
@@ -51,24 +51,6 @@ fun generateLotto(numbers:List<Int>):Lotto
     return lotto
 }
 
-
-
-fun getLotto(): Lotto {
-    var lotto:Lotto
-    while(true)
-    {
-        try {
-            lotto = Lotto(Console.readLine()
-                .split(",")
-                .map { it.toInt() })
-        }catch (e:IllegalArgumentException) {
-            println(e.message)
-            continue
-        }
-        break
-    }
-    return lotto
-}
 fun getStringMoney(prize: PRIZE):String
 {
     when(prize)
