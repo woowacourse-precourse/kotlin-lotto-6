@@ -85,15 +85,20 @@ class Lotto(private val numbers: List<Int>) {
             try {
                 println(Constants.INPUT_BONUS_NUMBER)
                 val userBonusNumber = getUserBonusNumber()
-                if (userBonusNumber !in 1..45 || userBonusNumber in winningNumbers) {
-                    println(Exception.INVALID_BONUS_NUMBER_ERROR)
-                    continue
-                }
+                if (bonusNumberCondition(userBonusNumber, winningNumbers)) continue
                 return userBonusNumber
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
+    }
+
+    private fun bonusNumberCondition(userBonusNumber: Int, winningNumbers: List<Int>): Boolean {
+        if (userBonusNumber !in 1..45 || userBonusNumber in winningNumbers) {
+            println(Exception.INVALID_BONUS_NUMBER_ERROR)
+            return true
+        }
+        return false
     }
 
     private fun getUserBonusNumber(): Int {
@@ -106,6 +111,13 @@ class Lotto(private val numbers: List<Int>) {
         }
         val hasBonusNumbers = bonusNumbers(tickets, winningNumbers, bonusNumber)
 
+        printResult(matchingNumbers, hasBonusNumbers)
+    }
+
+    private fun printResult(
+        matchingNumbers: List<Int>,
+        hasBonusNumbers: List<Int>
+    ) {
         println(Constants.WINNING_STATS)
         println(Constants.LINE)
         println("${Constants.CORRECT_3}${matchingNumbers.count { it == 3 }}개")
@@ -129,20 +141,22 @@ class Lotto(private val numbers: List<Int>) {
 
     private fun calculateProfit(matchingNumbers: List<Int>): String {
         val lottoPurchaseAmount = matchingNumbers.size * 1000
+        val prizeMap = compareNumbers()
+        val totalPrize = matchingNumbers.mapNotNull { prizeMap[it] }.sum()
+        val totalCost = lottoPurchaseAmount.toDouble()
+        val profitPercentage = (totalPrize / totalCost) * 100
 
-        val prizeMap = mapOf(
+        return "%.1f".format(profitPercentage)
+    }
+
+    private fun compareNumbers(): Map<Int, Double> {
+        return mapOf(
             3 to Constants.MATCH_3_PRIZE,
             4 to Constants.MATCH_4_PRIZE,
             5 to Constants.MATCH_5_PRIZE,
             5 to Constants.MATCH_5_WITH_BONUS_PRIZE,
             6 to Constants.MATCH_6_PRIZE
         )
-
-        val totalPrize = matchingNumbers.mapNotNull { prizeMap[it] }.sum()
-        val totalCost = lottoPurchaseAmount.toDouble()
-        val profitPercentage = (totalPrize / totalCost) * 100
-
-        return "%.1f".format(profitPercentage)
     }
 }
 
