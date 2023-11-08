@@ -1,5 +1,8 @@
 package lotto.model
 
+import lotto.config.GameConfig.END_NUMBER
+import lotto.config.GameConfig.START_NUMBER
+
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6) {
@@ -9,7 +12,7 @@ class Lotto(private val numbers: List<Int>) {
             "[ERROR] 로또 번호는 중복되면 안 됩니다."
         }
         numbers.forEach {
-            require(it in 1..45) {
+            require(it in START_NUMBER..END_NUMBER) {
                 "[ERROR] 로또 번호는 1 ~ 45 이어야 합니다."
             }
         }
