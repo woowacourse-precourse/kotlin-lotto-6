@@ -36,7 +36,12 @@ class ConsoleLottoView : LottoView {
     }
 
     override fun getWinningNumbers(): WinningNumbers {
-        val numbers = Console.readLine().split(NUMBER_DELIMITER).map(String::toInt)
+        val numbers = runCatching {
+            Console.readLine().split(NUMBER_DELIMITER).map(String::toInt)
+        }.onFailure {
+            throw NumberFormatException(INPUT_NOT_NUMBER)
+        }.getOrThrow()
+
         return WinningNumbers(numbers = numbers)
     }
 
@@ -46,11 +51,16 @@ class ConsoleLottoView : LottoView {
 
     override fun getBonusNumber(): BonusNumber = BonusNumber(number = readInt())
 
-    private fun readInt(): Int = Console.readLine().toInt()
+    private fun readInt(): Int = runCatching {
+        Console.readLine().toInt()
+    }.onFailure {
+        throw NumberFormatException(INPUT_NOT_NUMBER)
+    }.getOrThrow()
 
     companion object {
         const val ERROR_MESSAGE_PREFIX = "[ERROR]"
         const val DEFAULT_ERROR_MESSAGE = "에러가 발생했습니다. 다시 시도해주세요."
         const val NUMBER_DELIMITER = ','
+        const val INPUT_NOT_NUMBER = "숫자를 입력해 주세요."
     }
 }
