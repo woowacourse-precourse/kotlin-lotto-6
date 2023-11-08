@@ -3,13 +3,14 @@ package lotto.model
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.*
 import lotto.dto.PurchasedLottoDto
+import lotto.enums.LottoRank
 
 class PurchasedLotto {
     private var numbers : List<Int> = Randoms.pickUniqueNumbersInRange(1, 45, 6)
     private var matchingNumberCount = 0
     private var bonusBallMatched = false
     private var winPrize = 0
-    private var winRank = WIN_RANK_NOTHING
+    private var winRank = LottoRank.NOTHING
 
     fun setPurchasedLotto(lottoList: List<Int>, bonusBall: Int) {
         numbers = numbers.sorted()
@@ -49,15 +50,15 @@ class PurchasedLotto {
 
     private fun setWinRank() {
         when (matchingNumberCount) {
-            MATCH_SIX -> winRank = WIN_RANK_FIRST
+            MATCH_SIX -> winRank = LottoRank.FIRST
             MATCH_FIVE -> {
                 winRank = if (bonusBallMatched)
-                    WIN_RANK_SECOND
+                    LottoRank.SECOND
                 else
-                    WIN_RANK_THIRD
+                    LottoRank.THIRD
             }
-            MATCH_FOUR -> winRank = WIN_RANK_FORTH
-            MATCH_THREE -> winRank = WIN_RANK_FIFTH
+            MATCH_FOUR -> winRank = LottoRank.FORTH
+            MATCH_THREE -> winRank = LottoRank.FIFTH
         }
     }
 
@@ -66,7 +67,7 @@ class PurchasedLotto {
     }
 
     fun getWinRank(): Int {
-        return winRank
+        return winRank.rank
     }
 
     fun getNumbers(): List<Int> {
