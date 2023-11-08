@@ -1,3 +1,4 @@
+import lotto.model.LottoMatchNum
 import lotto.model.LottoResult
 import lotto.view.LottoSystemView
 import org.junit.jupiter.api.AfterEach
@@ -17,10 +18,9 @@ class LottoSystemViewTest {
     }
 
     @Test
-    fun `로도 당첨 결과 별 당첨 통계 출력 with value1`() {
+    fun `로또 당첨 결과 별 당첨 통계 출력 with value1`() {
         var lottoResult = LottoResult()
-        lottoResult.setMatchingLottoResult(mutableListOf(1, 0, 0, 0, 0))
-
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(3))
         LottoSystemView().printWinningStatistics(lottoResult)
 
         val expectedOutput = """
@@ -37,9 +37,13 @@ class LottoSystemViewTest {
     }
 
     @Test
-    fun `로도 당첨 결과 별 당첨 통계 출력 with value2`() {
+    fun `로또 당첨 결과 별 당첨 통계 출력 with value2`() {
         var lottoResult = LottoResult()
-        lottoResult.setMatchingLottoResult(mutableListOf(1, 0, 0, 3, 1))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(3))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(51))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(51))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(51))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(6))
         LottoSystemView().printWinningStatistics(lottoResult)
         val expectedOutput = """
             당첨 통계

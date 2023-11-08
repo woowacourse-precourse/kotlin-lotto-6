@@ -4,7 +4,7 @@ enum class LottoMatchNum(val matchingNum: Int?) {
     THREE_MATCH(3),
     FOUR_MATCH(4),
     FIVE_MATCH(5),
-    FIVE_PLUS_BONUS(5),
+    FIVE_PLUS_BONUS(51),
     SIX_MATCH(6),
     EXTRA(0),
     ERROR(0);

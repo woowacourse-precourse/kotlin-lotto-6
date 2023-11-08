@@ -45,7 +45,7 @@ class LottoSystemView {
         var matchNumCount = lottoResult.getMatchingLottoResult()
 
         if (matchNum == LottoMatchNum.FIVE_PLUS_BONUS) {
-            print("${matchNum.matchingNum}$COINCIDE_NUM_MESSAGE, $COINCIDE_BONUS_NUM_MESSAGE ${printLottoPrizes(matchNum)} - ")
+            print("${LottoMatchNum.FIVE_MATCH}$COINCIDE_NUM_MESSAGE, $COINCIDE_BONUS_NUM_MESSAGE ${printLottoPrizes(matchNum)} - ")
             println("${matchNumCount[matchNum]}개")
         } else {
             print("${matchNum.matchingNum}$COINCIDE_NUM_MESSAGE ${printLottoPrizes(matchNum)} - ")
