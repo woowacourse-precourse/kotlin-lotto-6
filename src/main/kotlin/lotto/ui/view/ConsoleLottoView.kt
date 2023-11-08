@@ -76,6 +76,10 @@ class ConsoleLottoView : LottoView {
         append(')')
     }
 
+    override fun onGetResultsDone() {
+        presenter.getProfit()
+    }
+
     private fun readInt(): Int = runCatching {
         Console.readLine().toInt()
     }.onFailure {

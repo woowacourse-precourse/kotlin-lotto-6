@@ -1,9 +1,6 @@
 package lotto.ui.presenter
 
-import lotto.domain.model.BonusNumber
-import lotto.domain.model.Lotto
-import lotto.domain.model.Money
-import lotto.domain.model.WinningNumbers
+import lotto.domain.model.*
 import lotto.domain.repository.LottoRepository
 import lotto.ui.view.LottoView
 
@@ -22,6 +19,8 @@ class LottoPresenter(
 
     private var _bonusNumber: BonusNumber? = null
     private val bonusNumber get() = requireNotNull(_bonusNumber)
+
+    private lateinit var results: Map<Result, Int>
 
     fun getMoney() {
         view.displayMessage(ENTER_MONEY_MESSAGE)
@@ -73,7 +72,7 @@ class LottoPresenter(
     }
 
     fun getResults() {
-        val results = lottoes.map {
+        results = lottoes.map {
             it.calculateResult(winningNumbers = winningNumbers, bonusNumber = bonusNumber)
         }.groupingBy { result ->
             result
@@ -82,10 +81,24 @@ class LottoPresenter(
         view.displayResults(results = results)
     }
 
+    fun getProfit() {
+        var totalPrize = 0.0f
+
+        results.forEach { (result, count) ->
+            totalPrize += result.prize * count
+        }
+
+        val profit = (totalPrize / money.amount) * PERCENT
+
+        view.displayMessage(PROFIT_FORMAT.format(profit))
+    }
+
     companion object {
         const val ENTER_MONEY_MESSAGE = "구입금액을 입력해 주세요."
         const val NUMBER_OF_BOUGHT_LOTTOES_MESSAGE = "개를 구매했습니다."
         const val ENTER_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요."
         const val ENTER_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요."
+        const val PERCENT = 100
+        const val PROFIT_FORMAT = "총 수익률은 %.1f%%입니다."
     }
 }

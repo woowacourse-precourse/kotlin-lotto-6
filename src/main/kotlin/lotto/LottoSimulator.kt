@@ -15,5 +15,6 @@ class LottoSimulator(
         view.onGetLottoesDone()
         view.onGetWinningNumbersDone()
         view.getBonusNumberDone()
+        view.onGetResultsDone()
     }
 }
