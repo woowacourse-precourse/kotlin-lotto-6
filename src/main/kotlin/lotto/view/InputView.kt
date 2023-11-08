@@ -5,7 +5,6 @@ import lotto.util.GameConstants.SEPARATOR
 import lotto.util.Validator.validateInteger
 import lotto.util.Validator.validateNatural
 import lotto.util.Validator.validateNull
-import lotto.util.Validator.validateUnit
 
 class InputView {
     private fun getUserInput(): String = Console.readLine()
