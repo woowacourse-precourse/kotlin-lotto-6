@@ -4,7 +4,8 @@ import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     val lotto_tickets = buyLotto()
-    generateLottoNumbers(lotto_tickets)
+    val lotto_list = generateLottoNumbers(lotto_tickets)
+    val winning_numbers_list = receiveWinningNumbers()
 }
 
 fun buyLotto(): Int {
@@ -17,7 +18,7 @@ fun buyLotto(): Int {
     } else return price / 1000
 }
 
-fun generateLottoNumbers(lotto_tickets: Int) {
+fun generateLottoNumbers(lotto_tickets: Int): MutableList<MutableList<Int>> {
     println("${lotto_tickets}개를 구매했습니다.")
     val lotto_list: MutableList<MutableList<Int>> = mutableListOf()
     repeat(lotto_tickets){
@@ -31,4 +32,20 @@ fun generateLottoNumbers(lotto_tickets: Int) {
         println(lotto_numbers)
         lotto_list.add(lotto_numbers)
     }
+    return lotto_list
+}
+
+fun receiveWinningNumbers(): MutableList<Int> {
+    val winning_numbers_list = mutableListOf<Int>()
+    println("당첨 번호를 입력해 주세요.")
+    val winning_numbers = readLine().toString().split(",")
+    for (numbers in winning_numbers) {
+        winning_numbers_list.add(numbers.toInt())
+    }
+    println("보너스 번호를 입력해 주세요.")
+    val bonus_number = readLine()!!.toInt()
+    winning_numbers_list.add(bonus_number)
+
+    print(winning_numbers_list)
+    return winning_numbers_list
 }
