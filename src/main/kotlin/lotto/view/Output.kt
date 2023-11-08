@@ -14,7 +14,9 @@ class Output {
         println("6개 일치 (2,000,000,000원) - ${winStatics[WinningType.FIRST]}개")
     }
 
-    fun printTotalReturn() {
-
+    fun printTotalReturn(totalReturn: Int, purchaseAmount: Int) {
+        val returnRate = (totalReturn.toDouble() / purchaseAmount) * 100
+        val roundedRate = String.format("%.1f", returnRate)
+        println("총 수익률은 $roundedRate%입니다.")
     }
 }
