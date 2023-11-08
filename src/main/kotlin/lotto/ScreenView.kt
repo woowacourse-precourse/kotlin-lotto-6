@@ -20,7 +20,7 @@ class ScreenView {
             money/1000
         } catch (e: NumberFormatException) {
             println("[ERROR] 1000으로 나누어 떨어지는 정수가 아닙니다.")
-            0
+            return inputMoney()
         }
     }
 
