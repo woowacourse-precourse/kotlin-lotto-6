@@ -3,10 +3,11 @@ import kotlin.math.round
 
 class LottoBank {
 
-    fun getRateOfReturn(purchaseLottoAmount: Int): Double {
+    fun getRateOfReturn(purchaseLottoCount: Int): Double {
+        val purchaseLottoAmount = purchaseLottoCount * 1000
         val winningLottoAmount = calculateWinningLottoAmount()
-        val rateOfReturn = winningLottoAmount.toDouble() / purchaseLottoAmount.toDouble()
-        return round((rateOfReturn * 10) / 10)
+        val rateOfReturn = (winningLottoAmount.toDouble() / purchaseLottoAmount.toDouble())*100
+        return round(rateOfReturn * 10.0) / 10.0
     }
 
     private fun calculateWinningLottoAmount(): Int {
