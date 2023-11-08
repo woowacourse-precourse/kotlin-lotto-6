@@ -13,7 +13,7 @@ fun String.purchaseAmountValidation() {
         NOT_INT_ERROR
     }
 
-    require(this.toInt() > LOTTO_PRISE) {
+    require(this.toInt() >= LOTTO_PRISE) {
         CANT_BUY_ERROR
     }
 
