@@ -2,8 +2,8 @@ package lotto.model
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6)
-        require(numbers.toSet().size == 6)
+        require(numbers.size == LOTTO_NUMBER_SIZE)
+        require(numbers.toSet().size == LOTTO_NUMBER_SIZE)
     }
 
     fun printNumbers() {
@@ -23,5 +23,9 @@ class Lotto(private val numbers: List<Int>) {
 
     private fun getNumbers(): List<Int> {
         return this.numbers
+    }
+
+    companion object {
+        private const val LOTTO_NUMBER_SIZE = 6
     }
 }
