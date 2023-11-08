@@ -25,4 +25,6 @@ object GameConstants {
     const val STATISTICS_MESSAGE = "당첨 통계"
     const val DIVIDER_MESSAGE = "---"
     const val RATE_MESSAGE = "총 수익률은 %.1f%%입니다."
+
+    const val SEPARATOR = ","
 }
