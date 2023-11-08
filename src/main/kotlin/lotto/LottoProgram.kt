@@ -8,7 +8,7 @@ class LottoProgram {
     var bonusNumber = 0
     var totalProfit = 0
     var inputMoney = 0
-    var profitRate = 0
+    var profitRate = 0.0
     var winningNumbers = listOf<Int>()
     var lottos:MutableList<Lotto> = mutableListOf()
     var totalRanking = mutableMapOf(1 to 0, 2 to 0, 3 to 0, 4 to 0, 5 to 0)
@@ -82,17 +82,19 @@ class LottoProgram {
     }
 
     fun calculateProfitRate() {
-        profitRate = (this.totalProfit / this.inputMoney) * 100
+        profitRate = (this.totalProfit.toDouble() / this.inputMoney) * 100
     }
 
     fun printResult() {
+        compareTotalLottos()
+        calculateProfitRate()
         println("당첨 통계")
         println("---")
-        println("3개 일치 (5,000원) - ${totalRanking[1]}개")
-        println("4개 일치 (50,000원) - ${totalRanking[2]}개")
-        println("5개 일치 (1,500,000원) - ${totalRanking[3]}개")
-        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${totalRanking[4]}개")
-        println("6개 일치 (2,000,000,000원) - ${totalRanking[5]}개")
-        println("총 수익률은 ${round((profitRate*10).toDouble())/10}%입니다.")
+        println("3개 일치 (5,000원) - ${this.totalRanking[5]}개")
+        println("4개 일치 (50,000원) - ${this.totalRanking[4]}개")
+        println("5개 일치 (1,500,000원) - ${this.totalRanking[3]}개")
+        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.totalRanking[2]}개")
+        println("6개 일치 (2,000,000,000원) - ${this.totalRanking[1]}개")
+        println("총 수익률은 ${round((this.profitRate*10))/10}%입니다.")
     }
 }
