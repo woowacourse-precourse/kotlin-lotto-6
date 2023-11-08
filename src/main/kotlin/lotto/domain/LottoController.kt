@@ -33,7 +33,11 @@ class LottoController(private val inputView: InputView, private val outputView: 
         val lotteries = mutableListOf<Lotto>()
         val numOfLotto = money / Constants.LOTTO_PRICE
         outputView.printPurchaseAmount(numOfLotto)
+        pickLottoNumberAdd(numOfLotto, lotteries)
+        return lotteries
+    }
 
+    fun pickLottoNumberAdd(numOfLotto: Int, lotteries: MutableList<Lotto>) {
         for (attempts in 0 until numOfLotto) {
             val numbers = Randoms.pickUniqueNumbersInRange(
                 Constants.MIN_NUMBER,
@@ -43,7 +47,6 @@ class LottoController(private val inputView: InputView, private val outputView: 
             outputView.printPurchasedLotto(numbers)
             lotteries.add(Lotto(numbers))
         }
-        return lotteries
     }
 
     fun userInputPrizeNumber(): Pair<List<Int>, Int> {
