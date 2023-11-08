@@ -5,7 +5,7 @@ class ProfitRate {
 
     fun get() = value
 
-    fun calculate(purchaseAmount: Int, winningRecord: Map<WinningRank, Int>): Double {
+    fun calculate(purchaseAmount: Purchase, winningRecord: WinningRecord): Double {
 
         return 100.0
     }
