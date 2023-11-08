@@ -10,6 +10,6 @@ fun main() {
     val outputView = OutputView()
     val task = Task()
 
-    val lottocontroller = GameController(inputView, outputView)
-    lottocontroller.play(task)
+    val lottoController = GameController(inputView, outputView)
+    lottoController.play(task)
 }

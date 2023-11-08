@@ -7,8 +7,9 @@ import lotto.model.validation.LottoNumber
 object LottoCalculator {
     fun matchCount(
         lotto: List<LottoNumber>,
-        winningAndBonusNumbers: WinningAndBonusNumbers
+        winningAndBonusNumbers: WinningAndBonusNumbers,
     ): LottoMatchCount {
+
         val (winningnumbers, bonusNumber) = winningAndBonusNumbers
 
         val winning = lotto.count { winningnumbers.contains(it) }

@@ -4,11 +4,10 @@ import lotto.dto.LottoMatchCount
 import lotto.util.Match
 
 class LottosMatchCount(
-    var _result: MutableMap<Int, Int> = Match.values()
+    val result: MutableMap<Int, Int> = Match.values()
         .associate { it.count to RESULT_DEFAULT_VALUE }
         .toMutableMap()
 ) {
-    val result get() = _result.toMap()
 
     fun update(lottoMatchCount: LottoMatchCount) {
         if (lottoMatchCount.winning !in MIN_WINNING_MATCHES..MAX_WINNING_MATCHES) {
@@ -21,11 +20,12 @@ class LottosMatchCount(
                 ?: Match.FIFTH_BONUS.count
         }
 
-        _result[key] = _result.getOrDefault(key, RESULT_DEFAULT_VALUE) + 1
+        result[key] = result.getOrDefault(key, RESULT_DEFAULT_VALUE) + COUNT_PLUS_VALUE
     }
 
     companion object {
-        const val RESULT_DEFAULT_VALUE = 0
+        private const val RESULT_DEFAULT_VALUE = 0
+        private const val COUNT_PLUS_VALUE = 1
 
         private const val MIN_WINNING_MATCHES = 3
         private const val MAX_WINNING_MATCHES = 6
@@ -34,4 +34,3 @@ class LottosMatchCount(
         private const val NO_BONUS_MATCH = 0
     }
 }
-

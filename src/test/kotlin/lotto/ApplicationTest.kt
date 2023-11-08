@@ -45,7 +45,13 @@ class ApplicationTest : NsTest() {
     @Test
     fun `예외 데이터 입력시 재시작 테스트`() {
         assertSimpleTest {
-            runException("\n", "1a", "1001")
+            runException(
+                "\n", "1a", "1001", "20000",
+                "1, 2, 3, 4, 5",
+                "1, 2, 3, 4, 5, 6", "6",
+                "1, 2, 3, 4, 5, 6", "A",
+                "1, 2, 3, 4, 5, 6", "7",
+            )
             assertThat(output()).contains(ERROR_TAG)
         }
     }

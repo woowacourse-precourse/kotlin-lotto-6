@@ -3,9 +3,12 @@ package lotto.model
 import lotto.util.Match
 import kotlin.math.roundToLong
 
-class RateOfReturn(val data: Map<Int, Int>, val amount: Long) {
+class RateOfReturn(
+    private val lottosMatchCount: Map<Int, Int>,
+    private val amount: Long,
+) {
 
-    fun getData(): String {
+    fun calculate(): String {
         val totalWinningAmount = getTotalWinningAmount()
         var averageWinningAmount = divideBydivisor(totalWinningAmount, amount)
 
@@ -17,7 +20,7 @@ class RateOfReturn(val data: Map<Int, Int>, val amount: Long) {
     }
 
     private fun getTotalWinningAmount(): Long {
-        return data
+        return lottosMatchCount
             .map { Match.getAmountForCount(it.key) * it.value }
             .sumOf { it }
     }

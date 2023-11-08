@@ -1,10 +1,14 @@
 package lotto.model.validation
 
 class WinningValidation(
-    winningNumbers: List<LottoNumber>,
-    bonusNumber: LottoNumber,
+    private val winningNumbers: List<LottoNumber>,
+    private val bonusNumber: LottoNumber,
 ) {
     init {
+        validateDuplicate(winningNumbers, bonusNumber)
+    }
+
+    private fun validateDuplicate(winningNumbers: List<LottoNumber>, bonusNumber: LottoNumber) {
         require(winningNumbers.count { it == bonusNumber } == 0) {
             WINNING_BONUS_NUMBER_IS_NOT_DUPLICATE
         }

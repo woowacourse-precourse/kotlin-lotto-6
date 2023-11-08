@@ -12,6 +12,10 @@ class BuyingAmount(
             BUYING_AMOUNT_ONLY_DIGIT
         }
 
+        validate(data)
+    }
+
+    private fun validate(data: Long) {
         require(data > BUYING_AMOUNT_MINIMUM) {
             BUYING_AMOUNT_THAN_ZERO
         }

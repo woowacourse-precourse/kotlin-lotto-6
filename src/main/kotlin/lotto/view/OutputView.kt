@@ -26,12 +26,12 @@ class OutputView {
     fun printError(errorMessage: String) = println("${Constants.ERROR_TAG} $errorMessage")
 
     companion object {
-        const val BUYING_COUNT_CONFIRMATION = "%d개를 구매했습니다."
+        private const val BUYING_COUNT_CONFIRMATION = "%d개를 구매했습니다."
 
-        const val WINNING_STATISTICS = "당첨 통계"
-        const val DIVIDING_LINE = "---"
-        const val MONEY_UNIT = "원"
+        private const val WINNING_STATISTICS = "당첨 통계"
+        private const val DIVIDING_LINE = "---"
+        private const val MONEY_UNIT = "원"
 
-        const val TOTAL_RATE_OF_RETURN = "총 수익률은 %s입니다."
+        private const val TOTAL_RATE_OF_RETURN = "총 수익률은 %s입니다."
     }
 }
