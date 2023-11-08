@@ -16,7 +16,7 @@ class Player {
         return amount / Constants.LOTTO_UNIT
     }
 
-    private fun validatePurchaseAmount(amount: String) {
+    fun validatePurchaseAmount(amount: String) {
         val purchaseAmount = amount.toIntOrNull() ?: throw IllegalArgumentException(INPUT_TYPE_ERROR)
         require(purchaseAmount % Constants.LOTTO_UNIT == 0) { throw IllegalArgumentException(PURCHASE_AMOUNT_UNIT_ERROR) }
     }
