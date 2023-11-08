@@ -49,4 +49,32 @@ class LottoPurchaseTest {
             inputValidation.checkIsPositiveInteger(input)
         }
     }
+
+    @Test
+    fun `천 단위 금액 입력 유효성 검사`() {
+        val input = 10000
+        assertThat(inputValidation.checkIsCorrectCost(input))
+    }
+
+    @Test
+    fun `사용자 입력이 천 단위 금액이 아니라면 예외 발생`() {
+        val input = 10100
+        assertThrows<IllegalArgumentException> {
+            inputValidation.checkIsCorrectCost(input)
+        }
+    }
+
+    @Test
+    fun `천원 이상 금액 유효성 검사`() {
+        val input = 1000
+        assertThat(inputValidation.checkIsEnoughCost(input))
+    }
+
+    @Test
+    fun `사용자 입력이 금액이 충분하지 않다면 예외 발생`() {
+        val input = 100
+        assertThrows<IllegalArgumentException> {
+            inputValidation.checkIsEnoughCost(input)
+        }
+    }
 }
