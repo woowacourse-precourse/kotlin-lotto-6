@@ -16,18 +16,18 @@ fun main() {
     var buyMoney = readIntInput("")
 
     var ticketCount = 0
-    ticketCount = buyMoney/1000
+    ticketCount = buyMoney / 1000
 
     println("\n${ticketCount}개를 구매했습니다.")
 
     val tickets = mutableSetOf<List<Int>>()
-    for(i: Int in 1..ticketCount){
-        val numbers = Randoms.pickUniqueNumbersInRange(1,45,6)
+    for (i: Int in 1..ticketCount) {
+        val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
         numbers.sort()
         tickets.add(numbers)
     }
 
-    for(ticket in tickets){
+    for (ticket in tickets) {
         print("[")
         print(ticket.joinToString(", "))
         println("]")
@@ -81,28 +81,48 @@ fun main() {
 }
 
 fun readIntInput(prompt: String): Int {
-    while (true) {
+    var result: Int? = null
+    var cnt = 0
+    while (result == null) {
+        if(cnt == 2){
+            break
+        }
         try {
             print(prompt)
-            return readLine()?.toInt() ?: throw IllegalArgumentException()
+            result = readLine()?.toInt()
+                ?: throw IllegalArgumentException("[ERROR] 숫자를 입력해주세요.")
         } catch (e: NumberFormatException) {
             println("[ERROR] 숫자를 입력해주세요.")
         } catch (e: IllegalArgumentException) {
             println("[ERROR] 1000의 배수로 입력해주세요.")
         }
+        cnt++
     }
+    return result!!
 }
 
 fun readIntListInput(prompt: String): List<Int> {
-    while (true) {
+    var result: List<Int>? = null
+    var cnt = 0
+    while (result == null) {
+        if(cnt == 2){
+            break
+        }
         try {
             print(prompt)
-            return readLine()?.split(",")?.map { it.toInt() }
-                ?: throw IllegalArgumentException()
+            result = readLine()?.split(",")?.map { it.toInt() }
+                ?: throw IllegalArgumentException("[ERROR] 1에서 45 사이의 숫자로 입력해주세요.")
         } catch (e: NumberFormatException) {
             println("[ERROR] 숫자를 입력해주세요.")
         } catch (e: IllegalArgumentException) {
             println("[ERROR] 1에서 45 사이의 숫자로 입력해주세요.")
         }
+        cnt++
     }
+    return result!!
 }
+
+
+
+
+
