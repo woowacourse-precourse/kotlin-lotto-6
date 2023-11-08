@@ -26,7 +26,7 @@ class LottoStatus {
             println(currentLotto.getLottoFormat())
         }
     }
-    fun pickRandomNumbersForLotto(): List<Int> {
+    private fun pickRandomNumbersForLotto(): List<Int> {
         val currentLottoNumbers = mutableListOf<Int>()
         while (true) {
             val currentNumber = Randoms.pickNumberInRange(LottoResource.MIN_LOTTO_NUMBER, LottoResource.MAX_LOTTO_NUMBER)

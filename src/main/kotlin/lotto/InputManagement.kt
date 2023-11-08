@@ -40,10 +40,10 @@ class InputManagement {
         return currentNumber
     }
 
-    fun validateBonusNumberIsDuplicateWithLottoNumbers() {
+    private fun validateBonusNumberIsDuplicateWithLottoNumbers() {
         lottoNumbers.forEach {
             require(it != bonusNumber) {
-                Error.printErrorMessage(Error.LOTTO_NUMBER_CANT_DUPLICATE)
+                Error.printErrorMessage(Error.BONUS_NUMBER_CANT_EQUAL_LOTTO_NUMBER)
             }
         }
     }
