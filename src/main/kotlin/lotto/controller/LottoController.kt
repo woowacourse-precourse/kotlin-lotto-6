@@ -26,26 +26,26 @@ class LottoController() {
 
             generateLottoTickets(purchaseAmount / LOTTO_PRICE)
 
-            startWinningNumber()
+            startWinningNumber(purchaseAmount)
         } catch (e: IllegalArgumentException) {
             println(e.message)
             start()
         }
     }
 
-    fun startWinningNumber() {
+    fun startWinningNumber(amount: Int) {
         try {
             printWinningNumberOfLotto()
             val winningNumber = inputWinningNumberOfLotto()
 
-            startBonusNumber(winningNumber)
+            startBonusNumber(winningNumber, amount)
         } catch (e: IllegalArgumentException) {
             println(e.message)
-            startWinningNumber()
+            startWinningNumber(amount)
         }
     }
 
-    fun startBonusNumber(winningNumber: List<Int>) {
+    fun startBonusNumber(winningNumber: List<Int>, amount: Int) {
         try {
             printBonusNumberOfLotto()
             val bonusNumber = inputBonusNumberOfLotto(winningNumber)
@@ -53,10 +53,15 @@ class LottoController() {
             val lottoMatch = LottoMatch(lottoTickets, winningNumber, bonusNumber)
             val lottoRank = lottoMatch.countMatch()
             printStatistics(lottoRank)
+            startLottoProfit(lottoRank, amount)
         } catch (e: IllegalArgumentException) {
             println(e.message)
-            startBonusNumber(winningNumber)
+            startBonusNumber(winningNumber, amount)
         }
+    }
+
+    fun startLottoProfit(rank: List<Int>, amount: Int) {
+        val profit = LottoProfit().calculateTotal(rank, amount)
     }
 
     fun validateInputPurchaseAmountOfLottoNumeric(input: String) {
