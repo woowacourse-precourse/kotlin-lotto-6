@@ -6,7 +6,7 @@ class Lotto(private val numbers: List<Int>) {
         LottoData.lottoNumber.add(numbers)
     }
 
-    fun printLottoNumber(){
+    fun printLottoNumber() {
         val lottoNumberToString = numbers.sorted().joinToString(prefix = "[", postfix = "]") { it.toString() }
         println(lottoNumberToString)
     }
