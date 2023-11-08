@@ -1,6 +1,7 @@
 package lotto.view
 
 import lotto.model.Prize
+import lotto.model.Purchase
 import lotto.model.Ranking
 import lotto.model.Ticket
 import lotto.util.GameConstants.BONUS_MESSAGE
@@ -25,9 +26,9 @@ class OutputView {
         println(PRICE_MESSAGE)
     }
 
-    fun printPurchaseCountMessage(count: Int) {
+    fun printPurchaseCountMessage(purchase: Purchase) {
         println()
-        println("${count}${COUNT_MESSAGE}")
+        println("${purchase.count}${COUNT_MESSAGE}")
     }
 
     fun printTicket(ticket: Ticket) {
