@@ -1,10 +1,14 @@
 package lotto
 
+import kotlin.math.*
 import camp.nextstep.edu.missionutils.Randoms
 
 class LottoProgram {
     var count: Int = 0
     var bonusNumber = 0
+    var totalProfit = 0
+    var inputMoney = 0
+    var profitRate = 0
     var winningNumbers = listOf<Int>()
     var lottos:MutableList<Lotto> = mutableListOf()
     var totalRanking = mutableMapOf(1 to 0, 2 to 0, 3 to 0, 4 to 0, 5 to 0)
@@ -12,6 +16,7 @@ class LottoProgram {
 
 
     fun makeCalculationMoney(money: Int) {
+        this.inputMoney = money
         this.count = money / 1000
     }
 
@@ -53,12 +58,30 @@ class LottoProgram {
     fun compareTotalLottos() {
         lottos.forEach {
             var resultCount = compareNumbers(it)
-            if (resultCount == 6) { this.totalRanking[1] = this.totalRanking[1]!! + 1 }
-            if (resultCount == 5 && campareBonus(it)) { this.totalRanking[2] = this.totalRanking[2]!! + 1 }
-            if (resultCount == 5 && !campareBonus(it)) { this.totalRanking[3] = this.totalRanking[3]!! + 1 }
-            if (resultCount == 4) { this.totalRanking[4] = this.totalRanking[4]!! + 1 }
-            if (resultCount == 3) { this.totalRanking[5] = this.totalRanking[5]!! + 1 }
+            if (resultCount == 6) {
+                this.totalRanking[1] = this.totalRanking[1]!! + 1
+                this.totalProfit += Ranking.SIX.Profit
+            }
+            if (resultCount == 5 && campareBonus(it)) {
+                this.totalRanking[2] = this.totalRanking[2]!! + 1
+                this.totalProfit += Ranking.FIVEBONUS.Profit
+            }
+            if (resultCount == 5 && !campareBonus(it)) {
+                this.totalRanking[3] = this.totalRanking[3]!! + 1
+                this.totalProfit += Ranking.FIVE.Profit
+            }
+            if (resultCount == 4) {
+                this.totalRanking[4] = this.totalRanking[4]!! + 1
+                this.totalProfit += Ranking.FOUR.Profit
+            }
+            if (resultCount == 3) {
+                this.totalRanking[5] = this.totalRanking[5]!! + 1
+                this.totalProfit += Ranking.THREE.Profit
+            }
         }
     }
 
+    fun calculateProfitRate() {
+        profitRate = (this.totalProfit / this.inputMoney) * 100
+    }
 }
