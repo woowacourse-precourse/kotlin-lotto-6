@@ -19,13 +19,11 @@ fun main() {
     val price = lotto.inputPriceOfLotto()
     val amountOfLotto = price / 1000
 
-    //랜덤 번호를 로또번호 리스트로 생성
     for (amount in 0 until amountOfLotto) {
         val numbers = lotto.makeLottoNumber()
         lottos.add(Lotto(numbers))
     }
 
-    //구매한 로또 리스트 출력
     for (lotto in 0 until lottos.size) {
         println(lottos[lotto].getNumbers())
     }
