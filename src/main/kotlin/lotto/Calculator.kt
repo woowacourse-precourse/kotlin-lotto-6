@@ -1,5 +1,7 @@
 package lotto
 
+import lotto.LottoSeller.Companion.LOTTO_TICKET_PRICE
+
 class Calculator(
     private val userLotto: List<Int>,
     private val bonusNum: Int,
@@ -15,8 +17,8 @@ class Calculator(
         MatchedCount.SECOND to 0,
         MatchedCount.FIRST to 0,
     )
-
-     fun compareNum() {
+    private var profitability = 0L
+    fun compareNum() {
         //로또속 번호와 사용자가 입력한 번호를 비교해서 몇개가 당첨인지를 알수 있다.
         for (lotto in lottoMachine) {
 
@@ -25,6 +27,18 @@ class Calculator(
 
             val lottoRank = MatchedCount.fromMatchedNumbers(matchedNumbers, isBonusMatched)
             if (lottoRank != MatchedCount.NONE) lottoResult[lottoRank] = lottoResult.getOrDefault(lottoRank, 0) + 1
+        }
+    }
+
+    fun calculateProfitRate(): Float {
+        calculateProfit()
+        val moneySpent = lottoMachine.size * LOTTO_TICKET_PRICE
+        return (profitability * 100f) / moneySpent
+    }
+
+    private fun calculateProfit() {
+        lottoResult.forEach { (rank, count) ->
+            profitability += rank.prize * count
         }
     }
 
