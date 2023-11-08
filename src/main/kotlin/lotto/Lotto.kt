@@ -6,6 +6,6 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun getNumbers(): List<Int> {
-        return numbers
+        return numbers.sorted()
     }
 }
