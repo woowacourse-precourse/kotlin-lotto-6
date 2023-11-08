@@ -9,6 +9,9 @@ fun main() {
         val purchaseAmount = getValidPurchaseAmount()
         val purchasedTickets = generateLottoTickets(purchaseAmount)
         println("${purchasedTickets}개를 구매했습니다.")
+
+        val winningNumbers = getWinningNumbers()
+
     } catch (e: IllegalArgumentException) {
         println(e.message)
     }
@@ -32,4 +35,16 @@ fun getValidPurchaseAmount(): Int { // 로또 구입 금액 및 유효성 검사
 
 fun generateLottoTickets(purchaseAmount: Int): Int {
     return purchaseAmount / 1000
+}
+
+fun getWinningNumbers(): List<Int> {
+    println("당첨 번호를 입력해 주세요.")
+    val input = Console.readLine()
+    val numbers = input.split(",").map { it.trim().toInt() }
+
+    if (numbers.size != 6 || numbers.any { it < 1 || it > 45 }) {
+        throw IllegalArgumentException("[ERROR] 1에서 45 사이의 6개 번호를 입력해야 합니다.")
+    }
+
+    return numbers
 }
