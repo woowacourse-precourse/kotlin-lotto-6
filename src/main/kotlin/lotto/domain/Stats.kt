@@ -13,7 +13,7 @@ enum class Stats(
     FIRST(6, 2000000000, " (2,000,000,000원) -")
 }
 
-fun checkRank(matchNumbersCount: Int, bonusMatch: Boolean) : Stats {
+fun checkStat(matchNumbersCount: Int, bonusMatch: Boolean) : Stats {
     return when{
         matchNumbersCount == Stats.FIRST.correctNumberCount -> Stats.FIRST
         matchNumbersCount == Stats.SECOND.correctNumberCount && bonusMatch-> Stats.SECOND
