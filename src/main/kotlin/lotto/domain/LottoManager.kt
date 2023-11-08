@@ -9,13 +9,8 @@ class LottoManager {
 
     private fun makeRandomNumbers(): List<Int> =
         Randoms.pickUniqueNumbersInRange(
-            LOTTO_START_INCLUSIVE, LOTTO_END_INCLUSIVE, LOTTO_COUNT
+            LottoRule.START_INCLUSIVE.num,
+            LottoRule.END_INCLUSIVE.num,
+            LottoRule.COUNT.num
         )
-
-    companion object {
-        const val LOTTO_START_INCLUSIVE = 1
-        const val LOTTO_END_INCLUSIVE = 45
-        const val LOTTO_COUNT = 6
-        const val LOTTO_COST = 1000
-    }
 }

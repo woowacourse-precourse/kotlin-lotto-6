@@ -10,6 +10,8 @@ import lotto.model.WinningLotto
 object GameController {
     private val lottos: MutableList<Lotto> = mutableListOf()
     private var winningLotto: WinningLotto? = null
+    private val matchResults = mutableMapOf<GameResult, Int>()
+
     private val inputManager = InputManager()
     private val lottoManager = LottoManager()
     private val messenger = MessageManager()

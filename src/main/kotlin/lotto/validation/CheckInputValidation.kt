@@ -1,10 +1,7 @@
 package lotto.validation
 
 import lotto.domain.ErrorType
-import lotto.domain.LottoManager.Companion.LOTTO_COST
-import lotto.domain.LottoManager.Companion.LOTTO_COUNT
-import lotto.domain.LottoManager.Companion.LOTTO_END_INCLUSIVE
-import lotto.domain.LottoManager.Companion.LOTTO_START_INCLUSIVE
+import lotto.domain.LottoRule
 import java.lang.NumberFormatException
 
 class CheckInputValidation {
@@ -26,13 +23,14 @@ class CheckInputValidation {
     }
 
     fun checkIsCorrectCost(cost: Int) {
-        require(cost % LOTTO_COST != 0) {
+        require(cost % LottoRule.PRICE.num != 0) {
             ErrorType.IS_INCORRECT_PURCHASE.message
         }
     }
 
     fun checkIsLottoNumber(number: String) {
-        require(number.toInt() in LOTTO_START_INCLUSIVE..LOTTO_END_INCLUSIVE) {
+        require(number.toInt() in LottoRule.START_INCLUSIVE.num..
+                LottoRule.END_INCLUSIVE.num) {
             ErrorType.IS_INCORRECT_NUMBER.message
         }
     }
@@ -62,7 +60,7 @@ class CheckInputValidation {
     fun checkLottoCount(
         userInput: List<String>
     ) {
-        require(userInput.size == LOTTO_COUNT) {
+        require(userInput.size == LottoRule.COUNT.num) {
             ErrorType.IS_NOT_SIX_NUMBERS.message
         }
     }
