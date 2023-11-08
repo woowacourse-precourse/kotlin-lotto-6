@@ -3,18 +3,19 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import constants.Constants
+import constants.Exception
 
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6) {"로또 번호는 6개여야 합니다."}
-        require(numbers.toSet().size == numbers.size) {"로또 번호에 중복된 숫자가 있으면 안됩니다."}
-        require(numbers.all{ it in 1..45}) {"로또 번호는 1부터 45사이의 숫자여야한다."}
+        require(numbers.size == 6) {Exception.LOTTO_NUMBER_SIZE_ERROR}
+        require(numbers.toSet().size == numbers.size) {Exception.LOTTO_NUMBER_DUPLICATE_ERROR}
+        require(numbers.all{ it in 1..45}) {Exception.LOTTO_NUMBER_RANGE_ERROR}
     }
     private fun getPurchaseAmount(): Int {
         while (true) {
             try {
-                println("구입금액을 입력해 주세요.")
+                println(Constants.INPUT_PURCHASE_PRICE)
                 return checkPurchasePrice()
             } catch (e: IllegalArgumentException) {
                 println(e.message)
@@ -27,11 +28,11 @@ class Lotto(private val numbers: List<Int>) {
             try {
                 val input = Console.readLine().toInt()
                 if (input % 1000 != 0) {
-                    throw IllegalArgumentException("[ERROR] 구입 금액의 단위는 1,000원 단위입니다.")
+                    throw IllegalArgumentException(Exception.PURCHASE_AMOUNT_UNIT_ERROR)
                 }
                 return input
             } catch (e: NumberFormatException) {
-                throw IllegalArgumentException("[ERROR] 유효하지 않은 입력입니다. 구입 금액은 숫자여야 합니다.")
+                throw IllegalArgumentException(Exception.PURCHASE_AMOUNT_NUMBER_ERROR)
             }
         }
     }
@@ -54,17 +55,17 @@ class Lotto(private val numbers: List<Int>) {
 
     private fun hasDuplicateNumbers(numbers: List<Int>) {
         if (numbers.size != numbers.toSet().size || numbers.size != 6) {
-            throw IllegalArgumentException("[ERROR] 1부터 45 사이의 6개의 서로 다른 숫자를 입력해야 합니다.")
+            throw IllegalArgumentException(Exception.INVALID_ERROR)
         }
     }
 
     internal fun getWinningNumbers(): List<Int> {
         while (true) {
             try {
-                println("\n당첨 번호를 입력해 주세요.")
+                println(Constants.INPUT_WINNING_NUMBER)
                 val userNumbers = getUserNumbers()
                 if (userNumbers.toSet().size != 6) {
-                    println("[ERROR] 1부터 45 사이의 6개의 서로 다른 숫자를 입력해야 합니다.")
+                    println(Exception.INVALID_ERROR)
                     continue
                 }
                 return userNumbers
@@ -82,10 +83,10 @@ class Lotto(private val numbers: List<Int>) {
     internal fun getBonusNumber(winningNumbers: List<Int>): Int {
         while (true) {
             try {
-                println("\n보너스 번호를 입력해 주세요.")
+                println(Constants.INPUT_BONUS_NUMBER)
                 val userBonusNumber = getUserBonusNumber()
                 if (userBonusNumber !in 1..45 || userBonusNumber in winningNumbers) {
-                    println("[ERROR] 1부터 45 사이의 숫자이며, 당첨 번호와 겹치지 않는 숫자를 입력해야 합니다.")
+                    println(Exception.INVALID_BONUS_NUMBER_ERROR)
                     continue
                 }
                 return userBonusNumber
@@ -105,14 +106,14 @@ class Lotto(private val numbers: List<Int>) {
         }
         val hasBonusNumbers = bonusNumbers(tickets, winningNumbers, bonusNumber)
 
-        println("\n당첨 통계")
-        println("---")
-        println("3개 일치 (5,000원) - ${matchingNumbers.count { it == 3 }}개")
-        println("4개 일치 (50,000원) - ${matchingNumbers.count { it == 4 }}개")
-        println("5개 일치 (1,500,000원) - ${matchingNumbers.count { it == 5 }}개")
-        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${hasBonusNumbers.count { it == 5 }}개")
-        println("6개 일치 (2,000,000,000원) - ${matchingNumbers.count { it == 6 }}개")
-        println("총 수익률은 ${calculateProfit(matchingNumbers)}%입니다.")
+        println(Constants.WINNING_STATS)
+        println(Constants.LINE)
+        println("${Constants.CORRECT_3}${matchingNumbers.count { it == 3 }}개")
+        println("${Constants.CORRECT_4}${matchingNumbers.count { it == 4 }}개")
+        println("${Constants.CORRECT_5}${matchingNumbers.count { it == 5 }}개")
+        println("${Constants.CORRECT_5_BONUS}${hasBonusNumbers.count { it == 5 }}개")
+        println("${Constants.CORRECT_6}${matchingNumbers.count { it == 6 }}개")
+        println("${Constants.TOTAL}${calculateProfit(matchingNumbers)}${Constants.PROFIT}")
     }
 
     private fun bonusNumbers(tickets: List<List<Int>>, winningNumbers: List<Int>, bonusNumber: Int): List<Int> {
