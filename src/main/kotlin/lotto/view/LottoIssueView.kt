@@ -1,8 +1,11 @@
 package lotto.view
 
-class LottoIssueView {
-  fun printIssuedAmountMessage() {
+import lotto.constants.GuideMessage.SHOW_ISSUED_AMOUNT
 
+object LottoIssueView {
+
+  fun printIssuedAmountMessage(purchaseAmount: Long) {
+    println(SHOW_ISSUED_AMOUNT.format(purchaseAmount))
   }
 
   fun printIssuedLotto() {
