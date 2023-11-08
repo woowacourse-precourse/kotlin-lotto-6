@@ -5,21 +5,26 @@ class Lotto(private val numbers: List<Int>) {
     init {
         vaildateLength()
         validateDuplication()
+        validateBound()
     }
 
     private fun vaildateLength() {
         require(numbers.size == 6) { SIZEERROR }
     }
 
+    private fun validateBound(){
+        numbers.forEach{
+            require(it >= LottoInput.MIN_NUMBER && it <= LottoInput.MAX_NUMBER) { LottoInput.NUMBEROUTOFBOUND }
+        }
+    }
     private fun validateDuplication() {
         require(numbers.size == numbers.distinct().count()) { ERRORDUPLICATION }
     }
 
-    fun matchingNum(winningNumber: List<Int>): Int {
+    fun matchingNum(winningNumber: List<Int>, bonus: Int): Int {
         var result = 0
-        for (num in winningNumber) {
-            if (numbers.contains(num)) result++
-        }
+        winningNumber.forEach { if (numbers.contains(it)) result++ }
+        if (result == 5 && numbers.contains(bonus)) return 7
         return result
     }
 
