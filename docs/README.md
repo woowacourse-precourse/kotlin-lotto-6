@@ -41,12 +41,12 @@
   ```
     - [x] 사용자가 구입할 금액을 입력한다. (`InputView.purchaseAmount`)
 
-- [ ] 구입한 로또에 대한 정보를 출력한다.
-    - [ ] 발행한 로또 수량을 가지고 안내 메시지를 출력한다. (`OutputuView.lottoQuantityPrompt`)
+- [x] 구입한 로또에 대한 정보를 출력한다.
+    - [x] 발행한 로또 수량을 가지고 안내 메시지를 출력한다. (`OutputuView.lottoQuantityPrompt`)
   ```
   10개를 구매했습니다.
   ```
-    - [ ] 발행한 로또 번호를 출력한다. (`OutputView.lottoNumbers`)
+    - [x] 발행한 로또 번호를 출력한다. (`OutputView.lottoNumbers`)
   ```
   [8, 21, 23, 41, 42, 43]
   [3, 5, 11, 16, 32, 38]
@@ -69,15 +69,15 @@
 - [x] 보너스 번호를 입력받는다. (`Inputview.bonusLottoNumber`)
     - [x] 보너스 번호 입력 안내 메시지를 출력한다. (`OutputView.inputBonusNumberPrompt`)
 
-- [ ] 당첨 통계
+- [x] 당첨 통계
     - [x] 당첨 통계 안내 메시지를 출력한다. (`OutputView.winningResultPrompt`)
       ```
       당첨 통계
       ---
       ```
-    - [ ] 당첨 내역을 가지고 당첨 통계를 출력한다. (`OutputView.winningResult`)
+    - [x] 당첨 내역을 가지고 당첨 통계를 출력한다. (`OutputView.winningResult`)
 
-- [ ] 총 수익률을 출력한다. (`OutputView.totalProfitRate`)
+- [x] 총 수익률을 출력한다. (`OutputView.totalProfitRate`)
   ```
   총 수익률은 62.5%입니다.
   ```
