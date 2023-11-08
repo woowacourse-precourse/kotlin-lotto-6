@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 class ApplicationTest : NsTest() {
 
     @Test
-    fun `기능 테스트`() {
+    fun functionTest() {
         assertRandomUniqueNumbersInRangeTest(
             {
                 run("8000", "1,2,3,4,5,6", "7")
@@ -40,7 +40,10 @@ class ApplicationTest : NsTest() {
             listOf(2, 13, 22, 32, 38, 45),
             listOf(1, 3, 5, 14, 22, 45)
         )
+    }
 
+    @Test
+    fun IntegerOverflowTest() {
         assertRandomUniqueNumbersInRangeTest(
             {
                 run("2000", "8,21,23,41,42,43", "7")
@@ -55,14 +58,12 @@ class ApplicationTest : NsTest() {
                     "6개 일치 (2,000,000,000원) - 2개",
                     "총 수익률은 200000000.0%입니다."
                 )
-            },
-            listOf(8, 21, 23, 41, 42, 43),
-            listOf(8, 21, 23, 41, 42, 43)
+            }, listOf(8, 21, 23, 41, 42, 43), listOf(8, 21, 23, 41, 42, 43)
         )
     }
 
     @Test
-    fun `예외 테스트`() {
+    fun exceptionTest() {
         assertSimpleTest {
             runException("1000j")
             assertThat(output()).contains(ERROR_MESSAGE)
