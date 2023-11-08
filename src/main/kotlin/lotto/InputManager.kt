@@ -59,6 +59,7 @@ class InputManager {
         }
     }
 
+    // 사용자가 6개가 아닌 당첨 번호를 입력한 경우
     private fun handleNumberOfWinningNumbersException(winningNumbers: ArrayList<Int>) {
         if (winningNumbers.size != 6) {
             throw IllegalArgumentException("[ERROR] 당첨 번호를 올바르게 입력해주세요.")
