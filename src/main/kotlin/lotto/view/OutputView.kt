@@ -30,5 +30,4 @@ class OutputView {
             LottoPrice.SIX_MATCH to "6개 일치 (2,000,000,000원) - %d개"
         )
     }
-
 }

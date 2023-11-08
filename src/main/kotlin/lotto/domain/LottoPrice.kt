@@ -1,6 +1,7 @@
 package lotto.domain
 
 enum class LottoPrice(val matchCount: Int, val price: Int) {
+
     THREE_MATCH(3, 5_000),
     FOUR_MATCH(4, 50_000),
     FIVE_MATCH(5, 1_500_000),

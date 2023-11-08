@@ -36,7 +36,6 @@ class LottoShop {
         }
     }
 
-
     private fun validatePrice(price: String) {
         require(price.isNotBlank()) { "[ERROR] 로또 구입 금액은 천원 이상으로 입력 가능합니다." }
         require(price.all { it.isDigit() }) { "[ERROR] 로또 구입 금액은 숫자로만 입력 가능합니다." }
@@ -100,7 +99,6 @@ class LottoShop {
             matchCounts[lottoPrice] = (matchCounts[lottoPrice] ?: 0) + 1
         }
     }
-
 
     private fun printResult(price: Int) {
         val totalPrize = LottoPrice.values().sumOf { (matchCounts[it] ?: 0) * it.price }
