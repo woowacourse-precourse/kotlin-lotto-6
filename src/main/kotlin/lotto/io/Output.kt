@@ -11,8 +11,10 @@ object Output {
     fun printPleaseInputWinningNumbers() = print(Messages.PLEASE_INPUT_WINNING_NUMBERS)
     fun printPleaseInputBonusNumbers() = print(Messages.PLEASE_INPUT_BONUS_NUMBERS)
     fun printWinningStatistics(statistics: Map<Position, Int>) {
+        println(Messages.WINNING_STATISTICS)
+        println("---")
         val decimalFormat = DecimalFormat("#,###")
-        val sorted = statistics.toSortedMap().forEach {
+        statistics.toSortedMap().forEach {
             if (it.key == Position.NoLuck) {
                 return@forEach
             }
