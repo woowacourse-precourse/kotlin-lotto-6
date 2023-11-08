@@ -11,21 +11,27 @@ class InputManager {
         return money.toInt()
     }
 
-    fun inputWinningNumber(): List<Int> {
+    fun qinputWinningNumber(): Pair<List<Int>,Int> {
         println(PRINT_INPUT_WINNING_NUMBER)
         val nums = Console.readLine().split(DELIMITER)
         exceptionManager.winningNumberException(nums)
         println()
-        return nums.map { it.toInt() }
-    }
 
-    fun inputBonusNumber(): Int {
         println(PRINT_INPUT_BONUS_NUMBER)
         val num = Console.readLine().trim()
-        exceptionManager.bonusNumberException(num)
+        exceptionManager.bonusNumberException(Pair(nums,num))
         println()
-        return num.toInt()
+
+        return Pair(nums.map { it.toInt() } ,num.toInt())
     }
+
+//    fun qinputBonusNumber(): Int {
+//        println(PRINT_INPUT_BONUS_NUMBER)
+//        val num = Console.readLine().trim()
+//        exceptionManager.bonusNumberException(num)
+//        println()
+//        return num.toInt()
+//    }
 
     companion object {
 

@@ -38,11 +38,13 @@ class ExceptionManager {
         }
     }
 
-    fun bonusNumberException(num: String) {
-        val convertedNum = num.toIntOrNull() ?: throw IllegalArgumentException("문자가 아닌 숫자를 입력해주세요.")
-
+    fun bonusNumberException(pair: Pair<List<String>, String>) {
+        val convertedNum = pair.second.toIntOrNull() ?: throw IllegalArgumentException("문자가 아닌 숫자를 입력해주세요.")
         if (convertedNum > 45 || convertedNum < 1) {
             throw IllegalArgumentException("1~45 사이의 숫자를 입력해주세요.")
+        }
+        if(pair.second in pair.first){
+            throw IllegalArgumentException("보너스 숫자가 당첨번호와 중복됩니다.")
         }
 
     }

@@ -11,8 +11,8 @@ class LottoMachine {
     var fifthPlace = 0
     fun checkRank() {
         val lotto = Lottos().makeLotto(lottoNum())
-        val lottos = inputManager.inputWinningNumber()
-        val bonusNum = inputManager.inputBonusNumber()
+        val (lottos,bonusNum) = inputManager.qinputWinningNumber()
+        //val bonusNum = inputManager.inputBonusNumber()
 
         for (l in lotto) {
             val correctNum = l.compareNumber(lottos)
