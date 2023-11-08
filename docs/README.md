@@ -16,8 +16,8 @@
     - [x] 당첨로또 생성기능
         - [x] 당첨 번호와 보너스 번호 생성 Service#generateWinningLotto
 
-    - [ ] input로또와 당첨로또 비교 기능 Service#compareLotto
-        - [ ] 1등 ~ 5등 등수 및 당첨금 출력
+    - [x] input로또와 당첨로또 비교 기능 Service#compareLotto
+        - [x] 1등 ~ 5등 등수 및 당첨금 Class 출력
 
     - [ ] 구입 금액을 입력하면 금액에 해당하는 만큼 로또 발행
         - [ ] 로또 1장 가격은 1,000원
