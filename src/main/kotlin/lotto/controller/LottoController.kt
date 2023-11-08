@@ -27,28 +27,41 @@ class LottoController(private val outputView: OutputView, private val inputView:
 
     private fun issueLottoTicket(): Ticket {
         val lottoSeller = LottoSeller()
-        return lottoSeller.issueLottoTicket(getMoneyInput())
+        outputView.printPaymentAmountInput()
+        return getTicket(lottoSeller)
     }
 
     private fun calculatePrize(ticket: Ticket): PrizeReceipt {
+        outputView.printWinningNumbersInput()
         val winningNumbers = getWinningNumbers()
+        outputView.printBonusInput()
         val bonusNumber = getBonus(winningNumbers)
         val lottoPrizeCalculator = LottoPrizeCalculator(winningNumbers, bonusNumber)
         return lottoPrizeCalculator.issueLottoResultReceipt(ticket)
     }
 
-    private fun getMoneyInput(): String {
-        outputView.printPaymentAmountInput()
-        return inputView.getUserInput()
-    }
+    private fun getTicket(seller: LottoSeller): Ticket =
+        runCatching<Ticket> {
+            val input = inputView.getUserInput()
+            return seller.issueLottoTicket(input)
+        }.onFailure { throwable ->
+            outputView.printError(throwable.message)
+            return getTicket(seller)
+        }.getOrThrow()
 
-    private fun getBonus(winningNumbers: Lotto): Bonus {
-        outputView.printBonusInput()
-        return Bonus.of(inputView.getUserInput(), winningNumbers)
-    }
+    private fun getBonus(winningNumbers: Lotto): Bonus =
+        runCatching<Bonus> {
+            return Bonus.of(inputView.getUserInput(), winningNumbers)
+        }.onFailure { throwable ->
+            outputView.printError(throwable.message)
+            return getBonus(winningNumbers)
+        }.getOrThrow()
 
-    private fun getWinningNumbers(): Lotto {
-        outputView.printWinningNumbersInput()
-        return Lotto.create(inputView.getUserInput())
-    }
+    private fun getWinningNumbers(): Lotto =
+        runCatching<Lotto> {
+            return Lotto.create(inputView.getUserInput())
+        }.onFailure { throwable ->
+            outputView.printError(throwable.message)
+            return getWinningNumbers()
+        }.getOrThrow()
 }
