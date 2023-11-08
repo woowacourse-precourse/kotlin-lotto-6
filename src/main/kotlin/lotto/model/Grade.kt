@@ -18,9 +18,9 @@ class Grade {
         val numberCount = lotto.compareLottoNumber(winningNumber)
         val bonusNumberResult = lotto.compareBonusNumber(winningNumber.getBonusNumber())
         when {
-            numberCount == 6 -> countGrade(FIRST, this.lottoGrade)
-            numberCount == 5 && !bonusNumberResult -> countGrade(SECOND, this.lottoGrade)
-            numberCount == 5 || (numberCount == 4 && bonusNumberResult) -> countGrade(THIRD, this.lottoGrade)
+            numberCount == 6 || (numberCount == 5 && bonusNumberResult) -> countGrade(FIRST, this.lottoGrade)
+            numberCount == 5 -> countGrade(SECOND, this.lottoGrade)
+            numberCount == 4 && bonusNumberResult -> countGrade(THIRD, this.lottoGrade)
             numberCount == 4 || (numberCount == 3 && bonusNumberResult) -> countGrade(FORTH, this.lottoGrade)
             numberCount == 3 || (numberCount == 2 && bonusNumberResult) -> countGrade(FIFTH, this.lottoGrade)
         }
