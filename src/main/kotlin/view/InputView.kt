@@ -1,6 +1,7 @@
 package view
 
 import camp.nextstep.edu.missionutils.Console
+import validator.bonusnumbervalidator.BonusNumberValidator
 import validator.lottonumbervalidator.LottoNumberValidator
 import validator.purchaseamountvalidator.PurchaseAmountValidator
 
@@ -28,5 +29,17 @@ object InputView {
         }
 
         return lottoNumber.split(",").map { it.toInt() }
+    }
+
+    fun bonusNumber(lottoNumber: List<Int>): Int {
+        val bonusNumber = Console.readLine()
+
+        try {
+            BonusNumberValidator.isAppropriateBonusNumber(bonusNumber, lottoNumber)
+        } catch (e: IllegalArgumentException) {
+            return bonusNumber(lottoNumber)
+        }
+
+        return bonusNumber.toInt()
     }
 }
