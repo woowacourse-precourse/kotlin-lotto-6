@@ -13,7 +13,7 @@ class InputManager {
 
     fun getInputMoney(): Int {
         return try {
-            outputManager.printInputMoneyPrompt()
+            outputManager.printPromptMessage(INPUT_MONEY_PROMPT_MESSAGE)
             val inputMoney = readString()
             inputMoneyValidator.validate(inputMoney)
             inputMoney.toInt()
@@ -25,7 +25,7 @@ class InputManager {
 
     fun getWinningNumbers(): List<Int> {
         return try {
-            outputManager.printWinningNumbersPrompt()
+            outputManager.printPromptMessage(WINNING_NUMBERS_PROMPT_MESSAGE)
             val winningNumber = readString()
             winningNumbersValidator.validate(winningNumber)
             winningNumber.split(",").map { it.trim().toInt() }
@@ -37,7 +37,7 @@ class InputManager {
 
     fun getBonusNumber(winningNumber: List<Int>): Int {
         return try {
-            outputManager.printBonusNumberPrompt()
+            outputManager.printPromptMessage(BONUS_NUMBER_PROMPT_MESSAGE)
             val bonusNumber = readString()
             bonusNumberValidator.validate(bonusNumber, winningNumber)
             bonusNumber.toInt()
@@ -49,5 +49,11 @@ class InputManager {
 
     private fun readString(): String {
         return Console.readLine().trim()
+    }
+
+    companion object {
+        private const val INPUT_MONEY_PROMPT_MESSAGE = "구입금액을 입력해 주세요."
+        private const val WINNING_NUMBERS_PROMPT_MESSAGE = "당첨 번호를 입력해 주세요."
+        private const val BONUS_NUMBER_PROMPT_MESSAGE = "\n" + "보너스 번호를 입력해 주세요."
     }
 }
