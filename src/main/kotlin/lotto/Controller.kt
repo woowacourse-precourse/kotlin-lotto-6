@@ -23,34 +23,22 @@ class Controller(
         return lottery
     }
 
-    private fun sortNumbers(numbers: List<Int>): List<Int> {
-        return numbers.sorted()
-    }
-
-    fun inputUserPickNumbers(input: String): List<Int> {
-        val splitNumber = input.trim().split(",")
-        val numbers = mutableListOf<Int>()
+    fun createLottoWinningNumbers(userPickInput: String, bonusInput: String): LottoWinningNumbers {
+        val splitNumber = userPickInput.trim().split(",")
+        val userPickNumbers = mutableListOf<Int>()
         splitNumber.forEach {
             requireIsInt(it)
-            numbers.add(it.toInt())
+            userPickNumbers.add(it.toInt())
         }
-        require(numbers.size == 6)
-        requireUserPickNumberDuplicateLottoNumber(numbers = numbers)
-        requireUserPickNumberValidRange(numbers = numbers)
-        return numbers
+        requireIsInt(bonusInput)
+        val bonusNumber = bonusInput.toInt()
+        return LottoWinningNumbers(userPickNumbers, bonusNumber)
     }
 
-    fun inputBonusNumber(input: String, userPickNumbers: List<Int>): Int {
-        requireIsInt(input)
-        val bonusNumber = input.toInt()
-        requireDuplicateBonusNumber(userPickNumbers, bonusNumber)
-        return input.toInt()
-    }
-
-    fun checkWinningDetails(lottery: List<Lotto>, userPickNumbers: List<Int>, bonusNumber: Int): List<WinCount> {
+    fun checkWinningDetails(lottery: List<Lotto>, lottoWinningNumbers: LottoWinningNumbers): List<WinCount> {
         val winCounts = mutableListOf<WinCount>()
         lottery.forEach { lotto ->
-            winCounts.add(lotto.checkMatchWinCount(userPickNumbers, bonusNumber))
+            winCounts.add(lotto.checkMatchWinCount(lottoWinningNumbers))
         }
         return winCounts
     }
@@ -74,6 +62,10 @@ class Controller(
         return calculator.calculateYieldResult(types = types)
     }
 
+    private fun sortNumbers(numbers: List<Int>): List<Int> {
+        return numbers.sorted()
+    }
+
     private fun requireIsInt(input: String) {
         require(input.matches(Regex(INTEGER_REGULAR_EXPRESSION))) { Message.ERROR_USER_INPUT_NOT_INT }
         require(input.toInt() > 0) { Message.ERROR_USER_INPUT_LESS_THAN_ZERO }
@@ -83,32 +75,10 @@ class Controller(
         require(input.toInt() >= 1000) { Message.ERROR_USER_INPUT_LESS_THAN_THOUSAND }
     }
 
-    private fun requireDuplicateBonusNumber(numbers: List<Int>, bonusNumber: Int) {
-        val uniqueNumbers = HashSet<Int>()
-        for (number in numbers) {
-            require(uniqueNumbers.add(number)) { Message.ERROR_USER_PICK_NUMBERS_DUPLICATION }
-        }
-        require(uniqueNumbers.add(bonusNumber)) { Message.ERROR_BONUS_NUMBER_DUPLICATION }
-    }
-
-    private fun requireUserPickNumberDuplicateLottoNumber(numbers: List<Int>) {
-        val uniqueNumbers = HashSet<Int>()
-        for (number in numbers) {
-            require(uniqueNumbers.add(number)) { Message.ERROR_USER_PICK_NUMBERS_DUPLICATION }
-        }
-    }
-
-    private fun requireUserPickNumberValidRange(numbers: List<Int>) {
-        for (number in numbers) {
-            require(number in VALID_RANGE) { Message.ERROR_RANDOM_NUMBER_RANGE }
-        }
-    }
-
     companion object {
         const val START_NUMBER = 1
         const val END_NUMBER = 45
         const val NUMBER_COUNT = 6
-        val VALID_RANGE = 1..45
         const val INTEGER_REGULAR_EXPRESSION = "-?\\d+"
     }
 

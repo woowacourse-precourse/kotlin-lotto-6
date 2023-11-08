@@ -3,18 +3,18 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 
 class LottoGame(
-    private val printer: Printer = Printer(), private val controller: Controller = Controller()
+    private val printer: Printer = Printer(),
+    private val controller: Controller = Controller(),
+    private var purchaseNumber: Int = 0,
 ) {
-    private var purchaseNumber: Int = 0
-    private lateinit var userPickLottoNumbers: List<Int>
+    // TODO : _자료형으로 재수정 하기
     private lateinit var randomLottoNumbers: List<Lotto>
-    private var bonusNumber: Int = 0
+    private lateinit var lottoWinningNumbers: LottoWinningNumbers
 
     fun execute() {
         purchaseLottery()
         createRandomLottery()
-        inputUserPickNumbers()
-        inputBonusNumber()
+        inputUserPickNumbersAndBonus()
         getLotteryWinning()
     }
 
@@ -42,33 +42,24 @@ class LottoGame(
         }
     }
 
-    private fun inputUserPickNumbers() {
+    private fun inputUserPickNumbersAndBonus() {
         try {
             printer.printEnterUserPickNumbersAnnouncement()
             val userPickNumberInput = Console.readLine().trim()
-            userPickLottoNumbers = controller.inputUserPickNumbers(userPickNumberInput)
-            println()
-        } catch (e: IllegalArgumentException) {
-            println(e.localizedMessage)
-            inputUserPickNumbers()
-        }
-    }
-
-    private fun inputBonusNumber() {
-        try {
             printer.printEnterBonusNumberAnnouncement()
             val bonusNumberInput = Console.readLine().trim()
-            bonusNumber = controller.inputBonusNumber(input = bonusNumberInput, userPickNumbers = userPickLottoNumbers)
+
+            lottoWinningNumbers = controller.createLottoWinningNumbers(userPickNumberInput, bonusNumberInput)
             println()
         } catch (e: IllegalArgumentException) {
             println(e.localizedMessage)
-            inputBonusNumber()
+            inputUserPickNumbersAndBonus()
         }
     }
 
     private fun getLotteryWinning() {
         try {
-            val winCount = controller.checkWinningDetails(randomLottoNumbers, userPickLottoNumbers, bonusNumber)
+            val winCount = controller.checkWinningDetails(randomLottoNumbers, lottoWinningNumbers)
             val winTypes = controller.checkLottoWinType(winCount)
             val yield = controller.checkYieldResult(winTypes)
 

@@ -1,6 +1,39 @@
 package lotto
 
 data class LottoWinningNumbers(
-    val winningNumbers: List<Int>,
+    val userPickNumbers: List<Int>,
     val bonusNumber: Int
-)
+) {
+    init {
+        require(userPickNumbers.size == 6)
+        requireUserPickNumberDuplicateLottoNumber()
+        requireUserPickNumberValidRange()
+        requireDuplicateBonusNumber()
+    }
+
+    private fun requireDuplicateBonusNumber() {
+        val uniqueNumbers = HashSet<Int>()
+        for (number in userPickNumbers) {
+            require(uniqueNumbers.add(number)) { Message.ERROR_USER_PICK_NUMBERS_DUPLICATION }
+        }
+        require(uniqueNumbers.add(bonusNumber)) { Message.ERROR_BONUS_NUMBER_DUPLICATION }
+    }
+
+    private fun requireUserPickNumberDuplicateLottoNumber() {
+        val uniqueNumbers = HashSet<Int>()
+        for (number in userPickNumbers) {
+            require(uniqueNumbers.add(number)) { Message.ERROR_USER_PICK_NUMBERS_DUPLICATION }
+        }
+    }
+
+    private fun requireUserPickNumberValidRange() {
+        for (number in userPickNumbers) {
+            require(number in VALID_RANGE) { Message.ERROR_RANDOM_NUMBER_RANGE }
+        }
+    }
+
+    companion object {
+        val VALID_RANGE = 1..45
+    }
+}
+
