@@ -15,12 +15,8 @@ class LottoResult {
     fun getMatchingLottoResult(): MutableMap<LottoMatchNum, Int> = matchingLottoResult
 
 
-    fun setMatchingLottoResult(matchingLottoNumCount: List<Int>) {
-        val matchingLottoMatchNum = LottoMatchNum.values()
-
-        matchingLottoMatchNum.forEachIndexed { index, lottoMatchNum ->
-            matchingLottoResult[lottoMatchNum] = matchingLottoNumCount[index]
-        }
+    fun setMatchingLottoResult(lottoMatchNum: LottoMatchNum) {
+        matchingLottoResult[lottoMatchNum] = matchingLottoResult[lottoMatchNum]!! + 1
     }
 
     fun calculateTotalLottoPrize() {
