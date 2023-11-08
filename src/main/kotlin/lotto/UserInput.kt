@@ -11,6 +11,7 @@ fun convertNumberList(input:String) = input
     }
 
 fun getAmount():Int{
+    println(GuideMsg.AMOUNT_MSG)
     var amount:Int
     do {
         val input = getPromptInput()
@@ -20,6 +21,7 @@ fun getAmount():Int{
 }
 
 fun getBonusNumber(lotto:Lotto):Int{
+    println(GuideMsg.BONUS_MSG)
     var bonusNumber:Int
     do {
         val input = getPromptInput()
@@ -30,6 +32,7 @@ fun getBonusNumber(lotto:Lotto):Int{
 }
 fun getWinningNumber():Lotto
 {
+    println(GuideMsg.WINNING_MSG)
     var lotto:Lotto?
     do{
         val input = getPromptInput()

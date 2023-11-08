@@ -14,6 +14,7 @@ fun getMyLotto():Lotto
 }
 fun getMyLottos(repetition:Int):List<Lotto>
 {
+    println("${repetition}개를 구매했습니다.")
     val ret = mutableListOf<Lotto>()
     repeat(repetition){
         ret.add(getMyLotto())
