@@ -58,6 +58,20 @@ class LottoUI {
         return Lotto(winningNumbersToInt(winningNumbers))
     }
 
+    private fun checkInvalidWinningNumbers(winningNumbers: List<String>) {
+        when {
+            winningNumbers.map { it.toIntOrNull() }
+                .contains(null) -> throw IllegalArgumentException(Winning.ERROR_NOT_INTEGER.value)
+
+            winningNumbers.map { it.toInt() }
+                .any { it !in 1..45 } -> throw IllegalArgumentException(Winning.ERROR_NOT_RANGE.value)
+
+            winningNumbers.size != 6 -> throw IllegalArgumentException(Winning.ERROR_NOT_SIX.value)
+            winningNumbers.map { it.toInt() }
+                .distinct().size != 6 -> throw IllegalArgumentException(Winning.ERROR_NOT_UNIQUE.value)
+        }
+    }
+
     private fun winningNumbersToInt(winningNumbers: List<String>): List<Int> {
         return winningNumbers.map { it.toInt() }
     }
