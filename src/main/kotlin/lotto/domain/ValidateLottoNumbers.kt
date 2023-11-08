@@ -11,47 +11,47 @@ class ValidateLottoNumbers {
     fun validateBonusNumber(bonusNumber: String, winningNumbers: List<Int>): Int =
         validateBonusNumberInWinningNumbers(validateBonusNumberContainsEmpty(bonusNumber), winningNumbers)
 
-    private fun validateWinningNumbersContainsEmpty(winningNumbers: List<String>): List<Int> {
+    fun validateWinningNumbersContainsEmpty(winningNumbers: List<String>): List<Int> {
         for (lottoNumber in winningNumbers) {
             if (lottoNumber.contains(BLANK_STRING)) throw IllegalArgumentException(INPUT_CONTAINS_EMPTY_ERROR_MESSAGE)
         }
         return validateWinningNumbersString(winningNumbers)
     }
 
-    private fun validateWinningNumbersString(winningNumbers: List<String>): List<Int> {
+    fun validateWinningNumbersString(winningNumbers: List<String>): List<Int> {
         for (lottoNumber in winningNumbers) {
             lottoNumber.forEach { char -> checkIsChar(char) }
         }
         return validateWinningNumberInRange(winningNumbers.map { it.toInt() })
     }
 
-    private fun validateWinningNumberInRange(winningNumbers: List<Int>): List<Int> {
+     fun validateWinningNumberInRange(winningNumbers: List<Int>): List<Int> {
         for (winningNumber in winningNumbers) checkInRange(winningNumber)
         return validateWinningNumberDuplicateNumber(winningNumbers)
-    }
+     }
 
-    private fun validateWinningNumberDuplicateNumber(winningNumbers: List<Int>): List<Int> {
+    fun validateWinningNumberDuplicateNumber(winningNumbers: List<Int>): List<Int> {
         if (winningNumbers.distinct().size != LOTTO_NUMBER_COUNT)
             throw IllegalArgumentException(INPUT_WINNING_NUMBER_CONTAINS_DUPLICATE_NUMBER_ERROR_MESSAGE)
         return winningNumbers
     }
 
-    private fun validateBonusNumberContainsEmpty(bonusNumber: String): Int {
+    fun validateBonusNumberContainsEmpty(bonusNumber: String): Int {
         if (bonusNumber.isEmpty()) throw IllegalArgumentException(INPUT_CONTAINS_EMPTY_ERROR_MESSAGE)
         return validateBonusNumberString(bonusNumber)
     }
 
-    private fun validateBonusNumberString(bonusNumber: String): Int {
+    fun validateBonusNumberString(bonusNumber: String): Int {
         bonusNumber.forEach { char -> checkIsChar(char) }
         return validateBonusNumberInRange(bonusNumber.toInt())
     }
 
-    private fun validateBonusNumberInRange(bonusNumber: Int): Int {
+    fun validateBonusNumberInRange(bonusNumber: Int): Int {
         checkInRange(bonusNumber)
         return bonusNumber
     }
 
-    private fun validateBonusNumberInWinningNumbers(bonusNumber: Int, winningNumbers: List<Int>): Int {
+     fun validateBonusNumberInWinningNumbers(bonusNumber: Int, winningNumbers: List<Int>): Int {
         if (winningNumbers.contains(bonusNumber))
             throw IllegalArgumentException(INPUT_BONUS_NUMBER_IN_WINNING_NUMBERS_ERROR_MESSAGE)
         return bonusNumber
