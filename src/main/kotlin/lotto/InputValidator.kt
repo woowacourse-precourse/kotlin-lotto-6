@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.exception.ContainsNotDigitException
 import lotto.exception.UnvalidCostException
 import lotto.exception.UnvalidLottoNumberCountException
 import lotto.exception.UnvalidLottoNumberException
@@ -9,7 +10,7 @@ class InputValidator {
     fun checkStringHasNonDigits(string: String) {
         val regex = Regex("[^0-9]")
         if (regex.containsMatchIn(string))
-            throw NumberFormatException()
+            throw ContainsNotDigitException()
     }
 
     fun checkLottoNumberCount(string: String) {
@@ -17,6 +18,15 @@ class InputValidator {
 
         if (lottoList.size != LOTTO_NUMBER_COUNT)
             throw UnvalidLottoNumberCountException()
+    }
+
+    fun checkListNumberIsInRange(string: String) {
+        val lottoList = string.split(SEPARATOR)
+
+        for (number in lottoList) {
+            checkStringHasNonDigits(number)
+            checkNumberIsInRange(number)
+        }
     }
 
     fun checkNumberIsInRange(string: String) {
