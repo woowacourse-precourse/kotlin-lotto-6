@@ -1,41 +1,44 @@
 package lotto.controller
 
-import lotto.util.ExceptionPrinter.tryCatchAndPrintException
+import lotto.util.ExceptionPrinter.executeSafelyAndPrintException
 
 class InputValidator {
-    fun validatePurchaseAmount(input: Int) {
-        tryCatchAndPrintException {
+    fun validatePurchaseAmount(input: Int): Boolean {
+        return executeSafelyAndPrintException {
             require(input > 0 && input % 1000 == 0) {
                 INVALID_PURCHASE_AMOUNT
             }
         }
     }
 
-    fun validateLottoNumbers(numbers: List<Int>) {
-        validateLottoNumberCount(numbers)
-        numbers.forEach {
-            validateNumber(it)
+    fun validateLottoNumbers(numbers: List<Int>): Boolean {
+        var isValid = validateLottoNumberCount(numbers)
+        if (isValid) {
+            numbers.forEach {
+                isValid = validateNumber(it)
+            }
         }
+        return isValid
     }
 
-    private fun validateLottoNumberCount(numbers: List<Int?>) {
-        tryCatchAndPrintException {
+    private fun validateLottoNumberCount(numbers: List<Int?>): Boolean {
+        return executeSafelyAndPrintException {
             require(numbers.size == 6) {
                 INVALID_LOTTO_NUMBERS_COUNT
             }
         }
     }
 
-    fun validateNumber(number: Int) {
-        tryCatchAndPrintException {
+    fun validateNumber(number: Int): Boolean {
+        return executeSafelyAndPrintException {
             require(number in (1..45)) {
                 INVALID_LOTTO_NUMBER
             }
         }
     }
 
-    fun validateDuplicate(bonusNumber: Int, numbers: List<Int>) {
-        tryCatchAndPrintException {
+    fun validateDuplicate(bonusNumber: Int, numbers: List<Int>): Boolean {
+        return executeSafelyAndPrintException {
             require(!numbers.contains(bonusNumber)) {
                 INVALID_DUPLICATE_NUMBER
             }
