@@ -2,6 +2,7 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.enumeration.Buy
+import lotto.enumeration.Winning
 
 class LottoUI {
     fun printBuyPrice() {
@@ -39,6 +40,10 @@ class LottoUI {
             println("${it.getNumbers()}")
         }
         println()
+    }
+
+    fun printWinningNumbers() {
+        println(Winning.NUMBER_INPUT.value)
     }
 
 }
