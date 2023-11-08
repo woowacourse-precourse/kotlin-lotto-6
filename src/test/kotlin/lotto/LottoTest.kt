@@ -1,6 +1,10 @@
 package lotto
 
+import lotto.domain.model.BonusNumber
 import lotto.domain.model.Lotto
+import lotto.domain.model.Result
+import lotto.domain.model.WinningNumbers
+import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -56,6 +60,27 @@ class LottoTest {
             .withMessage(Lotto.NUMBERS_NOT_IN_ASCENDING_ORDER) // then
     }
 
+    @ParameterizedTest
+    @MethodSource("winningNumbersAndBonusNumberAndResult")
+    @DisplayName("Lotto와 당첨 번호, 보너스 번호가 주어질 경우 결과를 올바르게 계산하는지")
+    fun calculateResult_winningNumbersAndBonusNumberAreGiven_calculateResultCorrectly(
+        winningNumbers: List<Int>,
+        bonusNumber: Int,
+        expected: Result
+    ) {
+        // given
+        val lotto = Lotto(numbers = listOf(1, 2, 3, 4, 5, 6))
+
+        // when
+        val result = lotto.calculateResult(
+            winningNumbers = WinningNumbers(winningNumbers),
+            bonusNumber = BonusNumber(bonusNumber)
+        )
+
+        // then
+        assertThat(result).isEqualTo(expected)
+    }
+
     companion object {
         @JvmStatic
         private fun provideNumbersSizeIsSmallerThanNumberOfLottoNumbers(): Stream<Arguments> = Stream.of(
@@ -73,6 +98,18 @@ class LottoTest {
             Arguments.of(listOf(4, 5, 6, 1, 2, 3)),
             Arguments.of(listOf(1, 2, 4, 3, 5, 6)),
             Arguments.of(listOf(6, 5, 4, 3, 2, 1)),
+        )
+
+        @JvmStatic
+        private fun winningNumbersAndBonusNumberAndResult(): Stream<Arguments> = Stream.of(
+            Arguments.of(listOf(1, 2, 3, 4, 5, 6), 45, Result.FIRST_PLACE),
+            Arguments.of(listOf(1, 2, 3, 4, 5, 10), 6, Result.SECOND_PLACE),
+            Arguments.of(listOf(1, 2, 3, 4, 5, 10), 45, Result.THIRD_PLACE),
+            Arguments.of(listOf(1, 2, 3, 4, 10, 11), 45, Result.FOURTH_PLACE),
+            Arguments.of(listOf(1, 2, 3, 10, 11, 12), 45, Result.FIFTH_PLACE),
+            Arguments.of(listOf(1, 2, 10, 11, 12, 13), 45, Result.NOTHING),
+            Arguments.of(listOf(1, 10, 11, 12, 13, 14), 45, Result.NOTHING),
+            Arguments.of(listOf(10, 11, 12, 13, 14, 15), 45, Result.NOTHING),
         )
     }
 }
