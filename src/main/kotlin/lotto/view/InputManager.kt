@@ -5,6 +5,7 @@ import lotto.util.Error
 
 object InputManager {
     private const val SEPARATOR = ","
+
     fun getPurchaseInput(): Int {
         OutputManager.printInputPurchaseAmount()
         return runCatching {

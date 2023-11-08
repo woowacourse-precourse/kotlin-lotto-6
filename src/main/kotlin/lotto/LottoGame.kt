@@ -9,7 +9,6 @@ import lotto.view.InputManager
 
 class LottoGame {
 
-
     fun gameStart() {
         val lottoWallet = purchaseLotto()
         println(lottoWallet)
