@@ -30,4 +30,11 @@ class LottoTest {
             Lotto(listOf(1, 2, 3, 4, 5, 48))
         }
     }
+
+    @ValueSource(ints = [1, 2, 3, 4, 5, 6])
+    @ParameterizedTest
+    fun `로또 번호와 일치하는 숫자가 있는지 확인할 수 있다`(number: Int) {
+        val lottoNumbers = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        assertThat(lottoNumbers.hasBonusNumber(number)).isTrue()
+    }
 }
