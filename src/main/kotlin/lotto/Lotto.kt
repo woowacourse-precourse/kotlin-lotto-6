@@ -1,9 +1,18 @@
 package lotto
 
-class Lotto(private val numbers: List<Int>) {
+
+class Lotto(private val numbers: List<Int>) : Iterable<Int> {
     init {
-        require(numbers.size == 6)
+        require(hasSixNumbers(numbers)) { ErrorMessages.LOTTO_NUMBER_COUNT_SHOULD_BE_SIX }
+        require(areAllNumbersInValidRange(numbers)) { ErrorMessages.LOTTO_NUMBER_SHOULD_BE_IN_RANGE }
+        require(isUnique(numbers)) { ErrorMessages.LOTTO_NUMBER_SHOULD_BE_UNIQUE }
     }
 
-    // TODO: 추가 기능 구현
+    override fun toString(): String {
+        return numbers.joinToString(prefix = "[", postfix = "]")
+    }
+
+    override fun iterator(): Iterator<Int> {
+        return numbers.iterator()
+    }
 }

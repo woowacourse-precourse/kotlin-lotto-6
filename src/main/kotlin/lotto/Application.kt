@@ -1,5 +1,12 @@
 package lotto
 
 fun main() {
-    TODO("프로그램 구현")
+    val price = promptLottoPrice()
+    val lottoTickets = buyLottoTickets(price)
+    val winningNumber = promptWinningNumber()
+
+    val rankCounts = calculateRankCount(lottoTickets, winningNumber)
+    val totalReward = calculateTotalReward(rankCounts)
+    val rewardRate = rewardRateCalculate(totalReward, price)
+    displayResult(rewardRate, rankCounts)
 }
