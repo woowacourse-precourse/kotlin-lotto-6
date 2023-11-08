@@ -25,13 +25,7 @@ class InputManager {
 
     // 입력된 구입 금액 처리 및 반환
     fun getMoney(): Int {
-        val inputMoney =
-                try {
-                    inputMoney().toInt()
-                } catch (e: IllegalArgumentException) {
-                    println("[ERROR] 올바른 숫자를 입력해주세요.")
-                    inputMoney().toInt()
-                }
+        val inputMoney = handleInputCorrectMoneyException(inputMoney())
 
         handleMoneyUnitException(inputMoney)
 
@@ -64,6 +58,16 @@ class InputManager {
         handleWrongScopeBonusNumberException(bonusNumber)
 
         return bonusNumber
+    }
+
+    // 구입 금액 입력시 문자 입력 예외 처리
+    private fun handleInputCorrectMoneyException(inputMoney: String): Int {
+        return try {
+            inputMoney.toInt()
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] 올바른 숫자를 입력해주세요.")
+            inputMoney().toInt()
+        }
     }
 
     // 1,000원 단위 입력 예외 처리
