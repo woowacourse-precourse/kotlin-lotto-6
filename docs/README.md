@@ -76,7 +76,7 @@
 - [x] else를 지양한다.
   - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
 - [x] Enum 클래스를 적용해 프로그래밍을 구현한다.
-- [ ] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+- [x] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
   - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
   - 단위 테스트 작성이 익숙하지 않다면 `test/kotlin/lotto/LottoTest`를 참고하여 학습한 후 테스트를 구현한다.
 - [x] `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms` 및 `Console` API를 사용하여 구현해야 한다.
