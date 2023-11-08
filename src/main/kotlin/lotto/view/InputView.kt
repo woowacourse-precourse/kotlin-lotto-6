@@ -24,7 +24,7 @@ class InputView {
                 throw IllegalArgumentException("[ERROR] 로또 번호는 중복이 없는 숫자여야 합니다.\n")
             nums.forEach { num ->
                 if (num > 45 || num < 1)
-                    throw(java.lang.Exception())
+                    throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.\n")
             }
             return nums
         } catch(e: NumberFormatException) {
@@ -32,6 +32,18 @@ class InputView {
         } catch (e: IllegalArgumentException){
             throw e
         } catch (e: Exception){
+            throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.\n")
+        }
+    }
+
+    fun inputBonusNum(): Int {
+        val line: String = Console.readLine()
+        try {
+            val num: Int = line.toInt()
+            if (num > 45 || num < 1)
+                throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.\n")
+            return num
+        } catch (e: Exception) {
             throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.\n")
         }
     }
