@@ -4,31 +4,27 @@ import lotto.domain.Lotto
 
 class UserInputException {
     companion object {
-        private const val PICK_NUMBER = 6
-        private const val MIN_NUMBER = 1
-        private const val MAX_NUMBER = 45
-
         fun purchaseAmountException(userInput: String): Int {
-            require(isNumber(userInput)) { "[ERROR] 입력 값은 숫자여야 합니다." }
-            require(userInput.toInt() % 1000 == 0) { "[ERROR] 구입 금액은 1,000원 단위여야 합니다." }
+            require(isNumber(userInput)) { Constants.ERROR_LOTTO_NOT_NUMBER }
+            require(userInput.toInt() % 1000 == 0) { Constants.ERROR_MONEY_UNIT }
             return userInput.toInt()
         }
 
         fun lottoException(userInput: String): List<Int> {
-            val lottoList = userInput.split(",")
-            require(lottoSizeException(lottoList)) { "[ERROR] 로또 번호의 수는 6개여야 합니다." }
-            require(lottoNumberException(lottoList)) { "[ERROR] 로또 번호는 숫자여야 합니다." }
+            val lottoList = userInput.split(Constants.SEPARATOR)
+            require(lottoSizeException(lottoList)) { Constants.ERROR_LOTTO_NUMBER_SIZE }
+            require(lottoNumberException(lottoList)) { Constants.ERROR_LOTTO_NOT_NUMBER }
             val lottoNumberList = lottoList.map { it.toInt() }
-            require(lottoNumberDuplicateException(lottoNumberList)) { "[ERROR] 로또 번호는 중복된 값이 있으면 안됩니다." }
-            require(lottoNumberOutOfRangeException(lottoNumberList)) { "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다." }
+            require(lottoNumberDuplicateException(lottoNumberList)) { Constants.ERROR_LOTTO_NUMBER_DUPLICATE }
+            require(lottoNumberOutOfRangeException(lottoNumberList)) { Constants.ERROR_LOTTO_NUMBER_RANGE }
 
             return lottoNumberList
         }
 
         fun bonusNumberException(userInput: String): Int {
-            require(isNumber(userInput)) { "[ERROR] 입력 값은 숫자여야 합니다." }
+            require(isNumber(userInput)) { Constants.ERROR_LOTTO_NOT_NUMBER }
             val bonusNumber = userInput.toInt()
-            require(bonusNumberOutOfRange(bonusNumber)) { "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다." }
+            require(bonusNumberOutOfRange(bonusNumber)) { Constants.ERROR_LOTTO_NUMBER_RANGE }
 
             return bonusNumber
         }
@@ -43,7 +39,7 @@ class UserInputException {
         }
 
         fun lottoSizeException(lottoList: List<String>): Boolean {
-            return lottoList.size == PICK_NUMBER
+            return lottoList.size == Constants.LOTTO_NUMBER_SIZE
         }
 
         fun lottoNumberException(lottoNumberList: List<String>): Boolean {
@@ -55,11 +51,11 @@ class UserInputException {
         }
 
         fun lottoNumberOutOfRangeException(lottoNumberList: List<Int>): Boolean {
-            return lottoNumberList.all { it in MIN_NUMBER..MAX_NUMBER }
+            return lottoNumberList.all { it in Constants.MIN_NUMBER..Constants.MAX_NUMBER }
         }
 
         fun bonusNumberOutOfRange(bonusNumber: Int): Boolean {
-            return (bonusNumber in MIN_NUMBER..MAX_NUMBER)
+            return (bonusNumber in Constants.MIN_NUMBER..Constants.MAX_NUMBER)
         }
     }
 }

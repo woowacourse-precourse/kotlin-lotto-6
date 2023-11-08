@@ -1,6 +1,7 @@
 package lotto.domain
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.utils.Constants
 import lotto.utils.LottoRank
 import lotto.view.InputView
 import lotto.view.OutputView
@@ -30,11 +31,15 @@ class LottoController(private val inputView: InputView, private val outputView: 
 
     fun purchaseLotteries(money: Int): MutableList<Lotto> {
         val lotteries = mutableListOf<Lotto>()
-        val numOfLotto = money / LOTTO_PRICE
+        val numOfLotto = money / Constants.LOTTO_PRICE
         outputView.printPurchaseAmount(numOfLotto)
 
         for (attempts in 0 until numOfLotto) {
-            val numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, PICK_NUMBER)
+            val numbers = Randoms.pickUniqueNumbersInRange(
+                Constants.MIN_NUMBER,
+                Constants.MAX_NUMBER,
+                Constants.LOTTO_NUMBER_SIZE
+            )
             outputView.printPurchasedLotto(numbers)
             lotteries.add(Lotto(numbers))
         }
@@ -76,13 +81,5 @@ class LottoController(private val inputView: InputView, private val outputView: 
             sumOfPrize += key.prize * value
         }
         outputView.printProfit(calculateProfit(money, sumOfPrize))
-    }
-
-    companion object {
-        private const val LOTTO_PRICE = 1000
-        private const val MIN_NUMBER = 1
-        private const val MAX_NUMBER = 45
-        private const val PICK_NUMBER = 6
-
     }
 }
