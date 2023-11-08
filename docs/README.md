@@ -96,6 +96,15 @@
     - getRateOfReturn(result: LottoResult) : 총 상금을 통해 수익률을 계산하여 반환하는 기능
     - calculateTotalPrize(result: LottoResult) : 당첨 결과를 통해 총 상금을 계산하는 기능
 
+## LottoProgram
+
+로또 게임을 진행하는 클래스
+
+    - run() : 로또 게임을 진행하는 기능
+    - purchaseLottos() : 여러 개의 로또를 발행하고, 발행한 로또 정보를 출력하는 기능 
+    - drawWinningLotto() : 당첨 로또를 생성하는 기능
+    - displayOutcome() : 당첨 통계 및 수익률을 계산하고, 출력하는 기능
+
 # 💻 UI 클래스 목록
 
 ## InputManager
@@ -146,7 +155,6 @@
     - parseToInt(inputBonusNumber: String) : 문자열을 정수로 변환하고, 실패할 경우 IllegalArgumentException 을 발생시키는 기능
     - requireValidNumberRange(bonusNumber: Int) : 보너스 번호의 범위를 검증하는 기능
     - requireUniqueNumber(bonusNumber: Int, winningNumbers: List<Int>) : 당첨 번호와 중복되지 않는지 검증하는 기능
-
 
 <br/>
 
