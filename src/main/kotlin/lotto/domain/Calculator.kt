@@ -9,7 +9,7 @@ class Calculator {
         return "%.1f".format(addTotalEarnings(reward).toDouble() / amount.toDouble() * 100)
     }
 
-    private fun addTotalEarnings(reward: HashMap<Winning, Int>): Int {
+    fun addTotalEarnings(reward: HashMap<Winning, Int>): Int {
 
         var totalWinning = 0
 

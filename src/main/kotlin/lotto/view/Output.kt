@@ -2,11 +2,6 @@ package lotto.view
 
 import lotto.domain.Calculator
 import lotto.model.Winning
-import lotto.util.Constants.MATCH_FIVE
-import lotto.util.Constants.MATCH_FIVE_WITH_BONUS
-import lotto.util.Constants.MATCH_FOUR
-import lotto.util.Constants.MATCH_SIX
-import lotto.util.Constants.MATCH_THREE
 import lotto.util.Constants.OUTPUT_NUMBER
 
 class Output {

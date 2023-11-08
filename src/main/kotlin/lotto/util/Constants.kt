@@ -12,13 +12,6 @@ object Constants {
     const val WINNING_STATISTICS = "당첨 통계"
     const val SEPARATOR = "---"
 
-    //WINNING
-    const val MATCH_THREE = "3개 일치 (5,000원) - "
-    const val MATCH_FOUR = "4개 일치 (50,000원) - "
-    const val MATCH_FIVE = "5개 일치 (1,500,000원) - "
-    const val MATCH_FIVE_WITH_BONUS = "5개 일치, 보너스 볼 일치 (30,000,000원) - "
-    const val MATCH_SIX = "6개 일치 (2,000,000,000원) - "
-
     //ERROR
     const val INPUT_BLANK_OR_STRING_ERROR = "[ERROR] 숫자만 입력 가능합니다."
     const val INPUT_WRONG_UNIT_ERROR = "[ERROR] 금액은 1,000원 단위로만 입력 가능합니다."
