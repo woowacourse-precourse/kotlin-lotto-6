@@ -41,7 +41,7 @@ class OutputView {
 
     fun printProfitRate(profitRate: Double) = println(PROFIT_RATE_MESSAGE.format(profitRate))
 
-    fun printErrorMessage(message: String?) = println("$ERROR_MESSAGE_PREFIX ${message ?: UNKNOWN_ERROR_MESSAGE}")
+    fun printErrorMessage(message: String?) = println("$ERROR_MESSAGE_PREFIX ${message ?: UNKNOWN_ERROR_MESSAGE}\n")
 
     companion object {
         const val PURCHASED_LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다."
