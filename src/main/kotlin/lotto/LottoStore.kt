@@ -35,7 +35,7 @@ class LottoStore {
     private fun resultLotto(lottoNumbers: List<Int>, isBonusValid: Int) {
         val lottoResult = Calculator()
         lottoResult.compareNum(lottoNumbers, isBonusValid, randomLottos)
-        LottoGameView().printMatchedNumbersCount()
+        LottoGameView().printMatchedNumbersCount(lottoResult)
         LottoGameView().printProfitRate(lottoResult.calculateProfitRate())
     }
 }
