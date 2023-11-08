@@ -1,12 +1,13 @@
 package lotto
 
 class LottoOperator {
-    private lateinit var purchasingLottos: PurchasedLottos
-    private lateinit var comparingLottoNumber: CompareLottoNumber
+    private var purchasingLottos = PurchasedLottos()
+    private var comparingLottoNumber = CompareLottoNumber(purchasingLottos)
+    private var printResult = PrintResult(purchasingLottos)
 
     fun lottoRun() {
-        purchasingLottos = PurchasedLottos()
-        comparingLottoNumber = CompareLottoNumber(purchasingLottos)
+        purchasingLottos.purchasingLotto()
+        comparingLottoNumber.compareWinningLottoAndPurchasedLotto()
+        printResult.printResult()
     }
-
 }

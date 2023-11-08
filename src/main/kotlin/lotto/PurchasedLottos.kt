@@ -5,6 +5,7 @@ class PurchasedLottos {
     private var purchasedLottos = mutableListOf<Lotto>()
     private var decidePurchasedLottoNumber = DecidePurchasedLottoNumber()
     private var lottoCount: Int = IDX_ZERO
+    private var bonusNumber = inputManager.getBonusNumber()
 
     fun purchasingLotto() {
         initLottoCount()
@@ -28,11 +29,15 @@ class PurchasedLottos {
         for (i in IDX_ZERO until purchasedLottos.size) {
             println("${purchasedLottos[i].getNumbers()}")
         }
+        println()
     }
 
     private fun calculateLottoCount(): Int = inputManager.playerInsertMoney() / ONE_LOTTO_PRICE
 
     fun getWinning() = inputManager.getWinningNumber()
 
+    fun getInputManager() = inputManager
+
     fun getPurchasedLottos() = purchasedLottos
+    fun getBonusNumber() = bonusNumber
 }
