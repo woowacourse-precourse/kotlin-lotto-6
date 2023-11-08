@@ -9,6 +9,4 @@ class Lotto(private val numbers: List<Int>) {
 
     fun getNumbers() = numbers
 
-
-    // TODO: 추가 기능 구현
 }

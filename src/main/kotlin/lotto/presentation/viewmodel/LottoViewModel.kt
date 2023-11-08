@@ -6,10 +6,19 @@ import lotto.domain.service.LottoCalculator
 import lotto.domain.service.LottoService
 import lotto.domain.service.WinningCalculator
 
-class LottoViewModel(private val winning: Winning,private val customer: Customer) {
+class LottoViewModel {
+    lateinit var winning: Winning
+    lateinit var customer: Customer
     val lottoCalculator = LottoCalculator(winning)
     val lottoService = LottoService()
     val winningCalculator = WinningCalculator(winning,customer)
 
+    fun initialWinning(winningNumbers:List<Int>,bonusNumber:Int){
+        winning = Winning(winningNumbers,bonusNumber)
+    }
+
+    fun initialCustomer(){
+        customer = Customer()
+    }
 
 }
