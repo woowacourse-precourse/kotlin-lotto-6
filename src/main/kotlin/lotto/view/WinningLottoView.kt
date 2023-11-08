@@ -33,7 +33,7 @@ object WinningLottoView {
   fun inputBonusNumber(): List<Int> {
     val inputBonusNumber: String = Console.readLine()
 
-    var bonusNumber: List<Int> = try {
+    val bonusNumber: List<Int> = try {
       WinningNumbersExceptionHandler.validateBonusNumber(inputBonusNumber)
     } catch (e: IllegalArgumentException) {
       ExceptionView.printExceptionMessage(e)
