@@ -26,6 +26,23 @@ class CheckLottoNumber(
         return winningCount
     }
 
+    private fun getMatchNumberCount(lotto: Lotto): Int =
+        getMatchWinningNumberCount(lotto) + getMatchBonusNumber(lotto)
+
+
+    private fun getMatchWinningNumberCount(lotto: Lotto): Int {
+        return lotto.getLottoNumbers().count {
+            winningNumbers.getLottoNumbers().contains(it)
+        }
+    }
+
+    private fun getMatchBonusNumber(lotto: Lotto): Int {
+        return when {
+            lotto.getLottoNumbers().contains(bonusNumber) -> MATCHED_BONUS_NUMBER
+            else -> NOT_MATCHED_BONUS_NUMBER
+        }
+    }
+
     private fun checkBonusNumberMatched(matchNumbersCount: Int): Boolean =
         matchNumbersCount == LOTTO_MATCH_COUNT_FIVE
 
