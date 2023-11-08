@@ -15,35 +15,27 @@ class LottoShop {
     private val outputView = OutputView()
 
     private val lottos = mutableListOf<Lotto>()
-
-    private var threeMatch = 0
-    private var fourMatch = 0
-    private var fiveMatch = 0
-    private var bonusMatch = 0
-    private var sixMatch = 0
-    private var noMatch = 0
+    private val matchCounts = mutableMapOf<LottoPrice, Int>()
 
     fun buyLotto() {
         inputView.buyMessage()
+        val price = getPrice()
+        generateAndPrintAutoLottos(price)
+        checkAndPrintLottoWinningNum(price)
+    }
+
+    private fun getPrice(): Int {
         while (true) {
             try {
                 val price = inputView.inputView()
                 validatePrice(price)
-                val lottoCount = price.toInt() / 1000
-                outputView.printLottoCount(lottoCount)
-                repeat(lottoCount) {
-                    val numbers = randomUtils.pickLottoNum()
-                    val lotto: Lotto = Lotto(numbers.sorted())
-                    lottos.add(lotto)
-                    println(lotto)
-                }
-                startLottoProgram(price.toInt())
-                break
+                return price.toInt()
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
     }
+
 
     private fun validatePrice(price: String) {
         require(price.isNotBlank()) { "[ERROR] 로또 구입 금액은 천원 이상으로 입력 가능합니다." }
@@ -51,67 +43,69 @@ class LottoShop {
         require(price.toInt() % 1000 == 0) { "[ERROR] 로또 구입 금액은 천원 단위로만 입력 가능합니다." }
     }
 
-    private fun startLottoProgram(price: Int) {
+    private fun generateAndPrintAutoLottos(price: Int) {
+        val lottoCount = price / 1000
+        outputView.printLottoCount(lottoCount)
+        repeat(lottoCount) {
+            val numbers = randomUtils.pickLottoNum()
+            val lotto = Lotto(numbers.sorted())
+            lottos.add(lotto)
+            println(lotto)
+        }
+    }
+
+    private fun checkAndPrintLottoWinningNum(price: Int) {
+        val lottoNum = getLottoNum()
+        val bonusNum = getBonusNum(lottoNum)
+        checkLottoCorrect(lottoNum, bonusNum, price)
+    }
+
+    private fun getLottoNum(): List<Int> {
         inputView.lottoMessage()
-        var lottoNum: List<Int>
         while (true) {
             try {
                 val inputLottoNum = inputView.inputView()
-                lottoNum = lottoMC.pickLottoNum(inputLottoNum)
-                break
+                return lottoMC.pickLottoNum(inputLottoNum)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
+    }
 
-        var bonusNum: String
+    private fun getBonusNum(lottoNum: List<Int>): String {
         inputView.bonusMessage()
         while (true) {
             try {
-                val inputBonusNumm = inputView.inputView()
-                bonusNum = lottoMC.pickBonusNum(inputBonusNumm, lottoNum)
-                break
+                val inputBonusNum = inputView.inputView()
+                return lottoMC.pickBonusNum(inputBonusNum, lottoNum)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
-        checkLottoCorrect(lottoNum, bonusNum, price)
     }
 
     private fun checkLottoCorrect(lottoNum: List<Int>, bonusNum: String, price: Int) {
         for (lotto in lottos) {
             val correctCnt = lotto.getNumbers().intersect(lottoNum.toSet()).size
             val bonusCnt = lotto.getNumbers().contains(bonusNum.toInt())
-            lottoResult(correctCnt, bonusCnt)
+            updateMatchCount(correctCnt, bonusCnt)
         }
-        printResult(threeMatch, fourMatch, fiveMatch, bonusMatch, sixMatch, price)
+        printResult(price)
     }
 
-    private fun lottoResult(correctCnt: Int, bonusCnt: Boolean) {
-        when (LottoPrice.values()
-            .firstOrNull { it.matchCount == correctCnt && !(it == LottoPrice.BONUS_MATCH && !bonusCnt) }) {
-            LottoPrice.THREE_MATCH -> threeMatch++
-            LottoPrice.FOUR_MATCH -> fourMatch++
-            LottoPrice.FIVE_MATCH -> fiveMatch++
-            LottoPrice.BONUS_MATCH -> bonusMatch++
-            LottoPrice.SIX_MATCH -> sixMatch++
-            else -> noMatch++
+    private fun updateMatchCount(correctCnt: Int, bonusCnt: Boolean) {
+        val lottoPrice = LottoPrice.values()
+            .firstOrNull { it.matchCount == correctCnt && !(it == LottoPrice.BONUS_MATCH && !bonusCnt) }
+        if (lottoPrice != null) {
+            matchCounts[lottoPrice] = (matchCounts[lottoPrice] ?: 0) + 1
         }
     }
 
-    private fun printResult(
-        threeMatch: Int,
-        fourMatch: Int,
-        fiveMatch: Int,
-        bonusMatch: Int,
-        sixMatch: Int,
-        price: Int,
-    ) {
-        val totalPrize =
-            (threeMatch * LottoPrice.THREE_MATCH.price) + (fourMatch * LottoPrice.FOUR_MATCH.price + fiveMatch * LottoPrice.FIVE_MATCH.price + bonusMatch * LottoPrice.BONUS_MATCH.price + sixMatch * LottoPrice.SIX_MATCH.price)
 
+    private fun printResult(price: Int) {
+        val totalPrize = LottoPrice.values().sumOf { (matchCounts[it] ?: 0) * it.price }
         val earningRate = ((totalPrize.toDouble() / price.toDouble()) * 100)
         val roundedEarningRate = String.format("%.1f", earningRate).toDouble()
-        outputView.printLottoResult(threeMatch, fourMatch, fiveMatch, bonusMatch, sixMatch, roundedEarningRate)
+        outputView.printLottoResult(matchCounts, roundedEarningRate)
     }
 }
