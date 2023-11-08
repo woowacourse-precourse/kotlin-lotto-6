@@ -12,17 +12,13 @@ import lotto.view.OutputView
 class LottoController(private val outputView: OutputView, private val inputView: InputView) {
 
     fun start() {
-        runCatching {
-            val ticket = issueLottoTicket()
-            outputView.printLottoTicket(ticket)
+        val ticket = issueLottoTicket()
+        outputView.printLottoTicket(ticket)
 
-            val receipt = calculatePrize(ticket)
-            outputView.printResult(receipt)
-        }.onFailure { throwable ->
-            outputView.printError(throwable.message)
-        }.also {
-            inputView.terminated()
-        }
+        val receipt = calculatePrize(ticket)
+        outputView.printResult(receipt)
+
+        inputView.terminated()
     }
 
     private fun issueLottoTicket(): Ticket {
