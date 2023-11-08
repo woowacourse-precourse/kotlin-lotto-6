@@ -22,7 +22,6 @@ class LottoController {
         for(i in lottos){
             println(i.getLotto())
         }
-
         val inputWinningNum = inputView.promptWinningNum().split(',')
         val inputBonusNum = inputView.promptBonusNum().toInt()
     }
