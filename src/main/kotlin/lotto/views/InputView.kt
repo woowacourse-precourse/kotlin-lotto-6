@@ -6,9 +6,10 @@ class InputView {
     fun inputPurchaseAmount(): Int {
         println(INPUT_PURCHASE_AMOUNT_MESSAGE)
 
-
         val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
         require(isNotEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
+
+        println()
 
         return validatePurchaseAmountInput(input)
     }

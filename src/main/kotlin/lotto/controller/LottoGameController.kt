@@ -14,6 +14,8 @@ class LottoGameController() {
 
         val purchaseAmount = inputPurchaseAmount()
         val purchasedLottos = publisher.publishLottos(purchaseAmount)
+
+        outputView.printPurchasedLottos(purchasedLottos)
     }
 
     private fun inputPurchaseAmount(): Int {
