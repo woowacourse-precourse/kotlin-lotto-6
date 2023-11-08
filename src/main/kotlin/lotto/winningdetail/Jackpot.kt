@@ -1,4 +1,4 @@
-package lotto
+package lotto.winningdetail
 
 import java.text.DecimalFormat
 

@@ -1,4 +1,7 @@
-package lotto
+package lotto.machine
+
+import lotto.winningdetail.Jackpot
+import lotto.view.OutputView
 
 class LottoMachine(private val amount: String = "") {
 

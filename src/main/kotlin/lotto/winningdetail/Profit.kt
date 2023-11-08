@@ -1,4 +1,4 @@
-package lotto
+package lotto.winningdetail
 
 class Profit {
 

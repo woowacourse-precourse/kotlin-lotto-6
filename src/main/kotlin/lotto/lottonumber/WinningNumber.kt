@@ -1,4 +1,4 @@
-package lotto
+package lotto.lottonumber
 
 class WinningNumber(private val numbers: String) {
 

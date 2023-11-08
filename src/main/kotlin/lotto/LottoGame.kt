@@ -1,5 +1,10 @@
 package lotto
 
+import lotto.machine.LottoMachine
+import lotto.view.InputView
+import lotto.view.OutputView
+import lotto.winningdetail.Profit
+
 class LottoGame {
 
     private val outputView = OutputView()
