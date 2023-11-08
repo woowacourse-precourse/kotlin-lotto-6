@@ -3,6 +3,8 @@ package lotto
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 
 class LottoTest {
@@ -34,17 +36,17 @@ class LottoTest {
 
         assertEquals(0, result)
     }
-    @Test
-    fun `로또번호에 보너스 숫자가 있는경우`() {
-        val number = 1
-        val result = lotto.compareBonusNumber(number)
+    @ParameterizedTest
+    @ValueSource(ints =[ 1, 2])
+    fun `로또번호에 보너스 숫자가 있는경우`(input : Int) {
+        val result = lotto.compareBonusNumber(input)
         assertTrue(result)
     }
 
-    @Test
-    fun `로또번호에 보너스 숫자가 없는 경우`() {
-        val number = 7
-        val result = lotto.compareBonusNumber(number)
+    @ParameterizedTest
+    @ValueSource(ints =[ 16, 17])
+    fun `로또번호에 보너스 숫자가 없는 경우`(input : Int) {
+        val result = lotto.compareBonusNumber(input)
         assertFalse(result)
     }
 }
