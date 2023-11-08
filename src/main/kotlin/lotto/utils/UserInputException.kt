@@ -29,7 +29,7 @@ class UserInputException {
             return bonusNumber
         }
 
-        fun isNumber(userInput: String): Boolean {
+        private fun isNumber(userInput: String): Boolean {
             for (numberIndex in 0 until userInput.length) {
                 if (userInput[numberIndex].code < '0'.code || userInput[numberIndex].code > '9'.code) {
                     return false
@@ -38,23 +38,23 @@ class UserInputException {
             return true
         }
 
-        fun lottoSizeException(lottoList: List<String>): Boolean {
+        private fun lottoSizeException(lottoList: List<String>): Boolean {
             return lottoList.size == Constants.LOTTO_NUMBER_SIZE
         }
 
-        fun lottoNumberException(lottoNumberList: List<String>): Boolean {
+        private fun lottoNumberException(lottoNumberList: List<String>): Boolean {
             return lottoNumberList.all { it.toIntOrNull() != null }
         }
 
-        fun lottoNumberDuplicateException(lottoNumberList: List<Int>): Boolean {
+        private fun lottoNumberDuplicateException(lottoNumberList: List<Int>): Boolean {
             return lottoNumberList.size == lottoNumberList.distinct().size
         }
 
-        fun lottoNumberOutOfRangeException(lottoNumberList: List<Int>): Boolean {
+        private fun lottoNumberOutOfRangeException(lottoNumberList: List<Int>): Boolean {
             return lottoNumberList.all { it in Constants.MIN_NUMBER..Constants.MAX_NUMBER }
         }
 
-        fun bonusNumberOutOfRange(bonusNumber: Int): Boolean {
+        private fun bonusNumberOutOfRange(bonusNumber: Int): Boolean {
             return (bonusNumber in Constants.MIN_NUMBER..Constants.MAX_NUMBER)
         }
     }
