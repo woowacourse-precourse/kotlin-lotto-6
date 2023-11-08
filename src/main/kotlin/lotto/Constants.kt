@@ -23,6 +23,10 @@ object Constants {
     const val ERROR_EMPTY_WINNING_NUMBER_MESSAGE = "[ERROR] 입력되지 않았습니다. 다시 입력해주세요."
     const val LOTTO_PRICE = 1000
     const val MIN_NUMBER = 0
+    const val MATCH_TWO_LOTTO_NUMBERS = 2
+    const val MATCH_THREE_LOTTO_NUMBERS = 3
+    const val MATCH_FOUR_LOTTO_NUMBERS = 4
+    const val MATCH_FIVE_LOTTO_NUMBERS = 5
     const val MAX_NUMBER = 6
     const val MIN_LOTTO_NUMBER = 1
     const val MAX_LOTTO_NUMBER = 45
