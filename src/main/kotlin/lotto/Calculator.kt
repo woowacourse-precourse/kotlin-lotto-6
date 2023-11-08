@@ -3,9 +3,6 @@ package lotto
 import lotto.LottoSeller.Companion.LOTTO_TICKET_PRICE
 
 class Calculator {
-//비교하는 곳 , 나 이거 비교해줘! 라는 곳에 대한 대답
-//그러려면 사용자가 입력한 값과 로또 리스트를 비교하는자가 가지고 있어야겠지?
-
     val lottoResult = mutableMapOf<MatchedCount, Int>(
         MatchedCount.FIFTH to 0,
         MatchedCount.FOURTH to 0,
@@ -20,7 +17,6 @@ class Calculator {
         bonusNum: Int,
         lottoMachine: List<List<Int>>
     ) {
-        //로또속 번호와 사용자가 입력한 번호를 비교해서 몇개가 당첨인지를 알수 있다.
         lottoTicketCount = lottoMachine.size
         for (lotto in lottoMachine) {
 

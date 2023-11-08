@@ -2,11 +2,7 @@ package lotto
 
 
 class LottoSeller() {
-    //랜덤수에 맞게 로또를 판매하는 곳, 돈을 받은 만큼 줬지?
-    //what/who 계속 생각하기!
-    //어떤 행위가 필요한가! 이 행위를 수행할 객체는 어디인가!
     fun generateLottoNumbers(lottoMoney: Int): List<LottoNumberGenerator> {
-        //고객이 요구한 만큼 받아서 한번에 주는 거
         val result = mutableListOf<LottoNumberGenerator>()
         repeat(lottoMoney) {
             result.add(LottoNumberGenerator())
@@ -14,8 +10,6 @@ class LottoSeller() {
         return result
     }
 
-    //야 이거 잘못된 당첨번호 로또잖아!
-    //다시 적어서 내렴
     fun isValidateLotto(): List<Int> {
         return try {
             Lotto(User().inputLottoNumber()).checkLottoNumberException()
@@ -33,8 +27,7 @@ class LottoSeller() {
         }
     }
 
-    fun checkLottoTicketCount(lottoMoney: String): Int {   //x원 받았는데 로또 몇장이냐?에 대한 대답
-        //가격을 파는 사람이 알지 사는 사람이 우째 안대유
+    fun checkLottoTicketCount(lottoMoney: String): Int {
         lottoMoney.forEach { char ->
             val charConvertedToCode = char.code
             if ((charConvertedToCode > 57) or (charConvertedToCode < 48)) {
@@ -48,9 +41,6 @@ class LottoSeller() {
         return lottoMoney.toInt() / LOTTO_TICKET_PRICE
     }
 
-
-    //미쳐버려 이거 잘못된 보너스 번호잖아!
-    //당첨번호랑 안겹치는 걸로 다시 적어서 내렴
     fun checkLottoHasBonusNum(lottoList: List<Int>, bonusNum: Int): Int {
         checkContainNum(lottoList, bonusNum)
         checkBonusLength(bonusNum)

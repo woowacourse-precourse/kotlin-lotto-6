@@ -7,7 +7,6 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun checkLottoNumberException(): List<Int> {
-//중복숫자 체크 및 6자리 확인
         if (numbers.size != 6) throw IllegalArgumentException(ERROR_INPUT_NUMBER_LENGTH)
         if (numbers.distinct().size != 6) throw IllegalArgumentException(ERROR_INPUT_NUMBER_DISTINCT)
         isAllNumbersInRange(numbers)
