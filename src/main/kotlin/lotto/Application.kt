@@ -5,7 +5,8 @@ import camp.nextstep.edu.missionutils.Randoms
 fun main() {
     val lotto_tickets = buyLotto()
     val lotto_list = generateLottoNumbers(lotto_tickets)
-    val winning_numbers_list = receiveWinningNumbers()
+    val (winning_numbers_list, bonus_number) = receiveWinningNumbers()
+    val result = calculateLottoNumbers(lotto_list, winning_numbers_list, bonus_number)
 }
 
 fun buyLotto(): Int {
@@ -29,23 +30,43 @@ fun generateLottoNumbers(lotto_tickets: Int): MutableList<MutableList<Int>> {
                 lotto_numbers.add(random_numbers)
             }
         }
+        lotto_numbers.sort()
         println(lotto_numbers)
         lotto_list.add(lotto_numbers)
     }
     return lotto_list
 }
 
-fun receiveWinningNumbers(): MutableList<Int> {
+fun receiveWinningNumbers(): Pair<MutableList<Int>, Int> {
     val winning_numbers_list = mutableListOf<Int>()
     println("당첨 번호를 입력해 주세요.")
     val winning_numbers = readLine().toString().split(",")
     for (numbers in winning_numbers) {
         winning_numbers_list.add(numbers.toInt())
     }
+    winning_numbers_list.sort()
     println("보너스 번호를 입력해 주세요.")
     val bonus_number = readLine()!!.toInt()
-    winning_numbers_list.add(bonus_number)
 
-    print(winning_numbers_list)
-    return winning_numbers_list
+    return Pair(winning_numbers_list, bonus_number)
+}
+
+fun calculateLottoNumbers(lotto_list: MutableList<MutableList<Int>>, winning_numbers_list: MutableList<Int>, bonus_number: Int): MutableList<Int> {
+    val result = MutableList(5){ 0 }
+    for(lotto in lotto_list){
+        val commonCount = lotto.intersect(winning_numbers_list).count()
+        if(commonCount == 3){
+            result[0] ++
+        }else if(commonCount == 4){
+            result[1] ++
+        }else if(commonCount == 5){
+            if(!lotto.contains(bonus_number)){
+                result[2] ++
+            }else result[3] ++
+        }else if(commonCount == 6) {
+            result[4] ++
+        }
+    }
+
+    return result
 }
