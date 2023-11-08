@@ -1,6 +1,5 @@
 package lotto
 
-import org.assertj.core.api.AssertionsForClassTypes
 import org.assertj.core.api.AssertionsForClassTypes.assertThat
 import org.junit.jupiter.api.Test
 
@@ -16,6 +15,12 @@ class LottoResultTest {
         assertThat(actualTicketCount).isEqualTo(expectedTicketCount)
     }
 
+    @Test
+    fun `등수마다 일치하는 숫자가 몇 개인지 확인할 수 있다`() {
+        val expectedBallCount = 5
+        val actualBallCount = WinningBallCount.findPrizeBallCount(Prize.THIRD)
+        assertThat(actualBallCount).isEqualTo(expectedBallCount)
+    }
 
 
 
