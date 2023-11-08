@@ -239,10 +239,10 @@ class Lotto(private val numbers: List<Int>) {
 
 ### InputView
 
-- [ ] 로또 구입 금액 입력
-- [ ] 당첨 번호 입력
-- [ ] 보너스 번호 입력
-- [ ] 예외 발생시 다시 입력 받기
+- [x] 로또 구입 금액 입력
+- [x] 당첨 번호 입력
+- [x] 보너스 번호 입력
+- [x] 예외 발생시 다시 입력 받기
 
 ### BonusNumberValidator
 
