@@ -1,6 +1,7 @@
 package lotto
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -73,5 +74,33 @@ class LottoTest {
 
         // Then
         assertEquals(0, matchCount)
+    }
+
+    @Test
+    fun `보너스 번호가 일치할 경우 true를 반환한다`() {
+        // Given
+        val numbers = listOf(1, 2, 3, 4, 5, 6)
+        val lotto = Lotto(numbers)
+        val bonusNumber = 1
+
+        // When
+        val matchBonus = lotto.matchBonus(bonusNumber)
+
+        // Then
+        assertTrue(matchBonus)
+    }
+
+    @Test
+    fun `보너스 번호가 일치하지 않을 경우 false를 반환한다`() {
+        // Given
+        val numbers = listOf(1, 2, 3, 4, 5, 6)
+        val lotto = Lotto(numbers)
+        val bonusNumber = 7
+
+        // When
+        val matchBonus = lotto.matchBonus(bonusNumber)
+
+        // Then
+        assertFalse(matchBonus)
     }
 }
