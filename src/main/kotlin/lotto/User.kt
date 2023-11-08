@@ -21,7 +21,7 @@ class User {
 
     fun purchaseLottoTickets() {
         val ticketCounts: Int = purchaseMoney / 1000
-        println("${ticketCounts}개를 구매했습니다.")
+        println("\n${ticketCounts}개를 구매했습니다.")
         for (count in 0 until ticketCounts) {
             val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
             numbers.sort()
@@ -34,7 +34,7 @@ class User {
         var validation: Boolean = false
         var lottoNumbers: String = ""
         while (!validation) {
-            println("당첨 번호를 입력해 주세요.")
+            println("\n당첨 번호를 입력해 주세요.")
             lottoNumbers = Console.readLine()
             validation = validator.couldConvertIntList(lottoNumbers)
         }
