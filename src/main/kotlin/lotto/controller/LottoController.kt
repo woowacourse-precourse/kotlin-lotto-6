@@ -16,9 +16,11 @@ class LottoController(
     private lateinit var lottoStatics: LottoStatics
 
     fun run() {
-        val purchaseAmount = inputPurchaseAmountLoop()
+        val purchaseAmount = buyLotto()
         val answerAmount = inputAnswerNumLoop()
         val bonusNum = inputBonusNumLoop()
+
+        lottoStatics = LottoStatics(lottoManager)
 
     }
 
@@ -55,5 +57,15 @@ class LottoController(
             }
         }
     }
+
+    private fun buyLotto(): Int {
+        val purchaseAmount = inputPurchaseAmountLoop()
+        lottoManager = LottoManager(purchaseAmount)
+        lottoManager.create()
+        lottoManager.printLottoesNum()
+        println()
+        return purchaseAmount
+    }
+
 
 }
