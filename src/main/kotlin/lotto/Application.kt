@@ -38,21 +38,21 @@ fun checkMoneyException(inputMoney: Int) {
 
 fun validateInputMoney(inputMoney: Int): Int {
     var isValidInput = false
+    var localInputMoney = inputMoney    // 매개변수가 val이므로
 
     while (!isValidInput) {
         try {
-            checkMoneyException(inputMoney)
+            checkMoneyException(localInputMoney)
             isValidInput = true
 
         } catch (e: IllegalArgumentException) {
             println("${e.message}")
-            getInputMoney()
+            localInputMoney = getInputMoney()
 
         }
-
     }
 
-    return inputMoney
+    return localInputMoney
 }
 
 fun getNumberOfTickets( inputMoney: Int ): Int{
