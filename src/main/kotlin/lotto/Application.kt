@@ -10,6 +10,9 @@ fun main() {
     printLottos(lottos) // 로또 티켓 목록 출력
     val winningNumbers = getWinningNumbers() // 당첨 번호를 입력 받음
     val bonusNumber = getBonusNumber(winningNumbers) // 보너스 번호를 입력 받음
+
+    val result = calculateResult(lottos, winningNumbers, bonusNumber) // 결과를 계산
+    printResult(result, purchaseAmount) // 결과 출력
 }
 
 // 구입 금액를 입력하는 함수
@@ -101,4 +104,31 @@ enum class Prize(val matchCount: Int, val prizeName: String, val amount: String)
     THIRD(5, "3등", "1,500,000"),
     FOURTH(4, "4등", "50,000"),
     FIFTH(3, "5등", "5,000")
+}
+// 로또 티켓과 당첨 번호를 기반으로 결과를 계산하는 함수
+fun calculateResult(lottos: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): Result {
+    val result = Result()
+    for (lotto in lottos) {
+        val matchCount = lotto.numbers.intersect(winningNumbers).count()
+        val hasBonusNumber = lotto.numbers.contains(bonusNumber)
+        when (matchCount) {
+            6 -> result.addPrize(Prize.FIRST)
+            5 -> { if (hasBonusNumber) { result.addPrize(Prize.SECOND) }
+            else { result.addPrize(Prize.THIRD) } }
+            4 -> result.addPrize(Prize.FOURTH)
+            3 -> result.addPrize(Prize.FIFTH)
+        }
+    }
+    return result
+}
+// 당첨 결과를 출력하는 함수
+fun printResult(result: Result, purchaseAmount: Int) {
+    println("\n당첨 통계")
+    println("---")
+    val prizeCounts = result.prizes.groupingBy { it.matchCount }.eachCount()
+    println("3개 일치 (5,000원) - ${prizeCounts[3] ?: 0}개")
+    println("4개 일치 (50,000원) - ${prizeCounts[4] ?: 0}개")
+    println("5개 일치 (1,500,000원) - ${prizeCounts[5] ?: 0}개")
+    println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${prizeCounts[5]?.let { count -> count - (result.prizes.count { it == Prize.SECOND }) } ?: 0}개")
+    println("6개 일치 (2,000,000,000원) - ${prizeCounts[6] ?: 0}개")
 }
