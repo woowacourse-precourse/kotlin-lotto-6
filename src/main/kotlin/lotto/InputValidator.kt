@@ -13,8 +13,16 @@ class InputValidator {
     fun checkLottoInput(string: String) {
         checkLottoNumberCount(string)
         checkListNumberIsInRange(string)
+        checkDuplicates(string)
     }
 
+    fun checkDuplicates(string: String) {
+        val lottoList = Utils.parseWithComma(string)
+        val distinctList = lottoList.distinct()
+
+        if (lottoList.size != distinctList.size)
+            throw DuplicatedNumberException()
+    }
     fun checkStringHasNonDigits(string: String) {
         val regex = Regex("[^0-9]")
         if (regex.containsMatchIn(string))
