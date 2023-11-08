@@ -105,20 +105,18 @@ fun checkResults(lotteries: List<Lotto>, wonNums: Set<Int>, bonusNum: Int): Map<
 }
 
 // 당첨 통계 설정 및 출력 함수
-fun printStatistics(lottoResults: Map<Rank, Int>): List<String> {
-    val printStat = mutableListOf<String>() // 통계를 입력받을 변수
-    printStat.add("\n당첨 통계")
-    printStat.add("---")
-
-    val rankPrint = listOf (
+fun printStatistics(lottoResults: Map<Rank, Int>) {
+    val rankPrint = listOf ( // 통계를 입력받을 변수
         Rank.Rank5, Rank.Rank4, Rank.Rank3, Rank.Rank2, Rank.Rank1)
+
+    println("\n당첨 통계")
+    println("---")
 
     rankPrint.forEach { rank ->
         val count = lottoResults[rank] ?: 0
         val resultString = rankResult(rank)
-        printStat.add("$resultString - $count 개")
+        println("$resultString - $count 개")
     }
-    return printStat
 }
 
 // 등수 기록 함수
