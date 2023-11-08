@@ -32,4 +32,18 @@ class CheckLottoNumberTest{
         }
     }
 
+    @Test
+    @DisplayName("보너스 번호가 존재하는 경우")
+    fun checkBonusNumberTrue() {
+        val lotto = buyLottos[3]
+        assertThat(checkLottoNumber.checkBonusNumberMatch(lotto)).isTrue()
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 존재하지 않는 경우")
+    fun checkBonusNumberFalse() {
+        val lotto = buyLottos[4]
+        assertThat(checkLottoNumber.checkBonusNumberMatch(lotto)).isFalse()
+    }
+
 }
