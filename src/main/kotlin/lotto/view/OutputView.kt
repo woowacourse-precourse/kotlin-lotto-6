@@ -34,6 +34,6 @@ class OutputView {
     }
 
     fun printProfit(profit: Float) {
-        println("총 수익률은 ${String.format("%.1f", profit)}%입니다.")
+        println("총 수익률은 ${String.format("%,.1f", profit)}%입니다.")
     }
 }
