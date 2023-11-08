@@ -5,7 +5,7 @@ import lotto.domain.Stats
 
 class OutputView {
     fun printBuyLottos(buyLottos: List<Lotto>) {
-        buyLottos.forEach{ lotto ->
+        buyLottos.forEach { lotto ->
             println(lotto)
         }
     }
@@ -17,8 +17,10 @@ class OutputView {
     fun printLottoStats(lottoStats: Map<Stats, Int>) {
         println(WINNING_STATS)
         for (lottoStat in lottoStats.filterNot { lottoStat -> lottoStat.key.name == Stats.NONE.name }) {
-            println(PRINT_LOTTO_STATS_MESSAGE
-                .format(lottoStat.key.correctNumberCount, lottoStat.key.winningMessage, lottoStat.value))
+            println(
+                PRINT_LOTTO_STATS_MESSAGE
+                    .format(lottoStat.key.correctNumberCount, lottoStat.key.winningMessage, lottoStat.value)
+            )
         }
     }
 
@@ -26,12 +28,12 @@ class OutputView {
         println(PRINT_EARNING_RATE_MESSAGE.format(getEarningRate(lottoStats, buyAmount)))
     }
 
-    fun getEarningRate(lottoStats: Map<Stats, Int>, buyAmount: Int) : Double {
+    fun getEarningRate(lottoStats: Map<Stats, Int>, buyAmount: Int): Double {
         val totalPrize = getTotalPrize(lottoStats).toDouble()
         return totalPrize / (buyAmount * LOTTO_PRICE) * DIVIDE_NUMBER_RATE
     }
 
-    fun getTotalPrize(lottoStats: Map<Stats, Int>) : Int{
+    fun getTotalPrize(lottoStats: Map<Stats, Int>): Int {
         var totalPrize = INITIAL_TOTAL_PRIZE
         for (lotto in lottoStats) {
             totalPrize += lotto.key.winningPrize * lotto.value
