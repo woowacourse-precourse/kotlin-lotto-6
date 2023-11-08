@@ -10,7 +10,7 @@ class Validator {
         }
     }
 
-    fun isNumberOverZero(input: String): Boolean {
+    private fun isNumberOverZero(input: String): Boolean {
         val number = input.toIntOrNull()
         return if (number != null && number > 0) {
             true
@@ -19,7 +19,7 @@ class Validator {
         }
     }
 
-    fun isDividedUpThousand(money: Int): Boolean {
+    private fun isDividedUpThousand(money: Int): Boolean {
         return if (money % 1000 == 0) {
             true
         } else {
@@ -41,9 +41,26 @@ class Validator {
         }
     }
 
-    fun containsComma(lotto: String) {
+    private fun containsComma(lotto: String) {
         if (!lotto.contains(',')) {
             throw IllegalArgumentException("로또 번호는 쉼표(,)로 구분지어주세요.")
+        }
+    }
+
+    fun validateBonusNumber(bonus: String): Boolean {
+        return try {
+            isNumberOverZero(bonus)
+            inCorrectRange(bonus.toInt())
+            true
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] ${e.message}")
+            false
+        }
+    }
+
+    private fun inCorrectRange(number: Int) {
+        if (number !in 1..45){
+            throw IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.")
         }
     }
 }
