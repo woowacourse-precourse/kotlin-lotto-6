@@ -2,7 +2,7 @@ package lotto.model
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6) {
+        require(numbers.size == LOTTO_NUM_SIZE) {
             NUM_AMOUNT_ERROR_MESSAGE
         }
 
@@ -36,5 +36,6 @@ class Lotto(private val numbers: List<Int>) {
     companion object {
         private const val NUM_AMOUNT_ERROR_MESSAGE = "[ERROR] 6개의 숫자를 입력해주세요"
         private const val UNIQUE_NUM_ERROR_MESSAGE = "[ERROR] 서로 다른 숫자를 입력해주세요."
+        private const val LOTTO_NUM_SIZE = 6
     }
 }
