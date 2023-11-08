@@ -20,8 +20,9 @@ object InputValidator {
     fun validateWinningNumber(userInput: String) {
         require(userInput.all{ it.isDigit() ||  it == ',' || it == ' '})
         val numbers = userInput.split(",").map{ it.trim().toInt() }
-        require(numbers.size == 6)
-        require(numbers.all { it in 1..45 })
-        require(numbers.toSet().size == 6) // Set 자료구조로 변환해 중복 여부 확인
+        require(numbers.size == 6) { "당첨 번호는 숫자 6개로 이루어져야 합니다." }
+        require(numbers.all { it in 1..45 }) { "당첨 번호는 1부터 45사이의 숫자여야 합니다." }
+        require(numbers.toSet().size == 6) { "당첨 번호에 중복되는 숫자가 없어야 합니다." }
+        // Set 자료구조로 변환해 중복 여부 확인
     }
 }

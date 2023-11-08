@@ -41,6 +41,7 @@ class LottoGame() {
             lottoList.add(lotto)
             println(lotto)
         }
+        println("")
         return lottoList
     }
 
@@ -51,6 +52,7 @@ class LottoGame() {
             userInput = Console.readLine()
             try {
                 InputValidator.validatePurchaseAmount(userInput)
+                println("")
                 break
             }
             catch (e: Exception) {
@@ -61,9 +63,7 @@ class LottoGame() {
     }
 
     private fun getWinnningNumberSequence(): List<Int> {
-        val winningNumber = getWinnningNumber()
-
-        return winningNumber.split(",").map{ it.trim().toInt() }
+        return getWinnningNumber().split(",").map{ it.trim().toInt() }
     }
     private fun getWinnningNumber(): String {
         var userInput = ""
@@ -73,6 +73,7 @@ class LottoGame() {
             userInput = Console.readLine()
             try {
                 InputValidator.validateWinningNumber(userInput)
+                println("")
                 break
             }
             catch (e: Exception) {
@@ -83,14 +84,23 @@ class LottoGame() {
     }
 
     private fun getBonusNumberSequence(winningNumbers: List<Int>): Int {
-        PrintText.printMessage("GetBonusNumber", 0)
         return getBonusNumber(winningNumbers).toInt()
     }
     private fun getBonusNumber(winningNumbers: List<Int>) : String {
-        val userInput = Console.readLine()
+        var userInput = ""
 
-        InputValidator.validateBonusNumber(userInput, winningNumbers)
+        while (true) {
+            PrintText.printMessage("GetBonusNumber", 0)
+            userInput = Console.readLine()
+            try {
+                InputValidator.validateBonusNumber(userInput, winningNumbers)
+                println("")
+                break
+            }
+            catch (e: Exception) {
+                println("[ERROR] ${e.message}")
+            }
+        }
         return userInput
     }
-
 }
