@@ -5,15 +5,14 @@ import lotto.config.GameConfigValue.MINIMUM_LOTTO_NUMBER
 import lotto.config.GameConfigValue.MAXIMUM_LOTTO_NUMBER
 import lotto.config.ExceptionMessage.DUPLICATE_VALUES
 
-
 class BonusNumberVerification(private val bonusNumber: Int, private val lottoNumber: List<Int>){
 
     init {
-        lottoNumberRangeCheck()
+        bonusNumberRangeCheck()
         duplicateNumberCheck()
     }
 
-    private fun lottoNumberRangeCheck() {
+    private fun bonusNumberRangeCheck() {
         if (bonusNumber !in (MINIMUM_LOTTO_NUMBER)..<MAXIMUM_LOTTO_NUMBER) {
             throw IllegalArgumentException(LOTTO_RANGE_ERROR)
         }
@@ -25,6 +24,5 @@ class BonusNumberVerification(private val bonusNumber: Int, private val lottoNum
             throw IllegalArgumentException(DUPLICATE_VALUES)
         }
     }
-
 
 }

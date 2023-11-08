@@ -7,7 +7,6 @@ class LottoController(
     private val inputView: InputView=InputView(),
     private val outputView: OutputView=OutputView()
 ) {
-
     fun lottoGameStarter(){
 
         val lotto=moneyInput()

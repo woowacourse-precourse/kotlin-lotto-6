@@ -1,5 +1,6 @@
 package lotto.config
 
+
 object GameConfigValue {
     const val LOTTO_DEFAULT_DIGIT=6
     const val PURCHASE_AMOUNT_UNIT=1000

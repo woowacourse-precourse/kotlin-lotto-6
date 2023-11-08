@@ -16,7 +16,6 @@ class LottoCompare(
     private val correctLottoNumber: List<Int>,
     private val lottoNumbers: MutableList<List<Int>>
 ){
-
     fun calculateCorrect(): MutableMap<OutputMessages, Int> {
         val lottoResults = mutableMapOf(
             THREE_NUMBER_CORRECT to 0,

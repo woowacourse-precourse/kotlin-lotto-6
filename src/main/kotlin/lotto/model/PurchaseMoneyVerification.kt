@@ -4,7 +4,7 @@ import lotto.config.GameConfigValue.PURCHASE_AMOUNT_UNIT
 import lotto.config.ExceptionMessage.UNIT_ERROR
 
 
-class PurchaseMoneyVerification(private val lottoPurchaseMoney:String) {
+class PurchaseMoneyVerification(private val lottoPurchaseMoney:String){
     init{
         moneyOnlyNumberCheck()
         moneyOnlyThousand()

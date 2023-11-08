@@ -1,6 +1,5 @@
 package lotto.config
 
-
 import lotto.config.GameConfigValue.LOTTO_DEFAULT_DIGIT
 import lotto.config.GameConfigValue.MINIMUM_LOTTO_NUMBER
 import lotto.config.GameConfigValue.MAXIMUM_LOTTO_NUMBER

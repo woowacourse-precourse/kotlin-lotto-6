@@ -22,7 +22,6 @@ class OutputView {
             println("${lotto.message} ${OutputMessages.DIVIDING_LINE_SMALL.message} ${count}${OutputMessages.LOTTO_COUNT.message}")
         }
     }
-
     fun lottoProfit(lottoProfit:Double) {
         println(OutputMessages.YIELD_RATE_OF_RETURN.message.format(lottoProfit))
     }

@@ -1,11 +1,9 @@
 package lotto
 
-import camp.nextstep.edu.missionutils.test.Assertions
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest
-import lotto.model.LottoNumberGenerator
 
 class LottoCorrectTest: NsTest() {
     @Test

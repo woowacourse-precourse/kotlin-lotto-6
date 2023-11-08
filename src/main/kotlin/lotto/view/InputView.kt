@@ -7,7 +7,7 @@ class InputView {
     }
     fun inputRightLottoNumber(): List<Int>{
         val rightLottoNumber=Console.readLine()
-        return rightLottoNumber.split(",").map { it.toInt() }
+        return rightLottoNumber.split(",").map{ it.toInt() }
     }
     fun inputBonusNumber(): Int{
         return (Console.readLine()).toInt()

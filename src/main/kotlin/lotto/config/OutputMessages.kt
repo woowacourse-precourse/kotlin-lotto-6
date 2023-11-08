@@ -1,5 +1,6 @@
 package lotto.config
 
+
 enum class OutputMessages(val message: String) {
     PURCHASE_MONEY("구입금액을 입력해 주세요."),
     PURCHASE_CONFIRMATION("%d개를 구매했습니다."),

@@ -8,6 +8,7 @@ import lotto.config.GameConfigValue.LOTTO_DEFAULT_DIGIT
 import lotto.config.ExceptionMessage.DUPLICATE_VALUES
 
 class Lotto(private val numbers: List<Int>) {
+
     init {
         checkLottoNumberSize()
         lottoNumberRangeCheck()
