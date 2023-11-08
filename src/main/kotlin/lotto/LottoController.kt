@@ -1,16 +1,9 @@
 package lotto
 
 import lotto.dto.CostDto
-import lotto.dto.PurchasedLottoDto
-import lotto.exception.DuplicatedNumberException
-import lotto.exception.NotPositiveCostException
-import lotto.exception.UnvalidCostException
-import lotto.exception.UnvalidLottoNumberException
 import lotto.model.BonusNumber
 import lotto.model.Cost
 import lotto.model.Lotto
-import lotto.model.PurchasedLottoCollection
-import lotto.utility.Utils
 import lotto.view.InputView
 import lotto.view.OutputView
 
