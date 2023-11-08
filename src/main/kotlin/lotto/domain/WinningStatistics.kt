@@ -41,7 +41,7 @@ class WinningStatistics {
         val matchFiveAndBonus =
             winningDetails[Match.FIVE_AND_BONUS.value] * MATCH_FIVE_AND_BONUS_MONEY
         val matchSix = winningDetails[Match.SIX.value] * MATCH_SIX_MONEY
-        val total = matchThree + matchFour + matchFive + matchFiveAndBonus + matchSix
+        val total: Long = (matchThree + matchFour + matchFive + matchFiveAndBonus + matchSix).toLong()
         val result = total * 100 / (lotteryNumber * AMOUNT_UNIT).toDouble()
         return "%.1f".format(result)
     }
