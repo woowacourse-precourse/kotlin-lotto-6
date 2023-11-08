@@ -8,7 +8,7 @@ class OutputView {
         const val WINNING_STATISTICS_STRING = "당첨 통계"
         const val DASH_SEPARATOR = "---"
         const val RATE_OF_RETURN_STRING = "총 수익률은 "
-        const val PERCENT_SUFFIX = "%입니다"
+        const val PERCENT_SUFFIX = "%입니다."
 
         fun printPurchaseCount(numberOfTickets: Int) {
             println("$numberOfTickets$PURCHASE_COUNT_STRING")
