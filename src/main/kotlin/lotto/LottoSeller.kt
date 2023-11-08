@@ -51,14 +51,24 @@ class LottoSeller() {
 
     //미쳐버려 이거 잘못된 보너스 번호잖아!
     //당첨번호랑 안겹치는 걸로 다시 적어서 내렴
-    fun checkLottoHasBonusNum(lottoList: List<Int>, bonusNum: Int) {
-        try {
-            if (lottoList.contains(bonusNum)) throw IllegalArgumentException(ERROR_INPUT_NUMBER_DISTINCT)
-            if (bonusNum !in 1..45) throw IllegalArgumentException(ERROR_INPUT_NUMBER_RANGE)
+    fun checkLottoHasBonusNum(lottoList: List<Int>, bonusNum: Int): Int {
+        return try {
+            checkContainNum(lottoList, bonusNum)
+            checkBonuslength(bonusNum)
         } catch (e: IllegalArgumentException) {
             println(e.message)
             LottoSeller().checkLottoHasBonusNum(lottoList, User().inputBonusNum())
         }
+    }
+
+    private fun checkContainNum(lottoList: List<Int>, bonusNum: Int): Int {
+        if (lottoList.contains(bonusNum)) throw IllegalArgumentException(ERROR_INPUT_NUMBER_DISTINCT)
+        return bonusNum
+    }
+
+    private fun checkBonuslength(bonusNum: Int): Int {
+        if (bonusNum !in 1..45) throw IllegalArgumentException(ERROR_INPUT_NUMBER_RANGE)
+        return bonusNum
     }
 
     companion object {
