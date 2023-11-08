@@ -6,7 +6,8 @@ import lotto.domain.LottoShop
 import lotto.view.InputView.getBonusNumbersInput
 import lotto.view.InputView.getLottoPurchaseCostInput
 import lotto.view.InputView.getWinningNumbersInput
-import lotto.view.OutputView.printLottosNumbers
+import lotto.view.OutputView.printLottoBundleNumbers
+import lotto.view.OutputView.printLottoResult
 
 class LottoController {
     private val lottoManager: LottoManager by lazy { LottoManager() }
@@ -15,15 +16,21 @@ class LottoController {
     fun run() {
         val purchaseMoney = getLottoPurchaseCostInput()
         val lottoBundle = LottoBundle(lottoShop.purchaseLottos(purchaseMoney))
-        printLottosNumbers(lottoBundle)
+        printLottoBundleNumbers(lottobundle = lottoBundle)
 
         val winningNumbers = getWinningNumbersInput()
-        lottoManager.setWinningNumbers(winningNumbers)
+        lottoManager.setWinningNumbers(input = winningNumbers)
         println()
 
         val bonusNumber = getBonusNumbersInput()
-        lottoManager.setBonusNumber(bonusNumber)
+        lottoManager.setBonusNumber(input = bonusNumber)
         println()
+
+        lottoBundle.calculateTotalLottoRank(
+            winningNumbers = lottoManager.winningNumbers,
+            bonusNumber = lottoManager.bonusNumber!!
+        )
+        printLottoResult(lottoBundle)
     }
 
 }
