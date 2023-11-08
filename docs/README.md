@@ -59,7 +59,8 @@
     - [x] 입력 번호와, 로또 번호를 비교해서 같은 숫자 개수를 계산한다. (`Lotto.calculateMathingCount`)
     - [x] 로또 번호 중에 보너스 번호가 있는지 판단한다. (`Lotto.containBonusNumber`)
     - [x] 한 로또가 몇 등인지 판단한다. (`Lotto.calculateLottoRank`)
-    - [ ] 총 로또 당첨 결과를 계산한다. (`Lottoes.getLottoesResult`)
+    - [x] 총 로또 당첨 결과를 계산한다. (`Lottoes.calculateLottoesResult`)
+    - [x] 총 로또 당첨 수익금을 계산한다. (`Lottoes.calculateTotalProfit`)
 
 - [ ] 당첨 통계
     - [ ] 당첨 통계 안내 메시지를 출력한다. (`OutputView.winningResultPrompt`)
@@ -69,8 +70,8 @@
       ```
     - [ ] 당첨 내역을 가지고 당첨 통계를 출력한다. (`OutputView.winningResult`)
     -
-- [ ] 총 수익률을 계산한다. (`Profit.calculateTotalProfitRate`)
-    - [ ] 총 수익률은 소수점 둘째 자리에서 반올림한다. ex. 100.0%, 1,000,000.0%
+- [x] 총 수익률을 계산한다. (`Profit.calculateProfitRate`)
+    - [x] 총 수익률은 소수점 둘째 자리에서 반올림한다. ex. 100.0%, 1,000,000.0%
 
 - [ ] 총 수익률을 출력한다. (`OutputView.totalProfitRate`)
   ```
