@@ -61,6 +61,8 @@ class InputManager {
                     inputBonusNumber().toInt()
                 }
 
+        handleWrongScopeBonusNumberException(bonusNumber)
+
         return bonusNumber
     }
 
@@ -75,6 +77,13 @@ class InputManager {
     private fun handleNumberOfWinningNumbersException(winningNumbers: ArrayList<Int>) {
         if (winningNumbers.size != 6) {
             throw IllegalArgumentException("[ERROR] 당첨 번호를 올바르게 입력해주세요.")
+        }
+    }
+
+    // 사용자가 잘 못 된 범위의 보너스 번호를 입력한 경우 예외 처리
+    private fun handleWrongScopeBonusNumberException(bonusNumber: Int) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw IllegalArgumentException("[ERROR] 보너스 번호의 범위를 올바르게 입력해주세요.")
         }
     }
 }
