@@ -5,26 +5,18 @@ import camp.nextstep.edu.missionutils.Console
 
 class LottoGame() {
     fun start() {
-        while (true) {
-            try {
-                val lottoCount = purchaseSequence()
-                var lottos = generateLottos(lottoCount)
-                val winningNumbers = getWinnningNumberSequence()
-                val bonusNumber = getBonusNumberSequence()
+            val lottoCount = purchaseSequence()
+            val lottos = generateLottos(lottoCount)
+            val winningNumbers = getWinnningNumberSequence()
+            val bonusNumber = getBonusNumberSequence()
 
-                val lottoResult = LottoResult(lottos, winningNumbers, bonusNumber)
-            } catch (e: IllegalArgumentException) {
-                println("[ERROR] ${e.message}")
-            }
-            break
-        }
+            LottoResult(lottos, winningNumbers, bonusNumber)
     }
 
-    private fun purchaseSequence(): Int{
-        PrintText.printMessage("GetPurchaseAmount", 0)
+    private fun purchaseSequence(): Int {
         val purchaseAmount = getPurchaseAmount()
-        InputValidator.validatePurchaseAmount(purchaseAmount)
         val lottoCount = purchaseAmount.toInt() / 1000
+
         PrintText.printMessage("PrintCountNumber", lottoCount)
         return lottoCount
     }
@@ -38,17 +30,38 @@ class LottoGame() {
     }
 
     private fun getPurchaseAmount(): String {
-        return Console.readLine()
+        var userInput = ""
+        while (true) {
+            PrintText.printMessage("GetPurchaseAmount", 0)
+            userInput = Console.readLine()
+            try {
+                InputValidator.validatePurchaseAmount(userInput)
+                break
+            }
+            catch (e: IllegalArgumentException) {
+                println("[ERROR] ${e.message}")
+            }
+        }
+        return userInput
     }
 
     private fun getWinnningNumberSequence(): List<Int> {
-        PrintText.printMessage("GetWinningNumber", 0)
         val winningNumber = getWinnningNumber()
         return winningNumber.split(",").map{ it.trim().toInt() }
     }
     private fun getWinnningNumber(): String {
-        val userInput = Console.readLine()
-        InputValidator.validateWinningNumber(userInput)
+        var userInput = ""
+        while (true) {
+            PrintText.printMessage("GetWinningNumber", 0)
+            userInput = Console.readLine()
+            try {
+                InputValidator.validateWinningNumber(userInput)
+                break
+            }
+            catch (e: IllegalArgumentException) {
+                println("[ERROR] ${e.message}")
+            }
+        }
         return userInput
     }
 

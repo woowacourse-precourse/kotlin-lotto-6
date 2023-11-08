@@ -42,23 +42,31 @@ class LottoResult (private val lottos: List<Lotto>, private val winningNumbers: 
 
     private fun printResult() {
         PrintText.printMessage("PrintWinningStatistics", 0)
-        var prizeAmount = 0
+        val prizeAmount = calResult()
+        val totalPrizeRate = ((prizeAmount.toDouble() / (lottos.size * 1000)) * 100)
+        println("총 수익률은 ${LottoMath.roundRate(totalPrizeRate)}%입니다.")
+    }
+
+    private fun calResult(): Int {
+        var result = 0
         for (rank in 1..5) {
             val count = matchedCounts[rank]!!
-            prizeAmount += prize[rank]!! * count
-            val matchedNumber = when(rank) {
-                1 -> 6
-                2 -> 5
-                else -> 8 - rank
-            }
-            val prizeDescription = LottoRank.values()[rank - 1].prizeString
-            when (rank) {
-                2 -> println("${matchedNumber}개 일치, 보너스 볼 일치 (${prizeDescription}) - ${count}개")
-                else -> println("${matchedNumber}개 일치 (${prizeDescription}) - ${count}개")
-            }
+            result += prize[rank]!! * count
+            printMatchedNumber(rank, count)
         }
-        val totalPrizeRate = ((prizeAmount.toDouble() / (lottos.size * 1000)) * 100)
-        println(totalPrizeRate)
-        println("총 수익률은 ${LottoMath.roundRate(totalPrizeRate)}%입니다.")
+        return result
+    }
+
+    private fun printMatchedNumber(rank: Int, count: Int) {
+        val matchedNumber = when(rank) {
+            1 -> 6
+            2 -> 5
+            else -> 8 - rank
+        }
+        val prizeDescription = LottoRank.values()[rank - 1].prizeString
+        when (rank) {
+            2 -> println("${matchedNumber}개 일치, 보너스 볼 일치 (${prizeDescription}) - ${count}개")
+            else -> println("${matchedNumber}개 일치 (${prizeDescription}) - ${count}개")
+        }
     }
 }

@@ -73,6 +73,6 @@
    - mock, fake 등
      gof
    - factory method 등 학습
-   - enum class를 통한 상수 선언
+   - enum class를 통한 상수 선언 (prize, 출력멘트)
    - 수익률 오버플로우를 고려한 자료형 책정.
    - 가로 120줄이 넘는 구문 처리.
