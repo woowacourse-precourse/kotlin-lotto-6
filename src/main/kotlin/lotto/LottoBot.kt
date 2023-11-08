@@ -28,7 +28,7 @@ class LottoBot(
         var flag = true
         while (flag) {
             runCatching {
-                println("구입 금액을 입력해주세요")
+                println("구입금액을 입력해주세요.")
                 val input = Console.readLine()
                 budget = Validator.validateBudget(input)
             }
@@ -39,24 +39,19 @@ class LottoBot(
 
     private fun purchaseLotto() {
         purchaseChance = budget / Validator.LOTTO_PRICE
-
-        for (i in 1..purchaseChance) {
-            var flag = true
-            while (flag) {
-                runCatching {
-                    val newLotto = Lotto(LottoMaker.createRandomLottoNumbers())
-                    val newBonus = LottoMaker.createRandomBonusNumbers()
-                    lottoWallet.add(newLotto)
-                    bonusWallet.add(newBonus)
-                }
-                    .onSuccess { flag = false }
-                    .onFailure { exception -> println(exception.message) }
+        while (lottoWallet.size < purchaseChance) {
+            runCatching {
+                val newLotto = Lotto(LottoMaker.createRandomLottoNumbers())
+                val newBonus = LottoMaker.createRandomBonusNumbers()
+                lottoWallet.add(newLotto)
+                bonusWallet.add(newBonus)
             }
+                .onFailure { exception -> println(exception.message) }
         }
     }
 
     private fun showLottos() {
-        println("\n${purchaseChance}개를 구매했습니다.")
+        println("${purchaseChance}개를 구매했습니다.")
         lottoWallet.map {
             println(it._numbers)
         }
@@ -66,7 +61,7 @@ class LottoBot(
         var flag = true
         while (flag) {
             runCatching {
-                println("\n당첨 번호를 입력해 주세요")
+                println("당첨 번호를 입력해 주세요.")
                 val input = Console.readLine()
                 val numbers = Validator.mapToWinningNumbers(input)
                 winningNumbers.addAll(Validator.validateNumbers(numbers))
@@ -82,10 +77,11 @@ class LottoBot(
         var flag = true
         while (flag) {
             runCatching {
-                println("\n보너스 번호를 입력해 주세요.")
+                println("보너스 번호를 입력해 주세요.")
                 val input = Console.readLine()
                 bonusNumber = Validator.validateBonusNumber(input)
-            }.onSuccess { flag = false }
+            }
+                .onSuccess { flag = false }
                 .onFailure { exception -> println(exception.message) }
         }
     }
