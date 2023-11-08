@@ -9,6 +9,7 @@ class Input {
 
     fun inputPurchaseAmount(): Int {
         println(INPUT_MONEY)
+
         return try {
             val amount = Console.readLine()
             Validation.validatePurchaseAmount(amount)
@@ -22,6 +23,7 @@ class Input {
 
     fun inputWinningNumbers(): List<Int> {
         println("\n" + Constants.INPUT_WINNING_NUMBERS)
+
         return try {
             val winningNumbers = Console.readLine().split(",")
             Validation.validateWinningNumbers(winningNumbers)
@@ -35,6 +37,7 @@ class Input {
 
     fun inputBonusNumber(winningNumbers: List<Int>): Int {
         println("\n" + Constants.INPUT_BONUS_NUMBERS)
+
         return try {
             val bonusNumber = Console.readLine()
             Validation.validateBonusNumber(winningNumbers, bonusNumber)
