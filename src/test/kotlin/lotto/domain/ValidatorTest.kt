@@ -29,7 +29,7 @@ class ValidatorTest {
     @DisplayName("Validator : checkInputOfPurchasingCorrect() - success")
     fun `checkInputOfPurchasingCorrect 함수에 0보다 큰 양수 문자열 입력하면 true를 반환한다`(input: String) {
         // when
-        val actual = validator.checkInputOfPurchasingCorrect(input)
+        val actual = validator.checkInputIsPositiveNum(input)
 
         // then
         val expected = true
@@ -41,7 +41,7 @@ class ValidatorTest {
     @DisplayName("Validator : checkInputOfPurchasingCorrect() - fail")
     fun `checkInputOfPurchasingCorrect 함수에 0보다 큰 양수가 아닌 문자열을 입력하면 false를 반환한다`(input: String) {
         // when
-        val actual = validator.checkInputOfPurchasingCorrect(input)
+        val actual = validator.checkInputIsPositiveNum(input)
 
         // then
         val expected = false

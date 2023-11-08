@@ -3,15 +3,15 @@ package lotto.domain
 import lotto.data.Lotto
 
 class Validator private constructor() {
-    fun checkInputOfPurchasingCorrect(input: String): Boolean {
+
+    fun checkInputIsPositiveNum(input: String): Boolean {
         val number = input.toUIntOrNull()
         return number != null && number > UNSIGNED_ZERO
     }
 
     fun checkInputIsConsistOfPositiveNum(input: String): Boolean {
         return input.split(IO.INPUT_SPLITTER).all {
-            val num = it.toUIntOrNull()
-            num != null && num > UNSIGNED_ZERO
+            checkInputIsPositiveNum(it)
         }
     }
 
@@ -35,6 +35,7 @@ class Validator private constructor() {
         require(bonus in Lotto.START_NUM..Lotto.END_NUM) {
             NUMBER_IS_NOT_IN_LOTTO_RANGE
         }
+        checkLottoNumberIsCorrect(lottoNums)
         require(lottoNums.contains(bonus).not()) {
             BONUS_SHOULD_NOT_BE_DUPLICATE
         }
@@ -44,6 +45,7 @@ class Validator private constructor() {
         require(bonus in Lotto.START_NUM..Lotto.END_NUM) {
             NUMBER_IS_NOT_IN_LOTTO_RANGE
         }
+        checkLottoNumberIsCorrect(lottoNums)
         require(lottoNums.contains(bonus).not()) {
             BONUS_SHOULD_NOT_BE_DUPLICATE
         }
@@ -60,14 +62,14 @@ class Validator private constructor() {
         private var instance: Validator? = null
 
         fun getInstance(): Validator {
-            val validator = instance
-            if (validator != null) {
-                return validator
+            val currentInstance = instance
+            if (currentInstance != null) {
+                return currentInstance
             }
             return synchronized(this) {
-                val validatorForCheck = instance
-                if (validatorForCheck != null) {
-                    return@synchronized validatorForCheck
+                val synchronizedInstance = instance
+                if (synchronizedInstance != null) {
+                    return@synchronized synchronizedInstance
                 }
                 val createdValidator = Validator()
                 instance = createdValidator

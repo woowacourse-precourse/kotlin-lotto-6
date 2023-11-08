@@ -18,7 +18,7 @@ class IO private constructor() {
         show(INPUT_AMOUNT_OF_PURCHASING, true)
 
         val input = getInput()
-        require(Validator.getInstance().checkInputOfPurchasingCorrect(input)) {
+        require(Validator.getInstance().checkInputIsPositiveNum(input)) {
             SHOULD_BE_POSITIVE_NUM
         }
 
