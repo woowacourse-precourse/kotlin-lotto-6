@@ -15,7 +15,17 @@ class LottoController {
         println(messageViews.inputMoneyMessage)
         val inputMoney = validator.validatedMoneyIsInt(Console.readLine())
         val lottoCounts = validator.validatedMoneyUnit(inputMoney, 1000) / 1000
+        println("${lottoCounts}${messageViews.outputMoneyMessage}")
         val lottos: List<Lotto> = lottoGame.generateLottos(lottoCounts)
+        for (lotto in lottos) {
+            println(lotto.toString())
+        }
+        println(messageViews.inputLottoMessage)
+        val inputWinningLotto =
+            Console.readLine().split(",").map { validator.validatedNumberInRange(it.toInt(), 1, 45) }
+        println(messageViews.inputBonusMessage)
+        val bonusNumber = validator.validatedInputIsInt(Console.readLine())
+        val winningLotto = lottoGame.generateWinningLottoFromInput(inputWinningLotto, bonusNumber)
     }
 
 }

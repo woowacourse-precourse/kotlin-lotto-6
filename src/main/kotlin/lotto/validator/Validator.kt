@@ -15,4 +15,8 @@ class Validator {
         if (money < 1000) throw IllegalArgumentException("[ERROR] 1000 이상의 금액을 제시해주세요.")
         return money
     }
+
+    fun validatedInputIsInt(userInput: String): Int {
+        return userInput.toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 숫자를 입력해주세요")
+    }
 }
