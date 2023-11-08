@@ -42,6 +42,13 @@ class LottoTest {
         }
     }
 
+    @Test
+    fun `로또 번호가 오름차순 정렬이 아니면 예외 발생`() {
+        assertThrows<IllegalArgumentException>("로또 번호는 오름차순이여야 합니다") {
+            Lotto(listOf(2, 3, 4, 5, 6, 1))
+        }
+    }
+
     @ParameterizedTest
     @CsvSource(value = ["1:true", "2:true", "3:true", "4:true", "5:true", "6:true", "7:false"], delimiter = ':')
     fun `해당 로또 번호가 있는지 확인할 수 있다`(number: Int, expected: Boolean) {

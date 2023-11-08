@@ -7,6 +7,7 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.isSizeOfSix()) { LENGTH_ERROR }
         require(numbers.isNotDuplicated()) { DUPLICATED_ERROR }
         require(numbers.isInRange()) { RANGE_ERROR }
+        require(numbers.isAscending()) { SORT_ERROR }
     }
 
     fun contains(number: Int) = numbers.contains(number)
@@ -24,6 +25,8 @@ class Lotto(private val numbers: List<Int>) {
     private fun List<Int>.isNotDuplicated() = (distinct().size == size)
 
     private fun List<Int>.isInRange() = all { it in RANGE }
+
+    private fun List<Int>.isAscending() = (this == this.sorted())
 
     override fun toString() = numbers.toString()
 
@@ -45,5 +48,6 @@ class Lotto(private val numbers: List<Int>) {
         const val LENGTH_ERROR = "로또 번호는 6개여야 합니다"
         const val DUPLICATED_ERROR = "로또 번호는 중복되면 안됩니다"
         const val RANGE_ERROR = "로또 번호는 1 ~ 45 사이여야 합니다"
+        const val SORT_ERROR = "로또 번호는 오름차순이여야 합니다"
     }
 }
