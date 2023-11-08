@@ -20,5 +20,19 @@ class LottoTest {
         }
     }
 
-    // 아래에 추가 테스트 작성 가능
+    // 아래에 추가 테스트 작성 가능\
+    @Test
+    fun `1에서 45 범위 외의 숫자가 존재한다`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1, 2, 3, 4, 5, 46))
+        }
+    }
+    @Test
+    fun `6자리 미만의 숫자가 들어간다`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1, 2, 3, 4, 5))
+        }
+    }
+
+
 }
