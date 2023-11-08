@@ -29,4 +29,12 @@ class LottoResultTest {
         assertThat(expectedPrize).isEqualTo(actualPrize)
     }
 
+    @Test
+    fun `로또의 총 상금액을 알 수 있다`() {
+        val expectedMoney = Prize.THIRD.amount + Prize.THIRD.amount + Prize.FOURTH.amount
+        val prizeCountMap = winningResults.groupingBy { it }.eachCount()
+        val actualMoney = prizeCountMap.map { it.key.amount * it.value }.sum()
+        assertThat(actualMoney).isEqualTo(expectedMoney)
+    }
+
 }
