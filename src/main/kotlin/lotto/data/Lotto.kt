@@ -3,6 +3,7 @@ package lotto.data
 import lotto.domain.Validator
 
 open class Lotto(private val numbers: List<Int>) {
+
     init {
         Validator.getInstance().checkLottoNumberIsCorrect(numbers)
     }

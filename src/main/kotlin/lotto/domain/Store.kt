@@ -10,10 +10,10 @@ class Store(
 
     fun buyLotto(): List<Lotto> {
         val purchaseAmount: UInt = io.getPurchaseAmount()
-        val (quantity, change) = calculator.getQuotientAndRemainder(purchaseAmount, LOTTO_PRICE)
+        val (quantity, change) = calculator.getQuotientAndRemainder(purchaseAmount, Lotto.PRICE.toUInt())
 
         require(change == NO_CHANGE) {
-            SHOULD_BE_NO_CHANGE.format(LOTTO_PRICE.toLong())
+            SHOULD_BE_NO_CHANGE.format(Lotto.PRICE)
         }
         return pos.issueLotto(quantity).apply {
             io.showIssuedLotto(this)
@@ -27,7 +27,6 @@ class Store(
     }
 
     companion object {
-        const val LOTTO_PRICE = 1_000u
         const val SHOULD_BE_NO_CHANGE = "[ERROR] %d원 단위로 지불하셔야 합니다."
         private const val NO_CHANGE = 0
     }
