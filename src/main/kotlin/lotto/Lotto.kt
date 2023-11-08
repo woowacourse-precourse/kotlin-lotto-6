@@ -2,20 +2,28 @@ package lotto
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == LOTTO_NUMBER_SIZE) { ERROR_SIZE }
-        require(numbers.all { it in 1..45 }) { ERROR_NUMBER_RANGE }
-        require(numbers.distinct().size == numbers.size) { ERROR_DUPLICATE }
+        require(numbers.distinct().size == 6)
     }
-    fun checkMatching(prizeLottoNumber: List<Int>, bonusNumber: Int):Pair<Int, Boolean>{
-        val lottoNumber = numbers.count { it in prizeLottoNumber }
-        val bonusNumberMatchStatus = numbers.any { it == bonusNumber }
-        return Pair(lottoNumber, bonusNumberMatchStatus)
+    fun getLotto(): List<Int> {
+        return numbers
     }
 
-    companion object {
-        private const val LOTTO_NUMBER_SIZE = 6
-        private const val ERROR_SIZE = "[ERROR] 6개의 로또 번호를 입력하세요"
-        private const val ERROR_NUMBER_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."
-        private const val ERROR_DUPLICATE = "[ERROR] 중복된 값은 입력할 수 없습니다."
+    fun getRank(winningNums: List<Int>, bonusNum: Int): Rank {
+        val set1 = numbers.toMutableSet()
+        val set2 = winningNums.toMutableSet()
+        set1.retainAll(set2)
+        val winnings = set1.size
+        val bonus = bonusNum in numbers
+        val rank = when(winnings){
+            3 -> Rank.rank5
+            4 -> Rank.rank4
+            5 -> if(bonus) Rank.rank3 else Rank.rank2
+            6 -> Rank.rank1
+            else -> Rank.rank0
+        }
+        return rank
     }
+}
+enum class Rank {
+    rank0, rank5, rank4, rank3, rank2, rank1
 }
