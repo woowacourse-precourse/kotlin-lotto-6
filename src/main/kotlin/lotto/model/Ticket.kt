@@ -8,7 +8,7 @@ import lotto.util.GameConstants.MIN_NUMBER
 class Ticket {
     private var _tickets: MutableList<List<Int>> = mutableListOf()
 
-    val numbers: List<List<Int>>
+    val tickets: List<List<Int>>
         get() = _tickets
 
     private fun issueOneTicket(): List<Int> {
