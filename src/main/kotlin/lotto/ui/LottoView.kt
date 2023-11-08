@@ -9,60 +9,22 @@ class LottoView {
     private lateinit var luckyNumbers: List<Int>
 
     fun getTicketPrice(): String {
-        var inputPrice = ""
+        val price = commonRetryInput(TYPE_PRICE)
 
-        while (true) {
-            try {
-                inputPrice = askPurchaseTickets()
-                validTicketPrice(inputPrice)
-
-                break
-            } catch (exception: IllegalArgumentException) {
-                println(exception.message)
-            }
-        }
-
-        return inputPrice
+        return price
     }
 
     fun getLuckyNumbers(): List<Int> {
-        var inputLuckyNumbers = ""
+        val luckyNumbers = commonRetryInput(TYPE_LUCKY_NUMBERS)
+        this.luckyNumbers = luckyNumbers.stringToIntList()
 
-        while (true) {
-            try {
-                inputLuckyNumbers = askLuckyNumbers()
-                validLuckyNumbers(inputLuckyNumbers)
-
-                break
-            } catch (exception: IllegalArgumentException) {
-                println(exception.message)
-            } catch (exception: NumberFormatException) {
-                println(exception.message)
-            }
-        }
-
-        this.luckyNumbers = inputLuckyNumbers.stringToIntList()
-
-        return inputLuckyNumbers.stringToIntList()
+        return luckyNumbers.stringToIntList()
     }
 
     fun getBonusNumber(): Int {
-        var inputBonusNumber = ""
+        val bonusNumber = commonRetryInput(TYPE_BONUS_NUMBER)
 
-        while (true) {
-            try {
-                inputBonusNumber = askBonusNumber()
-                validBonusNumber(inputBonusNumber)
-
-                break
-            } catch (exception: IllegalArgumentException) {
-                println(exception.message)
-            } catch (exception: NumberFormatException) {
-                println(exception.message)
-            }
-        }
-
-        return inputBonusNumber.toInt()
+        return bonusNumber.toInt()
     }
 
     fun calculateTicketCount(price: Int): Int = price / PRICE_PER_TICKET
@@ -99,6 +61,36 @@ class LottoView {
         )
     }
 
+    private fun commonRetryInput(type: String): String {
+        var inputData = ""
+
+        while (true) {
+            try {
+                inputData = selectAskInputData(type)
+                selectValidInputData(inputData, type)
+
+                break
+            } catch (exception: IllegalArgumentException) {
+                println(exception.message)
+            } catch (exception: NumberFormatException) {
+                println(exception.message)
+            }
+        }
+
+        return inputData
+    }
+
+    private fun selectAskInputData(type: String): String {
+        val input = when (type) {
+            TYPE_PRICE -> askPurchaseTickets()
+            TYPE_LUCKY_NUMBERS -> askLuckyNumbers()
+            TYPE_BONUS_NUMBER -> askBonusNumber()
+            else -> "[ERROR] 올바른 입력 타입이 아닙니다."
+        }
+
+        return input
+    }
+
     private fun askPurchaseTickets(): String {
         println("구입금액을 입력해 주세요.")
         val inputPrice = getInputDataFromPlayer()
@@ -118,6 +110,14 @@ class LottoView {
         val bonusNumber = getInputDataFromPlayer()
 
         return bonusNumber
+    }
+
+    private fun selectValidInputData(input: String, type: String) {
+        when (type) {
+            TYPE_PRICE -> validTicketPrice(input)
+            TYPE_LUCKY_NUMBERS -> validLuckyNumbers(input)
+            TYPE_BONUS_NUMBER -> validBonusNumber(input)
+        }
     }
 
     private fun validTicketPrice(price: String) {
@@ -155,6 +155,10 @@ class LottoView {
     private fun getInputDataFromPlayer(): String = Console.readLine()
 
     companion object {
+        private const val TYPE_PRICE: String = "price"
+        private const val TYPE_LUCKY_NUMBERS: String = "luckyNumbers"
+        private const val TYPE_BONUS_NUMBER: String = "bonusNumber"
+
         private const val DELIMITER_COMMA: String = ","
         private const val DIVIDER: String = "---"
 
