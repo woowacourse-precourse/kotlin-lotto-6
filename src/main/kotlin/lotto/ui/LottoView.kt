@@ -85,7 +85,7 @@ class LottoView {
             TYPE_PRICE -> askPurchaseTickets()
             TYPE_LUCKY_NUMBERS -> askLuckyNumbers()
             TYPE_BONUS_NUMBER -> askBonusNumber()
-            else -> "[ERROR] 올바른 입력 타입이 아닙니다."
+            else -> "$ERROR_PREFIX 올바른 입력 타입이 아닙니다."
         }
 
         return input
@@ -159,6 +159,7 @@ class LottoView {
         private const val TYPE_LUCKY_NUMBERS: String = "luckyNumbers"
         private const val TYPE_BONUS_NUMBER: String = "bonusNumber"
 
+        private const val ERROR_PREFIX: String = "[ERROR]"
         private const val DELIMITER_COMMA: String = ","
         private const val DIVIDER: String = "---"
 
