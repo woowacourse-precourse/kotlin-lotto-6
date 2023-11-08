@@ -25,7 +25,16 @@ class ComputerOutput {
         println(m)
     }
 
-    fun winLotto(nums: List<Int>) {
+    fun winLotto(lottoResult: MutableList<List<Int>>) {
+        var nums: MutableList<Int> = mutableListOf()
+        for (i in 1..lottoResult.size) {
+            if (lottoResult[i][0] == 3) nums[0] += 1
+            if (lottoResult[i][0] == 4) nums[1] += 1
+            if (lottoResult[i][0] == 5) nums[2] += 1
+            if (lottoResult[i][0] == 5 && lottoResult[i][1] == 1) nums[3] += 1
+            if (lottoResult[i][0] == 6) nums[4] += 1
+        }
+
         var m: String = "3개 일치 (5,000원) - ${nums[0]}개" +
                 "4개 일치 (50,000원) - ${nums[1]}개" +
                 "5개 일치 (1,500,000원) - ${nums[2]}개" +
