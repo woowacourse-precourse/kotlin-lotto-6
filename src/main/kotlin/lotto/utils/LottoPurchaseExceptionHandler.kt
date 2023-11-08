@@ -1,10 +1,10 @@
 package lotto.utils
 
-import lotto.constants.ExceptionMessage.ENTER_CORRECT_PURCHASE_MONEY
-import lotto.constants.ExceptionMessage.ENTER_MULTIPLE_OF_LOTTO_TICKET_PRICE
+import lotto.constants.ExceptionMessage.WRONG_PURCHASE_MONEY
+import lotto.constants.ExceptionMessage.NOT_MULTIPLE_OF_LOTTO_TICKET_PRICE
 import lotto.constants.Lotto.LOTTO_PRICE
 
-object ExceptionHandler {
+object LottoPurchaseExceptionHandler {
 
   fun validateInputPurchaseMoney(inputPurchaseMoney: String): Long {
     val integerLongPurchaseMoney = validateIntegerLong(inputPurchaseMoney)
@@ -21,13 +21,13 @@ object ExceptionHandler {
 
   private fun validateMultipleOfLottoTicketPrice(integerLongPurchaseMoney: Long) {
     if (integerLongPurchaseMoney % LOTTO_PRICE != 0L) {
-      throw IllegalArgumentException(ENTER_MULTIPLE_OF_LOTTO_TICKET_PRICE)
+      throw IllegalArgumentException(NOT_MULTIPLE_OF_LOTTO_TICKET_PRICE)
     }
   }
 
   private fun validateNonNegativeInteger(integerLongPurchaseMoney: Long) {
     if (integerLongPurchaseMoney < 0) {
-      throw IllegalArgumentException(ENTER_CORRECT_PURCHASE_MONEY)
+      throw IllegalArgumentException(WRONG_PURCHASE_MONEY)
     }
   }
 
@@ -35,7 +35,7 @@ object ExceptionHandler {
     val trimmedInputPurchaseMoney = trimPurchaseMoney(inputPurchaseMoney)
 
     return trimmedInputPurchaseMoney.toLongOrNull()
-      ?: throw IllegalArgumentException(ENTER_CORRECT_PURCHASE_MONEY)
+      ?: throw IllegalArgumentException(WRONG_PURCHASE_MONEY)
   }
 
   private fun trimPurchaseMoney(inputPurchaseMoney: String): String {
