@@ -1,6 +1,6 @@
 package lotto.domain
 
-open class RetryUntilSuccess {
+open class RetryStrategy {
 
     protected fun <T> doUntilSuccess(function: () -> T): T {
         while (true) {

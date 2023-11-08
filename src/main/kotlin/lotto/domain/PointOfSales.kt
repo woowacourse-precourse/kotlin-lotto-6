@@ -5,7 +5,7 @@ import lotto.data.Lotto
 import lotto.data.Stats
 import lotto.data.WinningLotto
 
-class PointOfSales(private val analyzer: Analyzer) : RetryUntilSuccess() {
+class PointOfSales(private val analyzer: Analyzer) : RetryStrategy() {
 
     fun issueLotto(quantity: Int): List<Lotto> {
         require(quantity > 0) {
