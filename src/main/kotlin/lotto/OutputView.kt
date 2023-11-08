@@ -31,7 +31,7 @@ class OutputView {
     }
 
     fun printProfit(profit: String) {
-        println("총 수익률은 $profit%입니다.")
+        println(PROFIT_MESSAGE.format(profit))
     }
 
     companion object {
@@ -40,6 +40,7 @@ class OutputView {
         const val REQUEST_INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요."
         const val REQUEST_INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요."
         const val WINNING_STATISTICS = "\n당첨 통계\n---"
+        const val PROFIT_MESSAGE = "총 수익률은 %s%%입니다."
     }
 
 }
