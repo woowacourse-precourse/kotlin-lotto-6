@@ -9,6 +9,8 @@ class Lotto(private val numbers: List<Int>) {
         println(numbers.sorted())
     }
 
+    fun getNumbers() = numbers
+
     private fun hasNumberDuplicates() : Boolean = numbers.toSet().size == numbers.size
 
 

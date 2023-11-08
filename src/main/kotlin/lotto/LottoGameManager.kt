@@ -21,6 +21,8 @@ class LottoGameManager {
         println("\n보너스 번호를 입력해 주세요.")
         val bonusNumber = receiveBonusNumber()
         lottoGame = LottoGame(lottoTickets, winningNumbers, bonusNumber)
+
+        lottoGame.matchLottoNumbers()
     }
 
     private fun publishLottoTickets(lottoAmount: Int): List<Lotto> {
