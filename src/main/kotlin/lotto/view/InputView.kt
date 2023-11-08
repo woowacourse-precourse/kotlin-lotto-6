@@ -8,19 +8,20 @@ import lotto.utility.Utils
 import kotlin.NumberFormatException
 
 class InputView {
-    val inputValidator = InputValidator()
+    private val inputValidator = InputValidator()
     fun inputCost(): Int {
         while (true) {
             println(INPUT_MESSAGE_COST)
             val userInput = Console.readLine()
 
             try {
-                inputValidator.checkStringHasNonDigits(userInput)
-                inputValidator.checkCostDevidedByUnit(userInput)
+                inputValidator.checkCostInput(userInput)
                 return userInput.toInt()
             } catch(error: ContainsNotDigitException) {
                 println(error.message)
             } catch(error: UnvalidCostException) {
+                println(error.message)
+            } catch(error: NotPositiveCostException) {
                 println(error.message)
             }
         }
@@ -32,8 +33,7 @@ class InputView {
             val userInput = Console.readLine()
 
             try {
-                inputValidator.checkLottoNumberCount(userInput)
-                inputValidator.checkListNumberIsInRange(userInput)
+                inputValidator.checkLottoInput(userInput)
                 return Utils.parseWithComma(userInput)
             } catch (error: UnvalidNubmerFormatException) {
                 println(error.message)
