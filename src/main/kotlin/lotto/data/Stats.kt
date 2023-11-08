@@ -4,6 +4,7 @@ data class Stats(
     val info: WinningInfo,
     val profitRate: Double,
 ) {
+
     override fun toString(): String {
         return """
             $info
