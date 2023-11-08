@@ -9,4 +9,12 @@ class Lotto(private val numbers: List<Int>) {
     fun getNumbers(): List<Int> {
         return numbers
     }
+
+    fun matchCount(winningLotto: Lotto): Any {
+        return numbers.intersect(winningLotto.getNumbers().toSet()).size
+    }
+
+    fun matchBonusNumber(bonusNumber: Int): Boolean {
+        return numbers.contains(bonusNumber)
+    }
 }

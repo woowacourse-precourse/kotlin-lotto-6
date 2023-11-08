@@ -48,4 +48,30 @@ class LottoService {
             bonusNumber.toInt() in winningLotto.getNumbers() -> throw IllegalArgumentException(Bonus.ERROR_NOT_UNIQUE.value)
         }
     }
+
+    fun LottoResult(lottos: List<Lotto>, winningLotto: Lotto, bonusNumber: Int): List<Int> {
+        val result = mutableListOf<Int>(0, 0, 0, 0, 0, 0)
+        lottos.forEach {
+            when (it.matchCount(winningLotto)) {
+                3 -> result[0]++
+                4 -> result[1]++
+                5 -> {
+                    if (it.matchBonusNumber(bonusNumber)) {
+                        result[3]++
+                    } else {
+                        result[2]++
+                    }
+                }
+
+                6 -> result[4]++
+                else -> result[5]++
+            }
+        }
+        return result
+    }
+
+    fun calculateEarnRate(result: List<Int>): Any {
+        val total = result.sum()
+        return (result[0] * 5000 + result[1] * 50000 + result[2] * 1500000 + result[3] * 30000000 + result[4] * 2000000000) / (total * 100)
+    }
 }
