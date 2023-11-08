@@ -17,11 +17,11 @@ data class WinningInfo(
     }
 
     companion object {
-        private const val SHOULD__FIT_SIZE = "[ERROR] 데이터 크기가 맞지 않습니다."
+        private const val SHOULD_FIT_SIZE = "[ERROR] 데이터 크기가 맞지 않습니다."
 
         fun from(counts: List<Int>): WinningInfo {
             require(counts.size == GRADE.entries.size) {
-                SHOULD__FIT_SIZE
+                SHOULD_FIT_SIZE
             }
             return WinningInfo(
                 first = counts[GRADE.ONE.rank()],
