@@ -49,7 +49,6 @@ class ApplicationTest : NsTest() {
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
-
     override fun runMain() {
         main()
     }
