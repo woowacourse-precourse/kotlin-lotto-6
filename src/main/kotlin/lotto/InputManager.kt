@@ -21,7 +21,7 @@ class InputManager {
 
     fun inputBonusNumber(): Int {
         println(PRINT_INPUT_BONUS_NUMBER)
-        val num = Console.readLine()
+        val num = Console.readLine().trim()
         exceptionManager.bonusNumberException(num)
         println()
         return num.toInt()

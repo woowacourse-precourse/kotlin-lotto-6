@@ -41,5 +41,9 @@ class ExceptionManager {
     fun bonusNumberException(num: String) {
         val convertedNum = num.toIntOrNull() ?: throw IllegalArgumentException("문자가 아닌 숫자를 입력해주세요.")
 
+        if (convertedNum > 45 || convertedNum < 1) {
+            throw IllegalArgumentException("1~45 사이의 숫자를 입력해주세요.")
+        }
+
     }
 }
