@@ -95,6 +95,12 @@ data class Result(val prizes: MutableList<Prize> = mutableListOf()) {
     fun addPrize(prize: Prize) {
         prizes.add(prize)
     }
+    // 투자 금액 대비 수익률을 계산하는 함수
+    fun calculateProfitRate(purchaseAmount: Int): Double {
+        val totalPrizeAmount = prizes.sumOf { it.amount.replace(",", "").toLong() }
+        val investmentCost = purchaseAmount.toDouble()
+        return ((totalPrizeAmount - investmentCost) / investmentCost) * 100 + 100
+    }
 }
 
 // 당첨 등수와 상금
@@ -131,4 +137,7 @@ fun printResult(result: Result, purchaseAmount: Int) {
     println("5개 일치 (1,500,000원) - ${prizeCounts[5] ?: 0}개")
     println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${prizeCounts[5]?.let { count -> count - (result.prizes.count { it == Prize.SECOND }) } ?: 0}개")
     println("6개 일치 (2,000,000,000원) - ${prizeCounts[6] ?: 0}개")
+    val profitRate = result.calculateProfitRate(purchaseAmount)
+    val profitRateFormatted = String.format("%.1f%%", profitRate).replace(Regex("(\\d)(?=(\\d{3})+(?!\\d))"), "$1,")
+    println("총 수익률은 ${profitRateFormatted}입니다.")
 }
