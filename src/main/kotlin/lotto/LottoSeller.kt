@@ -21,9 +21,9 @@ class LottoSeller() {
 
     //야 이거 잘못된 당첨번호 로또잖아!
     //다시 적어서 내렴
-    fun isValidateLotto() {
-        try {
-            Lotto(User().inputLottoNumber()).checkLottoNumberException()
+    fun isValidateLotto(): List<Int> {
+        return try {
+            return Lotto(User().inputLottoNumber()).checkLottoNumberException()
         } catch (e: Exception) {
             checkExceptionStatement(e)
             LottoSeller().isValidateLotto()
@@ -38,12 +38,6 @@ class LottoSeller() {
         }
     }
 
-    //미쳐버려 이거 잘못된 보너스 번호잖아!
-    //당첨번호랑 안겹치는 걸로 다시 적어서 내렴
-    fun checkLottoHasBonusNum() {
-
-    }
-
     private fun checkLottoTicketCount(): Int {   //x원 받았는데 로또 몇장이냐?에 대한 대답
         //가격을 파는 사람이 알지 사는 사람이 우째 안대유
         if (inputLottoMoney % LOTTO_TICKET_PRICE != LOTTO_TICKET_REMAINDER) {
@@ -52,11 +46,25 @@ class LottoSeller() {
         return inputLottoMoney / LOTTO_TICKET_PRICE
     }
 
+    //미쳐버려 이거 잘못된 보너스 번호잖아!
+    //당첨번호랑 안겹치는 걸로 다시 적어서 내렴
+    fun checkLottoHasBonusNum(lottoList: List<Int>, bonusNum: Int) {
+        try {
+            if (lottoList.contains(bonusNum)) throw IllegalArgumentException(ERROR_INPUT_NUMBER_DISTINCT)
+            if (bonusNum !in 1..45) throw IllegalArgumentException(ERROR_INPUT_NUMBER_RANGE)
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            LottoSeller().checkLottoHasBonusNum(lottoList, User().inputBonusNum())
+        }
+    }
+
     companion object {
-        const val ERROR_INPUT_NUM_LENGTH = "For input string: \"\""
-        const val ERROR_INPUT_NUM_LENGTH_PRINT = "[ERROR]번호 개수를 체크해주세요"
-        const val ERROR_INPUT_NUM = "Failed requirement."
-        const val ERROR_INPUT_NUM_PRINT = "[ERROR]잘못된 번호를 입력했습니다."
-        const val ERROR_TRY_AGAIN_NUM_PRINT = "[ERROR]당첨번호를 다시 입력해주세요"
+        private const val ERROR_INPUT_NUM_LENGTH = "For input string: \"\""
+        private const val ERROR_INPUT_NUM_LENGTH_PRINT = "[ERROR]번호 개수를 체크해주세요"
+        private const val ERROR_INPUT_NUM = "Failed requirement."
+        private const val ERROR_INPUT_NUM_PRINT = "[ERROR]잘못된 번호를 입력했습니다."
+        private const val ERROR_TRY_AGAIN_NUM_PRINT = "[ERROR]당첨번호를 다시 입력해주세요"
+        private const val ERROR_INPUT_NUMBER_RANGE = "[ERROR]1~45사이의 수가 아닙니다"
+        private const val ERROR_INPUT_NUMBER_DISTINCT = "[ERROR] 이미 입력한 번호 입니다."
     }
 }
