@@ -1,6 +1,7 @@
 package model
 
 import util.InputValidation
+import util.LottoConfiguration
 
 class Money(private val price: String) {
     init {
@@ -11,5 +12,5 @@ class Money(private val price: String) {
         InputValidation.PURCHASE_IN_THOUSAND_WON.isValid(price)
     }
 
-    fun getPurchasableLottoTicketCount() = price.toInt() / 1000
+    fun getPurchasableLottoTicketCount() = price.toInt() / LottoConfiguration.TICKET_PRICE.value
 }

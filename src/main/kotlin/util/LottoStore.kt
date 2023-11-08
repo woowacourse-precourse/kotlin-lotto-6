@@ -5,7 +5,7 @@ import model.Lotto
 
 object LottoStore {
     fun generateLottoTickets(): Lotto {
-        val pickNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        val pickNumbers = Randoms.pickUniqueNumbersInRange(LottoConfiguration.MIN_NUMBER.value, LottoConfiguration.MAX_NUMBER.value, LottoConfiguration.NUMBER_COUNT.value)
         return Lotto(pickNumbers)
     }
 }

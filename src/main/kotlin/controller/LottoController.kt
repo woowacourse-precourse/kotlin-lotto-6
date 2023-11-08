@@ -6,6 +6,7 @@ import model.WinningNumbersManager
 import util.Calculator.clearWinningAmountValue
 import util.Calculator.getProfitPercentage
 import util.Calculator.plusWinningAmount
+import util.LottoConfiguration
 import util.LottoStore.generateLottoTickets
 import view.InputView
 import view.OutputView
@@ -98,14 +99,14 @@ class LottoController(private val inputView: InputView, private val outputView: 
 
     private fun printRankedValue() {
         outputView.printResultMessage()
-        for (rank in 5 downTo 1) {
+        for (rank in LottoConfiguration.MIN_OUTPUT_RANK.value downTo LottoConfiguration.MAX_OUTPUT_RANK.value) {
             outputView.printWinningStatistics(rank, rankFrequencyData[rank] ?: 0)
         }
     }
 
     private fun getProfitPercentage() {
         clearWinningAmountValue()
-        for (rank in 5 downTo 1) {
+        for (rank in LottoConfiguration.MIN_OUTPUT_RANK.value downTo LottoConfiguration.MAX_OUTPUT_RANK.value) {
             plusWinningAmount(rank, (rankFrequencyData[rank] ?: 0))
         }
         outputView.printProfitPercentage(getProfitPercentage(purchasedLottoTickets.size))

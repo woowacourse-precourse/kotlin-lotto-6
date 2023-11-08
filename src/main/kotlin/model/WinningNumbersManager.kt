@@ -2,6 +2,7 @@ package model
 
 import util.InputValidation
 import util.LottoValidation
+import util.PrizeMessageRank
 
 class WinningNumbersManager(numbers: List<String>) {
 
@@ -32,14 +33,14 @@ class WinningNumbersManager(numbers: List<String>) {
 
     fun getRank(numbers: List<Int>): Int {
         when (winningNumbers.count { numbers.contains(it) }) {
-            3 -> return 5
-            4 -> return 4
-            5 -> {
-                if (numbers.contains(bonusNumber)) return 2
-                return 3
+            PrizeMessageRank.FIFTH.matchingCount -> return PrizeMessageRank.FIFTH.rank
+            PrizeMessageRank.FOURTH.matchingCount -> return PrizeMessageRank.FOURTH.rank
+            PrizeMessageRank.THIRD.matchingCount -> {
+                if (numbers.contains(bonusNumber)) return PrizeMessageRank.SECOND.rank
+                return PrizeMessageRank.THIRD.rank
             }
 
-            6 -> return 1
+            PrizeMessageRank.FIRST.matchingCount -> return PrizeMessageRank.FIRST.rank
         }
         return 0
     }

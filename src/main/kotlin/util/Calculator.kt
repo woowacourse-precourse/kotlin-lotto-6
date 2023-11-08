@@ -5,11 +5,11 @@ object Calculator {
 
     fun plusWinningAmount(rank: Int, count: Int) {
         when (rank) {
-            PrizeRank.FIRST_PLACE.rank -> winningAmount += PrizeRank.FIRST_PLACE.amount * count
-            PrizeRank.SECOND_PLACE.rank -> winningAmount += PrizeRank.SECOND_PLACE.amount * count
-            PrizeRank.THIRD_PLACE.rank -> winningAmount += PrizeRank.THIRD_PLACE.amount * count
-            PrizeRank.FOURTH_PLACE.rank -> winningAmount += PrizeRank.FOURTH_PLACE.amount * count
-            PrizeRank.FIFTH_PLACE.rank -> winningAmount += PrizeRank.FIFTH_PLACE.amount * count
+            PrizeMessageRank.FIRST.rank -> winningAmount += PrizeMessageRank.FIRST.prize * count
+            PrizeMessageRank.SECOND.rank -> winningAmount += PrizeMessageRank.SECOND.prize * count
+            PrizeMessageRank.THIRD.rank -> winningAmount += PrizeMessageRank.THIRD.prize * count
+            PrizeMessageRank.FOURTH.rank -> winningAmount += PrizeMessageRank.FOURTH.prize * count
+            PrizeMessageRank.FIFTH.rank -> winningAmount += PrizeMessageRank.FIFTH.prize * count
         }
     }
 
@@ -17,12 +17,5 @@ object Calculator {
         winningAmount = 0L
     }
 
-    fun getProfitPercentage(principal: Int) = (winningAmount / 1000).toFloat() / principal * 100
-    enum class PrizeRank(val rank: Int, val amount: Long) {
-        FIRST_PLACE(1, 2_000_000_000L),
-        SECOND_PLACE(2, 30_000_000L),
-        THIRD_PLACE(3, 1_500_000L),
-        FOURTH_PLACE(4, 50_000L),
-        FIFTH_PLACE(5, 5_000L),
-    }
+    fun getProfitPercentage(principal: Int) = (winningAmount / LottoConfiguration.TICKET_PRICE.value).toFloat() / principal * 100
 }
