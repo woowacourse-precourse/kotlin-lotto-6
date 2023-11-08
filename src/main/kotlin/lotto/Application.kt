@@ -7,8 +7,10 @@ fun main() {
     val purchaseAmount = getPurchaseAmount() // 구입 금액을 입력 받음
     val lottoCount = purchaseAmount / 1000
     val lottos = generateLottos(lottoCount) // 로또 티켓을 생성
+    printLottos(lottos) // 로또 티켓 목록 출력
 }
-// 구입 번호를 입력하는 함수
+
+// 구입 금액를 입력하는 함수
 fun getPurchaseAmount(): Int {
     while (true) {
         try {
@@ -32,10 +34,15 @@ fun generateLottos(count: Int): List<Lotto> {
             if (lottos.none { it.isSameAs(lotto)}) {
                 lottos.add(lotto)
                 break
-            } else {
-                throw IllegalArgumentException("[ERROR] 중복된 로또 번호가 생성되었습니다. 다시 시도해 주세요.")
             }
         }
     }
     return lottos
+}
+// 로또 티켓 목록을 출력하는 함수
+fun printLottos(lottos: List<Lotto>) {
+    println("\n${lottos.size}개를 구매했습니다.")
+    lottos.forEachIndexed { index, lotto ->
+        println("${lotto.numbers.sorted()}")
+    }
 }
