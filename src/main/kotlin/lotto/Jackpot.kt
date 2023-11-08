@@ -7,6 +7,7 @@ enum class Jackpot(
     val jackpot: Double,
     val bonusMatch: Boolean = false,
 ) {
+
     FIFTH(3, 5_000.0),
     FOURTH(4, 50_000.0),
     THIRD(5, 1_500_000.0),
@@ -22,4 +23,5 @@ enum class Jackpot(
             return DecimalFormat("#,###").format(amount)
         }
     }
+
 }
