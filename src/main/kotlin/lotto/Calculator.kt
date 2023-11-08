@@ -17,18 +17,16 @@ class Calculator(
     )
 
     private fun compareNum() {
+        //로또속 번호와 사용자가 입력한 번호를 비교해서 몇개가 당첨인지를 알수 있다.
         for (lotto in lottoMachine) {
-            val matchedNumbers = lotto.count { it in userLotto }
-            val isBonusNumberMatched = userLotto.contains(lotto.last()) // 보너스 볼 확인
 
-            val matchedCount = MatchedCount.fromMatchedNumbers(matchedNumbers, isBonusNumberMatched)
-            val currentCount = lottoResult[matchedCount] ?: 0
-            lottoResult[matchedCount] = currentCount + 1
+            val matchedNumbers = lotto.intersect(userLotto).size
+            val isBonusMatched = userLotto.contains(bonusNum)    //보너스 볼이 포함 되어 있는지 확인
+
+            val lottoRank = MatchedCount.fromMatchedNumbers(matchedNumbers, isBonusMatched)
+            if (lottoRank != MatchedCount.NONE) lottoResult[lottoRank] = lottoResult.getOrDefault(lottoRank, 0) + 1
         }
     }
-
-
-
 
     //사용자의 로또와 컴터 한장 로또가 포함되어 있는지
     //포함되어이씅면 count++

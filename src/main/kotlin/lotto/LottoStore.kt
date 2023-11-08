@@ -1,31 +1,38 @@
 package lotto
 
 class LottoStore {
-
+    private val randomLottos = mutableListOf<List<Int>>()
     fun startSellLotto() {
         println("구입 금액을 입력해주세요")
         val seller = LottoSeller().generateLottoNumbers(userInput(User().inputMoney()))
+        showRandomLotto(seller)
+
         println("당첨번호를 입력해주세요")
-        val validLotto = LottoSeller().isValidateLotto()
+        val lottoNumbers = LottoSeller().isValidateLotto()
         println("보너스 번호를 입력해주세요")
-        LottoSeller().checkLottoHasBonusNum(validLotto, User().inputBonusNum())
-        println("발행한 로또 번호 및 수량 출력")
-        for (lotto in seller) {
-            val lottoNumbers = lotto.generate()
-            println(lottoNumbers)
+        val isBonusValid = LottoSeller().checkLottoHasBonusNum(lottoNumbers, User().inputBonusNum())
+        Calculator(lottoNumbers, isBonusValid, randomLottos)
+    }
+
+
+    private fun userInput(money: String): Int {
+        return try {
+            LottoSeller().checkLottoTicketCount(money)
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            userInput(User().inputMoney())
+        }
+    }
+
+    private fun showRandomLotto(randomLotto: List<LottoNumberGenerator>) {
+        println("${randomLotto.size}개를 구매했습니다.")
+        for (lotto in randomLotto) {
+            val machineLottoNumbers = lotto.generate()
+            println(machineLottoNumbers)
+            randomLottos.add(machineLottoNumbers)
         }
     }
 }
-
-private fun userInput(money: String): Int {
-    return try {
-        LottoSeller().checkLottoTicketCount(money)
-    } catch (e: IllegalArgumentException) {
-        println(e.message)
-        userInput(User().inputMoney())
-    }
-}
-
 
 /*
 val seller = LottoSeller(2).generateLottoNumbers()
