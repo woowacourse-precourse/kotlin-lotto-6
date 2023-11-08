@@ -16,7 +16,7 @@ class Calculator(
         MatchedCount.FIRST to 0,
     )
 
-    private fun compareNum() {
+     fun compareNum() {
         //로또속 번호와 사용자가 입력한 번호를 비교해서 몇개가 당첨인지를 알수 있다.
         for (lotto in lottoMachine) {
 
@@ -27,10 +27,5 @@ class Calculator(
             if (lottoRank != MatchedCount.NONE) lottoResult[lottoRank] = lottoResult.getOrDefault(lottoRank, 0) + 1
         }
     }
-
-    //사용자의 로또와 컴터 한장 로또가 포함되어 있는지
-    //포함되어이씅면 count++
-    //보너스도 확인
-
 
 }
