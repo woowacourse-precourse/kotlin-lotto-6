@@ -11,7 +11,8 @@ class Output {
     }
 
     fun outputMatchCount(matchCountList: MutableList<Int>) {
-        println()
+        println("\n당첨 통계")
+        println("---")
         println("3개 일치 (5,000원) - ${matchCountList[0]}개")
         println("4개 일치 (50,000원) - ${matchCountList[1]}개")
         println("5개 일치 (1,500,000원) - ${matchCountList[2]}개")
