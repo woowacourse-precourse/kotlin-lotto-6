@@ -13,7 +13,6 @@ class LottoGame {
         val money = Input().inputMoney().toInt()
         val lottoCount = getLottoCount(money)
         val lottoList = getLotto(lottoCount)
-
         Output().outputLottos(lottoList)
 
         val winningNum = Input().inputWinningNum()
@@ -62,6 +61,5 @@ class LottoGame {
 
         val tempProfitability = BigDecimal(sum).divide(BigDecimal(money.toString()))
         return tempProfitability.multiply(BigDecimal("100")).setScale(1, BigDecimal.ROUND_HALF_UP)
-
     }
 }
