@@ -10,6 +10,7 @@ import lotto.ErrorMessage.EMPTY_INPUT
 import lotto.ErrorMessage.INVALID_LOTTO_RANGE
 import lotto.ErrorMessage.INVALID_NUMBER
 import lotto.ErrorMessage.LACK_OF_NUMBER
+import lotto.ErrorMessage.WINNING_NUMBER_INTERSECTED
 
 object Input {
     private fun getInput(): String {
@@ -32,12 +33,14 @@ object Input {
         val input = getInput()
         val splitted = input.split(",")
         require(splitted.size == Constants.LOTTO_COUNT) { ErrorMessage.print(LACK_OF_NUMBER) }
-        splitted.map {
+        val winningNumber = splitted.map {
             require(isNumeric(it)) { ErrorMessage.print(INVALID_NUMBER) }
             val num = it.toInt()
             require(isValidLottoNum(num)) { ErrorMessage.print(INVALID_LOTTO_RANGE) }
             num
         }
+        require(winningNumber.toSet().size == Constants.LOTTO_COUNT) { ErrorMessage.print(WINNING_NUMBER_INTERSECTED) }
+        winningNumber
     }
     fun getBonusNumber(winningNumber: List<Int>): Int = repeatUntilGetValidInput {
         val bonusNumber = getNumberInput()
