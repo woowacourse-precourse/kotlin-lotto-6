@@ -22,7 +22,9 @@ object Input {
     }
     fun getWinningNumber(): List<Int> = repeatUntilGetValidInput {
         val input = getInput()
-        input.split(",").map {
+        val splitted = input.split(",")
+        require(splitted.size == Constants.LOTTO_COUNT)
+        splitted.map {
             require(isNumeric(it))
             val num = it.toInt()
             require(isValidLottoNum(num))
