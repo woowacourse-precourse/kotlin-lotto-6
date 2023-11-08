@@ -7,6 +7,7 @@ fun main() {
     val lotto_list = generateLottoNumbers(lotto_tickets)
     val (winning_numbers_list, bonus_number) = receiveWinningNumbers()
     val result = calculateLottoNumbers(lotto_list, winning_numbers_list, bonus_number)
+    printResult(result, lotto_tickets)
 }
 
 fun buyLotto(): Int {
@@ -41,12 +42,18 @@ fun receiveWinningNumbers(): Pair<MutableList<Int>, Int> {
     val winning_numbers_list = mutableListOf<Int>()
     println("당첨 번호를 입력해 주세요.")
     val winning_numbers = readLine().toString().split(",")
+    if (winning_numbers < 1 || winning_numbers > 45 ) {
+        throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+    }
     for (numbers in winning_numbers) {
         winning_numbers_list.add(numbers.toInt())
     }
     winning_numbers_list.sort()
     println("보너스 번호를 입력해 주세요.")
     val bonus_number = readLine()!!.toInt()
+    if (bonus_number < 1 || bonus_number > 45 ) {
+        throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+    }
 
     return Pair(winning_numbers_list, bonus_number)
 }
@@ -69,4 +76,18 @@ fun calculateLottoNumbers(lotto_list: MutableList<MutableList<Int>>, winning_num
     }
 
     return result
+}
+
+fun printResult(result: MutableList<Int>, lotto_tickets: Int) {
+    println("당첨 통계")
+    println("---")
+    println("3개 일치 (5,000원) - ${result[0]}개")
+    println("4개 일치 (50,000원) - ${result[1]}개")
+    println("5개 일치 (1,500,000원) - ${result[2]}개")
+    println("5개 일치 (30,000,000원) - ${result[3]}개")
+    println("6개 일치 (2,000,000,000원) - ${result[4]}개")
+    var returnRate = (5000 * result[0] + 50000 * result[1] + 1500000 * result[2] + 30000000 * result[4] + 20000000000 * result[4]).toDouble() / (lotto_tickets * 10)
+    returnRate = "%.2f".format(returnRate).toDouble()
+
+    println("총 수익률은 ${returnRate}%입니다.")
 }
