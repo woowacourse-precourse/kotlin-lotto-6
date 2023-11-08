@@ -86,19 +86,19 @@ class LottoController() {
         lottoMoney.isMoneyToBuyDivisibleBy1000(input)
     }
 
-    fun validateInputWinningNumberSize(input: List<String>) {
+    fun validateWinningNumberSize(input: List<String>) {
         winningNumber.isWinningNumberSize(input)
     }
 
-    fun validateInputWinningNumberNumeric(input: List<String>) {
+    fun validateWinningNumberNumeric(input: List<String>) {
         winningNumber.isWinningNumberNumeric(input)
     }
 
-    fun validateInputWinningNumberRange(input: List<Int>) {
+    fun validateWinningNumberRange(input: List<Int>) {
         winningNumber.isWinningNumberRange(input)
     }
 
-    fun validateInputWinningNumberDuplicate(input: List<Int>) {
+    fun validateWinningNumberDuplicate(input: List<Int>) {
         winningNumber.isWinningNumberDuplicate(input)
     }
 
