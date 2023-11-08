@@ -1,9 +1,17 @@
 package lotto
 
+import output.UserInterface
+
 class Lotto(private val numbers: List<Int>) {
+
     init {
         require(numbers.size == 6)
+        if (numbers.size != numbers.distinct().size) {
+            throw IllegalArgumentException(UserInterface.NOT_INPUT_SAME_NUMBER_EXCEPTION.mention)
+        }
     }
 
-    // TODO: 추가 기능 구현
+    fun getNumbers(): List<Int> {
+        return numbers
+    }
 }
