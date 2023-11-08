@@ -2,17 +2,18 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
-import kotlin.math.round
+import java.util.NoSuchElementException
 import kotlin.math.roundToInt
 
 fun main() {
     val money = getMoney()
-    val lottoList = makeLottoList(money)
-    printLottoList(lottoList)
+    val lottos = makeLottos(money)
+    printLottos(lottos)
 
     val winningNumber = getWinningNumber()
     val bonusNumber = getBonusNumber(winningNumber)
-    val result = compareWinningNumber(winningNumber, lottoList, bonusNumber)
+    val result = compareWinningNumber(winningNumber, lottos, bonusNumber)
+
     printResult(result)
     calculateProfitRate(result, money)
 }
@@ -20,7 +21,14 @@ fun main() {
 fun getMoney(): Int {
     println("구입금액을 입력해 주세요.")
     val money = Console.readLine().trim()
-    ExceptionHandler.checkInputMoney(money)
+
+    try {
+        ExceptionHandler.checkInputMoney(money)
+    } catch (e: IllegalArgumentException) {
+        print("[ERROR]")
+        throw NoSuchElementException()
+    }
+
     return money.toInt()
 }
 
@@ -29,18 +37,18 @@ fun makeLotto(): Lotto {
     return Lotto(numbers.sorted())
 }
 
-fun makeLottoList(money: Int): List<Lotto> {
-    val lottoList = mutableListOf<Lotto>()
+fun makeLottos(money: Int): List<Lotto> {
+    val lottos = mutableListOf<Lotto>()
     val cnt = money / 1000
 
     for (i in 1..cnt) {
-        lottoList.add(makeLotto())
+        lottos.add(makeLotto())
     }
 
-    return lottoList
+    return lottos
 }
 
-fun printLottoList(lottos: List<Lotto>) {
+fun printLottos(lottos: List<Lotto>) {
     val cnt = lottos.size
     println("${cnt}개를 구매했습니다.")
     for (lotto in lottos) {
@@ -50,36 +58,53 @@ fun printLottoList(lottos: List<Lotto>) {
 
 fun getWinningNumber(): List<Int> {
     println("당첨 번호를 입력해 주세요.")
-    val numbers = Console.readLine().trim()
-    var numberList = numbers.split(",")
-    val winningNumberList = mutableListOf<Int>()
+    val inputNumbers = Console.readLine().trim()
 
-    for (i in numberList) {
-        winningNumberList.add(i.toInt())
+    try {
+        ExceptionHandler.checkWinningNumber(inputNumbers)
+    } catch (e: IllegalArgumentException) {
+        print("[ERROR]")
+        throw NoSuchElementException()
     }
 
-    ExceptionHandler.checkNumberList(winningNumberList)
-    return winningNumberList
+    var numbers = inputNumbers.split(",")
+    val winningNumber = mutableListOf<Int>()
+    for (i in numbers) {
+        winningNumber.add(i.toInt())
+    }
+
+    try {
+        ExceptionHandler.checkNumberList(winningNumber)
+    } catch (e: IllegalArgumentException) {
+        print("[ERROR]")
+        throw NoSuchElementException()
+    }
+    return winningNumber
 }
 
 fun getBonusNumber(winningNumber: List<Int>): Int {
     println("보너스 번호를 입력해 주세요.")
     val number = Console.readLine().trim()
-    ExceptionHandler.checkBonusNumber(number, winningNumber)
+
+    try {
+        ExceptionHandler.checkBonusNumber(number, winningNumber)
+    } catch (e: IllegalArgumentException) {
+        print("[ERROR]")
+        throw NoSuchElementException()
+    }
 
     return number.toInt()
 }
 
 fun countInWinningNumber(winningNumber: List<Int>, lotto: Lotto): Int {
     var cnt = 0
-    for (number in lotto.numberList) {
+    for (number in lotto.lotteryNumber) {
         if (winningNumber.contains(number)) {
             cnt += 1
         }
     }
     return cnt
 }
-
 
 fun compareWinningNumber(winningNumber: List<Int>, lottos: List<Lotto>, number: Int): List<Int> {
     val matchCount = mutableListOf(0, 0, 0, 0, 0, 0, 0, 0)  // (0, 1, 2, 3, 4, 5, 6, 5+보너스)
@@ -103,7 +128,7 @@ fun compareBonusNumber(bonusNumber: Int, lotto: Lotto): Boolean {
     return false
 }
 
-fun printResult(matchCount: List<Int>){
+fun printResult(matchCount: List<Int>) {
     println("당첨 통계")
     println("---")
     println("3개 일치 (5,000원) - ${matchCount[State.FIFTH.value]}개")
@@ -115,18 +140,13 @@ fun printResult(matchCount: List<Int>){
 
 fun calculateProfitRate(matchCount: List<Int>, money: Int) {
     var total = 0.0
-    if (matchCount[State.FIFTH.value] != 0) {
-        total += matchCount[State.FIFTH.value] * State.FIFTH.price
-    } else if (matchCount[State.FOURTH.value] != 0) {
-        total += matchCount[State.FOURTH.value] * State.FOURTH.price
-    } else if (matchCount[State.THIRD.value] != 0) {
-        total += matchCount[State.THIRD.value] * State.THIRD.price
-    } else if (matchCount[State.SECOND.value] != 0) {
-        total += matchCount[State.SECOND.value] * State.SECOND.price
-    } else if (matchCount[State.FIRST.value] != 0) {
-        total += matchCount[State.FIRST.value] * State.FIRST.price
+
+    for(state in State.values()){
+        if(matchCount[state.value] != 0){
+            total += matchCount[state.value] * state.price
+        }
     }
 
-    var result = ((total / money) * 10).roundToInt() / 10f
+    val result = ((total / money) * 1000).roundToInt() / 10f
     println("총 수익률은 ${result}%입니다.")
 }

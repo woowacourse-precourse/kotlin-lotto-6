@@ -1,11 +1,12 @@
 package lotto
 
 object ExceptionHandler {
-     fun checkLotto(lotto: Lotto): Boolean {
-         if (isDuplicate(lotto.numberList)
-             || !isOverLength(lotto.numberList)
-             || !isInRange(lotto.numberList)) {
-             throw IllegalArgumentException("[ERROR]")
+    fun checkWinningNumber(numbers: String): Boolean {
+        for (i in numbers) {
+            if (!(i-'0' in 1..9 || i == ',')) {
+                println("[ERROR]")
+                throw IllegalArgumentException("[ERROR]")
+            }
          }
         return true
     }
@@ -14,6 +15,7 @@ object ExceptionHandler {
          if (isDuplicate(list)
              || !isOverLength(list)
              || !isInRange(list)) {
+             println("[ERROR]")
              throw IllegalArgumentException("[ERROR]")
          }
          return true
@@ -52,6 +54,7 @@ object ExceptionHandler {
 
     fun checkInputMoney(money: String): Boolean {
          if (!isOnlyInt(money) || !isDivideBy1000(money.toInt())) {
+             println("[ERROR]")
              throw IllegalArgumentException("[ERROR]")
          }
          return false
@@ -73,6 +76,7 @@ object ExceptionHandler {
         if(!isOnlyInt(number)
             || !isInRange(number)
             || winningNumberList.contains(number.toInt())){
+            println("[ERROR]")
             throw IllegalArgumentException("[ERROR]")
         }
     }
