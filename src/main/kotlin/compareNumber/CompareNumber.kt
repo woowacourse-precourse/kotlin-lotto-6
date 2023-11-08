@@ -5,8 +5,8 @@ import output.CompareResult
 import output.UserInterface
 
 class CompareNumber {
-    val ranking = mutableListOf(0,0,0,0,0)
-    fun showResult(ranks: List<Int>){
+    val ranking = mutableListOf(0, 0, 0, 0, 0)
+    fun showResult(ranks: List<Int>) {
         println(UserInterface.OUTPUT_WINNING_RESULT.mention)
 
         for (index in 0 until ranks.size) {
@@ -15,7 +15,8 @@ class CompareNumber {
         }
 
     }
-    fun resultOfLotto(lottos: MutableList<Lotto>, winningNumber: MutableList<String>) : List<Int>{
+
+    fun resultOfLotto(lottos: MutableList<Lotto>, winningNumber: MutableList<String>): List<Int> {
 
         var ranks = listOf<Int>()
 
@@ -39,13 +40,13 @@ class CompareNumber {
         return result
     }
 
-    private fun countMatchingNumber(input: List<Int>): List<Int>{
-        var winningCount = input.filter { it==1 }.size
-        var rank = Rank.RANK.determineRank(winningCount,input)
+    private fun countMatchingNumber(input: List<Int>): List<Int> {
+        var winningCount = input.filter { it == 1 }.size
+        var rank = Rank.RANK.determineRank(winningCount, input)
 
         println("Before : $ranking")
 
-        when (rank.toString()){
+        when (rank.toString()) {
             "FIRST" -> ranking[4]++
             "SECOND" -> ranking[3]++
             "THIRD" -> ranking[2]++

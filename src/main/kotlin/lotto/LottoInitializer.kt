@@ -5,15 +5,17 @@ import camp.nextstep.edu.missionutils.Randoms
 import output.UserInterface
 
 class LottoInitializer {
-    companion object{
+    companion object {
         const val LOTTO_MIN_NUMBER = 1
         const val LOTTO_MAX_NUMBER = 45
         const val LOTTO_SIZE = 6
     }
 
-    fun makeLottoNumber(): List<Int>{
-        var lotto = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER,
-            LOTTO_SIZE)
+    fun makeLottoNumber(): List<Int> {
+        var lotto = Randoms.pickUniqueNumbersInRange(
+            LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER,
+            LOTTO_SIZE
+        )
         return lotto.sorted()
     }
 
@@ -35,8 +37,8 @@ class LottoInitializer {
     }
 
 
-    fun checkPriceMultipleOfThousands(input: Int){
-        if(input % 1000 != 0) throw IllegalArgumentException(UserInterface.INPUT_IN_UNIT_OF_THOUSANDS_EXCEPTION.mention)
+    fun checkPriceMultipleOfThousands(input: Int) {
+        if (input % 1000 != 0) throw IllegalArgumentException(UserInterface.INPUT_IN_UNIT_OF_THOUSANDS_EXCEPTION.mention)
     }
 
 }
