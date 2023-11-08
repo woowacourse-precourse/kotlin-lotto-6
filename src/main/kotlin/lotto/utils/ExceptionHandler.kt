@@ -15,8 +15,8 @@ object ExceptionHandler {
         }
     }
 
-    fun isBlank(money: String) {
-        require(money.isNotBlank()) { BLANK_INPUT_EXCEPTION_MESSAGE }
+    fun isBlank(value: String) {
+        require(value.isNotBlank()) { BLANK_INPUT_EXCEPTION_MESSAGE }
     }
 
     fun checkBonusNumberIsDuplicate(winningLotto: WinningLotto, bonusNumber: LottoNumber) {
