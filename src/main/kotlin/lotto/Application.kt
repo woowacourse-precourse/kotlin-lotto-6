@@ -2,9 +2,10 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import kotlin.math.roundToInt
 
 const val ERROR = "[ERROR]"
-const val NOT_MULTIPLE_OF_1000_ERROR = " 구입금액은 1000의 배수여야 합니다. 다시 입력해 주세요."
+const val NOT_MULTIPLE_OF_1000_ERROR = " 로또 번호는 1부터 45 사이의 숫자여야 합니다."
 
 fun main() {
     println("구입금액을 입력해 주세요.")
@@ -15,7 +16,10 @@ fun main() {
     val tickets = generateAllTickets(numberOfTickets)
     printTickets(tickets)
 
-    var sevenNumbers = getSevenNumbers(getWinningNumbers(), getBonusNumber())
+    var winningNumbers = getWinningNumbers()
+    winningNumbers = validateWinningNumbers(winningNumbers)
+
+    var sevenNumbers = getSevenNumbers(winningNumbers, getBonusNumber())
     sevenNumbers = validateSevenNumbers(sevenNumbers)
 
     val countOfEachGradeResult = getCountOfEachGradeResult(tickets, sevenNumbers)
@@ -25,8 +29,24 @@ fun main() {
 
 
 fun getInputMoney(): Int {
+    var input = Console.readLine()
+    var isValidInput = false
 
-    return Console.readLine().toInt()
+    while (!isValidInput) {
+        try {
+            if (!input.matches(Regex("-?\\d+"))) {
+                throw IllegalArgumentException(ERROR+"숫자만을 입력하세요.")
+            }
+            isValidInput = true
+
+        } catch (e: IllegalArgumentException) {
+            println("${e.message}")
+            input = Console.readLine()
+
+        }
+    }
+
+    return input.toInt()
 }
 
 fun checkMoneyException(inputMoney: Int) {
@@ -107,7 +127,7 @@ fun checkNumbersException(sevenNumbers: MutableList<Int>) {
     for (item in sevenNumbers) {
         // 사용자의 입력이 1 이상 45 이하가 아닌 경우
         if (item < 1 || item > 45) {
-            throw IllegalArgumentException("$ERROR 당첨 번호와 보너스 번호 모두 1부터 45까지의 정수만 입력하실 수 있습니다.")
+            throw IllegalArgumentException("$ERROR 1부터 45까지의 정수만 입력하실 수 있습니다.")
         }
         // 사용자의 입력에서 같은 숫자가 중복될 경우
         if (subsetOfSeven.contains(item)) {
@@ -120,22 +140,41 @@ fun checkNumbersException(sevenNumbers: MutableList<Int>) {
 
 fun validateSevenNumbers(sevenNumbers: MutableList<Int>): MutableList<Int> {
     var isValidInput = false
+    var sevenNumbersVar = sevenNumbers
 
     while (!isValidInput) {
         try {
-            checkNumbersException(sevenNumbers)
+            checkNumbersException(sevenNumbersVar)
+            isValidInput = true
+
+        } catch (e: IllegalArgumentException) {
+            println("${e.message}")
+            sevenNumbersVar = sevenNumbersVar.take(6).toMutableList()
+            sevenNumbersVar.add(getBonusNumber())
+
+        }
+    }
+
+    return sevenNumbersVar
+}
+
+fun validateWinningNumbers(winningNumbers: MutableList<Int>): MutableList<Int>{
+    var isValidInput = false
+
+    while (!isValidInput) {
+        try {
+            checkNumbersException(winningNumbers)
             isValidInput = true
 
         } catch (e: IllegalArgumentException) {
             println("${e.message}")
 
-            sevenNumbers.clear() // Kotlin에서 함수의 매개변수는 기본적으로 val로 선언되니까 재할당 불가. 그래서 비우고
-            sevenNumbers.addAll(getSevenNumbers(getWinningNumbers(), getBonusNumber())) // 새로운 요소들을 추가
+            winningNumbers.clear() // Kotlin에서 함수의 매개변수는 기본적으로 val로 선언되니까 재할당 불가. 그래서 비우고
+            winningNumbers.addAll(getWinningNumbers()) // 새로운 요소들을 추가
 
         }
     }
-
-    return sevenNumbers
+    return winningNumbers
 }
 
 fun compareNumbers(aTicketNumbers: List<Int>, sevenNumbers: MutableList<Int>): Int {
@@ -179,8 +218,10 @@ fun printLotteryStats(countOfEachGradeResult: MutableList<Int>, numberOfTickets:
 
     val profitRate = calculateProfitRate(countOfEachGradeResult, numberOfTickets)
 
-    val formedProfitRate = String.format("%.1f", profitRate) + "%"
-    println("총 수익률은 ${formedProfitRate}입니다.")
+    val roundedProfitRate = (profitRate * 10).roundToInt() / 10.0
+//    val roundedProfitRate = "%,.2f".format(profitRate)
+
+    print("총 수익률은 ${roundedProfitRate}%입니다.")
 }
 
 fun calculateProfitRate(countOfEachGradeResult: MutableList<Int>, numberOfTickets: Int): Double {
