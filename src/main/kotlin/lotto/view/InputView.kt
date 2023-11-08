@@ -7,6 +7,15 @@ class InputView {
         println(INPUT_PURCHASE_AMOUNT)
         return Console.readLine()
     }
+    fun promptWinningNum(): String {
+        println(INPUT_WINNING_NUM)
+        return Console.readLine()
+    }
+
+    fun promptBonusNum(): String {
+        println(INPUT_BONUS_NUM)
+        return Console.readLine()
+    }
     companion object{
         const val INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요."
         const val INPUT_WINNING_NUM = "당첨 번호를 입력해 주세요."

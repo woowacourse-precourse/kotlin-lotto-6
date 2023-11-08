@@ -1,6 +1,6 @@
 package lotto.model
 
-class PurchaseAmount(private val data:String) {
+class User(private val data:String) {
     val purchaseAmount: Int = data.toInt()
     init {
         require(purchaseAmount > PURCHASE_AMOUNT_MIN){
