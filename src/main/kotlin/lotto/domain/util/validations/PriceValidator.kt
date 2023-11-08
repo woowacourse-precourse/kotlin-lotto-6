@@ -1,7 +1,7 @@
-package lotto.util.validations
+package lotto.domain.util.validations
 
-import lotto.util.const.ErrorMessage.error_price
-import lotto.util.const.lottoPrice
+import lotto.domain.util.const.ErrorMessage.error_price
+import lotto.domain.util.const.lottoPrice
 
 object PriceValidator {
 

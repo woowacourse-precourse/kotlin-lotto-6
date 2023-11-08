@@ -1,7 +1,7 @@
-package lotto.model
+package lotto.data.model
 
-import lotto.util.const.ErrorMessage.error_duplicated_lotto_numbers
-import lotto.util.const.lottoWinningNumberQuantity
+import lotto.domain.util.const.ErrorMessage.error_duplicated_lotto_numbers
+import lotto.domain.util.const.lottoWinningNumberQuantity
 
 class Lotto(private val numbers: List<Int>) {
     init {

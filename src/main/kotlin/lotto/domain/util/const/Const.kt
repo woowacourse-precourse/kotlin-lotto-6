@@ -1,4 +1,4 @@
-package lotto.util.const
+package lotto.domain.util.const
 
 const val errorPrefix = "[ERROR]"
 const val minLottoWinningNumber = 1

@@ -1,9 +1,9 @@
-package lotto.util.validations
+package lotto.domain.util.validations
 
-import lotto.model.Lotto
-import lotto.util.const.ErrorMessage.error_bonus_number
-import lotto.util.const.maxLottoWinningNumber
-import lotto.util.const.minLottoWinningNumber
+import lotto.data.model.Lotto
+import lotto.domain.util.const.ErrorMessage.error_bonus_number
+import lotto.domain.util.const.maxLottoWinningNumber
+import lotto.domain.util.const.minLottoWinningNumber
 
 object LottoBonusNumbersValidator {
     fun inputNumber(userLottos: Lotto, input: String): Boolean {

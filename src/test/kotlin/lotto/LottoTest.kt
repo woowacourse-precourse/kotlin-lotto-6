@@ -1,8 +1,8 @@
 package lotto
 
-import lotto.controller.LottoController
-import lotto.model.Lotto
-import lotto.util.RateOfReturnCalculator.calculateRateOfReturn
+import lotto.domain.controller.LottoController
+import lotto.data.model.Lotto
+import lotto.domain.util.RateOfReturnCalculator.calculateRateOfReturn
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 

@@ -1,4 +1,4 @@
-package lotto.model
+package lotto.data.model
 
 enum class Winning(val msg:String, val winningPrice:Int, var winningCnt: Int) {
     MatchingThreeCount("3개 일치", 5000,0),

@@ -1,6 +1,6 @@
 package lotto
 
-import lotto.controller.LottoController
+import lotto.domain.controller.LottoController
 import lotto.util.doLogic
 
 

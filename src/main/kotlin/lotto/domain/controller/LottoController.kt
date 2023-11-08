@@ -1,13 +1,13 @@
-package lotto.controller
+package lotto.domain.controller
 
-import lotto.model.Lotto
-import lotto.model.Winning
-import lotto.util.NumberPicker
-import lotto.util.RateOfReturnCalculator
-import lotto.util.const.lottoPrice
-import lotto.util.validations.LottoBonusNumbersValidator
-import lotto.util.validations.LottoNumbersValidator
-import lotto.util.validations.PriceValidator
+import lotto.data.model.Lotto
+import lotto.data.model.Winning
+import lotto.domain.util.NumberPicker
+import lotto.domain.util.RateOfReturnCalculator
+import lotto.domain.util.const.lottoPrice
+import lotto.domain.util.validations.LottoBonusNumbersValidator
+import lotto.domain.util.validations.LottoNumbersValidator
+import lotto.domain.util.validations.PriceValidator
 import lotto.view.InputView
 import lotto.view.OutputView
 

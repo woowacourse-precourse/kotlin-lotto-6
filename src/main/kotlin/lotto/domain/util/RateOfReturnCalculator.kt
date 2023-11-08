@@ -1,7 +1,7 @@
-package lotto.util
+package lotto.domain.util
 
-import lotto.util.const.lottoPrice
-import lotto.util.const.rateOfReturnDecimal
+import lotto.domain.util.const.lottoPrice
+import lotto.domain.util.const.rateOfReturnDecimal
 
 object RateOfReturnCalculator {
     fun calculateRateOfReturn(totalWinningPrice: Int, numberOfLottoTickets: Int): String {

@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Console
 object InputView {
 
     fun inputPrice(): String {
-        println("구입금액을 입력해 주세요.\n")
         return Console.readLine()
     }
 

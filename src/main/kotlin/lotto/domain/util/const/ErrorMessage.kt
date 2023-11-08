@@ -1,4 +1,4 @@
-package lotto.util.const
+package lotto.domain.util.const
 
 object ErrorMessage {
     const val error_bonus_number = "$errorPrefix 보너스 번호는 $minLottoWinningNumber~$maxLottoWinningNumber 사이의 숫자 중 당첨 번호와 중복 되지 않는 수 하나를 입력해야 합니다."
