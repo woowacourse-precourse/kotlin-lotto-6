@@ -23,7 +23,7 @@ object GameController {
         messenger.printInputPrice()
         var number = LottoRule.NULL_NUM.num
         while (number == LottoRule.NULL_NUM.num) number = inputManager.inputPurchaseCost()
-        repeat(number) { lottoBundle.add(lottoManager.purchaseLotto()) }
+        repeat(number) { lottoManager.purchaseLotto()?.let { lotto -> lottoBundle.add(lotto) } }
 
         messenger.apply {
             println()

@@ -7,7 +7,12 @@ import java.text.DecimalFormat
 
 class LottoManager {
 
-    fun purchaseLotto(): Lotto = Lotto(makeRandomNumbers())
+    fun purchaseLotto(): Lotto? {
+        try {
+            return Lotto(makeRandomNumbers())
+        } catch (_: IllegalArgumentException){}
+        return null
+    }
 
     fun calculateResult(
         purchasePrice: Int,
