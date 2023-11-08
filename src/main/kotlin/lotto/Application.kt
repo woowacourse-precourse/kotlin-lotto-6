@@ -1,6 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     println("구입금액을 입력해 주세요.")
@@ -10,6 +11,19 @@ fun main() {
         val purchasedTickets = generateLottoTickets(purchaseAmount)
         println("${purchasedTickets}개를 구매했습니다.")
 
+        // 사용자 로또 객체 배열 생성
+        val lottoTickets = mutableListOf<Lotto>()
+
+        for (i in 1..purchasedTickets) {
+            val randomNumbers = generateRandomNumbers()
+            val lotto = Lotto(randomNumbers)
+            lottoTickets.add(lotto)
+        }
+
+        for (lotto in lottoTickets) {
+            lotto.printNumbers()
+        }
+
         val winningNumbers = getWinningNumbers()
         val bonusNumber = getBonusNumber()
 
@@ -18,6 +32,18 @@ fun main() {
     }
 }
 
+fun generateRandomNumbers(): List<Int> { // 사용자 로또 생성
+    val randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+
+    if (!isValidNumbers(randomNumbers)) {
+        throw IllegalArgumentException("랜덤 숫자가 유효하지 않습니다.")
+    }
+
+    return randomNumbers
+}
+fun isValidNumbers(numbers: List<Int>): Boolean {
+    return numbers.all { it in 1..45 } && numbers.toSet().size == 6
+}
 fun getValidPurchaseAmount(): Int { // 로또 구입 금액 및 유효성 검사
     try {
         val input = Console.readLine()
@@ -57,6 +83,7 @@ fun getWinningNumbers(): List<Int> {
         }
     }
 }
+
 fun getBonusNumber(): Int {
     println("보너스 번호를 입력해 주세요.")
     try {
