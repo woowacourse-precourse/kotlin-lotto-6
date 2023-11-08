@@ -18,7 +18,7 @@ class GameManager(val printManager: PrintManager) {
         result.forEachIndexed { index, it ->
             winnings += it * winningsByRank[index]
         }
-        val rateOfReturn = (winnings/money).toDouble()
+        val rateOfReturn = (winnings/money.toDouble())*100
         return round(rateOfReturn*10)/10
     }
 
