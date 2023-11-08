@@ -1,0 +1,22 @@
+import lotto.model.LottoProfitCalculator
+import lotto.model.domain.Money
+import lotto.model.domain.Rank
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
+
+class LottoProfitCalculatorTest {
+
+    @Test
+    fun `calculateProfitRate 메소드 테스트`() {
+        // given
+        val money = Money(10_000)
+        val rankCounts = mapOf(Rank.FIFTH to 2)
+        val calculator = LottoProfitCalculator(money, rankCounts)
+
+        //When
+        val actualProfitRate = calculator.calculateProfitRate()
+
+        //Then
+        assertEquals(100.0, actualProfitRate)
+    }
+}
