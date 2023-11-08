@@ -1,5 +1,6 @@
 package lotto.domain
 
+import camp.nextstep.edu.missionutils.Console
 import java.lang.NumberFormatException
 
 class Customer {
@@ -12,44 +13,36 @@ class Customer {
     val lottoNumsList= _lottoNumsList
 
     private var order = 1
-
     init {
         _lottoAmounts = inputToInt()
         _purchaseCounts = _lottoAmounts / 1000
 
-        while(order<=_purchaseCounts){
+        while (order <= _purchaseCounts) {
 
             val lottoNums = produceLottoNums()
             _lottoNumsList.add(lottoNums)
-            order ++
+            order++
 
         }
-
-     }
-
-
-    private fun input(): String? {
-        println("구입금액을 입력해 주세요.")
-        val inputCount  = readLine()
-        return inputCount
     }
 
-    //금액 입력
+
+
     private fun inputToInt() : Int {
-        var inputCount  = input()
+
+        val inputCount  = Console.readLine()
         if(!checkInputCount(inputCount)) inputToInt()
 
-        return inputCount!!.toInt()
+        return inputCount.toInt()
     }
-    private fun checkInputCount(input : String?) : Boolean {
+    private fun checkInputCount(input : String) : Boolean {
         return try {
-            require(input != null && input.toIntOrNull()!=null && input.toInt() % 1000 == 0 , { "[ERROR] 천원 단위의 금액을 입력해주세요" } )
+            require( input.toIntOrNull()!=null && input.toInt() % 1000 == 0,{"[ERROR]"})
             true
         }catch (e : IllegalArgumentException){
-            println(e.message)
-            false
-        }catch (e : Exception){
-            println(e.message)
+            e.message?.let{
+                println(it)
+            } ?: println()
             false
         }
     }

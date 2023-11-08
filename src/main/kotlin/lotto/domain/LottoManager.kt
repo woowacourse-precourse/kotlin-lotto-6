@@ -10,10 +10,12 @@ class LottoManager {
     private var lottoCounts = 0
     private var lottoAmount : Long = 0
     private var lottoNumsList = emptyList<List<Int>>()
-    private  var lottoNums : LottoNums
-    private var lottoResult : LottoResult
-    private var revenue : Double
-    init {
+    private lateinit var lottoNums : LottoNums
+    private lateinit var lottoResult : LottoResult
+    private var revenue : Double = 0.0
+
+    fun startGame(){
+
         val customer = Customer()
 
         lottoAmount = customer.getPurchaseAmounts()
@@ -35,6 +37,9 @@ class LottoManager {
         lottoManagerScreen.printLottoResult()
 
     }
+
+
+
 
 
 
