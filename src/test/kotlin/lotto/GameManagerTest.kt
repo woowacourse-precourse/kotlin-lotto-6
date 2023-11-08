@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class GameManagerTest {
-    val gameManager = GameManager()
+    val gameManager = GameManager(PrintManager())
     @Test
     fun `getRandomNumbers()가 중복되는 숫자를 반환하지 않는가`() {
         val numbers = gameManager.getRandomNumbers()

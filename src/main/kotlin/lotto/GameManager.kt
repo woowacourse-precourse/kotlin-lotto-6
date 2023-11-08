@@ -26,7 +26,7 @@ class GameManager(val printManager: PrintManager) {
         return lottos
     }
 
-    private fun getRandomNumbers() = Randoms.pickUniqueNumbersInRange(MIN_IN_RANGE, MAX_IN_RANGE, LOTTO_SIZE)
+    fun getRandomNumbers() = Randoms.pickUniqueNumbersInRange(MIN_IN_RANGE, MAX_IN_RANGE, LOTTO_SIZE)
 
     companion object {
         const val MIN_IN_RANGE = 1

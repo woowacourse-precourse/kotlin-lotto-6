@@ -43,15 +43,25 @@ class ExceptionManagerTest {
 
     @Test
     fun `보너스 번호가 숫자가 아니면 에러가 발생한다`() {
+        val winningNum = Lotto(listOf(1,2,3,4,5,6))
         org.junit.jupiter.api.assertThrows<IllegalArgumentException> {
-            exceptionManager.bonusNum("abc")
+            exceptionManager.bonusNum("abc", winningNum)
         }
     }
 
     @Test
     fun `보너스 번호가 1~45가 아니면 에러가 발생한다`() {
+        val winningNum = Lotto(listOf(1,2,3,4,5,6))
         org.junit.jupiter.api.assertThrows<IllegalArgumentException> {
-            exceptionManager.bonusNum("46")
+            exceptionManager.bonusNum("46", winningNum)
+        }
+    }
+
+    @Test
+    fun `보너스 번호가 당첨번호와 중복되면 에러가 발생한다`() {
+        val winningNum = Lotto(listOf(1,2,3,4,5,6))
+        org.junit.jupiter.api.assertThrows<IllegalArgumentException> {
+            exceptionManager.bonusNum("6", winningNum)
         }
     }
 }
