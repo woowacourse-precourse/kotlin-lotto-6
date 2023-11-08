@@ -3,6 +3,11 @@ package lotto.domain
 import lotto.utils.Constant.INVALID_SIZE_EXCEPTION_MESSAGE
 import lotto.utils.Constant.LOTTO_NUMBER_SIZE
 
+private const val SIZE_SIX = 6
+private const val SIZE_FIVE = 5
+private const val SIZE_FOUR = 4
+private const val SIZE_THREE = 3
+
 class WinningLotto(private val numbers: List<LottoNumber>) : List<LottoNumber> by numbers {
 
     init {
@@ -12,10 +17,10 @@ class WinningLotto(private val numbers: List<LottoNumber>) : List<LottoNumber> b
     fun determineWinner(playerLotto: Lotto, bonusNumber: Int): WinningRank {
         val winningNumbers = playerLotto.filter { it in numbers }
         return when (winningNumbers.size) {
-            6 -> WinningRank.SIX_MATCHES
-            5 -> isBonusNumberMatched(winningNumbers, LottoNumber(bonusNumber))
-            4 -> WinningRank.FOUR_MATCHES
-            3 -> WinningRank.THREE_MATCHES
+            SIZE_SIX -> WinningRank.SIX_MATCHES
+            SIZE_FIVE -> isBonusNumberMatched(winningNumbers, LottoNumber(bonusNumber))
+            SIZE_FOUR -> WinningRank.FOUR_MATCHES
+            SIZE_THREE -> WinningRank.THREE_MATCHES
             else -> WinningRank.NO_MATCHES
         }
     }

@@ -24,7 +24,8 @@ class LottoController(
     fun start() {
         val money = getPurchaseMoney()
         val player = Player(money)
-        printPurchaseLottoQuantity(money.value / 1000)
+        val purchaseQuantity = money.value.div(LOTTO_PRICE)
+        printPurchaseLottoQuantity(purchaseQuantity)
         val playerLotto = purchaseLotto(player)
         val winningLotto = getWinningLotto()
         val bonusNumber = getBonusNumber()
