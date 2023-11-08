@@ -34,4 +34,11 @@ class LottoUI {
         println(Buy.HOW_MANY.value)
     }
 
+    fun printLottoNumbers(lottos: List<Lotto>) {
+        lottos.forEach {
+            println("${it.getNumbers()}")
+        }
+        println()
+    }
+
 }
