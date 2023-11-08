@@ -16,6 +16,13 @@ class UnitTest : NsTest() {
     }
 
     @Test
+    fun `보너스 번호에 잘 못 된 범위의 숫자를 입력했을 때 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            runException("800", "1,2,3,4,5,6", "133")
+        }
+    }
+
+    @Test
     fun `보너스 번호에 숫자가 아닌 문자가 들어간 경우 예외가 발생한다`() {
         assertSimpleTest {
             runException("8000", "1,2,3,4,5,6", "512abs")
