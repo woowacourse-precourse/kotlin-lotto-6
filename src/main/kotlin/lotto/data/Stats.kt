@@ -7,8 +7,14 @@ data class Stats(
 
     override fun toString(): String {
         return """
+            당첨 통계
+            ---
             $info
-            총 수익률은 ${profitRate * 100}%입니다.
+            총 수익률은 ${profitRate * CORRECTION_VALUE}%입니다.
         """.trimIndent()
+    }
+
+    companion object {
+        private const val CORRECTION_VALUE = 100
     }
 }

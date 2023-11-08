@@ -8,7 +8,7 @@ import lotto.data.WinningLotto
 class PointOfSales(private val analyzer: Analyzer) : RetryStrategy() {
 
     fun issueLotto(quantity: Int): List<Lotto> {
-        require(quantity > 0) {
+        require(quantity > MIN_QUANTITY_EXCLUSIVE) {
             QUANTITY_SHOULD_BE_MORE_THEN_0
         }
         val tickets = mutableListOf<Lotto>()
@@ -38,5 +38,6 @@ class PointOfSales(private val analyzer: Analyzer) : RetryStrategy() {
 
     companion object {
         const val QUANTITY_SHOULD_BE_MORE_THEN_0 = "[ERROR] 구매 수량은 1개 이상이어야 합니다."
+        private const val MIN_QUANTITY_EXCLUSIVE = 0
     }
 }

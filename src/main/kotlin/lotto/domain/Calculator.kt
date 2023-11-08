@@ -13,7 +13,7 @@ class Calculator {
         return quotient to remainder
     }
 
-    fun calculateTotalProfit(countOfWin: List<Int>) = countOfWin.foldIndexed(0) { indexOfRank: Int, sum: Long, count: Int ->
+    fun calculateTotalProfit(countOfWin: List<Int>) = countOfWin.foldIndexed(INITIAL_SUM) { indexOfRank: Int, sum: Long, count: Int ->
         sum + GRADE.from(indexOfRank).price().toLong() * count
     }
 
@@ -21,6 +21,7 @@ class Calculator {
         ((totalProfit.toDouble() / (Lotto.PRICE.toDouble() * sizeOfTicket) * ROUND_FACTOR)).roundToInt() / ROUND_FACTOR
 
     companion object {
+        private const val INITIAL_SUM = 0L
         private const val ROUND_FACTOR = 1_000.0
     }
 }

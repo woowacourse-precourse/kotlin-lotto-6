@@ -55,7 +55,6 @@ class IO private constructor() {
 
     fun showStats(stats: Stats) {
         show(EMPTY_TEXT_FOR_LINE_BREAK, true)
-        show("당첨 통계$LINE_BREAK---", true)
         show(stats.toString(), false)
     }
 

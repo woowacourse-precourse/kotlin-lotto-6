@@ -10,13 +10,13 @@ open class Lotto(private val numbers: List<Int>) {
 
     fun checkGrade(win: Lotto, bonusNum: Int): GRADE {
         val countOfSame = numbers.intersect(win.numbers.toSet()).size
-        val isBonusContain = countOfSame == 5 && bonusNum in numbers
+        val isBonusContain = (countOfSame == GRADE.TWO.countOfSame && bonusNum in numbers)
         return GRADE.from(countOfSame, isBonusContain)
     }
 
     fun checkGrade(winningLotto: WinningLotto): GRADE {
         val countOfSame = numbers.intersect(winningLotto.numbers.toSet()).size
-        val isBonusContain = countOfSame == 5 && winningLotto.bonus in numbers
+        val isBonusContain = (countOfSame == GRADE.TWO.countOfSame && winningLotto.bonus in numbers)
         return GRADE.from(countOfSame, isBonusContain)
     }
 
