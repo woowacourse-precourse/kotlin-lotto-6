@@ -17,6 +17,7 @@ class LottoReturnsTest {
     @BeforeEach
     fun setUp() {
         lottoReturns = LottoReturnsImpl()
+        LottoRanking.entries.forEach { it.count = 0 }
     }
 
     @Test
@@ -32,8 +33,6 @@ class LottoReturnsTest {
         lottoRanking.count++
 
         val result = lottoReturns.calculate(LottoPurchaseAmount(10000))
-
-        lottoRanking.count--
 
         assertThat(result).isEqualTo(lottoReturn)
     }
