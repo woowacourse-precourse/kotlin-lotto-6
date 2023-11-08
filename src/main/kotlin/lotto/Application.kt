@@ -7,15 +7,14 @@ fun main() {
     val money = getMoney()
     val lottoList = makeLottoList(money)
     printLottoList(lottoList)
+    val winningNumber = getWinningNumber()
+    println(getBonusNumber(winningNumber))
 }
 
 fun getMoney(): Int {
     println("구입금액을 입력해 주세요.")
     val money = Console.readLine().trim()
-
-    if (!ExceptionHandler.checkInputMoney(money)) {
-        throw IllegalArgumentException("getMoney()함수 오류 입력받은 값이 숫자가 아니거나 1000원 단위가 아닙니다.")
-    }
+    ExceptionHandler.checkInputMoney(money)
     return money.toInt()
 }
 
@@ -41,4 +40,26 @@ fun printLottoList(lottos: List<Lotto>) {
     for (lotto in lottos) {
         println(lotto.toString())
     }
+}
+
+fun getWinningNumber(): List<Int> {
+    println("당첨 번호를 입력해 주세요.")
+    val numbers = Console.readLine().trim()
+    var numberList = numbers.split(",")
+    val winningNumberList = mutableListOf<Int>()
+
+    for (i in numberList) {
+        winningNumberList.add(i.toInt())
+    }
+
+    ExceptionHandler.checkNumberList(winningNumberList)
+    return winningNumberList
+}
+
+fun getBonusNumber(winningNumber: List<Int>): Int {
+    println("보너스 번호를 입력해 주세요.")
+    val number = Console.readLine().trim()
+    ExceptionHandler.checkBonusNumber(number, winningNumber)
+
+    return number.toInt()
 }
