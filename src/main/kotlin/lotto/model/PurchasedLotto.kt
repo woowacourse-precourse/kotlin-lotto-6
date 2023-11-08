@@ -68,4 +68,8 @@ class PurchasedLotto {
     fun getWinRank(): Int {
         return winRank
     }
+
+    fun getNumbers(): List<Int> {
+        return numbers
+    }
 }
