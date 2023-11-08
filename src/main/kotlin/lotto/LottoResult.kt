@@ -59,7 +59,7 @@ class LottoResult (private val lottos: List<Lotto>,
     private fun calPrizeAmount(): Int {
         var result = 0
 
-        for (rank in 1..5) {
+        for (rank in 5 downTo 1) {
             val count = rankCounts[rank]!!
             result += prize[rank]!! * count
             printMatchedNumber(rank, count)
