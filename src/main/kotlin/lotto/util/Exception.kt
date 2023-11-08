@@ -6,11 +6,11 @@ object Exception {
     }
 
     fun validateNegativeException(amount: Int) {
-        require(amount >= 0) { EXCEPTION_MESSAGE + WRONG_RANGE_NEGATIVE_EXCEPTION }
+        require(amount >= ZERO) { EXCEPTION_MESSAGE + WRONG_RANGE_NEGATIVE_EXCEPTION }
     }
 
     fun validateUnitException(amount: Int) {
-        require(amount % LOTTO_PRICE_STANDARD == 0 && amount > 0) { EXCEPTION_MESSAGE + WRONG_UNIT_EXCEPTION }
+        require(amount % LOTTO_PRICE_STANDARD == ZERO && amount > ZERO) { EXCEPTION_MESSAGE + WRONG_UNIT_EXCEPTION }
     }
 
     fun validationRangeException(number: Int) {
@@ -18,17 +18,17 @@ object Exception {
     }
 
     fun validationDuplicationException(lotto: List<Int>, number: Int) {
-        if (lotto.count { it == number } != 1) throw IllegalArgumentException(
+        if (lotto.count { it == number } != LOTTO_BONUS_COUNT) throw IllegalArgumentException(
             DUPLICATE_NUMBER_EXCEPTION
         )
     }
 
     fun validationSeparatorException(number: String) {
-        require(number.contains(",")) { EXCEPTION_MESSAGE + WRONG_SEPARATOR }
+        require(number.contains(LOTTO_NUMBER_SEPARATOR)) { EXCEPTION_MESSAGE + WRONG_SEPARATOR }
     }
 
     fun validationBonusCountException(bonus: String) {
-        require(!bonus.contains(",")) { EXCEPTION_MESSAGE + WRONG_BONUS_COUNT_EXCEPTION }
+        require(!bonus.contains(LOTTO_NUMBER_SEPARATOR)) { EXCEPTION_MESSAGE + WRONG_BONUS_COUNT_EXCEPTION }
     }
 
     fun validationBonusDuplicationException(bonus: Int, winningNumber: List<Int>) {

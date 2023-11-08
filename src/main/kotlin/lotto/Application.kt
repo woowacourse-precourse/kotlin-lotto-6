@@ -22,12 +22,12 @@ fun main() {
     println()
     printWinningNumber()
     val winningNumber =
-        Validation().validationLotto(inputWinningNumber().sorted()) // winningNumber 얻음
+        Validation().validationLotto(inputWinningNumber().sorted())
     val winningCount = LottoCompare(lotto).compare(winningNumber)
     println()
     printBonusNumber()
     val bonusNumber =
-        Validation().validationBonusDuplication(inputBonusNumber(), winningNumber) // bonusNumber 얻음
+        Validation().validationBonusDuplication(inputBonusNumber(), winningNumber)
     val bonusCount = LottoCompare(lotto).compareBonus(bonusNumber)
     println()
     printWinningStatic()
