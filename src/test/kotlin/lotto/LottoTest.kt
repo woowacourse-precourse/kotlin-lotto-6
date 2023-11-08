@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.Lotto
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -20,5 +21,17 @@ class LottoTest {
         }
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `로또 번호가 1부터 45 사이의 숫자가 아닐 때`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1, 2, 6, 35, 40, 50))
+        }
+    }
+
+    @Test
+    fun `로또 번호가 오름차순이 아닐 때`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1, 4, 40, 37, 20, 5))
+        }
+    }
 }
