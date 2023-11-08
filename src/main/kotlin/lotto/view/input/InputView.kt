@@ -20,7 +20,6 @@ object InputView {
 
     fun readWinningNumber(): List<Int> {
         val input = Console.readLine()?.trim() ?: throw IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE)
-        println("$input")
         return try {
             val parseWinningNumbers = WinningNumberParser.parseWinningNumbers(input)
             parseWinningNumbers

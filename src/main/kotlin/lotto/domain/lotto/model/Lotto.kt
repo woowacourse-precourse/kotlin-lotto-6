@@ -16,12 +16,8 @@ class Lotto(private val numbers: List<LottoNumber> = generateRandomNumbers()) {
 
     companion object {
         private fun generateRandomNumbers(): List<LottoNumber> {
-            val randomNumbers = mutableSetOf<LottoNumber>()
-            while (randomNumbers.size < LOTTO_COUNT) {
-                val randomNumber = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER)
-                randomNumbers.add(LottoNumber(randomNumber))
-            }
-            return randomNumbers.toList().sortedBy { it.number }
+            val randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_COUNT)
+            return randomNumbers.map { LottoNumber(it) }.sortedBy { it.number }
         }
     }
 

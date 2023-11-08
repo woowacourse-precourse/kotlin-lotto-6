@@ -27,10 +27,15 @@ object OutputView {
     }
 
     fun printRankStatistics(rank: WinningRank, count: Int) {
-        output.printMessage("${rank.matchCount}개 일치 (${rank.prize}원) - ${count}개")
+        val formattedPrize = String.format("%,d원", rank.prize)
+        if (rank == WinningRank.SECOND) {
+            output.printMessage("${rank.matchCount}개 일치, 보너스 볼 일치 (${formattedPrize}) - ${count}개")
+            return
+        }
+        output.printMessage("${rank.matchCount}개 일치 (${formattedPrize}) - ${count}개")
     }
 
     fun profitRateMessage(profitRate: Double) {
-        println("${GameConstants.MESSAGE_PROFIT_RATE_START} ${String.format("%.2f", profitRate)} ${GameConstants.MESSAGE_PROFIT_RATE_END}")
+        println("${GameConstants.MESSAGE_PROFIT_RATE_START}${String.format("%.1f%%", profitRate)}${GameConstants.MESSAGE_PROFIT_RATE_END}")
     }
 }
