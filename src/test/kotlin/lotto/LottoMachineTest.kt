@@ -29,4 +29,29 @@ class LottoMachineTest {
 
         assertEquals(expectedResult, result)
     }
+
+    @Test
+    fun `당첨금 enum과 당첨 결과를 비교`() {
+        val lottoMachine = LottoMachine()
+
+        val results = listOf(
+            Pair(6, false),
+            Pair(5, true),
+            Pair(3, false),
+            Pair(2, true),
+            Pair(1, false)
+        )
+
+        val exceptedResults = mapOf(
+            Jackpot.FIRST to 1,
+            Jackpot.SECOND to 1,
+            Jackpot.FIFTH to 1,
+            null to 2,
+        )
+
+        val tallyResults = lottoMachine.tallyResults(results)
+
+        assertEquals(exceptedResults, tallyResults)
+    }
+
 }
