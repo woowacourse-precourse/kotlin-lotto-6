@@ -9,11 +9,10 @@ fun convertNumberList(input:String) = input
     .map {
         it.toIntOrNull() ?: throw IllegalArgumentException(ErrorMsg.NOT_INT)
     }
-fun catchErrorIntInput():Int
+fun catchErrorIntInput(input: String):Int
 {
     var ret:Int
     try {
-        val input = getPromptInput()
         ret = convertNumber(input)
     }catch (e:IllegalArgumentException)
     {
@@ -49,7 +48,8 @@ fun catchErrorLotto(input:String): Lotto?
 fun getAmount():Int{
     var amount:Int
     do {
-        amount = catchErrorIntInput()
+        val input = getPromptInput()
+        amount = catchErrorIntInput(input)
     }while(amount ==-1 && isPaymentValid(amount))
     return amount
 }
