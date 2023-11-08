@@ -1,16 +1,10 @@
 package lotto
 
-import camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange
-
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
     }
 
-    fun makeLotto(): List<Int>? {
-        var lottoNums: MutableList<Int> = pickUniqueNumbersInRange(1, 45, 6)
-        return lottoNums.sorted()
-    }
 
     fun checkLotto(userNumbers: List<Int>,bonusNum:Int): MutableList<Int> {
         var sameNums: MutableList<Int> = mutableListOf(0,0)
@@ -25,7 +19,7 @@ class Lotto(private val numbers: List<Int>) {
         return sameNums
     }
 
-    fun checkMoney(num: MutableList<Int>): Int {
+    fun checkMoney(num: MutableList<Int>, bNum: Int): Int {
         var money: Int
         if (num[0] == 3) return 5000
         if (num[0] == 4) return 50000
