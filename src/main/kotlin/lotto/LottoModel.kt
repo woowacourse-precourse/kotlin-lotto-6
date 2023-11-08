@@ -31,4 +31,5 @@ class LottoModel {
         }
         return result
     }
+
 }
