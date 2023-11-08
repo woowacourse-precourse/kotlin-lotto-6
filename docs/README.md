@@ -18,7 +18,7 @@
   - [x] 보너스 번호(1개) 입력 받는 기능
 - 당첨 통계 UI - WinningStatisticsView
   - [x] 당첨 내역 출력 기능
-  - [ ] 수익률 출력 기능
+  - [x] 수익률 출력 기능
 - 사용자가 잘못된 값을 입력할 경우의 UI - ExceptionView
   - [ ] "[ERROR]"로 시작하는 `IllegalArgumentException` 에러 메시지 출력 기능
 

@@ -13,7 +13,7 @@ object WinningStatisticsView {
     }
   }
 
-  fun printTotalProfitRate() {
-
+  fun printTotalProfitRate(totalProfitRate: Double) {
+    println(SHOW_TOTAL_PROFIT_RATE.format(totalProfitRate))
   }
 }
