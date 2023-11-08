@@ -22,4 +22,10 @@ class PurchaseTest {
         val validator = LottoPurchase()
         assertTrue(validator.validatePurchase("4000"))
     }
+    @Test
+    fun `1000원 단위로 안 나누어 떨어지는 구입 금액이면 에러 발생`() {
+        assertThrows<IllegalArgumentException> {
+            LottoPurchase().validatePurchase("4500")
+        }
+    }
 }
