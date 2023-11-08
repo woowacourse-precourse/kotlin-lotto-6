@@ -6,7 +6,7 @@ class InputManager {
     private val exceptionManager = ExceptionManager()
     fun inputMoney(): Int {
         println(PRINT_INPUT_MONEY)
-        val money = Console.readLine()
+        val money = Console.readLine().trim()
         exceptionManager.moneyException(money)
         return money.toInt()
     }
