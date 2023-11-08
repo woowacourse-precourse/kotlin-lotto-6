@@ -12,3 +12,7 @@ object InputLottoNumsException {
     const val INPUT_LOTTO_6NUMBERS = "[ERROR] 6개의 숫자를 입력해야 합니다."
     const val INPUT_LOTTO_ISDUPLICATED = "[ERROR] 중복되지 않은 6개의 숫자를 입력해야 합니다."
 }
+
+object InputBonusNumException {
+    const val INPUT_BONUS_ISDUPLICATED = "[ERROR] 입력한 로또 번호와 달라야 합니다."
+}

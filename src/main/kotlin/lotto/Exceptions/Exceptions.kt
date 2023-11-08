@@ -1,15 +1,17 @@
 package lotto.Exceptions
 
+import lotto.Constants.InputBonusNumException
 import lotto.Controller.LottoController
 import lotto.Model.LottoGameModel
 import lotto.Constants.InputLottoNumsException
 import lotto.Constants.LottoException
+import lotto.Model.Lotto
 
 object Exceptions {
 
-    fun howManyBuyLottoIsValid(lottoPrice: String): Int {
+    fun howManyBuyLottoIsValid(lottoPrice: String?): Int {
         try {
-            val price = lottoPrice.toInt()
+            val price = lottoPrice!!.toInt()
             checkHowManyBuyLottoBy1000(price)
             return price / 1000
 
@@ -18,87 +20,83 @@ object Exceptions {
         }
     }
 
-    fun checkHowManyBuyLottoBy1000(input: Int){
+    private fun checkHowManyBuyLottoBy1000(input: Int){
         if (input % 1000 != 0) {
             throw IllegalArgumentException(LottoException.BUY_LOTTO_PRICE_1000)
         }
     }
 
-    fun checkHowManyBuyLottoIsValid(lottoPrice : String?){
-        lottoPrice?.let {
-            val numberOfLottoTickets = howManyBuyLottoIsValid(it)
-            println("\n$numberOfLottoTickets 개를 구매했습니다.")
-            LottoController.lottoGameModel = LottoGameModel(numberOfLottoTickets)
+    fun checkInputLottoNumbersAreValid(winningNumbers : String?) : Lotto =
+        try {
+            parseLottoNumbers(winningNumbers!!)
+        } catch (e:NumberFormatException){
+            throw IllegalArgumentException(LottoException.INPUT_LOTTO_INVALID_TYPE)
+        }
+
+    fun checkInputLottoBonusNumberIsValid(inputBonusNumber : String?, inputLottoNumber : Lotto): Int {
+        try{
+            val bonusNumber = inputBonusNumber!!.toInt()
+            checkInputValidRange(bonusNumber)
+            checkLottoAndBonusSame(bonusNumber,inputLottoNumber)
+            return bonusNumber
+        }catch (e :NumberFormatException){
+            throw IllegalArgumentException(LottoException.INPUT_LOTTO_INVALID_TYPE)
         }
     }
 
-    fun checkInputLottoNumbersAreValid(winningNumbers : String?){
-        winningNumbers?.let {
-            val parsedWinningNumbers = parseLottoNumbers(it)
-            LottoController.lottoGameModel?.setWinningNumbers(parsedWinningNumbers)
+    private fun checkLottoAndBonusSame(bonusNumber: Int, inputLottoNumber: Lotto){
+        if(inputLottoNumber.getLottoNumbers().contains(bonusNumber)){
+            throw IllegalArgumentException(InputBonusNumException.INPUT_BONUS_ISDUPLICATED)
         }
     }
 
-    fun checkInputLottoBonusNumberIsValid(bonusNumber : String?){
-        bonusNumber?.let {
-            val bonus = checkValidationBonusLottoNumbers(it)
-            LottoController.lottoGameModel?.setBonusNumber(bonus)
-        }
-    }
-
-    fun checkInputNull(input: String?) {
+    private fun checkInputNull(input: String?) {
         input ?: throw IllegalArgumentException(LottoException.INPUT_NULL)
     }
 
-    fun checkInputSizeIs6(input: List<String>) {
+    private fun checkInputSizeIs6(input: List<String>) {
         if (input.size != 6) {
             throw IllegalArgumentException(InputLottoNumsException.INPUT_LOTTO_6NUMBERS)
         }
     }
 
-    fun checkInputIsDistinct(lottoNumbers : List<Int>){
+    private fun checkInputIsDistinct(lottoNumbers : List<Int>){
         if (lottoNumbers.distinct().size != 6) {
             throw IllegalArgumentException(InputLottoNumsException.INPUT_LOTTO_ISDUPLICATED)
         }
     }
 
-    fun checkInputValidRange(input:Int){
+    private fun checkInputValidRange(input:Int){
         if(input <1 || input > 45){
             throw IllegalArgumentException(LottoException.INPUT_LOTTO_1TO45)
         }
     }
 
-    fun parseLottoNumbers(input: String?): List<Int> {
-        checkInputNull(input)
-
-        val numbers = input!!.split(",").map { it.trim() }.filter { it.isNotEmpty() }
-
-        checkInputSizeIs6(numbers)
-
-        val lottoNumbers = numbers.map {
-            try {
-                val number = it.toInt()
-                checkInputValidRange(number)
-                number
-            } catch (e: NumberFormatException) {
-                throw IllegalArgumentException(LottoException.INPUT_LOTTO_INVALID_TYPE)
-            }
-        }
-        checkInputIsDistinct(lottoNumbers)
-
-        return lottoNumbers
+    private fun parseLottoNumbers(input: String): Lotto {
+        checkInput(input)
+        val numbers = splitAndFilterNumbers(input)
+        checkSizeAndDistinct(numbers)
+        return Lotto(createLottoNumbers(numbers))
     }
 
-    fun checkValidationBonusLottoNumbers(bonusNumber: String?): Int{
-        checkInputNull(bonusNumber)
+    private fun checkInput(input: String) {
+        checkInputNull(input)
+    }
 
-        try {
-            val number = bonusNumber!!.toInt()
-            checkInputValidRange(number)
-            return number
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException(LottoException.INPUT_LOTTO_INVALID_TYPE)
-        }
+    private fun splitAndFilterNumbers(input: String): List<String> {
+        val numbers = input.split(",").map { it.trim() }.filter { it.isNotEmpty() }
+        checkInputSizeIs6(numbers)
+        return numbers
+    }
+
+    private fun checkSizeAndDistinct(numbers: List<String>) {
+        checkInputSizeIs6(numbers)
+        val lottoNumbers = createLottoNumbers(numbers)
+        checkInputIsDistinct(lottoNumbers)
+    }
+
+    private fun createLottoNumbers(numbers: List<String>): List<Int> {
+        return numbers.map { it.toInt() }
     }
 
 }
