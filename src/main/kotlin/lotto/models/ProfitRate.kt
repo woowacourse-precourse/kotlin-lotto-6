@@ -3,16 +3,16 @@ package lotto.models
 import kotlin.math.roundToInt
 
 class ProfitRate {
-    private var value: Double = 0.0
+    private var _value: Double = 0.0
+    val value get() = _value
 
-    fun get() = value
 
-    fun calculate(purchase: Purchase, winningRecord: WinningRecord): Double {
+    fun calculate(purchase: Purchase, winningRecord: WinningRecord) {
         val purchaseAmount = purchase.getAmount()
         val totalWinningAmount = sumTotalWinningAmount(winningRecord)
         val rate = ((totalWinningAmount.toDouble() - purchaseAmount) / purchaseAmount) * 100
 
-        return 100 + rate.roundTo2DecimalPlaces()
+        _value = 100 + rate.roundTo2DecimalPlaces()
     }
 
     internal fun sumTotalWinningAmount(winningRecord: WinningRecord): Int {

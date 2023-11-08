@@ -48,7 +48,8 @@ class ProfitRateTest {
         winningRecord.updateWinningResults(purchasedLottos, winningLotto, bonus)
         val expectedProfitRate = 62.5
 
-        val actualProfitRate = profitRate.calculate(purchaseAmount, winningRecord)
+        profitRate.calculate(purchaseAmount, winningRecord)
+        val actualProfitRate = profitRate.value
 
         assertThat(actualProfitRate).isEqualTo(expectedProfitRate)
     }

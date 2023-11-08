@@ -1,6 +1,7 @@
 package lotto.views
 
 import lotto.models.Lotto
+import lotto.models.ProfitRate
 import lotto.models.WinningRank
 import lotto.models.WinningRecord
 import lotto.utils.Extensions.withCommas
@@ -40,7 +41,7 @@ class OutputView {
         return messageTemplate.format(rank.macthCount, rank.amount.withCommas(), winningCount)
     }
 
-    fun printProfitRate(profitRate: Double) = println(PROFIT_RATE_MESSAGE.format(profitRate))
+    fun printProfitRate(profitRate: ProfitRate) = println(PROFIT_RATE_MESSAGE.format(profitRate.value))
 
     fun printErrorMessage(message: String?) = println("$ERROR_MESSAGE_PREFIX ${message ?: UNKNOWN_ERROR_MESSAGE}\n")
 
