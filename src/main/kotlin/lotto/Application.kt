@@ -3,5 +3,5 @@ package lotto
 fun main() {
     val lottoTicket = LottoTicket()
     val price = lottoTicket.getPrice()
-    println(price)
+    val lottoList = lottoTicket.getLottoTickets(price)
 }

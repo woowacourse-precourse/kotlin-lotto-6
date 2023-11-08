@@ -1,9 +1,9 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
 
 class LottoTicket {
-
 
     fun getPrice(): Int {
         return retrieveValidPrice()
@@ -35,5 +35,16 @@ class LottoTicket {
         }
     }
 
-
+    fun getLottoTickets(price: Int): MutableList<List<Int>> {
+        val totalLottoCount = price / 1000
+        println("\n${totalLottoCount}개를 구매했습니다.")
+        val lottoList = mutableListOf<List<Int>>()
+        for (i in 0 until totalLottoCount) {
+            val lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 7).sorted()
+            lottoList.add(lottoNumber)
+            val printLottoNumber = lottoNumber.subList(0, 6)
+            println(printLottoNumber)
+        }
+        return lottoList
+    }
 }
