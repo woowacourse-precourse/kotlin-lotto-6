@@ -86,6 +86,16 @@ class GameManager {
         }
     }
 
+    // 수익률 계산
+    private fun calculateRateOfEarning(): Double {
+        var earning = 0.0
+        for (ranking in rankings) {
+            earning += ranking.prizeMoney
+        }
+
+        return earning / money * 100
+    }
+
     // 당첨 내역 출력
     private fun printWinningContent() {
         println()
@@ -96,7 +106,7 @@ class GameManager {
         println("5개 일치 (1,500,000원) - ${calculateNumberOfRanking(Ranking.THIRD)}개")
         println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${calculateNumberOfRanking(Ranking.SECOND)}개")
         println("6개 일치 (2,000,000,000원) - ${calculateNumberOfRanking(Ranking.FIRST)}개")
-        println("총 수익률은 62.5%입니다.")
+        println("총 수익률은 ${calculateRateOfEarning()}%입니다.")
     }
 
     companion object {
