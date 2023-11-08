@@ -8,6 +8,7 @@ import lotto.model.seller.LottoSeller
 import lotto.model.seller.Ticket
 import lotto.view.InputView
 import lotto.view.OutputView
+import kotlin.IllegalArgumentException
 
 class LottoController(private val outputView: OutputView, private val inputView: InputView) {
 
@@ -41,23 +42,29 @@ class LottoController(private val outputView: OutputView, private val inputView:
             val input = inputView.getUserInput()
             return seller.issueLottoTicket(input)
         }.onFailure { throwable ->
-            outputView.printError(throwable.message)
-            return getTicket(seller)
+            if (throwable is IllegalArgumentException) {
+                outputView.printError(throwable.message)
+                return getTicket(seller)
+            }
         }.getOrThrow()
 
     private fun getBonus(winningNumbers: Lotto): Bonus =
         runCatching<Bonus> {
             return Bonus.of(inputView.getUserInput(), winningNumbers)
         }.onFailure { throwable ->
-            outputView.printError(throwable.message)
-            return getBonus(winningNumbers)
+            if (throwable is IllegalArgumentException) {
+                outputView.printError(throwable.message)
+                return getBonus(winningNumbers)
+            }
         }.getOrThrow()
 
     private fun getWinningNumbers(): Lotto =
         runCatching<Lotto> {
             return Lotto.create(inputView.getUserInput())
         }.onFailure { throwable ->
-            outputView.printError(throwable.message)
-            return getWinningNumbers()
+            if (throwable is IllegalArgumentException) {
+                outputView.printError(throwable.message)
+                return getWinningNumbers()
+            }
         }.getOrThrow()
 }
