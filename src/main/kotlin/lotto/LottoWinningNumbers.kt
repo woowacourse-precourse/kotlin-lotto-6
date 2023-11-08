@@ -1,0 +1,44 @@
+package lotto
+
+import camp.nextstep.edu.missionutils.Console
+
+class LottoWinningNumbers {
+    private var winningLotteryNumbers: List<Int> = emptyList()
+    private var bonusNumber = 0
+    private var validBonusNumber = false
+
+    fun inputWinningNumbers(): List<Int> {
+        var validWinningNumbers = false
+        while (!validWinningNumbers) {
+            println(MessageConstants.INPUT_WINNING_NUMBER)
+            val input = Console.readLine()
+            try {
+                winningLotteryNumbers = input.split(',').map { it.trim().toInt() }
+                Lotto(winningLotteryNumbers)
+                validWinningNumbers = true
+            } catch (e: NumberFormatException) {
+                println(MessageConstants.ERROR_NOT_ALL_NUMBERS)
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+        return winningLotteryNumbers
+    }
+
+    fun inputBonusNumber(): Int {
+        while (!validBonusNumber) {
+            println(MessageConstants.INPUT_BONUS_NUMBER)
+            val bonusInput = Console.readLine()
+            try {
+                bonusNumber = bonusInput.trim().toInt()
+                BonusNumber(bonusNumber, winningLotteryNumbers)
+                validBonusNumber = true
+            } catch (e: NumberFormatException) {
+                println(MessageConstants.BONUS_NUMBER_IS_NOT_A_NUMBER)
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+        return bonusNumber
+    }
+}
