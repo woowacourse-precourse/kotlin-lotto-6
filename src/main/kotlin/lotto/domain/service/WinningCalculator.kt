@@ -28,7 +28,7 @@ class WinningCalculator(private val winning: Winning, private val customer: Cust
         return result
     }
 
-    fun getPrizes(rank: Int): Int {
+    private fun getPrizes(rank: Int): Int {
         return when (rank) {
             RankPrize.FIRST.rank -> RankPrize.FIRST.amount
             RankPrize.SECOND.rank -> RankPrize.SECOND.amount

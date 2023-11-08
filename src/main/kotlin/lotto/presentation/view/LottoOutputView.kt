@@ -5,11 +5,11 @@ import lotto.domain.model.Customer
 
 class LottoOutputView {
     fun printInputPurchasePrice() {
-        println(Guide.INPUT_PURCHASE_PRICE)
+        println(Guide.INPUT_PURCHASE_PRICE.notice)
     }
 
     fun printPurchaseCount(count: Int) {
-        println("${count}${Guide.PURCHASE_COUNT}")
+        println("${count}${Guide.PURCHASE_COUNT.notice}")
     }
 
     fun printPurchaseLottosNumbers(customer: Customer){
@@ -19,15 +19,15 @@ class LottoOutputView {
     }
 
     fun printInputWinningNumbers() {
-        println(Guide.INPUT_WINNING_NUMBERS)
+        println(Guide.INPUT_WINNING_NUMBERS.notice)
     }
 
     fun printInputBonusNumber() {
-        println(Guide.INPUT_BONUS_NUMBER)
+        println(Guide.INPUT_BONUS_NUMBER.notice)
     }
 
     fun printWinningStatistics(statistics: String) {
-        println(Guide.WINNING_STATISTICS)
+        println(Guide.WINNING_STATISTICS.notice)
         println(LINE)
         println(statistics)
     }

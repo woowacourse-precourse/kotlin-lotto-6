@@ -1,5 +1,7 @@
 package lotto
 
+import lotto.presentation.view.LottoView
+
 fun main() {
-    TODO("프로그램 구현")
+    LottoView().play()
 }
