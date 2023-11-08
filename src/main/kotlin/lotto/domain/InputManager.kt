@@ -16,7 +16,7 @@ class InputManager {
             getLottoCount(cost)
         } catch (e: IllegalArgumentException) {
             exceptionManager.printErrorMessage(e.message)
-            -1
+            LottoRule.NULL_NUM.num
         }
     }
 
@@ -42,7 +42,7 @@ class InputManager {
             bonusNumber
         } catch (e: IllegalArgumentException) {
             exceptionManager.printErrorMessage(e.message)
-            -1
+            LottoRule.NULL_NUM.num
         }
     }
 

@@ -2,7 +2,7 @@ package lotto.model
 
 import lotto.domain.LottoRule
 
-// 사용자 구매 로또
+// 사용자 구매 로또 번호
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == LottoRule.COUNT.num)

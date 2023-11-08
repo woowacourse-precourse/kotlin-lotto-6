@@ -23,8 +23,10 @@ class CheckInputValidation {
     }
 
     fun checkIsCorrectCost(cost: Int) {
-        require(cost % LottoRule.PRICE.num == 0 &&
-                cost >= LottoRule.PRICE.num) {
+        require(
+            cost % LottoRule.PRICE.num == 0 &&
+                    cost >= LottoRule.PRICE.num
+        ) {
             ErrorType.IS_INCORRECT_PURCHASE.message
         }
     }
@@ -60,11 +62,10 @@ class CheckInputValidation {
         }
     }
 
-    fun checkLottoCount(
-        userInput: List<String>
-    ) {
+    fun checkLottoCount(userInput: List<String>) {
         require(userInput.size == LottoRule.COUNT.num) {
             ErrorType.IS_NOT_SIX_NUMBERS.message
         }
     }
+
 }

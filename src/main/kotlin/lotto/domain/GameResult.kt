@@ -11,6 +11,5 @@ enum class GameResult(
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
     FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원)");
 
-
     fun getResultComment(count: Int): String = "${this.comment} - ${count}개"
 }
