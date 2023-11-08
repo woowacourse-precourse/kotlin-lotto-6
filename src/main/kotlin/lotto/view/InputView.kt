@@ -7,7 +7,7 @@ class InputView {
 
     fun lottoNumbers(): List<Int> =
         readLine().split(DELIMITER).map {
-            it.trim().toInt()
+            it.trim().toIntOrNull() ?: 0
         }.distinct()
 
     fun bonusLottoNumber() = readLine().toIntOrNull() ?: 0
