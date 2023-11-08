@@ -2,6 +2,7 @@ package lotto
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 
 
@@ -34,8 +35,14 @@ class LottoTest {
     @Test
     fun throwExceptionWhenPriceAreNotValid() {
         assertThrows<IllegalArgumentException> {
-            validateLottoPriceString("abcd")
+            parseLottoPrice("abcd")
         }
+        assertThrows<IllegalArgumentException> {
+            parseLottoPrice("123a")
+        }
+        assertEquals(parseLottoPrice("-1000"), -1000)
+        assertEquals(parseLottoPrice("0"), 0)
+        assertEquals(parseLottoPrice("1000"), 1000)
     }
 
     @Test
@@ -43,17 +50,23 @@ class LottoTest {
         assertThrows<IllegalArgumentException> {
             validateLottoPrice(-1000)
         }
+        assertDoesNotThrow { validateLottoPrice(1000) }
+        assertDoesNotThrow { validateLottoPrice(0) }
     }
 
     @Test
     fun throwExceptionWhenPriceIsNotMultipleOf1000() {
         assertThrows<IllegalArgumentException> { validateLottoPrice(1001) }
+        assertDoesNotThrow { validateLottoPrice(1000) }
     }
 
     @Test
     fun throwExceptionWhenNumbersAreNotValid() {
         assertThrows<IllegalArgumentException> { parseNormalWinningNumbers("1,2,3,4,5,a") }
+        assertThrows<IllegalArgumentException> { parseNormalWinningNumbers("1.2.3.4.5.6") }
         assertThrows<IllegalArgumentException> { parseBonusNumber("a") }
+        assertDoesNotThrow { parseNormalWinningNumbers("1,2,3,4,5,6") }
+        assertDoesNotThrow { parseBonusNumber("7") }
     }
 
     @Test
@@ -62,6 +75,7 @@ class LottoTest {
         assertThrows<IllegalArgumentException> {
             validateWinningNumber(listOf(1, 2, 3, 4, 5, 6, 7) to 8)
         }
+        assertDoesNotThrow { validateWinningNumber(listOf(1, 2, 3, 4, 5, 6) to 7) }
     }
 
     @Test
@@ -70,12 +84,14 @@ class LottoTest {
         assertThrows<IllegalArgumentException> { validateWinningNumber(listOf(47, 1, 2, 3, 4, 5) to 6) }
         assertThrows<IllegalArgumentException> { validateWinningNumber(listOf(6, 1, 2, 3, 4, 5) to -1) }
         assertThrows<IllegalArgumentException> { validateWinningNumber(listOf(6, 1, 2, 3, 4, 5) to 47) }
+        assertDoesNotThrow { validateWinningNumber(listOf(1, 2, 3, 4, 5, 6) to 7) }
     }
 
     @Test
     fun throwExceptionWhenWinningNumbersAreNotUnique() {
         assertThrows<IllegalArgumentException> { validateWinningNumber(listOf(1, 2, 3, 4, 5, 5) to 6) }
         assertThrows<IllegalArgumentException> { validateWinningNumber(listOf(1, 2, 3, 4, 5, 6) to 6) }
+        assertDoesNotThrow { validateWinningNumber(listOf(1, 2, 3, 4, 5, 6) to 7) }
     }
 
     @Test
