@@ -5,11 +5,11 @@ import lotto.domain.LottoRank
 
 class OutputView {
     companion object {
-        const val PURCHASE_COUNT_STRING = "개를 구매했습니다."
-        const val WINNING_STATISTICS_STRING = "당첨 통계"
-        const val DASH_SEPARATOR = "---"
-        const val RATE_OF_RETURN_STRING = "총 수익률은 "
-        const val PERCENT_SUFFIX = "%입니다."
+        private const val PURCHASE_COUNT_STRING = "개를 구매했습니다."
+        private const val WINNING_STATISTICS_STRING = "당첨 통계"
+        private const val DASH_SEPARATOR = "---"
+        private const val RATE_OF_RETURN_STRING = "총 수익률은 "
+        private const val PERCENT_SUFFIX = "%입니다."
 
         fun purchaseCount(numberOfTickets: Int) {
             println("$numberOfTickets$PURCHASE_COUNT_STRING")
