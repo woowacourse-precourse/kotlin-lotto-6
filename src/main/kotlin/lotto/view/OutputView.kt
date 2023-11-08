@@ -6,6 +6,9 @@ import java.text.NumberFormat
 import java.util.*
 
 class OutputView {
+    fun printLineBreaking(){
+        println()
+    }
     fun askPurchaseLottoAmount() {
         println("구입금액을 입력해 주세요.")
     }
@@ -18,15 +21,15 @@ class OutputView {
         println("보너스 번호를 입력해 주세요.")
     }
 
-    fun printLottoList(purchasedLottoCnt: Int, purchasedLottoList: List<Lotto>) {
-        println("${purchasedLottoCnt}를 구매했습니다.")
+    fun printLottoList(purchasedLottoCount: Int, purchasedLottoList: List<Lotto>) {
+        println("${purchasedLottoCount}개를 구매했습니다.")
         purchasedLottoList.forEach { println(it.getLotto()) }
     }
 
-    fun printWinningLottoStatistics() {
+    fun printWinningLottoStatistics(rateOfReturn: Double) {
         println("당첨 통계\n---")
         outputMatchingLottoRank()
-        outputRateOfReturn()
+        outputRateOfReturn(rateOfReturn)
     }
 
     private fun outputMatchingLottoRank() {
@@ -36,8 +39,7 @@ class OutputView {
             println("${it.message} (${formattedPrice}원) - ${it.userLottoRankCnt}개")
         }
     }
-    private fun outputRateOfReturn() {
-        val rateOfReturn = 1234.56
+    private fun outputRateOfReturn(rateOfReturn: Double) {
         val formattedRateOfReturn = NumberFormat.getNumberInstance(Locale.US).format(rateOfReturn)
         println("총 수익률은 $formattedRateOfReturn%입니다.")
     }
