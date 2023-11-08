@@ -6,7 +6,7 @@ import lotto.domain.Position
 import java.text.DecimalFormat
 
 object Output {
-    fun printPrintpleaseInputBudget() = print(Messages.PLEASE_INPUT_BUDGET)
+    fun printPleaseInputBudget() = print(Messages.PLEASE_INPUT_BUDGET)
     fun printHowMuchBought(amount: Int) = print("$amount${Messages.AFTER_BOUGHT}")
     fun printPleaseInputWinningNumbers() = print(Messages.PLEASE_INPUT_WINNING_NUMBERS)
     fun printPleaseInputBonusNumbers() = print(Messages.PLEASE_INPUT_BONUS_NUMBERS)
