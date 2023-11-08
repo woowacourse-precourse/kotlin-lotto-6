@@ -16,7 +16,17 @@ object Output {
         println(Messages.WINNING_STATISTICS)
         println("---")
         val decimalFormat = DecimalFormat("#,###")
-        statistics.toSortedMap().forEach {
+        val emptyMap = mutableMapOf(
+            Position.Fifth to 0,
+            Position.Fourth to 0,
+            Position.Third to 0,
+            Position.Second to 0,
+            Position.First to 0,
+        )
+        statistics.forEach {
+            emptyMap[it.key] = it.value
+        }
+        emptyMap.forEach {
             if (it.key == Position.NoLuck) {
                 return@forEach
             }
