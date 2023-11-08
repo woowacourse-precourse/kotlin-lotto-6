@@ -5,14 +5,14 @@
 - [x] 로또 게임 진행 과정에 따라 state 를 정의한다. - LottoGameState
 - [x] 로또를 구매한다.
   - [x] 구매 금액을 입력한다. - LottoGameManager#getMoneyFromUser()
-  - [x] 값이 올바르지 않은 형태인 경우, 예외가 발생하여 재입력받는다. LottoGameManager#validatedNumberAsMoney()
+  - [x] 값이 올바르지 않은 형태인 경우, 예외가 발생하여 재입력받는다. Money, LottoGameManager#validatedAsNumber()
   - [x] 금액만큼의 로또를 발행한다. - LottoGenerator#get()
   - [x] 로또 발행 결과를 출력한다. - LottoGameViewer#printResultOfBuyingLotto()
 - [x] 추첨을 진행한다.
   - [x] 당첨 번호를 입력한다. - LottoGameManager#pickWinningNumbers()
-  - [x] 값이 올바르지 않은 형태인 경우, 예외가 발생하여 재입력받는다. - LottoGameManager#validatedNumbersAsWinning()
+  - [x] 값이 올바르지 않은 형태인 경우, 예외가 발생하여 재입력받는다. - Lotto, LottoGameManager#validatedAsNumbers()
   - [x] 보너스 번호를 입력한다. - LottoGameManager#pickBonusNumber()
-  - [x] 값이 올바르지 않은 형태인 경우, 예외가 발생하여 재입력받는다. - LottoGameManager#validatedNumberAsBonus()
+  - [x] 값이 올바르지 않은 형태인 경우, 예외가 발생하여 재입력받는다. - Winning, LottoGameManager#validatedAsNumber()
 - [ ] 당첨 결과가 나온다.
   - [ ] 당첨 기준별로 내역을 구분해 출력한다.
   - [ ] 총 수익률을 출력한다.
