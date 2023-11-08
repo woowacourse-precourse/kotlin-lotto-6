@@ -21,4 +21,10 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `보너스 번호가 1 ~ 45 중에 존재하지 않으면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            BonusNum(46)
+        }
+    }
 }
