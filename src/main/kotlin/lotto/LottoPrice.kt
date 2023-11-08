@@ -7,7 +7,5 @@ enum class LottoPrice(private val price: Int) {
     FIVE_BONUS_MATCHED(30_000_000),
     SIX_MATCHED(2_000_000_000);
 
-    fun getPrice() = price
-
     fun calculatePrice(count: Int) = price * count
 }

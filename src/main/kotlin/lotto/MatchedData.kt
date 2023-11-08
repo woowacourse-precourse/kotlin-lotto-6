@@ -1,6 +1,6 @@
 package lotto
 
 data class MatchedData(
-    var winningMatchCount: Int,
-    var bonusNumber: Int,
+    var winningNumberMatchedCount: Int,
+    var bonusNumberMatchedCount: Int,
 )

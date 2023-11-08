@@ -10,11 +10,9 @@ class LottoGame {
 
         val lottoCount = lottoCalculator.calLottoCount(purchasedAmount)
         val lottoList = lottoFactory.createLottoByCount(lottoCount)
-
         lottoGamePrinter.showLottoList(lottoCount, lottoList)
 
         val winningList = userInput.winningPriceInput()
-
         val bonusNumber = userInput.bonusNumberInput(winningList)
 
         val winningRate = lottoCalculator.calWinningRate(lottoList, winningList, bonusNumber)
