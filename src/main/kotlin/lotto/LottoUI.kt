@@ -20,7 +20,7 @@ class LottoUI {
         return buyPrice
     }
 
-    private fun checkInvalidBuyPrice(buyPrice: String) {
+    fun checkInvalidBuyPrice(buyPrice: String) {
         when {
             buyPrice.toIntOrNull() == null -> throw IllegalArgumentException(Buy.ERROR_NOT_INTEGER.value)
             buyPrice.toInt() % 1000 != 0 -> throw IllegalArgumentException(Buy.ERROR_NOT_THOUSAND.value)
