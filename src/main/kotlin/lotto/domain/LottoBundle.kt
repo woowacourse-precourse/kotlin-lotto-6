@@ -7,7 +7,7 @@ class LottoBundle(private val lottos: List<Lotto>) {
     private val _winningRanksCount: HashMap<LottoRank, Int> = hashMapOf()
     val winningRanksCount: Map<LottoRank, Int> get() = _winningRanksCount.toMap()
 
-    var totalPurchaseAmount: Int = lottos.size * LOTTO_PRICE
+    var totalPurchaseAmount: Int = DEFAULT_VALUE
         private set
 
     var totalRevenue: Int = DEFAULT_VALUE
@@ -17,6 +17,7 @@ class LottoBundle(private val lottos: List<Lotto>) {
         LottoRank.values().forEach { rank ->
             _winningRanksCount.put(rank, DEFAULT_VALUE)
         }
+        totalPurchaseAmount = lottos.size * LOTTO_PRICE
     }
 
     fun forEach(action: (Lotto) -> Unit) = lottos.forEach { lotto -> action(lotto) }
@@ -37,7 +38,7 @@ class LottoBundle(private val lottos: List<Lotto>) {
     }
 
     fun getRateOfReturn(): Float =
-        (totalRevenue / totalPurchaseAmount).toFloat() * PERCENTAGE_MULTIPLIER
+        (totalRevenue.toFloat() / totalPurchaseAmount.toFloat()) * PERCENTAGE_MULTIPLIER
 
     companion object {
         private const val DEFAULT_VALUE = 0

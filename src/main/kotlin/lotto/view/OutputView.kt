@@ -4,7 +4,6 @@ import lotto.domain.LottoBundle
 import lotto.domain.LottoRank
 import lotto.domain.LottoRank.INIT
 import lotto.domain.LottoRank.NOTHING
-import java.text.DecimalFormat
 
 object OutputView {
     fun printLottoBundleNumbers(lottoBundle: LottoBundle) {
@@ -32,6 +31,7 @@ object OutputView {
     }
 
     fun printRateOfReturn(lottoBundle: LottoBundle) {
-        println("총 수익률은 ${DecimalFormat("##0.0").format(lottoBundle.getRateOfReturn())}%입니다.")
+        val rateOfReturn = lottoBundle.getRateOfReturn()
+        println("총 수익률은 "+String.format("%.1f", rateOfReturn)+"%입니다.")
     }
 }
