@@ -1,6 +1,7 @@
 package lotto.view
 
 import lotto.domain.Winning
+import java.text.DecimalFormat
 
 enum class OutputView(val message: String) {
     PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
@@ -15,7 +16,7 @@ fun printStartMessage() {
 }
 
 fun printPurchaseTotal(total: Int) {
-    println("\n${total/1000}" + OutputView.PURCHASE_AMOUNT_PRINT)
+    println("\n${total/1000}" + OutputView.PURCHASE_AMOUNT_PRINT.message)
 }
 
 fun printWinningMessage() {
@@ -39,5 +40,7 @@ fun printWinningStatistics(matches: MutableList<Int>) {
 }
 
 fun printEarningRate(rate: Float) {
-    println("총 수익률은 ${rate}%입니다.")
+    val decimalFormat = DecimalFormat("#.##")
+    val formattedRate = decimalFormat.format(rate)
+    println("총 수익률은 $formattedRate%입니다.")
 }

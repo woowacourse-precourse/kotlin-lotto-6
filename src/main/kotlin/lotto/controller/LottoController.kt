@@ -4,15 +4,12 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.Lotto
 import lotto.domain.BonusNumberValidators
-import lotto.domain.PurchaseAmount
 import lotto.domain.compareToLotto
 import lotto.domain.getEarningRate
 import lotto.domain.getTotalAmount
 import lotto.domain.matchCheck
-import lotto.domain.parser
 import lotto.domain.purchaseAmountValidators
 import lotto.domain.winningNumberValidators
-import lotto.view.OutputView
 import lotto.view.printBonusMessage
 import lotto.view.printEarningRate
 import lotto.view.printPurchaseTotal

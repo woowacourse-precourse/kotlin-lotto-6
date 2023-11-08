@@ -1,8 +1,8 @@
 package lotto
 
 import lotto.domain.compareToLotto
-import lotto.domain.getEarningRate
 import lotto.domain.matchCheck
+import lotto.view.printEarningRate
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
