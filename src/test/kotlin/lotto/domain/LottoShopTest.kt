@@ -8,7 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class LottoShopTest {
-
     @Test
     fun `로또 구매 가격으로 문자를 입력받을 수 없다`() {
         //given
