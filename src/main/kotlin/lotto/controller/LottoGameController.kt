@@ -42,6 +42,7 @@ class LottoGameController(private val view: ConsoleView) {
                         matchingCounts.fiveMatching++
                     }
                 }
+
                 MatchingCount.SIX.value -> matchingCounts.sixMatching++
             }
         }

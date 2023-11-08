@@ -18,8 +18,6 @@ class ConsoleView {
                 println("[ERROR] 구입금액은 숫자만 가능합니다. 다시 시도하세요.")
             } catch (e: IllegalArgumentException) {
                 println("${e.message} 다시 시도하세요.")
-            } catch (e: IllegalStateException) {
-                println("${e.message} 다시 시도하세요.")
             }
         }
         return purchaseAmount
@@ -42,8 +40,6 @@ class ConsoleView {
                 println("[ERROR] 당첨번호는 숫자만 가능합니다. 다시 시도하세요.")
             } catch (e: IllegalArgumentException) {
                 println("${e.message} 다시 시도하세요.")
-            } catch (e: IllegalStateException) {
-                println("${e.message} 다시 시도하세요.")
             }
         }
         return winningNum
@@ -61,8 +57,6 @@ class ConsoleView {
             } catch (e: NumberFormatException) {
                 println("[ERROR] 보너스번호는 숫자만 가능합니다. 다시 시도하세요.")
             } catch (e: IllegalArgumentException) {
-                println("${e.message} 다시 시도하세요.")
-            } catch (e: IllegalStateException) {
                 println("${e.message} 다시 시도하세요.")
             }
         }
@@ -97,7 +91,8 @@ class ConsoleView {
     private fun bonusNumInputValidator(bonusNum: Int) {
         if (bonusNum < 0 || bonusNum > 45) throw IllegalArgumentException("[ERROR] 보너스번호는 1~45까지만 가능합니다.")
     }
-    companion object{
+
+    companion object {
         const val INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요."
         const val INPUT_WINNING_NUM = "당첨 번호를 입력해 주세요."
         const val INPUT_BONUS_NUM = "보너스 번호를 입력해 주세요."
