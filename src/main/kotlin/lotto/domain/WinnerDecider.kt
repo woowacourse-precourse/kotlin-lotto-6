@@ -17,9 +17,7 @@ class WinnerDecider(
         for (lotto in userLottos) {
             val matchCount=lotto.comparetoTarget(targetNumbers)
             val hasBonusNumber=lotto.compareToBonus(bonusNumber)
-            if(winningCount.containsKey(matchCount)){
-                winningCount.replace(matchCount,winningCount.getValue(matchCount)+1)
-            }
+            calculateRank(matchCount,hasBonusNumber)
         }
     }
 
@@ -29,9 +27,18 @@ class WinnerDecider(
         winningCount.put(THIRD,COUNT)
         winningCount.put(FOURTH,COUNT)
         winningCount.put(FIFTH,COUNT)
-    }
-    private fun calculateRank(){
+        winningCount.put(NONE,COUNT)
 
+    }
+    private fun calculateRank(matchCount:Int, hasBonusNumber : Boolean){
+        when (matchCount) {
+            6 -> winningCount.replace(FIRST,winningCount.getValue(FIRST)+1)
+            5 -> if(hasBonusNumber) {winningCount.replace(SECOND,winningCount.getValue(SECOND)+1)}
+                else{winningCount.replace(THIRD,winningCount.getValue(THIRD)+1)}
+            4 -> winningCount.replace(FOURTH,winningCount.getValue(FOURTH)+1)
+            3 -> winningCount.replace(FIFTH,winningCount.getValue(FIFTH)+1)
+            else -> winningCount.replace(NONE,winningCount.getValue(NONE)+1)
+        }
     }
 
     private fun calculateRateOfReturn() {
@@ -39,7 +46,6 @@ class WinnerDecider(
     }
 
     private fun parseNumbers(): List<Int> {
-//        val countByRank : mutableMapOf<List<Int>, Int>
         return winningLottoNumbers.split(',').map { it.toInt() }
     }
 
@@ -54,6 +60,8 @@ class WinnerDecider(
         private const val THIRD = 3
         private const val FOURTH = 4
         private const val FIFTH = 5
+        private const val NONE = -999
+
         val winningCount = mutableMapOf<Int, Int>()
 
     }
