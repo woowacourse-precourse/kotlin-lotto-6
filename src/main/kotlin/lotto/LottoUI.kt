@@ -58,4 +58,8 @@ class LottoUI {
         return Lotto(winningNumbersToInt(winningNumbers))
     }
 
+    private fun winningNumbersToInt(winningNumbers: List<String>): List<Int> {
+        return winningNumbers.map { it.toInt() }
+    }
+
 }
