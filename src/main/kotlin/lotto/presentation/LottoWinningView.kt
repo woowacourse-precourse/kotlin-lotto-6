@@ -33,8 +33,8 @@ object LottoWinningView {
         println("$WINNING_RESULT_SIX_TEXT${winningCount}개")
     }
 
-    fun outputProfitRate() {
-        println(PROFIT_RATE_TEXT)
+    fun outputProfitRate(profit: String) {
+        println(PROFIT_RATE_TEXT.format(profit))
     }
 
 }

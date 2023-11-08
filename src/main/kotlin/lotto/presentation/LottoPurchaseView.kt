@@ -1,8 +1,9 @@
 package lotto.presentation
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.domain.Lotto
 import lotto.domain.LottoCount
+import lotto.util.Exception.validateAmount
+import lotto.util.Exception.validateNegative
 import lotto.util.PURCHASE_NUMBER_TEXT
 import lotto.util.PURCHASE_PRICE_TEXT
 
@@ -11,8 +12,8 @@ object LottoPurchaseView {
         println(PURCHASE_PRICE_TEXT)
     }
 
-    fun inputLottoPurchase(): Int {
-        return Console.readLine().trim().toInt()
+    fun inputLottoPurchase(): String {
+        return Console.readLine().trim()
     }
 
     fun outputPurchaseCount(amount: Int): Int {

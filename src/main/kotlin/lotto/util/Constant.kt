@@ -10,19 +10,21 @@ const val WINNING_RESULT_FOUR_TEXT = "4개 일치 (50,000원) - "
 const val WINNING_RESULT_FIVE_TEXT = "5개 일치 (1,500,000원) - "
 const val WINNING_RESULT_FIVE_BONUS_TEXT = "5개 일치, 보너스 볼 일치 (30,000,000원) - "
 const val WINNING_RESULT_SIX_TEXT = "6개 일치 (2,000,000,000원) - "
-const val PROFIT_RATE_TEXT = "총 수익률은 %입니다."
+const val PROFIT_RATE_TEXT = "총 수익률은 %s입니다."
 
 const val LOTTO_NUMBER_MIN = 1
 const val LOTTO_NUMBER_MAX = 45
 const val LOTTO_NUMBER_COUNT = 6
 const val LOTTO_BONUS_COUNT = 1
 const val LOTTO_PRICE_STANDARD = 1000
+const val ZERO = 0
 
 const val LOTTO_NUMBER_SEPARATOR = ","
 
 const val EXCEPTION_MESSAGE = "[ERROR] "
 const val WRONG_UNIT_EXCEPTION = "잘못된 단위의 금액 입니다. 1,000원으로 나누어 떨어 지도록 입력해 주세요."
 const val WRONG_NUMBER_EXCEPTION = "잘못된 입력 형식 입니다. 숫자를 입력해 주세요."
+const val WRONG_RANGE_NEGATIVE_EXCEPTION = "잘못된 입력값 입니다. 양수를 입력해 주세요."
 const val WRONG_RANGE_EXCEPTION = "잘못된 입력값 입니다. 범위(1~45)에 맞게 입력해 주세요."
 const val WRONG_COUNT_EXCEPTION = "잘못된 개수의 입력값 입니다. 6개 입력해 주세요."
 const val WRONG_BONUS_COUNT_EXCEPTION = "잘못된 개수의 입력값 입니다. 1개 입력해 주세요."
