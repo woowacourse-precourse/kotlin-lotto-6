@@ -13,6 +13,7 @@ class OutputView {
 
         purchasedLottos.forEach {
             val formattedLottoNumbers = formatLottoNumbers(it)
+
             println(PURCHASED_LOTTO_NUMBERS_MESSAGE.format(formattedLottoNumbers))
         }
 
@@ -23,8 +24,8 @@ class OutputView {
 
     fun printWinningStatics(winningRecord: WinningRecord) {
         println(WINNING_STATISTICS_MESSAGE)
-
         val winningRanks = WinningRank.getAllWithoutNothing()
+
         winningRanks.forEach {
             val winningCount = winningRecord.value[it] ?: 0
             val staticsMessage = generateStaticsMessage(it, winningCount)
@@ -39,14 +40,17 @@ class OutputView {
         return messageTemplate.format(rank.macthCount, rank.amount.withCommas(), winningCount)
     }
 
-    fun endOutput() = println()
-
     fun printProfitRate(profitRate: ProfitRate) = println(PROFIT_RATE_MESSAGE.format(profitRate.value))
 
     fun printErrorMessage(message: String? = null) =
         println("$ERROR_MESSAGE_PREFIX ${message ?: UNKNOWN_ERROR_MESSAGE}\n")
 
+    fun endOutput() = println()
+
     companion object {
+        const val ERROR_MESSAGE_PREFIX = "[ERROR]"
+        const val UNKNOWN_ERROR_MESSAGE = "알 수 없는 에러가 발생했습니다."
+
         const val PURCHASED_LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다."
         const val PURCHASED_LOTTO_NUMBERS_MESSAGE = "[%s]"
 
@@ -57,8 +61,5 @@ class OutputView {
         const val WINNING_WITH_BONUS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개"
 
         const val PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다."
-
-        const val ERROR_MESSAGE_PREFIX = "[ERROR]"
-        const val UNKNOWN_ERROR_MESSAGE = "알 수 없는 에러가 발생했습니다."
     }
 }

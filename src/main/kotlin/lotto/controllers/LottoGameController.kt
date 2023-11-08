@@ -82,8 +82,8 @@ class LottoGameController {
             try {
                 val number = inputView.inputBonusNumber()
                 val bonus = Bonus(number)
-                bonus.checkDistinctWithWinningLotto(winningLotto.getNumbers())
 
+                bonus.checkDistinctWithWinningLotto(winningLotto.getNumbers())
                 inputView.endInput()
 
                 return bonus

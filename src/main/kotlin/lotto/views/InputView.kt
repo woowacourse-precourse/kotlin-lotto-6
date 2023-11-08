@@ -5,9 +5,9 @@ import camp.nextstep.edu.missionutils.Console
 class InputView {
 
     fun inputPurchaseAmount(): Int {
-        println(INPUT_PURCHASE_AMOUNT_MESSAGE)
-
+        printPromptMessage(INPUT_PURCHASE_AMOUNT_MESSAGE)
         val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
+
         require(isNotEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
 
         return validatePurchaseAmountInput(input)
@@ -15,15 +15,16 @@ class InputView {
 
     internal fun validatePurchaseAmountInput(input: String): Int {
         val trimmedInput = input.trim()
+
         require(isNotDigitInput(trimmedInput)) { NOT_DIGIT_INPUT_ERROR_MESSAGE }
 
         return input.toInt()
     }
 
     fun inputWinningNumbers(): List<Int> {
-        println(INPUT_WINNING_NUMBERS_MESSAGE)
-
+        printPromptMessage(INPUT_WINNING_NUMBERS_MESSAGE)
         val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
+
         require(isNotEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
 
         return validateWinningNumbersInput(input)
@@ -32,6 +33,7 @@ class InputView {
     internal fun validateWinningNumbersInput(input: String): List<Int> {
         val splitInputs = input.split(SEPARATOR)
         val trimmedInputs = splitInputs.map { it.trim() }
+
         trimmedInputs.forEach {
             require(isNotDigitInput(it)) { LOTTO_NUMBER_DIGIT_ERROR_MESSAGE }
         }
@@ -40,9 +42,9 @@ class InputView {
     }
 
     fun inputBonusNumber(): Int {
-        println(INPUT_BONUS_NUMBER_MESSAGE)
-
+        printPromptMessage(INPUT_BONUS_NUMBER_MESSAGE)
         val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
+
         require(isNotEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
 
         return validateBonusNumber(input)
@@ -50,6 +52,7 @@ class InputView {
 
     internal fun validateBonusNumber(input: String): Int {
         val trimmedInput = input.trim()
+
         require(isNotDigitInput(trimmedInput)) { BONUS_NUMBER_DIGIT_ERROR_MESSAGE }
 
         return input.toInt()
@@ -58,6 +61,8 @@ class InputView {
     fun endInput() = println()
 
     fun closeInput() = Console.close()
+
+    private fun printPromptMessage(message: String) = println(message)
 
     private fun isNotEmptyOrBlankInput(input: String) = !(input.isEmpty() || input.isBlank())
 
