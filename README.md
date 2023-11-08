@@ -14,7 +14,7 @@
 
 ## 🤓 구현 캡쳐
 > 🤑💸 로또로 일확천금된 경우
-![img.png](img.png)
+![img.png](img/lottoWinning.png)
 
 > 😫 돈만 날린 경우
-![img_1.png](img_1.png)
+![img_1.png](img/lottoBoom.png)
