@@ -69,7 +69,7 @@ class LottoGameViewer {
 
         printWinningResultTitle()
         printWinningsByCountInGroup(result.winningCounts)
-        printWinningMarginRate(result.margin)
+        printWinningMargin(result.margin)
     }
 
     private fun printWinningResultTitle() {
@@ -99,11 +99,19 @@ class LottoGameViewer {
         println(message)
     }
 
-    private fun printWinningMarginRate(margin: Double) {
+    private fun printWinningMargin(margin: Double) {
         val header = Constants.RESULT_WINNING_MARGIN_HEADER
         val footer = Constants.RESULT_WINNING_MARGIN_FOOTER
-        val message = header + String.format("%.1f", margin) + Constants.PERCENT + footer
+        val message = header + changeAsPercentage(margin) + Constants.PERCENT + footer
 
         println(message)
+    }
+
+    private fun changeAsPercentage(value: Double): String {
+        return String.format("%.1f", value * HUNDRED)
+    }
+
+    companion object {
+        private const val HUNDRED = 100
     }
 }
