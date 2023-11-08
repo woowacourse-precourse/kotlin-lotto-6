@@ -11,10 +11,10 @@ fun main() {
     val lottos = gameManager.makeLottosByMoney(money)
 
     printManager.inputWinningNumber()
-    val winningNumbers = inputManager.winningNum()
+    val winningNumber = inputManager.winningNum()
 
     printManager.inputBonusNumber()
-    val bonusNumber = inputManager.bonusNum()
+    val bonusNumber = inputManager.bonusNum(winningNumber)
 
-
+    gameManager.playGame(lottos, winningNumber, bonusNumber)
 }

@@ -14,9 +14,10 @@ class ExceptionManager {
         return numbers
     }
 
-    fun bonusNum(str: String): Int {
+    fun bonusNum(str: String, winningNum: Lotto): Int {
         val number = str.toInt()
         lottoNumberInRange(number)
+        require(!winningNum.contains(number)) { "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다." }
         return number
     }
 

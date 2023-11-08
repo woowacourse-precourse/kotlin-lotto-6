@@ -15,8 +15,8 @@ class InputManager(val exceptionManager: ExceptionManager) {
         return Lotto(numbers)
     }
 
-    fun bonusNum(): Int {
+    fun bonusNum(winningNum: Lotto): Int {
         val str = readLine()
-        return exceptionManager.bonusNum(str)
+        return exceptionManager.bonusNum(str, winningNum)
     }
 }

@@ -3,6 +3,11 @@ package lotto
 import camp.nextstep.edu.missionutils.Randoms
 
 class GameManager(val printManager: PrintManager) {
+    fun playGame(lottos: List<Lotto>, winningNumber: Lotto, bonusNumber: Int) {
+        // winningNumber와 lottos 비교
+
+    }
+
     fun makeLottosByMoney(money: Int): List<Lotto> {
         val lottoNumber = getLottoNumberByMoney(money)
         printManager.printLottoNumber(lottoNumber)
@@ -21,7 +26,7 @@ class GameManager(val printManager: PrintManager) {
         return lottos
     }
 
-    fun getRandomNumbers() = Randoms.pickUniqueNumbersInRange(MIN_IN_RANGE, MAX_IN_RANGE, LOTTO_SIZE)
+    private fun getRandomNumbers() = Randoms.pickUniqueNumbersInRange(MIN_IN_RANGE, MAX_IN_RANGE, LOTTO_SIZE)
 
     companion object {
         const val MIN_IN_RANGE = 1
