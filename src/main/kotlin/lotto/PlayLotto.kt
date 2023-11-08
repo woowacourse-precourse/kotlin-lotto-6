@@ -33,7 +33,7 @@ class PlayLotto(
                 PlayLottoState.BONUS_NUMBER -> bonusNumberProcess()
                 PlayLottoState.MATCHING -> matchingProcess()
                 PlayLottoState.END -> {
-                    printMatchResult()
+                    printLottoResult()
                     return
                 }
             }
@@ -123,7 +123,7 @@ class PlayLotto(
         return userInput.also { it.bonusValidation(lottoData.winningNumbers) }.toInt()
     }
 
-    private fun printMatchResult() {
+    private fun printLottoResult() {
         println(WINNING_STATS_COMMENT)
 
         lottoData.lottoResults.forEach { lottoResult ->
