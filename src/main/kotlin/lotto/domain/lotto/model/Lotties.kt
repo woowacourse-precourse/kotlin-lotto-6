@@ -24,4 +24,16 @@ class Lotties {
         }
         return results.mapValues { it.value.size }
     }
+
+    fun calculateProfitAmount(rankCounts: Map<WinningRank, Int>): Long {
+        return rankCounts.entries.sumOf { it.key.prize * (it.value) }
+    }
+
+    fun calculateProfitRate(profitAmount: Long, purchaseAmount: Int): Double {
+        return if (purchaseAmount > 0) {
+            profitAmount.toDouble() / purchaseAmount * 100
+        } else {
+            0.0
+        }
+    }
 }

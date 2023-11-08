@@ -51,7 +51,6 @@ object LottoGameController {
         outputView.winningStatisticsMessage()
         WinningRank.entries.forEach { rank ->
             if (rank != WinningRank.NONE) {
-                profitAmount += rank.prize * (rankCounts[rank] ?: 0)
                 outputView.printRankStatistics(rank, rankCounts[rank] ?: 0)
             }
         }
@@ -59,7 +58,8 @@ object LottoGameController {
     }
 
     private fun profitRateResult() {
-        profitRate = profitAmount.toDouble() / lottoPurchaseAmount * 100
+        profitAmount = lotties.calculateProfitAmount(rankCounts)
+        profitRate = lotties.calculateProfitRate(profitAmount, lottoPurchaseAmount)
         outputView.profitRateMessage(profitRate)
     }
 }
