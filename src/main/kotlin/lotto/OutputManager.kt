@@ -34,6 +34,7 @@ class OutputManager {
 
         println("총 수익률은 ${profitMargin}%입니다.")
     }
+
     companion object {
         const val PRINT_LOTTO_COUNT = "%d개를 구매했습니다."
         const val LOTTO_STATISTIC = "당첨 통계"

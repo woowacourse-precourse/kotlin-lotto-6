@@ -30,7 +30,7 @@ class ExceptionManager {
 
     fun bonusNumberException(pair: Pair<List<String>, String>) {
         val convertedNum = pair.second.toIntOrNull() ?: throw IllegalArgumentException(ErrorMessage.NOT_STRING.msg)
-        require(convertedNum in 1..45) { ErrorMessage.NOT_RANGE.msg}
+        require(convertedNum in 1..45) { ErrorMessage.NOT_RANGE.msg }
 
         if (pair.second in pair.first) {
             throw IllegalArgumentException(ErrorMessage.NOT_IN_NUMBERS.msg)

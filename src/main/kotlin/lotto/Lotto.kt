@@ -6,8 +6,6 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.toSet().size == numbers.size)
     }
 
-    // TODO: 추가 기능 구현
-
     fun compareNumber(nums: List<Int>): Int {
         val myNumbers = numbers.toSet()
         val winNumbers = nums.toSet()

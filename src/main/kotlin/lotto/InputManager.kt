@@ -42,7 +42,7 @@ class InputManager {
             println()
 
             return number.toInt()
-        }catch (e: IllegalArgumentException) {
+        } catch (e: IllegalArgumentException) {
             println(e.message)
             inputBonusNumber()
         }
