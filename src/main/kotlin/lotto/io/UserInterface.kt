@@ -17,6 +17,7 @@ class UserInterface(
                 return purchaseAmount
             } catch (e:IllegalArgumentException) {
                 println(e.message)
+
             }
         }
     }

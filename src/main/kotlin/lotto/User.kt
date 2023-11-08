@@ -1,7 +1,5 @@
 package lotto
 
-import lotto.io.UserInterface
-
 class User(
     private val myLottoTickets: List<Lotto>,
     private val amount: Int
@@ -9,7 +7,7 @@ class User(
     fun compareToWinningLotto(winningNumber: Lotto, bonusNumber: Int): Map<LottoRank,Int> {
         val myLottoResult = mutableMapOf<LottoRank,Int>()
         for(lotto in LottoRank.values()) {
-            myLottoResult[lotto] = 0
+            myLottoResult[lotto] = Const.ZERO
         }
         for (myLotto in myLottoTickets) {
             val lottoRank = myLotto.compareToWinningLotto(winningNumber,bonusNumber)

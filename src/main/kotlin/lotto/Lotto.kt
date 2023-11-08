@@ -10,14 +10,14 @@ class Lotto(private val numbers: List<Int>) {
     fun compareToWinningLotto(winningLotto: Lotto, bonusNumber: Int): LottoRank {
         val matchedCount = getMatchedCount(winningLotto)
 
-        if (matchedCount == 5) {
+        if (matchedCount == Const.CAN_BE_SECOND_NUMBER) {
             return getThisRank(matchedCount, bonusNumber)
         }
         return getThisRank(matchedCount)
     }
 
     private fun getMatchedCount(winningLotto: Lotto): Int {
-        var matchedCount = 0
+        var matchedCount = Const.ZERO
 
         for (number in numbers) {
             if (winningLotto.numbers.contains(number)) {

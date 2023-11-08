@@ -8,10 +8,10 @@ class LottoMachine(
     private val winningLotto: WinningLotto,
 ) {
     fun playLotto() {
-        val ui = UserInterface()
         val result = calculateMyResult()
         val totalProfit = getTotalProfit(result)
         val rates = getProfitRate(totalProfit,user.getAmount())
+
         showMyResult(result,rates)
 
     }
@@ -20,7 +20,7 @@ class LottoMachine(
 
     }
     private fun getTotalProfit(lottoResults:Map<LottoRank,Int>):Int {
-        var totalProfit = 0
+        var totalProfit = Const.ZERO
         for(result in lottoResults) {
             totalProfit += (result.value * result.key.prize)
         }

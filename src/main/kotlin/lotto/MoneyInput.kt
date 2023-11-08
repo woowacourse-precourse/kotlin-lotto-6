@@ -10,7 +10,7 @@ class MoneyInput(
         val amount = ui.askPurchaseAmount()
         val lottoTickets = LottoMaker().makeLottoTickets(amount)
         val user = User(lottoTickets, amount)
-        showMyLotto(lottoTickets, user.getAmount() / 1000)
+        showMyLotto(lottoTickets, user.getAmount() / Const.DOLLAR)
         return user
     }
 
