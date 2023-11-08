@@ -33,5 +33,8 @@ class ExceptionManager {
         if (numbers.distinct().size != numbers.size) {
             throw IllegalArgumentException("동일한 번호가 중복되었습니다.")
         }
+        if (numbers.distinct().size != 6 ) {
+            throw IllegalArgumentException("6개의 당첨번호를 입력해주세요.")
+        }
     }
 }
