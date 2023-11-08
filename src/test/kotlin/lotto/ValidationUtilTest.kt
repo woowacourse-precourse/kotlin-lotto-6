@@ -10,6 +10,11 @@ class ValidationUtilTest {
     private val winningNumbers = listOf("1", "2", "3", "4", "5", "6")
 
     @Test
+    fun `결제금액 입력시 제대로 값을 입력했는지 확인하는 checkPurchaseAmount 테스트 - 값이 맞는 경우`() {
+        ValidationUtil.checkPurchaseAmount("1000")
+    }
+
+    @Test
     fun `결제금액 입력시 제대로 값을 입력했는지 확인하는 checkPurchaseAmount 테스트 - 비어 있는 문자열`() {
         assertThrows<IllegalArgumentException> {
             ValidationUtil.checkPurchaseAmount("")
@@ -35,6 +40,11 @@ class ValidationUtilTest {
         assertThrows<IllegalArgumentException> {
             ValidationUtil.checkPurchaseAmount("151515")
         }
+    }
+
+    @Test
+    fun `당첨번호 입력시 제대로 값을 입력했는지 확인하는 checkWinningNumbers 테스트 - 제대로 입력한 경우`() {
+        ValidationUtil.checkWinningNumbers("1,2,3,4,5,6")
     }
 
     @Test
@@ -81,6 +91,11 @@ class ValidationUtilTest {
         assertThrows<IllegalArgumentException> {
             ValidationUtil.checkWinningNumbers("aaa")
         }
+    }
+
+    @Test
+    fun `보너스번호 입력시 제대로 값을 입력했는지 확인하는 checkBonusNumber 테스트 - 제대로 입력한 경우`() {
+        ValidationUtil.checkBonusNumber("7", winningNumbers)
     }
 
     @Test
