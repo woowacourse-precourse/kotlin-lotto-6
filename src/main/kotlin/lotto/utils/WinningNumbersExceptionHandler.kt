@@ -1,7 +1,7 @@
 package lotto.utils
 
 import lotto.constants.ExceptionMessage.NOT_INTEGER_NUMBERS
-import lotto.constants.ExceptionMessage.LESS_NUMBERS_THAN_LOTTO_COUNT
+import lotto.constants.ExceptionMessage.NOT_AS_MANY_AS_LOTTO_COUNT
 import lotto.constants.ExceptionMessage.NOT_UNIQUE_NUMBERS
 import lotto.constants.ExceptionMessage.OUT_OF_RANGE_NUMBERS
 import lotto.constants.Lotto.LOTTO_COUNT
@@ -49,7 +49,7 @@ object WinningNumbersExceptionHandler {
 
   private fun validateCount(separatedWinningNumbers: List<String>) {
     if (separatedWinningNumbers.size != LOTTO_COUNT) {
-      throw IllegalArgumentException(LESS_NUMBERS_THAN_LOTTO_COUNT)
+      throw IllegalArgumentException(NOT_AS_MANY_AS_LOTTO_COUNT)
     }
   }
 
