@@ -9,24 +9,28 @@ private val lottoRandomNumber: MutableList<List<Int>> = mutableListOf()
 
 fun main() {
 
-    println("구입금액을 입력해 주세요.")
-    inputLottoPurchaseAmount()
-    checkLottoPurchaseAmount()
+    try {
+        println("구입금액을 입력해 주세요.")
+        inputLottoPurchaseAmount()
+        checkLottoPurchaseAmount()
 
-    calculatorLottoCount()
-    printLottoCount()
+        calculatorLottoCount()
+        printLottoCount()
 
-    generatorLottoRandomNumber()
-    printLottoRandomNumber()
+        generatorLottoRandomNumber()
+        printLottoRandomNumber()
 
-    println("당첨 번호를 입력해 주세요.")
-    val lotto = Lotto(inputLottoNumber())
+        println("당첨 번호를 입력해 주세요.")
+        val lotto = Lotto(inputLottoNumber())
 
-    println("보너스 번호를 입력해 주세요.")
-    lotto.inputBonusNumber(inputBonusNumber())
+        println("보너스 번호를 입력해 주세요.")
+        lotto.inputBonusNumber(inputBonusNumber())
 
-    val result = lotto.result(lottoRandomNumber)
-    printResult(result)
+        val result = lotto.result(lottoRandomNumber)
+        printResult(result)
+    } catch (e: Exception) {
+        println(e.message ?: throw e)
+    }
 }
 
 private fun inputLottoPurchaseAmount() {
