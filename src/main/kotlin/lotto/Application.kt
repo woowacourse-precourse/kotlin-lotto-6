@@ -1,5 +1,6 @@
 package lotto
 
+import camp.nextstep.edu.missionutils.Randoms
 import java.io.Console
 import java.util.logging.Logger
 import kotlin.contracts.contract
@@ -16,6 +17,7 @@ fun main() {
             money = ensureInt(input)
             buyNum = ensureBuyNum(money)
             println("${buyNum}개를 구매했습니다.")
+            generateLottoNum()
             break // If no error occurs, exit the loop
         } catch (e: IllegalArgumentException) {
             println(e.message) // Print the error message and prompt again
@@ -23,6 +25,10 @@ fun main() {
     }
 }
 
+fun generateLottoNum() {
+    val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+    println(numbers)
+}
 fun ensureInt(input: String): Int {
     return input.toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.")
 }
