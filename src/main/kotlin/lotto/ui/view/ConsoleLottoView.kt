@@ -1,6 +1,7 @@
 package lotto.ui.view
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.domain.model.BonusNumber
 import lotto.domain.model.Money
 import lotto.domain.model.WinningNumbers
 import lotto.ui.presenter.LottoPresenter
@@ -24,7 +25,7 @@ class ConsoleLottoView : LottoView {
         presenter.getMoney()
     }
 
-    override fun getMoney(): Money = Money(amount = Console.readLine().toInt())
+    override fun getMoney(): Money = Money(amount = readInt())
 
     override fun onGetMoneyDone() {
         presenter.getLottoes()
@@ -38,6 +39,14 @@ class ConsoleLottoView : LottoView {
         val numbers = Console.readLine().split(NUMBER_DELIMITER).map(String::toInt)
         return WinningNumbers(numbers = numbers)
     }
+
+    override fun onGetWinningNumbersDone() {
+        presenter.getBonusNumber()
+    }
+
+    override fun getBonusNumber(): BonusNumber = BonusNumber(number = readInt())
+
+    private fun readInt(): Int = Console.readLine().toInt()
 
     companion object {
         const val ERROR_MESSAGE_PREFIX = "[ERROR]"

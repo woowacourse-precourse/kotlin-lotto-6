@@ -15,6 +15,8 @@ value class WinningNumbers(val numbers: List<Int>) {
         return true
     }
 
+    operator fun contains(number: Int): Boolean = numbers.contains(number)
+
     companion object {
         const val NUMBER_OF_WINNING_NUMBERS = Lotto.NUMBER_OF_LOTTO_NUMBERS
         const val MISMATCH_NUMBER_OF_WINNING_NUMBERS = "${NUMBER_OF_WINNING_NUMBERS}개의 숫자가 필요합니다."
