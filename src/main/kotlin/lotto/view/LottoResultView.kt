@@ -31,7 +31,7 @@ class LottoResultView {
     }
 
     private fun getRateReturn(totalPrize: Int, money: Int): Double {
-        return DEFAULT_RATE - 100.0 * (money - totalPrize) / money.toDouble()
+        return totalPrize.toDouble() / money.toDouble() * DEFAULT_RATE
     }
 
     private enum class LotteryPrize(private val formatString: String, private val prizeAmount: Int) {
