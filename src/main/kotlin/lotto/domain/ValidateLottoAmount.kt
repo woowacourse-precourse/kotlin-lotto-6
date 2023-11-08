@@ -1,5 +1,6 @@
 package lotto.domain
 
+import lotto.Lotto.Companion.LOTTO_PRICE
 import java.lang.IllegalArgumentException
 
 class ValidateLottoAmount {
@@ -33,7 +34,6 @@ class ValidateLottoAmount {
     }
 
     companion object {
-        const val LOTTO_PRICE = 1000
         const val BUY_AMOUNT_EMPTY_ERROR_MESSAGE = "[ERROR] 입력하지 않았습니다."
         const val BUY_AMOUNT_STRING_ERROR_MESSAGE = "[ERROR] 입력한 값에 문자가 포함되어 있습니다."
         const val BUY_AMOUNT_UNDER_LOTTO_PRICE_ERROR_MESSAGE = "[ERROR] 입력한 값으로 로또 구매가 불가능합니다."

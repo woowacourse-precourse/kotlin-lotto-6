@@ -1,6 +1,7 @@
 package lotto.view
 
 import lotto.Lotto
+import lotto.Lotto.Companion.LOTTO_PRICE
 import lotto.domain.Stats
 
 class OutputView {
@@ -47,7 +48,6 @@ class OutputView {
         const val PRINT_EARNING_RATE_MESSAGE = "총 수익률은 %.1f%%입니다."
         const val DIVIDE_NUMBER_RATE = 100
         const val INITIAL_TOTAL_PRIZE = 0
-        const val LOTTO_PRICE = 1000
         const val WINNING_STATS = "\n당첨 통계\n---"
     }
 

@@ -1,5 +1,8 @@
 package lotto.domain
 
+import lotto.Lotto.Companion.LOTTO_NUMBER_COUNT
+import lotto.Lotto.Companion.LOTTO_RANDOM_END_NUMBER
+import lotto.Lotto.Companion.LOTTO_RANDOM_START_NUMBER
 import java.lang.IllegalArgumentException
 
 class ValidateLottoNumbers {
@@ -63,16 +66,13 @@ class ValidateLottoNumbers {
     }
 
     private fun checkInRange(number: Int) {
-        if (number < RANDOM_START_RANGE_NUMBER || number > RANDOM_END_RANGE_NUMBER)
+        if (number < LOTTO_RANDOM_START_NUMBER || number > LOTTO_RANDOM_END_NUMBER)
             throw IllegalArgumentException(INPUT_NOT_IN_RANGE_ERROR_MESSAGE)
     }
 
     companion object {
-        const val RANDOM_START_RANGE_NUMBER = 1
-        const val RANDOM_END_RANGE_NUMBER = 45
         const val ASCII_ZERO_CODE = 48
         const val ASCII_NINE_CODE = 57
-        const val LOTTO_NUMBER_COUNT = 6
         const val INPUT_CONTAINS_EMPTY_ERROR_MESSAGE = "[ERROR] 입력한 값에 공백이 포함되어 있습니다."
         const val INPUT_STRING_ERROR_MESSAGE = "[ERROR] 입력한 값에 문자가 포함되어 있습니다."
         const val INPUT_NOT_IN_RANGE_ERROR_MESSAGE = "[ERROR] 1에서 45 사이의 자연수 값이 아닌 값이 포함되어 있습니다."

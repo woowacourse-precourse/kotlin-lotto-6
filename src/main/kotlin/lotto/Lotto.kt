@@ -17,5 +17,6 @@ class Lotto(private val numbers: List<Int>) {
         const val LOTTO_NUMBER_COUNT = 6
         const val LOTTO_RANDOM_START_NUMBER = 1
         const val LOTTO_RANDOM_END_NUMBER = 45
+        const val LOTTO_PRICE = 1000
     }
 }
