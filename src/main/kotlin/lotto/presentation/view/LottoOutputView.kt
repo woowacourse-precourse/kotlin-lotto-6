@@ -1,6 +1,7 @@
 package lotto.presentation.view
 
 import lotto.domain.enum.notice.Guide
+import lotto.domain.model.Customer
 
 class LottoOutputView {
     fun printInputPurchasePrice() {
@@ -9,6 +10,12 @@ class LottoOutputView {
 
     fun printPurchaseCount(count: Int) {
         println("${count}${Guide.PURCHASE_COUNT}")
+    }
+
+    fun printPurchaseLottosNumbers(customer: Customer){
+        customer.lotteries.forEach { lotto ->
+            println(lotto.getNumbers())
+        }
     }
 
     fun printInputWinningNumbers() {

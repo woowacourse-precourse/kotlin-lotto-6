@@ -18,8 +18,9 @@ class LottoViewModel {
         winning = Winning(winningNumbers,bonusNumber)
     }
 
-    fun initialCustomer(){
+    fun initialCustomer(price: Int){
         customer = Customer()
+        customer.buyLotteries(price)
     }
 
     fun formatWinningResult(): String {
