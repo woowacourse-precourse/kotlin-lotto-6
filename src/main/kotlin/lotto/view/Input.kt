@@ -20,11 +20,17 @@ class Input {
     }
 
     fun inputWinningNumber(): List<Int> {
-        println(INPUT_WINNING_NUMBER)
-        val winningNumbers = Console.readLine()
-        WinningNumberValidation.VALIDATION_START.getMessage(winningNumbers)
-        return winningNumbers.split(SPLIT_STRING).map { number ->
-            number.toInt()
+        while (true) {
+            println(INPUT_WINNING_NUMBER)
+            val winningNumbers = Console.readLine()
+            try {
+                WinningNumberValidation.VALIDATION_START.getMessage(winningNumbers)
+                return winningNumbers.split(SPLIT_STRING).map { number ->
+                    number.toInt()
+                }
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
         }
     }
 
