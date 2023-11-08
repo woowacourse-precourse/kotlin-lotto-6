@@ -50,6 +50,26 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `당첨 번호 확인 테스트1`() {
+        val winningNumber = listOf(1, 2, 3, 4, 5, 6)
+        val lotto = Lotto(listOf(1, 2, 7, 8, 9, 10))
+        val result = countInWinningNumber(winningNumber, lotto)
+        assertThat(result).isEqualTo(2)
+    }
+
+    @Test
+    fun `당첨 번호 일치 개수 확인 테스트`() {
+        val winningNumber = listOf(1, 2, 3, 4, 5, 6)
+        val bonusNumber = 7
+        val lotto1 = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val lotto2 = Lotto(listOf(1, 2, 3, 4, 5, 7))
+        val lottos = mutableListOf(lotto1, lotto2)
+        val result = compareWinningNumber(winningNumber, lottos, bonusNumber)
+        val expected = listOf(0, 0, 0, 0, 0, 0, 1, 1)
+        assertThat(result).isEqualTo(expected)
+    }
+
     override fun runMain() {
         main()
     }
