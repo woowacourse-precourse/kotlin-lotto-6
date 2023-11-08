@@ -60,15 +60,8 @@ class LottoServiceTest {
         )
     }
 
-    private fun <T> assertRandomTest(
-        verification: Verification,
-        executable: Executable,
-        value: T,
-        vararg values: T
-    ) {
-        assertTimeoutPreemptively(
-            RANDOM_TEST_TIMEOUT
-        ) {
+    private fun <T> assertRandomTest(verification: Verification, executable: Executable, value: T, vararg values: T) {
+        assertTimeoutPreemptively(RANDOM_TEST_TIMEOUT) {
             Mockito.mockStatic(Randoms::class.java).use { mock ->
                 mock.`when`<Any>(verification).thenReturn(value, *Arrays.stream(values).toArray())
                 executable.execute()
@@ -77,46 +70,40 @@ class LottoServiceTest {
     }
 
     companion object {
-        private val RANDOM_TEST_TIMEOUT = Duration.ofSeconds(10L)
 
         @JvmStatic
-        fun getWinningMapProvider(): Stream<Arguments> =
-            Stream.of(
-                Arguments.of(
-                    listOf(
-                        Lotto(listOf(1, 2, 3, 4, 5, 6)), // 1등 : Winner.FIRST_GRADE
-                        Lotto(listOf(1, 2, 3, 4, 5, 7)), // 2등 : Winner.SECOND_GRADE
-                        Lotto(listOf(1, 2, 3, 4, 5, 8)), // 3등 : Winner.THIRD_GRADE
-                    ), Lotto(listOf(1, 2, 3, 4, 5, 6)), 7,
-                    EnumMap(mapOf(
-                        FIRST_GRADE to 1,
-                        SECOND_GRADE to 1,
-                        THIRD_GRADE to 1,
-                    ))
-                ),
-                Arguments.of(
-                    listOf(
-                        Lotto(listOf(2, 3, 5, 6, 7, 44)), // 3등 : Winner.THIRD_GRADE
-                        Lotto(listOf(2, 3, 4, 5, 10, 11)), // 4등 : Winner.FOURTH_GRADE
-                        Lotto(listOf(2, 3, 4, 11, 12, 13)), // 5등 : Winner.FIFTH_GRADE
-                    ), Lotto(listOf(2, 3, 4, 5, 6, 7)), 9,
-                    EnumMap(mapOf(
-                        THIRD_GRADE to 1,
-                        FOURTH_GRADE to 1,
-                        FIFTH_GRADE to 1,
-                    ))
-                ),
-                Arguments.of(
-                    listOf(
-                        Lotto(listOf(2, 3, 4, 5, 10, 11)), // 4등 : Winner.FOURTH_GRADE
-                        Lotto(listOf(2, 3, 4, 11, 12, 13)), // 5등 : Winner.FIFTH_GRADE
-                        Lotto(listOf(2, 3, 18, 25, 38, 44)), // 당첨되지 않음.
-                    ), Lotto(listOf(2, 3, 4, 5, 6, 7)), 9,
-                    EnumMap(mapOf(
-                        FOURTH_GRADE to 1,
-                        FIFTH_GRADE to 1,
-                    ))
-                ),
-            )
+        fun getWinningMapProvider(): Stream<Arguments> = Stream.of(
+            WINNING_MAP_ARGUMENT_EXAMPLE_FIRST,
+            WINNING_MAP_ARGUMENT_EXAMPLE_SECOND,
+            WINNING_MAP_ARGUMENT_EXAMPLE_THIRD
+        )
+
+        private val WINNING_MAP_ARGUMENT_EXAMPLE_FIRST = Arguments.of(
+            listOf(
+                Lotto(listOf(1, 2, 3, 4, 5, 6)), // 1등 : Winner.FIRST_GRADE
+                Lotto(listOf(1, 2, 3, 4, 5, 7)), // 2등 : Winner.SECOND_GRADE
+                Lotto(listOf(1, 2, 3, 4, 5, 8)), // 3등 : Winner.THIRD_GRADE
+            ), Lotto(listOf(1, 2, 3, 4, 5, 6)), 7,
+            EnumMap(mapOf(FIRST_GRADE to 1, SECOND_GRADE to 1, THIRD_GRADE to 1))
+        )
+        private val WINNING_MAP_ARGUMENT_EXAMPLE_SECOND = Arguments.of(
+            listOf(
+                Lotto(listOf(2, 3, 5, 6, 7, 44)), // 3등 : Winner.THIRD_GRADE
+                Lotto(listOf(2, 3, 4, 5, 10, 11)), // 4등 : Winner.FOURTH_GRADE
+                Lotto(listOf(2, 3, 4, 11, 12, 13)), // 5등 : Winner.FIFTH_GRADE
+            ), Lotto(listOf(2, 3, 4, 5, 6, 7)), 9,
+            EnumMap(mapOf(THIRD_GRADE to 1, FOURTH_GRADE to 1, FIFTH_GRADE to 1))
+        )
+
+        private val WINNING_MAP_ARGUMENT_EXAMPLE_THIRD = Arguments.of(
+            listOf(
+                Lotto(listOf(2, 3, 4, 5, 10, 11)), // 4등 : Winner.FOURTH_GRADE
+                Lotto(listOf(2, 3, 4, 11, 12, 13)), // 5등 : Winner.FIFTH_GRADE
+                Lotto(listOf(2, 3, 18, 25, 38, 44)), // 당첨되지 않음.
+            ), Lotto(listOf(2, 3, 4, 5, 6, 7)), 9,
+            EnumMap(mapOf(FOURTH_GRADE to 1, FIFTH_GRADE to 1))
+        )
+
+        private val RANDOM_TEST_TIMEOUT = Duration.ofSeconds(10L)
     }
 }
