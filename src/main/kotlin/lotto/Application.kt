@@ -12,16 +12,13 @@ fun main() {
     val numberOfTickets = getNumberOfTickets( validateInputMoney( getInputMoney() ) )
     println("\n${numberOfTickets}개를 구매했습니다.")
 
-
     val tickets = generateAllTickets(numberOfTickets)
-
     printTickets(tickets)
 
     var sevenNumbers = getSevenNumbers(getWinningNumbers(), getBonusNumber())
-
     sevenNumbers = validateSevenNumbers(sevenNumbers)
 
-    print(sevenNumbers)
+    print(getCountOfEachGradeResult(tickets, sevenNumbers))
 
 }
 
@@ -109,7 +106,7 @@ fun checkNumbersException(sevenNumbers: MutableList<Int>) {
     for (item in sevenNumbers) {
         // 사용자의 입력이 1 이상 45 이하가 아닌 경우
         if (item < 1 || item > 45) {
-            throw IllegalArgumentException("$ERROR 1부터 45까지의 정수만 입력하실 수 있습니다.")
+            throw IllegalArgumentException("$ERROR 당첨 번호와 보너스 번호 모두 1부터 45까지의 정수만 입력하실 수 있습니다.")
         }
         // 사용자의 입력에서 같은 숫자가 중복될 경우
         if (subsetOfSeven.contains(item)) {
@@ -139,3 +136,36 @@ fun validateSevenNumbers(sevenNumbers: MutableList<Int>): MutableList<Int> {
 
     return sevenNumbers
 }
+
+fun compareNumbers(aTicketNumbers: List<Int>, sevenNumbers: MutableList<Int>): Int {
+    val winningNumbers = sevenNumbers.take(6)
+    val bonusNumber = sevenNumbers[6]
+    val sizeOfSubset = winningNumbers.toSet().intersect(aTicketNumbers).size
+
+    val releventIndex = when (sizeOfSubset) {
+        3 -> 0
+        4 -> 1
+        5 -> if (!aTicketNumbers.contains(bonusNumber)) 2 else 3
+        6 -> 4
+        else -> return -1
+
+    }
+    return releventIndex
+
+}
+
+fun getCountOfEachGradeResult(tickets: List<Lotto>, sevenNumbers: MutableList<Int>): MutableList<Int> {
+    var countOfEachGradeResult= MutableList(5) { 0 }   // 앞부터 5등,4등,3등,2등,1등 개수
+
+    for ( aTicket in tickets ) {
+        val aTicketNumbers = aTicket.getNumbers()
+        val releventIndex = compareNumbers(aTicketNumbers, sevenNumbers)
+        if (releventIndex != -1) {
+            countOfEachGradeResult[releventIndex]++
+        }
+    }
+
+    return countOfEachGradeResult
+}
+
+
