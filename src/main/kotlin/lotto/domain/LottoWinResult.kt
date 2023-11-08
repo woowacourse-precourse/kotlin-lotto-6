@@ -1,43 +1,52 @@
 package lotto.domain
 
-import lotto.data.Rank
+enum class LottoWinResult(
+    val grade: Int,
+    val prize: Int
+) {
+    ALL_MATCH(1, 2_000_000_000),
+    FIVE_MATCH_WITH_BONUS(2, 30_000_000),
+    FIVE_MATCH(3, 1_500_000),
+    FOUR_MATCH(4, 50_000),
+    THREE_MATCH(5, 5_000),
+    NOT_MATCH(0, 0);
 
-class LottoWinResult {
+    companion object {
+        private val ranks = mutableListOf(0, 0, 0, 0, 0, 0)
+        private var money: Long = 0
 
-    private var money: Long = 0L
-    private val ranks = mutableListOf(0, 0, 0, 0, 0, 0)
+        fun getRanks(): List<Int> = ranks.toList()
+        fun getMoney(): Long = this.money
 
-    fun getTotalMoney(): Long = money
-    fun getRanks(): List<Int> = ranks.toList()
-
-    fun calculateRank(ball: Int, bonus: Boolean) {
-        when (ball) {
-            6 -> ranks[Rank.ALL_MATCH.grade] += 1
-            5 -> ranks[calculateRankWithBonus(bonus)] += 1
-            4 -> ranks[Rank.FOUR_MATCH.grade] += 1
-            3 -> ranks[Rank.THREE_MATCH.grade] += 1
-            else -> ranks[Rank.NOT_MATCH.grade] += 1
+        fun calculateRank(ball: Int, bonus: Boolean) {
+            when (ball) {
+                6 -> ranks[ALL_MATCH.grade] += 1
+                5 -> ranks[calculateRankWithBonus(bonus)] += 1
+                4 -> ranks[FOUR_MATCH.grade] += 1
+                3 -> ranks[THREE_MATCH.grade] += 1
+                else -> ranks[NOT_MATCH.grade] += 1
+            }
         }
-    }
 
-    fun addPrizeMoney(ball: Int, bonus: Boolean) {
-        money += when (ball) {
-            6 -> Rank.ALL_MATCH.prize
-            5 -> calculatePrizeMoneyWithBonus(bonus)
-            4 -> Rank.FOUR_MATCH.prize
-            3 -> Rank.THREE_MATCH.prize
-            else -> Rank.NOT_MATCH.prize
+        fun addPrizeMoney(ball: Int, bonus: Boolean) {
+            money += when (ball) {
+                6 -> ALL_MATCH.prize
+                5 -> calculatePrizeMoneyWithBonus(bonus)
+                4 -> FOUR_MATCH.prize
+                3 -> THREE_MATCH.prize
+                else -> NOT_MATCH.prize
+            }
         }
-    }
 
-    fun calculateRateOfProfit(price: Int, prizeMoney: Long): Double =
-        if (prizeMoney == 0L) 0.0 else (prizeMoney.toDouble() / price.toDouble()) * 100.0
+        fun calculateRateOfProfit(price: Int, prizeMoney: Long): Double =
+            if (prizeMoney == 0L) 0.0 else (prizeMoney.toDouble() / price.toDouble()) * 100.0
 
-    private fun calculateRankWithBonus(bonus: Boolean): Int {
-        return if (bonus) Rank.FIVE_MATCH_WITH_BONUS.grade else Rank.FIVE_MATCH.grade
-    }
+        private fun calculateRankWithBonus(bonus: Boolean): Int {
+            return if (bonus) FIVE_MATCH_WITH_BONUS.grade else FIVE_MATCH.grade
+        }
 
-    private fun calculatePrizeMoneyWithBonus(bonus: Boolean): Int {
-        return if (bonus) Rank.FIVE_MATCH_WITH_BONUS.prize else Rank.FIVE_MATCH.prize
+        private fun calculatePrizeMoneyWithBonus(bonus: Boolean): Int {
+            return if (bonus) FIVE_MATCH_WITH_BONUS.prize else FIVE_MATCH.prize
+        }
     }
 }
