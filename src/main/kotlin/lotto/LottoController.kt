@@ -3,6 +3,7 @@ package lotto
 import lotto.view.InputView
 import lotto.view.OutputView
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.utils.Rank
 
 class LottoController(private val inputview: InputView = InputView(),
                       private val outputview: OutputView = OutputView()) {
@@ -15,7 +16,8 @@ class LottoController(private val inputview: InputView = InputView(),
         outputview.printPurchase(amount, lottos)
         val winningNumbers:List<Int> = getWinnigNums()
         val bonusNumber: Int = getBonusNum(winningNumbers)
-
+        val ranks = getRanks(lottos, winningNumbers, bonusNumber)
+        outputview.printGameResult(ranks,0.68f)
     }
     private fun getAmount(): Int {
         var amount: Int
@@ -60,5 +62,29 @@ class LottoController(private val inputview: InputView = InputView(),
                 println(e)
             }
         }
+    }
+
+    private fun getRanks(lottos: List<Lotto>,
+                         winningNumbers: List<Int>,
+                         bonusNumber: Int): List<Int> {
+        var ranks: MutableList<Rank> = mutableListOf()
+        lottos.forEach{lotto ->
+            ranks.add(lotto.getRank(winningNumbers, bonusNumber))
+        }
+        var rankCounter: MutableList<Int> = mutableListOf(0,0,0,0,0,0)
+        ranks.forEach{rank ->
+            when (rank){
+                Rank.rank5 -> rankCounter[0] += 1
+                Rank.rank4 -> rankCounter[1] += 1
+                Rank.rank3 -> rankCounter[2] += 1
+                Rank.rank2 -> rankCounter[3] += 1
+                Rank.rank1 -> rankCounter[4] += 1
+                Rank.rank0 -> doNothing()
+            }
+        }
+        return rankCounter
+    }
+    fun doNothing() {
+
     }
 }
