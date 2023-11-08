@@ -12,7 +12,7 @@ class ResultCalculator {
             tryToFindRank(ticket, winningTicket, bonusNumber)
         }.groupingBy { it }.eachCount()
 
-        return Rank.values().associateWith { rank -> rankCount.getOrDefault(rank, 0) }
+        return Rank.values().associateWith { rank -> rankCount.getOrDefault(rank, DEFAULT_COUNT) }
     }
 
     private fun tryToFindRank(ticket: Lotto, winningTicket: Lotto, bonusNumber: Int): Rank? =
@@ -27,4 +27,9 @@ class ResultCalculator {
 
     private fun calculatePrizeForRank(rank: Rank, ticketCount: Int): Double =
         (rank.prize * ticketCount).toDouble()
+
+
+    companion object {
+        private const val DEFAULT_COUNT = 0
+    }
 }
