@@ -6,16 +6,17 @@ class Lotto(numbers: List<Int>) {
     private var lotto: List<Int>
     private var bonusNum: Int? = null
 
-    constructor(numbers: List<Int>, bonusNum: Int) : this(numbers) {
-        this.bonusNum = bonusNum
-    }
-
     init {
         validateLottoNumbers(numbers)
-        lotto = numbers
+        this.lotto = numbers
     }
 
     fun getLottoNumbers(): List<Int> = lotto
+
+    fun setBonusNum(bonusNum: Int){
+        validateBonusLottoNum(bonusNum)
+        this.bonusNum = bonusNum
+    }
 
     fun getBonusNumbers(): Int? {
         bonusNum?.let { return it }
@@ -24,5 +25,9 @@ class Lotto(numbers: List<Int>) {
 
     private fun validateLottoNumbers(numbers: List<Int>) {
         LottoNumValidation().validateLottoNum(numbers)
+    }
+
+    private fun validateBonusLottoNum(bonusNum: Int){
+        LottoNumValidation().validateBonusLottoNum(bonusNum)
     }
 }
