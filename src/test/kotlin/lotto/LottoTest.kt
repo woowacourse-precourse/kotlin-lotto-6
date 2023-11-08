@@ -6,7 +6,6 @@ import lotto.domain.LottoBuyer
 import lotto.domain.LottoChecker
 import lotto.domain.Position
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.assertThrows
@@ -64,12 +63,12 @@ class LottoTest {
 
     @Test
     fun `로또 구매 테스트`() {
-        val lottoBuyer = LottoBuyer(3000)
-        val lottoList = lottoBuyer.lottoList
         Assertions.assertRandomUniqueNumbersInRangeTest(
             {
+                val lottoBuyer = LottoBuyer(3000)
+                val lottoList = lottoBuyer.lottoList
                 lottoList.forEach {
-                    assertTrue(it.toString() == "[1, 2, 3, 4, 5, 6]")
+                    assertEquals(it.toString(), "[1, 2, 3, 4, 5, 6]")
                 }
             },
             listOf(1, 2, 3, 4, 5, 6),
