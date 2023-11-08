@@ -1,6 +1,6 @@
 package lotto.models
 
-enum class WinningRank(val number: Int, val amount: Int, val count: Int, val hasBonus: Boolean = false) {
+enum class WinningRank(val number: Int, val amount: Int, val macthCount: Int, val hasBonus: Boolean = false) {
     FIRST(1, 2000000000, 6),
     SECOND(2, 30000000, 5, true),
     THIRD(3, 1500000, 5),
@@ -10,12 +10,10 @@ enum class WinningRank(val number: Int, val amount: Int, val count: Int, val has
 
     companion object {
         fun find(matchedCount: Int, hasMatchingBonus: Boolean = false): WinningRank =
-            WinningRank.entries.find { it.count == matchedCount && it.hasBonus == hasMatchingBonus } ?: NOTHING
+            WinningRank.entries.find { it.macthCount == matchedCount && it.hasBonus == hasMatchingBonus } ?: NOTHING
 
-        fun getSortedWinnings(): List<WinningRank> {
-            return entries.sortedWith(
-                compareBy({ it.count }, { it.hasBonus })
-            )
+        fun get(): List<WinningRank> {
+            return entries.sortedBy { it.number }
         }
     }
 }

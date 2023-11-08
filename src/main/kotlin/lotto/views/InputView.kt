@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 
 class InputView {
     fun inputPurchaseAmount(): Int {
-        printPromptMessage(INPUT_PURCHASE_AMOUNT_MESSAGE)
+        println(INPUT_PURCHASE_AMOUNT_MESSAGE)
 
         val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
         require(isEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
@@ -20,7 +20,7 @@ class InputView {
     }
 
     fun inputWinningNumbers(): List<Int> {
-        printPromptMessage(INPUT_WINNING_NUMBERS_MESSAGE)
+        println(INPUT_WINNING_NUMBERS_MESSAGE)
 
         val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
         require(isEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
@@ -39,7 +39,7 @@ class InputView {
     }
 
     fun inputBonusNumber(): Int {
-        printPromptMessage(INPUT_BONUS_NUMBER_MESSAGE)
+        println(INPUT_BONUS_NUMBER_MESSAGE)
 
         val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
         require(isEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
@@ -53,8 +53,6 @@ class InputView {
 
         return input.toInt()
     }
-
-    private fun printPromptMessage(message: String) = println(message)
 
     private fun isEmptyOrBlankInput(input: String) = input.isEmpty() or input.isBlank()
 
