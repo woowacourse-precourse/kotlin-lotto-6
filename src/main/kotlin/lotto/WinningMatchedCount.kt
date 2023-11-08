@@ -1,6 +1,6 @@
 package lotto
 
-data class WinningRate(
+data class WinningMatchedCount(
     var threeMatchedCount: Int = 0,
     var fourMatchedCount: Int = 0,
     var fiveMatchedCount: Int = 0,

@@ -16,22 +16,22 @@ class LottoCalculator {
         return dataList.toList()
     }
 
-    fun calWinningRate(lottoList: List<Lotto>, winningList: List<Int>, bonusNumber: Int): WinningRate {
+    fun calWinningRate(lottoList: List<Lotto>, winningList: List<Int>, bonusNumber: Int): WinningMatchedCount {
         val dataList = calMatchCount(lottoList, winningList, bonusNumber)
-        val winningRate = WinningRate()
+        val winningMatchedCount = WinningMatchedCount()
         dataList.forEach {
             when {
-                it.winningNumberMatchedCount == 3 && it.bonusNumberMatchedCount == 0 -> winningRate.threeMatchedCount += 1
-                it.winningNumberMatchedCount == 4 && it.bonusNumberMatchedCount == 0 -> winningRate.fourMatchedCount += 1
-                it.winningNumberMatchedCount == 5 && it.bonusNumberMatchedCount == 0 -> winningRate.fiveMatchedCount += 1
-                it.winningNumberMatchedCount == 5 && it.bonusNumberMatchedCount == 1 -> winningRate.fiveAndBonusMatchedCount += 1
-                it.winningNumberMatchedCount == 6 && it.bonusNumberMatchedCount == 0 -> winningRate.sixMatchedCount += 1
+                it.winningNumberMatchedCount == 3 && it.bonusNumberMatchedCount == 0 -> winningMatchedCount.threeMatchedCount += 1
+                it.winningNumberMatchedCount == 4 && it.bonusNumberMatchedCount == 0 -> winningMatchedCount.fourMatchedCount += 1
+                it.winningNumberMatchedCount == 5 && it.bonusNumberMatchedCount == 0 -> winningMatchedCount.fiveMatchedCount += 1
+                it.winningNumberMatchedCount == 5 && it.bonusNumberMatchedCount == 1 -> winningMatchedCount.fiveAndBonusMatchedCount += 1
+                it.winningNumberMatchedCount == 6 && it.bonusNumberMatchedCount == 0 -> winningMatchedCount.sixMatchedCount += 1
             }
         }
-        return winningRate
+        return winningMatchedCount
     }
 
-    fun calProfitRate(winningRate: WinningRate, purchasedAmount: Int): Double {
+    fun calProfitRate(winningRate: WinningMatchedCount, purchasedAmount: Int): Double {
         var sum: Long = 0;
         sum += LottoPrice.THREE_MATCHED.calculatePrice(winningRate.threeMatchedCount)
         sum += LottoPrice.FOUR_MATCHED.calculatePrice(winningRate.fourMatchedCount)
