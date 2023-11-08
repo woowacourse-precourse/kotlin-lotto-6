@@ -1,5 +1,10 @@
 package lotto
 
 fun main() {
-    TODO("프로그램 구현")
+    try {
+        LottoProcess().start()
+    } catch (_: IllegalArgumentException) {
+    }
 }
+
+
