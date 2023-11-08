@@ -1,5 +1,7 @@
 package lotto.controller
 
+import lotto.constants.GameConstants.LOTTO_COUNT
+import lotto.constants.GameConstants.PURCHASE_UNIT
 import lotto.domain.lotto.model.Lotties
 import lotto.view.input.InputView
 import lotto.view.output.OutputView
@@ -8,27 +10,30 @@ object LottoGameController {
     private val inputView = InputView
     private val outputView = OutputView
     private val lotties = Lotties()
-    private var winningNumbers = List(6) { 0 }
-    private var bonusNumber = 0
+    private var lottoPurchaseCount : Int = 0
+    private var lottoPurchaseAmount : Int = 0
+    private var winningNumbers = List(LOTTO_COUNT) { 0 }
+    private var bonusNumber : Int = 0
 
     fun start() {
         purchaseLotto()
+        setLotto(lottoPurchaseCount)
         readWinningNumbersAndBonusNumber()
     }
 
-    private fun purchaseLotto(){
+    private fun purchaseLotto() {
         outputView.requestPurchaseAmountMessage()
-        val lottoPurchaseCount: Int = inputView.readPurchaseAmount()
+        lottoPurchaseAmount = inputView.readPurchaseAmount()
+        lottoPurchaseCount /= PURCHASE_UNIT
         outputView.countLottoMessage(lottoPurchaseCount)
-        setLotto(lottoPurchaseCount)
     }
 
-    private fun setLotto(lottoPurchaseCount: Int){
+    private fun setLotto(lottoPurchaseCount: Int) {
         lotties.generateLotties(lottoPurchaseCount)
         lotties.printLotties()
     }
 
-    private fun readWinningNumbersAndBonusNumber(){
+    private fun readWinningNumbersAndBonusNumber() {
         outputView.requestWinningNumbersMessage()
         winningNumbers = InputView.readWinningNumber()
         outputView.requestBonusNumberMessage()
