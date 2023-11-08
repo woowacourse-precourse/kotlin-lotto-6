@@ -28,7 +28,7 @@ fun moneyCheck(money: Int) {
 }
 
 fun moneyNegativeCheck(money: Int) {
-    if (money < 0) {
+    if (money <= 0) {
         throw IllegalArgumentException(NEGATIVE_ERROR)
     }
 }
