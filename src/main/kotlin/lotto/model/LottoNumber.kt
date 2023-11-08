@@ -5,7 +5,7 @@ import lotto.requireAndReturn
 import lotto.toValidInt
 
 @JvmInline
-value class Ball(val number: Int) {
+value class LottoNumber(val number: Int) {
 
     constructor(value: String) : this(value.toValidInt())
 
@@ -25,4 +25,4 @@ value class Ball(val number: Int) {
     }
 }
 
-fun List<Int>.toBalls(): List<Ball> = this.sorted().map { Ball(it) }
+fun List<Int>.toLottoNumbers(): List<LottoNumber> = this.sorted().map { LottoNumber(it) }

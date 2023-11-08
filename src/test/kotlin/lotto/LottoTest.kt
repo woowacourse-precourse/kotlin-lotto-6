@@ -1,6 +1,6 @@
 package lotto
 
-import lotto.model.Ball
+import lotto.model.LottoNumber
 import lotto.model.Lotto
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -31,8 +31,8 @@ class LottoTest {
     @Test
     fun `로또 번호 중 보너스 번호와 일치하는 값이 있다면, isMatchedBonus()를 호출했을 때 true를 반환한다`() {
         val lotto = Lotto.of(1, 2, 3, 4, 5, 6)
-        assertThat(lotto.isMatchedBonus(bonus = Ball(3))).isTrue()
-        assertThat(lotto.isMatchedBonus(bonus = Ball(10))).isFalse()
+        assertThat(lotto.isMatchedBonus(bonus = LottoNumber(3))).isTrue()
+        assertThat(lotto.isMatchedBonus(bonus = LottoNumber(10))).isFalse()
     }
 
     @Test

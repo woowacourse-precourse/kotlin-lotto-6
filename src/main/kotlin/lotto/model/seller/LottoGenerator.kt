@@ -4,7 +4,7 @@ import lotto.model.Lotto
 import lotto.model.Payment
 import lotto.model.random.DefaultRandomGenerator
 import lotto.model.random.RandomGenerator
-import lotto.model.toBalls
+import lotto.model.toLottoNumbers
 
 class LottoGenerator private constructor(private val generator: RandomGenerator) {
 
@@ -12,7 +12,7 @@ class LottoGenerator private constructor(private val generator: RandomGenerator)
         val ticket = Ticket(payment.cost)
         repeat(payment.purchase) {
             val randomNumbers = generator.pickUniqueNumberInRange(START_NUMBER, END_NUMBER, LOTTO_NUMBER_COUNT)
-            ticket.record(Lotto(randomNumbers.toBalls()))
+            ticket.record(Lotto(randomNumbers.toLottoNumbers()))
         }
         return ticket
     }

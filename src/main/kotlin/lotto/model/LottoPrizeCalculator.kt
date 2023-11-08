@@ -2,7 +2,7 @@ package lotto.model
 
 import lotto.model.seller.Ticket
 
-class LottoPrizeCalculator(private val winningNumbers: Lotto, private val bonus: Ball) {
+class LottoPrizeCalculator(private val winningNumbers: Lotto, private val bonus: LottoNumber) {
 
     fun issueLottoResultReceipt(ticket: Ticket): PrizeReceipt {
         val prizeReceipt = PrizeReceipt(ticket.cost)

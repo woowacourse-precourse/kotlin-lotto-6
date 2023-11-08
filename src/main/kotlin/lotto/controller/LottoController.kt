@@ -1,6 +1,6 @@
 package lotto.controller
 
-import lotto.model.Ball
+import lotto.model.LottoNumber
 import lotto.model.Lotto
 import lotto.model.LottoPrizeCalculator
 import lotto.model.PrizeReceipt
@@ -42,9 +42,9 @@ class LottoController(private val outputView: OutputView, private val inputView:
         return inputView.getUserInput()
     }
 
-    private fun getBonus(): Ball {
+    private fun getBonus(): LottoNumber {
         outputView.printBonusInput()
-        return Ball(inputView.getUserInput())
+        return LottoNumber(inputView.getUserInput())
     }
 
     private fun getWinningNumbers(): Lotto {
