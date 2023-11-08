@@ -11,7 +11,7 @@ fun main() {
 
 private fun buyLotto(store: Store): List<Lotto> {
     val totalSold = store.payToBuy()
-    val generateLotto = GenerateLotto()
+    val generateLotto = LottoGenerate()
     val lottos = List(totalSold) { generateLotto.issueLotto() }
     lottos.forEach { it.printLottoNumber() }
 
@@ -30,6 +30,6 @@ private fun setupWinningNumber(): Pair<List<Int>, Int> {
 private fun printLottoResult(lottos: List<Lotto>, winningNumbersSet: Pair<List<Int>, Int>){
     val winningResult = LottoResult(lottos, winningNumbersSet)
     winningResult.printResultStatistics()
-    winningResult.computerProfit(lottos.size * 1000)
+    winningResult.computeProfit(lottos.size * 1000)
     winningResult.printProfit()
 }
