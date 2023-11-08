@@ -54,4 +54,28 @@ class LottoController(
             }
         }
     }
+    private fun getRanks(lottos: List<Lotto>,
+                         winningNumbers: List<Int>,
+                         bonusNumber: Int): List<Int> {
+        var ranks: MutableList<Rank> = mutableListOf()
+        lottos.forEach{lotto ->
+            ranks.add(lotto.getRank(winningNumbers, bonusNumber))
+        }
+        var rankCounter: MutableList<Int> = mutableListOf(0,0,0,0,0,0)
+        ranks.forEach{rank ->
+            when (rank){
+                Rank.rank5 -> rankCounter[0] += 1
+                Rank.rank4 -> rankCounter[1] += 1
+                Rank.rank3 -> rankCounter[2] += 1
+                Rank.rank2 -> rankCounter[3] += 1
+                Rank.rank1 -> rankCounter[4] += 1
+                Rank.rank0 -> doNothing()
+            }
+        }
+        return rankCounter
+    }
+    fun doNothing() {
+
+    }
+
 }
