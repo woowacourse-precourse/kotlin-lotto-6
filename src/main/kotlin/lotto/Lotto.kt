@@ -3,7 +3,7 @@ package lotto
 class Lotto(private val numbers: List<Int>) {
 
     init {
-        require(numbers.size == 6) { "$ERROR $LOTTO_NUMBER_ONLY_SIX_DIGITS" }
+        require(numbers.size == LOTTO_SIZE) { "$ERROR $LOTTO_NUMBER_ONLY_SIX_DIGITS" }
         require(checkDuplicateNumbers()) { "$ERROR $LOTTO_NUMBER_CANNOT_DUPLICATED" }
         require(numbersOutOfRange()) { "$ERROR $LOTTO_NUMBER_RANGE" }
         require(isSorted()) {"$ERROR $LOTTO_NUMBER_NOT_ASCENDING"}
@@ -29,6 +29,7 @@ class Lotto(private val numbers: List<Int>) {
         const val LOTTO_NUMBER_NOT_ASCENDING = "로또 번호가 오름차순 정렬되지 않았습니다."
         const val LOTTO_MIN_NUMBER = 1
         const val LOTTO_MAX_NUMBER = 45
+        const val LOTTO_SIZE = 6
     }
 
 }

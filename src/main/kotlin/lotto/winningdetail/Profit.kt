@@ -9,11 +9,15 @@ class Profit {
             totalJackpot += (jackpot?.jackpot ?: 0.0) * count
         }
 
-        val profit = (totalJackpot / amount.toDouble()) * 100
+        val profit = (totalJackpot / amount.toDouble()) * PERCENTAGE_CONVERSION
 
-        return profit.format(1)
+        return profit.format(DECIMAL_PLACE)
     }
 
     private fun Double.format(digits: Int) = "%.${digits}f".format(this)
 
+    companion object {
+        const val DECIMAL_PLACE = 1
+        const val PERCENTAGE_CONVERSION = 100
+    }
 }
