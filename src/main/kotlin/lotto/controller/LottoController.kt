@@ -58,15 +58,11 @@ class LottoController(
         return inputView.inputWinningNumbersWithBonusNumber()
     }
 
-    private fun getLottoRank(winningLotto: WinningLotto, playerLotto: List<Lotto>, bonusNumber: LottoNumber): Map<WinningRank, Int> {
-        val lottoRanks = mutableMapOf(
-            WinningRank.NO_MATCHES to 0,
-            WinningRank.THREE_MATCHES to 0,
-            WinningRank.FOUR_MATCHES to 0,
-            WinningRank.FIVE_MATCHES to 0,
-            WinningRank.FIVE_MATCHES_WITH_BONUS_NUMBER to 0,
-            WinningRank.SIX_MATCHES to 0
-        )
+    private fun getLottoRank(
+        winningLotto: WinningLotto,
+        playerLotto: List<Lotto>,
+        bonusNumber: LottoNumber
+    ): Map<WinningRank, Int> {
 
         playerLotto.forEach { lotto ->
             val rank = winningLotto.determineWinner(lotto, bonusNumber.number)
