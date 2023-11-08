@@ -9,6 +9,7 @@ object Error {
     const val LOTTO_NUMBER_CANT_DUPLICATE = "로또 번호는 중복될 수 없습니다."
     const val PRICE_TYPE_IS_NOT_INT = "구입 금액은 정수여야 합니다."
     const val PRICE_IS_UNDER_1000 = "구입 금액은 1000원 이상이어야 합니다."
+    const val PRICE_IS_NOT_PRODUCT_OF_1000 = "구입 금액은 1000원으로 나누어 떨어져야 합니다."
 
     fun printErrorMessage(msg: String) {
         println(MESSAGE_HEADER + msg)

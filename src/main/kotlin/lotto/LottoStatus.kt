@@ -55,6 +55,9 @@ class LottoStatus {
         require(realPrice >= LottoResource.LOTTO_PRICE) {
             Error.printErrorMessage(Error.PRICE_IS_UNDER_1000)
         }
+        require(realPrice % LottoResource.LOTTO_PRICE == 0) {
+            Error.printErrorMessage(Error.PRICE_IS_NOT_PRODUCT_OF_1000)
+        }
         return realPrice
     }
 }
