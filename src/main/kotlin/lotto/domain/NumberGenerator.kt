@@ -8,7 +8,7 @@ class NumberGenerator {
             RANDOM_NUMBERS_RANGE_START,
             RANDOM_NUMBERS_RANGE_END,
             RANDOM_NUMBERS_SIZE
-        )
+        ).sorted()
 
     companion object {
         const val RANDOM_NUMBERS_RANGE_START: Int = 1
