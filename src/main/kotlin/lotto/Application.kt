@@ -18,7 +18,8 @@ fun main() {
     var sevenNumbers = getSevenNumbers(getWinningNumbers(), getBonusNumber())
     sevenNumbers = validateSevenNumbers(sevenNumbers)
 
-    print(getCountOfEachGradeResult(tickets, sevenNumbers))
+    val countOfEachGradeResult = getCountOfEachGradeResult(tickets, sevenNumbers)
+    printLotteryStats(countOfEachGradeResult, numberOfTickets)
 
 }
 
@@ -168,4 +169,26 @@ fun getCountOfEachGradeResult(tickets: List<Lotto>, sevenNumbers: MutableList<In
     return countOfEachGradeResult
 }
 
+fun printLotteryStats(countOfEachGradeResult: MutableList<Int>, numberOfTickets: Int ) {
+    println("\n당첨 통계\n---")
+    println("3개 일치 (5,000원) - ${countOfEachGradeResult[0]}개\n" +
+            "4개 일치 (50,000원) - ${countOfEachGradeResult[1]}개\n" +
+            "5개 일치 (1,500,000원) - ${countOfEachGradeResult[2]}개\n" +
+            "5개 일치, 보너스 볼 일치 (30,000,000원) - ${countOfEachGradeResult[3]}개\n" +
+            "6개 일치 (2,000,000,000원) - ${countOfEachGradeResult[4]}개")
 
+    val profitRate = calculateProfitRate(countOfEachGradeResult, numberOfTickets)
+
+    val formedProfitRate = String.format("%.1f", profitRate) + "%"
+    println("총 수익률은 ${formedProfitRate}입니다.")
+}
+
+fun calculateProfitRate(countOfEachGradeResult: MutableList<Int>, numberOfTickets: Int): Double {
+    val profit : Int = 5000 * countOfEachGradeResult[0] + 50000 * countOfEachGradeResult[1] +
+            1500000 * countOfEachGradeResult[2] + 30000000 * countOfEachGradeResult[3] +
+            2000000000 * countOfEachGradeResult[4]
+
+    val profitRate = profit.toDouble() / ( numberOfTickets * 10)
+
+    return profitRate
+}
