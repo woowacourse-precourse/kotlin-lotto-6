@@ -27,5 +27,22 @@ class OutputView {
         for (number in numbers) {
             printPurchaseAGame(number)
         }
+        println()
+    }
+   fun printRank(ranks: List<Int>) {
+        println("3개 일치 (5,000원) - %d개".format(ranks[0]))
+        println("4개 일치 (50,000원) - %d개".format(ranks[1]))
+        println("5개 일치 (1,500,000원) - %d개".format(ranks[2]))
+        println("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개".format(ranks[3]))
+        println("6개 일치 (2,000,000,000원) - %d개".format(ranks[4]))
+    }
+    fun printBenefit(rate: Float) {
+        println("총 수익률은 %.1f%%입니다.".format(rate*100))
+    }
+    fun printGameResult(ranks: List<Int>, rate: Float) {
+        printEnd()
+        printHorizon()
+        printRank(ranks)
+        printBenefit(rate)
     }
 }
