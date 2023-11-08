@@ -13,7 +13,6 @@ object Comment {
 
 object Lotto {
     const val INIT_VALUE = 0
-    const val INIT_DOUBLE_VALUE = 0.0
 
     const val LOTTO_PRISE = 1000
 
