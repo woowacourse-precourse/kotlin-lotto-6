@@ -35,28 +35,27 @@ class LottoController {
 
         printBonusMessage()
         val bonusNumber = BonusNumberValidators(inputMessage())
+
         printWinningReport()
         val matches = compareToLotto(lottos, winningNumbers, bonusNumber) // 몇 개씩 당첨되었는지 갯수 반환
         val matchResult = matchCheck(matches)
-        printWinningStatistics(matchResult)
 
+        printWinningStatistics(matchResult)
         val totalAmount = getTotalAmount(matchResult)
         printEarningRate(getEarningRate(amount, totalAmount))
     }
 }
 
-fun inputMessage(): String {
-    return Console.readLine().trim()
-}
+fun inputMessage(): String = Console.readLine().trim()
 
-fun makeNumber(): List<Int> {
-    return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT)
-}
+fun makeNumber(): List<Int> = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT)
 
 fun makeLottos(amount: Int): MutableList<Lotto> {
     val lottos : MutableList<Lotto> = mutableListOf()
+
     repeat(amount/MONETARY_UNIT) {
         lottos.add(Lotto(makeNumber()))
     }
+
     return lottos
 }
