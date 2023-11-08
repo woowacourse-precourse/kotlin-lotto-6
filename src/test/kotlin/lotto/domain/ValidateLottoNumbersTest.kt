@@ -34,7 +34,7 @@ class ValidateLottoNumbersTest {
     @Test
     @DisplayName("입력받은 당첨 로또 번호에 1 ~ 45 사이 숫자가 아닌 숫자가 포함된 경우")
     fun validateWinningNumberInRange() {
-        val input = listOf(1,2,3,4,5,46)
+        val input = listOf(1, 2, 3, 4, 5, 46)
         assertThrows<IllegalArgumentException> {
             validateLottoNumbersTest.validateWinningNumberInRange(input)
         }.also { exception ->
@@ -45,7 +45,7 @@ class ValidateLottoNumbersTest {
     @Test
     @DisplayName("입력받은 당첨 로또 번호에 중복되는 숫자가 있는 경우")
     fun validateWinningNumberDuplicateNumber() {
-        val input = listOf(1,2,3,4,5,5)
+        val input = listOf(1, 2, 3, 4, 5, 5)
         assertThrows<IllegalArgumentException> {
             validateLottoNumbersTest.validateWinningNumberDuplicateNumber(input)
         }.also { exception ->
@@ -98,7 +98,7 @@ class ValidateLottoNumbersTest {
     @DisplayName("보너스 번호가 당첨 번호에 이미 존재하는 경우")
     fun validateBonusNumberInWinningNumbers() {
         val bonusNumber = 3
-        val winningNumbers = listOf(1,2,3,4,5,6)
+        val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
 
         assertThrows<IllegalArgumentException> {
             assertThat(validateLottoNumbersTest.validateBonusNumberInWinningNumbers(bonusNumber, winningNumbers))

@@ -1,11 +1,10 @@
 package lotto.domain
 
-import org.junit.jupiter.api.Assertions.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-class StatsKtTest{
+class StatsKtTest {
 
     @Test
     @DisplayName("일치하는 번호 개수에 맞는 Stats 반환 확인")
