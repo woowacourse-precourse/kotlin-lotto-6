@@ -1,6 +1,12 @@
 package lotto.model
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.TestArgumentExamples.EARNING_RATE_EXAMPLE_FIRST
+import lotto.TestArgumentExamples.EARNING_RATE_EXAMPLE_SECOND
+import lotto.TestArgumentExamples.EARNING_RATE_EXAMPLE_THIRD
+import lotto.TestArgumentExamples.WINNING_MAP_ARGUMENT_EXAMPLE_FIRST
+import lotto.TestArgumentExamples.WINNING_MAP_ARGUMENT_EXAMPLE_SECOND
+import lotto.TestArgumentExamples.WINNING_MAP_ARGUMENT_EXAMPLE_THIRD
 import lotto.model.Winner.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
@@ -37,14 +43,23 @@ class LottoServiceTest {
 
     @DisplayName("구매한 로또에서 당첨내역을 확인해, EnumMap<Winner, Int> 타입을 리턴")
     @ParameterizedTest(name = "로또번호 {1}, 보너스 번호 {2}, 당첨내역 {3}")
-    @MethodSource("getWinningMapProvider")
-    fun `getWinningMap - 구매한 로또에서 당첨내역을 확인`(purchasedLottoList: List<Lotto>, winningNumber: Lotto, bonusNumber: Int, expectedWinningMap: EnumMap<Winner, Int>) {
+    @MethodSource("getWinningMapArgumentProvider")
+    fun `getWinningMap - 구매한 로또에서 당첨내역을 확인`(
+        purchasedLottoList: List<Lotto>,
+        winningNumber: Lotto,
+        bonusNumber: Int,
+        expectedWinningMap: EnumMap<Winner, Int>
+    ) {
         val winningMap = LottoService.getWinningMap(purchasedLottoList, winningNumber, bonusNumber)
         assertEquals(winningMap, expectedWinningMap)
     }
 
-    @Test
-    fun getEarningRate() {
+    @DisplayName("수익률 검증")
+    @ParameterizedTest
+    @MethodSource("getEarningRateArgumentProvider")
+    fun `getEarningRate - 수익률 검증`(winningMap: EnumMap<Winner, Int>, money: Int, expectedEarningRate: Double) {
+        val earningRate = LottoService.getEarningRate(winningMap, money)
+        assertEquals(earningRate, expectedEarningRate)
     }
 
     private fun assertRandomUniqueNumbersInRangeTest(
@@ -70,40 +85,20 @@ class LottoServiceTest {
     }
 
     companion object {
+        private val RANDOM_TEST_TIMEOUT = Duration.ofSeconds(10L)
 
         @JvmStatic
-        fun getWinningMapProvider(): Stream<Arguments> = Stream.of(
+        fun getWinningMapArgumentProvider(): Stream<Arguments> = Stream.of(
             WINNING_MAP_ARGUMENT_EXAMPLE_FIRST,
             WINNING_MAP_ARGUMENT_EXAMPLE_SECOND,
-            WINNING_MAP_ARGUMENT_EXAMPLE_THIRD
+            WINNING_MAP_ARGUMENT_EXAMPLE_THIRD,
         )
 
-        private val WINNING_MAP_ARGUMENT_EXAMPLE_FIRST = Arguments.of(
-            listOf(
-                Lotto(listOf(1, 2, 3, 4, 5, 6)), // 1등 : Winner.FIRST_GRADE
-                Lotto(listOf(1, 2, 3, 4, 5, 7)), // 2등 : Winner.SECOND_GRADE
-                Lotto(listOf(1, 2, 3, 4, 5, 8)), // 3등 : Winner.THIRD_GRADE
-            ), Lotto(listOf(1, 2, 3, 4, 5, 6)), 7,
-            EnumMap(mapOf(FIRST_GRADE to 1, SECOND_GRADE to 1, THIRD_GRADE to 1))
+        @JvmStatic
+        fun getEarningRateArgumentProvider(): Stream<Arguments> = Stream.of(
+            EARNING_RATE_EXAMPLE_FIRST,
+            EARNING_RATE_EXAMPLE_SECOND,
+            EARNING_RATE_EXAMPLE_THIRD,
         )
-        private val WINNING_MAP_ARGUMENT_EXAMPLE_SECOND = Arguments.of(
-            listOf(
-                Lotto(listOf(2, 3, 5, 6, 7, 44)), // 3등 : Winner.THIRD_GRADE
-                Lotto(listOf(2, 3, 4, 5, 10, 11)), // 4등 : Winner.FOURTH_GRADE
-                Lotto(listOf(2, 3, 4, 11, 12, 13)), // 5등 : Winner.FIFTH_GRADE
-            ), Lotto(listOf(2, 3, 4, 5, 6, 7)), 9,
-            EnumMap(mapOf(THIRD_GRADE to 1, FOURTH_GRADE to 1, FIFTH_GRADE to 1))
-        )
-
-        private val WINNING_MAP_ARGUMENT_EXAMPLE_THIRD = Arguments.of(
-            listOf(
-                Lotto(listOf(2, 3, 4, 5, 10, 11)), // 4등 : Winner.FOURTH_GRADE
-                Lotto(listOf(2, 3, 4, 11, 12, 13)), // 5등 : Winner.FIFTH_GRADE
-                Lotto(listOf(2, 3, 18, 25, 38, 44)), // 당첨되지 않음.
-            ), Lotto(listOf(2, 3, 4, 5, 6, 7)), 9,
-            EnumMap(mapOf(FOURTH_GRADE to 1, FIFTH_GRADE to 1))
-        )
-
-        private val RANDOM_TEST_TIMEOUT = Duration.ofSeconds(10L)
     }
 }
