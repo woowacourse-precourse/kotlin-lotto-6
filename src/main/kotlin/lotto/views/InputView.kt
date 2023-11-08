@@ -16,6 +16,12 @@ class InputView {
         return input.toInt()
     }
 
+    fun inputWinningNumbers(): List<Int> {
+        val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
+
+        return input.split(SEPARATOR).map { it.trim().toInt() }
+    }
+
     private fun isEmptyOrBlankInput(input: String) = input.isEmpty() or input.isBlank()
 
     private fun isNotDigits(input: String) = input.all { it.isDigit() }
@@ -23,5 +29,7 @@ class InputView {
     companion object {
         const val INPUT_ERROR_MESSAGE = "다시 입력해주세요."
         const val NOT_DIGIT_INPUT_ERROR_MESSAGE = "숫자로만 입력해주세요."
+
+        const val SEPARATOR = ","
     }
 }
