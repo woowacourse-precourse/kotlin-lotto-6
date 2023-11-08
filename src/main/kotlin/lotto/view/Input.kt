@@ -2,6 +2,7 @@ package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.Lotto
+import lotto.domain.BonusNum
 import lotto.domain.Money
 import lotto.domain.WinningNum
 
@@ -19,6 +20,13 @@ class Input {
         WinningNum(winningNum)
         Lotto(winningNum.split(",").map { it.toInt() }.toList())
         return winningNum
+    }
+
+    fun inputBonusNum(): String {
+        println("\n보너스 번호를 입력해 주세요.")
+        val bonusNum = Console.readLine()
+        BonusNum(bonusNum)
+        return bonusNum
     }
 }
 

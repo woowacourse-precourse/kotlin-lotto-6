@@ -10,7 +10,7 @@ class LottoGame {
         val lottoList = getLotto(lottoCount)
         lottoList.forEach { println(it) }
         val winningNum = Input().inputWinningNum()
-        println(winningNum)
+        val bonusNum = Input().inputBonusNum()
 
     }
 
