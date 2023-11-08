@@ -11,7 +11,6 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun getLottoFormat(): String {
-        println(numbers)
         return numbers.toString()
     }
 }

@@ -8,11 +8,11 @@
   - 사용 라이브러리: camp.nextstep.edu.missionutils.Console의 readLine()
   - 예외처리 - 숫자가 아닌 입력시 
     - IllegalArgumentException 발생
-    - `[ERROR] 구입금액은 정수여야 합니다.` 출력
+    - `[ERROR] 구입 금액은 정수여야 합니다.` 출력
     - 입력 다시 받기
     - 예외처리 - 1000원 미만의 금액 입력시
     - IllegalArgumentException 발생
-    - `[ERROR] 구입금액은 1000원 이상이어야 합니다.` 출력
+    - `[ERROR] 구입 금액은 1000원 이상이어야 합니다.` 출력
     - 입력 다시 받기
 - 구입 금액 / 1000 만큼 로또를 구매
   - 출력 문자열: "${구입금액/1000}개를 구매했습니다."
