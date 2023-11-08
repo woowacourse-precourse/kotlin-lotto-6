@@ -18,7 +18,7 @@ class OutputView {
         }
     }
 
-    fun printRateOfReturn(reward: Double) {
+    fun printRateOfReturn(reward: String) {
         println(TOTAL_RATE_OF_RETURN.format(reward))
     }
 
@@ -33,6 +33,6 @@ class OutputView {
         const val DIVIDING_LINE = "---"
         const val MONEY_UNIT = "원"
 
-        const val TOTAL_RATE_OF_RETURN = "총 수익률은 %.1f%%입니다."
+        const val TOTAL_RATE_OF_RETURN = "총 수익률은 %s입니다."
     }
 }

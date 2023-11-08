@@ -107,7 +107,7 @@ ___
 - [x] 1. return을 활용하여 제거할 수 있는 else를 사용 하지는 않았는가? (단, return if (State) a else b는 허용한다.)
 - [x] 2. Enum class를 적용해서 프로그래밍한다.
 
-- [ ] 3. 도메인 로직에 단위 테스트를 구현한다. (단, UI(System.out, System.in, Scanner) 로직은 제외한다.)
+- [x] 3. 도메인 로직에 단위 테스트를 구현한다. (단, UI(System.out, System.in, Scanner) 로직은 제외한다.)
     - [x] 1) 핵심로직을 구현하는 코드와 UI를 담당하는 로직을 분리해서 구현하라.
 
 - [x] 4. 제공된 Lotto 클래스를 활용하여 구현했는가?

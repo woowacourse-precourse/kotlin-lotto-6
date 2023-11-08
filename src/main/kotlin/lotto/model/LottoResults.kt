@@ -24,7 +24,7 @@ class LottoResults(
     }
 
     companion object {
-        private const val RESULT_DEFAULT_VALUE = 0
+        const val RESULT_DEFAULT_VALUE = 0
 
         private const val MIN_WINNING_MATCHES = 3
         private const val MAX_WINNING_MATCHES = 6
