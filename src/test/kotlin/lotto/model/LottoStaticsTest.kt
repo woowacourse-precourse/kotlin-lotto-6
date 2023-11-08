@@ -29,6 +29,25 @@ class LottoStaticsTest {
         )
     }
 
+    @Test
+    fun `총 수익 계산 테스트`() {
+        assertRandomUniqueNumbersInRangeTest(
+            {
+                val lottoManager = LottoManager(PURCHASE_AMOUNT)
+                lottoManager.create()
+                val lottoStatics = LottoStatics(lottoManager)
+                lottoStatics.getWinStatics(ANSWER, BONUS)
+                val totalReturn = lottoStatics.getTotalReturn()
+                assertEquals(totalReturn, 55000)
+            },
+            listOf(1, 2, 3, 4, 7, 8),
+            listOf(4, 5, 6, 18, 32, 38),
+            listOf(7, 11, 16, 35, 36, 44),
+            listOf(1, 8, 11, 31, 41, 42),
+            listOf(13, 14, 16, 38, 42, 45),
+        )
+    }
+
     companion object {
         private val ANSWER = listOf(1, 2, 3, 4, 5, 6)
         private const val BONUS = 7
