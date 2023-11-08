@@ -65,7 +65,7 @@ class LottoTest {
     @Test
     fun `로또 구매 테스트`() {
         val lottoBuyer = LottoBuyer(3000)
-        val lottoList = lottoBuyer.buy()
+        val lottoList = lottoBuyer.lottoList
         Assertions.assertRandomUniqueNumbersInRangeTest(
             {
                 lottoList.forEach {

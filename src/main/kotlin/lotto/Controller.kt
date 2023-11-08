@@ -8,7 +8,7 @@ import lotto.io.Output
 class Controller {
     val budget by lazy { Input.getBudget() }
     val lottoBuyer by lazy { LottoBuyer(budget) }
-    val lottoList by lazy { lottoBuyer.buy() }
+    val lottoList by lazy { lottoBuyer.lottoList }
     val winningNumber by lazy { Input.getWinningNumber() }
     val bonusNumber by lazy { Input.getBonusNumber() }
     val prizeCalculator by lazy { PrizeCalculator(lottoList, winningNumber, bonusNumber) }
@@ -17,7 +17,7 @@ class Controller {
     fun play() {
         with(Output) {
             printPleaseInputBudget()
-            budget
+            //budget
             printHowMuchBought(lottoBuyer.amountOfLotto)
             printListOfLottoNumbers(lottoList)
             printPleaseInputWinningNumbers()
