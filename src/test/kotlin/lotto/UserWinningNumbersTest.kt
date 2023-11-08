@@ -1,8 +1,8 @@
 package lotto
 
-import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 @DisplayName("UserWinningNumbers 테스트")
 class UserWinningNumbersTest {
@@ -16,7 +16,7 @@ class UserWinningNumbersTest {
     @Test
     @DisplayName("6개 번호가 아닌 경우 예외 발생")
     fun `6개 번호가 아닌 경우 예외 발생`() {
-        assertThrows(IllegalArgumentException::class.java) {
+        assertThrows<IllegalArgumentException> {
             UserWinningNumbers(listOf(1, 2, 3, 4, 5, 6, 7), 7)
         }
     }
@@ -24,7 +24,7 @@ class UserWinningNumbersTest {
     @Test
     @DisplayName("중복된 로또 번호 예외 발생")
     fun `중복된 로또 번호 예외 발생`() {
-        assertThrows(IllegalArgumentException::class.java) {
+        assertThrows<IllegalArgumentException> {
             UserWinningNumbers(listOf(1, 2, 3, 3, 4, 5), 7)
         }
     }
@@ -32,7 +32,7 @@ class UserWinningNumbersTest {
     @Test
     @DisplayName("로또 번호 범위 벗어날 경우 예외 발생")
     fun `로또 번호 범위 벗어날 경우 예외 발생`() {
-        assertThrows(IllegalArgumentException::class.java) {
+        assertThrows<IllegalArgumentException> {
             UserWinningNumbers(listOf(1, 2, 3, 4, 5, 60), 7)
         }
     }
@@ -40,7 +40,7 @@ class UserWinningNumbersTest {
     @Test
     @DisplayName("보너스 번호 중복일 경우 예외 발생")
     fun `보너스 번호 중복일 경우 예외 발생`() {
-        assertThrows(IllegalArgumentException::class.java) {
+        assertThrows<IllegalArgumentException> {
             UserWinningNumbers(listOf(1, 2, 3, 4, 5, 6), 6)
         }
     }
@@ -48,7 +48,7 @@ class UserWinningNumbersTest {
     @Test
     @DisplayName("보너스 번호 범위 벗어날 경우 예외 발생")
     fun `보너스 번호 범위 벗어날 경우 예외 발생`() {
-        assertThrows(IllegalArgumentException::class.java) {
+        assertThrows<IllegalArgumentException> {
             UserWinningNumbers(listOf(1, 2, 3, 4, 5, 6), 60)
         }
     }
