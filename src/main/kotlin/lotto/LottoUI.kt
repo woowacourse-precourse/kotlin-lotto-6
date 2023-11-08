@@ -55,4 +55,8 @@ class LottoUI {
         return winningNumbers.map { it.toInt() }
     }
 
+    fun printBonusNumber() {
+        println(Bonus.NUMBER_INPUT.value)
+    }
+
 }
