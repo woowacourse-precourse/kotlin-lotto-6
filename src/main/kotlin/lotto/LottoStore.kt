@@ -10,8 +10,14 @@ class LottoStore {
         lottoGameView.inputUserLottoNumber()
         val lottoNumbers = LottoSeller().isValidateLotto()
         lottoGameView.inputBonusNumber()
-        val isBonusValid = LottoSeller().checkLottoHasBonusNum(lottoNumbers, User().inputBonusNum())
-        resultLotto(lottoNumbers, isBonusValid)
+        val lottoSeller = LottoSeller()
+        val bonusNum: Int = try {
+            lottoSeller.checkLottoHasBonusNum(lottoNumbers, User().inputBonusNum())
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            lottoSeller.checkLottoHasBonusNum(lottoNumbers, User().inputBonusNum())
+        }
+        resultLotto(lottoNumbers, bonusNum)
     }
 
     private fun userInput(money: String): Int {
