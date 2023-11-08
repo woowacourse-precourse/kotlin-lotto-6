@@ -26,7 +26,7 @@
 ### 도메인 로직
 
 - Lotto
-  - [ ] 로또 번호를 반환하는 기능 - #getLottoNumbers()
+  - [x] 로또 번호를 반환하는 기능 - #getLottoNumbers()
 - LottoStore
   - [ ] 1개의 로또를 발행하는 기능 - #issueLotto()
     - [ ] '중복되지 않는' 6개의 숫자
