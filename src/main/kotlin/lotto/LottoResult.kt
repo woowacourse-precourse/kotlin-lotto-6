@@ -1,6 +1,6 @@
 package lotto
 
-data class WinCount(
+data class LottoResult(
     var winningCount: Int = 0,
     var bonusJudge: Boolean = false
 ) {

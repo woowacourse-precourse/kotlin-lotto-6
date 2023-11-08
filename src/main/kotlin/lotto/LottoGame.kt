@@ -9,7 +9,7 @@ class LottoGame(
 ) {
     // TODO : _자료형으로 재수정 하기
     private lateinit var randomLottoNumbers: List<Lotto>
-    private lateinit var lottoWinningNumbers: LottoWinningNumbers
+    private lateinit var userWinningNumbers: UserWinningNumbers
 
     fun execute() {
         purchaseLottery()
@@ -49,7 +49,7 @@ class LottoGame(
             printer.printEnterBonusNumberAnnouncement()
             val bonusNumberInput = Console.readLine().trim()
 
-            lottoWinningNumbers = controller.createLottoWinningNumbers(userPickNumberInput, bonusNumberInput)
+            userWinningNumbers = controller.createLottoWinningNumbers(userPickNumberInput, bonusNumberInput)
             println()
         } catch (e: IllegalArgumentException) {
             println(e.localizedMessage)
@@ -59,7 +59,7 @@ class LottoGame(
 
     private fun getLotteryWinning() {
         try {
-            val winCount = controller.checkWinningDetails(randomLottoNumbers, lottoWinningNumbers)
+            val winCount = controller.checkWinningDetails(randomLottoNumbers, userWinningNumbers)
             val winTypes = controller.checkLottoWinType(winCount)
             val yield = controller.checkYieldResult(winTypes)
 

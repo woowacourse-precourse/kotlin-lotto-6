@@ -1,9 +1,10 @@
 package lotto
 
-data class LottoWinningNumbers(
+data class UserWinningNumbers(
     val userPickNumbers: List<Int>,
     val bonusNumber: Int
 ) {
+
     init {
         require(userPickNumbers.size == 6)
         requireUserPickNumberDuplicateLottoNumber()
@@ -35,5 +36,6 @@ data class LottoWinningNumbers(
     companion object {
         val VALID_RANGE = 1..45
     }
+
 }
 

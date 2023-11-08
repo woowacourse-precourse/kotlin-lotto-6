@@ -22,4 +22,5 @@ object Message {
     const val ERROR_USER_INPUT_LESS_THAN_THOUSAND ="[ERROR] 로또는 1개당 1000원입니다. 1000원 이상의 값을 입력해주세요."
 
     const val ERROR_WIN_COUNT_CALCULATOR ="[ERROR] 당첨 계산이 잘못되었습니다."
+
 }

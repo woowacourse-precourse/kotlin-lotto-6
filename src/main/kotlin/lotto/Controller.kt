@@ -16,35 +16,34 @@ class Controller(
     fun createLotteryRandomNumber(purchaseNumber: Int): List<Lotto> {
         val lottery = mutableListOf<Lotto>()
         repeat(purchaseNumber) {
-            val numbers =
-                sortNumbers(Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, NUMBER_COUNT))
+            val numbers = sortNumbers(Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, NUMBER_COUNT))
             lottery.add(Lotto(numbers))
         }
         return lottery
     }
 
-    fun createLottoWinningNumbers(userPickInput: String, bonusInput: String): LottoWinningNumbers {
+    fun createLottoWinningNumbers(userPickInput: String, bonusInput: String): UserWinningNumbers {
         val splitNumber = userPickInput.trim().split(",")
         val userPickNumbers = mutableListOf<Int>()
-        splitNumber.forEach {
-            requireIsInt(it)
-            userPickNumbers.add(it.toInt())
+        splitNumber.forEach { number ->
+            requireIsInt(number)
+            userPickNumbers.add(number.toInt())
         }
         requireIsInt(bonusInput)
         val bonusNumber = bonusInput.toInt()
-        return LottoWinningNumbers(userPickNumbers, bonusNumber)
+        return UserWinningNumbers(userPickNumbers, bonusNumber)
     }
 
-    fun checkWinningDetails(lottery: List<Lotto>, lottoWinningNumbers: LottoWinningNumbers): List<WinCount> {
-        val winCounts = mutableListOf<WinCount>()
+    fun checkWinningDetails(lottery: List<Lotto>, userWinningNumbers: UserWinningNumbers): List<LottoResult> {
+        val lottoResults = mutableListOf<LottoResult>()
         lottery.forEach { lotto ->
-            winCounts.add(lotto.checkMatchWinCount(lottoWinningNumbers))
+            lottoResults.add(lotto.checkMatchWinCount(userWinningNumbers))
         }
-        return winCounts
+        return lottoResults
     }
 
-    fun checkLottoWinType(winCounts: List<WinCount>): List<LottoWinType> {
-        return winCounts.flatMap { winCount ->
+    fun checkLottoWinType(lottoResults: List<LottoResult>): List<LottoWinType> {
+        return lottoResults.flatMap { winCount ->
             val count = if (winCount.bonusJudge) winCount.winningCount + 1 else winCount.winningCount
             when (count) {
                 3 -> listOf(LottoWinType.THREE_MATCH)

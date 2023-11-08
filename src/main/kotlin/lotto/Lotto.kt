@@ -1,6 +1,7 @@
 package lotto
 
 class Lotto(private val numbers: List<Int>) {
+
     init {
         require(numbers.size == 6) { Message.ERROR_RANDOM_NUMBER_SIX_RANGE }
         requireRandomNumberDuplicate()
@@ -31,10 +32,10 @@ class Lotto(private val numbers: List<Int>) {
         return numbers.joinToString(separator = ", ", prefix = "[", postfix = "]")
     }
 
-    fun checkMatchWinCount(winningNumbers: LottoWinningNumbers): WinCount {
+    fun checkMatchWinCount(winningNumbers: UserWinningNumbers): LottoResult {
         val matchingNumbers = numbers.intersect(winningNumbers.userPickNumbers.toSet()).count()
         val bonusMatch = numbers.contains(winningNumbers.bonusNumber)
-        return WinCount(matchingNumbers, bonusMatch)
+        return LottoResult(matchingNumbers, bonusMatch)
     }
 
     companion object {
