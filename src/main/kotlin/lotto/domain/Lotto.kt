@@ -1,13 +1,14 @@
 package lotto.domain
 
-import lotto.Constants
+import lotto.Constants.NUMBER_END_RANGE
+import lotto.Constants.NUMBER_START_RANGE
 
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
         require(numbers.toSet().size == numbers.size)
         require(numbers.all { number ->
-            number in Constants.NUMBER_START_RANGE..Constants.NUMBER_END_RANGE
+            number in NUMBER_START_RANGE..NUMBER_END_RANGE
         })
     }
 

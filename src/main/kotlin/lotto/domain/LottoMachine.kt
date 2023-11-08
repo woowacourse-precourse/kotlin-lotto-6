@@ -1,7 +1,9 @@
 package lotto.domain
 
 import camp.nextstep.edu.missionutils.Randoms
-import lotto.Constants
+import lotto.Constants.NUMBERS_SIZE
+import lotto.Constants.NUMBER_END_RANGE
+import lotto.Constants.NUMBER_START_RANGE
 
 class LottoMachine(private val inputMoney: Int) {
     fun issueLottos(): List<Lotto> {
@@ -17,11 +19,8 @@ class LottoMachine(private val inputMoney: Int) {
         return Lotto(generateNumbers())
     }
 
-    private fun generateNumbers(): List<Int> {
-        return Randoms.pickUniqueNumbersInRange(
-            Constants.NUMBER_START_RANGE, Constants.NUMBER_END_RANGE, Constants.NUMBERS_SIZE
-        )
-    }
+    private fun generateNumbers(): List<Int> =
+        Randoms.pickUniqueNumbersInRange(NUMBER_START_RANGE, NUMBER_END_RANGE, NUMBERS_SIZE)
 
     fun calculateResult(lottos: List<Lotto>, winningLotto: WinningLotto): LottoResult {
         val result = LottoResult()

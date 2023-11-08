@@ -1,6 +1,8 @@
 package lotto.validator
 
-import lotto.Constants
+import lotto.Constants.NUMBERS_SIZE
+import lotto.Constants.NUMBER_END_RANGE
+import lotto.Constants.NUMBER_START_RANGE
 
 class WinningNumbersValidator {
     fun validate(inputWinningNumbers: String) {
@@ -19,12 +21,12 @@ class WinningNumbersValidator {
     }
 
     private fun requireSixNumbers(numbers: List<Int>) {
-        require(numbers.size == Constants.NUMBERS_SIZE) { INVALID_WINNING_NUMBERS_SIZE_ERROR_MESSAGE }
+        require(numbers.size == NUMBERS_SIZE) { INVALID_WINNING_NUMBERS_SIZE_ERROR_MESSAGE }
     }
 
     private fun requireValidNumberRange(numbers: List<Int>) {
         require(numbers.all { number ->
-            number in Constants.NUMBER_START_RANGE..Constants.NUMBER_END_RANGE
+            number in NUMBER_START_RANGE..NUMBER_END_RANGE
         }) { WINNING_NUMBER_OUT_OF_RANGE_ERROR_MESSAGE }
     }
 

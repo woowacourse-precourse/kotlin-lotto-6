@@ -1,6 +1,7 @@
 package lotto.validator
 
-import lotto.Constants
+import lotto.Constants.NUMBER_END_RANGE
+import lotto.Constants.NUMBER_START_RANGE
 
 class BonusNumberValidator {
     fun validate(inputBonusNumber: String, winningNumbers: List<Int>) {
@@ -18,9 +19,7 @@ class BonusNumberValidator {
     }
 
     private fun requireValidNumberRange(bonusNumber: Int) {
-        require(bonusNumber in Constants.NUMBER_START_RANGE..Constants.NUMBER_END_RANGE) {
-            BONUS_NUMBER_OUT_OF_RANGE_ERROR_MESSAGE
-        }
+        require(bonusNumber in NUMBER_START_RANGE..NUMBER_END_RANGE) { BONUS_NUMBER_OUT_OF_RANGE_ERROR_MESSAGE }
     }
 
     private fun requireUniqueNumber(bonusNumber: Int, winningNumbers: List<Int>) {
