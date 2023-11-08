@@ -1,10 +1,5 @@
-package lotto
+package lotto.domain
 
-import lotto.domain.Lotto
-import lotto.domain.LottoNumber
-import lotto.domain.NumberIssuer
-import lotto.utils.Constant.LOTTO_NUMBER_SIZE
-import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows

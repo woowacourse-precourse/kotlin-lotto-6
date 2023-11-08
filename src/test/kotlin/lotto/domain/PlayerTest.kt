@@ -1,8 +1,5 @@
-package lotto
+package lotto.domain
 
-import lotto.domain.Money
-import lotto.domain.Player
-import lotto.domain.WinningRank
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
