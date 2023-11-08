@@ -8,11 +8,12 @@ class IssueLotto() {
         return quantity
     }
 
-    fun issue(quantity: Int) {
+    fun issue(quantity: Int): MutableList<List<Int>> {
+        val userLotto = mutableListOf<List<Int>>()
         for (i in 1..quantity) {
             val lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6)
-            lotto.sort()
-            println(lotto)
+            userLotto.add(lotto.sorted())
         }
+        return userLotto
     }
 }
