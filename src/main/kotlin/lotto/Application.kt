@@ -17,11 +17,11 @@ fun main() {
 
     printTickets(tickets)
 
-    println("\n당첨 번호를 입력해 주세요.")
-    println(getWinningNumbers())
+    var sevenNumbers = getSevenNumbers(getWinningNumbers(), getBonusNumber())
 
-    println("\n보너스 번호를 입력해 주세요.")
-    print(getBonusNumber())
+    sevenNumbers = validateSevenNumbers(sevenNumbers)
+
+    print(sevenNumbers)
 
 }
 
@@ -84,12 +84,59 @@ fun printTickets(tickets: List<Lotto>) {
     }
 }
 
-fun getWinningNumbers(): List<Int> {
+fun getWinningNumbers(): MutableList<Int> {
+    println("\n당첨 번호를 입력해 주세요.")
 
-    return Console.readLine().split(',').map { it.toInt() }.sorted()
+    return Console.readLine().split(',').map { it.toInt() }.sorted().toMutableList()
 }
 
 fun getBonusNumber(): Int {
+    println("\n보너스 번호를 입력해 주세요.")
 
     return Console.readLine().toInt()
+}
+
+fun getSevenNumbers(winningNumbers: MutableList<Int>, bonusNumber: Int): MutableList<Int> {
+    winningNumbers.add(bonusNumber)
+    val sevenNumbers = winningNumbers
+
+    return sevenNumbers
+}
+
+fun checkNumbersException(sevenNumbers: MutableList<Int>) {
+    var subsetOfSeven = mutableListOf<Int>()
+
+    for (item in sevenNumbers) {
+        // 사용자의 입력이 1 이상 45 이하가 아닌 경우
+        if (item < 1 || item > 45) {
+            throw IllegalArgumentException("$ERROR 1부터 45까지의 정수만 입력하실 수 있습니다.")
+        }
+        // 사용자의 입력에서 같은 숫자가 중복될 경우
+        if (subsetOfSeven.contains(item)) {
+            throw IllegalArgumentException("$ERROR 7자리 숫자는 모두 달라야 합니다.")
+        }
+        subsetOfSeven.add(item)
+    }
+
+}
+
+fun validateSevenNumbers(sevenNumbers: MutableList<Int>): MutableList<Int> {
+    var isValidInput = false
+
+    while (!isValidInput) {
+        try {
+            checkNumbersException(sevenNumbers)
+            isValidInput = true
+
+        } catch (e: IllegalArgumentException) {
+            println("${e.message}")
+
+            sevenNumbers.clear() // Kotlin에서 함수의 매개변수는 기본적으로 val로 선언되니까 재할당 불가. 그래서 비우고
+            sevenNumbers.addAll(getSevenNumbers(getWinningNumbers(), getBonusNumber())) // 새로운 요소들을 추가
+
+        }
+
+    }
+
+    return sevenNumbers
 }
