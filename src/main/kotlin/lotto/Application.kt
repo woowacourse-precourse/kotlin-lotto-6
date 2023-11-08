@@ -7,4 +7,9 @@ fun main() {
     val buyCount = buyPrice.toInt() / 1000
     val lottos = LottoService().buyLotto(buyCount)
     LottoUI().printLottoNumbers(lottos)
+    LottoUI().printWinningNumbers()
+    val winningLotto = LottoUI().inputWinningNumbers()
+    LottoUI().printBonusNumber()
+    val bonusNumber = LottoUI().inputBonusNumber()
+    LottoUI().printResult(lottos, winningLotto, bonusNumber)
 }
