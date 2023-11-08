@@ -28,7 +28,7 @@ class LottoMachine(
     }
     private fun getProfitRate(totalProfit: Int, purchaseAmount: Int): String {
         val rates = totalProfit * 100.0 / purchaseAmount.toDouble()
-        val df = DecimalFormat("###,###.0")
+        val df = DecimalFormat("###,##0.0")
         return df.format(rates)
     }
     private fun showMyResult(result:Map<LottoRank,Int>, profitRate:String) {
