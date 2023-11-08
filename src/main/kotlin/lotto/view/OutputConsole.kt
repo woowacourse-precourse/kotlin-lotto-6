@@ -1,6 +1,9 @@
 package lotto.view
 
 import lotto.model.domain.Lotto
+import lotto.model.domain.Rank
+import java.text.NumberFormat
+import java.util.*
 
 object OutputConsole {
 
@@ -33,6 +36,24 @@ object OutputConsole {
             println("${size}개를 구매했습니다.")
             forEach { println(it.toString()) }
         }
+    }
+
+    fun printWinningRanks(rankCount: Map<Rank, Int>) {
+        Rank.entries.forEach { rank ->
+            if (rank != Rank.NONE) {
+                val bonusString = when (rank.isBonus) {
+                    true -> ", 보너스 볼 일치 "
+                    else -> " "
+                }
+                val formattedAmount = formatNumberWithCommas(rank.winningAmount)
+                println("${rank.countOfMatch}개 일치${bonusString} (${formattedAmount}원) - ${rankCount[rank] ?: 0}개")
+            }
+        }
+    }
+
+    private fun formatNumberWithCommas(number: Int): String {
+        val numberFormat = NumberFormat.getNumberInstance(Locale.getDefault())
+        return numberFormat.format(number)
     }
 
     private const val INPUT_MONEY = "구입금액을 입력해 주세요."

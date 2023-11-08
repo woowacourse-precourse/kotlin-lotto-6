@@ -1,9 +1,11 @@
 package lotto.controller
 
+import lotto.model.LottoDrawingMachine
 import lotto.model.LottoNumberDispenser
 import lotto.model.domain.Bonus
 import lotto.model.domain.Lotto
 import lotto.model.domain.Money
+import lotto.model.domain.Rank
 import lotto.view.InputConsole
 import lotto.view.InputConsole.getNumber
 import lotto.view.OutputConsole
@@ -23,6 +25,9 @@ class LottoController {
 
         OutputConsole.promptForBonusNumber()
         val bonusNumber = getValidBonusNumber(winningNumbers)
+
+        val rank = executeDrawingMachine(lottoTickets, winningNumbers, bonusNumber)
+        OutputConsole.printWinningRanks(rank)
     }
 
     private fun getValidMoney(): Money =
@@ -57,4 +62,9 @@ class LottoController {
             printErrorMessage(exception)
             getValidBonusNumber(winningNumbers)
         }
+
+    private fun executeDrawingMachine(lottoTickets: List<Lotto>, winningNumbers: Lotto, bonus: Bonus): Map<Rank, Int> {
+        val drawingMachine = LottoDrawingMachine(lottoTickets, winningNumbers, bonus)
+        return drawingMachine.getRankCounts()
+    }
 }
