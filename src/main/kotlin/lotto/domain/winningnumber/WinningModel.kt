@@ -12,7 +12,7 @@ enum class WinningModel(val matches: Int, val prize: Long, val withBonus: Boolea
 
     companion object {
         fun fromMatches(matches: Int, bonusMatch: Boolean): WinningModel {
-            return values().firstOrNull {
+            return entries.firstOrNull {
                 it.matches == matches && (!it.withBonus || bonusMatch)
             } ?: NONE
         }

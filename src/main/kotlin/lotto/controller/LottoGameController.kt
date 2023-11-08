@@ -10,10 +10,10 @@ object LottoGameController {
     private val inputView = InputView
     private val outputView = OutputView
     private val lotties = Lotties()
-    private var lottoPurchaseCount : Int = 0
-    private var lottoPurchaseAmount : Int = 0
+    private var lottoPurchaseCount: Int = 0
+    private var lottoPurchaseAmount: Int = 0
     private var winningNumbers = List(LOTTO_COUNT) { 0 }
-    private var bonusNumber : Int = 0
+    private var bonusNumber: Int = 0
 
     fun start() {
         purchaseLotto()
@@ -24,7 +24,7 @@ object LottoGameController {
     private fun purchaseLotto() {
         outputView.requestPurchaseAmountMessage()
         lottoPurchaseAmount = inputView.readPurchaseAmount()
-        lottoPurchaseCount /= PURCHASE_UNIT
+        lottoPurchaseCount = lottoPurchaseAmount / PURCHASE_UNIT
         outputView.countLottoMessage(lottoPurchaseCount)
     }
 
