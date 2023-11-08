@@ -41,11 +41,12 @@
   - 
   - [x] System - 예외 체크 : 숫자 외에 문자 입력 
   - [x] System - 예외 체크 : 숫자범위 벗어난 입력(1 ~ 45)
+  - [x] Syetem - 예외 체크 : 당첨번호와 중복되는 숫자 입력
     - [x] Computer - 에러 출력 [ERROR] <br>
 
 ### 5. 로또게임 진행 & 결과 출력
-- [ ] Computer - 당첨번호와 로또번호 비교
-- [ ] Computer - 결과 출력
+- [x] Computer - 당첨번호와 로또번호 비교
+- [x] Computer - 결과 출력
 
 
 ```

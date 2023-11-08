@@ -28,9 +28,9 @@ class CheckSystem {
         private const val errorMessageNotComma = "[ERROR] 쉼표가 입력되지 않았습니다"
 
         var errorCheck = false
-        var inputBounsBall = 0
-        var inputChosenBall6 = listOf<String>()
-        val ballOneToFortyfive = (1..45).toList()
+        private var inputBounsBall = 0
+        private var inputChosenBall6 = listOf<Int>()
+        private var ballOneToFortyfive = (1..45).toList()
 
 
         private fun checkVacant(result: String): Boolean {
@@ -50,37 +50,67 @@ class CheckSystem {
         }
 
         fun inputCheck(result: String, caseNumber: Int): Boolean {
-            errorCheck = CheckSystem.checkVacant(result)
+            errorCheck = checkVacant(result)
             if (!errorCheck) {
-                errorCheck = CheckSystem.checkStartZero(result)
+                errorCheck = checkStartZero(result)
             }
-            if (!errorCheck && (caseNumber == 1 || caseNumber == 3)) {
-                errorCheck = CheckSystem.checkOnlyNumber(result)
-            }
-            if (!errorCheck && (caseNumber == 1 || caseNumber == 3)) {
-                errorCheck = CheckSystem.checkMinusOrZero13(result)
-            } else if (!errorCheck && caseNumber == 2) {
-                errorCheck = CheckSystem.checkMinusOrZero2(result)
-            }
-            if (!errorCheck && caseNumber == 2) {
-                errorCheck = CheckSystem.checkOnlyNumberAndComma(result)
-            }
-            if (!errorCheck && caseNumber == 1) {
-                errorCheck = CheckSystem.checkThousandToHundredThousand(result)
-            } else if (!errorCheck && (caseNumber == 2)) {
-                errorCheck = CheckSystem.checkOneToFortyFive2(result)
-            } else if (!errorCheck && caseNumber == 3) {
-                errorCheck = CheckSystem.checkOneToFortyFive3(result)
-            }
-            if (!errorCheck && caseNumber == 2) {
-                errorCheck = CheckSystem.checkRepeatNumber(result)
-            }
+            when (caseNumber) {
+                1 -> inputCheckCase1(errorCheck, result)
+                2 -> inputCheckCase2(errorCheck, result)
+                3 -> inputCheckCase3(errorCheck, result)
 
-            if (!errorCheck && caseNumber == 1) {
-                errorCheck = CheckSystem.checkThousand(result)
+            }
+            return false
+        }
+
+        fun inputCheckCase1(errorCheckResut: Boolean, result: String): Boolean {
+            if (!errorCheck) {
+                errorCheck = checkOnlyNumber(result)
+            }
+            if (!errorCheck) {
+                errorCheck = checkMinusOrZero13(result)
+            }
+            if (!errorCheck) {
+                errorCheck = checkThousandToHundredThousand(result)
+            }
+            if (!errorCheck) {
+                errorCheck = checkThousand(result)
             }
             return errorCheck
         }
+
+        fun inputCheckCase2(errorCheckResut: Boolean, result: String): Boolean {
+            if (!errorCheck) {
+                errorCheck = checkMinusOrZero2(result)
+            }
+            if (!errorCheck) {
+                errorCheck = checkOnlyNumberAndComma1(result)
+            }
+            if (!errorCheck) {
+                errorCheck = checkOnlyNumberAndComma2(result)
+            }
+            if (!errorCheck) {
+                errorCheck = checkOneToFortyFive2(result)
+            }
+            if (!errorCheck) {
+                errorCheck = checkRepeatNumber(result)
+            }
+            return errorCheck
+        }
+
+        fun inputCheckCase3(errorCheckResut: Boolean, result: String): Boolean {
+            if (!errorCheck) {
+                errorCheck = checkMinusOrZero13(result)
+            }
+            if (!errorCheck) {
+                errorCheck = checkOnlyNumber(result)
+            }
+            if (!errorCheck) {
+                Companion.errorCheck = checkOneToFortyFive3(result)
+            }
+            return errorCheck
+        }
+
 
         private fun checkStartZero(result: String): Boolean {
             require(result != "0") {
@@ -102,28 +132,34 @@ class CheckSystem {
             return false
         }
 
-        private fun checkOnlyNumberAndComma(result: String): Boolean {
-            println("입력값 : ${result}")
+        private fun checkOnlyNumberAndComma1(result: String): Boolean {
             require(numberAndCommaPattern.matches(result)) {
-                if (onlyCommaPattern.matches(result)) {
-                    throwIllegalArgumentException(errorMessageOnlyComma)
-                    return true
-                }
                 if (startCommaPattern.matches(result)) {
                     throwIllegalArgumentException(errorMessageStartComma)
                     return true
-
                 }
                 if (lastCommaPattern.matches(result)) {
                     throwIllegalArgumentException(errorMessageLastComma)
                     return true
                 }
-                if (onlyNumberPattern.matches(result)) {
-                    throwIllegalArgumentException(errorMessageNotComma)
-                    return true
-                }
                 if (repeatCommaPattern.matches(result)) {
                     throwIllegalArgumentException(errorMessageRepeatComma)
+                    return true
+                }
+                throwIllegalArgumentException(errorMessageNumberAndComma)
+                return true
+            }
+            return false
+        }
+
+        private fun checkOnlyNumberAndComma2(result: String): Boolean {
+            require(numberAndCommaPattern.matches(result)) {
+                if (onlyCommaPattern.matches(result)) {
+                    throwIllegalArgumentException(errorMessageOnlyComma)
+                    return true
+                }
+                if (onlyNumberPattern.matches(result)) {
+                    throwIllegalArgumentException(errorMessageNotComma)
                     return true
                 }
                 throwIllegalArgumentException(errorMessageNumberAndComma)
@@ -166,10 +202,9 @@ class CheckSystem {
         }
 
         private fun checkOneToFortyFive2(result: String): Boolean {
-            inputChosenBall6 = result.split(",").toList()
-            println("입력리스트 : ${inputChosenBall6}")
+            inputChosenBall6 = result.split(",").map { it.toInt() }
             require(inputChosenBall6.size == 6) {
-                throwNumberFormatException(errorMessageNumberNotSix)
+                throwIllegalArgumentException(errorMessageNumberNotSix)
                 return true
             }
             for (inputball in inputChosenBall6) {
@@ -184,21 +219,29 @@ class CheckSystem {
         private fun checkOneToFortyFive3(result: String): Boolean {
             CheckSystem.inputBounsBall = result.toInt()
             require(inputBounsBall in 1..45) {
-                CheckSystem.throwIllegalArgumentException(errorMessageOneToFortyfive)
+                throwIllegalArgumentException(errorMessageOneToFortyfive)
                 return true
             }
             return false
         }
 
         private fun checkRepeatNumber(result: String): Boolean {
-            inputChosenBall6 = result.split(",").toList().distinct()
-            println("입력리스트 : ${inputChosenBall6}")
+            inputChosenBall6 = result.split(",").map { it.toInt() }.distinct()
             require(inputChosenBall6.size == 6) {
-                CheckSystem.throwNumberFormatException(errorMessageRepeatNumber)
+                throwIllegalArgumentException(errorMessageRepeatNumber)
                 return true
             }
             return false
         }
+
+        private fun checkRepeatSelectBallNumber(result: String): Boolean {
+            require(inputChosenBall6.contains(result.toInt())) {
+                throwIllegalArgumentException(errorMessageRepeatNumber)
+                return true
+            }
+            return false
+        }
+
 
         private fun throwIllegalArgumentException(errorMessage: String) {
             return try {
@@ -212,14 +255,6 @@ class CheckSystem {
             return try {
                 throw NumberFormatException()
             } catch (e: NumberFormatException) {
-                println(errorMessage)
-            }
-        }
-
-        fun throwIllegalStateException(errorMessage: String) {
-            return try {
-                throw IllegalStateException()
-            } catch (e: IllegalStateException) {
                 println(errorMessage)
             }
         }

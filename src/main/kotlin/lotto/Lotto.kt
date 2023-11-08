@@ -7,68 +7,107 @@ class Lotto(val numbers: List<Int>) {
     // 작성순서 : 프로퍼티, init 블록, 부 생성자, 메서드, 동반 객체
 
     init {
-        require(numbers.size == 6)
-        numbersVowel["${Lotto.round}"] = numbers
+        require(numbers.size == 6 && (numbers.size == numbers.distinct().size)) {
+            try {
+                throw IllegalArgumentException("미리 예외체크 했음에도 예외발생")
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+        randomBallVowel["${Lotto.presentRound}"] = numbers
     }
 
-    enum class Place(val numberPlace: String, var amount: Int) {
-        firstPlace("1등", 0),
-        secondPlaece("2등", 0),
-        thirdPlce("3등", 0),
-        fourthPlace("4등", 0),
-        fifthPlace("5등", 0)
+    enum class Place(val text: String) {
+        first("1등"),
+        second("2등"),
+        third("3등"),
+        fourth("4등"),
+        fifth("5등")
     }
 
     companion object {
-        var numbersVowel = mutableMapOf<String, List<Int>>()
+
         var inputResult = ""
-        var SelectBall6 = listOf<Int>()
-        var round = 0
-        var totalMoney = 0
+        var randomBall6 = listOf<Int>()
+        var randomBallVowel = mutableMapOf<String, List<Int>>()
+        var presentRound = 0
+
+        var selectBall6 = listOf<Int>()
+        var selectBonusBall = 0
+
         var totalInventory = mutableMapOf<String, Int>()
         var InvestmentAmount = 0
         var Times = 0
-        var lastBall7 = mutableListOf<String>()
+        var totalMoney = 0
+
+        var palce_1st = 0
+        var palce_2nd = 0
+        var palce_3rd = 0
+        var palce_4th = 0
+        var palce_5th = 0
+
 
         fun userInput(): String {
             Lotto.inputResult = Console.readLine()
             return Lotto.inputResult
         }
 
-        fun SelectBall(): List<Int> {
+        fun randomBall(): List<Int> {
             return Randoms.pickUniqueNumbersInRange(1, 45, 6)
         }
 
         fun allDisplay() {
-            for (key in numbersVowel.keys) {
-                println("로또번호 ${key} : ${numbersVowel[key]}")
+            for (clue in randomBallVowel.keys) {
+                println("로또번호 ${clue} : ${randomBallVowel[clue]}")
             }
         }
 
-        fun contrastNumber(numbersVowel:MutableMap<String, List<Int>>): MutableMap<String, Int> {
+        fun totalInventoryFillInit() {
+            totalInventory[Place.first.text] = 0
+            totalInventory[Place.second.text] = 0
+            totalInventory[Place.third.text] = 0
+            totalInventory[Place.fourth.text] = 0
+            totalInventory[Place.fifth.text] = 0
+        }
+
+        fun placeTemporaryConversion() {
+            // 해당 등수의 갯수를 가져오기위한 변수 임시변환
+            palce_1st = totalInventory.getValue(Place.first.text)
+            palce_2nd = totalInventory.getValue(Place.second.text)
+            palce_3rd = totalInventory.getValue(Place.third.text)
+            palce_4th = totalInventory.getValue(Place.fourth.text)
+            palce_5th = totalInventory.getValue(Place.fifth.text)
+        }
+
+        fun numberContrast(
+            randomBallVowel: MutableMap<String, List<Int>>, selectBall6: List<Int>, selectBonusBall: Int
+        ): MutableMap<String, Int> {
+            for (clue in randomBallVowel.keys) {
+                var samAmount = (randomBallVowel[clue])!!.intersect(selectBall6).count()
+                when (samAmount) {
+                    3 -> palce_5th++
+                    4 -> palce_4th++
+                    6 -> palce_3rd++
+                }
+                if ((randomBallVowel.getValue(clue).contains(selectBonusBall)) && samAmount == 5) {
+                    palce_2nd++
+                }
+                if (samAmount == 5) {
+                    palce_1st++
+                }
+            }
             return totalInventory
         }
 
-        fun tatisticsDisplay(totalInventory: MutableMap<String, Int>, lastBall7:MutableList<String>
-            , InvestmentAmount: Int) {
-            Place.fifthPlace.amount =
-                totalInventory[Place.fifthPlace.numberPlace].toString().toInt()
-            println("3개 일치 (5,000원) - ${Place.fifthPlace.amount}개")
-            Place.fourthPlace.amount =
-                totalInventory[Place.fourthPlace.numberPlace].toString().toInt()
-            println("4개 일치 (50,000원) - ${Place.fourthPlace.amount}개")
-            Place.thirdPlce.amount = totalInventory[Place.thirdPlce.numberPlace].toString().toInt()
-            println("5개 일치 (1,500,000원) - ${Place.thirdPlce.amount}개")
-            Place.secondPlaece.amount =
-                totalInventory[Place.secondPlaece.numberPlace].toString().toInt()
-            println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${Place.secondPlaece.amount}개")
-            Place.firstPlace.amount =
-                totalInventory[Place.firstPlace.numberPlace].toString().toInt()
-            println("6개 일치 (2,000,000,000원) - ${Place.firstPlace.amount}개")
-            totalMoney = (5000 * Place.fifthPlace.amount) + (5000 * Place.fourthPlace.amount)
-            +(1500000 * Place.thirdPlce.amount) + (30000000 * Place.secondPlaece.amount)
-           /* +(2000000000 * Place.firstPlace.amount)*/
-            println("총 수익률은 0%입니다.")
+        fun tatisticsDisplay() {
+            println("3개 일치 (5,000원) - ${palce_5th}개")
+            println("4개 일치 (50,000원) - ${palce_4th}개")
+            println("5개 일치 (1,500,000원) - ${palce_3rd}개")
+            println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${palce_2nd}개")
+            println("6개 일치 (2,000,000,000원) - ${palce_1st}개")
+            totalMoney = (5000 * palce_5th) + (5000 * palce_4th) + (1500000 * palce_3rd)
+            +(30000000 * palce_2nd) + (2000000000 * palce_1st)
+            println("총 수익률은 ${totalMoney / InvestmentAmount}%입니다.")
 
         }
     }

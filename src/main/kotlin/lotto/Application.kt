@@ -17,11 +17,11 @@ fun main() {
     playingFlag = true
     LottoSystem.buyMessage(Lotto.Times)
 
-    while (Lotto.round < Lotto.Times ) {
-        Lotto.SelectBall6 = Lotto.SelectBall()
-        if (Lotto.SelectBall6.distinct().size == 6) {
-            Lotto.round++
-            Lotto(Lotto.SelectBall6.sorted())
+    while (Lotto.presentRound < Lotto.Times) {
+        Lotto.randomBall6 = Lotto.randomBall()
+        if (Lotto.randomBall6.distinct().size == 6) {
+            Lotto.presentRound++
+            Lotto(Lotto.randomBall6.sorted())
         }
     }
     Lotto.allDisplay()
@@ -31,7 +31,7 @@ fun main() {
         playingFlag = CheckSystem.inputCheck(Lotto.inputResult, LottoSystem.caseChoseNumber)
     }
 
-    Lotto.lastBall7 = Lotto.inputResult.split(",").toMutableList()
+    Lotto.selectBall6 = Lotto.inputResult.split(",").map { it.toInt() }
 
     playingFlag = true
 
@@ -41,12 +41,17 @@ fun main() {
         playingFlag = CheckSystem.inputCheck(Lotto.inputResult, LottoSystem.caseBonusNumber)
     }
 
-    Lotto.lastBall7.add(Lotto.inputResult.trim())
+    Lotto.selectBonusBall = Lotto.inputResult.toInt()
 
-    Lotto.totalInventory = Lotto.contrastNumber(Lotto.numbersVowel)
+    Lotto.totalInventoryFillInit()
+    //통계용 변수 초기값 0개로 채우기
+    Lotto.placeTemporaryConversion()
+    // 해당 등수의 갯수를 가져오기위한 변수 임시변환
+
+    Lotto.totalInventory =
+        Lotto.numberContrast(Lotto.randomBallVowel, Lotto.selectBall6, Lotto.selectBonusBall)
     LottoSystem.informationMessage(LottoSystem.lottoStatistics)
-    Lotto.tatisticsDisplay(Lotto.totalInventory ,Lotto.lastBall7,Lotto.InvestmentAmount)
-
+    Lotto.tatisticsDisplay()
 
 
 }
