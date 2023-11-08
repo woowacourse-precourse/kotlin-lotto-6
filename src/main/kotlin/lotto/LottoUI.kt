@@ -58,7 +58,7 @@ class LottoUI {
         return Lotto(winningNumbersToInt(winningNumbers))
     }
 
-    private fun checkInvalidWinningNumbers(winningNumbers: List<String>) {
+    fun checkInvalidWinningNumbers(winningNumbers: List<String>) {
         when {
             winningNumbers.map { it.toIntOrNull() }
                 .contains(null) -> throw IllegalArgumentException(Winning.ERROR_NOT_INTEGER.value)
