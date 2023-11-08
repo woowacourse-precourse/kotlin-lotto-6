@@ -13,8 +13,9 @@ class PurchasedLottoTest {
         assertRandomUniqueNumbersInRangeTest(
             {
                 Lotto(listOf(8, 21, 23, 41, 42, 43))
-                val purchasedLotto = PurchasedLotto(listOf(8, 21, 23, 41, 42, 43), 7)
+                val purchasedLotto = PurchasedLotto()
 
+                purchasedLotto.setPurchasedLotto(listOf(8, 21, 23, 41, 42, 43), 7)
                 val result = purchasedLotto.getWinPrize()
                 Assertions.assertThat(result).isEqualTo(LOTTO_FIRST_WIN_COST)
             },
