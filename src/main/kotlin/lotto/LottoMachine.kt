@@ -6,6 +6,11 @@ class LottoMachine(payment: Int) {
 
     private val numberOfTicket = payment / 1000
 
+    init {
+        require(payment >= 1000) {"[ERROR] 1000원 이상 입력해 주세요."}
+        require(payment % 1000 == 0) {"[ERROR] 1000원 단위로 입력해 주세요."}
+    }
+
     fun generateLotto(): List<Lotto> {
 
         val lottoTickets = mutableListOf<Lotto>()
