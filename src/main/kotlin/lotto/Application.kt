@@ -2,6 +2,7 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import kotlin.time.times
 
 fun main() {
     val purchaseAmount = getPurchaseAmount()
@@ -100,7 +101,7 @@ fun printResult(result: Map<Prize, Int>) {
             println("${rank.matchCount}개 일치 (${prize.formatCurrency()}) - ${count}개")
         }
     }
-    println("총 수익률은 ${calculateTotalProfitRate(result)}%입니다.")
+    println("총 수익률은 ${calculateTotalProfitRate(result).toLong()}%입니다.")
 }
 
 fun Long.formatCurrency(): String {
@@ -110,6 +111,7 @@ fun Long.formatCurrency(): String {
 fun calculateTotalProfitRate(result: Map<Prize, Int>): Double {
     val totalSpent = result.values.sum() * 1000
     val totalPrize = result.map { it.key.prize * it.value }.sum()
-    
+
     return (totalPrize.toDouble() / totalSpent) * 100
 }
+
