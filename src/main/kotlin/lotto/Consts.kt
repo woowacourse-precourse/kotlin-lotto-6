@@ -43,11 +43,4 @@ const val MATCH_FIVE = 5
 const val MATCH_FOUR = 4
 const val MATCH_THREE = 3
 
-const val WIN_RANK_FIRST = 0
-const val WIN_RANK_SECOND = 1
-const val WIN_RANK_THIRD = 2
-const val WIN_RANK_FORTH = 3
-const val WIN_RANK_FIFTH = 4
-const val WIN_RANK_NOTHING = 5
-
 const val SCALE_UP = 10.0
