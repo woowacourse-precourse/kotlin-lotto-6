@@ -7,8 +7,7 @@
   ```
   구입 금액을 입력해주세요.
   ```
-    - [ ] 사용자가 구입할 금액을 입력한다. (`InputView.purchaseAmount`)
-        - [ ] 구입할 금액은 1,000 원 단위여야 한다.
+    - [x] 사용자가 구입할 금액을 입력한다. (`InputView.purchaseAmount`)
 
 - [x] 로또 수량을 계산한다.구입할 금액이 10,000 원이면 10 개이다. (`Lottoes` 의 `lottoTicketCount` 속성)
 
@@ -41,11 +40,10 @@
   당첨 번호를 입력해주세요.
   ```
 
-- [ ] 6자리 당첨 번호를 입력받는다. (`InputView.lottoNumbers`)
-    - [ ] 당첨 번호는 쉼표를 기준으로 구분한다.
+- [x] 6자리 당첨 번호를 입력받는다. (`InputView.lottoNumbers`)
+    - [x] 당첨 번호는 쉼표를 기준으로 구분한다.
 
-- [ ] 보너스 번호를 입력받는다. (`Inputview.bonusLottoNumber`)
-    - [ ] 보너스 번호는 1개이다.
+- [x] 보너스 번호를 입력받는다. (`Inputview.bonusLottoNumber`)
     - [x] 보너스 번호 입력 안내 메시지를 출력한다. (`OutputView.inputBonusNumberPrompt`)
 
 - [x] 당첨 기준. enum class 로 구현하면 될 것 같음.  (`WinningRank`)
