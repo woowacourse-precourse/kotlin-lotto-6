@@ -11,4 +11,22 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 
+    fun matchAnswer(answerNum: List<Int>, bonusNum: Int): WinningType {
+        val hitNum = answerNum.intersect(numbers)
+        return when (hitNum.size) {
+            6 -> WinningType.FIRST
+            5 -> isContainBonus(bonusNum)
+            4 -> WinningType.FOURTH
+            3 -> WinningType.FIFTH
+            else -> WinningType.NOTHING
+        }
+    }
+
+    private fun isContainBonus(bonusNum: Int): WinningType {
+        return when (numbers.contains(bonusNum)) {
+            true -> WinningType.SECOND
+            false -> WinningType.THIRD
+        }
+    }
+
 }
