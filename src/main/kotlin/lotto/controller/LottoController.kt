@@ -34,9 +34,11 @@ class LottoController(private val inputView: InputView, private val outputView: 
     }
 
     private fun receiveWinningLotto() : WinningLotto {
-        val winningNums : Lotto = handleException.tryUntilSuccess { receiveWinningNums() }
-        val bonusNum : Int = handleException.tryUntilSuccess { receiveBonusNum() }
-        return WinningLotto(winningNums, bonusNum)
+        return handleException.tryUntilSuccess {
+            val winningNums : Lotto = handleException.tryUntilSuccess { receiveWinningNums() }
+            val bonusNum : Int = handleException.tryUntilSuccess { receiveBonusNum() }
+            WinningLotto(winningNums, bonusNum)
+        }
     }
 
     private fun receiveWinningNums(): Lotto {

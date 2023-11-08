@@ -24,17 +24,16 @@ class OutputView {
         userLottos.lottos.forEach{
             println(it.getNumbers())
         }
-        outputBlankLine()
     }
 
     fun outputWinningNums() {
-        println(Strings.OUTPUT_WINNING_NUMS)
         outputBlankLine()
+        println(Strings.OUTPUT_WINNING_NUMS)
     }
 
     fun outputBonusNum() {
-        println(Strings.OUTPUT_BONUS_NUM)
         outputBlankLine()
+        println(Strings.OUTPUT_BONUS_NUM)
     }
 
     private fun outputBlankLine() {
