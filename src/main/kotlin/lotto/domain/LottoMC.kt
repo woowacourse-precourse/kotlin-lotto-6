@@ -29,6 +29,7 @@ class LottoMC {
         require(bonusNum.isNotBlank()) { ERROR_BONUS_NUM_EMPTY }
         require(bonusNum.toInt() in LOTTO_NUM_MIN..LOTTO_NUM_MAX) { ERROR_BONUS_NUM_RANGE }
         require(bonusNum.toInt() !in lottoNum) { ERROR_BONUS_NUM_DUPLICATE }
+        require(!bonusNum.contains(LOTTO_NUM_DIVIDING)) { ERROR_BONUS_NUM_SINGLE }
     }
 
     companion object {
@@ -43,5 +44,6 @@ class LottoMC {
         const val ERROR_BONUS_NUM_EMPTY = "[ERROR] 로또 보너스 번호 1개를 필수로 입력해야 합니다."
         const val ERROR_BONUS_NUM_RANGE = "[ERROR] 로또 보너스 번호는 1부터 45 사이 숫자여야 합니다."
         const val ERROR_BONUS_NUM_DUPLICATE = "[ERROR] 로또 보너스 번호는 당첨 번호와 중복되지 않아야 합니다."
+        const val ERROR_BONUS_NUM_SINGLE = "[ERROR] 로또 보너스 번호는 1개만 입력해야 합니다."
     }
 }
