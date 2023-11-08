@@ -15,6 +15,8 @@ object OutputView {
     }
 
     fun printLottoResult(lottoBundle : LottoBundle){
+        println("당첨 통계")
+        println("---")
         printLottoRankResult(lottoBundle)
         printRateOfReturn(lottoBundle)
     }
