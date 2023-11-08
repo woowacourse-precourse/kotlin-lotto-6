@@ -13,10 +13,10 @@ class InputValidator {
     fun checkLottoInput(string: String) {
         checkLottoNumberCount(string)
         checkListNumberIsInRange(string)
-        checkDuplicates(string)
+        checkDuplicatesLottoNumber(string)
     }
 
-    fun checkDuplicates(string: String) {
+    fun checkDuplicatesLottoNumber(string: String) {
         val lottoList = Utils.parseWithComma(string)
         val distinctList = lottoList.distinct()
 
