@@ -16,6 +16,11 @@ const val LOTTO_THIRD_RANK_MESSAGE = "5개 일치 (1,500,000원) - $MATCH_COUNT"
 const val LOTTO_FOURTH_RANK_MESSAGE = "4개 일치 (50,000원) - $MATCH_COUNT"
 const val LOTTO_FIFTH_RANK_MESSAGE = "3개 일치 (5,000원) - $MATCH_COUNT"
 
+const val MATCH_SIX: Int = 6
+const val MATCH_FIVE: Int = 5
+const val MATCH_FOUR: Int = 4
+const val MATCH_THREE: Int = 3
+
 const val FIRST_REWARD = 2_000_000_000
 const val SECOND_REWARD = 30_000_000
 const val THIRD_REWARD = 1_500_000

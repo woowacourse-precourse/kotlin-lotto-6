@@ -1,0 +1,41 @@
+package lotto.model
+
+import MATCH_FIVE
+import MATCH_FOUR
+import MATCH_SIX
+import MATCH_THREE
+
+class LottoMatch(lottoTickets: List<LottoTicket>, winningNumber: List<Int>, bonusNumber: Int) {
+    val lottoTickets = lottoTickets
+    val winningNumber = winningNumber
+    val bonusNumber = bonusNumber
+    val lottoResults = mutableMapOf<LottoResult, Int>().apply {
+        for (lottoResult in LottoResult.entries) {
+            put(lottoResult, 0)
+        }
+    }
+
+    fun countMatch(): List<Int> {
+        for (ticket in lottoTickets) {
+            val matchedCount = countRanks(ticket)
+        }
+        return lottoResults.values.toList()
+    }
+
+    private fun countRanks(ticket: LottoTicket): MutableMap<LottoResult, Int> {
+        val hasBonus = ticket.ticket.contains(bonusNumber)
+        val matchingNumbers = ticket.ticket.count { it in winningNumber }
+
+        val matchingRank = when (matchingNumbers) {
+            MATCH_SIX -> if (!hasBonus) LottoResult.FIRST else LottoResult.SECOND
+            MATCH_FIVE -> LottoResult.THIRD
+            MATCH_FOUR -> LottoResult.FOURTH
+            MATCH_THREE -> LottoResult.FIFTH
+            else -> null
+        }
+
+        matchingRank?.let { lottoResults[it] = lottoResults.getOrDefault(it, 0) + 1 }
+
+        return lottoResults
+    }
+}
