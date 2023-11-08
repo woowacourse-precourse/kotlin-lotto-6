@@ -76,6 +76,8 @@ BUILD SUCCESSFUL in 0s
   enum class 사용
   [ERROR]와 함께 에러 띄우기
 
+
+
 ### 입출력 요구 사항
 
 #### 입력
