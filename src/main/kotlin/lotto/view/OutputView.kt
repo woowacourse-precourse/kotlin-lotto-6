@@ -8,6 +8,10 @@ class OutputView {
         println(String.format(LOTTO_COUNT, lottoCount))
     }
 
+    fun printErrorMessage(message: String) {
+        println(message)
+    }
+
     fun printLottoResult(matchCounts: Map<LottoPrice, Int>, earningRate: Double) {
         println(MATCH_COUNT_TITLE)
         LottoPrice.values().forEach {

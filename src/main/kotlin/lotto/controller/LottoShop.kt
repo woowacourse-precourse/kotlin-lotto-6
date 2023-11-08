@@ -67,7 +67,7 @@ class LottoShop {
                 val inputLottoNum = inputView.inputValue()
                 return lottoMC.pickLottoNum(inputLottoNum)
             } catch (e: IllegalArgumentException) {
-                println(e.message)
+                e.message?.let { outputView.printErrorMessage(it) }
             }
         }
     }
@@ -79,7 +79,7 @@ class LottoShop {
                 val inputBonusNum = inputView.inputValue()
                 return lottoMC.pickBonusNum(inputBonusNum, lottoNum)
             } catch (e: IllegalArgumentException) {
-                println(e.message)
+                e.message?.let { outputView.printErrorMessage(it) }
             }
         }
     }
