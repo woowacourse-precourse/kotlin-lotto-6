@@ -13,6 +13,6 @@ object PrintText {
         }
     }
     fun printRate(rate: String) {
-        println("총 수익률은 ${String}%입니다.")
+        println("총 수익률은 ${rate}%입니다.")
     }
 }
