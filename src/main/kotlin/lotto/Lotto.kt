@@ -30,11 +30,11 @@ class Lotto(private val numbers: List<Int>) {
     }
 }
 
-private fun List<Int>.isUnique(): Boolean {
+fun List<Int>.isUnique(): Boolean {
     return this.size == this.distinct().size
 }
 
-private fun List<Int>.isLottoNumberInRange(): Boolean {
+fun List<Int>.isLottoNumberInRange(): Boolean {
     return this.filterNot { number ->
         number in Lotto.LOTTO_MIN_NUMBER..Lotto.LOTTO_MAX_NUMBER
     }.isEmpty()
