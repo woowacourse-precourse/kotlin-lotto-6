@@ -7,9 +7,9 @@
 - [x] 로또 구입 UI - LottoPurchaseView
   - [x] 구입금액 입력 요청 메시지 출력 기능
   - [x] 구입금액 입력 받는 기능
-- [ ] 로또 발행 UI - LottoIssueView
+- [x] 로또 발행 UI - LottoIssueView
   - [x] 로또 수량 메시지 출력 기능
-  - [ ] 로또 번호 출력 기능
+  - [x] 로또 번호 출력 기능
 - 당첨 번호 + 보너스 번호 UI - WinningLottoView
   - [ ] 당첨 번호 입력 요청 메시지 출력 기능
   - [ ] 당첨 번호(6개) 입력 받는 기능
