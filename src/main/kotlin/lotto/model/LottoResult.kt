@@ -1,6 +1,5 @@
 package lotto.model
 
-import lotto.data.LottoWinnerInfo
 import lotto.resources.Lotto.INIT_VALUE
 
 data class LottoResult(

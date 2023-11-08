@@ -1,12 +1,12 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.data.LottoData
-import lotto.data.LottoWinnerInfo
 import lotto.domain.Lotto
 import lotto.domain.WinningNumber
 import lotto.domain.bonusValidation
 import lotto.domain.purchaseAmountValidation
+import lotto.model.LottoData
+import lotto.model.LottoWinnerInfo
 import lotto.model.PlayLottoState
 import lotto.resources.Comment.ENTER_BONUS_NUMBERS_COMMENT
 import lotto.resources.Comment.ENTER_PURCHASE_AMOUNT_COMMENT
@@ -20,7 +20,6 @@ import lotto.utils.lottoGenerator
 
 class PlayLotto(
     private val winningNumber: WinningNumber,
-
 ) {
 
     private var lottoData : LottoData = LottoData()
@@ -87,18 +86,18 @@ class PlayLotto(
 
     private fun matchingProcess() {
         lottoData.lotteries.forEach { numbers ->
-            val lottoMatchInfo = Lotto(numbers).matchingLotto(lottoData.winningNumbers, lottoData.bonusNumber)
-            if (lottoMatchInfo != null) {
-                addValueLottoResult(lottoMatchInfo)
+            val lottoWinnerInfo = Lotto(numbers).matchingLotto(lottoData.winningNumbers, lottoData.bonusNumber)
+            if (lottoWinnerInfo != null) {
+                addValueLottoResult(lottoWinnerInfo)
             }
         }
         currentState = PlayLottoState.END
     }
 
-    private fun addValueLottoResult(lottoMatchInfo: LottoWinnerInfo) {
+    private fun addValueLottoResult(lottoWinnerInfo: LottoWinnerInfo) {
         lottoData = lottoData.copy(
             lottoResults = lottoData.lottoResults.map { lottoResult ->
-                if (lottoResult.lottoWinnerInfo == lottoMatchInfo) {
+                if (lottoResult.lottoWinnerInfo == lottoWinnerInfo) {
                     lottoResult.copy(
                         value = lottoResult.value + 1
                     )

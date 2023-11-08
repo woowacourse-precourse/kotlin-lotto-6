@@ -1,4 +1,4 @@
-package lotto.data
+package lotto.model
 
 import lotto.resources.Lotto.MATCH_FIVE_PRISE
 import lotto.resources.Lotto.MATCH_FIVE_WITH_BONUS_PRISE

@@ -1,6 +1,6 @@
 package lotto.domain
 
-import lotto.data.LottoWinnerInfo
+import lotto.model.LottoWinnerInfo
 
 class Lotto(private val numbers: List<Int>) {
 
