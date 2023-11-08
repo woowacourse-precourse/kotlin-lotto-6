@@ -27,6 +27,9 @@ class InputView {
         if (lottoBonusNumber.toIntOrNull() == null){
             throw IllegalArgumentException("[ERROR] 보너스 번호는 정수여야 합니다.")
         }
+        if (lottoBonusNumber.toInt() !in 1..45){
+            throw IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.")
+        }
         return lottoBonusNumber.toInt()
     }
 }
