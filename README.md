@@ -39,14 +39,19 @@
         - 사용자 입력 오류 처리를 위해 `IllegalArgumentException` 사용
 2. 1..45인 6개의 난수를 생성해주는 `Lotto` 클래스
     - `Randoms.pickUniqueNumbersInRange` 사용
-    - 번호 중복을 체크해주는 `dup_check` 메서드
-3. 사용자가 입력한 구매 횟수만큼 로또 번호 출력
+
+3. 사용자 입력 횟수만큼 로또 번호를 생성해주는 `Lottogenerator` 메서드
     - (로또 횟수 : Int)
     - `Lotto` 클래스 사용
-    - 로또 번호 6자리를 저장하는 2차원 배열 : `Array<List<Int>>` 
+          -`Lotto` 클래스 내부에 값을 반환해주는 `getlottonum` 추가
+    -  : `List<Lotto>` 반환
+    -  로또 번호 생성 결과를 출력해주는 `lotto_numbers_print`
+  
 4. 당첨 여부를 연산하는 `cal_lotto` 메서드
-    - (로또 번호가 저장된 2차원 배열 : `Array<List<Int>>` , 당첨 번호 : List<Int> , 보너스 번호 : Int )
+    - ( : `List<Lotto>` , 당첨 번호 : List<Int> , 보너스 번호 : Int )
+    -  : Map< 일치한 공의 개수(key) , 회수(value) >
 5. `cal_lotto`의 결과를 출력하는 `print_lotto`
+
    
 ### 입출력 요구 사항
 
