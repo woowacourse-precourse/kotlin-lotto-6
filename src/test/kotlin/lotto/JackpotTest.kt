@@ -5,10 +5,9 @@ import lotto.model.Rank
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-class FunctionTest {
-
+class JackpotTest {
     @Test
-    fun testDiscriminate() {
+    fun `당첨 개수 판별 테스트`() {
         val answers = listOf(1, 2, 3, 4, 5, 6)
         val bonus = 7
         val lotto = listOf(
@@ -21,9 +20,8 @@ class FunctionTest {
         Assertions.assertEquals(expectedRank, result)
     }
 
-
     @Test
-    fun testRankUpdate() {
+    fun `랭크 업데이트 테스트`() {
         val rank = mutableMapOf(
             Rank.THIRD to 2,
             Rank.FOURTH to 1,
@@ -32,7 +30,6 @@ class FunctionTest {
             Rank.SIXTH to 5
         )
 
-        // 테스트 케이스 1: 3개 일치 추가
         val updatedRank1 = Jackpot().rankUpdate(3, rank, false)
         Assertions.assertEquals(3, updatedRank1[Rank.THIRD])
     }
