@@ -14,7 +14,8 @@ class LottoManager {
         totalProceeds: Int
     ): String {
         val rate = makeRateFormat(purchasePrice, totalProceeds)
-        return if (rate >= THREE_OVER_FORMAT) DecimalFormat(RETURN_FORMAT).format(rate)
+        return if (rate >= THREE_OVER_FORMAT)
+            DecimalFormat(RETURN_FORMAT).format(rate)
         else rate.toString()
     }
 
@@ -27,7 +28,8 @@ class LottoManager {
         lotto: Lotto
     ): GameResult? {
         return if (isBonusResult(gameResult)) {
-            val bonusResult = winningLotto.checkWinningBonusNumber(lotto.changeLottoNumbersToSet())
+            val bonusResult = winningLotto
+                .checkWinningBonusNumber(lotto.changeLottoNumbersToSet())
             getMathBonusResult(bonusResult)
         } else {
             gameResult
@@ -53,7 +55,8 @@ class LottoManager {
     ): Double {
         return String.format(
             RATE_FORMAT,
-            ((totalProceeds.toDouble() / purchasePrice.toDouble()) * RETURN_RATE)
+            ((totalProceeds.toDouble() / purchasePrice.toDouble())
+                    * RETURN_RATE)
         ).toDouble()
     }
 
