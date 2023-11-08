@@ -22,6 +22,11 @@ class LottoResultTest {
         assertThat(actualBallCount).isEqualTo(expectedBallCount)
     }
 
-
+    @Test
+    fun `우승 티켓의 상금이 얼마인지 확인할 수 있다`() {
+        val expectedPrize = 1_500_000
+        val actualPrize = Prize.THIRD.amount
+        assertThat(expectedPrize).isEqualTo(actualPrize)
+    }
 
 }
