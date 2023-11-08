@@ -13,9 +13,10 @@
   - [x] 값이 올바르지 않은 형태인 경우, 예외가 발생하여 재입력받는다. - Lotto, LottoGameManager#validatedAsNumbers()
   - [x] 보너스 번호를 입력한다. - LottoGameManager#pickBonusNumber()
   - [x] 값이 올바르지 않은 형태인 경우, 예외가 발생하여 재입력받는다. - Winning, LottoGameManager#validatedAsNumber()
-- [ ] 당첨 결과가 나온다.
-  - [ ] 당첨 기준별로 내역을 구분해 출력한다.
-  - [ ] 총 수익률을 출력한다.
+- [x] 당첨 결과가 나온다.
+  - [x] 당첨 기준에 따른 결과를 산출한다. - WinningResultGenerator#get()
+  - [x] 당첨 기준별로 내역을 구분해 출력한다. - LottoGameViewer#printWinningsByCountInGroup()
+  - [x] 총 수익률을 출력한다. - LottoGameViewer#printWinningMargin()
 
 ## 기능 요구 사항
 
