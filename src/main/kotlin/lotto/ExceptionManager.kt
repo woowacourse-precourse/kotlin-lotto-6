@@ -31,10 +31,8 @@ class ExceptionManager {
 
     private fun convertToIntList(str: String): List<Int> {
         try {
-            val numbers = str.split(",").map { it.toInt() }
-            return numbers
-        }
-        catch (e: NumberFormatException) {
+            return str.split(",").map { it.toInt() }
+        } catch (e: NumberFormatException) {
             throw IllegalArgumentException("[ERROR] 올바른 형식의 숫자 리스트가 아닙니다.")
         }
     }
