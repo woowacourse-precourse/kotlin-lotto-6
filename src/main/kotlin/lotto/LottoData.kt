@@ -1,4 +1,4 @@
-현package lotto
+package lotto
 
 object LottoData{
     var purchasePrice:Int = 0
