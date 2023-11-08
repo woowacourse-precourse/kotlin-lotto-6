@@ -1,0 +1,5 @@
+package lotto.exception
+
+import lotto.EXCEPTION_MESSAGE_DUPLICATED_NUMBER
+
+class DuplicatedNumberException: IllegalArgumentException(EXCEPTION_MESSAGE_DUPLICATED_NUMBER)
