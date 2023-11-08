@@ -10,6 +10,6 @@ fun main() {
     LottoUI().printWinningNumbers()
     val winningLotto = LottoUI().inputWinningNumbers()
     LottoUI().printBonusNumber()
-    val bonusNumber = LottoUI().inputBonusNumber()
+    val bonusNumber = LottoUI().inputBonusNumber(winningLotto)
     LottoUI().printResult(lottos, winningLotto, bonusNumber)
 }
