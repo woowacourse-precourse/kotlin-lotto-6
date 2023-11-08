@@ -17,4 +17,13 @@ class ValidatorTest {
             validator.validatedNumberInRange(num, 1, 45)
         }
     }
+
+    @Test
+    @DisplayName("input금액을 검증하는 테스트")
+    fun inputMoneyTest() {
+        assert(validator.validatedMoneyIsInt("1000") == 1000)
+        assertThrows<IllegalArgumentException> {
+            validator.validatedMoneyUnit(1234, 1000)
+        }
+    }
 }
