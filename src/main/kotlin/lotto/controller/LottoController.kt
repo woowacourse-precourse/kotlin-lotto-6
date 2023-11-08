@@ -3,6 +3,7 @@ package lotto.controller
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.Lotto
+import lotto.domain.BonusNumberValidators
 import lotto.domain.PurchaseAmount
 import lotto.domain.compareToLotto
 import lotto.domain.matchCheck
@@ -28,11 +29,11 @@ class LottoController {
         val winningNumbers = winningNumberValidators(inputMessage())
 
 
-//        printBonusMessage()
-//        val bonusNumber = inputMessage().toInt()
-//        printWinningReport()
-//        val matches = compareToLotto(lottos, winningNumber, bonusNumber) // 몇 개씩 당첨되었는지 갯수 반환
-//        matchCheck(matches)
+        printBonusMessage()
+        val bonusNumber = BonusNumberValidators(inputMessage())
+        printWinningReport()
+        val matches = compareToLotto(lottos, winningNumbers, bonusNumber) // 몇 개씩 당첨되었는지 갯수 반환
+        matchCheck(matches)
 //
 //        // 수익률 구하기
 //        val totalAmount = getTotalAmount(matches)

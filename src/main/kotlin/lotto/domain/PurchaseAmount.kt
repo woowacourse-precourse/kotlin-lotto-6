@@ -13,11 +13,11 @@ object PurchaseAmount {
     }
 
     fun purchaseAmountEmpty(num: String) {
-        require (num.isNotEmpty() && num.isNotBlank()) {"[ERROR] 공백은 포함할 수 없습니다."}
+        require (num.isNotEmpty() && num.isNotBlank()) {Number.EMPTY}
     }
 
     fun purchaseAmountNotInt(num: String) {
-        require (num.all { it.isDigit() }) {"[ERROR] 로또 금액은 정수로 입력해주세요."}
+        require (num.all { it.isDigit() }) {Number.NON_INTEGER}
     }
 
     fun NonDivisibleAmount(num: Int) {
