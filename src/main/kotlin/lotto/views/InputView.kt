@@ -7,11 +7,12 @@ class InputView {
         val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
         require(isEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
 
-        return validatePurchaseAmountInput(input.trim())
+        return validatePurchaseAmountInput(input)
     }
 
     internal fun validatePurchaseAmountInput(input: String): Int {
-        require(isNotDigitInput(input.trim())) { NOT_DIGIT_INPUT_ERROR_MESSAGE }
+        val trimmedInput = input.trim()
+        require(isNotDigitInput(trimmedInput)) { NOT_DIGIT_INPUT_ERROR_MESSAGE }
 
         return input.toInt()
     }
@@ -35,8 +36,16 @@ class InputView {
 
     fun inputBonusNumber(): Int {
         val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
+        require(isEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
 
-        return input.trim().toInt()
+        return validateBonusNumber(input)
+    }
+
+    internal fun validateBonusNumber(input: String): Int {
+        val trimmedInput = input.trim()
+        require(isNotDigitInput(trimmedInput)) { BONUS_NUMBER_DIGIT_ERROR_MESSAGE }
+
+        return input.toInt()
     }
 
     private fun isEmptyOrBlankInput(input: String) = input.isEmpty() or input.isBlank()
@@ -49,5 +58,7 @@ class InputView {
 
         const val SEPARATOR = ","
         const val LOTTO_NUMBER_DIGIT_ERROR_MESSAGE = "로또 번호는 숫자로만 입력해주세요."
+
+        const val BONUS_NUMBER_DIGIT_ERROR_MESSAGE = "보너스 번호는 숫자로만 입력해주세요."
     }
 }
