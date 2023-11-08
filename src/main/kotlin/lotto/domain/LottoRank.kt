@@ -1,4 +1,4 @@
-package lotto
+package lotto.domain
 
 enum class LottoRank(val rankDescription: String, val prizeMoney: Int) {
     FIFTH("3개 일치", 5_000),

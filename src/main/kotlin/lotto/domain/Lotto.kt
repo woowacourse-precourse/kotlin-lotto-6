@@ -1,4 +1,6 @@
-package lotto
+package lotto.domain
+
+import lotto.util.Constants
 
 
 class Lotto(private val numbers: List<Int>) {

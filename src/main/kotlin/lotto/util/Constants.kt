@@ -1,4 +1,4 @@
-package lotto
+package lotto.util
 
 object Constants {
     const val CNT_LOTTO_NUMBER = 6

@@ -1,6 +1,7 @@
-package lotto
+package lotto.domain
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.util.Constants
 
 class LottoGenerator(private val lottoGenerateCount: Int) {
 

@@ -1,4 +1,7 @@
-package lotto
+package lotto.controller
+
+import lotto.domain.*
+import lotto.view.OutputView
 
 class LottoGame(private val output: OutputView, private val player: Player, private val lottoMachine: LottoMachine) {
     fun start() {
