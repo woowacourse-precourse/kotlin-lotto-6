@@ -21,8 +21,6 @@ class Customer {
     }
 
 
-
-
     private fun inputToInt() : Int {
 
         val inputCount  = Console.readLine()

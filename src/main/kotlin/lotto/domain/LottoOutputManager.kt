@@ -3,6 +3,7 @@ package lotto.domain
 import lotto.data.ConstNum
 import lotto.data.LottoNums
 import lotto.data.LottoResult
+import lotto.data.WinningCount
 
 
 class LottoOutputManager() {
@@ -33,15 +34,18 @@ class LottoOutputManager() {
         inputNums.forEach {
             val resultCount = Lotto(it).calculateLotto(lottoNums)
             when(resultCount.listCounts){
-                3 -> _lottoResult.three +=1
-                4 -> {
+                WinningCount.THREE.count -> _lottoResult.three +=1
+
+                WinningCount.FOUR.count -> {
                     _lottoResult.four +=1
                 }
-                5-> {
+
+                WinningCount.FIVE.count-> {
                     if(!resultCount.bonus)_lottoResult.five+=1
                     else _lottoResult.bonus +=1
                 }
-                6->{
+
+                WinningCount.SIX.count ->{
                     _lottoResult.six+=1
                 }
             }

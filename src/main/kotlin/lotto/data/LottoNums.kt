@@ -11,5 +11,5 @@ data class LottoResult(
     var four : Long = 0 ,
     var five : Long = 0,
     var bonus : Long = 0,
-    var six : Long = 0,
-    )
+    var six : Long = 0
+)
