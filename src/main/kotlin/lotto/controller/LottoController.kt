@@ -1,33 +1,32 @@
 package lotto.controller
 
 import LOTTO_PRICE
-import LottoPurchaseView.inputPurchaseAmountOfLotto
-import LottoPurchaseView.printPurchaseAmountOfLotto
+import LottoPurchaseView.inputMoneyToBuy
+import LottoPurchaseView.printMoneyToBuy
 import lotto.model.*
 import lotto.presentation.LottoBonusView.inputBonusNumberOfLotto
 import lotto.presentation.LottoBonusView.printBonusNumberOfLotto
 import lotto.presentation.LottoGeneratorView.printLottoTickets
-import lotto.presentation.LottoGeneratorView.printPurchaseLottoCount
+import lotto.presentation.LottoGeneratorView.printBuyLottoTickes
 import lotto.presentation.LottoProfitView
 import lotto.presentation.LottoStatisticsView.printStatistics
 import lotto.presentation.LottoWinningView.inputWinningNumberOfLotto
 import lotto.presentation.LottoWinningView.printWinningNumberOfLotto
 
 class LottoController() {
-    private val lottoModel = LottoModel()
+    private val lottoMoney = LottoMoney()
     private val winningNumber = WinningNumber()
     private val bonusNumber = BonusNumber()
     val lottoTickets = mutableListOf<LottoTicket>()
     fun start() {
         try {
-            printPurchaseAmountOfLotto()
-            val purchaseAmount = inputPurchaseAmountOfLotto()
+            printMoneyToBuy()
+            val moneyToBuy = inputMoneyToBuy()
 
-            printPurchaseLottoCount(purchaseAmount)
+            printBuyLottoTickes(moneyToBuy)
+            generateLottoTickets(moneyToBuy / LOTTO_PRICE)
 
-            generateLottoTickets(purchaseAmount / LOTTO_PRICE)
-
-            startWinningNumber(purchaseAmount)
+            startWinningNumber(moneyToBuy)
         } catch (e: IllegalArgumentException) {
             println(e.message)
             start()
@@ -75,16 +74,16 @@ class LottoController() {
         printLottoTickets(lottoTickets)
     }
 
-    fun validateInputPurchaseAmountOfLottoNumeric(input: String) {
-        lottoModel.isPurchaseAmountNumeric(input)
+    fun validateMoneyToBuyNumeric(input: String) {
+        lottoMoney.isMoneyToBuyNumeric(input)
     }
 
-    fun validateInputPurchaseAmountOfLottoPositive(input: Int) {
-        lottoModel.isPurchaseAmountPositive(input)
+    fun validateMoneyToBuyPositive(input: Int) {
+        lottoMoney.isMoneyToBuyPositive(input)
     }
 
-    fun validateInputPurchaseAmountOfLottoDivisionPrice(input: Int) {
-        lottoModel.isDivisibleBy1000(input)
+    fun validateMoneyToBuyDivisibleByLottoPrice(input: Int) {
+        lottoMoney.isMoneyToBuyDivisibleBy1000(input)
     }
 
     fun validateInputWinningNumberSize(input: List<String>) {

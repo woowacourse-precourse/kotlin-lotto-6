@@ -5,7 +5,7 @@ import PURCHASE_LOTTO_COUNT_MESSAGE
 import lotto.model.LottoTicket
 
 object LottoGeneratorView {
-    fun printPurchaseLottoCount(amount: Int) {
+    fun printBuyLottoTickes(amount: Int) {
         println(PURCHASE_LOTTO_COUNT_MESSAGE.format(amount / LOTTO_PRICE))
     }
 
