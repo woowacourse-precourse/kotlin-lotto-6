@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test
 
 class PlayerTest {
 
-
     @Test
     @DisplayName("로또를 8개 구입했을 때 수익률은 62.5%이다")
     fun `calculate_revenue`() {
