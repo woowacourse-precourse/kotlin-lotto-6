@@ -8,7 +8,7 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     private fun isDuplicateNum(): Boolean = numbers.size == numbers.distinct().size
-    private fun checkNotIn1to45(): Boolean = numbers.any { it in 1..45 }
+    private fun checkNotIn1to45(): Boolean = numbers.all { it in 1..45 }
 
     companion object {
         const val IS_DUPLICATE_NUM = "[ERROR] 로또 번호는 중복되는 숫자가 없어야 합니다."
