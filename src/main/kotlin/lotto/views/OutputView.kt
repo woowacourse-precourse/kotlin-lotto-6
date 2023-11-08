@@ -15,6 +15,8 @@ class OutputView {
             val formattedLottoNumbers = formatLottoNumbers(it)
             println(PURCHASED_LOTTO_NUMBERS_MESSAGE.format(formattedLottoNumbers))
         }
+
+        endOutput()
     }
 
     private fun formatLottoNumbers(lotto: Lotto): String = lotto.getNumbers().joinToString(LOTTO_NUMBER_SEPARATOR)
@@ -41,7 +43,8 @@ class OutputView {
 
     fun printProfitRate(profitRate: ProfitRate) = println(PROFIT_RATE_MESSAGE.format(profitRate.value))
 
-    fun printErrorMessage(message: String?) = println("$ERROR_MESSAGE_PREFIX ${message ?: UNKNOWN_ERROR_MESSAGE}\n")
+    fun printErrorMessage(message: String? = null) =
+        println("$ERROR_MESSAGE_PREFIX ${message ?: UNKNOWN_ERROR_MESSAGE}\n")
 
     companion object {
         const val PURCHASED_LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다."

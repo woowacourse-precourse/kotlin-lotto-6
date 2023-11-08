@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Console
 
 class InputView {
 
-    fun endInput() = println()
-
     fun inputPurchaseAmount(): Int {
         println(INPUT_PURCHASE_AMOUNT_MESSAGE)
 
@@ -56,6 +54,10 @@ class InputView {
 
         return input.toInt()
     }
+
+    fun endInput() = println()
+
+    fun closeInput() = Console.close()
 
     private fun isNotEmptyOrBlankInput(input: String) = !(input.isEmpty() || input.isBlank())
 
