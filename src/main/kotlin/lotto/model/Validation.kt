@@ -10,7 +10,7 @@ object Validation {
     private const val NUM_AMOUNT_ERROR_MESSAGE = "[ERROR] 6개의 숫자를 입력해주세요"
     private const val NUM_RANGE_ERROR_MESSAGE  = "[ERROR] 1에서 45 숫자만 입력 가능합니다."
     private const val MULTI_NUM_ERROR_MESSAGE = "[ERROR] 하나의 숫자만 입력 가능합니다."
-    private const val UNIQUE_NUM_ERROR_MESSAGE = "서로 다른 숫자를 입력해주세요."
+    private const val UNIQUE_NUM_ERROR_MESSAGE = "[ERROR] 서로 다른 숫자를 입력해주세요."
 
     fun getPurchaseAmount(input: String):Int {
         checkIsDigit(input)
