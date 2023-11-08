@@ -62,13 +62,7 @@ class LottoResult(
         fun showProfitData() = UserOutput.printProfitResult(calculateProfit(money))
 
         private fun calculateProfit(money: Int): Double = sumTotalPrizeMoney().toDouble() / money * 100
+        private fun sumTotalPrizeMoney() = LottoPrize.entries.sumOf { it.calculatePrizeMoney() }
 
-        private fun sumTotalPrizeMoney(): Long {
-            var totalPrizeMoney: Long = 0
-            for (element in LottoPrize.entries)
-                totalPrizeMoney += element.calculatePrizeMoney()
-
-            return totalPrizeMoney
-        }
     }
 }
