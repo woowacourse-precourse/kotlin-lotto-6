@@ -1,5 +1,7 @@
 package lotto.model
 
+import lotto.util.Constants
+
 enum class Rank(val label: String, val count: Int, val money: Int, val countLabel: String) {
     THIRD("3개 일치 (5,000원) - ", 3, 5000, Constants.COUNT),
     FOURTH("4개 일치 (50,000원) - ", 4, 50000, Constants.COUNT),

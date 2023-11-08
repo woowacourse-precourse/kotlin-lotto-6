@@ -1,8 +1,8 @@
-package lotto.model
+package lotto.util
 
 import java.lang.NumberFormatException
 
-class UserLottoNumber {
+class IntegerConverter {
     fun convert(numbers: String): List<Int> {
         val lottoNumber = numbers.split(',')
         val integers = mutableListOf<Int>()

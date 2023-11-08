@@ -1,6 +1,6 @@
 package lotto.model
 
-import org.mockito.stubbing.Answer
+import lotto.util.Constants
 import java.lang.NumberFormatException
 
 class Bonus {

@@ -1,9 +1,7 @@
 package lotto.view
 
 
-import lotto.model.Constants
-import lotto.model.Lotto
-import lotto.model.Random
+import lotto.util.Constants
 import lotto.model.Rank
 
 class Output {
@@ -30,7 +28,7 @@ class Output {
     fun printAnswerCompare(answers: List<Int>, profit: Float) {
         println(Constants.COMPARE_ANSWER)
         println(Constants.THREE_DASH)
-        for((index,rank) in Rank.entries.withIndex()){
+        for ((index, rank) in Rank.entries.withIndex()) {
             println(rank.label + answers[index] + rank.countLabel)
         }
         println(Constants.TOTAL_PROFIT + profit + Constants.PERCENT)

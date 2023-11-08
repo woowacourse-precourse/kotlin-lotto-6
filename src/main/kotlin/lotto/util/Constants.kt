@@ -1,7 +1,12 @@
-package lotto.model
+package lotto.util
 
 class Constants {
     companion object {
+        val HUNDRED = 100
+        val THOUSAND = 1000
+        val TEN_THOUSAND = 10000
+        val ZERO = 0
+
         val WRITE_MONEY = "구입금액을 입력해 주세요."
         val PURCHASE_NUMBER = "개를 구매했습니다."
         val WRITE_JACKPOT = "당첨 번호를 입력해 주세요."

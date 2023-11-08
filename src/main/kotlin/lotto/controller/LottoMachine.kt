@@ -1,9 +1,11 @@
 package lotto.controller
 
 import lotto.model.*
+import lotto.util.Count
+import lotto.util.IntegerConverter
+import lotto.util.Random
 import lotto.view.Input
 import lotto.view.Output
-import java.util.Scanner
 
 class LottoMachine {
     fun start() {
@@ -21,7 +23,7 @@ class LottoMachine {
 
     fun moneyInput(): Int {
         Output().printWriteMoney()
-        var money = Input().write()
+        val money = Input().write()
         return try {
             Money().moneyFormatValidate(money)
             Money().moneyRangeValidate(money)
@@ -46,7 +48,7 @@ class LottoMachine {
     fun userAnswer(): List<Int> {
         Output().printWriteAnswer()
         val answers = Input().write()
-        val userLottoAnswer = UserLottoNumber().convert(answers)
+        val userLottoAnswer = IntegerConverter().convert(answers)
         return try {
             Lotto(userLottoAnswer).rangeValidate()
             userLottoAnswer
@@ -67,7 +69,5 @@ fun userBonus(answers: List<Int>): Int {
     } catch (e: IllegalArgumentException) {
         userBonus(answers)
     }
-
-
 }
 

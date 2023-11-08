@@ -1,5 +1,7 @@
 package lotto.model
 
+import lotto.util.Constants
+
 class Lotto(private val numbers: List<Int>) {
 
     init {
