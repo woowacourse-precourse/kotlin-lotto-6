@@ -50,7 +50,7 @@ class LottoController() {
     fun startBonusNumber(winningNumber: List<Int>) {
         try {
             printBonusNumberOfLotto()
-            val bonusNumber = inputBonusNumberOfLotto()
+            val bonusNumber = inputBonusNumberOfLotto(winningNumber)
 
             startMatchLotto(lottoTickets, winningNumber, bonusNumber)
         } catch (e: IllegalArgumentException) {
@@ -104,5 +104,9 @@ class LottoController() {
 
     fun validateInputBonusNumberRange(input: Int) {
         bonusNumber.isBonusNumberRange(input)
+    }
+
+    fun validateInputBonusNumberDuplication(input: Int, winningNumber: List<Int>) {
+        bonusNumber.isBonusNumberDuplicate(input, winningNumber)
     }
 }

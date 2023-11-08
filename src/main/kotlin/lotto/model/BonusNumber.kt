@@ -1,5 +1,6 @@
 package lotto.model
 
+import INVALID_BONUS_NUMBER_DUPLICATION_MESSAGE
 import INVALID_BONUS_NUMBER_NUMERIC_MESSAGE
 import INVALID_BONUS_NUMBER_RANGE_MESSAGE
 import LOTTO_MAX_NUMBER
@@ -14,8 +15,14 @@ class BonusNumber {
     }
 
     fun isBonusNumberRange(input: Int) {
-        if(input !in LOTTO_MIN_NUMBER..LOTTO_MAX_NUMBER){
+        if (input !in LOTTO_MIN_NUMBER..LOTTO_MAX_NUMBER) {
             throw IllegalArgumentException(INVALID_BONUS_NUMBER_RANGE_MESSAGE)
+        }
+    }
+
+    fun isBonusNumberDuplicate(input: Int, winningNumber: List<Int>) {
+        if (winningNumber.contains(input)) {
+            throw IllegalArgumentException(INVALID_BONUS_NUMBER_DUPLICATION_MESSAGE)
         }
     }
 }
