@@ -1,6 +1,7 @@
-package lotto
+package lotto.user
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.util.LottoView
 
 enum class PurchaseErrorCode(val message: String){
     ERROR_MESSAGE("[ERROR] 잘못된 숫자 입력입니다."),

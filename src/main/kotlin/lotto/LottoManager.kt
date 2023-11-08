@@ -1,5 +1,11 @@
 package lotto
 
+import lotto.user.LottoPick
+import lotto.user.LottoPurchase
+import lotto.model.Lotto
+import lotto.model.LottoBonus
+import lotto.util.LottoGenerator
+
 class LottoManager {
     fun lottoControl() {
         val cost = LottoPurchase().purchaseCheck()

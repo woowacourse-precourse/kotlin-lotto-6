@@ -1,6 +1,7 @@
-package lotto
+package lotto.model
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.util.LottoView
 
 enum class BonusErrorCode(val message: String) {
     BONUS_NOT_VALID("[ERROR] 보너스 번호가 유효하지 않습니다."),

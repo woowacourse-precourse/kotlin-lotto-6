@@ -1,4 +1,6 @@
-package lotto
+package lotto.model
+
+import lotto.util.LottoView
 
 
 enum class InputErrorCode(val message: String) {

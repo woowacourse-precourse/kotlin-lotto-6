@@ -1,5 +1,7 @@
 package lotto
 
+import lotto.model.LottoBonus
+import lotto.user.LottoPick
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 

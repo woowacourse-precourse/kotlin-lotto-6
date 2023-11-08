@@ -1,6 +1,8 @@
-package lotto
+package lotto.user
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.model.Lotto
+import lotto.util.LottoView
 
 class LottoPick {
 
