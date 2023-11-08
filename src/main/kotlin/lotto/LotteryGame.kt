@@ -51,10 +51,14 @@ class LotteryGame {
 
     private fun enterWinningNumber(): List<Int> {
         println("당첨 번호를 입력해 주세요.")
-        var win_input: List<Int>
+        var win_input: List<Int> = listOf<Int>()
 
         do {
-            win_input = charToInt(readLine()!!)
+            try {
+                win_input = charToInt(readLine()!!)
+            } catch (e: IllegalArgumentException){
+                println("[ERROR] 1 ~ 45 범위의 숫자 6개를 입력해 주십시오.")
+            }
         } while (win_input.size != 6)
 
         return win_input
@@ -69,6 +73,10 @@ class LotteryGame {
             if (number in 1..45){ // 1 ~ 45 범위의 숫자만 입력
                 numbers.add(number)
             }
+        }
+
+        if (numbers.distinct().size != 6) {
+            throw IllegalArgumentException("[ERROR] 1 ~ 45 범위의 숫자 6개를 입력해 주십시오.")
         }
 
         return numbers.distinct().sorted()
