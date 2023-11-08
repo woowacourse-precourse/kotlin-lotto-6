@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import lotto.enumeration.Bonus
 import lotto.enumeration.Buy
 import lotto.enumeration.Winning
+import lotto.enumeration.WinningResult
 
 class LottoUI {
     fun printBuyPrice() {
@@ -74,7 +75,15 @@ class LottoUI {
 
     fun printResult(lottos: List<Lotto>, winningLotto: Lotto, bonusNumber: Int) {
         println()
-        println("당첨통계")
+        println(WinningResult.STATISTIC.value)
+        val result: List<Int> = LottoService().LottoResult(lottos, winningLotto, bonusNumber)
+        println("${WinningResult.THREE_COUNT.value}${result[0]}${WinningResult.UNIT.value}")
+        println("${WinningResult.FOUR_COUNT.value}${result[1]}${WinningResult.UNIT.value}")
+        println("${WinningResult.FIVE_COUNT.value}${result[2]}${WinningResult.UNIT.value}")
+        println("${WinningResult.FIVE_COUNT_WITH_BONUS.value}${result[3]}${WinningResult.UNIT.value}")
+        println("${WinningResult.SIX_COUNT.value}${result[4]}${WinningResult.UNIT.value}")
+        val earnRate = LottoService().calculateEarnRate(result)
+        println("${WinningResult.ALL_EARN_RATE.value}${earnRate}${WinningResult.END_PERCENT.value}")
     }
 
 }
