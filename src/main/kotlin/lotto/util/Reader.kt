@@ -6,6 +6,7 @@ object Reader {
     private fun readLine() = Console.readLine()
     private const val RETURN_CODE = 0
     private val RETURN_LIST = listOf(0)
+
     fun readLottoMoney(): Int {
         var money = RETURN_CODE
         while (money == RETURN_CODE) {
