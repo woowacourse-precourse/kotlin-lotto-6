@@ -11,8 +11,13 @@ class CalculatorTest {
     @Test
     fun `주어진 로또번호의 3개 당첨여부가 일치하는지 테스트`() {
         Assertions.assertAll(
-            Executable { assertEquals(false, calculator.is5Jackpot(lotto, listOf(1, 2, 3, 4, 41, 42))) },
-            Executable { assertEquals(true, calculator.is3Jackpot(lotto, listOf(1, 2, 3, 40, 41, 42))) }
+            Executable { assertEquals(true, calculator.is3Jackpot(lotto, listOf(1, 2, 3, 40, 41, 42))) },
+            Executable {
+                assertEquals(
+                    true,
+                    calculator.is3Jackpot(Lotto(listOf(1, 3, 5, 14, 22, 45)), listOf(1, 2, 3, 4, 5, 6))
+                )
+            },
         )
     }
 
@@ -20,7 +25,7 @@ class CalculatorTest {
     fun `주어진 로또번호의 4개 당첨여부가 일치하는지 테스트`() {
         Assertions.assertAll(
             Executable { assertEquals(false, calculator.is5Jackpot(lotto, listOf(1, 2, 3, 40, 41, 42))) },
-            Executable { assertEquals(true, calculator.is4Jackpot(lotto, listOf(1, 2, 3, 4, 8, 9))) }
+            Executable { assertEquals(true, calculator.is4Jackpot(lotto, listOf(1, 2, 3, 4, 8, 9))) },
         )
     }
 
