@@ -34,6 +34,7 @@ class TargetLottoStatus {
     fun inputBonusNumber() {
         println(LottoResource.BONUS_NUMBER_INPUT_MESSAGE)
         val inputNumber = Console.readLine()
+        println()
         bonusNumber = validateNumber(inputNumber)
         validateBonusNumberIsDuplicateWithLottoNumbers()
     }
@@ -41,6 +42,7 @@ class TargetLottoStatus {
         lottoNumbers.clear()
         println(LottoResource.LOTTO_NUMBER_INPUT_MESSAGE)
         val inputNumbers = Console.readLine()
+        println()
         putValidNumberIntoLottoNumbers(inputNumbers)
         Lotto(lottoNumbers)
     }

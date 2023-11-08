@@ -25,6 +25,7 @@ class LottoStatus {
             myLottos.add(currentLotto)
             println(currentLotto.getLottoFormat())
         }
+        println()
     }
     private fun pickRandomNumbersForLotto(): List<Int> {
         val currentLottoNumbers = mutableListOf<Int>()
@@ -42,6 +43,7 @@ class LottoStatus {
         println(LottoResource.PRICE_INPUT_MESSAGE)
         val inputPrice = Console.readLine()
         countOfLotto = validatePrice(inputPrice) / LottoResource.LOTTO_PRICE
+        println()
         println("$countOfLotto" + LottoResource.COUNT_OF_LOTTO_OUTPUT_MESSAGE)
     }
 
