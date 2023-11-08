@@ -10,6 +10,7 @@ fun main() {
     var money: Int
     var buyNum: Int
     var input: String
+    var lottos = mutableListOf<Lotto>()
 
     while (true) {
         try {
@@ -17,7 +18,10 @@ fun main() {
             money = ensureInt(input)
             buyNum = ensureBuyNum(money)
             println("${buyNum}개를 구매했습니다.")
-            generateLottoNum()
+            lottos = buyLottos(buyNum)
+            printLottoNum(lottos)
+
+
             break // If no error occurs, exit the loop
         } catch (e: IllegalArgumentException) {
             println(e.message) // Print the error message and prompt again
@@ -25,10 +29,30 @@ fun main() {
     }
 }
 
-fun generateLottoNum() {
-    val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
-    println(numbers)
+fun printLottoNum(lottos: MutableList<Lotto>) {
+    lottos.forEach { lotto ->
+        println(lotto)
+    }
 }
+fun buyLottos(buyNum: Int) : MutableList<Lotto> {
+    val lottos = mutableListOf<Lotto>()
+
+    repeat(buyNum) {
+        val sortedNumbers = sortingNum(generateLottoNum())
+        lottos.add(Lotto(sortedNumbers))
+    }
+
+    return lottos
+}
+fun generateLottoNum(): List<Int> {
+    val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+    return numbers
+}
+
+fun sortingNum(numbers: List<Int>): List<Int> {
+    return numbers.sorted()
+}
+
 fun ensureInt(input: String): Int {
     return input.toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.")
 }
