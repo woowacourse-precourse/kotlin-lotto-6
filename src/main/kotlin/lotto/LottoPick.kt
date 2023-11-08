@@ -5,10 +5,10 @@ import camp.nextstep.edu.missionutils.Randoms
 
 class LottoPick {
 
-    private fun randomNumber(): List<Int> {
+    private fun randomNumber() : List<Int> {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6)
     }
-    fun randomLotto(cnt: Int):MutableList<List<Int>>{
+    fun randomLotto(cnt: Int):MutableList<List<Int>> {
         val lottoList: MutableList<List<Int>> = mutableListOf()
         (0 until cnt).forEach{
             val numbers = randomNumber()
@@ -18,12 +18,12 @@ class LottoPick {
         return lottoList
     }
 
-    fun pickValid(pickList: List<String>): List<Int>{
+    fun pickValid(pickList: List<String>) : List<Int> {
         val numbers = pickList.mapNotNull { it.toIntOrNull() }
         Lotto(numbers)
         return numbers
     }
-    private fun validPickNumber(): List<Int> {
+    private fun validPickNumber() : List<Int> {
         val numbers = Console.readLine()
         val pickList = numbers.split(",")
         return pickValid(pickList)
