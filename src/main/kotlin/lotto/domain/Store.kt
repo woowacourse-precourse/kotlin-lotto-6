@@ -7,9 +7,10 @@ class Store(
     private val calculator: Calculator,
     private val pos: PointOfSales,
 ) {
+
     fun buyLotto(): List<Lotto> {
-        val chargeAmount: UInt = io.getPurchaseAmount()
-        val (quantity, change) = calculator.getQuotientAndRemainder(chargeAmount, LOTTO_PRICE)
+        val purchaseAmount: UInt = io.getPurchaseAmount()
+        val (quantity, change) = calculator.getQuotientAndRemainder(purchaseAmount, LOTTO_PRICE)
 
         require(change == NO_CHANGE) {
             SHOULD_BE_NO_CHANGE.format(LOTTO_PRICE.toLong())
@@ -19,8 +20,8 @@ class Store(
         }
     }
 
-    fun checkWinningLotto(tickets: List<Lotto>) {
-        val stats = pos.checkResultOfLotto(tickets)
+    fun checkResult(tickets: List<Lotto>) {
+        val stats = pos.checkResult(tickets)
 
         io.showStats(stats)
     }

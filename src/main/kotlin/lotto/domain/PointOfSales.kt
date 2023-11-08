@@ -18,7 +18,7 @@ class PointOfSales(private val analyzer: Analyzer) : RetryUntilSuccess() {
         return tickets.toList()
     }
 
-    fun checkResultOfLotto(tickets: List<Lotto>): Stats {
+    fun checkResult(tickets: List<Lotto>): Stats {
         val winningLotto = getWinningLotto()
 
         return analyzer.getStats(tickets, winningLotto)
