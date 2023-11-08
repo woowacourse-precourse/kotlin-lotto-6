@@ -7,5 +7,5 @@ fun main() {
     val lotto = Lotto(lottoTicket.getLottoNumbers())
     lotto.printLottoNumbers()
     lotto.getBonusNumber()
-
+    lotto.lottoLogic(lottoList, price)
 }
