@@ -17,14 +17,14 @@ class Lotto(private val numbers: MutableList<Int>) {
     fun getBonusNumber() {
         var bonusNumber: Int
         while (true) {
-            println("\n보너스 번호를 입력해 주세요.")
+            println(Constant.BONUS_INPUT)
             try {
                 bonusNumber = getInput().toInt()
                 checkBonusNumberValid(bonusNumber)
                 println(bonusNumber)
                 break
             } catch (e: NumberFormatException) {
-                println("[ERROR] 숫자는 하나만 써주세요!!")
+                println(Constant.ONE_NUMBER_ERROR_MESSAGE)
             } catch (e: IllegalArgumentException) {
                 catchErrorMessageInGetBonusNumber(e)
             }
@@ -33,8 +33,8 @@ class Lotto(private val numbers: MutableList<Int>) {
 
     private fun catchErrorMessageInGetBonusNumber(e: IllegalArgumentException) {
         when (e.message) {
-            "중복 숫자 오류" -> println("[ERROR] 보너스가 중복입니다")
-            "입력 범위 오류" -> println("[ERROR] 1 ~ 45 사이에 숫자만 써주세요")
+            Constant.DUPLICATE_ERROR -> println(Constant.BONUS_DUPLICATE_ERROR_MESSAGE)
+            Constant.INPUT_SIZE_ERROR -> println(Constant.RANGE_ERROR_MESSAGE)
         }
     }
 
@@ -46,13 +46,13 @@ class Lotto(private val numbers: MutableList<Int>) {
 
     private fun checkBonusDuplicate(bonusNumber: Int) {
         if (numbers.contains(bonusNumber)) {
-            throw IllegalArgumentException("중복 숫자 오류")
+            throw IllegalArgumentException(Constant.DUPLICATE_ERROR)
         }
     }
 
     private fun checkLength(checkLengthNumber: Int) {
         if (checkLengthNumber !in 1..45) {
-            throw IllegalArgumentException("입력 범위 오류")
+            throw IllegalArgumentException(Constant.INPUT_SIZE_ERROR)
         }
     }
 
@@ -93,12 +93,12 @@ class Lotto(private val numbers: MutableList<Int>) {
     }
 
     private fun printResult(lottoResult: LottoResult, percentBenefit: Float) {
-        println("\n당첨 통계\n---")
-        println("3개 일치 (5,000원) - ${lottoResult.threeContains.count()}개")
-        println("4개 일치 (50,000원) - ${lottoResult.fourContains.count()}개")
-        println("5개 일치 (1,500,000원) - ${lottoResult.fiveContains.count()}개")
-        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoResult.fiveBonusContains.count()}개")
-        println("6개 일치 (2,000,000,000원) - ${lottoResult.sixContains.count()}개")
-        print("총 수익률은 ${percentBenefit}%입니다.")
+        println(Constant.RESULT)
+        println("${Constant.THREE_MATCH}${lottoResult.threeContains.count()}${Constant.AMOUNT}")
+        println("${Constant.FOUR_MATCH}${lottoResult.fourContains.count()}${Constant.AMOUNT}")
+        println("${Constant.FIVE_MATCH}${lottoResult.fiveContains.count()}${Constant.AMOUNT}")
+        println("${Constant.FIVE_BONUS}${lottoResult.fiveBonusContains.count()}${Constant.AMOUNT}")
+        println("${Constant.SIX_MATCH}${lottoResult.sixContains.count()}${Constant.AMOUNT}")
+        print("${Constant.TOTAL_PRIZE}${percentBenefit}${Constant.PERCENT}")
     }
 }

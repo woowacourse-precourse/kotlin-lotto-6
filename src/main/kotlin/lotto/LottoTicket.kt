@@ -18,15 +18,15 @@ class LottoTicket {
     private fun retrieveValidPrice(): Int {
         var price: Int
         while (true) {
-            println("구입금액을 입력해 주세요.")
+            println(Constant.PRICE_INPUT)
             try {
                 price = getInput().toInt()
                 inputNumberValid(price)
                 return price
             } catch (e: NumberFormatException) {
-                println("[ERROR] 숫자를 입력하세요!!")
+                println(Constant.NUMBER_ERROR_MESSAGE)
             } catch (e: IllegalArgumentException) {
-                println("[ERROR] 구매 금액은 1,000원 단위 입니다!!")
+                println(Constant.PRICE_ERROR_MESSAGE)
             }
         }
     }
@@ -37,13 +37,13 @@ class LottoTicket {
 
     private fun inputNumberValid(price: Int) {
         if (price % 1000 != 0) {
-            throw IllegalArgumentException("입력 오류")
+            throw IllegalArgumentException(Constant.INPUT_ERROR)
         }
     }
 
     private fun getLottoTickets(price: Int): MutableList<List<Int>> {
         val totalLottoCount = price / 1000
-        println("\n${totalLottoCount}개를 구매했습니다.")
+        println("\n${totalLottoCount}${Constant.COUNT}")
         val lottoList = mutableListOf<List<Int>>()
         for (i in 0 until totalLottoCount) {
             val lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 7).sorted()
@@ -57,14 +57,14 @@ class LottoTicket {
     fun getLottoNumbers(): MutableList<Int> {
         var lottoNumbers: List<Int>
         while (true) {
-            println("\n당첨번호를 입력해 주세요.")
+            println(Constant.NUMBER_INPUT)
             try {
                 val lottoNumberInput = Console.readLine().split(',')
                 lottoNumbers = lottoNumberInput.map { it.toInt() }
                 checkLottoNumbersValid(lottoNumbers)
                 return lottoNumbers.sorted().toMutableList()
             } catch (e: NumberFormatException) {
-                println("[ERROR] 숫자를 써주세요!!")
+                println(Constant.NUMBER_ERROR_MESSAGE)
             } catch (e: IllegalArgumentException) {
                 catchErrorMessageInGetLottoNumbers(e)
             }
@@ -73,9 +73,9 @@ class LottoTicket {
 
     private fun catchErrorMessageInGetLottoNumbers(e: IllegalArgumentException) {
         when (e.message) {
-            "중복 숫자 오류" -> println("[ERROR] 중복된 숫자를 쓰지마세요")
-            "입력 개수 오류" -> println("[ERROR] 입력 번호는 6개만 써주세요")
-            "입력 범위 오류" -> println("[ERROR] 1 ~ 45 사이에 숫자만 써주세요")
+            Constant.DUPLICATE_ERROR -> println(Constant.DUPLICATE_ERROR_MESSAGE)
+            Constant.INPUT_COUNT_ERROR -> println(Constant.INPUT_SIZE_ERROR_MESSAGE)
+            Constant.INPUT_SIZE_ERROR -> println(Constant.RANGE_ERROR_MESSAGE)
         }
     }
 
@@ -93,19 +93,19 @@ class LottoTicket {
 
     private fun checkLength(checkLengthNumber: Int) {
         if (checkLengthNumber !in 1..45) {
-            throw IllegalArgumentException("입력 범위 오류")
+            throw IllegalArgumentException(Constant.INPUT_SIZE_ERROR)
         }
     }
 
     private fun checkInputCount(lottoNumbers: List<Int>) {
         if (lottoNumbers.size != 6) {
-            throw IllegalArgumentException("입력 개수 오류")
+            throw IllegalArgumentException(Constant.INPUT_COUNT_ERROR)
         }
     }
 
     private fun checkLottoNumbersDuplicate(lottoNumbers: List<Int>) {
         if (lottoNumbers.size != lottoNumbers.toSet().size) {
-            throw IllegalArgumentException("중복 숫자 오류")
+            throw IllegalArgumentException(Constant.DUPLICATE_ERROR)
         }
     }
 }
