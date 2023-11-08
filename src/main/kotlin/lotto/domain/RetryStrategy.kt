@@ -2,10 +2,10 @@ package lotto.domain
 
 open class RetryStrategy {
 
-    protected fun <T> doUntilSuccess(function: () -> T): T {
+    protected fun <T> doUntilSuccess(operation: () -> T): T {
         while (true) {
             try {
-                return function()
+                return operation()
             } catch (e: IllegalArgumentException) {
                 val errorMessage = e.message ?: "[ERROR] ${e.stackTraceToString()}"
                 println(errorMessage)
