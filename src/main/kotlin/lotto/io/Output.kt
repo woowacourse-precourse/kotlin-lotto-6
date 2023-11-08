@@ -2,6 +2,7 @@ package lotto.io
 
 import lotto.Messages
 import lotto.Rate
+import lotto.domain.Lotto
 import lotto.domain.Position
 import java.text.DecimalFormat
 
@@ -9,6 +10,7 @@ object Output {
     fun printPleaseInputBudget() = print(Messages.PLEASE_INPUT_BUDGET)
     fun printHowMuchBought(amount: Int) = print("$amount${Messages.AFTER_BOUGHT}")
     fun printPleaseInputWinningNumbers() = print(Messages.PLEASE_INPUT_WINNING_NUMBERS)
+    fun printListOfLottoNumbers(list: List<Lotto>) = list.forEach { println(it) }
     fun printPleaseInputBonusNumbers() = print(Messages.PLEASE_INPUT_BONUS_NUMBERS)
     fun printWinningStatistics(statistics: Map<Position, Int>) {
         println(Messages.WINNING_STATISTICS)
