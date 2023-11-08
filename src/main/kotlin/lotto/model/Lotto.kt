@@ -5,7 +5,7 @@ import lotto.util.LottoView
 
 enum class InputErrorCode(val message: String) {
     NUMBER_IN_RANGE("[Error] 1에서 45 사이의 숫자여야 합니다."),
-    NUMBERS_NOT_VALID("[Error] 입력 값이 6개가 아니거나 당첨 번호에 문자열이 포함되어 있습니다."),
+    NUMBERS_NOT_VALID("[Error] 당첨 번호에 빈칸 혹은 문자열이 포함되어 있습니다."),
     REPEATED_NUMBER("[Error] 입력 값 중 중복된 숫자가 있습니다.")
 }
 class Lotto(private val numbers: List<Int>) {
