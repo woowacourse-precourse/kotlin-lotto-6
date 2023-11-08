@@ -1,7 +1,7 @@
 package lotto
 import camp.nextstep.edu.missionutils.Console
 
-class UserInput {
+class InPutView {
 
     fun inputPayment(): Int {
         val purchaseAmount = Console.readLine()
