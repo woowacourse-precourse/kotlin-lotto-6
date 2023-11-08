@@ -4,10 +4,7 @@ import util.PrizeMessageRank
 
 class OutputView {
 
-    fun printErrorMessage(exception: Exception) {
-        exception.printStackTrace()
-        println(exception.message)
-    }
+    fun printErrorMessage(exception: Exception) = println(exception.message)
 
     fun printPurchaseAmount() = println(RequestType.ENTER_PURCHASE_AMOUNT.message)
 
