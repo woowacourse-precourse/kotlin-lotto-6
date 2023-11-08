@@ -6,8 +6,11 @@ import lotto.Lotto
 import lotto.domain.BonusNumberValidators
 import lotto.domain.PurchaseAmount
 import lotto.domain.compareToLotto
+import lotto.domain.getEarningRate
+import lotto.domain.getTotalAmount
 import lotto.domain.matchCheck
 import lotto.domain.parser
+import lotto.domain.purchaseAmountValidators
 import lotto.domain.winningNumberValidators
 import lotto.view.OutputView
 import lotto.view.printBonusMessage
@@ -16,11 +19,12 @@ import lotto.view.printPurchaseTotal
 import lotto.view.printStartMessage
 import lotto.view.printWinningMessage
 import lotto.view.printWinningReport
+import lotto.view.printWinningStatistics
 
 class LottoController {
     fun start() {
         printStartMessage()
-        val amount = PurchaseAmount.validators(inputMessage())
+        val amount = purchaseAmountValidators(inputMessage())
 
         printPurchaseTotal(amount)
         val lottos = makeLottos(amount)
@@ -28,16 +32,15 @@ class LottoController {
         printWinningMessage()
         val winningNumbers = winningNumberValidators(inputMessage())
 
-
         printBonusMessage()
         val bonusNumber = BonusNumberValidators(inputMessage())
         printWinningReport()
         val matches = compareToLotto(lottos, winningNumbers, bonusNumber) // 몇 개씩 당첨되었는지 갯수 반환
-        matchCheck(matches)
-//
-//        // 수익률 구하기
-//        val totalAmount = getTotalAmount(matches)
-//        printEarningRate(getEarningRate(amount, totalAmount))
+        val matchResult = matchCheck(matches)
+        printWinningStatistics(matchResult)
+
+        val totalAmount = getTotalAmount(matchResult)
+        printEarningRate(getEarningRate(amount, totalAmount))
     }
 }
 
@@ -55,32 +58,4 @@ fun makeLottos(amount: Int): MutableList<Lotto> {
         lottos.add(Lotto(makeNumber()))
     }
     return lottos
-}
-
-
-
-// 당첨된 금액 합계
-fun getTotalAmount(matches: Pair<MutableList<Int>, Int>): Int {
-    var total = 0
-    for (index in matches.first.indices) {
-        when(matches.first[index]) {
-            3 -> total =+ 5000
-            4 -> total =+ 50000
-            5 -> total =+ 1500000
-            6 -> total =+ 2000000000
-        }
-    }
-
-    if(matches.second != 0) {
-        total -= 1500000 * matches.second
-        total += 30000000 * matches.second
-    }
-    return total
-}
-
-// 수익률 구하기
-fun getEarningRate(amount: Int, total: Int): Float {
-    val amount = amount.toFloat()
-    val total = total.toFloat()
-    return (total/amount)*100
 }
