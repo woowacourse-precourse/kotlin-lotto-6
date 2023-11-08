@@ -72,8 +72,8 @@ class LottoSeller() {
     }
 
     companion object {
-        private const val LOTTO_TICKET_PRICE = 1000
-        private const val LOTTO_TICKET_REMAINDER = 0
+        const val LOTTO_TICKET_PRICE = 1000
+        const val LOTTO_TICKET_REMAINDER = 0
         private const val ERROR_INPUT_MONEY = "[ERROR]로또 한장은 1,000원 입니다. 다시 입력해주세요"
         private const val ERROR_ONLY_INPUT_INT = "[ERROR] 정수만 입력 가능합니다"
         private const val ERROR_INPUT_NUM_LENGTH = "For input string: \"\""

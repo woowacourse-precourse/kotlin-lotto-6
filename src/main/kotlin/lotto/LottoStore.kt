@@ -2,16 +2,22 @@ package lotto
 
 class LottoStore {
     private val randomLottos = mutableListOf<List<Int>>()
+    private val lottoGameView = LottoGameView()
     fun startSellLotto() {
-        println("구입 금액을 입력해주세요")
+        lottoGameView.startInputLottoMoney()
         val seller = LottoSeller().generateLottoNumbers(userInput(User().inputMoney()))
         showRandomLotto(seller)
-
-        println("당첨번호를 입력해주세요")
+        lottoGameView.inputUserLottoNumber()
         val lottoNumbers = LottoSeller().isValidateLotto()
-        println("보너스 번호를 입력해주세요")
+        lottoGameView.inputBonusNumber()
         val isBonusValid = LottoSeller().checkLottoHasBonusNum(lottoNumbers, User().inputBonusNum())
-        Calculator(lottoNumbers, isBonusValid, randomLottos)
+        resultLotto(lottoNumbers, isBonusValid)
+    }
+
+    private fun resultLotto(lottoNumbers: List<Int>, isBonusValid: Int) {
+        val lottoResult = Calculator(lottoNumbers, isBonusValid, randomLottos)
+        lottoResult.compareNum()
+        lottoResult.calculateProfitRate()
     }
 
 
@@ -33,12 +39,3 @@ class LottoStore {
         }
     }
 }
-
-/*
-val seller = LottoSeller(2).generateLottoNumbers()
-
-    for (lottoGenerator in seller) {
-        val lottoNumbers = lottoGenerator.generate()
-        println(lottoNumbers)
-    }
- */
