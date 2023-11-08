@@ -8,6 +8,7 @@ class GameManager {
     private var lottos = ArrayList<Lotto>()
     private lateinit var winningNumbers: List<Int>
     private var bonusNumber = 0
+    private var rankings = ArrayList<Ranking>()
 
     // 로또 게임 진행
     fun runLottoGame() {
@@ -16,6 +17,7 @@ class GameManager {
         printPurchaseResult()
         winningNumbers = inputManager.getWinningNumber()
         bonusNumber = inputManager.getBonusNumber()
+        calculateWinningOfAllLotto()
     }
 
 
@@ -45,15 +47,46 @@ class GameManager {
         }
     }
 
+    // 로또별 당첨 숫자 갯수 계산
+    private fun calculateNumberOfCorrection(lotto: Lotto): Int {
+        val numbers = lotto.getNumbers()
+        var numberOfCorrection = 0
+
+        for (winningNumber in winningNumbers) {
+            if (numbers.contains(winningNumber)) {
+                numberOfCorrection++
+            }
+        }
+        return numberOfCorrection
+    }
+
+    // 당첨 숫자 갯수별 등수 계산
+    private fun calculateRanking(numberOfCorrection: Int) {
+        when (numberOfCorrection) {
+            Ranking.FIRST.numberOfCorrection -> rankings.add(Ranking.FIRST)
+            Ranking.SECOND.numberOfCorrection -> rankings.add(Ranking.SECOND)
+            Ranking.THIRD.numberOfCorrection -> rankings.add(Ranking.THIRD)
+            Ranking.FOURTH.numberOfCorrection -> rankings.add(Ranking.FOURTH)
+            Ranking.FIFTH.numberOfCorrection -> rankings.add(Ranking.FIFTH)
+        }
+    }
+
+    // 발행 로또 당첨 계산
+    private fun calculateWinningOfAllLotto() {
+        for (lotto in lottos) {
+            calculateRanking(calculateNumberOfCorrection(lotto))
+        }
+    }
+
     companion object {
         const val LOTTO_PRICE = 1000
     }
 }
 
-enum class Ranking(val grade: String, val prizeMoney: Int) {
-    FIRST("1등", 2000000000),
-    SECOND("2등", 30000000),
-    THIRD("3등", 1500000),
-    FOURTH("4등", 50000),
-    FIFTH("5등", 5000)
+enum class Ranking(val grade: String, val prizeMoney: Int, val numberOfCorrection: Int) {
+    FIRST("1등", 2000000000, 6),
+    SECOND("2등", 30000000, 5),
+    THIRD("3등", 1500000, 5),
+    FOURTH("4등", 50000, 4),
+    FIFTH("5등", 5000, 3)
 }
