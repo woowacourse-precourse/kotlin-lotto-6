@@ -1,5 +1,12 @@
 package lotto
 
+import lotto.domain.Customer
+import lotto.domain.Lotto
+import lotto.domain.LottoManager
+import lotto.ui.LottoCustomerScreen
+import lotto.ui.LottoManagerScreen
+
 fun main() {
-    TODO("프로그램 구현")
+    val lottoManager = LottoManager()
+    lottoManager.startLotto()
 }
