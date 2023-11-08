@@ -8,6 +8,7 @@ import lotto.view.InputView.getLottoPurchaseCostInput
 import lotto.view.InputView.getWinningNumbersInput
 import lotto.view.OutputView.printLottoBundleNumbers
 import lotto.view.OutputView.printLottoResult
+import lotto.view.OutputView.printRateOfReturn
 
 class LottoController {
     private val lottoManager: LottoManager by lazy { LottoManager() }
@@ -31,6 +32,7 @@ class LottoController {
             bonusNumber = lottoManager.bonusNumber!!
         )
         printLottoResult(lottoBundle)
+        printRateOfReturn(lottoBundle)
     }
 
 }

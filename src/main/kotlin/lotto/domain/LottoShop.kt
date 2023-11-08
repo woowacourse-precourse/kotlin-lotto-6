@@ -3,6 +3,7 @@ package lotto.domain
 import lotto.domain.validator.LottoShopValidator.validatePurchaseLottoInput
 
 class LottoShop {
+
     private val lottoNumberGenerator: RandomNumberGenerator by lazy { RandomNumberGenerator() }
 
     fun purchaseLottos(input: String): List<Lotto> {

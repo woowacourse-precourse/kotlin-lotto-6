@@ -25,11 +25,7 @@ object OutputView {
         }
     }
 
-    fun printRateOfReturn(
-        lottoBundle: LottoBundle,
-        winningNumbers: List<Int>,
-        bonusNumber: Int,
-    ) {
-        println("총 수익률은 ${lottoBundle.getRateOfReturn(winningNumbers, bonusNumber)}%입니다.")
+    fun printRateOfReturn(lottoBundle: LottoBundle) {
+        println("총 수익률은 ${lottoBundle.getRateOfReturn()}%입니다.")
     }
 }
