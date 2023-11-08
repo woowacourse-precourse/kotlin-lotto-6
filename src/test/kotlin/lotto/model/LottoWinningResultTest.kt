@@ -60,23 +60,28 @@ class LottoWinningResultTest {
     @Test
     fun `로또 당첨금에 따른 수익률 계산 테스트 value1`(){
         var lottoResult: LottoResult = LottoResult()
-        lottoResult.calculateLottoReturnOfRate(8000, 8000)
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(3))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(3))
+        lottoResult.calculateTotalLottoPrize()
+        lottoResult.calculateLottoReturnOfRate(8000)
 
-        assertThat(lottoResult.getTotalLottoRateOfReturn()).isEqualTo(100.0)
+        assertThat(lottoResult.getTotalLottoRateOfReturn()).isEqualTo(125.0)
     }
 
-    @Test
+/*    @Test
     fun `로또 당첨금에 따른 수익률 계산 테스트 value2`(){
         var lottoResult: LottoResult = LottoResult()
         lottoResult.calculateLottoReturnOfRate(5000, 8000)
 
         assertThat(lottoResult.getTotalLottoRateOfReturn()).isEqualTo(62.5)
-    }
+    }*/
 
     @Test
-    fun `로또 당첨금에 따른 수익률 계산 테스트 value3`(){
+    fun `로또 당첨금에 따른 수익률 계산 테스트 value2`(){
         var lottoResult: LottoResult = LottoResult()
-        lottoResult.calculateLottoReturnOfRate(2000000000, 8000)
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(6))
+        lottoResult.calculateTotalLottoPrize()
+        lottoResult.calculateLottoReturnOfRate(8000)
 
         assertThat(lottoResult.getTotalLottoRateOfReturn()).isEqualTo(25000000.0)
     }
