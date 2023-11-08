@@ -59,4 +59,16 @@ class LottoUI {
         println(Bonus.NUMBER_INPUT.value)
     }
 
+    fun inputBonusNumber(winningLotto: Lotto): Int {
+        val bonusNumber = Console.readLine()
+        try {
+            LottoService().checkInvalidBonusNumber(bonusNumber, winningLotto)
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            printBonusNumber()
+            return inputBonusNumber(winningLotto)
+        }
+        return bonusNumber.toInt()
+    }
+
 }
