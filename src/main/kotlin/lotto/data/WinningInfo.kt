@@ -18,10 +18,14 @@ data class WinningInfo(
 
     companion object {
         private const val SHOULD_FIT_SIZE = "[ERROR] 데이터 크기가 맞지 않습니다."
+        private const val SHOULD_BE_MORE_THEN_OR_EQUAL_ZERO = "[ERROR] 각 횟수는 0보다 커야 합니다."
 
         fun from(counts: List<Int>): WinningInfo {
             require(counts.size == GRADE.entries.size) {
                 SHOULD_FIT_SIZE
+            }
+            require(counts.all { it >= 0 }) {
+                SHOULD_BE_MORE_THEN_OR_EQUAL_ZERO
             }
             return WinningInfo(
                 first = counts[GRADE.ONE.rank().index],
