@@ -1,16 +1,23 @@
 package lotto.domain
 
-class LottoSalesOffice (money : String) {
+import lotto.validator.Validator
 
-    fun sellLotto (money : String) {
-        val quantity = money.toInt()/1000
+class LottoSalesOffice {
+
+    fun sellLotto (money : Int) : List<Lotto> {
+        Validator(money)
+        val quantity = money/1000
         val lottos = mutableListOf<Lotto>()
 
         repeat(quantity){
             val lotto = RandomGenerator().generate()
             lottos.add(lotto)
         }
+
+        return lottos
     }
+
+
 
     companion object {
         private const val SINGLE_LOTTO_PRICE = 1000
