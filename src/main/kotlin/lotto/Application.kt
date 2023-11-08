@@ -12,6 +12,7 @@ fun main() {
     checkLottoPurchaseAmount()
 
     calculatorLottoCount()
+    printLottoCount()
 }
 
 private fun inputLottoPurchaseAmount() {
@@ -30,4 +31,8 @@ private fun checkLottoPurchaseAmount() {
 
 private fun calculatorLottoCount() {
     lottoCount = lottoPurchaseAmount / 1000
+}
+
+private fun printLottoCount() {
+    println("${lottoCount}개를 구매했습니다.")
 }
