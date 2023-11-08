@@ -1,7 +1,7 @@
 package lotto.domain
 
-enum class BonusNumber(number: String) {
-    SINGLE_NUMBER("[ERROR] 1개의 숫자를 입력해 주세요."),
+enum class BonusNumber(val number: String) {
+    SINGLE("[ERROR] 1개의 숫자를 입력해 주세요."),
 }
 
 fun BonusNumberValidators(input: String): Int {
@@ -12,15 +12,15 @@ fun BonusNumberValidators(input: String): Int {
 }
 
 fun handleInvalidNumber(input: String) {
-    require(input.isNotEmpty() && input.isNotBlank()) { BonusNumber.SINGLE_NUMBER }
+    require(input.isNotEmpty() && input.isNotBlank()) { BonusNumber.SINGLE.number }
 }
 
 fun handleNonInteger(input: String): Int {
     val numericNumber = input.toIntOrNull()
-    require(numericNumber != null) { Number.NON_INTEGER }
+    require(numericNumber != null) { Number.NON_INTEGER.message }
     return numericNumber
 }
 
 fun handleInvalidRange(number: Int) {
-    require(number in 1..45 ) { Number.INVALID_RANGE }
+    require(number in 1..45 ) { Number.INVALID_RANGE.message }
 }
