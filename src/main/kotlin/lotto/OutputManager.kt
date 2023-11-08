@@ -29,7 +29,7 @@ class OutputManager {
     }
 
     fun printRate(rate: Double) {
-        val decimalFormat = DecimalFormat("#,###.0")
+        val decimalFormat = DecimalFormat("#,##0.0")
         val profitMargin = decimalFormat.format(rate * RATE_PERCENT)
 
         println("총 수익률은 ${profitMargin}%입니다.")
