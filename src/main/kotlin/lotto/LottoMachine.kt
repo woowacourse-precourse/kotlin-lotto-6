@@ -41,9 +41,9 @@ class LottoMachine(private val amount: String = "") {
         Jackpot.entries.forEach { jackpot ->
             val count = stats[jackpot] ?: 0
             val winningDetail = if (jackpot.bonusMatch) {
-                "${jackpot.countMatches}개 일치, 보너스 볼 일치 (${Jackpot.format(jackpot.jackpot)}원) - ${count}개"
+                "${jackpot.countMatches}$BONUS${Jackpot.format(jackpot.jackpot)}$WON${count}$COUNT"
             } else {
-                "${jackpot.countMatches}개 일치 (${Jackpot.format(jackpot.jackpot)}원) - ${count}개"
+                "${jackpot.countMatches}$NO_BONUS${Jackpot.format(jackpot.jackpot)}$WON${count}$COUNT"
             }
             winningDetails.add(winningDetail)
         }
@@ -53,6 +53,10 @@ class LottoMachine(private val amount: String = "") {
 
     companion object {
         const val PRICE_LOTTO = 1000
+        const val BONUS = "개 일치, 보너스 볼 일치 ("
+        const val NO_BONUS = "개 일치 ("
+        const val WON = "원) - "
+        const val COUNT = "개"
     }
 
 }
