@@ -1,5 +1,10 @@
 package lotto
 
 fun main() {
-    TODO("프로그램 구현")
+    val myLottoStatus = LottoStatus()
+    val myTargetLotto = TargetLottoStatus()
+    myLottoStatus.buyUntilValid()
+    myTargetLotto.inputTargetLotto()
+    val myLottoMatcher = LottoMatcher(myTargetLotto, myLottoStatus)
+    myLottoMatcher.startMatch()
 }
