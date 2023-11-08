@@ -9,6 +9,7 @@ class Lotto(private val numbers: List<Int>) { // 파라미터로 당첨 번호�
 
     init {
         require(numbers.size == 6)
+        require(numbers.toSet().size == 6) {throw IllegalArgumentException("${LottoMachine.ERROR_MESSAGE}로또 번호는 1부터 45 사이의 중복되지 않는 숫자여야 합니다.") }
     }
 
     fun compare(ticket: MutableList<List<Int>>, bonusNumber: Int): Int {

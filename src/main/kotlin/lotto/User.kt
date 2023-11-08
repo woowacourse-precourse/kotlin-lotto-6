@@ -8,6 +8,7 @@ class User {
         if (input!!.toInt() % ONE_PRICE_LOTTO != 0) throw IllegalArgumentException("${ERROR_MESSAGE}구매 가격은 1000으로 나누어 떨어져야 합니다")
         return input.toInt()
     }
+
     fun buyLottoCount(money : Int): Int{
         var count = money / ONE_PRICE_LOTTO
 
