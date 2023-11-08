@@ -13,7 +13,7 @@ open class RetryStrategy {
         }
     }
 
-    protected fun <T> executeOrFallback(primary: () -> T, fallback: () -> T): T {
+    protected fun <T> executeWithFallback(primary: () -> T, fallback: () -> T): T {
         try {
             return primary()
         } catch (e: IllegalArgumentException) {

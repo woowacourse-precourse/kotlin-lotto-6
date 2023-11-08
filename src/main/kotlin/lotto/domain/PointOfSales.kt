@@ -27,7 +27,7 @@ class PointOfSales(private val analyzer: Analyzer) : RetryStrategy() {
     private fun getWinningLotto(): WinningLotto {
         val nums = doUntilSuccess { IO.getInstance().getWinningLottoNum() }
         val bonus = doUntilSuccess { IO.getInstance().getBonusNum(nums) }
-        return executeOrFallback(
+        return executeWithFallback(
             primary = { WinningLotto(nums, bonus) },
             fallback = { getWinningLotto() },
         )
