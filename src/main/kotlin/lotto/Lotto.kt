@@ -1,9 +1,11 @@
 package lotto
 
 class Lotto(private val numbers: List<Int>) {
+    val _numbers = numbers
+
     init {
-        require(numbers.size == 6)
+        require(numbers.size == Validator.MAX_LOTTO_LENGTH)
+        Validator.validateNumbers(numbers)
     }
 
-    // TODO: 추가 기능 구현
 }
