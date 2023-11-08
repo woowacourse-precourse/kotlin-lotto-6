@@ -8,7 +8,7 @@ class Analyzer(private val calculator: Calculator) {
     fun getStats(tickets: List<Lotto>, winningLotto: WinningLotto): Stats {
         val countOfWin = IntArray(GRADE.entries.size)
         for (ticket in tickets) {
-            countOfWin[ticket.checkGrade(winningLotto).rank()]++
+            countOfWin[ticket.checkGrade(winningLotto).rank().index]++
         }
         val totalProfit = calculator.calculateTotalProfit(countOfWin.toList())
         return Stats(

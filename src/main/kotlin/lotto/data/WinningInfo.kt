@@ -24,11 +24,11 @@ data class WinningInfo(
                 SHOULD_FIT_SIZE
             }
             return WinningInfo(
-                first = counts[GRADE.ONE.rank()],
-                second = counts[GRADE.TWO.rank()],
-                third = counts[GRADE.THREE.rank()],
-                fourth = counts[GRADE.FOUR.rank()],
-                fifth = counts[GRADE.FIVE.rank()],
+                first = counts[GRADE.ONE.rank().index],
+                second = counts[GRADE.TWO.rank().index],
+                third = counts[GRADE.THREE.rank().index],
+                fourth = counts[GRADE.FOUR.rank().index],
+                fifth = counts[GRADE.FIVE.rank().index],
             )
         }
     }

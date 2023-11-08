@@ -13,11 +13,8 @@ class Calculator {
         return quotient to remainder
     }
 
-    fun calculateTotalProfit(countOfWin: List<Int>) = countOfWin.foldIndexed(0) { rank: Int, sum: Long, count: Int ->
-        if (rank == GRADE.LOSE.rank()) {
-            return@foldIndexed sum
-        }
-        sum + GRADE.from(rank).price().toLong() * count
+    fun calculateTotalProfit(countOfWin: List<Int>) = countOfWin.foldIndexed(0) { indexOfRank: Int, sum: Long, count: Int ->
+        sum + GRADE.from(indexOfRank).price().toLong() * count
     }
 
     fun calculateProfitRate(totalProfit: Long, sizeOfTicket: Int) =
