@@ -17,7 +17,7 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     companion object {
-        const val LOTTO_SIZE = 1
+        const val LOTTO_SIZE = 6
         const val LOTTO_NUM_MIN = 1
         const val LOTTO_NUM_MAX = 45
     }
