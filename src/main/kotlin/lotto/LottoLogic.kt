@@ -6,8 +6,8 @@ import lotto.messages.LogicMessage
 
 object LottoLogic {
 
-    fun getLottoPurchasePrice(): Int {
-        return LottoUserInput.getPurchasePriceInput()
+    fun getLottoPurchaseAmount(): Int {
+        return LottoUserInput.getPurchaseAmountInput()
     }
 
     fun createLotto(lottoCount: Int): List<Lotto> {

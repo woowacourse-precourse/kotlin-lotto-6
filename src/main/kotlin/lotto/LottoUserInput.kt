@@ -7,49 +7,49 @@ import lotto.LottoUtil.isInLottoRange
 import lotto.LottoUtil.toIntList
 import lotto.LottoUtil.uniqueSize
 import lotto.enums.BonusNumberInput
-import lotto.enums.PriceInputType
+import lotto.enums.AmountInputType
 import lotto.enums.WinningNumbersInput
 import lotto.messages.ErrorMessage
 import lotto.messages.InputMessage
 
 object LottoUserInput {
 
-    fun getPurchasePriceInput(): Int {
+    fun getPurchaseAmountInput(): Int {
         while (true) {
-            printPurchasePriceMessage()
+            printPurchaseAmountMessage()
             val input = Console.readLine()
-            when (checkPriceInput(input)) {
-                PriceInputType.NOT_INTEGER -> printPriceFormatErrorMessage()
-                PriceInputType.NOT_POSITIVE -> printPriceIsNotPositiveMessage()
-                PriceInputType.NOT_MULTIPLE_OF_1000 -> printPriceIsNotMultipleOf1000Message()
-                PriceInputType.VALID -> return input.toInt()
+            when (checkAmountInput(input)) {
+                AmountInputType.NOT_INTEGER -> printAmountFormatErrorMessage()
+                AmountInputType.NOT_POSITIVE -> printAmountIsNotPositiveMessage()
+                AmountInputType.NOT_MULTIPLE_OF_1000 -> printAmountIsNotMultipleOf1000Message()
+                AmountInputType.VALID -> return input.toInt()
             }
         }
     }
 
-    fun checkPriceInput(input: String): PriceInputType {
+    fun checkAmountInput(input: String): AmountInputType {
         return when {
-            !LottoUtil.isStringNumber(input) -> PriceInputType.NOT_INTEGER
-            input.toInt() <= 0 -> PriceInputType.NOT_POSITIVE
-            !LottoUtil.isMultipleOf1000(input.toInt()) -> PriceInputType.NOT_MULTIPLE_OF_1000
-            else -> PriceInputType.VALID
+            !LottoUtil.isStringNumber(input) -> AmountInputType.NOT_INTEGER
+            input.toInt() <= 0 -> AmountInputType.NOT_POSITIVE
+            !LottoUtil.isMultipleOf1000(input.toInt()) -> AmountInputType.NOT_MULTIPLE_OF_1000
+            else -> AmountInputType.VALID
         }
     }
 
-    private fun printPurchasePriceMessage() {
-        println(InputMessage.PURCHASE_PRICE)
+    private fun printPurchaseAmountMessage() {
+        println(InputMessage.PURCHASE_AMOUNT)
     }
 
-    private fun printPriceFormatErrorMessage() {
-        LottoUtil.printErrorMessage(ErrorMessage.PRICE_WRONG_INPUT_FORMAT)
+    private fun printAmountFormatErrorMessage() {
+        LottoUtil.printErrorMessage(ErrorMessage.AMOUNT_WRONG_INPUT_FORMAT)
     }
 
-    private fun printPriceIsNotMultipleOf1000Message() {
-        LottoUtil.printErrorMessage(ErrorMessage.PRICE_NOT_MULTIPLE_OF_1000)
+    private fun printAmountIsNotMultipleOf1000Message() {
+        LottoUtil.printErrorMessage(ErrorMessage.AMOUNT_NOT_MULTIPLE_OF_1000)
     }
 
-    private fun printPriceIsNotPositiveMessage() {
-        LottoUtil.printErrorMessage(ErrorMessage.PRICE_NOT_POSITIVE_VALUE)
+    private fun printAmountIsNotPositiveMessage() {
+        LottoUtil.printErrorMessage(ErrorMessage.AMOUNT_NOT_POSITIVE_VALUE)
     }
 
     fun getWinningNumbers(): List<Int> {

@@ -1,10 +1,10 @@
 package lotto
 
 fun main() {
-    val purchasePrice = LottoLogic.getLottoPurchasePrice()
+    val purchaseAmount = LottoLogic.getLottoPurchaseAmount()
     println()
 
-    val lottoCount = purchasePrice / 1000
+    val lottoCount = purchaseAmount / 1000
     val lotto = LottoLogic.createLotto(lottoCount)
     LottoLogic.printLotto(lotto)
     println()
@@ -17,5 +17,5 @@ fun main() {
 
     val results = LottoLogic.calculateLottoResults(lotto, winningNumbers, bonusNumber)
     LottoLogic.printLottoResultMessages(results)
-    LottoLogic.printLottoReturnRate(purchasePrice, results)
+    LottoLogic.printLottoReturnRate(purchaseAmount, results)
 }
