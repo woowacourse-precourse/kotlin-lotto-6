@@ -3,7 +3,11 @@ package lotto
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
+        LottoData.lottoNumber.add(numbers)
     }
 
-    // TODO: 추가 기능 구현
+    fun printLottoNumber() {
+        val lottoNumberToString = numbers.sorted().joinToString(prefix = "[", postfix = "]") { it.toString() }
+        println(lottoNumberToString)
+    }
 }
