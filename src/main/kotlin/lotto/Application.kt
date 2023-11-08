@@ -78,7 +78,12 @@ fun getBonusNumber(winningNumbers: List<Int>): Int {
     while (true) {
         try {
             println("\n보너스 번호를 입력해 주세요.")
-            val input = Console.readLine()
+            val input = Console.readLine() ?: ""
+            val bonusNumber = input.toIntOrNull()
+            if (bonusNumber == null) { throw IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.") }
+            if (bonusNumber < 1 || bonusNumber > 45) { throw IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.") }
+            if (winningNumbers.contains(bonusNumber)) { throw IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호가 중복되었습니다.") }
+            return bonusNumber
         } catch (e: IllegalArgumentException) { println(e.message) }
     }
 }
