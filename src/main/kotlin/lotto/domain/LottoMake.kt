@@ -5,19 +5,21 @@ import lotto.util.LOTTO_NUMBER_COUNT
 import lotto.util.LOTTO_NUMBER_MAX
 import lotto.util.LOTTO_NUMBER_MIN
 
-class LottoMake(private val purchaseCount: Int) {
-    fun make() {
-        for (count in 0..purchaseCount) {
-            val number =
-                Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT)
-            println(number)
-//            Lotto(number)
-//            number.forEach { number -> makeValidation(number) }
+class LottoMake() {
+    fun resultLottoNumber(purchaseCount: Int): MutableList<Lotto> {
+        val lotto: MutableList<Lotto> = mutableListOf()
+        for (count in 0 until purchaseCount) {
+            val numbers = makeLottoNumber()
+            println(numbers)
+            lotto.add(numbers)
         }
+        return lotto
     }
 
-//    private fun makeValidation(number: Int) {
-//        val numbers: MutableList<Int> = mutableListOf()
-//        numbers.add(number)
-//    }
+    private fun makeLottoNumber(): Lotto {
+        val number =
+            Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT)
+                .sorted()
+        return Lotto(number)
+    }
 }
