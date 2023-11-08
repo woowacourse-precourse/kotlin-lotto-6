@@ -3,7 +3,7 @@ package lotto.domain
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.Lotto
 
-class GenerateLotto() {
+class LottoGenerate {
     fun issueLotto(): Lotto {
         val numbers = generateNumbers().sorted()
         return Lotto(numbers)
