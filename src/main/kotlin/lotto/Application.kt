@@ -135,7 +135,6 @@ fun validateSevenNumbers(sevenNumbers: MutableList<Int>): MutableList<Int> {
             sevenNumbers.addAll(getSevenNumbers(getWinningNumbers(), getBonusNumber())) // 새로운 요소들을 추가
 
         }
-
     }
 
     return sevenNumbers
