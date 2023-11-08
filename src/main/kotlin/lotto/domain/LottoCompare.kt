@@ -3,9 +3,9 @@ package lotto.domain
 
 class LottoCompare(private val numbers: MutableList<Lotto>) {
     fun compare(winning: List<Int>): MutableList<Int> {
-        var winningCount: MutableList<Int> = mutableListOf()
+        val winningCount: MutableList<Int> = mutableListOf()
         for (index in numbers.indices) {
-            winningCount.add(compareR(winning, numbers[index]))
+            winningCount.add(winningResult(winning, numbers[index]))
         }
         return winningCount
     }
@@ -13,17 +13,17 @@ class LottoCompare(private val numbers: MutableList<Lotto>) {
     fun compareBonus(bonus: Int): Int {
         var count = 0
         for (index in numbers.indices) {
-            count = compareRBonus(bonus, numbers[index])
+            count = bonusResult(bonus, numbers[index])
         }
         return count
     }
 
-    private fun compareR(winning: List<Int>, i: Lotto): Int {
+    private fun winningResult(winning: List<Int>, i: Lotto): Int {
         val intersectNumber: Set<Int> = i.intersect(winning)
         return intersectNumber.size
     }
 
-    private fun compareRBonus(bonus: Int, i: Lotto): Int {
+    private fun bonusResult(bonus: Int, i: Lotto): Int {
         var bonusCount = 0
         if (i.contains(bonus)) {
             bonusCount++

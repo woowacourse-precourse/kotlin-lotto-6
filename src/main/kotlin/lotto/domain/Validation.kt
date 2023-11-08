@@ -3,6 +3,7 @@ package lotto.domain
 import lotto.presentation.LottoDecisionView.inputBonusNumber
 import lotto.presentation.LottoDecisionView.inputWinningNumber
 import lotto.presentation.LottoPurchaseView
+import lotto.presentation.LottoPurchaseView.inputLottoPurchase
 import lotto.util.DUPLICATE_NUMBER_EXCEPTION
 import lotto.util.DUPLYCATE_BONUS_EXCEPTION
 import lotto.util.EXCEPTION_MESSAGE
@@ -32,32 +33,32 @@ class Validation {
         return lotto
     }
 
-    private fun validationType(amount: String): Int {
+    fun validationType(amount: String): Int {
         try {
             lotto.util.Exception.validateTypeException(amount)
         } catch (e: IllegalArgumentException) {
             println(EXCEPTION_MESSAGE + WRONG_NUMBER_EXCEPTION)
-            Validation().validationAmount(LottoPurchaseView.inputLottoPurchase())
+            inputLottoPurchase()
         }
         return amount.toInt()
     }
 
-    private fun validationNegative(amount: String): Int {
+    fun validationNegative(amount: String): Int {
         try {
             lotto.util.Exception.validateNegativeException(amount.toInt())
         } catch (e: IllegalArgumentException) {
             println(EXCEPTION_MESSAGE + WRONG_RANGE_NEGATIVE_EXCEPTION)
-            Validation().validationAmount(LottoPurchaseView.inputLottoPurchase())
+            inputLottoPurchase()
         }
         return amount.toInt()
     }
 
-    private fun validationUnit(amount: String): Int {
+    fun validationUnit(amount: String): Int {
         try {
             lotto.util.Exception.validateUnitException(amount.toInt())
         } catch (e: IllegalArgumentException) {
             println(EXCEPTION_MESSAGE + WRONG_UNIT_EXCEPTION)
-            Validation().validationAmount(LottoPurchaseView.inputLottoPurchase())
+            inputLottoPurchase()
         }
         return amount.toInt()
     }
@@ -67,7 +68,7 @@ class Validation {
             lotto.forEach { number -> validationRangeException(number) }
         } catch (e: IllegalArgumentException) {
             println(EXCEPTION_MESSAGE + WRONG_RANGE_EXCEPTION)
-            Validation().validationLotto(inputWinningNumber().sorted())
+            inputWinningNumber().sorted()
         }
         return lotto
     }
@@ -77,7 +78,7 @@ class Validation {
             lotto.forEach { number -> validationDuplicationException(lotto, number) }
         } catch (e: IllegalArgumentException) {
             println(EXCEPTION_MESSAGE + DUPLICATE_NUMBER_EXCEPTION)
-            Validation().validationLotto(inputWinningNumber().sorted())
+            inputWinningNumber().sorted()
         }
         return lotto
     }

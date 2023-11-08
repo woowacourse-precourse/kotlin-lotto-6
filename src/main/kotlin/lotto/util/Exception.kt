@@ -10,7 +10,7 @@ object Exception {
     }
 
     fun validateUnitException(amount: Int) {
-        require(amount % LOTTO_PRICE_STANDARD == ZERO && amount > ZERO) { EXCEPTION_MESSAGE + WRONG_UNIT_EXCEPTION }
+        require(amount % 1000 == 0 && amount > 0) { EXCEPTION_MESSAGE + WRONG_UNIT_EXCEPTION }
     }
 
     fun validationRangeException(number: Int) {
