@@ -20,7 +20,7 @@ class OutputView {
     private fun formatLottoNumbers(lotto: Lotto): String = lotto.getNumbers().joinToString(LOTTO_NUMBER_SEPARATOR)
 
     fun printWinningStatics(winningRecord: WinningRecord, winningRanks: List<WinningRank>) {
-        println(WINNING_STATISTICS)
+        println(WINNING_STATISTICS_MESSAGE)
 
         winningRanks.forEach {
             val winningCount = winningRecord.value[it] ?: 0
@@ -38,6 +38,7 @@ class OutputView {
         return messageTemplate.format(rank.macthCount, rank.amount.withCommas(), winningCount)
     }
 
+    fun printProfitRate(profitRate: Double) = println(PROFIT_RATE_MESSAGE.format(profitRate))
 
     companion object {
         const val PURCHASED_LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다."
@@ -45,9 +46,11 @@ class OutputView {
 
         const val LOTTO_NUMBER_SEPARATOR = ", "
 
-        const val WINNING_STATISTICS = "당첨 통계\n---"
+        const val WINNING_STATISTICS_MESSAGE = "당첨 통계\n---"
         const val WINNING_WITHOUT_BONUS_MESSAGE = "%d개 일치 (%s원) - %d개"
         const val WINNING_WITH_BONUS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개"
+
+        const val PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다."
     }
 }
 

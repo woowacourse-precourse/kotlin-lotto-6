@@ -26,7 +26,7 @@ class LottoGame(private val user: User) {
 
         val winningRecord = recordWinning(lottos, winningNumbers, bonusNumber)
         showMessage(WINNING_STATISTICS_LABEL)
-        showWinningRecordMessages(winningRecord)
+        //showWinningRecordMessages(winningRecord)
 
         val roi = calculateROI(amount, winningRecord)
         showMessage(ROI_MESSAGE.format(roi.roundTo2DecimalPlaces()))
