@@ -30,7 +30,13 @@ class WinningLotto(private val winningNumbers: List<Int>, private val bonusNumbe
     }
   }
 
-  fun calculateProfitRate() {
+  fun calculateProfitRate(purchaseMoney: Long): Double {
+    var totalProfit = 0
 
+    for (rank in LottoRank.entries) {
+      totalProfit += rank.reward * rank.count
+    }
+
+    return 100.0 * totalProfit / purchaseMoney
   }
 }
