@@ -10,7 +10,6 @@ enum class LottoRank(val prize: Int, val prizeString: String) {
 }
 
 class LottoResult (private val lottos: List<Lotto>, private val winningNumbers: List<Int>, private val bonusNumber: Int) {
-    private val prize = mutableMapOf(5 to LottoRank.FIFTH.prize, 4 to LottoRank.FOURTH.prize, 3 to LottoRank.THIRD.prize, 2 to LottoRank.SECOND.prize, 1 to LottoRank.FIRST.prize)
     private val matchedCounts = mutableMapOf(5 to 0, 4 to 0, 3 to 0, 2 to 0, 1 to 0)
 
     init {
@@ -68,5 +67,15 @@ class LottoResult (private val lottos: List<Lotto>, private val winningNumbers: 
             2 -> println("${matchedNumber}개 일치, 보너스 볼 일치 (${prizeDescription}) - ${count}개")
             else -> println("${matchedNumber}개 일치 (${prizeDescription}) - ${count}개")
         }
+    }
+
+    companion object {
+        private val prize = mutableMapOf(
+            5 to LottoRank.FIFTH.prize,
+            4 to LottoRank.FOURTH.prize,
+            3 to LottoRank.THIRD.prize,
+            2 to LottoRank.SECOND.prize,
+            1 to LottoRank.FIRST.prize
+        )
     }
 }
