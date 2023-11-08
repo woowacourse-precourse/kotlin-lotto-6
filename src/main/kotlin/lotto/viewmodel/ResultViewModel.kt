@@ -8,10 +8,10 @@ import lotto.observer.InputNumberListener
 import java.util.*
 
 class ResultViewModel: InputNumberListener, GenerateLottoListener {
-    private lateinit var inputLottoNumber: List<Int>
-    private lateinit var lotto: List<Lotto>
+    lateinit var inputLottoNumber: List<Int>
+    lateinit var lotto: List<Lotto>
     private val resultCounts = EnumMap<RESULT, Int>(RESULT::class.java)
-    private var bonusNumber = 0
+    var bonusNumber = 0
     private var prize = 0
 
     fun updateResult(): String = RESULT.entries.joinToString(separator = "\n") { "${it.message} - ${resultCounts[it] ?: 0}개" }
