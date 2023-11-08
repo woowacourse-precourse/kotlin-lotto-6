@@ -12,6 +12,7 @@ class LottoManagerTest {
         assertRandomUniqueNumbersInRangeTest(
             {
                 val lottoManager = LottoManager(PURCHASE_AMOUNT)
+                lottoManager.create()
                 assertEquals(lottoManager.lottoes.size, PURCHASE_AMOUNT / LOTTO_PRICE)
 
             },
