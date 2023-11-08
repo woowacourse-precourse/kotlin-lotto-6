@@ -7,7 +7,7 @@ import lotto.exception.UnvalidLottoNumberException
 class Utils {
     companion object {
         fun roundToOneDeimalPlace(num: Double): Double {
-            return (num * SCALE_UP).toInt() / SCALE_UP
+            return (num * SCALE_UP + 0.5).toInt() / SCALE_UP
         }
         fun parseWithComma(input: String): List<Int> {
             val numberList = mutableListOf<Int>()
