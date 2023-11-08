@@ -31,33 +31,35 @@ class OutputView {
 
     fun outputWinningNums() {
         outputBlankLine()
-        println(Strings.OUTPUT_WINNING_NUMS)
+        println(strings.OUTPUT_WINNING_NUMS)
     }
 
     fun outputBonusNum() {
         outputBlankLine()
-        println(Strings.OUTPUT_BONUS_NUM)
+        println(strings.OUTPUT_BONUS_NUM)
     }
 
     fun outputWinningResult(winningResult: WinningResult) {
         outputBlankLine()
-        println("""
-            ${Strings.WINNING_STATICS}
-            ---            
-        """.trimIndent())
+        println("${strings.WINNING_STATICS}\n---")
         for (prize in Rank.values()) {
             if(prize == Rank.NONE) continue
             if(prize == Rank.SECOND) {
-                println(Strings.WINNING_RESULT_MATCH_BONUS.format(prize.matchCnt, dec(prize.winningMoney), winningResult[prize]))
+                println(strings.WINNING_RESULT_MATCH_BONUS.format(prize.matchCnt, dec(prize.winningMoney), winningResult[prize]))
                 continue
             }
-            println(Strings.WINNING_RESULT_BASIC.format(prize.matchCnt, dec(prize.winningMoney), winningResult[prize]))
+            println(strings.WINNING_RESULT_BASIC.format(prize.matchCnt, dec(prize.winningMoney), winningResult[prize]))
         }
+        outputReturnRate(winningResult.getReturnRate())
+    }
+
+    private fun outputReturnRate(returnRate: Double) {
+        println(strings.WINNING_RETURN_RATE.format(returnRate))
     }
 
     private fun dec(num: Int) : String {
         val dec = DecimalFormat("#,###")
-        return dec.format(num)// 123,456
+        return dec.format(num)
     }
 
     private fun outputBlankLine() {
