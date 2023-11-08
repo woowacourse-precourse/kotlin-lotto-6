@@ -4,7 +4,7 @@ import lotto.lotto.Lotto
 import lotto.lotto.winning.WinningNumber
 import lotto.lotto.winning.WinningStrategyEnum
 
-class Result {
+object Result {
     fun getPrintResult(lottos: List<Lotto>, winningNumbers: WinningNumber, budget: Int) {
         val winningEnums = enumValues<WinningStrategyEnum>()
         val resultMap = mutableMapOf<WinningStrategyEnum, Int>()

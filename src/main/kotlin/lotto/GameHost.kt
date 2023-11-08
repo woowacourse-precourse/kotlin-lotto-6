@@ -8,7 +8,7 @@ import lotto.lotto.LottoGenerator
 import lotto.lotto.winning.WinningNumber
 import java.lang.IllegalArgumentException
 
-class GameHost {
+object GameHost {
     fun start() {
         val lottoGenerator = LottoGenerator(RandomCreateLotto())
         val budget = getBudget()
@@ -27,10 +27,9 @@ class GameHost {
         winningNumber: WinningNumber,
         budget: Int
     ) {
-        val result = Result()
         println("당첨 통계")
         println("---")
-        result.getPrintResult(lottos, winningNumber, budget)
+        Result.getPrintResult(lottos, winningNumber, budget)
     }
 
     private fun getNumbers(): List<Int>{
