@@ -47,4 +47,59 @@ class LottoTicket {
         }
         return lottoList
     }
+
+    fun getLottoNumbers(): MutableList<Int> {
+        var lottoNumbers: List<Int>
+        while (true) {
+            println("\n당첨번호를 입력해 주세요.")
+            try {
+                val lottoNumberInput = Console.readLine().split(',')
+                lottoNumbers = lottoNumberInput.map { it.toInt() }
+                checkLottoNumbersValid(lottoNumbers)
+                return lottoNumbers.sorted().toMutableList()
+            } catch (e: NumberFormatException) {
+                println("[ERROR] 숫자를 써주세요!!")
+            } catch (e: IllegalArgumentException) {
+                catchErrorMessageInGetLottoNumbers(e)
+            }
+        }
+    }
+
+    private fun catchErrorMessageInGetLottoNumbers(e: IllegalArgumentException) {
+        when (e.message) {
+            "중복 숫자 오류" -> println("[ERROR] 중복된 숫자를 쓰지마세요")
+            "입력 개수 오류" -> println("[ERROR] 입력 번호는 6개만 써주세요")
+            "입력 범위 오류" -> println("[ERROR] 1 ~ 45 사이에 숫자만 써주세요")
+        }
+    }
+
+    private fun checkLottoNumbersValid(lottoNumbers: List<Int>) {
+        checkLottoNumbersDuplicate(lottoNumbers)
+        checkInputCount(lottoNumbers)
+        checkLottoLength(lottoNumbers)
+    }
+
+    private fun checkLottoLength(lottoNumbers: List<Int>) {
+        for (lotto in lottoNumbers) {
+            checkLength(lotto)
+        }
+    }
+
+    private fun checkLength(checkLengthNumber: Int) {
+        if (checkLengthNumber !in 1..45) {
+            throw IllegalArgumentException("입력 범위 오류")
+        }
+    }
+
+    private fun checkInputCount(lottoNumbers: List<Int>) {
+        if (lottoNumbers.size != 6) {
+            throw IllegalArgumentException("입력 개수 오류")
+        }
+    }
+
+    private fun checkLottoNumbersDuplicate(lottoNumbers: List<Int>) {
+        if (lottoNumbers.size != lottoNumbers.toSet().size) {
+            throw IllegalArgumentException("중복 숫자 오류")
+        }
+    }
 }
