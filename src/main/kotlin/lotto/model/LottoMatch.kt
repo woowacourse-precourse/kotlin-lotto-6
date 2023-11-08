@@ -9,20 +9,23 @@ class LottoMatch(lottoTickets: List<LottoTicket>, winningNumber: List<Int>, bonu
     val lottoTickets = lottoTickets
     val winningNumber = winningNumber
     val bonusNumber = bonusNumber
-    val lottoResults = mutableMapOf<LottoResult, Int>().apply {
-        for (lottoResult in LottoResult.entries) {
-            put(lottoResult, 0)
+
+    private val lottoResults = mutableMapOf<LottoResult, Int>()
+
+    init {
+        for (lottoResult in LottoResult.values()) {
+            lottoResults[lottoResult] = 0
         }
     }
 
     fun countMatch(): List<Int> {
         for (ticket in lottoTickets) {
-            val matchedCount = countRanks(ticket)
+            countRanks(ticket)
         }
         return lottoResults.values.toList()
     }
 
-    private fun countRanks(ticket: LottoTicket): MutableMap<LottoResult, Int> {
+    private fun countRanks(ticket: LottoTicket) {
         val hasBonus = ticket.ticket.contains(bonusNumber)
         var matchingNumbers = ticket.ticket.count { it in winningNumber }
 
@@ -38,7 +41,5 @@ class LottoMatch(lottoTickets: List<LottoTicket>, winningNumber: List<Int>, bonu
         }
 
         matchingRank?.let { lottoResults[it] = lottoResults.getOrDefault(it, 0) + 1 }
-
-        return lottoResults
     }
 }
