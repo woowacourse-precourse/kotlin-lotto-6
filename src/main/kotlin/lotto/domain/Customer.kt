@@ -16,16 +16,11 @@ class Customer {
     private var order = 1
     init {
         _lottoAmounts = inputToInt()
-        _purchaseCounts = _lottoAmounts / 1000
 
-        while (order <= _purchaseCounts) {
-
-            val lottoNums = produceLottoNums()
-            _lottoNumsList.add(lottoNums)
-            order++
-
-        }
+        produceLottoList()
     }
+
+
 
 
     private fun inputToInt() : Int {
@@ -35,8 +30,7 @@ class Customer {
 
         return inputCount.toInt()
     }
-    private fun checkInputCount(input
-                                : String) : Boolean {
+    private fun checkInputCount(input: String) : Boolean {
         return try {
             require( input.toIntOrNull()!=null && input.toInt() % 1000 == 0,{ ErrorMessage.ERROR_LOTTO_AMOUNTS })
             true
@@ -55,7 +49,18 @@ class Customer {
 
     }
 
+    private fun produceLottoList() {
 
+        _purchaseCounts = _lottoAmounts / 1000
+
+        while (order <= _purchaseCounts) {
+
+            val lottoNums = produceLottoNums()
+            _lottoNumsList.add(lottoNums)
+            order++
+
+        }
+    }
 
 
 

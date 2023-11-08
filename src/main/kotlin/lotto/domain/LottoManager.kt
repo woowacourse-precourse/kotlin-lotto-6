@@ -28,7 +28,8 @@ class LottoManager {
         val inputManager = LottoInputManager()
         lottoNums = inputManager.getLottoNums()
 
-        val outputManager = LottoOutputManager(lottoNumsList,lottoNums)
+        val outputManager = LottoOutputManager()
+        outputManager.calculateResult(lottoNumsList,lottoNums)
         outputManager.calculateRevenue(lottoAmount)
         lottoResult = outputManager.getResult()
         revenue = outputManager.getRevenue()
