@@ -28,9 +28,9 @@
 - Lotto
   - [x] 로또 번호를 반환하는 기능 - #getLottoNumbers()
 - LottoStore
-  - [ ] 1개의 로또를 발행하는 기능 - #issueLotto()
-    - [ ] '중복되지 않는' 6개의 숫자
-    - [ ] '오름차순'으로 정렬
+  - [x] 1개의 로또를 발행하는 기능 - #issueLotto()
+    - [x] '중복되지 않는' 6개의 숫자
+    - [x] '오름차순'으로 정렬
   - [ ] 구입금액에 따른 수량만큼 발행된 로또를 판매하는 기능 - #sellIssuedLottos()
 - WinningLotto
   - [ ] '사용자가 구매한 로또 번호'와 '당첨 번호 및 보너스 번호'를 비교하는 기능 - #compareLottos()
