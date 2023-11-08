@@ -3,18 +3,28 @@ package lotto.view
 import camp.nextstep.edu.missionutils.Console
 import lotto.validation.BonusNumberValidation
 import lotto.validation.MoneyValidation
+import lotto.validation.WinningNumberValidation
 
 class Input {
     fun inputMoney(): Int {
-        println(INPUT_PURCHASE_AMOUNT)
-        val money = Console.readLine()
-        MoneyValidation.ERROR_VALIDATION.getMessage(money)
-        return money.toInt()
+        var money: String
+        while(true) {
+            println(INPUT_PURCHASE_AMOUNT)
+            money = Console.readLine()
+            try {
+                MoneyValidation.ERROR_VALIDATION.getMessage(money)
+                return money.toInt()
+            } catch(e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 
     fun inputWinningNumber(): List<Int> {
         println(INPUT_WINNING_NUMBER)
-        return Console.readLine().split(SPLIT_STRING).map { number ->
+        val winningNumbers = Console.readLine()
+        WinningNumberValidation.VALIDATION_START.getMessage(winningNumbers)
+        return winningNumbers.split(SPLIT_STRING).map { number ->
             number.toInt()
         }
     }
