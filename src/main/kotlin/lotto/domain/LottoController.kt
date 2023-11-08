@@ -7,7 +7,7 @@ import lotto.view.InputView
 import lotto.view.OutputView
 
 class LottoController(private val inputView: InputView, private val outputView: OutputView) {
-    val lottoResult = makeLottoResultMap()
+    private val lottoResult = makeLottoResultMap()
     fun start() {
         val money = enterPurchaseMoney()
         val lotteries = purchaseLotteries(money)
@@ -61,21 +61,25 @@ class LottoController(private val inputView: InputView, private val outputView: 
         lotteries: List<Lotto>,
         prizeLottoNumber: List<Int>,
         bonusNumber: Int
-    ): List<MutableMap.MutableEntry<LottoRank, Int>> {
+    ): MutableMap<LottoRank, Int> {
         for (lotto in lotteries) {
             val (lottoNumberCount, bonusNumberMatchStatus) = lotto.matchCount(prizeLottoNumber, bonusNumber)
             val rank = LottoRank.matchRank(lottoNumberCount, bonusNumberMatchStatus)
             lottoResult[rank] = lottoResult.getOrDefault(rank, 0) + 1
         }
         lottoResult.remove(LottoRank.MISS)
-        return lottoResult.entries.sortedBy { it.key.numberMatch }
+        return sortLottoResult(lottoResult)
+    }
+
+    private fun sortLottoResult(lottoResult: MutableMap<LottoRank, Int>): MutableMap<LottoRank, Int> {
+        return lottoResult.toList().sortedBy { it.first.numberMatch }.toMap().toMutableMap()
     }
 
     private fun calculateProfit(money: Int, prize: Int): Float {
         return (prize.toFloat() / money) * 100
     }
 
-    private fun showLottoResult(money: Int, sortedLottoResult: List<MutableMap.MutableEntry<LottoRank, Int>>) {
+    private fun showLottoResult(money: Int, sortedLottoResult: MutableMap<LottoRank, Int>) {
         var sumOfPrize = 0
         outputView.printResultComment()
         for (result in sortedLottoResult) {
