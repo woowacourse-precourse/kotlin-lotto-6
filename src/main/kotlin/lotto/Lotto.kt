@@ -1,9 +1,22 @@
 package lotto
 
 class Lotto(private val numbers: List<Int>) {
+
     init {
-        require(numbers.size == 6)
+        Validator.lottoLength(numbers)
+        Validator.duplication(numbers)
+        Validator.lottoRange(numbers)
     }
 
-    // TODO: 추가 기능 구현
+    fun matchingNum(winningNumber: List<Int>, bonus: Int): Int {
+        var result = 0
+        winningNumber.forEach { if (numbers.contains(it)) result++ }
+        if (result == 5 && numbers.contains(bonus)) return 7
+        return result
+    }
+
+    fun printLotto() {
+        println(numbers.sorted())
+    }
+
 }
