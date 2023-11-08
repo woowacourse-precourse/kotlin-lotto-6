@@ -1,13 +1,12 @@
 package lotto
 
-import camp.nextstep.edu.missionutils.test.NsTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 @DisplayName("Controller 테스트")
-class ControllerTest{
+class ControllerTest {
 
     private val controller = Controller()
 
