@@ -5,5 +5,22 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
     }
 
-    // TODO: 추가 기능 구현
+    fun matchingNumbers(list: Set<Int>): Int {
+        var matchedNumbersCount = 0
+        for (number in numbers) {
+            matchedNumbersCount += isMatchedNumber(number, list)
+        }
+        return matchedNumbersCount
+    }
+
+    private fun isMatchedNumber(number: Int, list: Set<Int>): Int {
+        if (list.contains(number)) {
+            return 1
+        }
+        return 0
+    }
+
+    fun matchingBonusNumber(bonusNumber: Int): Boolean {
+        return numbers.contains(bonusNumber)
+    }
 }
