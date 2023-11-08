@@ -21,7 +21,7 @@ enum class LottoWinResult(
         fun calculateRank(ball: Int, bonus: Boolean) {
             when (ball) {
                 6 -> ranks[ALL_MATCH.grade] += 1
-                5 -> ranks[calculateRankWithBonus(bonus)] += 1
+                5 -> ranks[calculateRankOrMoneyWithBonus(bonus)] += 1
                 4 -> ranks[FOUR_MATCH.grade] += 1
                 3 -> ranks[THREE_MATCH.grade] += 1
                 else -> ranks[NOT_MATCH.grade] += 1
@@ -31,7 +31,7 @@ enum class LottoWinResult(
         fun addPrizeMoney(ball: Int, bonus: Boolean) {
             money += when (ball) {
                 6 -> ALL_MATCH.prize
-                5 -> calculatePrizeMoneyWithBonus(bonus)
+                5 -> calculateRankOrMoneyWithBonus(bonus)
                 4 -> FOUR_MATCH.prize
                 3 -> THREE_MATCH.prize
                 else -> NOT_MATCH.prize
@@ -41,12 +41,8 @@ enum class LottoWinResult(
         fun calculateRateOfProfit(price: Int, prizeMoney: Long): Double =
             if (prizeMoney == 0L) 0.0 else (prizeMoney.toDouble() / price.toDouble()) * 100.0
 
-        private fun calculateRankWithBonus(bonus: Boolean): Int {
+        private fun calculateRankOrMoneyWithBonus(bonus: Boolean): Int {
             return if (bonus) FIVE_MATCH_WITH_BONUS.grade else FIVE_MATCH.grade
-        }
-
-        private fun calculatePrizeMoneyWithBonus(bonus: Boolean): Int {
-            return if (bonus) FIVE_MATCH_WITH_BONUS.prize else FIVE_MATCH.prize
         }
     }
 }
