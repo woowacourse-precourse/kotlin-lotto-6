@@ -2,13 +2,9 @@ package lotto.model.seller
 
 import lotto.model.Lotto
 
-class Ticket(val cost: Money) {
-
-    private val lottos = arrayListOf<Lotto>()
+class Ticket(private val lottos: List<Lotto>, val cost: Money) {
 
     val lottoCount: Int get() = lottos.size
-
-    fun record(lotto: Lotto): Boolean = lottos.add(lotto)
 
     fun read(block: (Lotto) -> Unit) = lottos.forEach(block)
 

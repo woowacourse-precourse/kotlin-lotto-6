@@ -5,13 +5,17 @@ import lotto.model.seller.Ticket
 class LottoPrizeCalculator(private val winningNumbers: Lotto, private val bonus: Bonus) {
 
     fun issueLottoResultReceipt(ticket: Ticket): PrizeReceipt {
-        val prizeReceipt = PrizeReceipt(ticket.cost)
+        return convertToPrizeReceipt(ticket)
+    }
+
+    private fun convertToPrizeReceipt(ticket: Ticket): PrizeReceipt {
+        val countByRank = mutableMapOf<Rank, Int>()
         ticket.read { lotto ->
             val matchingCount = lotto.getMatchCount(winningNumbers)
             val isMatchedBonus = lotto.isMatchedBonus(bonus.number)
             val rank = Rank.of(matchingCount, isMatchedBonus)
-            if (rank != null) prizeReceipt.recordRank(rank)
+            if (rank != null) countByRank[rank] = countByRank.getOrDefault(rank, 0)
         }
-        return prizeReceipt
+        return PrizeReceipt(ticket.cost, countByRank)
     }
 }

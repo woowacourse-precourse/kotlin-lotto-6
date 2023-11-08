@@ -9,12 +9,12 @@ import lotto.model.toLottoNumbers
 class LottoGenerator private constructor(private val generator: RandomGenerator) {
 
     fun createLottos(payment: Payment): Ticket {
-        val ticket = Ticket(payment.cost)
+        val lottos = mutableListOf<Lotto>()
         repeat(payment.purchase) {
             val randomNumbers = generator.pickUniqueNumberInRange(START_NUMBER, END_NUMBER, LOTTO_NUMBER_COUNT)
-            ticket.record(Lotto(randomNumbers.toLottoNumbers()))
+            lottos.add(Lotto(randomNumbers.toLottoNumbers()))
         }
-        return ticket
+        return Ticket(lottos = lottos, cost = payment.cost)
     }
 
     companion object {

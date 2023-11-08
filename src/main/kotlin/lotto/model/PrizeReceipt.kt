@@ -2,15 +2,9 @@ package lotto.model
 
 import lotto.model.seller.Money
 
-class PrizeReceipt(private val cost: Money) {
-
-    private val countByRank = mutableMapOf<Rank, Int>()
+class PrizeReceipt(private val cost: Money, private val countByRank: Map<Rank, Int>) {
 
     val rate: Double get() = getRateResult()
-
-    fun recordRank(rank: Rank) {
-        countByRank[rank] = countByRank.getOrDefault(rank, INITIAL_COUNT) + 1
-    }
 
     fun getCountByRank(rank: Rank): Int = countByRank.getOrDefault(rank, INITIAL_COUNT)
 

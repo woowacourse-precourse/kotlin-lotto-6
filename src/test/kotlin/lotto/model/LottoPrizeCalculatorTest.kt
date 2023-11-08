@@ -9,8 +9,8 @@ class LottoPrizeCalculatorTest {
 
     @Test
     fun `로또 5개를 구매하여 5등에 당첨되었을 때, 수익률이 100%이다`() {
-        val ticket = Ticket(5000.toMoney())
-        ticket.record(Lotto.of(1, 2, 3, 4, 5, 6))
+        val lotto = Lotto.of(1, 2, 3, 4, 5, 6)
+        val ticket = Ticket(lottos = listOf(lotto), cost = 5000.toMoney())
 
         val winningNumbers = Lotto.of(1, 2, 3, 10, 11, 12)
         val calculator = LottoPrizeCalculator(winningNumbers, Bonus.of("7", winningNumbers))
