@@ -1,9 +1,17 @@
-package lotto
+package lotto.model
+
+import lotto.util.Validator.validateLottoDuplicate
+import lotto.util.Validator.validateLottoRange
+import lotto.util.Validator.validateSize
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6)
+        validateSize(numbers)
+        validateLottoDuplicate(numbers)
+        validateLottoRange(numbers)
     }
 
-    // TODO: 추가 기능 구현
+    fun getWinningNumbers(): List<Int> {
+        return numbers
+    }
 }
