@@ -13,4 +13,10 @@ class LottoProgramError {
         var numbersRandom = numbers.toSet()
         if (numbers.size != numbersRandom.size) throw IllegalArgumentException()
     }
+
+    fun checkNumberRange(numbers: List<Int>) {
+        numbers.forEach {
+            if (it > 45 || it < 1) throw IllegalArgumentException()
+        }
+    }
 }
