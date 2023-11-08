@@ -45,6 +45,9 @@
 - 보너스 번호 1개(범위: 1~45) 입력
   - 출력 문자열: "보너스 번호를 입력해 주세요."
   - 사용 라이브러리: camp.nextstep.edu.missionutils.Console의 readLine()
+  - 예외처리 - 정수가 아닌 입력시
+    - IllegalArgumentException 발생
+    - `[ERROR] 로또 번호의 타입은 정수여야 합니다.` 출력
   - 예외처리 - 1~45 범위의 정수가 아닌 입력시
     - IllegalArgumentException 발생
     - `[ERROR] 로또 번호는 1~45사이의 정수여야 합니다.` 출력
