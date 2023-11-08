@@ -66,26 +66,28 @@
 
 ### LottoView
 
-| mothod                     | 역할                                                                                                  |
-|----------------------------|-----------------------------------------------------------------------------------------------------|
-| askPurchaseTickets()       | - 구입 금액 입력 안내 문구를 출력한다.                                                                             |
-| getTicketPrice()           | - 입력받은 로또 구입 가격의 유효성을 검사한다. <br/> - 예외가 발생한 경우, ERROR 문구의 메세지를 띄운 후 다시 askPurchaseTickets() 를 호출한다. |
-| askLuckyNumbers()          | - 당첨 번호 입력 안내 문구를 출력한다.                                                                             |
-| getLuckyNumbers()          | - 입력받은 당첨 번호 리스트의 유효성을 검사한다. <br/> - 예외가 발생한 경우, ERROR 문구의 메세지를 띄운 후 다시 askLuckyNumbers() 를 호출한다.   |
-| askBonusNumber()           | - 보너스 번호 입력 안내 문구를 출력한다.                                                                            |
-| getBonusNumber()           | - 입력받은 보너스 번호의 유효성을 검사한다. <br/> - 예외가 발생한 경우, ERROR 문구의 메세지를 띄운 후 다시 askBonusNumber() 를 호출한다.       |
-| calculateTicketCount()     | - 입력 받은 구입 금액 입력을 티켓 1개의 가격(1,000원)으로 나누어 로또 구입 개수를 계산한다.                                           |
-| showPurchasedTicketCount() | - 로또 구입 개수(ticketCount)를 파라미터로 받은 후 출력한다.                                                           |
-| showPurchasedTicketCount() | - 당첨된 등수 목록(ranks)을 파라미터로 받는다. <br/> - 진행된 로또의 당첨 결과를 출력한다.                                         |
-| showPurchasedTicketCount() | - 당첨 통계 안내 문구와 구분선을 출력한다.                                                                           |
-| showRateOfProfit()         | - 수익률(rateOfProfit)을 파라미터로 받아 출력한다.                                                                 |
-| closeConsole()             | - 사용한 Scanner 의 인스턴스를 null로 만들어 종료한다.                                                               |
-| printWithNewLine()         | - 출력할 문자열(output)을 파라미터로 받는다. <br/> - 개행 1줄과 출력할 문자열를 출력한다.                                         |
-| validTicketPrice()         | - 로또 구입 가격의 유효성을 검사한다.                                                                              |
-| validLuckyNumbers()        | - 당첨 번호의 유효성을 검사한다.                                                                                 |
-| validBonusNumber()         | - 보너스 번호의 유효성을 검사한다.                                                                                |
-| validBonusNumber()         | - 플레이어로부터 데이터를 입력받는다.                                                                               |
-
+| mothod                     | 역할                                                                                                                                     |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | 
+| askPurchaseTickets()       | - 구입 금액 입력 안내 문구를 출력한다.                                                                                                   |     |
+| getTicketPrice()           | - 구입 금액 입력을 받은 후, 유효성 검사가 통과된 문자열을 반환한다.                                                                      |     |
+| askLuckyNumbers()          | - 당첨 번호 입력 안내 문구를 출력한다.                                                                                                   |     |
+| getLuckyNumbers()          | - 당첨 번호 입력을 받은 후, 유효성 검사가 통과된 문자열 목록을 반환한다.                                                                 |     |
+| askBonusNumber()           | - 보너스 번호 입력 안내 문구를 출력한다.                                                                                                 |     |
+| getBonusNumber()           | - 보너스 번호 입력을 받은 후, 유효성 검사가 통과된 문자열을 반환한다.                                                                    |     |
+| calculateTicketCount()     | - 입력 받은 구입 금액 입력을 티켓 1개의 가격(1,000원)으로 나누어 로또 구입 개수를 계산한다.                                              |     |
+| showPurchasedTicketCount() | - 로또 구입 개수(ticketCount)를 파라미터로 받은 후 출력한다.                                                                             |     |
+| showPurchasedTicketCount() | - 당첨된 등수 목록(ranks)을 파라미터로 받는다. <br/> - 진행된 로또의 당첨 결과를 출력한다.                                               |     |
+| showPurchasedTicketCount() | - 당첨 통계 안내 문구와 구분선을 출력한다.                                                                                               |     |
+| showRateOfProfit()         | - 수익률(rateOfProfit)을 파라미터로 받아 출력한다.                                                                                       |     |
+| closeConsole()             | - 사용한 Scanner 의 인스턴스를 null로 만들어 종료한다.                                                                                   |     |
+| printWithNewLine()         | - 출력할 문자열(output)을 파라미터로 받는다. <br/> - 개행 1줄과 출력할 문자열를 출력한다.                                                |     |
+| validTicketPrice()         | - 로또 구입 가격의 유효성을 검사한다.                                                                                                    |     |
+| validLuckyNumbers()        | - 당첨 번호의 유효성을 검사한다.                                                                                                         |     |
+| validBonusNumber()         | - 보너스 번호의 유효성을 검사한다.                                                                                                       |     |
+| validBonusNumber()         | - 플레이어로부터 데이터를 입력받는다.                                                                                                    |     |
+| commonRetryInput()         | - 입력 종류(type)을 파라미터로 받는다. <br/> - 플레이어로부터 입력받은 데이터의 유효성 검사를 통해 예외가 발생하지 않을 때까지 반복한다. |     |
+| selectAskInputData()       | - 입력 종류(type)을 파라미터로 받는다. <br/> - 입력 종류에 따라 플레이어에게 입력 안내 문구를 출력하는 함수를 호출하여 입력을 받아 반환한다.                  |     |
+|              selectValidInputData()              | - 플레이어의 입력(input)과 입력 종류(type) 을 파라미터로 받는다. <br/> - 입력 종류에 알맞는 유효성 검사 함수를 입력값(input)을 인자로하여 호출한다.                                                                                                                                          |     |
 ---
 
 ## 기능 요구 사항
