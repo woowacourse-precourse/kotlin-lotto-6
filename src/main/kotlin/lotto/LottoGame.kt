@@ -36,18 +36,11 @@ class LottoGame {
     private fun getRandomNumbers() = Randoms.pickUniqueNumbersInRange(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER, Lotto.NUMBERS_PER_TICKET)
 
     private fun compareLottos(lottos: List<Lotto>, winningNumber: Lotto, bonusNumber: Int): List<Int> {
-        val countDuplicationNums = MutableList(CountDuplicationNumIndex.entries.size) { 0 }
+        val countDuplicationNums = MutableList(CountDuplicationNumIndex.values().size) { 0 }
 
         lottos.forEach { lotto ->
             val count = lotto.countDuplicateNumbers(winningNumber)
-            val countIndex = when (count) {
-                in 0..2 -> null
-                3 -> CountDuplicationNumIndex.THREE
-                4 -> CountDuplicationNumIndex.FOUR
-                5 -> if (lotto.contains(bonusNumber)) CountDuplicationNumIndex.FIVE_BONUS else CountDuplicationNumIndex.FIVE
-                6 -> CountDuplicationNumIndex.SIX
-                else -> throw IllegalArgumentException("Invalid count: $count")
-            }
+            val countIndex = getCountIndex(count, lotto.contains(bonusNumber))
             countIndex?.let {
                 countDuplicationNums[it.ordinal]++
             }
@@ -56,12 +49,27 @@ class LottoGame {
         return countDuplicationNums
     }
 
+    private fun getCountIndex(count: Int, hasBonusNumber: Boolean): CountDuplicationNumIndex? {
+        return when (count) {
+            in 0..2 -> null
+            3 -> CountDuplicationNumIndex.THREE
+            4 -> CountDuplicationNumIndex.FOUR
+            5 -> if (hasBonusNumber) CountDuplicationNumIndex.FIVE_BONUS else CountDuplicationNumIndex.FIVE
+            6 -> CountDuplicationNumIndex.SIX
+            else -> throw IllegalArgumentException("Invalid count: $count")
+        }
+    }
+
     private fun calculateRateOfReturn(result: List<Int>, money: Int): Double {
         val winningsByRank = listOf(5000, 50000, 1500000, 30000000, 2000000000)
         val winnings = result
-                .mapIndexed{ index, it -> it * winningsByRank[index] }
+                .mapIndexed { index, it -> it * winningsByRank[index] }
                 .sum()
-        val rateOfReturn = (winnings / money.toDouble()) * 100
+        val rateOfReturn = (winnings / money.toDouble()) * PERCENT_NUMBER
         return round(rateOfReturn * 10) / 10
+    }
+
+    companion object {
+        const val PERCENT_NUMBER = 100
     }
 }

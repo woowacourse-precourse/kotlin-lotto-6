@@ -2,7 +2,7 @@ package lotto
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.toSet().size == NUMBERS_PER_TICKET) { "[ERROR] 로또 번호는 6개입니다."}
+        require(numbers.toSet().size == NUMBERS_PER_TICKET) { "[ERROR] 로또 번호는 6개입니다." }
     }
 
     override fun toString(): String = numbers.toString()
