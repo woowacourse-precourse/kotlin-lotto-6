@@ -14,7 +14,10 @@ fun main() {
     val bonusNumber = readBonusNum(winningNums)
 
     val result = checkResults(lotteries, winningNums, bonusNumber)
-    printResult(result, money)
+
+    printStatistics(result) // 당첨 통계 출력
+    println()
+    printReturnRate(result, money) // 수익률 출력
 }
 
 /* 사용자 입력 부분 */
@@ -24,8 +27,7 @@ fun readMoney(): Int {
         try {
             println("구입 금액을 입력해주세요.")
             val input = Console.readLine()
-            val money = input.toIntOrNull()
-                ?: throw IllegalArgumentException("[ERROR] 정확한 금액이 아닙니다!!")
+            val money = input.toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 정확한 금액이 아닙니다!!")
             if (money < 1000 || money % 1000 != 0)
                 throw IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위 양수여야 합니다!!")
             return money
@@ -38,11 +40,8 @@ fun readMoney(): Int {
 // 로또 만드는 함수
 fun setLotteries(count: Int): List<Lotto> {
     return List(count) {
-        Lotto(
-            Randoms.pickUniqueNumbersInRange(
-                1, 45, 6
-            ).sorted()
-        )
+        val lottoNums = Randoms.pickUniqueNumbersInRange(1, 45, 6).sorted()
+        Lotto(lottoNums)
     }
 }
 
@@ -50,7 +49,10 @@ fun setLotteries(count: Int): List<Lotto> {
 fun printLotto(lotteries: List<Lotto>) {
     println("${lotteries.size}개를 구매했습니다.")
     // getNumbers 메서드로 numbers 접근
-    lotteries.forEach { println(it.getNumbers().joinToString()) }
+    lotteries.forEach { lotto ->
+        val lottoNums = lotto.getNumbers()
+        println("[${lottoNums.joinToString(", ")}]")
+    }
 }
 
 // 당첨 번호 입력하기
@@ -73,22 +75,16 @@ fun readWinningNums(): Set<Int> {
 
 // 보너스 번호 가져오는 함수
 fun readBonusNum(wonNumbers: Set<Int>): Int {
-    // 보너스 번호 정수로 변환
     while (true) {
         try {
             println("보너스 번호를 입력해 주세요.")
             val input = Console.readLine()
-            val bonus = input.toIntOrNull()
-            if (bonus == null || bonus !in 1..45)
-                throw IllegalArgumentException("[ERROR] 정확하지 않은 보너스 번호입니다!!")
-            if (bonus in wonNumbers)
-                throw IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다!!")
+            val bonus = input.toIntOrNull() // 보너스 번호 정수로 변환
+            if (bonus == null || bonus !in 1..45) throw IllegalArgumentException("[ERROR] 정확하지 않은 보너스 번호입니다!!")
+            if (bonus in wonNumbers) throw IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다!!")
             return bonus
-        } catch (e: NumberFormatException) {
-            println("[ERROR] 숫자만 입력해야 합니다!!")
-        } catch (e: IllegalArgumentException) {
-            println(e.message)
-        }
+        } catch (e: NumberFormatException) { println("[ERROR] 숫자만 입력해야 합니다!!") }
+        catch (e: IllegalArgumentException) { println(e.message) }
     }
 }
 
@@ -104,15 +100,27 @@ fun checkResults(lotteries: List<Lotto>, wonNums: Set<Int>, bonusNum: Int): Map<
         val rank = Rank.valueOf(matchCount, matchBonus) // 일치 번호와 보너스 번호 여부
         results[rank] = results[rank]!! + 1 // 등수 당첨 개수 1 증가
     }
-
     return results
 }
 
-// 결과 출력 함수
-fun printResult(lottoResults: Map<Rank, Int>, money: Int) {
-    printStatistics(lottoResults) // 통계 출력
-    println()
-    printReturnRate(lottoResults, money) // 수익률 계산 및 출력
+fun printStatistics(lottoResults: Map<Rank, Int>) {
+    println("\n당첨 통계")
+    println("---")
+
+    val ranks = Rank.values()
+    ranks.forEach { rank -> val count = lottoResults[rank] ?: 0
+        if (count > 0) {
+            val resultString = when (rank) { // 등수별 일치 여부 및 상금 설정
+                Rank.Rank1 -> "6개 일치 (2,000,000,000원)"
+                Rank.Rank2 -> "5개 일치, 보너스 볼 일치 (30,000,000원)"
+                Rank.Rank3 -> "5개 일치 (1,500,000원)"
+                Rank.Rank4 -> "4개 일치 (50,000원)"
+                Rank.Rank5 -> "3개 일치 (5,000원)"
+                Rank.None -> "${rank.matchNum}개 일치 (${rank.winningMoney}원"
+            }
+            println("$resultString - $count 개")
+        }
+    }
 }
 
 fun printReturnRate(lottoResults: Map<Rank, Int>, money: Int) {
@@ -122,27 +130,5 @@ fun printReturnRate(lottoResults: Map<Rank, Int>, money: Int) {
     }
 
     val returnRate = (totalMoney.toDouble() / money) * 100 // 수익률 계산
-    println("\n수익금 계산")
-    println("---")
-    println("총 수익금은 ${totalMoney}원입니다.")
     println("총 수익률은 ${"%.1f".format(returnRate)}%입니다.")
-}
-
-fun printStatistics(lottoResults: Map<Rank, Int>) {
-    println("당첨 통계")
-    println("---")
-
-    lottoResults.entries.forEach { (rank, count) ->
-        if (count > 0) {
-            val resultString = when (rank) { // 등수별 일치 여부 및 상금 설정
-                Rank.Rank1 -> "6개 일치 (2,000,000,000원)"
-                Rank.Rank2 -> "5개 일치, 보너스 볼 일치 (30,000,000원)"
-                Rank.Rank3 -> "5개 일치 (1,500,000원)"
-                Rank.Rank4 -> "4개 일치 (50,000원)"
-                Rank.Rank5 -> "3개 일치 (5,000원)"
-                else -> ""
-            }
-            println("$resultString - $count 개")
-        }
-    }
 }

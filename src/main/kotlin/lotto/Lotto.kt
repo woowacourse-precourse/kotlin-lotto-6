@@ -13,10 +13,6 @@ class Lotto(private val numbers: List<Int>) {
     // Lotto 내부 번호에 접근
     fun getNumbers(): List<Int> = numbers
 
-    fun matches(winningNums: Set<Int>): Int {
-        return numbers.count { it in winningNums }
-    }
-
     fun contains(number: Int): Boolean {
         return number in numbers
     }
@@ -39,7 +35,9 @@ enum class Rank(val matchNum: Int, val winningMoney: Long) {
         fun valueOf(matchNum: Int, matchBonus: Boolean): Rank {
             return when (matchNum) {
                 6 -> Rank1
-                5 -> if (matchBonus) Rank2 else Rank3
+                5 ->
+                    if (matchBonus) Rank2
+                    else Rank3
                 4 -> Rank4
                 3 -> Rank5
                 else -> None
