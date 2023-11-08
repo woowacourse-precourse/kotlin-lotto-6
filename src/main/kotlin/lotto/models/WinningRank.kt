@@ -13,7 +13,11 @@ enum class WinningRank(val number: Int, val amount: Int, val macthCount: Int, va
             WinningRank.entries.find { it.macthCount == matchedCount && it.hasBonus == hasMatchingBonus } ?: NOTHING
 
         fun get(): List<WinningRank> {
-            return entries.sortedBy { it.number }
+            return entries
+        }
+
+        fun getWithoutNothing(): List<WinningRank> {
+            return entries.filter { it != NOTHING }.sortedByDescending { it.number}
         }
     }
 }

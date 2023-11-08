@@ -20,9 +20,10 @@ class OutputView {
 
     private fun formatLottoNumbers(lotto: Lotto): String = lotto.getNumbers().joinToString(LOTTO_NUMBER_SEPARATOR)
 
-    fun printWinningStatics(winningRecord: WinningRecord, winningRanks: List<WinningRank>) {
+    fun printWinningStatics(winningRecord: WinningRecord) {
         println(WINNING_STATISTICS_MESSAGE)
 
+        val winningRanks = WinningRank.getWithoutNothing()
         winningRanks.forEach {
             val winningCount = winningRecord.value[it] ?: 0
             val staticsMessage = generateStaticsMessage(it, winningCount)

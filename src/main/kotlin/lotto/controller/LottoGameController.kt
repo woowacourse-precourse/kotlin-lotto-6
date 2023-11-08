@@ -13,14 +13,15 @@ class LottoGameController() {
         val winningRecord = WinningRecord()
 
         val purchaseAmount = inputPurchaseAmount()
-        val purchasedLottos = publisher.publishLottos(purchaseAmount)
 
+        val purchasedLottos = publisher.publishLottos(purchaseAmount)
         outputView.printPurchasedLottos(purchasedLottos)
 
         val winningLotto = inputWinningLottoNumbers()
         val bonus = inputBonusNumber(winningLotto)
 
         winningRecord.updateWinningResults(purchasedLottos, winningLotto, bonus)
+        outputView.printWinningStatics(winningRecord)
     }
 
     private fun inputPurchaseAmount(): Int {
