@@ -37,4 +37,13 @@ class LottoResultTest {
         assertThat(actualMoney).isEqualTo(expectedMoney)
     }
 
+    @Test
+    fun `로또의 수익률을 알 수 있다`() {
+        val expectedStatics = "총 수익률은 50833.3%입니다."
+        val prizeCountMap = winningResults.groupingBy { it }.eachCount()
+        val totalProfit = prizeCountMap.map { it.key.amount * it.value }.sum()
+        val payment = winningResults.count() * 1_000
+        val actualStatics = InfoMessage.TOTAL_PROFIT.message.format((totalProfit.toDouble() / payment) * 100.0)
+        assertThat(actualStatics).isEqualTo(expectedStatics)
+    }
 }
