@@ -8,9 +8,11 @@ object LottoInput {
     var bonusNumber: Int = 0
 
     fun putBonusNumber() {
-        println("보너스 번호를 입력해주세요")
-        val number = Console.readLine().toInt()
         try {
+            println("보너스 번호를 입력해주세요")
+            val Text = Console.readLine()
+            Validator.convertNumber(Text)
+            val number = Text.toInt()
             Validator.range(number)
             Validator.exist(winingNumbers, number)
             bonusNumber = number
