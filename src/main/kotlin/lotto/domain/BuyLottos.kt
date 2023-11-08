@@ -7,7 +7,7 @@ import lotto.view.OutputView
 class BuyLottos {
     private val outputView = OutputView()
 
-    fun buyLottos(buyAmount: Int) : List<Lotto> {
+    fun buyLottos(buyAmount: Int): List<Lotto> {
         outputView.printBuyLottoNumber(buyAmount)
 
         val buyLottos = mutableListOf<Lotto>()
@@ -16,8 +16,7 @@ class BuyLottos {
         return buyLottos
     }
 
-    private fun makeLotto() : Lotto
-        = Lotto(generateLottoNumbers())
+    private fun makeLotto(): Lotto = Lotto(generateLottoNumbers())
 
     private fun generateLottoNumbers(): List<Int> =
         Randoms.pickUniqueNumbersInRange(RANDOM_START_RANGE_NUMBER, RANDOM_END_RANGE_NUMBER, LOTTO_NUMBER_COUNT)

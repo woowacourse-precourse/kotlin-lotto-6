@@ -18,7 +18,7 @@ class Controller(private val inputView: InputView, private val outputView: Outpu
         getEarningRate(lottoStats, buyAmount)
     }
 
-    private fun buyLotto() : Int{
+    private fun buyLotto(): Int {
         val buyAmount = inputView.inputBuyAmount()
         buyLottos = BuyLottos().buyLottos(buyAmount)
         outputView.printBuyLottos(buyLottos)
@@ -29,16 +29,16 @@ class Controller(private val inputView: InputView, private val outputView: Outpu
         winningNumbers = inputView.inputWinningNumbers()
     }
 
-    private fun getBonusNumber(winningNumbers: List<Int>) : Int = inputView.inputBonusNumber(winningNumbers)
+    private fun getBonusNumber(winningNumbers: List<Int>): Int = inputView.inputBonusNumber(winningNumbers)
 
 
-    private fun getLottoNumberStats(winningNumbers: List<Int>, bonusNumber: Int) : Map<Stats, Int> {
-        val lottoStats = CheckLottoNumber(buyLottos, Lotto(winningNumbers), bonusNumber).checkLottoNumber()
+    private fun getLottoNumberStats(winningNumbers: List<Int>, bonusNumber: Int): Map<Stats, Int> {
+        val lottoStats = CheckLottoNumber(buyLottos, Lotto(winningNumbers), bonusNumber).checkLottoNumberMatchedCount()
         outputView.printLottoStats(lottoStats)
         return lottoStats
     }
 
-    private fun getEarningRate(lottoStats: Map<Stats, Int>, buyAmount: Int)
-        = outputView.printEarningRate(lottoStats, buyAmount)
+    private fun getEarningRate(lottoStats: Map<Stats, Int>, buyAmount: Int) =
+        outputView.printEarningRate(lottoStats, buyAmount)
 
 }
