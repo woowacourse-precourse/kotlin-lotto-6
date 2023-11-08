@@ -40,6 +40,8 @@ class InputManager {
             winningNumbers.add(winningNumber.toInt())
         }
 
+        handleNumberOfWinningNumbersException(winningNumbers)
+
         return winningNumbers
     }
 
@@ -54,6 +56,12 @@ class InputManager {
     private fun handleMoneyUnitException(inputMoney: Int) {
         if (inputMoney % 1000 != 0) {
             throw IllegalArgumentException("[ERROR] 1,000원 단위로 입력해주세요.")
+        }
+    }
+
+    private fun handleNumberOfWinningNumbersException(winningNumbers: ArrayList<Int>) {
+        if (winningNumbers.size != 6) {
+            throw IllegalArgumentException("[ERROR] 당첨 번호를 올바르게 입력해주세요.")
         }
     }
 }
