@@ -9,4 +9,5 @@ object ErrorMessage {
     const val ERROR_INPUT_NUMBER_NO_FORMAT = "$ERROR 숫자가 아닌 값이 있습니다"
     const val ERROR_LIST_SIZE_OUT_OF_RANGE = "$ERROR 6개의 숫자를 입력해주세요"
     const val ERROR_NUMBER_DUPLICATED = "$ERROR 중복되는 숫자가 있습니다"
+    const val ERROR_BONUS_DUPLICATED = "$ERROR 보너스 숫자는 당첨 번호와 중복될 수 없습니다."
 }
