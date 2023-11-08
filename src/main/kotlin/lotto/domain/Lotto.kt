@@ -4,18 +4,18 @@ import lotto.Constants.LOTTO_COUNT
 
 class Lotto(private val numbers: List<Int>) {
 
-    private val numbersSet = numbers.toSet()
     init {
         require(numbers.size == LOTTO_COUNT)
-        require(numbersSet.size == LOTTO_COUNT)
+        require(toSet().size == LOTTO_COUNT)
     }
     private fun sorted() = numbers.sorted()
+    private fun toSet() = numbers.toSet()
     override fun toString(): String {
         return sorted().joinToString(", ", "[", "]")
     }
     infix fun intersect(other: Lotto): Set<Int> {
-        val otherSet = other.numbersSet
-        return numbersSet intersect otherSet
+        val otherSet = other.toSet()
+        return toSet() intersect otherSet
     }
-    fun contains(number: Int) = numbersSet.contains(number)
+    fun contains(number: Int) = toSet().contains(number)
 }
