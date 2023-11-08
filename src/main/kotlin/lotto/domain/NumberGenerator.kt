@@ -11,8 +11,8 @@ class NumberGenerator {
         ).sorted()
 
     companion object {
-        const val RANDOM_NUMBERS_RANGE_START: Int = 1
-        const val RANDOM_NUMBERS_RANGE_END: Int = 45
-        const val RANDOM_NUMBERS_SIZE: Int = 6
+        private const val RANDOM_NUMBERS_RANGE_START: Int = 1
+        private const val RANDOM_NUMBERS_RANGE_END: Int = 45
+        private const val RANDOM_NUMBERS_SIZE: Int = 6
     }
 }
