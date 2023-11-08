@@ -32,4 +32,11 @@ class LottoTest {
             Lotto(listOf(0, 2, 3, 4, 5, 6))
         }
     }
+
+    @Test
+    fun `로또 번호의 개수가 6개보다 적은 경우 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1, 2, 3, 4, 5))
+        }
+    }
 }
