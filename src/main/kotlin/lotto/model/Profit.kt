@@ -1,5 +1,7 @@
 package lotto.model
 
+import kotlin.math.round
+
 data class Profit(val totalProfit: Int) {
     private var _profitRate: Double = 0.0
 
@@ -7,7 +9,8 @@ data class Profit(val totalProfit: Int) {
         get() = _profitRate
 
     fun calculateProfitRate(payment: Int): Double {
-        return 0.0
+        _profitRate = totalProfit.toDouble() / payment.toDouble() * 100.0
+        _profitRate = round(_profitRate * 10) / 10
+        return _profitRate
     }
-
 }
