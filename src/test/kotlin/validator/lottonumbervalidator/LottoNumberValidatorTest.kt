@@ -29,4 +29,12 @@ class LottoNumberValidatorTest {
             LottoNumberValidator.appropriateLottoNumber(input)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1,2,3,4,5,46", "-1,2,3,4,5,6", "-1,-2,-3,-4,-5,-6"])
+    fun `로또 번호 숫자 범위가 1~45가 아닐 때 예외를 던지는지`(input: String) {
+        assertThrows<IllegalArgumentException> {
+            LottoNumberValidator.appropriateLottoNumber(input)
+        }
+    }
 }
