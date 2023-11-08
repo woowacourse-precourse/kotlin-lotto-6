@@ -5,7 +5,7 @@ class Jackpot {
         var rank = rankInitiate()
         for (eachLotto in lotto) {
             val count = countDiscriminate(answers, eachLotto)
-            val bonusCount = bonusDiscriminate(answers, eachLotto, bonus)
+            val bonusCount = bonusDiscriminate(eachLotto, bonus)
             rank = rankUpdate(count, rank, bonusCount)
         }
         return rank
@@ -16,7 +16,7 @@ class Jackpot {
             rank[NumberConstants.ZERO.value]++
         } else if (count == NumberConstants.FIVE.value && bonusCount) {
             rank[NumberConstants.THREE.value]++
-        } else if (count == NumberConstants.FIVE.value) {
+        } else if (count == NumberConstants.FOUR.value) {
             rank[NumberConstants.ONE.value]++
         } else if (count == NumberConstants.FIVE.value) {
             rank[NumberConstants.TWO.value]++
@@ -44,12 +44,10 @@ class Jackpot {
         return count
     }
 
-    fun bonusDiscriminate(answers: List<Int>, eachLotto: List<Int>, bonus: Int): Boolean {
+    fun bonusDiscriminate(eachLotto: List<Int>, bonus: Int): Boolean {
         var bonusCount = false
-        for (number in answers) {
-            if (eachLotto.contains(bonus)) {
-                bonusCount = !bonusCount
-            }
+        if (eachLotto.contains(bonus)) {
+            bonusCount = !bonusCount
         }
         return bonusCount
     }

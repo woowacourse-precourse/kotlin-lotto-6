@@ -1,6 +1,5 @@
 package lotto.model
 
-import lotto.controller.LottoMachine
 import java.lang.NumberFormatException
 
 
@@ -24,8 +23,8 @@ class Money {
 
     fun moneyChangesValidate(money: String) {
         if (money.toInt() % NumberConstants.THOUSAND.value != NumberConstants.ZERO.value) {
-            println(Constants.ERROR_NO_CHAGES)
-            throw IllegalArgumentException(Constants.ERROR_NO_CHAGES)
+            println(Constants.ERROR_NO_CHANGES)
+            throw IllegalArgumentException(Constants.ERROR_NO_CHANGES)
         }
     }
 
