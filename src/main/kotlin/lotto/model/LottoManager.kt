@@ -9,14 +9,21 @@ class LottoManager(private val purchaseAmount: Int) {
         get() = _lottoes
 
     fun create() {
-        repeat(purchaseAmount / 1000) {
+        repeat(purchaseAmount / LOTTO_PRICE) {
             val lottoNums = getLottoNum()
             _lottoes.add(Lotto(lottoNums))
         }
     }
 
     private fun getLottoNum(): List<Int> {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        return Randoms.pickUniqueNumbersInRange(RANDOM_START_NUM, RANDOM_END_NUM, RANDOM_NUM_AMOUNT)
+    }
+
+    companion object {
+        private const val RANDOM_START_NUM = 1
+        private const val RANDOM_END_NUM = 45
+        private const val RANDOM_NUM_AMOUNT = 6
+        private const val LOTTO_PRICE = 1000
     }
 
 }
