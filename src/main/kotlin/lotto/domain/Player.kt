@@ -5,7 +5,7 @@ import kotlin.math.roundToInt
 class Player(private var money: Money) {
 
     fun purchaseLotto(): List<Lotto> {
-        val boughtLotto = NumberIssuer.issueNumbers(money.value)
+        val boughtLotto = LottoStore.issueNumbers(money.value)
         return boughtLotto
     }
 

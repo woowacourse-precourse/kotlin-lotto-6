@@ -6,7 +6,7 @@ import lotto.utils.Constant.LOTTO_PRICE
 import lotto.utils.Constant.MAX_LOTTO_NUMBER
 import lotto.utils.Constant.MIN_LOTTO_NUMBER
 
-object NumberIssuer {
+object LottoStore {
     fun issueNumbers(money: Int): List<Lotto> {
         val issuedLotto = mutableListOf<Lotto>()
 
