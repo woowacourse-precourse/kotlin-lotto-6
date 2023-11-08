@@ -44,7 +44,7 @@ class LottoResult (private val lottos: List<Lotto>,
     }
 
     private fun printResult() {
-        PrintText.printMessage("PrintWinningStatistics", 0)
+        PrintText.printMessage(Constants.PRINT_WINNING_STATISTICS_MESSAGE, 0)
         printRate()
     }
 
@@ -84,7 +84,7 @@ class LottoResult (private val lottos: List<Lotto>,
     }
 
     private fun getResultText(rank: Int, matchedNumber: Int, prizeDescription: String, count: Int): String {
-        if (rank == 2)
+        if (rank == Constants.WIN_WITH_BONUS)
             return "${matchedNumber}개 일치, 보너스 볼 일치 (${prizeDescription}) - ${count}개"
         return "${matchedNumber}개 일치 (${prizeDescription}) - ${count}개"
     }

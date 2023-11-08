@@ -15,9 +15,9 @@ class LottoGame() {
 
     private fun purchaseSequence(): Int {
         val purchaseAmount = getPurchaseAmount()
-        val lottoCount = purchaseAmount.toInt() / 1000
+        val lottoCount = purchaseAmount.toInt() / Constants.LOTTO_PRIZE
 
-        PrintText.printMessage("PrintCountNumber", lottoCount)
+        PrintText.printMessage(Constants.PRINT_COUNT_NUMBER_MESSAGE, lottoCount)
         return lottoCount
     }
 
@@ -25,7 +25,9 @@ class LottoGame() {
         var lotto: Lotto? = null
         while (lotto == null) {
             try {
-                val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                val numbers = Randoms.pickUniqueNumbersInRange(Constants.MIN_NUMBER,
+                    Constants.MAX_NUMBER,
+                    Constants.LOTTO_SIZE)
                 lotto = Lotto(numbers)
             } catch (e: Exception) {
                 println("[ERROR] ${e.message}")
@@ -48,7 +50,7 @@ class LottoGame() {
     private fun getPurchaseAmount(): String {
         var userInput = ""
         while (true) {
-            PrintText.printMessage("GetPurchaseAmount", 0)
+            PrintText.printMessage(Constants.GET_PURCHASE_AMOUNT_MESSAGE, 0)
             userInput = Console.readLine()
             try {
                 InputValidator.validatePurchaseAmount(userInput)
@@ -69,7 +71,7 @@ class LottoGame() {
         var userInput = ""
 
         while (true) {
-            PrintText.printMessage("GetWinningNumber", 0)
+            PrintText.printMessage(Constants.GET_WINNING_NUMBER_MESSAGE, 0)
             userInput = Console.readLine()
             try {
                 InputValidator.validateWinningNumber(userInput)
@@ -90,7 +92,7 @@ class LottoGame() {
         var userInput = ""
 
         while (true) {
-            PrintText.printMessage("GetBonusNumber", 0)
+            PrintText.printMessage(Constants.GET_BONUS_NUMBER_MESSAGE, 0)
             userInput = Console.readLine()
             try {
                 InputValidator.validateBonusNumber(userInput, winningNumbers)
