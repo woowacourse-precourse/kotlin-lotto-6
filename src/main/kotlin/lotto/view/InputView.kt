@@ -6,7 +6,7 @@ import lotto.validation.BonusNumberValidation
 import lotto.validation.MoneyValidation
 import lotto.validation.WinningNumberValidation
 
-class Input {
+class InputView {
     fun inputMoney(): Int {
         while(true) {
             println(INPUT_PURCHASE_AMOUNT)
