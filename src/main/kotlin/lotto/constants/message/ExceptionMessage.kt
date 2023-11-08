@@ -5,7 +5,7 @@ object ExceptionMessage {
     const val NOT_NUMBER = "숫자가 아닙니다"
     const val INPUT_IS_BLANK = "입력값이 공백입니다"
     const val AMOUNT_MUST_BE_THOUSAND_WON = "구입금액은 1000원 단위 여야 합니다"
-    const val AMOUNT_MUST_BE_UNDER_MILLION_WON = "구입금액은 1000000원 아래 여야 합니다"
+    const val AMOUNT_MUST_BE_UNDER_MILLION_WON = "구입금액은 1000000원 이하 여야 합니다"
     const val DUPLICATED_NUMBER = "중복된 숫자가 있습니다."
     const val INVALID_COUNT = "쉼표로 구분된 6개의 숫자를 입력해주세요."
     const val INVALID_CHARACTER = "잘못된 입력입니다."

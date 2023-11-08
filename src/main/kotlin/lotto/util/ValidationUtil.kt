@@ -9,7 +9,7 @@ object ValidationUtil {
         require(purchaseAmount.isDigit()) { ExceptionMessage.NOT_NUMBER }
         val amount = purchaseAmount.toInt()
         require(amount > 0 && amount % LottoConstants.THOUSAND_WON == 0) { ExceptionMessage.AMOUNT_MUST_BE_THOUSAND_WON }
-        require(amount < LottoConstants.MILLION_WON) { ExceptionMessage.AMOUNT_MUST_BE_UNDER_MILLION_WON }
+        require(amount <= LottoConstants.MILLION_WON) { ExceptionMessage.AMOUNT_MUST_BE_UNDER_MILLION_WON }
     }
 
     fun checkWinningNumbers(winningNumbers: String) {
