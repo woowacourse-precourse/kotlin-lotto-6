@@ -6,6 +6,7 @@ import lotto.util.Constants.INPUT_BLANK_OR_STRING_ERROR
 import lotto.util.Constants.INPUT_WRONG_LENGTH_ERROR
 import lotto.util.Constants.INPUT_WRONG_RANGE_ERROR
 import lotto.util.Constants.INPUT_WRONG_UNIT_ERROR
+import lotto.util.Constants.UNIT
 
 object Validation {
 
@@ -14,7 +15,7 @@ object Validation {
         require(amount.toIntOrNull() != null)
         { INPUT_BLANK_OR_STRING_ERROR }
 
-        require((amount.toInt() % 1000 == 0) && (amount.toInt() > 0))
+        require((amount.toInt() % UNIT == 0) && (amount.toInt() > 0))
         { INPUT_WRONG_UNIT_ERROR }
 
     }

@@ -54,12 +54,12 @@ class ValidationTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["", "anc", "102","5"])
+    @ValueSource(strings = ["", "anc", "102", "5"])
     fun `보너스 번호에 알맞은 입력이 아니면 예외 발생`(bonusNumber: String) {
         assertThrows<IllegalArgumentException> {
-            val winningNumbers = listOf(1,2,3,4,5)
+            val winningNumbers = listOf(1, 2, 3, 4, 5)
 
-            validateBonusNumber(winningNumbers,bonusNumber)
+            validateBonusNumber(winningNumbers, bonusNumber)
         }
     }
 

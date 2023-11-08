@@ -17,26 +17,18 @@ class Output {
     fun outputReward(reward: HashMap<Winning, Int>) {
         Winning.entries.filter { it != Winning.NONE }.forEach {
             when (it) {
-                Winning.SECOND ->
-                    println(
-                        "${it.match}개 일치, 보너스 볼 일치 (${formatMoney(it.reward)}원) - ${
-                            reward.getOrDefault(
-                                it,
-                                0
-                            )
-                        }개"
-                    )
-
-                else -> println(
-                    "${it.match}개 일치 (${formatMoney(it.reward)}원) - ${
-                        reward.getOrDefault(
-                            it,
-                            0
-                        )
-                    }개"
-                )
+                Winning.SECOND -> showResultWithBonus(it.match,formatMoney(it.reward),reward.getOrDefault(it,0))
+                else -> showResult(it.match,formatMoney(it.reward),reward.getOrDefault(it,0))
             }
         }
+    }
+
+    private fun showResult(match : Int, winning : String, count : Int) {
+        println("${match}개 일치 (${winning}원) - ${count}개")
+    }
+
+    private fun showResultWithBonus(match : Int, winning : String, count : Int){
+        println("${match}개 일치, 보너스 볼 일치 (${winning}원) - ${count}개")
     }
 
     fun outputYield(amount: Int, rewardResult: HashMap<Winning, Int>) {

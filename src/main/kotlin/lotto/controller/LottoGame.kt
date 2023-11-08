@@ -6,6 +6,7 @@ import lotto.util.Constants.INPUT_BONUS_NUMBERS
 import lotto.util.Constants.INPUT_MONEY
 import lotto.util.Constants.INPUT_WINNING_NUMBERS
 import lotto.util.Constants.SEPARATOR
+import lotto.util.Constants.UNIT
 import lotto.util.Constants.WINNING_STATISTICS
 import lotto.view.Input
 import lotto.view.Output
@@ -15,7 +16,7 @@ class LottoGame(private val input: Input, private val output: Output) {
     fun play() {
         println(INPUT_MONEY)
         val amount = input.inputPurchaseAmount()
-        val tickets = amount / 1000
+        val tickets = amount / UNIT
 
         output.outputNumber(tickets)
         val lottoTickets = LottoManager().issueLottoTicket(tickets)
