@@ -4,15 +4,16 @@ import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 
 fun main() {
-    val money = readMoney()
-    val count = money / 1000
-    val lotteries = setLotteries(count)
+    val money = readMoney() // 로또 구입 금액 입력
+    val count = money / 1000 // 구매한 로또 개수
+    val lotteries = setLotteries(count) // 구매한 로또 생성
 
-    printLotto(lotteries)
+    printLotto(lotteries) // 구매한 로또 출력
 
-    val winningNums = readWinningNums()
-    val bonusNumber = readBonusNum(winningNums)
+    val winningNums = readWinningNums() // 당첨 번호 입력
+    val bonusNumber = readBonusNum(winningNums) // 보너스 번호 입력
 
+    // 로또 번호와 당첨 번호 비교 및 결과 계산
     val result = checkResults(lotteries, winningNums, bonusNumber)
 
     printStatistics(result) // 당첨 통계 출력
@@ -20,7 +21,7 @@ fun main() {
 }
 
 /* 사용자 입력 부분 */
-// 입력하는 부분 (구입 금액 입력)
+// 로또 구입 금액 입력하기
 fun readMoney(): Int {
     while (true) {
         try {
@@ -104,9 +105,11 @@ fun checkResults(lotteries: List<Lotto>, wonNums: Set<Int>, bonusNum: Int): Map<
     return results
 }
 
-fun printStatistics(lottoResults: Map<Rank, Int>) {
-    println("\n당첨 통계")
-    println("---")
+// 당첨 통계 설정 및 출력 함수
+fun printStatistics(lottoResults: Map<Rank, Int>): List<String> {
+    val printStat = mutableListOf<String>() // 통계를 입력받을 변수
+    printStat.add("\n당첨 통계")
+    printStat.add("---")
 
     val rankPrint = listOf (
         Rank.Rank5, Rank.Rank4, Rank.Rank3, Rank.Rank2, Rank.Rank1)
@@ -114,8 +117,9 @@ fun printStatistics(lottoResults: Map<Rank, Int>) {
     rankPrint.forEach { rank ->
         val count = lottoResults[rank] ?: 0
         val resultString = rankResult(rank)
-        printRanking(count, resultString)
+        printStat.add("$printStat - $count 개")
     }
+    return printStat
 }
 
 // 등수 기록 함수
@@ -130,11 +134,7 @@ fun rankResult(ranking: Rank): String {
     }
 }
 
-// 등수 출력 함수
-fun printRanking(count: Int, resultString: String) {
-    println("$resultString - $count 개")
-}
-
+// 수익률 출력 함수
 fun printReturnRate(lottoResults: Map<Rank, Int>, money: Int) {
     val totalMoney = lottoResults.entries.sumOf {// 수익금 계산
         it.key.winningMoney * it.value
