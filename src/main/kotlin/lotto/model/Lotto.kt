@@ -1,12 +1,14 @@
 package lotto.model
 
-import lotto.util.const.errorPrefix
+import lotto.util.const.ErrorMessage.error_duplicated_lotto_numbers
 import lotto.util.const.lottoWinningNumberQuantity
 
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
-        if (numbers.toSet().size != lottoWinningNumberQuantity) throw IllegalArgumentException("$errorPrefix 로또 번호는 중복이 될 수 없습니다.")
+        if (numbers.toSet().size != lottoWinningNumberQuantity) throw IllegalArgumentException(
+            error_duplicated_lotto_numbers
+        )
     }
 
     fun getNumbers(): List<Int> = numbers
