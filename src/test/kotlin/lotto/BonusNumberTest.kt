@@ -20,4 +20,18 @@ class BonusNumberTest {
 
         assertThrows<IllegalArgumentException> { bonusNumber.isBonusNumberNumeric("abc") }
     }
+
+    @Test
+    fun `범위 확인 메서드는 유효한 범위 내의 입력에 대해 예외를 던지지 않아야 함`() {
+        val bonusNumber = BonusNumber()
+
+        assertDoesNotThrow { bonusNumber.isBonusNumberRange(5) }
+    }
+
+    @Test
+    fun `범위 확인 메서드는 범위를 벗어난 입력에 대해 예외를 던져야 함`() {
+        val bonusNumber = BonusNumber()
+
+        assertThrows<IllegalArgumentException> { bonusNumber.isBonusNumberRange(55) }
+    }
 }
