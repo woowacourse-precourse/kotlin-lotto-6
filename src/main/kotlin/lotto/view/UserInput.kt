@@ -7,17 +7,17 @@ class UserInput {
 
     fun getPurchaseAmount(): String {
         println(PURCHASE_LOTTO_MESSAGE)
-        return Console.readLine()
+        return Console.readLine().also { println() }
     }
 
     fun getAnswerNumber(): String {
         println(ANSWER_NUM_MESSAGE)
-        return Console.readLine()
+        return Console.readLine().also { println() }
     }
 
     fun getBonusNum(): String {
         println(BONUS_NUM_MESSAGE)
-        return Console.readLine()
+        return Console.readLine().also { println() }
     }
 
     companion object {
