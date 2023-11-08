@@ -7,10 +7,13 @@ class ResultCalculator {
         return LottoResult(statistic, totalPrize)
     }
 
-    private fun calculateStatistics(tickets: List<Lotto>, winningTicket: Lotto, bonusNumber: Int): Map<Rank, Int> =
-        tickets.mapNotNull { ticket ->
+    private fun calculateStatistics(tickets: List<Lotto>, winningTicket: Lotto, bonusNumber: Int): Map<Rank, Int> {
+        val rankCount = tickets.mapNotNull { ticket ->
             tryToFindRank(ticket, winningTicket, bonusNumber)
         }.groupingBy { it }.eachCount()
+
+        return Rank.values().associateWith { rank -> rankCount.getOrDefault(rank, 0) }
+    }
 
     private fun tryToFindRank(ticket: Lotto, winningTicket: Lotto, bonusNumber: Int): Rank? =
         runCatching {
