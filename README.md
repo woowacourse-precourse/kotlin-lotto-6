@@ -305,4 +305,4 @@ class Lotto(private val numbers: List<Int>) {
 
 ### Controller
 
-- [ ] 로또 프로그램 시작
+- [x] 로또 프로그램 시작
