@@ -1,6 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.enums.LottoResult
 import lotto.messages.LogicMessage
 
 object LottoLogic {
@@ -33,6 +34,32 @@ object LottoLogic {
 
     fun getBonusNumber(winningNumbers: List<Int>): Int {
         return LottoUserInput.getBonusNumber(winningNumbers)
+    }
+
+    fun calculateLottoResults(lotto: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): Map<LottoResult, Int> {
+        val results = lotto.map {
+            it.calculateLottoResult(winningNumbers, bonusNumber)
+        }
+        return results.groupingBy { it }.eachCount()
+    }
+
+    fun printLottoResultMessages(lottoResult: Map<LottoResult, Int>) {
+        calculateLottoResultMessages(lottoResult).forEach { message ->
+            println(message)
+        }
+    }
+
+    fun calculateLottoResultMessages(lottoResults: Map<LottoResult, Int>): List<String> {
+        return listOf(
+            LottoResult.FIFTH,
+            LottoResult.FOURTH,
+            LottoResult.THIRD,
+            LottoResult.SECOND,
+            LottoResult.FIRST
+        ).map { result ->
+            val count = lottoResults[result] ?: 0
+            result.toString(count)
+        }
     }
 
 }
