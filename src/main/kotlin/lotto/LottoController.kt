@@ -17,7 +17,9 @@ class LottoController(private val inputview: InputView = InputView(),
         val winningNumbers:List<Int> = getWinnigNums()
         val bonusNumber: Int = getBonusNum(winningNumbers)
         val ranks = getRanks(lottos, winningNumbers, bonusNumber)
-        outputview.printGameResult(ranks,0.68f)
+        val revenue = getRevenue(ranks).toFloat()
+
+        outputview.printGameResult(ranks,(revenue/amount))
     }
     private fun getAmount(): Int {
         var amount: Int
@@ -86,5 +88,14 @@ class LottoController(private val inputview: InputView = InputView(),
     }
     fun doNothing() {
 
+    }
+
+    fun getRevenue(ranks: List<Int>): Int {
+        val reward = listOf(5, 50, 1500, 30000, 2000000)
+        var revenue = 0
+        for(i in 0..4) {
+            revenue += ranks[i] * reward[i]
+        }
+        return revenue
     }
 }
