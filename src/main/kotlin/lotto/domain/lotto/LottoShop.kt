@@ -31,9 +31,9 @@ object LottoShop {
             result[rank]!!.count++
         }
 
-        val totalRevenue = result.entries.sumOf { it.key.prize.amount * it.value.count }
-        val totalPurchasePrice = purchasedLottos.size() * LOTTO_PRICE.amount
-        val rateOfReturn = RateOfReturn(totalRevenue.toDouble() / totalPurchasePrice.toDouble() * 100)
+        val totalRevenue = result.entries.sumOf { it.key.prize.amount * it.value.count.toDouble() }
+        val totalPurchasePrice = purchasedLottos.size() * LOTTO_PRICE.amount.toDouble()
+        val rateOfReturn = RateOfReturn(totalRevenue / totalPurchasePrice * 100)
         return WinningResult(result, rateOfReturn)
     }
 
