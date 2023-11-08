@@ -13,7 +13,7 @@ fun printProfit(result: Map<PRIZE, Int>,invest:Int)
     {
         profit += getIntMoney(key) * result.getOrDefault(key,0)
     }
-    println("총 수익률은 ${String.format("%.1f%%",profit.toFloat()/invest * PERCENT)}입니다.")
+    println("총 수익률은 ${String.format("%.1f%%",profit.toDouble()/invest * PERCENT)}입니다.")
 }
 fun printPrize(result:Map<PRIZE,Int>)
 {
