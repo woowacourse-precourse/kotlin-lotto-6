@@ -2,26 +2,19 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
-import java.lang.NumberFormatException
+
 
 class Lotto(private val numbers: List<Int>) {
-    private var lottoPurchaseAmount: Int = 0
-    private var lottoTickets: List<List<Int>> = emptyList()
-    private var winningNumbers: List<Int> = emptyList()
-    private var bonusNumber: Int = 0
-
     init {
         require(numbers.size == 6) {"로또 번호는 6개여야 합니다."}
         require(numbers.toSet().size == numbers.size) {"로또 번호에 중복된 숫자가 있으면 안됩니다."}
         require(numbers.all{ it in 1..45}) {"로또 번호는 1부터 45사이의 숫자여야한다."}
     }
-
     private fun getPurchaseAmount(): Int {
         while (true) {
             try {
                 println("구입금액을 입력해 주세요.")
-                lottoPurchaseAmount = checkPurchasePrice()
-                return lottoPurchaseAmount
+                return checkPurchasePrice()
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
@@ -42,9 +35,9 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 
-    fun getLottoNumbers() {
-        val lottoPurchaseAmount = getPurchaseAmount()
-        val numOfTickets = lottoPurchaseAmount / 1000
+    fun getLottoNumbers(): List<List<Int>> {
+        val purchaseAmount = getPurchaseAmount()
+        val numOfTickets = purchaseAmount / 1000
         val tickets = mutableListOf<List<Int>>()
 
         println("\n${numOfTickets}개를 구매했습니다.")
@@ -55,7 +48,7 @@ class Lotto(private val numbers: List<Int>) {
             tickets.add(numbers)
             println(numbers)
         }
-        lottoTickets = tickets
+        return tickets
     }
 
     private fun hasDuplicateNumbers(numbers: List<Int>) {
@@ -64,7 +57,7 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 
-    fun getWinningNumbers() {
+    internal fun getWinningNumbers(): List<Int> {
         while (true) {
             try {
                 println("\n당첨 번호를 입력해 주세요.")
@@ -73,8 +66,7 @@ class Lotto(private val numbers: List<Int>) {
                     println("[ERROR] 1부터 45 사이의 6개의 서로 다른 숫자를 입력해야 합니다.")
                     continue
                 }
-                this.winningNumbers = userNumbers
-                break
+                return userNumbers
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
@@ -86,8 +78,7 @@ class Lotto(private val numbers: List<Int>) {
         return winningNumbers.split(",").map { it.toInt() }
     }
 
-
-    fun getBonusNumber() {
+    internal fun getBonusNumber(winningNumbers: List<Int>): Int {
         while (true) {
             try {
                 println("\n보너스 번호를 입력해 주세요.")
@@ -96,8 +87,7 @@ class Lotto(private val numbers: List<Int>) {
                     println("[ERROR] 1부터 45 사이의 숫자이며, 당첨 번호와 겹치지 않는 숫자를 입력해야 합니다.")
                     continue
                 }
-                this.bonusNumber = userBonusNumber
-                break
+                return userBonusNumber
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
@@ -108,11 +98,11 @@ class Lotto(private val numbers: List<Int>) {
         return Console.readLine().toInt()
     }
 
-    fun showWinningNumbers() {
-        val matchingNumbers: List<Int> = lottoTickets.map { ticket ->
+    internal fun showWinningNumbers(tickets: List<List<Int>>, winningNumbers: List<Int>, bonusNumber: Int) {
+        val matchingNumbers: List<Int> = tickets.map { ticket ->
             ticket.count { it in winningNumbers }
         }
-        val hasBonusNumbers = bonusNumbers()
+        val hasBonusNumbers = bonusNumbers(tickets, winningNumbers, bonusNumber)
 
         println("\n당첨 통계")
         println("---")
@@ -124,8 +114,8 @@ class Lotto(private val numbers: List<Int>) {
         println("총 수익률은 ${calculateProfit(matchingNumbers)}%입니다.")
     }
 
-    private fun bonusNumbers(): List<Int> {
-        val hasBonusNumbers = lottoTickets.map { ticket ->
+    private fun bonusNumbers(tickets: List<List<Int>>, winningNumbers: List<Int>, bonusNumber: Int): List<Int> {
+        val hasBonusNumbers = tickets.map { ticket ->
             if (ticket.contains(bonusNumber)) {
                 winningNumbers.intersect(ticket.toSet()).count() - 1
             } else {
@@ -136,6 +126,7 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     private fun calculateProfit(matchingNumbers: List<Int>): String {
+        val lottoPurchaseAmount = matchingNumbers.size * 1000
         val match3Numbers = 5000.0
         val match4Numbers = 50000.0
         val match5Numbers = 1500000.0
@@ -155,5 +146,30 @@ class Lotto(private val numbers: List<Int>) {
         val profitPercentage = (totalPrize / totalCost) * 100
 
         return "%.1f".format(profitPercentage)
+    }
+}
+
+enum class MyNumbers(val value: Int) {
+    ONE(1),
+    THREE(3),
+    FOUR(4),
+    FIVE(5),
+    SIX(6),
+    ZERO(0),
+    THOUSAND(1000),
+    HUNDRED(100)
+}
+
+enum class PrizeAmounts {
+    MATCH3(5000.0),
+    MATCH4(50000.0),
+    MATCH5(1500000.0),
+    MATCH5_WITH_BONUS(30000000.0),
+    MATCH6(2000000000.0);
+
+    val amount: Double
+
+    constructor(amount: Double) {
+        this.amount = amount
     }
 }
