@@ -4,6 +4,8 @@ import ui.InputValidator
 import ui.UserInput
 import ui.UserOutput
 
+const val MSG_ERR_LOTTO_BUY_FIRST = "[ERROR] 로또를 먼저 발행해 주세요"
+
 class LottoResult(
     private val winLotto: Lotto = Lotto(UserInput.readWinNumbers()),
     private val bonus: Int = UserInput.readBonusNumber(existingNumbers = winLotto.toAscendingList())
@@ -26,6 +28,8 @@ class LottoResult(
     fun hasBonus(lotto: Lotto): Boolean = lotto.toAscendingList().contains(bonus)
 
     fun calculateWinLottos(lottos: MutableList<Lotto>): LottoResult {
+        if (lottos.size == 0) throw IllegalStateException(MSG_ERR_LOTTO_BUY_FIRST)
+
         for (lotto in lottos) countPrizeRank(lotto)
 
         return this
