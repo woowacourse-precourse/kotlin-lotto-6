@@ -17,6 +17,7 @@ class LottoGameController() {
 
         val purchasedLottos = publisher.publishLottos(purchase)
         outputView.printPurchasedLottos(purchasedLottos)
+        outputView.endOutput()
 
         val winningLotto = inputWinningLottoNumbers()
         val bonus = inputBonusNumber(winningLotto)
@@ -25,6 +26,7 @@ class LottoGameController() {
         outputView.printWinningStatics(winningRecord)
 
         profitRate.calculate(purchase, winningRecord)
+        outputView.printProfitRate(profitRate)
     }
 
     private fun inputPurchaseAmount(): Purchase {

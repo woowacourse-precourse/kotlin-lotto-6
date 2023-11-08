@@ -15,8 +15,6 @@ class OutputView {
             val formattedLottoNumbers = formatLottoNumbers(it)
             println(PURCHASED_LOTTO_NUMBERS_MESSAGE.format(formattedLottoNumbers))
         }
-
-        println()
     }
 
     private fun formatLottoNumbers(lotto: Lotto): String = lotto.getNumbers().joinToString(LOTTO_NUMBER_SEPARATOR)
@@ -31,8 +29,6 @@ class OutputView {
 
             println(staticsMessage)
         }
-
-        println()
     }
 
     private fun generateStaticsMessage(rank: WinningRank, winningCount: Int): String {
@@ -40,6 +36,8 @@ class OutputView {
 
         return messageTemplate.format(rank.macthCount, rank.amount.withCommas(), winningCount)
     }
+
+    fun endOutput() = println()
 
     fun printProfitRate(profitRate: ProfitRate) = println(PROFIT_RATE_MESSAGE.format(profitRate.value))
 
