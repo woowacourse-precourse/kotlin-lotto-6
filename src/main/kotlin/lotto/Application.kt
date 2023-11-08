@@ -15,13 +15,22 @@ fun main() {
         println("[${ticket.getNumbers().joinToString(", ")}]")
     }
 
+    println("")
     val winningNumbers = getWinningNumbers()
+
+    println("")
     val bonusNumber = getBonusNumber()
 
-    println("당첨 번호: [${winningNumbers.joinToString(", ")}]")
-    println("보너스 번호: [$bonusNumber]")
+    val sumResults = sumResults(lottoTickets, winningNumbers, bonusNumber)
 
-    return
+    println("\n당첨 통계")
+    println("---")
+    for ((key, value) in sumResults) {
+        println("$key - ${value}개")
+    }
+
+    val sumTotalEarningsRate = sumTotalEarningsRate(purchaseAmount, sumResults)
+    println("\n총 수익률은 ${String.format("%.1f", sumTotalEarningsRate)}%입니다.")
 }
 
 fun generateLottoNumbers(purchaseAmount: Int): List<Lotto> {
@@ -72,7 +81,7 @@ fun getWinningNumbers(): List<Int> {
 
 fun inputWinningNumbers(): List<Int> {
     try {
-        var numbers: List<Int>
+        val numbers: List<Int>
         val input = Console.readLine()
         numbers = input?.split(",")!!.mapNotNull { it.trim().toIntOrNull() }
         validateLottoNumbers(numbers)
@@ -122,4 +131,55 @@ fun validateBonusNumbers(number: Int) {
     if (number < 1 || number > 45) {
         throw IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.")
     }
+}
+
+fun sumResults(lottoNumbers: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): MutableMap<String, Int> {
+    var results = mutableMapOf(
+        "3개 일치 (5,000원)" to 0,
+        "4개 일치 (50,000원)" to 0,
+        "5개 일치 (1,500,000원)" to 0,
+        "5개 일치, 보너스 볼 일치 (30,000,000원)" to 0,
+        "6개 일치 (2,000,000,000원)" to 0)
+
+    for (lotto in lottoNumbers) {
+        val numbers = lotto.getNumbers()
+        results = numberMatching(results, numbers, winningNumbers, bonusNumber)
+    }
+    return results
+}
+
+fun numberMatching(results: MutableMap<String, Int>, numbers: List<Int>, winningNumbers: List<Int>, bonusNumber: Int): MutableMap<String, Int> {
+    val numbersMatching = numbers.intersect(winningNumbers.toSet()).toList()
+    val bonusMatching = if (numbers.contains(bonusNumber)) 1 else 0
+
+    when (numbersMatching.size) {
+        6 -> results["6개 일치 (2,000,000,000원)"] = results["6개 일치 (2,000,000,000원)"]!! + 1
+        5 -> results["5개 일치 (1,500,000원)"] = results["5개 일치 (1,500,000원)"]!! + 1
+        4 -> results["4개 일치 (50,000원)"] = results["4개 일치 (50,000원)"]!! + 1
+        3 -> results["3개 일치 (5,000원)"] = results["3개 일치 (5,000원)"]!! + 1
+    }
+
+    if (numbersMatching.size == 5 && bonusMatching == 1) {
+        results["5개 일치, 보너스 볼 일치 (30,000,000원)"] = results["5개 일치, 보너스 볼 일치 (30,000,000원)"]!! + 1
+    }
+    return results
+}
+
+fun sumMoney(entry: Map.Entry<String, Int>): Int {
+    return when (entry.key) {
+        "6개 일치 (2,000,000,000원)" -> entry.value * 2_000_000_000
+        "5개 일치, 보너스 볼 일치 (30,000,000원)" -> entry.value * 30_000_000
+        "5개 일치 (1,500,000원)" -> entry.value * 1_500_000
+        "4개 일치 (50,000원)" -> entry.value * 50_000
+        "3개 일치 (5,000원)" -> entry.value * 5_000
+        else -> 0
+    }
+}
+
+fun sumTotalEarningsRate(purchaseAmount: Int, results: Map<String, Int>): Double {
+    val totalEarningsAmount = results.entries.sumOf { entry ->
+        sumMoney(entry)
+    }
+
+    return (totalEarningsAmount.toDouble() / purchaseAmount) * 100.0
 }
