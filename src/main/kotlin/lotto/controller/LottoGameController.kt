@@ -35,6 +35,9 @@ class LottoGameController {
     fun result() {
         checkLottoTicketResult()
         printAllLottoTicketResult()
+
+        val profitRate = calculateProfitRate()
+        printProfitRate(profitRate)
     }
 
     private fun purchaseLottoTickets(purchaseMoney: Int) {
@@ -122,5 +125,19 @@ class LottoGameController {
             val prize = rank.prize
             println("${rank.description} (${prize.toDecimalFormat()}원) - ${count}개")
         }
+    }
+
+    private fun calculateProfitRate(): Float {
+        var profit = 0L
+        results.forEach { (rank, count) ->
+            profit += rank.prize * count
+        }
+
+        val moneySpent = lottoTickets.size * LOTTO_PRICE_PER_GAME
+        return (profit * 100f) / moneySpent
+    }
+
+    private fun printProfitRate(profitRate: Float) {
+        println("총 수익률은 ${"%.1f".format(profitRate)}%입니다.")
     }
 }
