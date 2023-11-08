@@ -2,6 +2,7 @@ package lotto.controller
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.model.domain.Lotto
+import lotto.model.domain.Rank
 import lotto.model.service.Service
 import lotto.validator.Validator
 import lotto.view.Messages
@@ -18,7 +19,7 @@ class LottoController {
         println("${lottoCounts}${messageViews.outputMoneyMessage}")
         val lottos: List<Lotto> = lottoGame.generateLottos(lottoCounts)
         for (lotto in lottos) {
-            println(lotto.toString())
+            println(lotto.numbers.toString())
         }
         println(messageViews.inputLottoMessage)
         val inputWinningLotto =
@@ -26,6 +27,9 @@ class LottoController {
         println(messageViews.inputBonusMessage)
         val bonusNumber = validator.validatedInputIsInt(Console.readLine())
         val winningLotto = lottoGame.generateWinningLottoFromInput(inputWinningLotto, bonusNumber)
+        val rankList: List<Rank> = lottos.map { lottoGame.compareLotto(winningLotto, it) }
+        println(messageViews.outputLottoMessage)
+        lottoGame.printResultToString(rankList, inputMoney)
     }
 
 }

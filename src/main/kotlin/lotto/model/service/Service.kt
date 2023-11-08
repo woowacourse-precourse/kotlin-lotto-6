@@ -40,4 +40,16 @@ class Service {
             else -> Rank.MISS
         }
     }
+
+    fun printResultToString(rankList: List<Rank>, inputMoney: Int): Unit {
+        println("---")
+        println("${Rank.FIFTH.toString()} - ${rankList.count { it == Rank.FIFTH }} 개")
+        println("${Rank.FOURTH.toString()} - ${rankList.count { it == Rank.FOURTH }} 개")
+        println("${Rank.THIRD.toString()} - ${rankList.count { it == Rank.THIRD }} 개")
+        println("${Rank.SECOND.toString()} - ${rankList.count { it == Rank.SECOND }} 개")
+        println("${Rank.FIRST.toString()} - ${rankList.count { it == Rank.FIRST }} 개")
+        val totalMoney = rankList.map { it.getMoney() }.sum()
+        println("총 수익률은 ${totalMoney / inputMoney}입니다.")
+        println("---")
+    }
 }
