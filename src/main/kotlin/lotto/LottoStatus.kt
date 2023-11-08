@@ -27,9 +27,13 @@ class LottoStatus {
     }
     fun pickRandomNumbersForLotto(): List<Int> {
         val currentLottoNumbers = mutableListOf<Int>()
-        for (i in 0 until LottoResource.LOTTO_SIZE) {
-            val currentNumber = Randoms.pickNumberInRange(LottoResource.MIN_LOTTO_NUMBER, LottoResource.MIN_LOTTO_NUMBER)
-            currentLottoNumbers.add(currentNumber)
+        while (true) {
+            val currentNumber = Randoms.pickNumberInRange(LottoResource.MIN_LOTTO_NUMBER, LottoResource.MAX_LOTTO_NUMBER)
+            val isAlreadyInNumbers = currentLottoNumbers.contains(currentNumber)
+            if (!isAlreadyInNumbers)
+                currentLottoNumbers.add(currentNumber)
+            if (currentLottoNumbers.size >= countOfLotto)
+                break
         }
         return currentLottoNumbers
     }
