@@ -1,9 +1,6 @@
 package lotto
 
-import lotto.exception.ContainsNotDigitException
-import lotto.exception.UnvalidCostException
-import lotto.exception.UnvalidLottoNumberCountException
-import lotto.exception.UnvalidLottoNumberException
+import lotto.exception.*
 import lotto.utility.Utils
 
 class InputValidator {
@@ -39,5 +36,12 @@ class InputValidator {
     fun checkCostDevidedByUnit(string: String) {
         if (string.toInt() % COST_UNIT != 0)
             throw UnvalidCostException()
+    }
+
+    fun checkNumberIsPositive(string: String) {
+        val number = string.toInt()
+
+        if (number < 0)
+            throw NotPositiveCostException()
     }
 }
