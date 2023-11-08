@@ -30,7 +30,6 @@ class ValidationTest {
     @ParameterizedTest
     @ValueSource(strings = ["횟수", "100", "1,2"])
     fun `보너스 번호 입력 테스트`(input: String) {
-        val input = "1,2"
         assertThrows<IllegalArgumentException> {
             Validation.getBonusNum(input)
         }
