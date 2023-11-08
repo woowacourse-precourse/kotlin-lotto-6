@@ -2,7 +2,7 @@ package lotto.ui
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.validation.InputValidator
-import lotto.stringToIntList
+import lotto.extentions.stringToIntList
 
 class LottoView {
 
