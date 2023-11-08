@@ -4,6 +4,17 @@ import lotto.exception.*
 import lotto.utility.Utils
 
 class InputValidator {
+    fun checkCostInput(string: String) {
+        checkStringHasNonDigits(string)
+        checkCostDevidedByUnit(string)
+        checkNumberIsPositive(string)
+    }
+
+    fun checkLottoInput(string: String) {
+        checkLottoNumberCount(string)
+        checkListNumberIsInRange(string)
+    }
+
     fun checkStringHasNonDigits(string: String) {
         val regex = Regex("[^0-9]")
         if (regex.containsMatchIn(string))
