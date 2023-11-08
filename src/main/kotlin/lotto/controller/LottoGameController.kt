@@ -1,5 +1,6 @@
 package lotto.controller
 
+import lotto.models.Bonus
 import lotto.models.Lotto
 import lotto.models.Publisher
 import lotto.models.Purchase
@@ -19,7 +20,8 @@ class LottoGameController() {
         outputView.printPurchasedLottos(purchasedLottos)
 
         val winningLotto = inputWinningLottoNumbers()
-
+        val bonus = inputBonusNumber(winningLotto)
+        println(bonus.getNumber())
     }
 
     private fun inputPurchaseAmount(): Int {
@@ -29,12 +31,11 @@ class LottoGameController() {
             try {
                 val amount = inputView.inputPurchaseAmount()
                 purchase = Purchase(amount)
+                inputView.endInput()
             } catch (e: IllegalArgumentException) {
                 outputView.printErrorMessage(e.message)
             }
         }
-
-        inputView.endInput()
 
         return purchase.getAmount()
     }
@@ -46,13 +47,29 @@ class LottoGameController() {
             try {
                 val numbers = inputView.inputWinningNumbers()
                 lotto = Lotto(numbers)
+                inputView.endInput()
             } catch (e: IllegalArgumentException) {
                 outputView.printErrorMessage(e.message)
             }
         }
 
-        inputView.endInput()
-
         return lotto
+    }
+
+    private fun inputBonusNumber(winningLotto: Lotto): Bonus {
+        var bonus: Bonus? = null
+
+        while (bonus == null) {
+            try {
+                val number = inputView.inputBonusNumber()
+                bonus = Bonus(number)
+                bonus.checkDistinctWithWinningLotto(winningLotto.getNumbers())
+                inputView.endInput()
+            } catch (e: IllegalArgumentException) {
+                outputView.printErrorMessage(e.message)
+            }
+        }
+
+        return bonus
     }
 }
