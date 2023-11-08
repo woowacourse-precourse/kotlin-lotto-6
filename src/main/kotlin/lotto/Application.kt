@@ -1,9 +1,9 @@
 package lotto
 
-import lotto.domain.LottoAmount
 import lotto.domain.LottoCompare
 import lotto.domain.LottoMake
 import lotto.domain.LottoWinning
+import lotto.domain.Validation
 import lotto.presentation.LottoDecisionView.inputBonusNumber
 import lotto.presentation.LottoDecisionView.inputWinningNumber
 import lotto.presentation.LottoDecisionView.printBonusNumber
@@ -16,7 +16,7 @@ import lotto.presentation.LottoWinningView.printWinningStatic
 
 fun main() {
     printLottoPurchase()
-    val amount = LottoAmount().validation(inputLottoPurchase())
+    val amount = Validation().validationAmount(inputLottoPurchase())
     val count = outputPurchaseCount(amount)
     val lotto = LottoMake().resultLottoNumber(count)
     println()

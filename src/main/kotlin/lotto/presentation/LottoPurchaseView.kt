@@ -2,8 +2,6 @@ package lotto.presentation
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.domain.LottoCount
-import lotto.util.Exception.validateAmount
-import lotto.util.Exception.validateNegative
 import lotto.util.PURCHASE_NUMBER_TEXT
 import lotto.util.PURCHASE_PRICE_TEXT
 
