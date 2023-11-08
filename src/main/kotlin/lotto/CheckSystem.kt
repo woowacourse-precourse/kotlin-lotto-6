@@ -12,7 +12,7 @@ class CheckSystem {
 
         private const val errorMessageVacant = "[ERROR] 비어있거나 입력하지 않으셨습니다"
         private const val errorMessageZeroAndMinus = "[ERROR] 0 또는 음수를 입력하셨습니다"
-        private const val errorMessageOnlyNumber = "[ERROR] 숫자만 입력할 수 있습니다"
+        const val errorMessageOnlyNumber = "[ERROR] 숫자만 입력할 수 있습니다"
         private const val errorMessageZeroStart = "[ERROR] 0으로 시작하는 숫자를 입력하셨습니다"
         private const val errorMessageOneToFortyfive = "[ERROR] 숫자범위를 벗어났습니다. (범위 : 1 ~ 45)"
         private const val errorMessageThousand = "[ERROR] 1000 단위 숫자가 아닙니다"
@@ -243,7 +243,7 @@ class CheckSystem {
         }
 
 
-        private fun throwIllegalArgumentException(errorMessage: String) {
+        fun throwIllegalArgumentException(errorMessage: String) {
             return try {
                 throw IllegalArgumentException()
             } catch (e: IllegalArgumentException) {
@@ -251,7 +251,7 @@ class CheckSystem {
             }
         }
 
-        private fun throwNumberFormatException(errorMessage: String) {
+        fun throwNumberFormatException(errorMessage: String) {
             return try {
                 throw NumberFormatException()
             } catch (e: NumberFormatException) {

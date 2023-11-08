@@ -2,6 +2,8 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import kotlin.math.round
+import kotlin.math.roundToInt
 
 class Lotto(val numbers: List<Int>) {
     // 작성순서 : 프로퍼티, init 블록, 부 생성자, 메서드, 동반 객체
@@ -36,7 +38,7 @@ class Lotto(val numbers: List<Int>) {
         var selectBonusBall = 0
 
         var totalInventory = mutableMapOf<String, Int>()
-        var InvestmentAmount = 0
+        var investmentAmount = 0
         var Times = 0
         var totalMoney = 0
 
@@ -80,7 +82,9 @@ class Lotto(val numbers: List<Int>) {
         }
 
         fun numberContrast(
-            randomBallVowel: MutableMap<String, List<Int>>, selectBall6: List<Int>, selectBonusBall: Int
+            randomBallVowel: MutableMap<String, List<Int>>,
+            selectBall6: List<Int>,
+            selectBonusBall: Int
         ): MutableMap<String, Int> {
             for (clue in randomBallVowel.keys) {
                 var samAmount = (randomBallVowel[clue])!!.intersect(selectBall6).count()
@@ -107,8 +111,13 @@ class Lotto(val numbers: List<Int>) {
             println("6개 일치 (2,000,000,000원) - ${palce_1st}개")
             totalMoney = (5000 * palce_5th) + (5000 * palce_4th) + (1500000 * palce_3rd)
             +(30000000 * palce_2nd) + (2000000000 * palce_1st)
-            println("총 수익률은 ${totalMoney / InvestmentAmount}%입니다.")
 
+            println("투자금 : ${investmentAmount}")
+            println("수익금 : ${totalMoney.toDouble()}")
+            println("결과값 : ${totalMoney.toDouble().div(investmentAmount)}")
+            var decimalNumber = totalMoney.toDouble().div(investmentAmount) * 100
+            var returnRate = String.format("%.1f", decimalNumber)
+            println("총 수익률은 ${returnRate}%입니다.")
         }
     }
 }

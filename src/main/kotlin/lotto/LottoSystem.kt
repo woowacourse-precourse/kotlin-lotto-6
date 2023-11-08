@@ -34,7 +34,7 @@ class LottoSystem {
         }
 
         fun buyMessage(buyNumber: Int) {
-            println("${buyNumber} 게임을 구매했습니다")
+            println("${buyNumber}개를 구매했습니다.")
         }
 
     }

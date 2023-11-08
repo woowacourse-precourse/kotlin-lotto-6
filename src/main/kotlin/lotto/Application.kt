@@ -1,5 +1,7 @@
 package lotto
 
+import java.lang.NumberFormatException
+
 
 fun main() {
     var playingFlag = true
@@ -11,8 +13,13 @@ fun main() {
         playingFlag = CheckSystem.inputCheck(Lotto.inputResult, LottoSystem.caseBuyPrice)
     }
 
-    Lotto.InvestmentAmount = Lotto.inputResult.toInt()
-    Lotto.Times = (Lotto.InvestmentAmount / 1000)
+
+    try {
+        Lotto.investmentAmount = Lotto.inputResult.toInt()
+    } catch (e: NumberFormatException) {
+        println(CheckSystem.errorMessageOnlyNumber)
+    }
+    Lotto.Times = (Lotto.investmentAmount / 1000)
 
     playingFlag = true
     LottoSystem.buyMessage(Lotto.Times)
