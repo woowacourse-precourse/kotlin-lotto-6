@@ -240,3 +240,6 @@ https://www.daleseo.com/assertj/
 
 2차원 배열, List
 https://velog.io/@lifeisbeautiful/Kotlin%EC%97%90%EC%84%9C%EC%9D%98-%EB%B0%B0%EC%97%B4%EA%B3%BC-List-Java%EC%99%80-%EC%B0%A8%EC%9D%B4%EC%A0%90
+
+리스트 정렬
+https://velog.io/@changhee09/Kotlin-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%A0%95%EB%A0%ACsort-sortBy-sortWith

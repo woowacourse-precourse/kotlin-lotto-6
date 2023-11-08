@@ -7,4 +7,8 @@ fun main() {
     val lottos = Lottos()
     val numbers = lottos.getNumbers(purchaseAmount)
     lottos.printLottos(numbers)  // 오름차순 후 출력
+
+    val winningNumber = WinningNumber()
+    winningNumber.inputWinningNumber()
+    winningNumber.inputBonusNumber()
 }

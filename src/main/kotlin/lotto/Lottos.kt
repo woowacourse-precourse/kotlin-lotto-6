@@ -15,6 +15,7 @@ class Lottos {
     }
 
     fun printLottos(sortedLottos: Array<List<Int>>) {  // (정렬 후) 로또 출력
+        println()
         println("${sortedLottos.size}개를 구입했습니다.")
         for (i in sortedLottos.indices)
             println(sortedLottos[i])
