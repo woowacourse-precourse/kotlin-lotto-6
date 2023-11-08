@@ -12,23 +12,26 @@ object Validation {
     private const val MULTI_NUM_ERROR_MESSAGE = "[ERROR] 하나의 숫자만 입력 가능합니다."
     private const val UNIQUE_NUM_ERROR_MESSAGE = "서로 다른 숫자를 입력해주세요."
 
-    fun purchaseAmount(input: String) {
+    fun getPurchaseAmount(input: String):Int {
         checkIsDigit(input)
         checkCanDivided1000(input)
+        return input.toInt()
     }
 
-    fun answerNumber(input: String) {
+    fun getAnswerNumber(input: String):List<Int> {
         checkIsListDigit(input)
         checkContainComma(input)
         checkNumAmount(input)
         checkNumRange(input)
         checkUniqueNum(input)
+        return input.split(",").map { it.toInt() }
     }
 
-    fun bonusNum(input: String) {
+    fun getBonusNum(input: String):Int {
         checkIsDigit(input)
         checkNumRange(input)
         checkNotContainComma(input)
+        return input.toInt()
     }
 
     private fun checkIsDigit(input: String) {
