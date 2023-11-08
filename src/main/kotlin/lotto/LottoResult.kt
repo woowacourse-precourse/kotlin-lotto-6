@@ -1,5 +1,7 @@
 package lotto
 
+import java.text.DecimalFormat
+
 enum class LottoRank(val prize: Int, val prizeString: String) {
     FIRST(2_000_000_000, "2,000,000,000원"),
     SECOND(30_000_000, "30,000,000원"),
@@ -43,10 +45,11 @@ class LottoResult (private val lottos: List<Lotto>,
 
     private fun printResult() {
         PrintText.printMessage("PrintWinningStatistics", 0)
+        val decimal = DecimalFormat("#,###.0")
         val prizeAmount = calResult()
         val totalPrizeRate = ((prizeAmount.toDouble() / (lottos.size * 1000)) * 100)
 
-        println("총 수익률은 ${LottoMath.roundRate(totalPrizeRate)}%입니다.")
+        println("총 수익률은 ${decimal.format(LottoMath.roundRate(totalPrizeRate))}%입니다.")
     }
 
     private fun calResult(): Int {
