@@ -23,4 +23,20 @@ class LottoSellerTest {
             seller.validateBonusNumber()
         }
     }
+
+    @Test
+    fun `구입금액은 1000원 이상이어야 합니다`() {
+        val seller = LottoSeller()
+        assertThrows<IllegalArgumentException> {
+            seller.buyTickets(800)
+        }
+    }
+
+    @Test
+    fun `구입금액은 1000원 단위여야 합니다`() {
+        val seller = LottoSeller()
+        assertThrows<IllegalArgumentException> {
+            seller.buyTickets(1800)
+        }
+    }
 }
