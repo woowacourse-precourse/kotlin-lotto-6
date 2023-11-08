@@ -7,15 +7,44 @@ import kotlin.contracts.contract
 
 fun main() {
     val lottos = inputAndBuyLottos()
+
     printLottoNum(lottos)
+
     val winningNum = inputWinnerNum()
     val bonusNum = inputBonusNum(winningNum)
-    println("당첨 번호: $winningNum")
 
-    lottos.forEach { lotto ->
-        val lottoRank = checkLotto(lotto, winningNum, bonusNum)
-        println("당신의 로또 번호는 ${lottoRank.name}이며, 상금은 ${lottoRank.prize}원 입니다.")
+    val rankCountMap = calculateRankCount(lottos, winningNum, bonusNum)
+
+    println("당첨 통계")
+    println("---")
+    printRankCount(rankCountMap)
+
+    val totalPrize = calculateTotalPrize(rankCountMap)
+    val prizeRate = calculatePrizeRate(totalPrize, lottos.size * 1000)
+
+    println("총 수익률은 $prizeRate%입니다.")
+}
+
+fun calculateRankCount(lottos: List<Lotto>, winningNum: List<Int>, bonusNum: Int): Map<LottoRank, Int> {
+    return lottos.groupingBy { checkLotto(it, winningNum, bonusNum) }
+        .eachCount()
+        .withDefault { 0 }
+}
+
+fun printRankCount(rankCountMap: Map<LottoRank, Int>) {
+    LottoRank.entries.forEach { rank ->
+        if (rank != LottoRank.NONE) {
+            println("${rank.matchNum}개 일치 (${rank.prize}원) - ${rankCountMap.getValue(rank)}개")
+        }
     }
+}
+
+fun calculateTotalPrize(rankCountMap: Map<LottoRank, Int>): Long {
+    return rankCountMap.entries.sumOf { (rank, count) -> rank.prize * count }
+}
+
+fun calculatePrizeRate(totalPrize: Long, totalCost: Int): Int {
+    return (totalPrize.toDouble() / totalCost * 100).toInt()
 }
 
 enum class LottoRank(val matchNum: Int, val prize: Long) {
@@ -50,6 +79,7 @@ fun inputAndBuyLottos(): MutableList<Lotto> {
             val input = readLine() ?: throw IllegalArgumentException("[ERROR] 입력을 받지 못했습니다.")
             val money = ensureInt(input)
             val buyNum = ensureBuyNum(money)
+            println()
             return buyLottos(buyNum)
         } catch (e: IllegalArgumentException) {
             println(e.message)
@@ -108,7 +138,7 @@ fun bonusNumInput(winningNumbers: List<Int>): Int {
     if (winningNumbers.contains(bonus)) {
         throw IllegalArgumentException("[ERROR] 당첨 번호와 중복될 수 없습니다.")
     }
-
+    println()
     return bonus
 }
 
@@ -116,6 +146,7 @@ fun printLottoNum(lottos: MutableList<Lotto>) {
     lottos.forEach { lotto ->
         println(lotto)
     }
+    println()
 }
 fun buyLottos(buyNum: Int) : MutableList<Lotto> {
     val lottos = mutableListOf<Lotto>()
