@@ -4,10 +4,10 @@ class RealLottoes(private val paymentAmount: Int) : Lottoes {
 
     var userNumbers: Set<Int> = setOf()
     var bonusNumber: Int = 0
-
-    private var lottoGenerator: LottoGenerator = LottoGenerator()
     var lottoes: MutableList<Lotto> = mutableListOf()
+
     val lottoTicketCount: Int = paymentAmount / 1000
+    private var lottoGenerator: LottoGenerator = LottoGenerator()
     private var lottoesResult: MutableMap<WinningRank, Int> =
         WinningRank.values().associateWith { 0 }.toMutableMap()
 
