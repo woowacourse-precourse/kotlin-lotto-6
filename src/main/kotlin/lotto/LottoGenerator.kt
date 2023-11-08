@@ -13,10 +13,8 @@ class LottoGenerator(var money: Int) {
             .checkIsDivisibleByThousand(money)
     }
 
-    fun create(): LottoGenerator {
+    fun create() {
         for (i in 1..moneyToCountByThousand()) lottos.add(Lotto())
-
-        return this
     }
 
     fun printAll() {

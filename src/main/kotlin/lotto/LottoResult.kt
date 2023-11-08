@@ -48,22 +48,23 @@ class LottoResult(
         LottoPrize.THIRD_PRIZE.count++
     }
 
-    fun showWinLottoData(): LottoResult {
-        UserOutput.printWinLottoResult()
-        for (element in LottoPrize.entries) element.printPrizeData()
+    inner class LottoResultShow(private val money: Int) {
 
-        return this
-    }
+        fun showWinLottoData() {
+            UserOutput.printWinLottoResult()
+            for (element in LottoPrize.entries) element.printPrizeData()
+        }
 
-    fun showProfitData(money: Int) = UserOutput.printProfitResult(calculateProfit(money))
+        fun showProfitData() = UserOutput.printProfitResult(calculateProfit(money))
 
-    private fun calculateProfit(money: Int): Double = sumTotalPrizeMoney().toDouble() / money * 100
+        private fun calculateProfit(money: Int): Double = sumTotalPrizeMoney().toDouble() / money * 100
 
-    private fun sumTotalPrizeMoney(): Long {
-        var totalPrizeMoney: Long = 0
-        for (element in LottoPrize.entries)
-            totalPrizeMoney += element.calculatePrizeMoney()
+        private fun sumTotalPrizeMoney(): Long {
+            var totalPrizeMoney: Long = 0
+            for (element in LottoPrize.entries)
+                totalPrizeMoney += element.calculatePrizeMoney()
 
-        return totalPrizeMoney
+            return totalPrizeMoney
+        }
     }
 }

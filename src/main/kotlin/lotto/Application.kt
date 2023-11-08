@@ -8,9 +8,11 @@ fun main() {
             create()
             printAll()
 
-            LottoResult()
-                .calculateWinLottos(this.lottos)
-                .showWinLottoData()
-                .showProfitData(this.money)
+            LottoResult().calculateWinLottos(this.lottos)
+                .LottoResultShow(this.money) // inner class 생성
+                .run {
+                    showWinLottoData()
+                    showProfitData()
+                }
         }
 }
