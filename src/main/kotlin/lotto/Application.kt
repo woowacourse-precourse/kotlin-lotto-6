@@ -5,7 +5,8 @@ import camp.nextstep.edu.missionutils.Randoms
 fun main() {
     val lotto_tickets = buyLotto()
     val lotto_list = generateLottoNumbers(lotto_tickets)
-    val (winning_numbers_list, bonus_number) = receiveWinningNumbers()
+    val winning_numbers_list = receiveWinningNumbers()
+    val bonus_number = receiveBonusNumbers()
     val result = calculateLottoNumbers(lotto_list, winning_numbers_list, bonus_number)
     printResult(result, lotto_tickets)
 }
@@ -38,24 +39,36 @@ fun generateLottoNumbers(lotto_tickets: Int): MutableList<MutableList<Int>> {
     return lotto_list
 }
 
-fun receiveWinningNumbers(): Pair<MutableList<Int>, Int> {
+fun receiveWinningNumbers(): MutableList<Int> {
     val winning_numbers_list = mutableListOf<Int>()
     println("당첨 번호를 입력해 주세요.")
     val winning_numbers = readLine().toString().split(",")
-    if (winning_numbers < 1 || winning_numbers > 45 ) {
-        throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
-    }
     for (numbers in winning_numbers) {
+        if (numbers.toInt() < 1 || numbers.toInt() > 45 ) {
+            throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+        }
         winning_numbers_list.add(numbers.toInt())
     }
+    if(winning_numbers.size > 6) {
+        throw IllegalArgumentException("[ERROR] 로또 번호는 6개만 입력 가능 합니다.")
+    }
+    if(winning_numbers.size != winning_numbers.distinct().count()){
+        throw IllegalArgumentException("[ERROR] 로또 번호는 중복 없이 입력해야 합니다.")
+    }
     winning_numbers_list.sort()
+
+    return winning_numbers_list
+}
+
+fun receiveBonusNumbers(): Int {
     println("보너스 번호를 입력해 주세요.")
     val bonus_number = readLine()!!.toInt()
     if (bonus_number < 1 || bonus_number > 45 ) {
         throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+        receiveBonusNumbers()
     }
 
-    return Pair(winning_numbers_list, bonus_number)
+    return bonus_number
 }
 
 fun calculateLottoNumbers(lotto_list: MutableList<MutableList<Int>>, winning_numbers_list: MutableList<Int>, bonus_number: Int): MutableList<Int> {
@@ -84,7 +97,7 @@ fun printResult(result: MutableList<Int>, lotto_tickets: Int) {
     println("3개 일치 (5,000원) - ${result[0]}개")
     println("4개 일치 (50,000원) - ${result[1]}개")
     println("5개 일치 (1,500,000원) - ${result[2]}개")
-    println("5개 일치 (30,000,000원) - ${result[3]}개")
+    println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${result[3]}개")
     println("6개 일치 (2,000,000,000원) - ${result[4]}개")
     var returnRate = (5000 * result[0] + 50000 * result[1] + 1500000 * result[2] + 30000000 * result[4] + 20000000000 * result[4]).toDouble() / (lotto_tickets * 10)
     returnRate = "%.2f".format(returnRate).toDouble()
