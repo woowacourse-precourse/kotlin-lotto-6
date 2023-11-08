@@ -100,7 +100,7 @@
 
 ## WinningNumberChecker
 
-- [ ]  몇개가 당첨 되었는지 알 수 있다.
+- [x]  몇개가 당첨 되었는지 알 수 있다.
 
 ## **YieldCalculator**
 
