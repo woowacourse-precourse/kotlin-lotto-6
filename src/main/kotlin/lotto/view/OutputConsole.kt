@@ -46,7 +46,7 @@ object OutputConsole {
                     else -> " "
                 }
                 val formattedAmount = formatNumberWithCommas(rank.winningAmount)
-                println("${rank.countOfMatch}개 일치${bonusString} (${formattedAmount}원) - ${rankCount[rank] ?: 0}개")
+                println("${rank.countOfMatch}개 일치${bonusString}(${formattedAmount}원) - ${rankCount[rank] ?: 0}개")
             }
         }
     }
