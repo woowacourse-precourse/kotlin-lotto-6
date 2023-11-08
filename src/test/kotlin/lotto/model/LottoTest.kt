@@ -1,6 +1,5 @@
 package lotto.model
 
-import lotto.model.dto.LottoResult
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -32,15 +31,5 @@ class LottoTest {
         assertThat(exception.message).isEqualTo(Lotto.LOTTO_NUMBERS_NON_DUPLICATE)
     }
 
-    @Test
-    fun `로또 번호와 (당첨 번호, 보너스 번호)를 비교하여 count 개수 반환`() {
-        val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
-        val winningNumbers = WinningNumbers("1, 2, 3, 4, 5, 10")
-        val bonusNumber = BonusNumber("6")
 
-        val data = lotto.calculate(winningNumbers.numbers, bonusNumber.number)
-        val lottoResult = LottoResult(winningMatchCount = 5, bonusMatchCount = 1)
-
-        assertThat(data).isEqualTo(lottoResult)
-    }
 }

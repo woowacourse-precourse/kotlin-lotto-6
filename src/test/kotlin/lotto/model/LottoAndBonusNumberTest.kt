@@ -6,7 +6,7 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-class BonusNumberTest {
+class LottoAndBonusNumberTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["a", " ", "0,", ",0", "2, 3"])

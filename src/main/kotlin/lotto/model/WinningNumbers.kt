@@ -1,12 +1,19 @@
 package lotto.model
 
-class WinningNumbers(_winningNumbers: String) : Lotto(parseWinningNumbers(_winningNumbers)) {
+class WinningNumbers(_winningNumbers: String) {
+    private val lotto: Lotto
+    val numbers get() = lotto.numbers
+
+    init {
+        val numbers = parseWinningNumbers(_winningNumbers)
+        lotto = Lotto(numbers)
+    }
+
     companion object {
         private fun parseWinningNumbers(winningNumbers: String): List<Int> {
             try {
                 return winningNumbers.split(",")
                     .map { it.trim().toInt() }
-
             } catch (e: NumberFormatException) {
                 throw IllegalArgumentException(WINNING_NUMBERS_IS_ONLY_DIGIT, e)
             }

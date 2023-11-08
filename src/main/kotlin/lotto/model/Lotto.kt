@@ -1,7 +1,6 @@
 package lotto.model
 
 import lotto.Constants
-import lotto.model.dto.LottoResult
 import lotto.model.validation.LottoNumber
 
 /*
@@ -18,30 +17,14 @@ open class Lotto(private val _numbers: List<Int>) {
         validateDuplicate()
     }
 
-    protected fun validateSize() =
+    private fun validateSize() =
         require(_numbers.size == Constants.LOTTO_NUMBER_SIZE) { LOTTO_NUMBERS_OUT_OF_SIZE }
 
-    protected fun validateDuplicate() =
+    private fun validateDuplicate() =
         require(_numbers.size == _numbers.toSet().size) { LOTTO_NUMBERS_NON_DUPLICATE }
 
     override fun toString(): String {
         return "$_numbers"
-    }
-
-    fun calculate(
-        winningnumbers: List<LottoNumber>,
-        bonusNumber: LottoNumber
-    ): LottoResult {
-        var winningMatchCount = 0
-        val numbers = this.numbers
-        val bonusMatch = numbers.count { it == bonusNumber }
-
-        for (num in numbers) {
-            if (winningnumbers.contains(num)) {
-                winningMatchCount += 1
-            }
-        }
-        return LottoResult(winningMatchCount, bonusMatch)
     }
 
     companion object {

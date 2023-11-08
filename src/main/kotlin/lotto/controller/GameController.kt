@@ -3,11 +3,13 @@ package lotto.controller
 import lotto.Constants
 import lotto.model.BonusNumber
 import lotto.model.Lotto
-import lotto.model.LottoResults
+import lotto.model.LottoCalculator
+import lotto.model.LottosMatchCount
 import lotto.model.Lottos
-import lotto.model.PurchaseAmount
+import lotto.model.BuyingAmount
 import lotto.model.RateOfReturn
 import lotto.model.WinningNumbers
+import lotto.dto.WinningAndBonusNumbers
 import lotto.model.validation.WinningValidation
 import lotto.util.Task
 import lotto.view.InputView
@@ -16,11 +18,10 @@ import lotto.view.OutputView
 class GameController {
     private val inputView = InputView()
     private val outputView = OutputView()
-    private var lottoResults = LottoResults()
 
     // TODO: 가능하면 멤버 변수에서 빼기
     lateinit var lottos: Lottos
-    lateinit var purchaseAmount: PurchaseAmount
+    lateinit var buyingAmount: BuyingAmount
 
 
     fun play(task: Task) {
@@ -37,7 +38,7 @@ class GameController {
 
     private fun mainProcess(task: Task) {
         when (task.inputState) {
-            Task.State.INPUT_PURCHASEA_MOUNT -> processPurchaseAmount(task)
+            Task.State.INPUT_BUYING_AMOUNT -> processBuyingAmount(task)
             Task.State.INPUT_WINNING_AND_BONUS_NUMBERS ->
                 processWinningAndBonusNumbers(task, lottos.lottoNumbers)
 
@@ -45,29 +46,47 @@ class GameController {
         }
     }
 
-    private fun processPurchaseAmount(task: Task) {
-        purchaseAmount = inputToClassInstance({ it.purchaseAmountPrompt() }, ::PurchaseAmount)
+    private fun processBuyingAmount(task: Task) {
+        buyingAmount = inputToClassInstance({ inputView.buyingAmountPrompt() }, ::BuyingAmount)
         task.inputState = Task.State.INPUT_WINNING_AND_BONUS_NUMBERS
 
-        lottos = Lottos.create(purchaseAmount.amount / Constants.LOTTO_PRICE)
+        lottos = Lottos.create(buyingAmount.amount / Constants.LOTTO_PRICE)
 
-        outputView.printPurchaseResults(lottos)
+        outputView.printBuyingResults(lottos)
     }
 
     private fun processWinningAndBonusNumbers(task: Task, lottos: List<Lotto>) {
-        val winningNumbers = inputToClassInstance({ it.winningNumbersPrompt() }, ::WinningNumbers)
-        val bonusNumber = inputToClassInstance({ it.bonusNumberPrompt() }, ::BonusNumber)
-        WinningValidation(winningNumbers.numbers, bonusNumber.number)
+        val winningAndBonusNumbers = inputWinningAndBonusNumbers()
         task.inputState = Task.State.DONE
 
-        lottos.forEach {
-            val lottoMatchResult = it.calculate(winningNumbers.numbers, bonusNumber.number)
-            lottoResults.update(lottoMatchResult)
-        }
+        val lottosMatchCount = LottosMatchCount()
+        calculateMatch(lottosMatchCount, lottos, winningAndBonusNumbers)
 
-        val reward = RateOfReturn(lottoResults.result, purchaseAmount.amount)
-        outputView.printWinningResults(lottoResults.result)
-        outputView.printRateOfReturn(reward.get())
+        val rateOfReturn = RateOfReturn(lottosMatchCount.result, buyingAmount.amount)
+        outputView.printWinningResults(lottosMatchCount.result)
+        outputView.printRateOfReturn(rateOfReturn.getData())
+    }
+
+    fun inputWinningAndBonusNumbers(): WinningAndBonusNumbers {
+        val winningNumbers = inputToClassInstance({ inputView.winningNumbersPrompt() }, ::WinningNumbers)
+        val bonusNumber = inputToClassInstance({ inputView.bonusNumberPrompt() }, ::BonusNumber)
+
+        WinningValidation(winningNumbers.numbers, bonusNumber.number)
+
+        return WinningAndBonusNumbers(winningNumbers.numbers, bonusNumber.number)
+    }
+
+    fun calculateMatch(
+        lottosMatchCount: LottosMatchCount,
+        lottos: List<Lotto>,
+        winningAndBonusNumbers: WinningAndBonusNumbers
+    ) {
+        lottos.forEach {
+            val lottoMatchResult = LottoCalculator.calculate(
+                it.numbers, winningAndBonusNumbers
+            )
+            lottosMatchCount.update(lottoMatchResult)
+        }
     }
 
     private fun <T> inputToClassInstance(

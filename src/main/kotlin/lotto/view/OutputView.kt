@@ -5,14 +5,15 @@ import lotto.model.Lottos
 import lotto.util.Match
 
 class OutputView {
-    fun printPurchaseResults(lottos: Lottos) {
-        println(PURCHASE_COUNT_CONFIRMATION.format(lottos.lottoNumbers.size))
+    fun printBuyingResults(lottos: Lottos) {
+        println(BUYING_COUNT_CONFIRMATION.format(lottos.lottoNumbers.size))
 
         println("${lottos}\n")
     }
 
     fun printWinningResults(result: Map<Int, Int>) {
         println("$WINNING_STATISTICS\n$DIVIDING_LINE")
+
         Match.values().forEach { match ->
             println("${match.info} (${match.amount}$MONEY_UNIT) - ${result[match.count] ?: 0}개")
         }
@@ -25,9 +26,7 @@ class OutputView {
     fun printError(errorMessage: String) = println("${Constants.ERROR_TAG} $errorMessage")
 
     companion object {
-        const val PURCHASE_COUNT_CONFIRMATION = "%d개를 구매했습니다."
-
-
+        const val BUYING_COUNT_CONFIRMATION = "%d개를 구매했습니다."
 
         const val WINNING_STATISTICS = "당첨 통계"
         const val DIVIDING_LINE = "---"
