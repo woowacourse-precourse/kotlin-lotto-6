@@ -1,5 +1,6 @@
 package lotto.model
 
+import lotto.util.GameConstants.NO_RANK
 import lotto.util.GameConstants.RANK
 
 class Ranking {
@@ -13,7 +14,7 @@ class Ranking {
     }
 
     fun countRanking(ranking: Int) {
-        if (ranking != RANK) {
+        if (ranking != NO_RANK) {
             _rank[ranking]++
         }
     }
