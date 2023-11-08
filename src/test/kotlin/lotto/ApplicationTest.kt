@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 class ApplicationTest : NsTest() {
 
     @Test
-    fun functionTest() {
+    fun `기능 테스트`() {
         assertRandomUniqueNumbersInRangeTest(
             {
                 run("8000", "1,2,3,4,5,6", "7")
@@ -62,7 +62,7 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun exceptionTest() {
+    fun `예외 테스트`() {
         assertSimpleTest {
             runException("1000j")
             assertThat(output()).contains(ERROR_MESSAGE)
