@@ -50,8 +50,8 @@ class LottoTest {
     fun `각 로또가 정답 로또와 몇개 맞았는지 계산하는 기능`() {
         val lotto = Lotto(listOf(1,2,3,4,5,6))
 
-        var matchedCount = lotto.compareToWinningLotto(Lotto(listOf(4,3,2,1,7,8)))
-        assertThat(matchedCount).isEqualTo(4)
+        var lottoRank = lotto.compareToWinningLotto(Lotto(listOf(4,3,2,1,7,8)),45)
+        assertThat(lottoRank).isEqualTo(LottoRank.FOURTH)
     }
 
 

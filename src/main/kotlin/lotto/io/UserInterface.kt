@@ -1,5 +1,6 @@
 package lotto.io
 
+import lotto.LottoRank
 import java.lang.IllegalArgumentException
 
 class UserInterface(
@@ -53,6 +54,10 @@ class UserInterface(
     }
     fun printLottoCounts(counts:Int) {
         output.printQuantityMsg(counts)
+    }
+
+    fun showMyResult(lottoResult:Map<LottoRank,Int>,profitRate:String) {
+        output.printResult(lottoResult,profitRate)
     }
 
 
