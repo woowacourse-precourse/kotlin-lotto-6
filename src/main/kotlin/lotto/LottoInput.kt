@@ -19,12 +19,12 @@ object LottoInput {
         println()
 
         val lottoNumbers = getUserLottoNumber()
-        println()
-        val bonusNumber = getBonusNumber()
+        LottoData.myLottoNumber = lottoNumbers
         println()
 
-        LottoData.myLottoNumber = lottoNumbers
+        val bonusNumber = getBonusNumber()
         LottoData.myBonusNumber = bonusNumber
+        println()
 
     }
 
@@ -71,8 +71,8 @@ object LottoInput {
         }
     }
 
-    private fun generateLotto(){
-        repeat(LottoData.purchaseLottoAmount){
+    private fun generateLotto() {
+        repeat(LottoData.purchaseLottoAmount) {
             val lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6)
             Lotto(lottoNumber).printLottoNumber()
         }
