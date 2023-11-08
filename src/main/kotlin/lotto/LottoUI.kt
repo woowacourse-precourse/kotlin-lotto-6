@@ -1,11 +1,11 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.enumeration.PrintBuy
+import lotto.enumeration.Buy
 
 class LottoUI {
     fun printBuyPrice() {
-        println(PrintBuy.PRICE.value)
+        println(Buy.PRICE_INPUT.value)
     }
 
     fun inputBuyPrice(): String {
@@ -22,8 +22,8 @@ class LottoUI {
 
     private fun checkInvalidBuyPrice(buyPrice: String) {
         when {
-            buyPrice.toIntOrNull() == null -> throw IllegalArgumentException(PrintBuy.ERROR_NOT_INTEGER.value)
-            buyPrice.toInt() % 1000 != 0 -> throw IllegalArgumentException(PrintBuy.ERROR_NOT_THOUSAND.value)
+            buyPrice.toIntOrNull() == null -> throw IllegalArgumentException(Buy.ERROR_NOT_INTEGER.value)
+            buyPrice.toInt() % 1000 != 0 -> throw IllegalArgumentException(Buy.ERROR_NOT_THOUSAND.value)
         }
     }
 
