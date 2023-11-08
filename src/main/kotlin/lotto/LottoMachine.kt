@@ -2,9 +2,6 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 
-private const val CNT_LOTTO_NUMBER = 6
-private const val MIN_LOTTO_NUMBER = 1
-private const val MAX_LOTTO_NUMBER = 45
 
 class LottoMachine {
 
@@ -21,13 +18,13 @@ class LottoMachine {
     }
 
     private fun validateWinningNumbers(winningNumbers: List<Int>) {
-        require(winningNumbers.all { it in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER }) {
+        require(winningNumbers.all { it in Constants.MIN_LOTTO_NUMBER..Constants.MAX_LOTTO_NUMBER }) {
             throw IllegalArgumentException(
                 NUMBER_OUT_OF_RANGE
             )
         }
-        require(winningNumbers.size == CNT_LOTTO_NUMBER) { throw IllegalArgumentException(NUMBER_COUNT_ERROR) }
-        require(winningNumbers.toSet().size == CNT_LOTTO_NUMBER) {
+        require(winningNumbers.size == Constants.CNT_LOTTO_NUMBER) { throw IllegalArgumentException(NUMBER_COUNT_ERROR) }
+        require(winningNumbers.toSet().size == Constants.CNT_LOTTO_NUMBER) {
             throw IllegalArgumentException(
                 DUPLICATE_WINNING_NUMBER
             )
@@ -35,7 +32,11 @@ class LottoMachine {
     }
 
     private fun validateBonusNumber(bonusNumber: Int, winningNumbers: List<Int>) {
-        require(bonusNumber in MIN_LOTTO_NUMBER..MAX_LOTTO_NUMBER) { throw IllegalArgumentException(NUMBER_OUT_OF_RANGE) }
+        require(bonusNumber in Constants.MIN_LOTTO_NUMBER..Constants.MAX_LOTTO_NUMBER) {
+            throw IllegalArgumentException(
+                NUMBER_OUT_OF_RANGE
+            )
+        }
         require(bonusNumber !in winningNumbers) { throw IllegalArgumentException(DUPLICATE_BONUS_NUMBER) }
     }
 
