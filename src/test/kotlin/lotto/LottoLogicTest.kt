@@ -59,4 +59,13 @@ class LottoLogicTest {
             )
     }
 
+    @Test
+    fun `로또 수익률이 올바르게 계산되는지 확인`() {
+        val result: Map<LottoResult, Int> = mapOf(LottoResult.FIFTH to 1)
+        val purchaseAmount = 8000
+
+        assertThat(LottoLogic.calculateLottoReturnRate(purchaseAmount, result).toString())
+            .startsWith("62.5")
+    }
+
 }

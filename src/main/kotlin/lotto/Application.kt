@@ -17,6 +17,5 @@ fun main() {
 
     val results = LottoLogic.calculateLottoResults(lotto, winningNumbers, bonusNumber)
     LottoLogic.printLottoResultMessages(results)
-
-
+    LottoLogic.printLottoReturnRate(purchasePrice, results)
 }

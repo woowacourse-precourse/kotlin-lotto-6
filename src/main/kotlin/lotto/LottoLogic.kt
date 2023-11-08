@@ -62,4 +62,17 @@ object LottoLogic {
         }
     }
 
+    fun printLottoReturnRate(purchaseAmount: Int, lottoResults: Map<LottoResult, Int>) {
+        val returnRate = calculateLottoReturnRate(purchaseAmount, lottoResults)
+        println(LogicMessage.LOTTO_RETURN_RATE.format(returnRate))
+    }
+
+    fun calculateLottoReturnRate(purchaseAmount: Int, lottoResults: Map<LottoResult, Int>): Double {
+        val winningAmount = lottoResults.map { (result, count) ->
+            result.winningPrice * count
+        }.sum()
+        // 문제 조건에 따라 원금을 벌었을 때의 수익률을 100%로 가정하여 계산
+        return winningAmount.toDouble() / purchaseAmount * 100
+    }
+
 }
