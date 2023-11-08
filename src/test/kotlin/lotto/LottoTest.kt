@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.lotto.Lotto
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
