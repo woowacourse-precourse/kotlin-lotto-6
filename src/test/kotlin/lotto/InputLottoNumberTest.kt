@@ -24,13 +24,13 @@ class InputLottoNumberTest {
 
     @Test
     fun `로또 번호에 중복 값에 대한 유효성 검사`() {
-        val input = listOf(1,2,3,4,5,6)
+        val input = listOf(1, 2, 3, 4, 5, 6)
         Assertions.assertThat(inputValidation.checkDuplication(input))
     }
 
     @Test
     fun `로또 번호에 중복 값이 있다면 예외 발생`() {
-        val input = listOf(1,2,3,4,5,5)
+        val input = listOf(1, 2, 3, 4, 5, 5)
         assertThrows<IllegalArgumentException> {
             inputValidation.checkDuplication(input)
         }
@@ -38,7 +38,7 @@ class InputLottoNumberTest {
 
     @Test
     fun `보너스 번호가 로또 번호에 대한 중복 값이 있는지 유효성 검사`() {
-        val numbers = setOf(1,2,3,4,5,6)
+        val numbers = setOf(1, 2, 3, 4, 5, 6)
         val bonus = 45
         Assertions.assertThat(
             inputValidation.checkBonusNumberDuplication(
@@ -49,7 +49,7 @@ class InputLottoNumberTest {
 
     @Test
     fun `보너스 번호가 로또 번호에 대한 중복 값이 있다면 예외 발생`() {
-        val numbers = setOf(1,2,3,4,5,6)
+        val numbers = setOf(1, 2, 3, 4, 5, 6)
         val bonus = 6
         assertThrows<IllegalArgumentException> {
             inputValidation.checkBonusNumberDuplication(
@@ -60,13 +60,13 @@ class InputLottoNumberTest {
 
     @Test
     fun `로또 번호 갯수에 대한 유효성 검사`() {
-        val input = listOf("1","2","3","4","5","6")
+        val input = listOf("1", "2", "3", "4", "5", "6")
         Assertions.assertThat(inputValidation.checkLottoCount(input))
     }
 
     @Test
     fun `로또 번호 갯수가 6이 아니라면 예외 발생`() {
-        val input = listOf("1","2","3","4","5","6","7")
+        val input = listOf("1", "2", "3", "4", "5", "6", "7")
         assertThrows<IllegalArgumentException> {
             inputValidation.checkLottoCount(input)
         }
