@@ -12,11 +12,12 @@ class LottoMatcher(val target: TargetLottoStatus, val ownLotto: LottoStatus) {
             correctCount = it.compareNumbers(target.lottoNumbers)
             if (correctCount == 5)
                 isBonusCorrect = it.compareBonusNumber(target.bonusNumber)
-            checkRank(correctCount, isBonusCorrect)
+            val rank = checkRank(correctCount, isBonusCorrect)
+            takeRankPrize(rank)
         }
         printStatistics()
     }
-    fun checkRank(correctCount: Int, bonusCount: Boolean) {
+    fun checkRank(correctCount: Int, bonusCount: Boolean): Rank {
         val currentRank: Rank = when (correctCount) {
             6 -> Rank.FIRST
             5 -> when (bonusCount) {
@@ -27,7 +28,7 @@ class LottoMatcher(val target: TargetLottoStatus, val ownLotto: LottoStatus) {
             3 -> Rank.FIFTH
             else -> Rank.NO_PRIZE
         }
-        takeRankPrize(currentRank)
+        return currentRank
     }
     fun checkRank(place: Int): Rank {
         val rank: Rank = when (place) {
