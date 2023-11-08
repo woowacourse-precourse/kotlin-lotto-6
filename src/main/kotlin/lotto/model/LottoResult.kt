@@ -1,8 +1,11 @@
 package lotto.model
 
+import kotlin.math.round
+
 
 class LottoResult {
     private var totalLottoPrize: Int = 0
+    private var totalLottoRateOfReturn: Double = 0.0
     private var matchingLottoResult: MutableMap<LottoMatchNum, Int> = mutableMapOf(
         LottoMatchNum.THREE_MATCH to 0,
         LottoMatchNum.FOUR_MATCH to 0,
@@ -13,6 +16,7 @@ class LottoResult {
 
     fun getTotalLottoPrize(): Int = totalLottoPrize
     fun getMatchingLottoResult(): MutableMap<LottoMatchNum, Int> = matchingLottoResult
+    fun getTotalLottoRateOfReturn(): Double = totalLottoRateOfReturn
     fun setMatchingLottoResult(lottoMatchNum: LottoMatchNum) {
         matchingLottoResult[lottoMatchNum] = matchingLottoResult[lottoMatchNum]!! + 1
     }
@@ -26,5 +30,14 @@ class LottoResult {
                 totalLottoPrize += prize * matchResult
             }
         }
+    }
+
+    fun calculateLottoReturnOfRate(total: Int, lottoPurchaseMount: Int) {
+        totalLottoRateOfReturn =
+            roundNumber((1 + ((total - lottoPurchaseMount).toDouble() / lottoPurchaseMount)) * 100)
+    }
+
+    private fun roundNumber(num: Double): Double {
+        return round(num * 10) / 10
     }
 }

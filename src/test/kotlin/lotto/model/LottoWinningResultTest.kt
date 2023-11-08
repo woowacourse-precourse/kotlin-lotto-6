@@ -52,23 +52,32 @@ class LottoWinningResultTest {
     @Test
     fun `로또 당첨 결과 따른 당첨금 계산 테스트 value3`() {
         var lottoResult: LottoResult = LottoResult()
-        var matchingLottoNumCount = mutableListOf<Int>(0, 0, 0, 0, 0)
         lottoResult.calculateTotalLottoPrize()
 
         assertThat(lottoResult.getTotalLottoPrize()).isEqualTo(0)
     }
 
-/*    @Test
-    fun `보너스 번호 당첨 결과에 따른 당첨금 계`() {
+    @Test
+    fun `로또 당첨금에 따른 수익률 계산 테스트 value1`(){
         var lottoResult: LottoResult = LottoResult()
-        var matchingLottoNumCount = mutableListOf<Int>(0, 0, 0, 0, 0)
+        lottoResult.calculateLottoReturnOfRate(8000, 8000)
 
-        fun setMatchingLottoResult(lottoMatchNum: LottoMatchNum) {
-            matchingLottoResult[lottoMatchNum] = matchingLottoResult[lottoMatchNum]!! + 1
-        }
-        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(3))
-        lottoResult.calculateTotalLottoPrize()
+        assertThat(lottoResult.getTotalLottoRateOfReturn()).isEqualTo(100.0)
+    }
 
-        assertThat(lottoResult.getTotalLottoPrize()).isEqualTo(0)
-    }*/
+    @Test
+    fun `로또 당첨금에 따른 수익률 계산 테스트 value2`(){
+        var lottoResult: LottoResult = LottoResult()
+        lottoResult.calculateLottoReturnOfRate(5000, 8000)
+
+        assertThat(lottoResult.getTotalLottoRateOfReturn()).isEqualTo(62.5)
+    }
+
+    @Test
+    fun `로또 당첨금에 따른 수익률 계산 테스트 value3`(){
+        var lottoResult: LottoResult = LottoResult()
+        lottoResult.calculateLottoReturnOfRate(2000000000, 8000)
+
+        assertThat(lottoResult.getTotalLottoRateOfReturn()).isEqualTo(25000000.0)
+    }
 }
