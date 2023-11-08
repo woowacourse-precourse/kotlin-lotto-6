@@ -3,8 +3,10 @@ package lotto
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
+@DisplayName("Printer 테스트")
 class PrinterTest : NsTest() {
 
     private val printer = Printer()
