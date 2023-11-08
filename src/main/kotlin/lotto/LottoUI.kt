@@ -46,4 +46,16 @@ class LottoUI {
         println(Winning.NUMBER_INPUT.value)
     }
 
+    fun inputWinningNumbers(): Lotto {
+        val winningNumbers = Console.readLine().split(",")
+        try {
+            checkInvalidWinningNumbers(winningNumbers)
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            printWinningNumbers()
+            return inputWinningNumbers()
+        }
+        return Lotto(winningNumbersToInt(winningNumbers))
+    }
+
 }
