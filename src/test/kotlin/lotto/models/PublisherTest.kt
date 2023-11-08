@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test
 class PublisherTest {
 
     @Test
-    fun `구입하려는 로또 개수만큼 로또를 발행한다`() {
-        val publishingLottoCount = 5
+    fun `구입 금액만큼 로또를 발행한다`() {
+        val publisher = Publisher()
+        val purchaseAmount = 5000
         val expectedPublishedLottoCount = 5
 
-        val publisher = Publisher(publishingLottoCount)
-        val actualPublishedLottoCount = publisher.publishLottos().size
+        val actualPublishedLottoCount = publisher.publishLottos(purchaseAmount).size
 
         assertThat(actualPublishedLottoCount).isEqualTo(expectedPublishedLottoCount)
     }

@@ -1,13 +1,14 @@
 package lotto.models
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.models.Purchase.Companion.AMOUNT_UNIT
 
-class Publisher(private val publishingLottoCount: Int) {
+class Publisher {
 
-    fun publishLottos(): List<Lotto> {
+    fun publishLottos(purchaseAmount: Int): List<Lotto> {
         val publishedLottos = mutableListOf<Lotto>()
 
-        repeat(publishingLottoCount) {
+        repeat(purchaseAmount / AMOUNT_UNIT) {
             val lottoNumbers = generateLottoNumbers()
             val publishedLotto = Lotto(lottoNumbers)
 

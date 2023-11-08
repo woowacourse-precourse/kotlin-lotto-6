@@ -1,6 +1,8 @@
 package lotto.controller
 
+import lotto.models.Publisher
 import lotto.models.Purchase
+import lotto.models.Purchase.Companion.AMOUNT_UNIT
 import lotto.views.InputView
 import lotto.views.OutputView
 
@@ -9,10 +11,13 @@ class LottoGameController() {
     private val outputView: OutputView = OutputView()
 
     fun start() {
-        val purchase = inputPurchaseAmount()
+        val publisher = Publisher()
+
+        val purchaseAmount = inputPurchaseAmount()
+        val purchasedLottos = publisher.publishLottos(purchaseAmount)
     }
 
-    private fun inputPurchaseAmount(): Purchase {
+    private fun inputPurchaseAmount(): Int {
         var purchase: Purchase? = null
 
         while (purchase == null) {
@@ -24,6 +29,7 @@ class LottoGameController() {
             }
         }
 
-        return purchase
+        return purchase.getAmount()
     }
+
 }
