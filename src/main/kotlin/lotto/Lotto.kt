@@ -6,7 +6,10 @@ import camp.nextstep.edu.missionutils.Console
 class Lotto(private val numbers: MutableList<Int>) {
     init {
         require(numbers.size == 6)
+        require(numbers.toSet().size == numbers.size)
+        require(numbers.all { it in 1..45 })
     }
+
     private fun getInput(): String {
         return Console.readLine()
     }

@@ -5,7 +5,13 @@ import camp.nextstep.edu.missionutils.Randoms
 
 class LottoTicket {
 
-    fun getPrice(): Int {
+    fun getLottoListAndPrice(): Pair<MutableList<List<Int>>, Int> {
+        val price = getPrice()
+        val lottoList =getLottoTickets(price)
+        return Pair(lottoList, price)
+    }
+
+    private fun getPrice(): Int {
         return retrieveValidPrice()
     }
 
@@ -35,7 +41,7 @@ class LottoTicket {
         }
     }
 
-    fun getLottoTickets(price: Int): MutableList<List<Int>> {
+    private fun getLottoTickets(price: Int): MutableList<List<Int>> {
         val totalLottoCount = price / 1000
         println("\n${totalLottoCount}개를 구매했습니다.")
         val lottoList = mutableListOf<List<Int>>()
