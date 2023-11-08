@@ -39,8 +39,8 @@ class ConsoleLottoView : LottoView {
     override fun getWinningNumbers(): WinningNumbers {
         val numbers = runCatching {
             Console.readLine().split(NUMBER_DELIMITER).map(String::toInt)
-        }.onFailure {
-            throw NumberFormatException(INPUT_NOT_NUMBER)
+        }.onFailure { error ->
+            if (error is NumberFormatException) throw NumberFormatException(INPUT_NOT_NUMBER)
         }.getOrThrow()
 
         return WinningNumbers(numbers = numbers)
@@ -82,8 +82,8 @@ class ConsoleLottoView : LottoView {
 
     private fun readInt(): Int = runCatching {
         Console.readLine().toInt()
-    }.onFailure {
-        throw NumberFormatException(INPUT_NOT_NUMBER)
+    }.onFailure { error ->
+        if (error is NumberFormatException) throw NumberFormatException(INPUT_NOT_NUMBER)
     }.getOrThrow()
 
     companion object {

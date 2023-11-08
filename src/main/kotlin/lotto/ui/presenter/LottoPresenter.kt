@@ -29,7 +29,7 @@ class LottoPresenter(
             view.getMoney()
         }.onSuccess {
             _money = it
-        }.onFailure { error ->
+        }.onFailureOtherThanNoSuchElementException { error ->
             view.displayErrorMessage(message = error.message)
             getMoney()
         }
@@ -50,7 +50,7 @@ class LottoPresenter(
             view.getWinningNumbers()
         }.onSuccess {
             _winningNumbers = it
-        }.onFailure { error ->
+        }.onFailureOtherThanNoSuchElementException { error ->
             view.displayErrorMessage(message = error.message)
             getWinningNumbers()
         }
@@ -65,7 +65,7 @@ class LottoPresenter(
             }
         }.onSuccess {
             _bonusNumber = it
-        }.onFailure { error ->
+        }.onFailureOtherThanNoSuchElementException { error ->
             view.displayErrorMessage(message = error.message)
             getBonusNumber()
         }
@@ -92,6 +92,13 @@ class LottoPresenter(
 
         view.displayMessage(PROFIT_FORMAT.format(profit))
     }
+
+    // NoSuchElementException은 테스트에 사용되므로 처리하지 않는다.
+    private fun <T> kotlin.Result<T>.onFailureOtherThanNoSuchElementException(action: (Throwable) -> Unit) =
+        onFailure { error ->
+            if (error is NoSuchElementException) throw error
+            action(error)
+        }
 
     companion object {
         const val ENTER_MONEY_MESSAGE = "구입금액을 입력해 주세요."
