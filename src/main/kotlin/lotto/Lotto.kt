@@ -27,7 +27,7 @@ class Lotto(private val numbers: List<Int>) {
             3-> return PRIZE.FIFTH
             4-> return PRIZE.FOURTH
             5-> {
-                if(numbers.minus(lotto.getSetOfNumber()).contains(bonusNumber))
+                if(lotto.getSetOfNumber().minus(numbers.toSet()).contains(bonusNumber))
                     return PRIZE.SECOND
                 return PRIZE.THIRD
             }
