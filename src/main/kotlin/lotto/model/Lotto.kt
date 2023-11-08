@@ -17,6 +17,6 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun compareBonusNumber(bonusNumber: Int): Boolean {
-        return this.numbers.contains(bonusNumber)
+        return this.numbers.indexOf(bonusNumber) >= 0
     }
 }
