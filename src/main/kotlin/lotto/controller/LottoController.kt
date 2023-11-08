@@ -1,5 +1,6 @@
 package lotto.controller
 
+import lotto.constant.Constants.MAX_ATTEMPTS
 import lotto.domain.Lotto
 import lotto.domain.LottoRank
 import lotto.domain.LottoResult
@@ -23,7 +24,7 @@ class LottoController {
 
     private fun inputPrice(): Pair<LottoStore, Int> {
         var attempts = 0
-        while (attempts <= 5) {
+        while (attempts <= MAX_ATTEMPTS) {
             try {
                 val purchasePrice = InputView.promptForPurchasePrice().also { println() }
                 return Pair(LottoStore(purchasePrice), purchasePrice.toInt())
@@ -45,7 +46,7 @@ class LottoController {
 
     private fun inputWinNumbers(): List<Int> {
         var attempts = 0
-        while (attempts <= 5) {
+        while (attempts <= MAX_ATTEMPTS) {
             try {
                 val winNumbers = InputView.promptForWinNumbers().also { println() }
                 WinNumbersValidator(winNumbers)
@@ -61,7 +62,7 @@ class LottoController {
 
     private fun inputBonusNumber(winNumbers: List<Int>): Int {
         var attempts = 0
-        while (attempts <= 5) {
+        while (attempts <= MAX_ATTEMPTS) {
             try {
                 val bonusNumber = InputView.promptForBonusNumber().also { println() }
                 BonusNumberValidator(winNumbers, bonusNumber)

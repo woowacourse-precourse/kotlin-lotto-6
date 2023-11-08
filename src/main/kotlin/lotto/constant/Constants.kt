@@ -5,6 +5,9 @@ object Constants {
     const val END_INCLUSIVE = 45
     const val COUNT = 6
 
+    const val UNIT_OF_MONEY = 1000
+
+    const val MAX_ATTEMPTS = 10
+
     const val WIN_NUMBERS_LENGTH = 6
-    const val BONUS_NUMBER_LENGTH = 1
 }
