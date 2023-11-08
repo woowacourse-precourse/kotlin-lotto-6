@@ -120,9 +120,7 @@
 
 화면에 출력하는 역할을 수행하는 클래스
 
-    - printInputMoneyPrompt() : 사용자로부터 구입금액을 입력 요청하는 메시지를 출력하는 기능
-    - printWinningNumbersPrompt() : 사용자로부터 당첨 번호를 입력 요청하는 메시지를 출력하는 기능
-    - printBonusNumberPrompt() : 사용자로부터 보너스 번호를 입력 요청하는 메시지를 출력하는 기능
+    - printPromptMessage() : 사용자로부터 입력 요청하는 메시지를 출력하는 기능
     - printLottosReceipt(lottos: List<Lotto>) : 로또의 수와 번호들을 출력하는 기능
     - printWinningStatistics(result: LottoResult) : 당첨 통계를 출력하는 기능
     - printRateOfReturn(rateOfReturn: Double) : 총 수익률을 출력하는 기능
