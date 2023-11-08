@@ -1,19 +1,20 @@
-package lotto
+package lotto.ui
 
+import camp.nextstep.edu.missionutils.Console
 import lotto.validator.BonusNumberValidator
 import lotto.validator.InputMoneyValidator
 import lotto.validator.WinningNumbersValidator
-import lotto.view.InputView
 
-class InputService {
-    private val inputView = InputView()
+class InputManager {
+    private val outputManager = OutputManager()
     private val inputMoneyValidator = InputMoneyValidator()
     private val winningNumbersValidator = WinningNumbersValidator()
     private val bonusNumberValidator = BonusNumberValidator()
 
     fun getInputMoney(): Int {
         return try {
-            val inputMoney = inputView.readInputMoney()
+            outputManager.printInputMoneyPrompt()
+            val inputMoney = readString()
             inputMoneyValidator.validate(inputMoney)
             inputMoney.toInt()
         } catch (e: IllegalArgumentException) {
@@ -24,7 +25,8 @@ class InputService {
 
     fun getWinningNumbers(): List<Int> {
         return try {
-            val winningNumber = inputView.readWinningNumbers()
+            outputManager.printWinningNumbersPrompt()
+            val winningNumber = readString()
             winningNumbersValidator.validate(winningNumber)
             winningNumber.split(",").map { it.trim().toInt() }
         } catch (e: IllegalArgumentException) {
@@ -35,12 +37,17 @@ class InputService {
 
     fun getBonusNumber(winningNumber: List<Int>): Int {
         return try {
-            val bonusNumber = inputView.readBonusNumber()
+            outputManager.printBonusNumberPrompt()
+            val bonusNumber = readString()
             bonusNumberValidator.validate(bonusNumber, winningNumber)
             bonusNumber.toInt()
         } catch (e: IllegalArgumentException) {
             println(e.message)
             getBonusNumber(winningNumber)
         }
+    }
+
+    private fun readString(): String {
+        return Console.readLine().trim()
     }
 }

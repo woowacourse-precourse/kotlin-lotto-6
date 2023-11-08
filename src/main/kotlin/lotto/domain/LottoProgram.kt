@@ -1,11 +1,11 @@
 package lotto.domain
 
-import lotto.InputService
-import lotto.view.OutputView
+import lotto.ui.InputManager
+import lotto.ui.OutputManager
 
 class LottoProgram {
-    private val inputService = InputService()
-    private val outputView = OutputView()
+    private val inputManager = InputManager()
+    private val outputManager = OutputManager()
     private lateinit var lottoMachine: LottoMachine
     private lateinit var lottos: List<Lotto>
     private lateinit var winningLotto: WinningLotto
@@ -14,26 +14,26 @@ class LottoProgram {
     fun run() {
         purchaseLottos()
         drawWinningLotto()
-        displayResult()
+        displayOutcome()
     }
 
     private fun purchaseLottos() {
-        val inputMoney = inputService.getInputMoney()
+        val inputMoney = inputManager.getInputMoney()
         lottoMachine = LottoMachine(inputMoney)
         lottos = lottoMachine.issueLottos()
-        outputView.printLottosReceipt(lottos)
+        outputManager.printLottosReceipt(lottos)
     }
 
     private fun drawWinningLotto() {
-        val winningNumbers = inputService.getWinningNumbers()
-        val bonusNumber = inputService.getBonusNumber(winningNumbers)
+        val winningNumbers = inputManager.getWinningNumbers()
+        val bonusNumber = inputManager.getBonusNumber(winningNumbers)
         winningLotto = WinningLotto(Lotto(winningNumbers), bonusNumber)
     }
 
-    private fun displayResult() {
+    private fun displayOutcome() {
         lottoResult = lottoMachine.calculateResult(lottos, winningLotto)
         val rateOfReturn = lottoMachine.getRateOfReturn(lottoResult)
-        outputView.printWinningStatistics(lottoResult)
-        outputView.printRateOfReturn(rateOfReturn)
+        outputManager.printWinningStatistics(lottoResult)
+        outputManager.printRateOfReturn(rateOfReturn)
     }
 }
