@@ -1,6 +1,6 @@
 package lotto.domain
 
-import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange
 import lotto.model.Lotto
 import lotto.model.WinningLotto
 import java.text.DecimalFormat
@@ -48,7 +48,7 @@ class LottoManager {
         if (bonusResult) GameResult.SECOND else GameResult.THIRD
 
     private fun makeRandomNumbers(): List<Int> =
-        Randoms.pickUniqueNumbersInRange(
+        pickUniqueNumbersInRange(
             LottoRule.START_INCLUSIVE.num,
             LottoRule.END_INCLUSIVE.num,
             LottoRule.COUNT.num
