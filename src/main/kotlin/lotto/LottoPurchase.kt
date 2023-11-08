@@ -3,7 +3,8 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 
 enum class PurchaseErrorCode(val message: String){
-    ERROR_MESSAGE("[ERROR] 잘못된 숫자 입력입니다.")
+    ERROR_MESSAGE("[ERROR] 잘못된 숫자 입력입니다."),
+    ERROR_NOT_BUY("[ERROR] 1000원 단위로 입력하세요.")
 }
 
 class LottoPurchase {
@@ -11,11 +12,13 @@ class LottoPurchase {
     fun validatePurchase(cost: String) : Boolean {
         if(cost.isBlank() || !cost.all{it.isDigit()}){
             throw IllegalArgumentException(PurchaseErrorCode.ERROR_MESSAGE.message)
+        } else if(cost.toInt() % 1000 != 0){
+            throw IllegalArgumentException(PurchaseErrorCode.ERROR_NOT_BUY.message)
         }
         return true
     }
 
-    private fun checkPurchase(cost: String) : Boolean{
+    private fun checkPurchase(cost: String) : Boolean {
         return try {
             validatePurchase(cost)
             true
