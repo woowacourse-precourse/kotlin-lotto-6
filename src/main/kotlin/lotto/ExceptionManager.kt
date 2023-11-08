@@ -25,5 +25,11 @@ class ExceptionManager {
             } ?: throw IllegalArgumentException("숫자를 입력해주세요.")
         }
 
+        for (index in numbers) {
+            if (index > 45 || index < 1) {
+                throw IllegalArgumentException("1~45 사이의 숫자를 입력해주세요.")
+            }
+        }
+
     }
 }
