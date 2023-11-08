@@ -1,6 +1,6 @@
 package lotto.controller
 
-import lotto.model.RealLottoes
+import lotto.model.Lottoes
 import lotto.model.WinningRank
 import lotto.view.InputView
 import lotto.view.OutputView
@@ -10,7 +10,7 @@ class GameController {
     private val inputView = InputView()
     private val outputView = OutputView()
     private val validator = InputValidator()
-    private lateinit var lottoes: RealLottoes
+    private lateinit var lottoes: Lottoes
 
     fun start() {
         buyLottoes()
@@ -29,7 +29,7 @@ class GameController {
             outputView.purchasePrompt()
             val payment = inputView.purchaseAmount()
             isValid = validator.validatePurchaseAmount(payment)
-            lottoes = RealLottoes(payment)
+            lottoes = Lottoes(payment)
         } while (!isValid)
     }
 

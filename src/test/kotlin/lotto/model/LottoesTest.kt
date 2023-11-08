@@ -11,7 +11,7 @@ class LottoesTest {
     @Test
     fun `구매한 모든 로또의 당첨 결과를 Map 의 형태로 리턴한다`() {
         // given
-        val lottoes = RealLottoes(6000)
+        val lottoes = Lottoes(6000)
         lottoes.userNumbers = setOf(1, 2, 3, 4, 5, 6)
         lottoes.bonusNumber = 7
         lottoes.lottoes = mutableListOf(
@@ -41,7 +41,7 @@ class LottoesTest {
     @Test
     fun `구매한 모든 로또의 당첨 수익을 계산한다`() {
         // given
-        val lottoes = RealLottoes(6000)
+        val lottoes = Lottoes(6000)
         lottoes.userNumbers = setOf(1, 2, 3, 4, 5, 6)
         lottoes.bonusNumber = 7
         lottoes.lottoes = mutableListOf(
@@ -64,7 +64,7 @@ class LottoesTest {
     @Test
     fun `구매한 모든 로또의 수익률을 계산한다`() {
         // given
-        val lottoes = RealLottoes(6000)
+        val lottoes = Lottoes(6000)
         lottoes.userNumbers = setOf(1, 2, 3, 4, 5, 6)
         lottoes.bonusNumber = 7
         lottoes.lottoes = mutableListOf(
