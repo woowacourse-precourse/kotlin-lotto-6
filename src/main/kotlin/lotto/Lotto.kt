@@ -5,6 +5,7 @@ class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
         checkLottoNumber(numbers)
+        checkDuplicationNumber(numbers)
     }
 
     private fun checkLottoNumber(numbers: List<Int>) {
@@ -16,4 +17,9 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 
+    private fun checkDuplicationNumber(numbers: List<Int>) {
+        if (numbers.size != numbers.toSet().size) {
+            throw IllegalArgumentException("[ERROR] 로또 번호는 중복 될 수 없습니다.")
+        }
+    }
 }
