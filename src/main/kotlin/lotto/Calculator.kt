@@ -1,5 +1,7 @@
 package lotto
 
+import java.text.DecimalFormat
+
 class Calculator {
     private val FIFTH_PRIZE = 5000
     private val FOURTH_PRIZE = 50000
@@ -47,37 +49,23 @@ class Calculator {
         }
     }
 
-    private fun countMatchNumber(winningNumbersIter: Iterator<Int>, lottoIter: Iterator<Int>): Int {
+    private fun countMatchNumber(lotto: Lotto, winningNumbers: List<Int>): Int {
         var count = 0
-        var winningNumbersTarget = winningNumbersIter.next()
-        var lottoNumbersTarget = lottoIter.next()
-
-        while (winningNumbersIter.hasNext() && lottoIter.hasNext()) {
-            if (winningNumbersTarget == lottoNumbersTarget) {
-                count += 1
-                winningNumbersTarget = winningNumbersIter.next()
-                lottoNumbersTarget = lottoIter.next()
-            } else if (winningNumbersTarget > lottoNumbersTarget) {
-                lottoNumbersTarget = lottoIter.next()
-            } else if (winningNumbersTarget < lottoNumbersTarget) {
-                winningNumbersTarget = winningNumbersIter.next()
-            }
-        }
-
-        if (winningNumbersTarget == lottoNumbersTarget) {
-            count += 1
-        }
+        val difference = lotto._numbers.toSet().minus(winningNumbers.toSet())
+        difference.joinToString()
+        count = winningNumbers.size - difference.size
 
         return count
     }
 
     fun showAllCalculation() {
+        val dec = DecimalFormat("#,###")
         print("\n당첨 통계\n---\n")
-        println("3개 일치 (${FIFTH_PRIZE}원) - ${jackpot3}개")
-        println("4개 일치 (${FOURTH_PRIZE}원) - ${jackpot4}개")
-        println("5개 일치 (${THRID_PRIZE}원) - ${jackpot5}개")
-        println("5개 일치, 보너스 볼 일치 (${SECOND_PRIZE}원) - ${jackpot5WithBonus}개")
-        println("6개 일치 (${FIRST_PRIZE}원) - ${jackpot6}개")
+        println("3개 일치 (${dec.format(FIFTH_PRIZE)}원) - ${jackpot3}개")
+        println("4개 일치 (${dec.format(FOURTH_PRIZE)}원) - ${jackpot4}개")
+        println("5개 일치 (${dec.format(THRID_PRIZE)}원) - ${jackpot5}개")
+        println("5개 일치, 보너스 볼 일치 (${dec.format(SECOND_PRIZE)}원) - ${jackpot5WithBonus}개")
+        println("6개 일치 (${dec.format(FIRST_PRIZE)}원) - ${jackpot6}개")
     }
 
     fun showProfitRate() {
@@ -85,23 +73,19 @@ class Calculator {
     }
 
     fun is3Jackpot(lotto: Lotto, winningNumbers: List<Int>): Boolean {
-        val matchCount = countMatchNumber(winningNumbers.iterator(), lotto._numbers.iterator())
-        return matchCount == 3
+        return countMatchNumber(lotto, winningNumbers) == 3
     }
 
     fun is4Jackpot(lotto: Lotto, winningNumbers: List<Int>): Boolean {
-        val matchCount = countMatchNumber(winningNumbers.iterator(), lotto._numbers.iterator())
-        return matchCount == 4
+        return countMatchNumber(lotto, winningNumbers) == 4
     }
 
     fun is5Jackpot(lotto: Lotto, winningNumbers: List<Int>): Boolean {
-        val matchCount = countMatchNumber(winningNumbers.iterator(), lotto._numbers.iterator())
-        return matchCount == 5
+        return countMatchNumber(lotto, winningNumbers) == 5
     }
 
     fun is5JackpotWithBonus(lotto: Lotto, bonus: Int, winningNumbers: List<Int>, bonusNumber: Int): Boolean {
-        val matchCount = countMatchNumber(winningNumbers.iterator(), lotto._numbers.iterator())
-        return matchCount == 5 && bonus == bonusNumber
+        return countMatchNumber(lotto, winningNumbers) == 5 && bonus == bonusNumber
     }
 
     fun is6Jackpot(lotto: Lotto, winningNumbers: List<Int>): Boolean {
