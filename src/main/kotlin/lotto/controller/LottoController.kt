@@ -2,6 +2,10 @@ package lotto.controller
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.Constants.COUNT
+import lotto.Constants.MAX_NUMBER
+import lotto.Constants.MIN_NUMBER
+import lotto.Constants.MONETARY_UNIT
 import lotto.Lotto
 import lotto.domain.BonusNumberValidators
 import lotto.domain.compareToLotto
@@ -46,12 +50,12 @@ fun inputMessage(): String {
 }
 
 fun makeNumber(): List<Int> {
-    return Randoms.pickUniqueNumbersInRange(1, 45, 6)
+    return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT)
 }
 
 fun makeLottos(amount: Int): MutableList<Lotto> {
     val lottos : MutableList<Lotto> = mutableListOf()
-    repeat(amount/1000) {
+    repeat(amount/MONETARY_UNIT) {
         lottos.add(Lotto(makeNumber()))
     }
     return lottos

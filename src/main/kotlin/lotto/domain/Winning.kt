@@ -1,5 +1,6 @@
 package lotto.domain
 
+import lotto.Constants.EARNING_RATE_NUMBER
 import lotto.Lotto
 
 enum class Winning(val message: String, val match: Int, val prize: Int) {
@@ -61,5 +62,5 @@ fun getTotalAmount(matches: MutableList<Int>): Int {
 fun getEarningRate(amount: Int, total: Int): Float {
     val amount = amount.toFloat()
     val total = total.toFloat()
-    return (total/amount)*100
+    return (total/amount)*EARNING_RATE_NUMBER
 }

@@ -1,5 +1,8 @@
 package lotto.domain
 
+import lotto.Constants.MONETARY_UNIT
+import lotto.Constants.ZERO
+
 
 enum class PurchaseAmount(val message: String) {
     THOUSAN("[ERROR] 1,000원 단위로 입력해주세요.")
@@ -21,6 +24,6 @@ fun purchaseAmountNotInt(num: String) {
 }
 
 fun nonDivisibleAmount(num: Int) {
-    require (num % 1000 == 0) { PurchaseAmount.THOUSAN.message }
+    require (num % MONETARY_UNIT == ZERO) { PurchaseAmount.THOUSAN.message }
 }
 

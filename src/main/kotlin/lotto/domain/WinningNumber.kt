@@ -1,11 +1,16 @@
 package lotto.domain
 
+import lotto.Constants.COUNT
+import lotto.Constants.MAX_NUMBER
+import lotto.Constants.MIN_NUMBER
+
 
 enum class WinningNumber(val message: String) {
     DUPLICATE("[ERROR] 중복 되는 숫자 없이 입력해 주세요."),
     NON_SIX_NUMBER("[ERROR] 6개의 숫자를 입력해 주세요."),
     NON_COMMA("[ERROR] 각 숫자를 쉼표(,)로 나눠주세요."),
-    COMMA(",")
+    COMMA(","),
+    PATTERN("^(?!.*,{2})[0-9,]+$")
 }
 
 fun parser(input: String): List<String> {
@@ -31,7 +36,7 @@ fun handleNonInteger(numbers: List<String>): List<Int> {
 }
 
 fun handleInvalidNumberOfNumbers(numbers: List<Int>) {
-    require(numbers.size == 6) { WinningNumber.NON_SIX_NUMBER.message }
+    require(numbers.size == COUNT) { WinningNumber.NON_SIX_NUMBER.message }
 }
 
 fun handleEmptyString(numbers: List<String>) {
@@ -45,11 +50,11 @@ fun handleDuplicateNumbers(numbers: List<Int>) {
 }
 
 fun handleInvalidRange(numbers: List<Int>) {
-    val validNumbers = numbers.filter { it in 1..45 }
+    val validNumbers = numbers.filter { it in MIN_NUMBER..MAX_NUMBER }
     require(validNumbers.size == numbers.size) { Number.INVALID_RANGE.message }
 }
 
 fun handleNonCommaSeparated(input: String) {
-    val regex = Regex("^(?!.*,{2})[0-9,]+$")
+    val regex = Regex(WinningNumber.PATTERN.message)
     require(regex.matches(input)) { WinningNumber.NON_COMMA.message }
 }

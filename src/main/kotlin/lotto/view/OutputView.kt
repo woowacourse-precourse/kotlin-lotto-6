@@ -1,5 +1,6 @@
 package lotto.view
 
+import lotto.Constants.MONETARY_UNIT
 import lotto.domain.Winning
 import java.text.DecimalFormat
 
@@ -16,7 +17,7 @@ fun printStartMessage() {
 }
 
 fun printPurchaseTotal(total: Int) {
-    println("\n${total/1000}" + OutputView.PURCHASE_AMOUNT_PRINT.message)
+    println("\n${total/MONETARY_UNIT}" + OutputView.PURCHASE_AMOUNT_PRINT.message)
 }
 
 fun printWinningMessage() {
