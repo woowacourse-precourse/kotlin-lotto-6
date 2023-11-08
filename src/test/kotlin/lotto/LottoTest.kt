@@ -2,6 +2,7 @@ package lotto
 
 import lotto.domain.Lotto
 import lotto.domain.LottoWinResult
+import lotto.validation.InputValidator
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.assertj.core.api.Assertions.assertThat
@@ -18,6 +19,16 @@ class LottoTest {
     fun `로또 번호에 중복된 숫자가 있으면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
             Lotto(listOf(1, 2, 3, 4, 5, 5))
+        }
+    }
+
+    @Test
+    fun `당첨 번호와 보너스 번호가 중복으로 입력되면 예외가 발생한다`() {
+        val luckyNumbers = listOf(1,2,3,4,5,6)
+        val bonusNumber = 1
+
+        assertThrows<IllegalArgumentException> {
+            InputValidator.checkDuplicateBetweenBonusAndLuckyNumbers(bonusNumber, luckyNumbers)
         }
     }
 
@@ -67,7 +78,9 @@ class LottoTest {
         val totalMoney = LottoWinResult.getMoney()
         val rateOfProfit = LottoWinResult.calculateRateOfProfit(price, totalMoney)
 
-        assertThat(totalMoney).isEqualTo(5000)
-        assertThat(rateOfProfit).isEqualTo(62.5)
+//        assertThat(totalMoney).isEqualTo(5000)
+//        assertThat(rateOfProfit).isEqualTo(62.5)
+        assertEquals(5000, totalMoney)
+        assertEquals(62.5, rateOfProfit)
     }
 }
