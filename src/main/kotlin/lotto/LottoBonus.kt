@@ -9,8 +9,9 @@ enum class BonusErrorCode(val message: String) {
 class LottoBonus {
     fun bonusCheck(bonus: String) {
         val bonusNum = bonus.toIntOrNull()
-        if(bonusNum == null || bonusNum < 0 || bonusNum > 45)
+        if(bonusNum == null || bonusNum < 0 || bonusNum > 45) {
             throw IllegalArgumentException(BonusErrorCode.BONUS_NOT_VALID.message)
+        }
     }
     fun bonusRepeat(bonusNumber: Int, prizeNumber: List<Int>) {
         if(bonusNumber in prizeNumber)
