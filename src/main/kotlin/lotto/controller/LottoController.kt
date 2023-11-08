@@ -1,11 +1,11 @@
 package lotto.controller
 
+import lotto.controller.ErrorHandler.repeatInputIncorrect
 import lotto.domain.RandomLottoGenerator
 import lotto.model.Lotto
 import lotto.model.LottoPrize
 import lotto.model.LottoResults
 import lotto.model.Lottos
-import lotto.repeatInputIncorrect
 import lotto.view.InputView
 import lotto.view.InputView.LOTTO_PRICE
 import lotto.view.OutputView
@@ -16,13 +16,13 @@ class LottoController {
     private lateinit var lottoPrizes: List<LottoPrize>
 
     fun playGame() {
-        repeatInputIncorrect { buyLotto() }
+        buyLotto()
         receiveWinningNumbers()
         gameEnd()
     }
 
     private fun buyLotto() {
-        purchaseMoney = InputView.getPurchaseMoney()
+        purchaseMoney = repeatInputIncorrect { InputView.getPurchaseMoney() }
         val purchaseCount = purchaseMoney / LOTTO_PRICE
         randomLottos = Lottos(purchaseCount, RandomLottoGenerator())
 
