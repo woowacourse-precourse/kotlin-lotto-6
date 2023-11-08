@@ -13,7 +13,7 @@ object LottoGameController {
 
     fun start() {
         purchaseLotto()
-        setUserWinningNumber()
+        readWinningNumbersAndBonusNumber()
     }
 
     private fun purchaseLotto(){
@@ -28,17 +28,10 @@ object LottoGameController {
         lotties.printLotties()
     }
 
-    private fun setUserWinningNumber(){
+    private fun readWinningNumbersAndBonusNumber(){
         outputView.requestWinningNumbersMessage()
-        readWinningNumbersAndBonusNumber()
-    }
-
-    private fun readWinningNumbersAndBonusNumber(): Pair<List<Int>, Int> {
         winningNumbers = InputView.readWinningNumber()
         outputView.requestBonusNumberMessage()
-        bonusNumber = InputView.readBonusNumber()
-        inputView.validateBonusNumberNotInWinningNumbers(bonusNumber=bonusNumber, winningNumbers=winningNumbers)
-
-        return Pair(winningNumbers, bonusNumber)
+        bonusNumber = InputView.readBonusNumber(winningNumbers)
     }
 }

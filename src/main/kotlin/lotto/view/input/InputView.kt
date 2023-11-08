@@ -2,11 +2,9 @@ package lotto.view.input
 
 import lotto.domain.purchase.LottoPurchaseAmountParser
 import camp.nextstep.edu.missionutils.Console
-import lotto.constants.ErrorConstants.DISTINCT_BONUS_NUMBER_ERROR_MESSAGE
-import lotto.controller.LottoGameController
+import lotto.constants.ErrorConstants
 import lotto.domain.lotto.parser.LottoNumberParser
-import lotto.domain.winningnumber.WinningNumberParser
-import lotto.view.output.OutputView
+import lotto.domain.winningnumber.parser.WinningNumberParser
 
 object InputView {
     fun readPurchaseAmount(): Int {
@@ -20,30 +18,31 @@ object InputView {
     }
 
     fun readWinningNumber(): List<Int> {
-        println("당첨 번호를 입력해 주세요. (예: 1, 2, 3, 4, 5, 6)")
         val input = Console.readLine()
         return try {
-            WinningNumberParser.parseWinningNumbers(input)
+            val parseWinningNumbers = WinningNumberParser.parseWinningNumbers(input)
+            parseWinningNumbers
         } catch (e: IllegalArgumentException) {
             println(e.message)
             readWinningNumber()
         }
     }
 
-    fun readBonusNumber(): Int {
-        println("보너스 번호를 입력해 주세요.")
+    fun readBonusNumber(winningNumbers: List<Int>): Int {
         val input = Console.readLine()
         return try {
-            LottoNumberParser.parseNumber(input)
+            val bonusNumber = LottoNumberParser.parseNumber(input)
+            validateBonusNumberNotInWinningNumbers(bonusNumber = bonusNumber, winningNumbers = winningNumbers)
+            bonusNumber
         } catch (e: IllegalArgumentException) {
             println(e.message)
-            readBonusNumber()
+            readBonusNumber(winningNumbers)
         }
     }
 
-    fun validateBonusNumberNotInWinningNumbers(bonusNumber: Int, winningNumbers: List<Int>) {
+    private fun validateBonusNumberNotInWinningNumbers(bonusNumber: Int, winningNumbers: List<Int>) {
         if (bonusNumber in winningNumbers) {
-            throw IllegalArgumentException(DISTINCT_BONUS_NUMBER_ERROR_MESSAGE)
+            throw IllegalArgumentException(ErrorConstants.DISTINCT_BONUS_NUMBER_ERROR_MESSAGE)
         }
     }
 }
