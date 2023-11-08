@@ -1,5 +1,14 @@
 package lotto
 
+import lotto.controller.LottoController
+
 fun main() {
-    TODO("프로그램 구현")
+    try {
+        val lottoController = LottoController()
+        lottoController.start()
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+        main()
+    }
 }
+

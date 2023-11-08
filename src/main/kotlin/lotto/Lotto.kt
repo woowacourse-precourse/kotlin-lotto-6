@@ -3,7 +3,17 @@ package lotto
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
+        require(numbers.size == numbers.distinct().count())
+        println(lottoSort(numbers))
     }
 
-    // TODO: 추가 기능 구현
+    private fun lottoSort(numbers: List<Int>): List<Int> {
+        return numbers.sorted()
+    }
+
+    fun getNumbers(): List<Int> {
+        return lottoSort(numbers)
+    }
+
 }
+
