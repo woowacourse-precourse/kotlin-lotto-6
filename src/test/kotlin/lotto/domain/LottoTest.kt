@@ -3,6 +3,8 @@ package lotto.domain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 
 class LottoTest {
@@ -35,18 +37,11 @@ class LottoTest {
         }
     }
 
-    @Test
-    fun `로또가 특정 숫자를 포함하고 있다면 true를 반환한다`() {
+    @ParameterizedTest
+    @CsvSource(value = ["1 : true", "7 : false"], delimiter = ':')
+    fun `로또가 특정 숫자를 포함하고 있다면 true, 아니면 false를 반환한다`(number: Int, expected: Boolean) {
         val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
-        val expected = true
-        assertThat(expected).isEqualTo(lotto.hasNumber(1))
-    }
-
-    @Test
-    fun `로또가 특정 숫자를 포함하고 있지 않으면 false를 반환한다`() {
-        val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
-        val expected = false
-        assertThat(expected).isEqualTo(lotto.hasNumber(7))
+        assertThat(lotto.hasNumber(number)).isEqualTo(expected)
     }
 
     @Test

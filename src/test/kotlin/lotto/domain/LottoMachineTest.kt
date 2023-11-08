@@ -3,27 +3,18 @@ package lotto.domain
 import camp.nextstep.edu.missionutils.Randoms
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class LottoMachineTest {
-    @Test
-    fun `구입금액에 따라 로또를 생성한다`() {
-        val lottoMachine = LottoMachine(5000)
-        val lottos = lottoMachine.issueLottos()
-        val expectedLottosSize = 5
-        assertThat(expectedLottosSize).isEqualTo(lottos.size)
-    }
 
-    @Test
-    fun `pickUniqueNumbersInRange 메서드 테스트`() {
-        repeat(10000) {
-            val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
-            val numbersSet = numbers.toSet()
-            assertThat(numbers).hasSize(6)
-            assertThat(numbers.size).isEqualTo(numbersSet.size)
-            assertThat(numbers).allMatch { number ->
-                number in 1..45
-            }
-        }
+    @ParameterizedTest
+    @CsvSource(value = ["5000 : 5", "10000 : 10", "22000 : 22"], delimiter = ':')
+    fun `구입금액에 따라 로또를 생성한다`(inputMoney: Int, expectedSize: Int) {
+        val lottoMachine = LottoMachine(inputMoney)
+        val lottos = lottoMachine.issueLottos()
+        assertThat(expectedSize).isEqualTo(lottos.size)
+
     }
 
     @Test

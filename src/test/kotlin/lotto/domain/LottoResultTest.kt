@@ -7,9 +7,10 @@ class LottoResultTest {
     @Test
     fun `결과 생성 시 당첨 횟수 초기화 테스트`() {
         val lottoResult = LottoResult()
+        val expectedCount = 0
         val counts = Rank.entries.map { lottoResult.getRankCount(it) }
         assertThat(counts).allMatch { count ->
-            count == 0
+            count == expectedCount
         }
     }
 
@@ -23,18 +24,7 @@ class LottoResultTest {
     }
 
     @Test
-    fun `등수에 따라 당첨 횟수를 증가시킨다 2`() {
-        val lottoResult = LottoResult()
-        val rank = Rank.FIFTH
-        repeat(100) {
-            lottoResult.updateCount(rank)
-        }
-        val expectedCount = 100
-        assertThat(expectedCount).isEqualTo(lottoResult.getRankCount(rank))
-    }
-
-    @Test
-    fun `당첨 통계를 문자열로 반환한다`() {
+    fun `당첨 통계를 문자열로 반환한다 - 모두 1개씩 당첨된 경우`() {
         val lottoResult = LottoResult()
         for (rank in Rank.entries) {
             lottoResult.updateCount(rank)
