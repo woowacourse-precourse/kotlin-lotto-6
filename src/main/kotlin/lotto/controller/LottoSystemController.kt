@@ -1,13 +1,17 @@
 package lotto.controller
 
 import lotto.model.Lotto
+import lotto.model.LottoMatchNum
 import lotto.model.LottoPaper
+import lotto.model.LottoResult
 import lotto.model.validation.InputValidation
 import lotto.view.LottoSystemView
 
 class LottoSystemController(lottoSystemView: LottoSystemView) {
     private var lottoSystemView: LottoSystemView
     private lateinit var winningLottoNum: Lotto
+    private var bonusNum: Int = 0
+    var result = LottoResult()
 
     init {
         this.lottoSystemView = lottoSystemView
@@ -18,6 +22,8 @@ class LottoSystemController(lottoSystemView: LottoSystemView) {
         printLottoPaper(lottoPaper)
         inputWinningNumbers()
         inputBonusNumbers()
+        checkDuplicateLottoNumbers(lottoPaper)
+
     }
 
     private fun createLottoPaper(): LottoPaper {
@@ -43,9 +49,29 @@ class LottoSystemController(lottoSystemView: LottoSystemView) {
         winningLottoNum = InputValidation().validateInputWinningLottoNum(inputWinningNum)
     }
 
-    private fun inputBonusNumbers(){
+    private fun inputBonusNumbers() {
         var inputBonusNum = lottoSystemView.getBonusLottoNum()
-        var bonusNum = InputValidation().validateInputBonusNum(inputBonusNum)
-        winningLottoNum.setBonusNum(bonusNum)
+        bonusNum = InputValidation().validateInputBonusNum(inputBonusNum)
+    }
+
+    private fun checkDuplicateLottoNumbers(lottoPaper: LottoPaper) {
+        lottoPaper.getLottoPaper().forEach { lotto ->
+            var duplicatedNumCount = lotto.getLottoNumbers().filterNot { it in winningLottoNum.getLottoNumbers() }.size
+            if (duplicatedNumCount == 5){
+                checkDuplicateBonusNumber(lotto)
+            }
+            result.setMatchingLottoResult(LottoMatchNum.fromValue(duplicatedNumCount))
+        }
+    }
+
+    private fun checkDuplicateBonusNumber(lotto: Lotto){
+        if (bonusNum in lotto.getLottoNumbers()){
+            result.setMatchingLottoResult(LottoMatchNum.fromValue(LottoMatchNum.FIVE_PLUS_BONUS.matchingNum))
+        }
+    }
+
+    private fun printTotalWinningResult(lottoResult: LottoResult){
+        lottoSystemView.printWinningStatistics(lottoResult)
+        //lottoSystemView.printRateOfReturn(lottoResult.getTotalLottoPrize())
     }
 }

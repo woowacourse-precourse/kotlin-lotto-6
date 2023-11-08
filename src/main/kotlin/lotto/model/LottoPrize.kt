@@ -1,6 +1,6 @@
 package lotto.model
 
-enum class LottoMatchNum(val matchingNum: Int?) {
+enum class LottoMatchNum(val matchingNum: Int) {
     THREE_MATCH(3),
     FOUR_MATCH(4),
     FIVE_MATCH(5),
