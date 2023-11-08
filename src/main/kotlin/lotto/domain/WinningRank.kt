@@ -5,7 +5,7 @@ private const val FIFTH_PRICE = 5000
 private const val FOURTH_PRICE = 50000
 private const val THIRD_PRICE = 1500000
 private const val SECOND_PRICE = 30000000
-private const val FIRST_PRICE = 200000000
+private const val FIRST_PRICE = 2000000000
 
 enum class WinningRank(
     val message: String,
