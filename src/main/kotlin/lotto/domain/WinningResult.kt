@@ -16,11 +16,11 @@ class WinningResult(
         return statistics
     }
 
-    private fun calculateTotalPrize(statistics: Map<LottoRank, Int>): Int {
+    fun calculateTotalPrize(statistics: Map<LottoRank, Int>): Int {
         return statistics.entries.sumOf { it.key.prizeMoney * it.value }
     }
 
-    private fun calculateProfitRate(amount: Int, totalPrize: Int): Double {
+    fun calculateProfitRate(amount: Int, totalPrize: Int): Double {
         return totalPrize.toDouble() / amount * 100
     }
 
