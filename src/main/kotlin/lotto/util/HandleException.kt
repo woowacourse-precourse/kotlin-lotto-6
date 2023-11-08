@@ -9,12 +9,12 @@ class HandleException {
         return runCatching(fn).onSuccess {
             return it
         }.getOrElse {
-            printError(it.message)
+            printError(it.message + " ${errorMessage.INPUT_AGAIN}\n")
             return tryUntilSuccess(fn)
         }
     }
 
     fun printError(e: String?) {
-        println("${errorMessage.ERROR_PREFIX} ${e ?: errorMessage.UNKNOWN_ERROR} ${errorMessage.INPUT_AGAIN}\n")
+        println("${errorMessage.ERROR_PREFIX} ${e ?: errorMessage.UNKNOWN_ERROR}")
     }
 }

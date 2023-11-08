@@ -9,20 +9,20 @@ class InputView {
     private val validator: Validator = Validator()
 
     fun inputAmount() : Int {
-        val input: String? = Console.readLine()
+        val input: String = Console.readLine().trim()
         validator.checkPurchase(input)
-        return input!!.toInt()
+        return input.toInt()
     }
 
     fun inputWinningNums() : List<Int> {
-        val input: String? = Console.readLine()
+        val input: String = Console.readLine().trim()
         validator.checkWinningNums(input)
-        return input!!.split(",").map { it.toInt() }
+        return input.split(",").map { it.toInt() }
     }
 
     fun inputBonusNum() : Int {
-        val input: String? = Console.readLine()
+        val input: String = Console.readLine().trim()
         validator.checkBonusNum(input)
-        return input!!.toInt()
+        return input.toInt()
     }
 }
