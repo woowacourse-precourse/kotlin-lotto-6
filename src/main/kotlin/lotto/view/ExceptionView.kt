@@ -1,7 +1,7 @@
 package lotto.view
 
 object ExceptionView {
-  fun printPurchaseMoneyExceptionMessage(e: IllegalArgumentException) {
+  fun printExceptionMessage(e: IllegalArgumentException) {
     println(e.message)
   }
 }
