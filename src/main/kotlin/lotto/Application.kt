@@ -1,8 +1,7 @@
+package lotto
+
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
-
-import lotto.Lotto
-import lotto.Prize
 
 fun main() {
     val purchaseAmount = getPurchaseAmount()
