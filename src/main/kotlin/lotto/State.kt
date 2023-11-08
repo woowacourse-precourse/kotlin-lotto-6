@@ -1,7 +1,11 @@
 package lotto
 
-enum class State(val value: Int) {
-    FIRST(6), SECOND(7), THIRD(5), FOURTH(4), FIFTH(5)
+enum class State(val value: Int, val price: Int) {
+    FIRST(6, 2000000000),
+    SECOND(7, 30000000),
+    THIRD(5, 1500000),
+    FOURTH(4, 50000),
+    FIFTH(3, 5000)
 }
 
 enum class Message(val msg: String) {
