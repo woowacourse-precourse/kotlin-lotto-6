@@ -18,6 +18,10 @@ class LottoGameView {
         println("\n$LOTTO_WINNING_NUMBER_REQUEST_MESSAGE")
     }
 
+    fun requestBonusNumbers(){
+        println("\n$LOTTO_BONUS_NUMBER_REQUEST_MESSAGE")
+    }
+
     fun printErrorMessage(message: String?) {
         println("[ERROR]: ${message ?: "Unknown message"}")
     }

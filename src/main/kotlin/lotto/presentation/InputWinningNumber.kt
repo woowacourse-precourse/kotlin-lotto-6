@@ -1,6 +1,6 @@
 package lotto.presentation
 
-import lotto.isLottoNumberInRange
+import lotto.isAllLottoNumberInRange
 import lotto.isUnique
 
 class InputWinningNumber {
@@ -27,7 +27,7 @@ class InputWinningNumber {
         }
 
         private fun validateWinningNumbersInRange(winningNumbers: List<Int>) {
-            require(winningNumbers.isLottoNumberInRange()) {
+            require(winningNumbers.isAllLottoNumberInRange()) {
                 throw IllegalArgumentException("당첨 번호는 1~45 사이의 숫자로 입력해야합니다")
             }
         }

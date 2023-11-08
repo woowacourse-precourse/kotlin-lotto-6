@@ -6,7 +6,7 @@ class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
         require(numbers.isUnique())
-        require(numbers.isLottoNumberInRange())
+        require(numbers.isAllLottoNumberInRange())
     }
 
     // TODO: 추가 기능 구현
@@ -21,9 +21,7 @@ class Lotto(private val numbers: List<Int>) {
         fun generateRandomLottoNumbers(): Lotto {
             return Lotto(
                 Randoms.pickUniqueNumbersInRange(
-                    LOTTO_MIN_NUMBER,
-                    LOTTO_MAX_NUMBER,
-                    LOTTO_NUMBERS_COUNT
+                    LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBERS_COUNT
                 )
             )
         }
@@ -34,8 +32,10 @@ fun List<Int>.isUnique(): Boolean {
     return this.size == this.distinct().size
 }
 
-fun List<Int>.isLottoNumberInRange(): Boolean {
-    return this.filterNot { number ->
-        number in Lotto.LOTTO_MIN_NUMBER..Lotto.LOTTO_MAX_NUMBER
-    }.isEmpty()
+fun List<Int>.isAllLottoNumberInRange(): Boolean {
+    return this.filterNot { number -> number.isLottoNumberInRange() }.isEmpty()
+}
+
+fun Int.isLottoNumberInRange(): Boolean {
+    return this in Lotto.LOTTO_MIN_NUMBER..Lotto.LOTTO_MAX_NUMBER
 }

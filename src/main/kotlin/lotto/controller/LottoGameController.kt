@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import lotto.Lotto
 import lotto.Lotto.Companion.LOTTO_PRICE_PER_GAME
 import lotto.MoneyUtils
+import lotto.presentation.InputBonusNumber
 import lotto.presentation.InputWinningNumber
 import lotto.presentation.LottoGameView
 
@@ -11,6 +12,7 @@ class LottoGameController {
     private val lottoGameView = LottoGameView()
     private var lottoTickets = emptyList<Lotto>()
     private var winningNumber = emptyList<Int>()
+    private var bonusNumber = 0
 
     fun start() {
         val purchaseMoney = requestPurchaseMoney()
@@ -18,6 +20,7 @@ class LottoGameController {
         lottoGameView.printPurchasedLottos(lottoTickets)
 
         winningNumber = requestWinningNumber()
+        bonusNumber = requestBonusNumber()
     }
 
     private fun purchaseLottoTickets(purchaseMoney: Int) {
@@ -67,5 +70,25 @@ class LottoGameController {
             }
         }
         return inputWinningNumbers.split(",").map(Integer::parseInt)
+    }
+
+    private fun requestBonusNumber(): Int {
+        lottoGameView.requestBonusNumbers()
+        return getInputBonusNumber()
+    }
+
+    private fun getInputBonusNumber(): Int {
+        var inputBonusNumbers = ""
+        var isValidInput = false
+        while (!isValidInput) {
+            try {
+                inputBonusNumbers = Console.readLine()
+                InputBonusNumber.validate(inputBonusNumbers, winningNumber)
+                isValidInput = true
+            } catch (exception: IllegalArgumentException) {
+                lottoGameView.printErrorMessage(exception.message)
+            }
+        }
+        return inputBonusNumbers.toInt()
     }
 }
