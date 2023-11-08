@@ -8,34 +8,34 @@ object InputManager {
 
     fun getPurchaseInput(): Int {
         OutputManager.printInputPurchaseAmount()
-        return runCatching {
-            requireNotNull(Console.readLine().toIntOrNull()) { Error.NotNumber.message }
-        }.getOrElse {
-            println(it.message)
+        return try {
+            Console.readLine().toInt()
+        } catch (e: NumberFormatException) {
+            println(Error.NotNumber.message)
             getPurchaseInput()
         }
     }
 
     fun getWinningNumber(): List<Int> {
         OutputManager.printInputWinningNum()
-        return runCatching {
+        return try {
             Console.readLine()
                 .split(SEPARATOR)
                 .map { number ->
-                    requireNotNull(number.trim().toIntOrNull()) { Error.NotNumber.message }
+                    number.trim().toInt()
                 }
-        }.getOrElse {
-            println(it.message)
+        } catch (e: NumberFormatException) {
+            println(Error.NotNumber.message)
             getWinningNumber()
         }
     }
 
     fun getBonusNumber(): Int {
         OutputManager.printInputBonusNum()
-        return runCatching {
-            requireNotNull(Console.readLine().toIntOrNull()) { Error.NotNumber.message }
-        }.getOrElse {
-            println(it.message)
+        return try {
+            Console.readLine().toInt()
+        } catch (e: NumberFormatException) {
+            println(Error.NotNumber.message)
             getBonusNumber()
         }
     }
