@@ -5,9 +5,9 @@ import lotto.Constants
 class WinningNumbersValidator {
     fun validate(inputWinningNumbers: String) {
         val winningNumbers = splitAndParseToIntList(inputWinningNumbers)
-        requireSixNumber(winningNumbers)
+        requireSixNumbers(winningNumbers)
         requireValidNumberRange(winningNumbers)
-        requireUniqueNumber(winningNumbers)
+        requireUniqueNumbers(winningNumbers)
     }
 
     private fun splitAndParseToIntList(input: String): List<Int> {
@@ -18,7 +18,7 @@ class WinningNumbersValidator {
         }
     }
 
-    private fun requireSixNumber(numbers: List<Int>) {
+    private fun requireSixNumbers(numbers: List<Int>) {
         require(numbers.size == Constants.NUMBERS_SIZE) { INVALID_WINNING_NUMBERS_SIZE_ERROR_MESSAGE }
     }
 
@@ -28,7 +28,7 @@ class WinningNumbersValidator {
         }) { WINNING_NUMBER_OUT_OF_RANGE_ERROR_MESSAGE }
     }
 
-    private fun requireUniqueNumber(numbers: List<Int>) {
+    private fun requireUniqueNumbers(numbers: List<Int>) {
         require(numbers.toSet().size == numbers.size) { DUPLICATED_WINNING_NUMBERS_ERROR_MESSAGE }
     }
 

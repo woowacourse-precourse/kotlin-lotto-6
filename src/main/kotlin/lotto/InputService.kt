@@ -13,7 +13,7 @@ class InputService {
 
     fun getInputMoney(): Int {
         return try {
-            val inputMoney = inputView.readInputMoneyFromUser()
+            val inputMoney = inputView.readInputMoney()
             inputMoneyValidator.validate(inputMoney)
             inputMoney.toInt()
         } catch (e: IllegalArgumentException) {
@@ -24,7 +24,7 @@ class InputService {
 
     fun getWinningNumbers(): List<Int> {
         return try {
-            val winningNumber = inputView.readWinningNumbersFromUser()
+            val winningNumber = inputView.readWinningNumbers()
             winningNumbersValidator.validate(winningNumber)
             winningNumber.split(",").map { it.trim().toInt() }
         } catch (e: IllegalArgumentException) {
@@ -35,7 +35,7 @@ class InputService {
 
     fun getBonusNumber(winningNumber: List<Int>): Int {
         return try {
-            val bonusNumber = inputView.readBonusNumberFromUser()
+            val bonusNumber = inputView.readBonusNumber()
             bonusNumberValidator.validate(bonusNumber, winningNumber)
             bonusNumber.toInt()
         } catch (e: IllegalArgumentException) {

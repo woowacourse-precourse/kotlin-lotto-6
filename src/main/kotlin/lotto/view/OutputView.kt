@@ -4,7 +4,7 @@ import lotto.domain.Lotto
 import lotto.domain.LottoResult
 
 class OutputView {
-    fun printLottoPurchaseReceipt(lottos: List<Lotto>) {
+    fun printLottosReceipt(lottos: List<Lotto>) {
         printBlankLine()
         println("${lottos.size}" + PURCHASE_LOTTOS_MESSAGE)
         printLottoNumbers(lottos)

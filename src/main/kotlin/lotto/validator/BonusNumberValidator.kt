@@ -18,7 +18,9 @@ class BonusNumberValidator {
     }
 
     private fun requireValidNumberRange(bonusNumber: Int) {
-        require(bonusNumber in Constants.NUMBER_START_RANGE..Constants.NUMBER_END_RANGE) { BONUS_NUMBER_OUT_OF_RANGE_ERROR_MESSAGE }
+        require(bonusNumber in Constants.NUMBER_START_RANGE..Constants.NUMBER_END_RANGE) {
+            BONUS_NUMBER_OUT_OF_RANGE_ERROR_MESSAGE
+        }
     }
 
     private fun requireUniqueNumber(bonusNumber: Int, winningNumbers: List<Int>) {

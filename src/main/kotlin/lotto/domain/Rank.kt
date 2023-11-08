@@ -12,7 +12,7 @@ enum class Rank(
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원) - ");
 
-    fun getMessage(count: Int?): String {
+    fun getMessage(count: Int): String {
         return "$message${count}개\n"
     }
 
@@ -21,7 +21,7 @@ enum class Rank(
     }
 
     companion object {
-        fun checkRank(matchedCount: Int, bonusMatch: Boolean): Rank {
+        fun getRank(matchedCount: Int, bonusMatch: Boolean): Rank {
             return when {
                 matchedCount == FIRST.matchedCount -> FIRST
                 matchedCount == SECOND.matchedCount && bonusMatch -> SECOND

@@ -21,7 +21,7 @@ class LottoProgram {
         val inputMoney = inputService.getInputMoney()
         lottoMachine = LottoMachine(inputMoney)
         lottos = lottoMachine.issueLottos()
-        outputView.printLottoPurchaseReceipt(lottos)
+        outputView.printLottosReceipt(lottos)
     }
 
     private fun drawWinningLotto() {

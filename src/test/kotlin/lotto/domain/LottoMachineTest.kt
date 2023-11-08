@@ -42,7 +42,7 @@ class LottoMachineTest {
         val result = lottoMachine.calculateResult(lottos, winningLotto)
 
         val expectedRankCounts = Rank.entries.map { rank ->
-            result.getCount(rank)
+            result.getRankCount(rank)
         }
         assertThat(expectedRankCounts).allMatch { it == 1 }
     }
@@ -62,7 +62,7 @@ class LottoMachineTest {
         val inputMoney = 8000
         val lottoMachine = LottoMachine(inputMoney)
         val result = LottoResult()
-        result.addCount(Rank.FIFTH)
+        result.updateCount(Rank.FIFTH)
 
         val expectedRateOfReturn = 62.5
         assertThat(expectedRateOfReturn).isEqualTo(lottoMachine.getRateOfReturn(result))

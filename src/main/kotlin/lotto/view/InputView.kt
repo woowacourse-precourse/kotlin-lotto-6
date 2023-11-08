@@ -3,17 +3,17 @@ package lotto.view
 import camp.nextstep.edu.missionutils.Console
 
 class InputView {
-    fun readInputMoneyFromUser(): String {
+    fun readInputMoney(): String {
         println(INPUT_MONEY_PROMPT_MESSAGE)
         return Console.readLine().trim()
     }
 
-    fun readWinningNumbersFromUser(): String {
+    fun readWinningNumbers(): String {
         println(WINNING_NUMBERS_PROMPT_MESSAGE)
         return Console.readLine()
     }
 
-    fun readBonusNumberFromUser(): String {
+    fun readBonusNumber(): String {
         println("\n" + BONUS_NUMBER_PROMPT_MESSAGE)
         return Console.readLine().trim()
     }

@@ -32,7 +32,7 @@ class RankTest {
         val matchedCount = 6
         val bonusMatch = false
         val expectedRank = Rank.FIRST
-        assertThat(expectedRank).isEqualTo(Rank.checkRank(matchedCount, bonusMatch))
+        assertThat(expectedRank).isEqualTo(Rank.getRank(matchedCount, bonusMatch))
     }
 
     @Test
@@ -40,7 +40,7 @@ class RankTest {
         val matchedCount = 5
         val bonusMatch = true
         val expectedRank = Rank.SECOND
-        assertThat(expectedRank).isEqualTo(Rank.checkRank(matchedCount, bonusMatch))
+        assertThat(expectedRank).isEqualTo(Rank.getRank(matchedCount, bonusMatch))
     }
 
     @Test
@@ -48,7 +48,7 @@ class RankTest {
         val matchedCount = 5
         val bonusMatch = false
         val expectedRank = Rank.THIRD
-        assertThat(expectedRank).isEqualTo(Rank.checkRank(matchedCount, bonusMatch))
+        assertThat(expectedRank).isEqualTo(Rank.getRank(matchedCount, bonusMatch))
     }
 
     @Test
@@ -56,7 +56,7 @@ class RankTest {
         val matchedCount = 4
         val bonusMatch = false
         val expectedRank = Rank.FOURTH
-        assertThat(expectedRank).isEqualTo(Rank.checkRank(matchedCount, bonusMatch))
+        assertThat(expectedRank).isEqualTo(Rank.getRank(matchedCount, bonusMatch))
     }
 
     @Test
@@ -64,7 +64,7 @@ class RankTest {
         val matchedCount = 3
         val bonusMatch = false
         val expectedRank = Rank.FIFTH
-        assertThat(expectedRank).isEqualTo(Rank.checkRank(matchedCount, bonusMatch))
+        assertThat(expectedRank).isEqualTo(Rank.getRank(matchedCount, bonusMatch))
     }
 
     @Test
@@ -72,6 +72,6 @@ class RankTest {
         val matchedCount = 2
         val bonusMatch = false
         val expectedRank = Rank.NONE
-        assertThat(expectedRank).isEqualTo(Rank.checkRank(matchedCount, bonusMatch))
+        assertThat(expectedRank).isEqualTo(Rank.getRank(matchedCount, bonusMatch))
     }
 }

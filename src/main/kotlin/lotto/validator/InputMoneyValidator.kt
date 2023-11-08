@@ -2,8 +2,8 @@ package lotto.validator
 
 class InputMoneyValidator {
     fun validate(inputMoney: String) {
-        val money = parseToInt(inputMoney)
-        requireAmountDivisibleBy1000(money)
+        val moneyAmount = parseToInt(inputMoney)
+        requireAmountDivisibleBy1000(moneyAmount)
     }
 
     private fun parseToInt(inputMoney: String): Int {
@@ -14,8 +14,8 @@ class InputMoneyValidator {
         }
     }
 
-    private fun requireAmountDivisibleBy1000(money: Int) {
-        require(money % 1000 == 0) { NOT_DIVISIBLE_BY_THOUSAND_ERROR_MESSAGE }
+    private fun requireAmountDivisibleBy1000(moneyAmount: Int) {
+        require(moneyAmount % 1000 == 0) { NOT_DIVISIBLE_BY_THOUSAND_ERROR_MESSAGE }
     }
 
     companion object {

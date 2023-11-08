@@ -27,9 +27,9 @@ class LottoMachine(private val inputMoney: Int) {
         val result = LottoResult()
 
         for (lotto in lottos) {
-            val matchingCount = winningLotto.checkCountMatched(lotto)
-            val bonusMatch = winningLotto.checkBonusMatch(lotto)
-            result.addCount(Rank.checkRank(matchingCount, bonusMatch))
+            val matchingCount = winningLotto.countMatchedNumbers(lotto)
+            val bonusMatch = winningLotto.hasBonusNumber(lotto)
+            result.updateCount(Rank.getRank(matchingCount, bonusMatch))
         }
         return result
     }
@@ -41,7 +41,7 @@ class LottoMachine(private val inputMoney: Int) {
 
     private fun calculateTotalPrize(result: LottoResult): Int {
         return Rank.entries.sumOf { rank ->
-            result.getCount(rank) * rank.getPrize(rank)
+            result.getRankCount(rank) * rank.getPrize(rank)
         }
     }
 
