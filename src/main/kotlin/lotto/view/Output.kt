@@ -1,5 +1,6 @@
 package lotto.view
 
+import lotto.model.Lotto
 import lotto.model.WinningType
 
 class Output {
@@ -18,5 +19,12 @@ class Output {
         val returnRate = (totalReturn.toDouble() / purchaseAmount) * 100
         val roundedRate = String.format("%.1f", returnRate)
         println("총 수익률은 $roundedRate%입니다.")
+    }
+
+    fun printLottoesNum(lottoes: List<Lotto>) {
+        println("${lottoes.size}개를 구매했습니다.")
+        lottoes.forEach { lotto ->
+            lotto.printLottoNumbers()
+        }
     }
 }

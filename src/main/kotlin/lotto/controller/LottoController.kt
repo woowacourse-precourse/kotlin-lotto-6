@@ -63,7 +63,7 @@ class LottoController(
         val purchaseAmount = inputPurchaseAmountLoop()
         lottoManager = LottoManager(purchaseAmount)
         lottoManager.create()
-        lottoManager.printLottoesNum()
+        output.printLottoesNum(lottoManager.lottoes)
         println()
         return purchaseAmount
     }

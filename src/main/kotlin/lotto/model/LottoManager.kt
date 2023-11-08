@@ -21,12 +21,4 @@ class LottoManager(private val purchaseAmount: Int) {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6)
     }
 
-    fun printLottoesNum() {
-        println("${lottoNum}개를 구매했습니다.")
-        _lottoes.forEach { lotto ->
-            lotto.printLottoNumbers()
-        }
-    }
-
-
 }
