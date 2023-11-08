@@ -7,12 +7,23 @@ import lotto.controller.*
 import org.mockito.plugins.MockMaker
 
 class LottoModel { // 연산 처리
-    fun calculateLottoCount(input: Int): Int { // 로또 개수 계산4
-        var lottoCount: Int = (input / Value.LOTTO_COST)
-        if (input % Value.LOTTO_COST == 0) {
+
+    fun checkLottoCost(input: String) : Boolean {
+        if(input.toIntOrNull() != null) {
+            return true;
+        } else {
+            return throw IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_COST)
+        }
+    }
+
+    fun calculateLottoCount(input: String): Int { // 로또 개수 계산
+        var temp = input.toInt();
+        var lottoCount: Int = (temp / Value.LOTTO_COST)
+        if (temp % Value.LOTTO_COST == 0) {
             return lottoCount
         } else {
             return throw IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_TOTAL_COST)
+
         }
     }
 

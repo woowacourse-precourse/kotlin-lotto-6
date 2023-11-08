@@ -17,6 +17,11 @@ fun main() {
     lottoView.printRequestCost() // 구입금액 요청 출력
     var lottoCost = lottoController.inputLottoCost() // 구입금액 입력
 
+    var lottoCheckCost = lottoModel.checkLottoCost(lottoCost)
+
+
+    var lottoCostNum: Double = lottoCost.toDouble()
+
     var lottoCount = lottoModel.calculateLottoCount(lottoCost) // 구입 개수 저장
     lottoView.printLottoCountCheck(lottoCount) // 구입한 로또 개수 확인 문구 출력
 
@@ -58,7 +63,7 @@ fun main() {
         moneySum += seedMoney * finalAnswer.get(i)
     }
 
-    var moneyRate:Double = moneySum / lottoCost * 100.0
+    var moneyRate:Double = moneySum / lottoCostNum * 100.0
 
     println("${PrintMessage.PRINT_TOTAL_RATE}${moneyRate}${PrintMessage.PRINT_TOTAL_END_MESSAGE}")
 
