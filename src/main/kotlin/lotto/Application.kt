@@ -8,7 +8,6 @@ fun main() {
         try {
             myInputManagement.inputLottoNumbers()
             val myLotto = Lotto(myInputManagement.lottoNumbers)
-            myLotto.bonusNumber = myInputManagement.inputBonusNumbers()
         } catch (e: IllegalArgumentException) {
             isValidLotto = false
         }

@@ -6,6 +6,8 @@ object Error {
     const val LOTTO_NUMBER_TYPE_IS_NOT_INT = "로또 번호의 타입은 정수여야 합니다."
     const val LOTTO_NUMBER_IS_OUT_OF_RANGE = "로또 번호는 1~45사이의 정수여야 합니다."
     const val LOTTO_NUMBER_CANT_DUPLICATE = "로또 번호는 중복될 수 없습니다."
+    const val PRICE_TYPE_IS_NOT_INT = "구입금액은 정수여야 합니다."
+    const val PRICE_IS_UNDER_1000 = "구입금액은 1000원 이상이어야 합니다."
 
     fun printErrorMessage(msg: String) {
         println(MESSAGE_HEADER + msg)
