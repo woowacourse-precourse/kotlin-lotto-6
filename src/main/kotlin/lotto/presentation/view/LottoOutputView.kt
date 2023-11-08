@@ -33,7 +33,7 @@ class LottoOutputView {
     }
 
     fun printTotalReturnPercent(totalReturnPercent: String) {
-        println(totalReturnPercent)
+        println("총 수익률은 ${totalReturnPercent}입니다.")
     }
 
 

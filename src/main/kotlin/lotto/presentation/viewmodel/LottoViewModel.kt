@@ -27,7 +27,7 @@ class LottoViewModel {
         val winningRanks = winningCalculator.getWinningRanks()
         var matchCount = 3
         for (rank in 5 downTo 1) {
-            result += getMatchLotto(matchCount, winningRanks[rank] ?: 0,rank)
+            result += getMatchLotto(matchCount, winningRanks[rank] ?: 0, rank)
             if (rank == 3) continue
             matchCount++
         }
@@ -36,11 +36,11 @@ class LottoViewModel {
 
     fun formatTotalReturnPercent() = String.format("%.1f%%", winningCalculator.getTotalReturnPercent())
 
-    private fun getMatchLotto(matchCount: Int, rankCount: Int,rank:Int): String {
+    private fun getMatchLotto(matchCount: Int, rankCount: Int, rank: Int): String {
         if (rank == 2) {
-            return "${matchCount}개 일치, 보너스 볼 일치 (${formatCurrency(getPrizes(matchCount, true))}) - $rankCount \n"
+            return "${matchCount}개 일치, 보너스 볼 일치 (${formatCurrency(getPrizes(matchCount, true))}) - ${rankCount}개 \n"
         }
-        return "${matchCount}개 일치 (${formatCurrency(getPrizes(matchCount, false))}) - $rankCount \n"
+        return "${matchCount}개 일치 (${formatCurrency(getPrizes(matchCount, false))}) - ${rankCount}개 \n"
     }
 
 

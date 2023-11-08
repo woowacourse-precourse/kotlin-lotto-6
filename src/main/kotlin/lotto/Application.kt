@@ -1,7 +1,12 @@
 package lotto
 
 import lotto.presentation.view.LottoView
+import java.lang.IllegalArgumentException
 
 fun main() {
-    LottoView().play()
+    try {
+        LottoView().play()
+    } catch (e: IllegalArgumentException) {
+
+    }
 }
