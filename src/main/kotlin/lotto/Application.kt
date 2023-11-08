@@ -83,6 +83,7 @@ fun main() {
     val winners = lottoGame.findWinners()
     val totalPrize = lottoGame.calculateTotalPrize()
 
+    displayWinningResults(lottoGame,winners, totalPrize)
 }
 fun readPurchasePrice(): Int {
     val input = Console.readLine().toInt()
@@ -114,4 +115,19 @@ fun readBonusNumber(): Int {
 }
 fun Long.format(): String {
     return "%,d".format(this)
+}
+
+fun displayWinningResults(lottoGame: LottoGame, winners: List<Lotto>, totalPrize: Long) {
+    println("\n당첨 통계\n---")
+    val winningNumbers = lottoGame.getWinningNumbers()
+    val bonusNumber = lottoGame.getBonusNumber()
+    WinningResult.values().forEach {
+        val count = winners.count()
+        val prize = it.prize
+        println("${it.description} (${prize.format()}원) - ${count}개")
+    }
+    val purchasePrice = lottoGame.getPurchasePrice()
+    val profitRate = if (purchasePrice == 0) 0.0 else (totalPrize.toDouble() / purchasePrice.toDouble()) * 100.0
+    val profitRateFormatted = String.format("%.2f", profitRate)
+    println("총 수익률은 $profitRateFormatted%입니다.")
 }
