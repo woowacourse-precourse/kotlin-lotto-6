@@ -6,7 +6,6 @@ import lotto.domain.handleInvalidNumberOfNumbers
 import lotto.domain.handleInvalidRange
 import lotto.domain.handleNonCommaSeparated
 import lotto.domain.handleNonInteger
-import lotto.domain.parser
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -40,14 +39,14 @@ class WinningNumberTest {
     }
 
     @Test
-    fun `당첨 번호가 1 ~ 45 사이의 숫자가 아닐 경우 예외가 발생한다`() {
+    fun `당첨 번호가 1 ~ 45 사이의 숫자가 아니면 경우 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
             handleInvalidRange(listOf(1,2,3,4,5,46))
         }
     }
 
     @Test
-    fun `당첨 번호 쉼표(,)로 나눠지지 않은 경우 예외가 발생한다`() {
+    fun `당첨 번호 쉼표(,)로 나눠지지 않으면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
             handleNonCommaSeparated("1,2,3,,4,5,6")
         }

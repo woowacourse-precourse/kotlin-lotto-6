@@ -11,16 +11,16 @@ fun BonusNumberValidators(input: String): Int {
     return bonus
 }
 
-private fun handleInvalidNumber(input: String) {
-    require(input.length == 1) { BonusNumber.SINGLE_NUMBER }
+fun handleInvalidNumber(input: String) {
+    require(input.isNotEmpty() && input.isNotBlank()) { BonusNumber.SINGLE_NUMBER }
 }
 
-private fun handleNonInteger(input: String): Int {
+fun handleNonInteger(input: String): Int {
     val numericNumber = input.toIntOrNull()
     require(numericNumber != null) { Number.NON_INTEGER }
     return numericNumber
 }
 
-private fun handleInvalidRange(number: Int) {
+fun handleInvalidRange(number: Int) {
     require(number in 1..45 ) { Number.INVALID_RANGE }
 }

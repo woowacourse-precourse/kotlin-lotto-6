@@ -26,32 +26,32 @@ fun winningNumberValidators(input: String): List<Int> {
     return numbers
 }
 
-private fun handleNonInteger(numbers: List<String>): List<Int> {
+fun handleNonInteger(numbers: List<String>): List<Int> {
     val numericNumbers = numbers.mapNotNull { it.toIntOrNull() }
     require(numericNumbers.size == numbers.size) { Number.NON_INTEGER }
     return numericNumbers
 }
 
-private fun handleInvalidNumberOfNumbers(numbers: List<Int>) {
+fun handleInvalidNumberOfNumbers(numbers: List<Int>) {
     require(numbers.size == 6) { WinningNumber.NON_SIX_NUMBER }
 }
 
-private fun handleEmptyString(numbers: List<String>) {
+fun handleEmptyString(numbers: List<String>) {
     for(index in numbers.indices) {
-        require(!numbers[index].isNullOrBlank()) { Number.EMPTY }
+        require(numbers[index].isNotEmpty() && numbers[index].isNotBlank()) { Number.EMPTY }
     }
 }
 
-private fun handleDuplicateNumbers(numbers: List<Int>) {
+fun handleDuplicateNumbers(numbers: List<Int>) {
     require(numbers.size == numbers.distinct().size) { WinningNumber.DUPLICATE }
 }
 
-private fun handleInvalidRange(numbers: List<Int>) {
+fun handleInvalidRange(numbers: List<Int>) {
     val validNumbers = numbers.filter { it in 1..45 }
     require(validNumbers.size == numbers.size) { Number.INVALID_RANGE }
 }
 
-private fun handleNonCommaSeparated(input: String) {
+fun handleNonCommaSeparated(input: String) {
     val regex = Regex("^(?!.*,{2})[0-9,]+$")
     require(regex.matches(input)) { WinningNumber.NON_COMMA }
 }
