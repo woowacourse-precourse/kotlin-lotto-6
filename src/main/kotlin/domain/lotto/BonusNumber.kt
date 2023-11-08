@@ -1,4 +1,4 @@
-package lotto.lottonumber
+package domain.lotto
 
 class BonusNumber(
     private val number: String,

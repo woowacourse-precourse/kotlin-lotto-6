@@ -1,7 +1,7 @@
 package lotto
 
-import lotto.winningdetail.Jackpot
-import lotto.winningdetail.Profit
+import domain.winningdetail.Jackpot
+import domain.winningdetail.Profit
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

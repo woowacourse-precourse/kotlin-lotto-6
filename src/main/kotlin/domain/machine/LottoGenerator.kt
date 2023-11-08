@@ -1,7 +1,7 @@
-package lotto.machine
+package domain.machine
 
 import camp.nextstep.edu.missionutils.Randoms
-import lotto.Lotto
+import domain.lotto.Lotto
 
 class LottoGenerator {
 
