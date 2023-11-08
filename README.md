@@ -246,11 +246,14 @@ class Lotto(private val numbers: List<Int>) {
 
 ### Validator
 
-- [ ] 로또 번호의 숫자 범위는 1~45인지 확인
-- [ ] 로또 번호가 6자리 숫자인지 확인
-- [ ] 로또 번호가 서로 다른 숫자인지 확인
 - [ ] 보너스 번호가 1자리 숫자인지 확인
 - [ ] 보너스 번호가 입력된 당첨 번호 숫자와 다른지 확인
+
+### LottoNumberValidator
+
+- [x] 로또 번호의 숫자 범위는 1~45인지 확인
+- [x] 로또 번호가 6자리 숫자인지 확인
+- [x] 로또 번호가 서로 다른 숫자인지 확인
 
 ### PurchaseAmountValidator
 
