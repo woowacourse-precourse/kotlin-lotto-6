@@ -7,7 +7,7 @@ class LottoGame(
     private val controller: Controller = Controller(),
     private var purchaseNumber: Int = 0,
 ) {
-    // TODO : _자료형으로 재수정 하기
+
     private lateinit var randomLottoNumbers: List<Lotto>
     private lateinit var userWinningNumbers: UserWinningNumbers
 
