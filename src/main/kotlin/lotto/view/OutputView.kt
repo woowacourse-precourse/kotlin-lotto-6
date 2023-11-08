@@ -1,7 +1,6 @@
 package lotto.view
 
 import lotto.constants.Strings
-import lotto.model.Lotto
 import lotto.model.Lottos
 
 class OutputView {
@@ -25,8 +24,18 @@ class OutputView {
         userLottos.lottos.forEach{
             println(it.getNumbers())
         }
+        outputBlankLine()
     }
 
+    fun outputWinningNums() {
+        println(Strings.OUTPUT_WINNING_NUMS)
+        outputBlankLine()
+    }
+
+    fun outputBonusNum() {
+        println(Strings.OUTPUT_BONUS_NUM)
+        outputBlankLine()
+    }
 
     private fun outputBlankLine() {
         println()

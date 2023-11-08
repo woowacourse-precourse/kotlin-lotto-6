@@ -10,6 +10,16 @@ class Validator {
         checkTypeInt(input)
     }
 
+    fun checkWinningNums(input: String?) {
+        checkNullOREmpty(input)
+        input!!.split(",").map { checkTypeInt(it) }
+    }
+
+    fun checkBonusNum(input: String?) {
+        checkNullOREmpty(input)
+        checkTypeInt(input)
+    }
+
     private fun checkNullOREmpty(input: String?) {
         if(input.isNullOrEmpty()) throw IllegalArgumentException(errorMessage.INPUT_NULL_OR_EMPTY)
     }
