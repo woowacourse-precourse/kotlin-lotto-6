@@ -1,6 +1,6 @@
 package lotto.domain
 
-import lotto.data.LottoMatchInfo
+import lotto.data.LottoWinnerInfo
 
 class Lotto(private val numbers: List<Int>) {
 
@@ -9,19 +9,19 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.distinct().size == 6)
     }
 
-    fun matchingLotto(winningNumbers: List<Int>, bonusNumber: Int): LottoMatchInfo {
+    fun matchingLotto(winningNumbers: List<Int>, bonusNumber: Int): LottoWinnerInfo? {
         return when (countMatchNumber(winningNumbers)) {
-            6 -> LottoMatchInfo.MatchSix
+            6 -> LottoWinnerInfo.MatchSix
             5 -> {
                 if (isBonusNumberMatch(bonusNumber)) {
-                    LottoMatchInfo.MatchFiveWithBonus
+                    LottoWinnerInfo.MatchFiveWithBonus
                 } else {
-                    LottoMatchInfo.MatchFive
+                    LottoWinnerInfo.MatchFive
                 }
             }
-            4 -> LottoMatchInfo.MatchFour
-            3 -> LottoMatchInfo.MatchThree
-            else -> LottoMatchInfo.MatchUnderThree
+            4 -> LottoWinnerInfo.MatchFour
+            3 -> LottoWinnerInfo.MatchThree
+            else -> null
         }
     }
 
