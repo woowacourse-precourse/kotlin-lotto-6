@@ -1,4 +1,4 @@
-package lotto
+package lotto.model
 
 import lotto.Constants.Companion.ERROR_INVALID_PURCHASE_AMOUNT_MESSAGE
 import lotto.Constants.Companion.ERROR_OUT_OF_RANGE_NUMBER_MESSAGE
