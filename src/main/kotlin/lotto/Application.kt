@@ -1,5 +1,10 @@
 package lotto
 
+import lotto.controller.LottoSystemController
+import lotto.view.LottoSystemView
+
 fun main() {
-    TODO("프로그램 구현")
+    var lottoSystemView = LottoSystemView()
+    var lottoSystemController = LottoSystemController(lottoSystemView)
+    lottoSystemController.run()
 }
