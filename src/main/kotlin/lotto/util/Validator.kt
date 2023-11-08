@@ -33,6 +33,12 @@ object Validator {
 
     fun validateDuplicate(numbers: List<Int>, input: Int) {
         require(!numbers.contains(input)) {
+            ErrorMessage.NUMBER_BONUS.getMessage()
+        }
+    }
+
+    fun validateLottoDuplicate(input: List<Int>) {
+        require(input.distinct().size == LOTTO_SIZE) {
             ErrorMessage.NUMBER_DUPLICATION.getMessage()
         }
     }
