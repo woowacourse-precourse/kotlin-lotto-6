@@ -12,4 +12,5 @@ object LottoResource {
     const val PRINT_STATISTICS_MESSAGE = "당첨 통계\n---"
     const val MAX_RANK_PLACE = 5
     const val MIN_RANK_PLACE = 1
+    const val NUMBER_OF_BRANCH_2ND_AND_3RD = 5
 }

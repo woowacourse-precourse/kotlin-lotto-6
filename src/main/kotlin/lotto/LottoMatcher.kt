@@ -10,7 +10,7 @@ class LottoMatcher(val target: TargetLottoStatus, val ownLotto: LottoStatus) {
         var isBonusCorrect = false
         ownLotto.myLottos.forEach {
             correctCount = it.compareNumbers(target.lottoNumbers)
-            if (correctCount == 5)
+            if (correctCount == LottoResource.NUMBER_OF_BRANCH_2ND_AND_3RD)
                 isBonusCorrect = it.compareBonusNumber(target.bonusNumber)
             val rank = checkRank(correctCount, isBonusCorrect)
             takeRankPrize(rank)
@@ -19,24 +19,24 @@ class LottoMatcher(val target: TargetLottoStatus, val ownLotto: LottoStatus) {
     }
     fun checkRank(correctCount: Int, bonusCount: Boolean): Rank {
         val currentRank: Rank = when (correctCount) {
-            6 -> Rank.FIRST
-            5 -> when (bonusCount) {
+            Rank.FIRST.correctCount -> Rank.FIRST
+            LottoResource.NUMBER_OF_BRANCH_2ND_AND_3RD -> when (bonusCount) {
                 true -> Rank.SECOND
                 false -> Rank.THIRD
             }
-            4 -> Rank.FOURTH
-            3 -> Rank.FIFTH
+            Rank.FOURTH.correctCount -> Rank.FOURTH
+            Rank.FIFTH.correctCount -> Rank.FIFTH
             else -> Rank.NO_PRIZE
         }
         return currentRank
     }
     fun checkRank(place: Int): Rank {
         val rank: Rank = when (place) {
-            1 -> Rank.FIRST
-            2 -> Rank.SECOND
-            3 -> Rank.THIRD
-            4 -> Rank.FOURTH
-            5 -> Rank.FIFTH
+            Rank.FIRST.rank -> Rank.FIRST
+            Rank.SECOND.rank -> Rank.SECOND
+            Rank.THIRD.rank -> Rank.THIRD
+            Rank.FOURTH.rank -> Rank.FOURTH
+            Rank.FIFTH.rank -> Rank.FIFTH
             else -> Rank.NO_PRIZE
         }
         return rank
@@ -53,7 +53,7 @@ class LottoMatcher(val target: TargetLottoStatus, val ownLotto: LottoStatus) {
         printProfitRate()
     }
     fun printProfitRate() {
-        val originPrice = ownLotto.countOfLotto * 1000
+        val originPrice = ownLotto.countOfLotto * LottoResource.LOTTO_PRICE
         val profitRate = round(((profitSum.toDouble() / originPrice.toDouble() * 100) * 100)) / 100
         println("총 수익률은 ${profitRate}%입니다.")
     }
