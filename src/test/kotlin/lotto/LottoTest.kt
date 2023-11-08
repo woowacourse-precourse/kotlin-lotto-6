@@ -21,4 +21,19 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `로또 번호가 1부터 45 사이의 숫자가 아닌 경우 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1, 2, 3, 46, 5, 6))
+        }
+    }
+
+    @Test
+    fun `로또 번호 중에 0이 있으면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1, 2, 3, 0, 5, 6))
+        }
+    }
+
+
 }
