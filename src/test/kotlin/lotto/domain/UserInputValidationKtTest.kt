@@ -6,7 +6,7 @@ import org.junit.jupiter.api.assertThrows
 class UserInputValidationKtTest {
 
     companion object {
-        val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
+        private val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
     }
 
     @Test
@@ -42,7 +42,7 @@ class UserInputValidationKtTest {
     @Test
     fun `보너스 번호가 1 ~ 45가 아니면 오류 발생`() {
         assertThrows<IllegalArgumentException> {
-            "1".bonusValidation(winningNumbers)
+            "568".bonusValidation(winningNumbers)
         }
     }
 
