@@ -2,6 +2,7 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import constants.Constants
 
 
 class Lotto(private val numbers: List<Int>) {
@@ -127,18 +128,13 @@ class Lotto(private val numbers: List<Int>) {
 
     private fun calculateProfit(matchingNumbers: List<Int>): String {
         val lottoPurchaseAmount = matchingNumbers.size * 1000
-        val match3Numbers = 5000.0
-        val match4Numbers = 50000.0
-        val match5Numbers = 1500000.0
-        val match5NumbersWithBonus = 30000000.0
-        val match6Numbers = 2000000000.0
 
         val prizeMap = mapOf(
-            3 to match3Numbers,
-            4 to match4Numbers,
-            5 to match5Numbers,
-            5 to match5NumbersWithBonus,
-            6 to match6Numbers
+            3 to Constants.MATCH_3_PRIZE,
+            4 to Constants.MATCH_4_PRIZE,
+            5 to Constants.MATCH_5_PRIZE,
+            5 to Constants.MATCH_5_WITH_BONUS_PRIZE,
+            6 to Constants.MATCH_6_PRIZE
         )
 
         val totalPrize = matchingNumbers.mapNotNull { prizeMap[it] }.sum()
@@ -149,27 +145,3 @@ class Lotto(private val numbers: List<Int>) {
     }
 }
 
-enum class MyNumbers(val value: Int) {
-    ONE(1),
-    THREE(3),
-    FOUR(4),
-    FIVE(5),
-    SIX(6),
-    ZERO(0),
-    THOUSAND(1000),
-    HUNDRED(100)
-}
-
-enum class PrizeAmounts {
-    MATCH3(5000.0),
-    MATCH4(50000.0),
-    MATCH5(1500000.0),
-    MATCH5_WITH_BONUS(30000000.0),
-    MATCH6(2000000000.0);
-
-    val amount: Double
-
-    constructor(amount: Double) {
-        this.amount = amount
-    }
-}
