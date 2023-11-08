@@ -244,10 +244,10 @@ class Lotto(private val numbers: List<Int>) {
 - [ ] 보너스 번호 입력
 - [ ] 예외 발생시 다시 입력 받기
 
-### Validator
+### BonusNumberValidator
 
-- [ ] 보너스 번호가 1자리 숫자인지 확인
-- [ ] 보너스 번호가 입력된 당첨 번호 숫자와 다른지 확인
+- [x] 보너스 번호가 1자리 숫자인지 확인
+- [x] 보너스 번호가 입력된 당첨 번호 숫자와 다른지 확인
 
 ### LottoNumberValidator
 
