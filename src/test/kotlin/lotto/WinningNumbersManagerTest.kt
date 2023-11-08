@@ -1,12 +1,49 @@
 package lotto
 
 import model.WinningNumbersManager
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class WinningNumbersManagerTest {
 
     private val winningNumbersManager = WinningNumbersManager(listOf("1", "2", "3", "33", "34", "45"))
+
+    @BeforeEach
+    fun setUp() {
+        winningNumbersManager.isBonusNumberValid("44")
+    }
+
+    @Test
+    fun `1등 결과를 반환하는지 확인한다`() {
+        val result = 1
+        assertThat(result).isEqualTo(winningNumbersManager.getRank(listOf(1, 2, 3, 33, 34, 45)))
+    }
+
+    @Test
+    fun `2등 결과를 반환하는지 확인한다`() {
+        val result = 2
+        assertThat(result).isEqualTo(winningNumbersManager.getRank(listOf(1, 2, 3, 33, 34, 44)))
+    }
+
+    @Test
+    fun `3등 결과를 반환하는지 확인한다`() {
+        val result = 3
+        assertThat(result).isEqualTo(winningNumbersManager.getRank(listOf(1, 2, 3, 33, 34, 20)))
+    }
+
+    @Test
+    fun `4등 결과를 반환하는지 확인한다`() {
+        val result = 4
+        assertThat(result).isEqualTo(winningNumbersManager.getRank(listOf(1, 2, 3, 33, 20, 21)))
+    }
+
+    @Test
+    fun `5등 결과를 반환하는지 확인한다`() {
+        val result = 5
+        assertThat(result).isEqualTo(winningNumbersManager.getRank(listOf(1, 2, 3, 20, 21, 22)))
+    }
 
     @Test
     fun `보너스 번호가 로또 번호 범위 이외의 수 일 경우 예뢰를 발생시킨다`() {
