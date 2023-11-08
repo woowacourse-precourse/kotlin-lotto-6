@@ -24,22 +24,19 @@ class LottoPickTest {
     }
 
     @Test
-    fun `보너스 번호 입력 시 숫자가 아니면 에러 발생`(){
+    fun `당첨 번호 입력 시 1~45 범위에 있는 숫자가 아니면 에러 발생`(){
+        val pickNumber:List<String> = listOf("1","2","3","4","5","55")
         assertThrows<IllegalArgumentException> {
-            LottoBonus().bonusCheck("ss")
+            LottoPick().pickValid(pickNumber)
         }
     }
+
     @Test
-    fun `보너스 번호 입력 시 숫자 범위가 아니면 에러 발생`(){
+    fun `당첨 번호 입력 시 빈칸까지 6개 초과이지만 유효한 숫자 6개인 경우에도 에러 발생`(){
+        val pickNumber:List<String> = listOf("1","2","3","4","5","6","",)
         assertThrows<IllegalArgumentException> {
-            LottoBonus().bonusCheck("50")
+            LottoPick().pickValid(pickNumber)
         }
     }
-    @Test
-    fun `보너스 번호 입력 시 당첨 번호에 있다면 에러 발생`(){
-        val pickNumber:List<Int> = listOf(1,2,3,4,5)
-        assertThrows<IllegalArgumentException> {
-            LottoBonus().bonusRepeat(2,pickNumber)
-        }
-    }
+
 }
