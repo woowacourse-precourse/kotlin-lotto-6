@@ -18,12 +18,12 @@ fun main() {
 }
 
 fun getMoney(): Int {
-    println("구입금액을 입력해 주세요.")
+    println("${Message.INQUIRE_MONEY.msg}")
     val money = Console.readLine().trim()
     try {
         ExceptionHandler.checkInputMoney(money)
     } catch (e: IllegalArgumentException) {
-        print("[ERROR]")
+        print("[ERROR]로또 구입 금액은 1000원으로 나누어 떨어져야 합니다. ")
         return getMoney()
     }
     return money.toInt()
@@ -47,20 +47,20 @@ fun makeLottos(money: Int): List<Lotto> {
 
 fun printLottos(lottos: List<Lotto>) {
     val cnt = lottos.size
-    println("${cnt}개를 구매했습니다.")
+    println("${cnt}${Message.PRINT_LOTTO.msg}")
     for (lotto in lottos) {
         println(lotto.toString())
     }
 }
 
 fun getWinningNumber(): List<Int> {
-    println("당첨 번호를 입력해 주세요.")
+    println("${Message.INQUIRE_WINNING_NUMBER.msg}")
     val inputNumbers = Console.readLine().trim()
 
     try {
         ExceptionHandler.checkWinningNumber(inputNumbers)
     } catch (e: IllegalArgumentException) {
-        print("[ERROR]")
+        print("[ERROR]숫자는 1부터 45 범위의 수 입니다. ")
         return getWinningNumber()
     }
 
@@ -73,20 +73,20 @@ fun getWinningNumber(): List<Int> {
     try {
         ExceptionHandler.checkNumberList(winningNumber)
     } catch (e: IllegalArgumentException) {
-        print("[ERROR]")
+        print("[ERROR]로또는 6개의 숫자입니다. ")
         return getWinningNumber()
     }
     return winningNumber
 }
 
 fun getBonusNumber(winningNumber: List<Int>): Int {
-    println("보너스 번호를 입력해 주세요.")
+    println("${Message.INQUIRE_BONUS_NUMBER.msg}")
     val number = Console.readLine().trim()
 
     try {
         ExceptionHandler.checkBonusNumber(number, winningNumber)
     } catch (e: IllegalArgumentException) {
-        print("[ERROR]")
+        print("[ERROR]보너스 숫자는 당첨 번호와 중복될 수 없는 1부터 45 범위의 수 입니다. ")
         return getBonusNumber(winningNumber)
     }
 

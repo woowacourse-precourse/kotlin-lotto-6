@@ -17,8 +17,8 @@
 - [x] 로또 1장의 가격은 1,000원이다.
 - [x] 당첨 번호와 보너스 번호를 입력받는다.
 - [x] 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
-- [ ] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException를` 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-  - [ ] `Exception이` 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
+- [x] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException를` 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+  - [x] `Exception이` 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 
 - [x] 로또 구입 금액을 입력 받는다. 구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
 - [x] 당첨 번호를 입력 받는다. 번호는 쉼표(,)를 기준으로 구분한다.
