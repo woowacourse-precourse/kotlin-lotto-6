@@ -18,7 +18,7 @@ object LottoNumberValidator {
         for (lottoNumber in lottoNumbers) {
             val number = lottoNumber.toIntOrNull()
             requireNotNull(number) { OutputView.error(LOTTO_IS_NUMBER) }
-            require(number in MINIMUM_LOTTO_NUMBER..MAXIMUM_LOTTO_NUMBER) { LOTTO_NUMBER_RANGE }
+            require(number in MINIMUM_LOTTO_NUMBER..MAXIMUM_LOTTO_NUMBER) { OutputView.error(LOTTO_NUMBER_RANGE) }
         }
     }
 }
