@@ -1,10 +1,15 @@
 package lotto
 
 import lotto.controller.LottoController
+import lotto.util.HandleException
 import lotto.view.InputView
 import lotto.view.OutputView
 
 fun main() {
-    val lottoController: LottoController = LottoController(InputView(), OutputView())
-    lottoController.run()
+    runCatching {
+        val lottoController: LottoController = LottoController(InputView(), OutputView(),HandleException())
+        lottoController.run()
+    }.onFailure {
+        HandleException().printError(it.message)
+    }
 }

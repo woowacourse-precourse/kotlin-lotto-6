@@ -7,7 +7,7 @@ import lotto.view.OutputView
 
 class LottoController(private val inputView: InputView, private val outputView: OutputView, private val handleException: HandleException) {
     fun run() {
-        val purchaseAmount: PurchaseAmount = receiveAmount()
+        val purchaseAmount: PurchaseAmount = handleException.tryUntilSuccess {receiveAmount()}
     }
 
     private fun receiveAmount() : PurchaseAmount {
