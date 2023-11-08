@@ -6,6 +6,7 @@ import lotto.validation.InputValidator
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertEquals
 
 class LottoTest {
     @Test
@@ -78,8 +79,6 @@ class LottoTest {
         val totalMoney = LottoWinResult.getMoney()
         val rateOfProfit = LottoWinResult.calculateRateOfProfit(price, totalMoney)
 
-//        assertThat(totalMoney).isEqualTo(5000)
-//        assertThat(rateOfProfit).isEqualTo(62.5)
         assertEquals(5000, totalMoney)
         assertEquals(62.5, rateOfProfit)
     }
