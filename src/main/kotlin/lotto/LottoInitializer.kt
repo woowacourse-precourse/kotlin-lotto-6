@@ -7,38 +7,51 @@ class LottoInitializer {
         val purchaseMoney = getPurchaseMoney()
         val issuedLotto = LottoMaker().issueLotto(purchaseMoney)
         val winningNumbers = getWinningNumbers()
-        val bonusNumber = getBonusNumber()
+        val bonusNumber = getBonusNumber(winningNumbers)
         LottoInspector().showLottoResult(issuedLotto,winningNumbers,bonusNumber)
     }
 
     private fun getPurchaseMoney(): Int {
         purchaseInputMessage()
         val purchaseMoney = Console.readLine()
+        try {
+            Validation().purchaseMoneyValidation(purchaseMoney)
+        } catch (_: IllegalArgumentException) {
+            Validation().purchaseMoneyErrorMessage()
+            return getPurchaseMoney()
+        }
         println()
-        Validation().purchaseMoneyValidation(purchaseMoney)
         return purchaseMoney.toInt()
     }
 
     private fun getWinningNumbers(): List<Int> {
         winningNumbersInputMessage()
         val winningNumbersInput = Console.readLine()
+        try {
+            Validation().winningNumbersValidation(winningNumbersInput)
+        } catch (_: IllegalArgumentException) {
+            Validation().winningNumbersErrorMessage()
+            return getWinningNumbers()
+        }
         println()
         return makeWinningNumbers(winningNumbersInput)
     }
 
-    private fun getBonusNumber(): Int {
+    private fun getBonusNumber(winningNumbers: List<Int>): Int {
         bonusNumberInputMessage()
         val bonusNumber = Console.readLine()
+        try {
+            Validation().bonusNumberValidation(winningNumbers,bonusNumber)
+        } catch (_: IllegalArgumentException) {
+            Validation().bonusNumberErrorMessage()
+            return getBonusNumber(winningNumbers)
+        }
         println()
-        Validation().lottoNumberValidation(bonusNumber)
         return bonusNumber.toInt()
     }
 
     private fun makeWinningNumbers(winningNumbersInput: String): List<Int> {
         val winningNumberList = winningNumbersInput.split(",")
-        for (number in winningNumberList) {
-            Validation().lottoNumberValidation(number)
-        }
         return winningNumberList.map { it.toInt() }
     }
 
