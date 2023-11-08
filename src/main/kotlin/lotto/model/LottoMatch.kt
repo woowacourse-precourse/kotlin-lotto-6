@@ -24,7 +24,10 @@ class LottoMatch(lottoTickets: List<LottoTicket>, winningNumber: List<Int>, bonu
 
     private fun countRanks(ticket: LottoTicket): MutableMap<LottoResult, Int> {
         val hasBonus = ticket.ticket.contains(bonusNumber)
-        val matchingNumbers = ticket.ticket.count { it in winningNumber }
+        var matchingNumbers = ticket.ticket.count { it in winningNumber }
+
+        if (hasBonus)
+            matchingNumbers++
 
         val matchingRank = when (matchingNumbers) {
             MATCH_SIX -> if (!hasBonus) LottoResult.FIRST else LottoResult.SECOND

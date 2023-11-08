@@ -8,6 +8,7 @@ import lotto.presentation.LottoBonusView.inputBonusNumberOfLotto
 import lotto.presentation.LottoBonusView.printBonusNumberOfLotto
 import lotto.presentation.LottoGeneratorView.printLottoTickets
 import lotto.presentation.LottoGeneratorView.printPurchaseLottoCount
+import lotto.presentation.LottoStatisticsView.printStatistics
 import lotto.presentation.LottoWinningView.inputWinningNumberOfLotto
 import lotto.presentation.LottoWinningView.printWinningNumberOfLotto
 
@@ -51,6 +52,7 @@ class LottoController() {
 
             val lottoMatch = LottoMatch(lottoTickets, winningNumber, bonusNumber)
             val lottoRank = lottoMatch.countMatch()
+            printStatistics(lottoRank)
         } catch (e: IllegalArgumentException) {
             println(e.message)
             startBonusNumber(winningNumber)

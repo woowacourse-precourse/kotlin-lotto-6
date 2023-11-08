@@ -9,12 +9,13 @@ const val LOTTO_MAX_NUMBER: Int = 45
 const val LOTTO_MIN_NUMBER: Int = 1
 const val LOTTO_SIZE = 6
 
-const val MATCH_COUNT = "%d개"
-const val LOTTO_FIRST_RANK_MESSAGE = "6개 일치 (2,000,000,000원) - $MATCH_COUNT"
-const val LOTTO_SECOND_RANK_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - $MATCH_COUNT"
-const val LOTTO_THIRD_RANK_MESSAGE = "5개 일치 (1,500,000원) - $MATCH_COUNT"
-const val LOTTO_FOURTH_RANK_MESSAGE = "4개 일치 (50,000원) - $MATCH_COUNT"
-const val LOTTO_FIFTH_RANK_MESSAGE = "3개 일치 (5,000원) - $MATCH_COUNT"
+const val MATCH_COUNT = "%d"
+const val LOTTO_FIRST_RANK_MESSAGE = "6개 일치 (2,000,000,000원) - $MATCH_COUNT" + "개"
+const val LOTTO_SECOND_RANK_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - $MATCH_COUNT" + "개"
+const val LOTTO_THIRD_RANK_MESSAGE = "5개 일치 (1,500,000원) - $MATCH_COUNT" + "개"
+const val LOTTO_FOURTH_RANK_MESSAGE = "4개 일치 (50,000원) - $MATCH_COUNT" + "개"
+const val LOTTO_FIFTH_RANK_MESSAGE = "3개 일치 (5,000원) - $MATCH_COUNT" + "개"
+const val LOTTO_STATISTICS_MESSAGE = "당첨 통계\n---"
 
 const val MATCH_SIX: Int = 6
 const val MATCH_FIVE: Int = 5
