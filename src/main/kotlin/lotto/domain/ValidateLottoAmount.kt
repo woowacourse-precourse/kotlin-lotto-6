@@ -9,24 +9,24 @@ class ValidateLottoAmount {
     private fun validateBuyAmount(buyAmount: String): Int =
         validateBuyAmountEmpty(buyAmount)
 
-    private fun validateBuyAmountEmpty(buyAmount: String): Int {
+    fun validateBuyAmountEmpty(buyAmount: String): Int {
         if (buyAmount.isEmpty()) throw IllegalArgumentException(BUY_AMOUNT_EMPTY_ERROR_MESSAGE)
         return validateBuyAmountString(buyAmount)
     }
 
-    private fun validateBuyAmountString(buyAmount: String): Int {
+    fun validateBuyAmountString(buyAmount: String): Int {
         for (char in buyAmount.toCharArray()) {
             if (!char.isDigit()) throw IllegalArgumentException(BUY_AMOUNT_STRING_ERROR_MESSAGE)
         }
         return validateBuyAmountUnderLottoPrice(buyAmount.toInt())
     }
 
-    private fun validateBuyAmountUnderLottoPrice(buyAmount: Int): Int {
+    fun validateBuyAmountUnderLottoPrice(buyAmount: Int): Int {
         if (buyAmount < LOTTO_PRICE) throw IllegalArgumentException(BUY_AMOUNT_UNDER_LOTTO_PRICE_ERROR_MESSAGE)
         return validateBuyAmountDivideByLottoPrice(buyAmount)
     }
 
-    private fun validateBuyAmountDivideByLottoPrice(buyAmount: Int): Int {
+    fun validateBuyAmountDivideByLottoPrice(buyAmount: Int): Int {
         if (buyAmount % LOTTO_PRICE != 0)
             throw IllegalArgumentException(BUY_AMOUNT_DIVIDE_BY_LOTTO_PRICE_ERROR_MESSAGE)
         return buyAmount / LOTTO_PRICE
