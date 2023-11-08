@@ -21,4 +21,12 @@ class LottoNumberValidatorTest {
             LottoNumberValidator.appropriateLottoNumber(input)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1,1,1,1,1,1", "1,2,3,4,5,5", "1,2,3,1,2,3"])
+    fun `로또 번호 숫자들이 전부 다른 숫자가 아닐 때 예외를 던지는지`(input: String) {
+        assertThrows<IllegalArgumentException> {
+            LottoNumberValidator.appropriateLottoNumber(input)
+        }
+    }
 }
