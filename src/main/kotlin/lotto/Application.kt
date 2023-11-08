@@ -6,23 +6,28 @@ import java.util.logging.Logger
 import kotlin.contracts.contract
 
 fun main() {
-    val lottos = inputAndBuyLottos()
+    try {
+        val lottos = inputAndBuyLottos()
+        println()
 
-    printLottoNum(lottos)
+        printLottoNum(lottos)
 
-    val winningNum = inputWinnerNum()
-    val bonusNum = inputBonusNum(winningNum)
+        val winningNum = inputWinnerNum()
+        val bonusNum = inputBonusNum(winningNum)
 
-    val rankCountMap = calculateRankCount(lottos, winningNum, bonusNum)
+        val rankCountMap = calculateRankCount(lottos, winningNum, bonusNum)
 
-    println("당첨 통계")
-    println("---")
-    printRankCount(rankCountMap)
+        println("당첨 통계")
+        println("---")
+        printRankCount(rankCountMap)
 
-    val totalPrize = calculateTotalPrize(rankCountMap)
-    val prizeRate = calculatePrizeRate(totalPrize, lottos.size * 1000)
+        val totalPrize = calculateTotalPrize(rankCountMap)
+        val prizeRate = calculatePrizeRate(totalPrize, lottos.size * 1000)
 
-    println("총 수익률은 $prizeRate%입니다.")
+        println("총 수익률은 ${String.format("%.1f", prizeRate)}%입니다.")
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+    }
 }
 
 fun calculateRankCount(lottos: List<Lotto>, winningNum: List<Int>, bonusNum: Int): Map<LottoRank, Int> {
@@ -33,9 +38,17 @@ fun calculateRankCount(lottos: List<Lotto>, winningNum: List<Int>, bonusNum: Int
 
 fun printRankCount(rankCountMap: Map<LottoRank, Int>) {
     LottoRank.entries.forEach { rank ->
-        if (rank != LottoRank.NONE) {
-            println("${rank.matchNum}개 일치 (${rank.prize}원) - ${rankCountMap.getValue(rank)}개")
+        if (rank == LottoRank.NONE) return@forEach
+        val count = rankCountMap[rank] ?: 0
+        val rankDescription = when(rank) {
+            LottoRank.FIFTH -> "3개 일치 (5,000원)"
+            LottoRank.FOURTH -> "4개 일치 (50,000원)"
+            LottoRank.THIRD -> "5개 일치 (1,500,000원)"
+            LottoRank.SECOND -> "5개 일치, 보너스 볼 일치 (30,000,000원)"
+            LottoRank.FIRST -> "6개 일치 (2,000,000,000원)"
+            LottoRank.NONE -> return@forEach
         }
+        println("$rankDescription - ${count}개")
     }
 }
 
@@ -43,17 +56,17 @@ fun calculateTotalPrize(rankCountMap: Map<LottoRank, Int>): Long {
     return rankCountMap.entries.sumOf { (rank, count) -> rank.prize * count }
 }
 
-fun calculatePrizeRate(totalPrize: Long, totalCost: Int): Int {
-    return (totalPrize.toDouble() / totalCost * 100).toInt()
+fun calculatePrizeRate(totalPrize: Long, totalCost: Int): Double {
+    return (totalPrize.toDouble() / totalCost * 100)
 }
 
 enum class LottoRank(val matchNum: Int, val prize: Long) {
-    FIRST(6,2_000_000_000),
-    SECOND(5, 30_000_000), // bonus number match
-    THIRD(5, 15_000_000), // without bonus number
-    FOURTH(4, 50_000),
+    NONE(0,0),
     FIFTH(3, 5_000),
-    NONE(0,0);
+    FOURTH(4, 50_000),
+    THIRD(5, 15_000_000), // without bonus number
+    SECOND(5, 30_000_000), // bonus number match
+    FIRST(6,2_000_000_000);
 }
 
 fun findLottoRankByMatchCount(matchCount: Int, matchBonus: Boolean): LottoRank {
@@ -73,18 +86,11 @@ fun checkLotto(lotto: Lotto, winningNumbers: List<Int>, bonus:Int) : LottoRank {
     return findLottoRankByMatchCount(matchCount, matchBonus)
 }
 fun inputAndBuyLottos(): MutableList<Lotto> {
-    while (true) {
-        try {
-            println("구입금액을 입력해 주세요.")
-            val input = readLine() ?: throw IllegalArgumentException("[ERROR] 입력을 받지 못했습니다.")
-            val money = ensureInt(input)
-            val buyNum = ensureBuyNum(money)
-            println()
-            return buyLottos(buyNum)
-        } catch (e: IllegalArgumentException) {
-            println(e.message)
-        }
-    }
+    println("구입금액을 입력해 주세요.")
+    val input = readLine() ?: throw IllegalArgumentException("[ERROR] 입력을 받지 못했습니다.")
+    val money = input.toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.")
+    val buyNum = ensureBuyNum(money)
+    return buyLottos(buyNum)
 }
 
 fun inputWinnerNum(): List<Int> {
@@ -117,7 +123,7 @@ fun winnerNumInput(): List<Int> {
     }
 
     val numbers = numberList.map {
-        ensureInt(it)
+        it.toInt()
     }
 
     if (numbers.any { it !in 1..45 }) {
@@ -130,7 +136,7 @@ fun winnerNumInput(): List<Int> {
 fun bonusNumInput(winningNumbers: List<Int>): Int {
     println("보너스 번호를 입력해 주세요")
     val input = userInput()
-    val bonus = ensureInt(input)
+    val bonus = input.toInt()
     if (bonus !in 1..45 ) {
         throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
     }
@@ -167,10 +173,6 @@ fun generateLottoNum(): List<Int> {
 
 fun sortingNum(numbers: List<Int>): List<Int> {
     return numbers.sorted()
-}
-
-fun ensureInt(input: String): Int {
-    return input.toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.")
 }
 
 fun ensureBuyNum(money: Int): Int {
