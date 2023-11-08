@@ -1,5 +1,12 @@
 package lotto
 
+import controller.Controller
+import lottonumbercomparator.LottoNumberComparatorImpl
+import lottonumbergenerator.LottoNumberGeneratorImpl
+
 fun main() {
-    TODO("프로그램 구현")
+    Controller(
+        LottoNumberGeneratorImpl(),
+        LottoNumberComparatorImpl()
+    ).startLotto()
 }
