@@ -7,11 +7,23 @@ class Lotto(private val numbers: List<Int>) {
 
     fun showLotto() = numbers.addCommaAndBracket()
 
+    fun compareToBonus(bonus: Int): Boolean = numbers.contains(bonus)
 
+    fun comparetoTarget(target: List<Int>): Int {
+        var count = 0
+
+        for (number in numbers) {
+            if (number in target) {
+                count++
+            }
+        }
+        return count
+    }
     private fun List<Int>.addCommaAndBracket(): String {
         val formatIssuedLotto = this.joinToString(",") { it.toString() }
         return "[$formatIssuedLotto]"
     }
+
 
     companion object {
         const val MIN_NUMBER = 1
