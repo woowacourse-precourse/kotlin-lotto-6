@@ -7,11 +7,18 @@ class User {
         val money = Console.readLine()
     }
 
-    fun inputWinningNumbers() {
+    fun inputWinningNumbers(): List<String> {
         val numbers = Console.readLine()
+        val winningNumbers = separateCommas(numbers)
+        return winningNumbers
     }
 
     fun inputBonusNumber() {
         val bonusNumber = Console.readLine()
+    }
+
+    fun separateCommas(winningNumbers: String): List<String> {
+        val winningNumbers: List<String> = winningNumbers.split(",").toList()
+        return winningNumbers
     }
 }
