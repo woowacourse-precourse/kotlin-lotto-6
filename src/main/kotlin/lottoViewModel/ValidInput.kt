@@ -1,62 +1,84 @@
 package lottoViewModel
 import camp.nextstep.edu.missionutils.Console
 import lottoView.LottoOutPut
-import net.bytebuddy.pool.TypePool.Resolution.Illegal
 
 class ValidInput {
-    fun validInputPurchase():Int{
+    fun validInputPurchase(): Int {
         val totalPurchase = Console.readLine()
         when {
             totalPurchase.toIntOrNull() == null -> {
                 throw IllegalArgumentException("[ERROR]구매 금액은 숫자로만 입력가능합니다.")
             }
+
             totalPurchase.toInt() % 1000 != 0 -> {
                 throw IllegalArgumentException("[ERROR]구매 금액은 1000원 단위로 입력하셔야합니다.")
             }
         }
-        return totalPurchase.toInt()/1000
+        return totalPurchase.toInt() / 1000
     }
-    fun convertWinningNumbers():List<String>{
-        val winningNumber=Console.readLine()
-        return winningNumber.split(",").toList()
+
+    fun convertWinningNumbers(): List<Int> {
+        val winningNumberInput = Console.readLine()
+        val numbers = winningNumberInput.split(",").map { it.toIntOrNull() }
+
+        if (numbers.any { it == null }) {
+            throw IllegalArgumentException("[ERROR]당첨번호에는 숫자와 쉼표만 입력가능합니다.")
+        }
+
+        if (numbers.any { it!!< 1 || it!! > 45 }) {
+            throw IllegalArgumentException("[ERROR]당첨번호는 1~45까지의 숫자로 구성되어있습니다.")
+        }
+
+        return numbers.mapNotNull { it }
     }
-    fun validWinningNumbers(winningNumbers:List<String>):List<String>{
+
+
+    fun convertWinningNumbersInt(winningNumberInput: String): List<Int> {
+        val winningNumbers = winningNumberInput.split(",").map { it.toInt() }
+        return winningNumbers
+    }
+    fun validWinningNumbers(winningNumbers: List<Int>):List<Int>{
         when{
             winningNumbers.toSet().size!=winningNumbers.size->{
                 throw IllegalArgumentException("[ERROR]당첨번호에는 중복이 없어야 합니다.")
             }
-            winningNumbers.any { it.toIntOrNull()==null }->{
+            winningNumbers.any { it==null }->{
                 throw IllegalArgumentException("[ERROR]당첨번호에는 숫자와 쉼표만 입력가능합니다.")
             }
-            winningNumbers.any{it.toInt()<1||it.toInt()>45}->{
+            winningNumbers.any{it<1||it>45}->{
                 throw IllegalArgumentException("[ERROR]당첨번호는 1~45까지의 숫자로 구성되어있습니다.")
             }
             winningNumbers.size!=6->{
                 throw IllegalArgumentException("[ERROR]당첨번호는 6개입니다.")
             }
         }
-        return winningNumbers
+        return winningNumbers.map{it}
     }
-    fun bringBonusNumber(winningNumbers: List<String>){
+    fun bringBonusNumber(winningNumbers: List<Int>): Int {
         LottoOutPut().printlnBonusNumberMent()
-        val bonusNumber = Console.readLine()
+        val bonusNumberInput = Console.readLine()
         try {
+            val bonusNumber = bonusNumberInput.toIntOrNull()
+            if (bonusNumber==null||bonusNumber<1||bonusNumber>45) {
+                throw IllegalArgumentException("[ERROR]보너스 번호의 숫자나 양식을 다시 확인해주세요.")
+            }
             if (winningNumbers.contains(bonusNumber)) {
                 throw IllegalArgumentException("[ERROR]보너스 번호가 당첨번호에 이미 포함되어 있습니다.")
             }
-            if(bonusNumber.toIntOrNull()==null){
-                throw IllegalArgumentException("[ERROR]보너스 번호는 숫자로 입력해야합니다.")
-            }
-            if(bonusNumber.toInt()<1||bonusNumber.toInt()>45){
-                throw IllegalArgumentException("[ERROR]보너스 번호는 숫자로 입력해야합니다.")
-            }
-            LottoOutPut().printlnOutPutMent()
-            LottoOutPut().printlnThreeBar()
+            LottoOutPut().outputMent()
+            return bonusNumber
         } catch (e: IllegalArgumentException) {
             println(e.message)
             return bringBonusNumber(winningNumbers)
         }
     }
 
-
+    enum class WinningPrice(val correspondResult: String, val price: Int) {
+        THREE("3개 일치", 5000),
+        FOUR("4개 일치", 50000),
+        FIVE("5개 일치", 1500000),
+        FIVEANDBONUS("5개 일치, 보너스 볼 일치", 30000000),
+        SIX("6개 일치", 2000000000),
+        ZERO("3개 미만 일치", 0)
+    }
 }

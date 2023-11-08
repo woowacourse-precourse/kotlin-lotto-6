@@ -1,11 +1,9 @@
 package lotto
 import lottoView.LottoOutPut
-import lottoViewModel.CreateNumbers
 import lottoViewModel.ValidInput
 
 fun main() {
-  val lottoController = LottoConroller()
+  val lottoController = LottoController()
   lottoController.printDefaultMent()
-  lottoController.printWinningMents()
+  lottoController.printWinningNumber()
 }
-
