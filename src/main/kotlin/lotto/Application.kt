@@ -64,6 +64,14 @@ fun main() {
 
     val result = calculateWinningCounts(lottos, winningNum, bonusNum)
     result.printMatchingCounts()
+
+    calculateProfitRate(result,purchaseAmount)
+}
+
+fun calculateProfitRate(result: WinningCounts,purchaseAmount:Int) {
+    var profit = (result.threeMatching * 5000 + result.fourMatching * 50000 + result.fiveMatching * 1500000 + result.fivePlusBonusMatching * 30000000 + result.sixMatching * 2000000000).toDouble()
+    var profitRate = profit/purchaseAmount*100
+    println(String.format("총 수익률은 %.1f%%입니다.", profitRate))
 }
 
 fun calculateWinningCounts(lottos: List<Lotto>, winningNum: List<Int>, bonusNum: Int): WinningCounts {
@@ -83,6 +91,7 @@ fun calculateWinningCounts(lottos: List<Lotto>, winningNum: List<Int>, bonusNum:
                     matchingCounts.fiveMatching++
                 }
             }
+
             MatchingCount.SIX.value -> matchingCounts.sixMatching++
         }
     }
@@ -110,7 +119,7 @@ data class WinningCounts(
         println("3개 일치 (5,000원) - ${threeMatching}개")
         println("4개 일치 (50,000원) - ${fourMatching}개")
         println("5개 일치 (1,500,000원) - ${fiveMatching}개")
-        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${fivePlusBonusMatching}")
+        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${fivePlusBonusMatching}개")
         println("6개 일치 (2,000,000,000원) - ${sixMatching}개")
 
     }
@@ -134,6 +143,7 @@ fun bonusNumInputValidator(bonusNum: Int, winningNum: List<Int>) {
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
+        require(numbers.distinct().size == 6)
     }
 
     fun getLotto(): List<Int> {
