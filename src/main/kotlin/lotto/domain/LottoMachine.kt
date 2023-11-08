@@ -13,9 +13,9 @@ class LottoMachine {
     }
 
     fun inputBonusNumber(winningNumbers: List<Int>): Int {
-        val bonusNumber = Console.readLine().toInt()
+        val bonusNumber = Console.readLine()
         validateBonusNumber(bonusNumber, winningNumbers)
-        return bonusNumber
+        return bonusNumber.toInt()
     }
 
     fun validateWinningNumbers(winningNumbers: List<Int>) {
@@ -32,7 +32,8 @@ class LottoMachine {
         }
     }
 
-    fun validateBonusNumber(bonusNumber: Int, winningNumbers: List<Int>) {
+    fun validateBonusNumber(number: String, winningNumbers: List<Int>) {
+        val bonusNumber = number.toIntOrNull() ?: throw IllegalArgumentException(INPUT_TYPE_ERROR)
         require(bonusNumber in Constants.MIN_LOTTO_NUMBER..Constants.MAX_LOTTO_NUMBER) {
             throw IllegalArgumentException(
                 NUMBER_OUT_OF_RANGE
@@ -46,6 +47,7 @@ class LottoMachine {
         const val NUMBER_COUNT_ERROR = "[ERROR] 당첨 번호 6개를 입력해야 합니다."
         const val DUPLICATE_WINNING_NUMBER = "[ERROR] 중복된 번호가 존재합니다."
         const val DUPLICATE_BONUS_NUMBER = "[ERROR] 보너스 번호가 당첨 번호와 중복됩니다."
+        const val INPUT_TYPE_ERROR = "[ERROR] 숫자로 입력해야 합니다."
     }
 
 }

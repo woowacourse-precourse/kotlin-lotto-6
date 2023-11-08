@@ -37,10 +37,28 @@ class LottoMachineTest {
     }
 
     @Test
+    fun `보너스 번호가 숫자가 아니면 예외가 발생한다`() {
+        Assertions.assertSimpleTest {
+            assertThrows<IllegalArgumentException> {
+                lottoMachine.validateBonusNumber("a", listOf(1, 2, 3, 4, 5, 6))
+            }
+        }
+    }
+
+    @Test
+    fun `보너스 번호를 입력하지 않으면 예외가 발생한다`() {
+        Assertions.assertSimpleTest {
+            assertThrows<IllegalArgumentException> {
+                lottoMachine.validateBonusNumber(" ", listOf(1, 2, 3, 4, 5, 6))
+            }
+        }
+    }
+
+    @Test
     fun `보너스 번호가 1~45 범위의 숫자가 아니면 예외가 발생한다`() {
         Assertions.assertSimpleTest {
             assertThrows<IllegalArgumentException> {
-                lottoMachine.validateBonusNumber(46, listOf(1, 2, 3, 4, 5, 6))
+                lottoMachine.validateBonusNumber("46", listOf(1, 2, 3, 4, 5, 6))
             }
         }
     }
@@ -49,7 +67,7 @@ class LottoMachineTest {
     fun `보너스 번호가 당첨 번호와 중복되면 예외가 발생한다`() {
         Assertions.assertSimpleTest {
             assertThrows<IllegalArgumentException> {
-                lottoMachine.validateBonusNumber(6, listOf(1, 2, 3, 4, 5, 6))
+                lottoMachine.validateBonusNumber("6", listOf(1, 2, 3, 4, 5, 6))
             }
         }
     }
