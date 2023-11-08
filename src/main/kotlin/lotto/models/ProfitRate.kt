@@ -10,7 +10,9 @@ class ProfitRate {
         return 100.0
     }
 
-    internal fun sumTotalWinningAmount(winningRecord: WinningRecord): Double {
-        return 300.0
+    internal fun sumTotalWinningAmount(winningRecord: WinningRecord): Int {
+        return winningRecord.value.entries.sumOf {
+            (winning, count) -> winning.amount * count
+        }
     }
 }

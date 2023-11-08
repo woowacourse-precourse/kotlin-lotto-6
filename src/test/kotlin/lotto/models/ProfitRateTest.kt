@@ -18,12 +18,12 @@ class ProfitRateTest {
     @Test
     fun `당첨 내역을 통해 총 당첨 금액을 계산한다`() {
         val purchasedLottos = listOf(
-            Lotto(listOf(1, 2, 3, 4, 5, 6))
+            Lotto(listOf(1, 2, 3, 4, 5, 7))
         )
         val winningLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
         val bonus = Bonus(7)
         winningRecord.updateWinningResults(purchasedLottos, winningLotto, bonus)
-        val expectedWinningAmount = WinningRank.FIRST.amount
+        val expectedWinningAmount = WinningRank.SECOND.amount
 
         val actualWinningAmount = profitRate.sumTotalWinningAmount(winningRecord)
 
