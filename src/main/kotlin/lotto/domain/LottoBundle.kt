@@ -10,7 +10,7 @@ class LottoBundle(private val lottos: List<Lotto>) {
     var totalPurchaseAmount: Int = DEFAULT_VALUE
         private set
 
-    var totalRevenue: Int = DEFAULT_VALUE
+    var totalRevenue: Int = REVENUE_INIT_VALUE
         private set
 
     init {
@@ -28,6 +28,8 @@ class LottoBundle(private val lottos: List<Lotto>) {
         winningNumbers: List<Int>,
         bonusNumber: Int
     ) {
+        totalRevenue = DEFAULT_VALUE
+
         lottos.forEach { lotto ->
             lotto.calculateWinningRank(winningNumbers, bonusNumber)
             val lottoRank = lotto.lottoRank
@@ -37,11 +39,16 @@ class LottoBundle(private val lottos: List<Lotto>) {
         }
     }
 
-    fun getRateOfReturn(): Float =
-        (totalRevenue.toFloat() / totalPurchaseAmount.toFloat()) * PERCENTAGE_MULTIPLIER
+    fun getRateOfReturn(): Float {
+        check(totalRevenue != REVENUE_INIT_VALUE){
+            "[ERROR] 수익률 계산은 먼저 해당 로또들의 등수를 확인한 후 진행 해주세요."
+        }
+        return (totalRevenue.toFloat() / totalPurchaseAmount.toFloat()) * PERCENTAGE_MULTIPLIER
+    }
 
     companion object {
         private const val DEFAULT_VALUE = 0
+        private const val REVENUE_INIT_VALUE = -1
         private const val PERCENTAGE_MULTIPLIER = 100
     }
 }
