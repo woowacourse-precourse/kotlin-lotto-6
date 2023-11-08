@@ -52,7 +52,7 @@ class ConsoleLottoView : LottoView {
 
     override fun getBonusNumber(): BonusNumber = BonusNumber(number = readInt())
 
-    override fun getBonusNumberDone() {
+    override fun onGetBonusNumberDone() {
         presenter.getResults()
     }
 

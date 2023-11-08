@@ -17,7 +17,7 @@ interface LottoView {
     fun getWinningNumbers(): WinningNumbers
     fun onGetWinningNumbersDone()
     fun getBonusNumber(): BonusNumber
-    fun getBonusNumberDone()
+    fun onGetBonusNumberDone()
     fun displayResults(results: Map<Result, Int>)
     fun onGetResultsDone()
 }
