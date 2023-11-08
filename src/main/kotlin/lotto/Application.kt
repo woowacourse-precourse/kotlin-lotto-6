@@ -1,5 +1,9 @@
 package lotto
+import lottoView.LottoOutPut
+import lottoViewModel.ValidInput
 
 fun main() {
-    TODO("프로그램 구현")
+  val lottoController = LottoController()
+  lottoController.printDefaultMent()
+  lottoController.printWinningNumber()
 }

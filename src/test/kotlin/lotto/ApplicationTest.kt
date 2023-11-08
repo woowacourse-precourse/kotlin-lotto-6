@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class ApplicationTest : NsTest() {
 
@@ -49,7 +50,13 @@ class ApplicationTest : NsTest() {
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
-
+    @Test
+    fun `1000단위로 나누어 떨어지지 않는 경우`(){
+        assertSimpleTest {
+            runException("1999")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
     override fun runMain() {
         main()
     }
