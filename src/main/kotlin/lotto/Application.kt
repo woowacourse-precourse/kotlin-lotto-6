@@ -5,15 +5,10 @@ import camp.nextstep.edu.missionutils.Randoms
 import lotto.PRIZE.*
 import java.lang.NumberFormatException
 
-const val PAYMENT_UNIT = 1000
-const val PERCENT = 100
+
 fun main() {
     println("구입 금액을 입력해 주세요.")
-    var amount = getPayment()
-
-    while (amount == -1) {
-        amount = getPayment()
-    }
+    var amount = getAmount()
 
     println("당첨 번호를 입력해 주세요.")
     val lotto = getLotto()
