@@ -11,7 +11,7 @@ object Input {
         return Console.readLine()
     }
 
-    fun inputBonusNumber(): Int {
-        return Console.readLine().toInt()
+    fun inputBonusNumber(): String {
+        return Console.readLine()
     }
 }

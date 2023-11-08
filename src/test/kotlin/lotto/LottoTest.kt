@@ -57,7 +57,7 @@ class LottoTest {
     fun `당첨 번호와 보너스 번호에 중복이 있으면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
             val winningNumber = "1,2,3,4,5,6"
-            val bonusNumber = 6
+            val bonusNumber = "6"
             WinningNumberGenerator().validateWinningNumber(winningNumber)
             WinningNumberGenerator().validateBonusNumber(bonusNumber, winningNumber.split(",").map { it.toInt() })
         }
