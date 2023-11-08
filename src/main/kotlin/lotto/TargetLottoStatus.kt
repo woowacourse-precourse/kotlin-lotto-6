@@ -2,16 +2,41 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 
-class InputManagement {
+class TargetLottoStatus {
     var lottoNumbers = mutableListOf<Int>()
     var bonusNumber: Int = 0
 
-    fun inputBonusNumbers(): Int {
+    fun inputTargetLotto() {
+        repeatUntilValidLottoNumber()
+        repeatUntilValidBonusNumber()
+    }
+    fun repeatUntilValidLottoNumber() {
+        var isValidLotto = false
+        while (!isValidLotto) {
+            isValidLotto = true
+            try {
+                inputLottoNumbers()
+            } catch (e: IllegalArgumentException) {
+                isValidLotto = false
+            }
+        }
+    }
+    fun repeatUntilValidBonusNumber() {
+        var isValidBonus = false
+        while (!isValidBonus) {
+            isValidBonus = true
+            try {
+                inputBonusNumber()
+            } catch (e: IllegalArgumentException) {
+                isValidBonus = false
+            }
+        }
+    }
+    fun inputBonusNumber() {
         println(LottoResource.BONUS_NUMBER_INPUT_MESSAGE)
         val inputNumber = Console.readLine()
         bonusNumber = validateNumber(inputNumber)
         validateBonusNumberIsDuplicateWithLottoNumbers()
-        return bonusNumber
     }
 
     fun inputLottoNumbers() {
@@ -19,6 +44,7 @@ class InputManagement {
         println(LottoResource.LOTTO_NUMBER_INPUT_MESSAGE)
         val inputNumbers = Console.readLine()
         putValidNumberIntoLottoNumbers(inputNumbers)
+        Lotto(lottoNumbers)
     }
 
     private fun putValidNumberIntoLottoNumbers(inputNumbers: String) {

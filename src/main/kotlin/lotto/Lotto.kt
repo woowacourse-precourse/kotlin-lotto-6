@@ -9,7 +9,6 @@ class Lotto(private val numbers: List<Int>) {
             Error.printErrorMessage(Error.LOTTO_NUMBER_CANT_DUPLICATE)
         }
     }
-
     fun getLottoFormat(): String {
         return numbers.toString()
     }

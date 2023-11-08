@@ -6,7 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms
 class LottoStatus {
     var countOfLotto: Int = 0
     var myLottos = mutableListOf<Lotto>()
-    fun buy() {
+    fun buyUntilValid() {
         var isValidPrice = false
         while (!isValidPrice) {
             isValidPrice = true
@@ -33,7 +33,7 @@ class LottoStatus {
             val isAlreadyInNumbers = currentLottoNumbers.contains(currentNumber)
             if (!isAlreadyInNumbers)
                 currentLottoNumbers.add(currentNumber)
-            if (currentLottoNumbers.size >= countOfLotto)
+            if (currentLottoNumbers.size == LottoResource.LOTTO_SIZE)
                 break
         }
         return currentLottoNumbers
