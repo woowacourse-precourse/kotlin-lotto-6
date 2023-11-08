@@ -35,7 +35,7 @@ class RealLottoes(private val paymentAmount: Int) : Lottoes {
         return profit.calculateProfitRate(paymentAmount)
     }
 
-    private fun calculateTotalProfit(): Int =
+    internal fun calculateTotalProfit(): Int =
         lottoesResult.entries.sumOf { (rank, count) ->
             rank.prize * count
         }
