@@ -8,7 +8,7 @@ class InputManager {
     private val checkInputValidation = CheckInputValidation()
     private val exceptionManager = ExceptionMessageManager()
 
-    fun inputPurchaseCost(): Int? {
+    fun inputPurchaseCost(): Int {
         return try {
             val userInput = getUserInput()
             val cost = makePurchaseCost(userInput)
@@ -16,11 +16,11 @@ class InputManager {
             cost
         } catch (e: IllegalArgumentException) {
             exceptionManager.printErrorMessage(e.message)
-            null
+            -1
         }
     }
 
-    fun inputLottoWinningNumber(): Set<Int>? {
+    fun inputLottoWinningNumber(): Set<Int> {
         return try {
             val userInput = getUserInput()
             val lotto = splitUserInput(userInput)
@@ -29,11 +29,11 @@ class InputManager {
             numbers.toSet()
         } catch (e: IllegalArgumentException) {
             exceptionManager.printErrorMessage(e.message)
-            null
+            setOf()
         }
     }
 
-    fun inputBonusNumber(winningNumber: Set<Int>): Int? {
+    fun inputBonusNumber(winningNumber: Set<Int>): Int {
         return try {
             val userInput = getUserInput()
             val bonusNumber = makeBonusNumber(userInput)
@@ -42,7 +42,7 @@ class InputManager {
             bonusNumber
         } catch (e: IllegalArgumentException) {
             exceptionManager.printErrorMessage(e.message)
-            null
+            -1
         }
     }
 

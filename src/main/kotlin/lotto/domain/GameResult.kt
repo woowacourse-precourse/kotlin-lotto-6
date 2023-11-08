@@ -1,8 +1,8 @@
 package lotto.domain
 
 enum class GameResult(
-    private val matchNumber: Int,
-    private val price: Int,
+    val matchNumber: Int,
+    val price: Int,
     private val comment: String,
 ) {
     FIFTH(3, 5_000, "3개 일치 (5,000원)"),
@@ -11,5 +11,6 @@ enum class GameResult(
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
     FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원)");
 
-    fun getResultComment(count: Int) = "${this.comment} - $count"
+
+    fun getResultComment(count: Int): String = "${this.comment} - ${count}개"
 }

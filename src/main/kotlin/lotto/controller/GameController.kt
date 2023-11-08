@@ -8,42 +8,74 @@ import lotto.model.Lotto
 import lotto.model.WinningLotto
 
 object GameController {
-    private val lottos: MutableList<Lotto> = mutableListOf()
-    private var winningLotto: WinningLotto? = null
-    private val matchResults = mutableMapOf<GameResult, Int>()
 
     private val inputManager = InputManager()
     private val lottoManager = LottoManager()
     private val messenger = MessageManager()
 
+    private val lottoBundle: MutableList<Lotto> = mutableListOf()
+    private val matchResults = mutableMapOf<GameResult, Int>()
+    private lateinit var winningLotto: WinningLotto
 
-    fun gameStart() {
+    init {
+        GameResult.entries.forEach { matchResults[it] = 0 }
+    }
+
+    fun startGame() {
         messenger.printInputPrice()
-        var number: Int? = null
-        while (number == null) number = inputManager.inputPurchaseCost()
-        repeat(number) { lottos.add(lottoManager.purchaseLotto()) }
+        var number: Int = -1
+        while (number == -1) number = inputManager.inputPurchaseCost()
+        repeat(number) { lottoBundle.add(lottoManager.purchaseLotto()) }
         messenger.apply {
             println()
             printPurchaseAmount(number)
-            repeat(number) { printPurchaseLottoNumber(lottos[it].getLottoNumbers()) }
+            repeat(number) { printPurchaseLottoNumber(lottoBundle[it].getLottoNumbers()) }
             println()
         }
     }
 
     fun settingWinningNumbers() {
         messenger.printInputLottoNumber()
-        var winningNumber: Set<Int>? = null
-        var bonusNumber: Int? = null
-        while (winningNumber == null) winningNumber = inputManager.inputLottoWinningNumber()
+        var winningNumber: Set<Int> = setOf()
+        var bonusNumber: Int = -1
+        while (winningNumber.isEmpty()) winningNumber = inputManager.inputLottoWinningNumber()
         println()
         messenger.printInputBonusNumber()
-        while (bonusNumber == null) bonusNumber = inputManager.inputBonusNumber(winningNumber)
+        while (bonusNumber == -1) bonusNumber = inputManager.inputBonusNumber(winningNumber)
         println()
         winningLotto = WinningLotto(winningNumber, bonusNumber)
     }
 
-    fun gameResult(){
-        messenger.printLottoResult()
+    fun matchWinningLotto() {
+        for (lotto in lottoBundle) {
+            val matchCount = winningLotto.getWinningNumber(lotto.changeLottoNumbersToSet())
+            lottoManager.apply {
+                var currentGameResult = getMathResult(matchCount)
+                currentGameResult?.let { gameResult ->
+                    currentGameResult = if (isBonusResult(gameResult)) {
+                        getMathBonusResult(
+                            winningLotto
+                                .checkWinningBonusNumber(
+                                    lotto.changeLottoNumbersToSet()
+                                )
+                        )
+                    } else {
+                        gameResult
+                    }
+                    matchResults[currentGameResult]?.plus(1)
+                }
 
+            }
+        }
     }
+
+    fun endGame(){
+        messenger.printLottoResult()
+        GameResult.entries.forEach {gameResult ->
+            matchResults[gameResult]?.let {
+                gameResult.getResultComment(it)
+            }
+        }
+    }
+
 }
