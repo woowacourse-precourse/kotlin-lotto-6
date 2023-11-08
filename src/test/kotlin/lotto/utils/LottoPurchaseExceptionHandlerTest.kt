@@ -1,6 +1,5 @@
 package lotto.utils
 
-import lotto.constants.ExceptionMessage
 import lotto.constants.ExceptionMessage.NOT_MULTIPLE_OF_LOTTO_TICKET_PRICE
 import lotto.constants.ExceptionMessage.WRONG_PURCHASE_MONEY
 import org.assertj.core.api.Assertions.assertThat
