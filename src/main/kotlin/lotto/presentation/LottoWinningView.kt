@@ -10,11 +10,13 @@ object LottoWinningView {
         println(WINNING_NUMBER_MESSAGE)
     }
 
-    fun inputWinningNumberOfLotto() {
+    fun inputWinningNumberOfLotto(): List<Int> {
         val winningNumber = Console.readLine().trim().split(SPLIT_COMMA)
         LottoController().validateInputWinningNumberSize(winningNumber)
         LottoController().validateInputWinningNumberNumeric(winningNumber)
         LottoController().validateInputWinningNumberRange(winningNumber.map { it.toInt() })
         LottoController().validateInputWinningNumberDuplicate(winningNumber.map { it.toInt() })
+
+        return winningNumber.map { it.toInt() }
     }
 }

@@ -9,6 +9,19 @@ const val LOTTO_MAX_NUMBER: Int = 45
 const val LOTTO_MIN_NUMBER: Int = 1
 const val LOTTO_SIZE = 6
 
+const val MATCH_COUNT = "%d개"
+const val LOTTO_FIRST_RANK_MESSAGE = "6개 일치 (2,000,000,000원) - $MATCH_COUNT"
+const val LOTTO_SECOND_RANK_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - $MATCH_COUNT"
+const val LOTTO_THIRD_RANK_MESSAGE = "5개 일치 (1,500,000원) - $MATCH_COUNT"
+const val LOTTO_FOURTH_RANK_MESSAGE = "4개 일치 (50,000원) - $MATCH_COUNT"
+const val LOTTO_FIFTH_RANK_MESSAGE = "3개 일치 (5,000원) - $MATCH_COUNT"
+
+const val FIRST_REWARD = 2_000_000_000
+const val SECOND_REWARD = 30_000_000
+const val THIRD_REWARD = 1_500_000
+const val FOURTH_REWARD = 50_000
+const val FIFTH_REWARD = 5_000
+
 const val ERROR = "[ERROR]"
 const val INVALID_NUMERIC_MESSAGE = ERROR + " 구입 금액은 숫자로 입력되어야 합니다."
 const val INVALID_POSITIVE_MESSAGE = ERROR + " 구입 금액은 양수로 입력되어야 합니다."
