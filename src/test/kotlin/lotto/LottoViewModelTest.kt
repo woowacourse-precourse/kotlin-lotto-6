@@ -30,7 +30,7 @@ class LottoViewModelTest {
     fun `생성된 로또 번호가 중복되지 않는지 확인`() {
         viewModel.inputMoneyListener(5000)
         viewModel.lotto.forEach { lotto ->
-            assertEquals(6, lotto.numbers.distinct().size)
+            assertEquals(6, lotto.toSet().distinct().size)
         }
     }
 
