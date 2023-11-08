@@ -1,6 +1,6 @@
 package lotto.domain.enum.winning
 
-enum class Prize(val rank:Int,val amount:Int) {
+enum class RankPrize(val rank:Int, val amount:Int) {
     FIRST(1,2_000_000_000),
     SECOND(2,30_000_000),
     THIRD(3,1_500_000),

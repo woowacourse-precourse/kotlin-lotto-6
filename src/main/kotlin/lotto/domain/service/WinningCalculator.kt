@@ -1,6 +1,6 @@
 package lotto.domain.service
 
-import lotto.domain.enum.winning.Prize
+import lotto.domain.enum.winning.RankPrize
 import lotto.domain.model.Customer
 import lotto.domain.model.Winning
 
@@ -15,12 +15,12 @@ class WinningCalculator(private val winning: Winning, private val customer: Cust
         return result
     }
 
-    fun getTotalReturnPercent():String{
+    fun getTotalReturnPercent(): Double {
         val price = customer.lotteries.size.times(1000)
-        return String.format("%.1f%%", (getTotalReturn()/price) * 100)
+        return (getTotalReturn() / price) * 100
     }
 
-   private fun getTotalReturn():Double{
+    private fun getTotalReturn(): Double {
         var result = 0.0
         getWinningRanks().forEach { (rank, count) ->
             result += getPrizes(rank).times(count)
@@ -28,14 +28,14 @@ class WinningCalculator(private val winning: Winning, private val customer: Cust
         return result
     }
 
-    private fun getPrizes(rank:Int):Int{
-        return when(rank){
-            Prize.FIRST.rank -> Prize.FIRST.amount
-            Prize.SECOND.rank -> Prize.SECOND.amount
-            Prize.THIRD.rank -> Prize.THIRD.amount
-            Prize.FOURTH.rank -> Prize.FOURTH.amount
-            Prize.FIFTH.rank -> Prize.FIFTH.amount
-            else -> Prize.NOT.amount
+    fun getPrizes(rank: Int): Int {
+        return when (rank) {
+            RankPrize.FIRST.rank -> RankPrize.FIRST.amount
+            RankPrize.SECOND.rank -> RankPrize.SECOND.amount
+            RankPrize.THIRD.rank -> RankPrize.THIRD.amount
+            RankPrize.FOURTH.rank -> RankPrize.FOURTH.amount
+            RankPrize.FIFTH.rank -> RankPrize.FIFTH.amount
+            else -> RankPrize.NOT.amount
         }
     }
 }
