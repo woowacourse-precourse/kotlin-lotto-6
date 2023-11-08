@@ -1,6 +1,6 @@
 package lotto
 
-import lotto.utils.LottoNumbersGenerator
+import camp.nextstep.edu.missionutils.Randoms
 
 class LottoGameManager {
     private lateinit var lottoGame: LottoGame
@@ -29,11 +29,21 @@ class LottoGameManager {
         val lottoTickets = mutableListOf<Lotto>()
         println("\n${lottoAmount}개를 구매했습니다.")
         repeat(lottoAmount) {
-            val lotto = Lotto(LottoNumbersGenerator.generateLottoNumbers())
+            val lotto = publishLotto()
             lotto.printNumbers()
             lottoTickets.add(lotto)
         }
         return lottoTickets
+    }
+
+    private fun publishLotto(): Lotto{
+        var lotto : Lotto
+        try{
+            lotto = Lotto(Randoms.pickUniqueNumbersInRange(1,45,6))
+        } catch (e : IllegalArgumentException){
+            return publishLotto()
+        }
+        return lotto
     }
 
     private fun receiveLottoTicketsAmount(): Int = lottoInputHandler.receiveLottoCost() / 1000

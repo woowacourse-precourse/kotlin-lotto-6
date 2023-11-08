@@ -1,7 +1,6 @@
 package lotto
 
 import lotto.utils.validator.LottoCostInputValidator
-import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
