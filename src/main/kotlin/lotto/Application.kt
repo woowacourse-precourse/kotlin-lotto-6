@@ -24,6 +24,9 @@ fun main() {
 
     println("보너스 번호를 입력해 주세요.")
     lotto.inputBonusNumber(inputBonusNumber())
+
+    val result = lotto.result(lottoRandomNumber)
+    printResult(result)
 }
 
 private fun inputLottoPurchaseAmount() {
@@ -68,4 +71,23 @@ private fun inputLottoNumber(): List<Int> {
 private fun inputBonusNumber(): Int {
     val inputNumber = readLine()
     return inputNumber.toInt()
+}
+
+private fun printResult(places: List<Place>) {
+    println("당첨 통계")
+    println("---")
+    println("3개 일치 (5,000원) - ${places.filter { it == Place.FIFTH }.size}개")
+    println("4개 일치 (50,000원) - ${places.filter { it == Place.FOURTH }.size}개")
+    println("5개 일치 (1,500,000원) - ${places.filter { it == Place.THIRD }.size}개")
+    println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${places.filter { it == Place.SECOND }.size}개")
+    println("6개 일치 (2,000,000,000원) - ${places.filter { it == Place.FIRST }.size}개")
+    println("총 수익률은 ${getProfitPercent(places)}%입니다.")
+}
+
+fun getProfitPercent(places: List<Place>): String {
+    var income: Long = 0
+    places.forEach { income += it.money }
+
+    val percent = income.toDouble() / lottoPurchaseAmount * 100
+    return String.format("%.1f", percent)
 }
