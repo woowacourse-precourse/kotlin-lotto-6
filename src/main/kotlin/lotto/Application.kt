@@ -16,7 +16,6 @@ fun main() {
     val result = checkResults(lotteries, winningNums, bonusNumber)
 
     printStatistics(result) // 당첨 통계 출력
-    println()
     printReturnRate(result, money) // 수익률 출력
 }
 
@@ -98,7 +97,9 @@ fun checkResults(lotteries: List<Lotto>, wonNums: Set<Int>, bonusNum: Int): Map<
         val matchCount = lotto.getNumbers().count { it in wonNums } // 당첨 번호와 일치 개수
         val matchBonus = bonusNum in lotto.getNumbers() // 보너스 번호 포함 여부
         val rank = Rank.valueOf(matchCount, matchBonus) // 일치 번호와 보너스 번호 여부
-        results[rank] = results[rank]!! + 1 // 등수 당첨 개수 1 증가
+        if (rank != Rank.None) { // 번호가 2개 이하로 일치하는 경우
+            results[rank] = results.getOrDefault(rank, 0) + 1
+        }
     }
     return results
 }
@@ -107,25 +108,35 @@ fun printStatistics(lottoResults: Map<Rank, Int>) {
     println("\n당첨 통계")
     println("---")
 
-    val ranks = Rank.values()
-    ranks.forEach { rank -> val count = lottoResults[rank] ?: 0
-        if (count > 0) {
-            val resultString = when (rank) { // 등수별 일치 여부 및 상금 설정
-                Rank.Rank1 -> "6개 일치 (2,000,000,000원)"
-                Rank.Rank2 -> "5개 일치, 보너스 볼 일치 (30,000,000원)"
-                Rank.Rank3 -> "5개 일치 (1,500,000원)"
-                Rank.Rank4 -> "4개 일치 (50,000원)"
-                Rank.Rank5 -> "3개 일치 (5,000원)"
-                Rank.None -> "${rank.matchNum}개 일치 (${rank.winningMoney}원"
-            }
-            println("$resultString - $count 개")
-        }
+    val rankPrint = listOf (
+        Rank.Rank5, Rank.Rank4, Rank.Rank3, Rank.Rank2, Rank.Rank1)
+
+    rankPrint.forEach { rank ->
+        val count = lottoResults[rank] ?: 0
+        val resultString = rankResult(rank)
+        printRanking(count, resultString)
     }
 }
 
+// 등수 기록 함수
+fun rankResult(ranking: Rank): String {
+    return when (ranking) {
+        Rank.Rank5 -> "3개 일치 (5,000원)"
+        Rank.Rank4 -> "4개 일치 (50,000원)"
+        Rank.Rank3 -> "5개 일치 (1,500,000원)"
+        Rank.Rank2 -> "5개 일치, 보너스 볼 일치 (30,000,000원)"
+        Rank.Rank1 -> "6개 일치 (2,000,000,000원)"
+        Rank.None -> ""
+    }
+}
+
+// 등수 출력 함수
+fun printRanking(count: Int, resultString: String) {
+    println("$resultString - $count 개")
+}
+
 fun printReturnRate(lottoResults: Map<Rank, Int>, money: Int) {
-    // 수익금 계산
-    val totalMoney = lottoResults.entries.sumOf {
+    val totalMoney = lottoResults.entries.sumOf {// 수익금 계산
         it.key.winningMoney * it.value
     }
 
