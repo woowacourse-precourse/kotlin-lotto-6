@@ -12,7 +12,7 @@ fun main() {
 
     val tickets = mutableListOf<List<Int>>()
 
-    val ticketPrice = lottoView.askPurchaseTickets()
+    val ticketPrice = lottoView.getTicketPrice()
     val ticketCount = lottoView.calculateTicketCount(ticketPrice.toInt())
 
     lottoView.showPurchasedTicketCount(ticketCount)
@@ -24,8 +24,9 @@ fun main() {
         println(tickets[index])
     }
 
-    val luckyNumbers = lottoView.askLuckyNumbers()
-    val bonusNumber = lottoView.askBonusNumber()
+    val luckyNumbers = lottoView.getLuckyNumbers()
+    val bonusNumber = lottoView.getBonusNumber()
+    lottoView.closeConsole()
 
     tickets.forEach { numbers ->
         val lotto = Lotto(numbers)
@@ -45,4 +46,6 @@ fun main() {
 
     val rateOfProfit = winResult.calculateRateOfProfit(ticketPrice.toInt(), winResult.getTotalMoney())
     lottoView.showRateOfProfit(rateOfProfit)
+
+    lottoView.closeConsole()
 }
