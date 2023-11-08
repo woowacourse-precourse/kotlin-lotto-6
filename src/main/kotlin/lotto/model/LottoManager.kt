@@ -8,10 +8,8 @@ class LottoManager(private val purchaseAmount: Int) {
     val lottoes: List<Lotto>
         get() = _lottoes
 
-    private val lottoNum = purchaseAmount / 1000
-
     fun create() {
-        repeat(lottoNum) {
+        repeat(purchaseAmount / 1000) {
             val lottoNums = getLottoNum()
             _lottoes.add(Lotto(lottoNums))
         }
