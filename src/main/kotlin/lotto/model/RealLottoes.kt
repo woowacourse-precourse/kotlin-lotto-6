@@ -1,12 +1,15 @@
 package lotto.model
 
-class RealLottoes(private val userNumbers: Set<Int>, private val bonusNumber: Int, paymentAmount: String) : Lottoes {
+class RealLottoes(private val paymentAmount: Int) : Lottoes {
 
-    private var lottoes: MutableList<Lotto> = mutableListOf()
-    private var lottoTicketCount: Int = paymentAmount.toInt() / 1000
+    var userNumbers: Set<Int> = setOf()
+    var bonusNumber: Int = 0
+
+    private var lottoGenerator: LottoGenerator = LottoGenerator()
+    var lottoes: MutableList<Lotto> = mutableListOf()
+    val lottoTicketCount: Int = paymentAmount / 1000
     private var lottoesResult: MutableMap<WinningRank, Int> =
         WinningRank.values().associateWith { 0 }.toMutableMap()
-    private var lottoGenerator: LottoGenerator = LottoGenerator()
 
     init {
         for (i in 1..lottoTicketCount) {
@@ -29,7 +32,7 @@ class RealLottoes(private val userNumbers: Set<Int>, private val bonusNumber: In
     override fun getProfitRate(): Double {
         val profitAmount = calculateTotalProfit()
         val profit = Profit(profitAmount)
-        return profit.profitRate
+        return profit.calculateProfitRate(paymentAmount)
     }
 
     private fun calculateTotalProfit(): Int =
