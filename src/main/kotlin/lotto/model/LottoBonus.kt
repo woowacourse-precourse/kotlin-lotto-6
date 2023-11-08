@@ -1,8 +1,5 @@
 package lotto.model
 
-import camp.nextstep.edu.missionutils.Console
-import lotto.util.LottoView
-
 enum class BonusErrorCode(val message: String) {
     BONUS_NOT_VALID("[ERROR] 보너스 번호가 유효하지 않습니다."),
     BONUS_REPEATED("[ERROR] 보너스 번호가 당첨 번호와 겹치는 번호입니다.")
@@ -10,8 +7,8 @@ enum class BonusErrorCode(val message: String) {
 class LottoBonus {
     fun bonusCheck(bonus: String) {
         val bonusNum = bonus.toIntOrNull()
-        if(bonusNum == null || bonusNum < 0 || bonusNum > 45) {
-            throw IllegalArgumentException(BonusErrorCode.BONUS_NOT_VALID.message)
+        require(bonusNum != null && bonusNum > 0 && bonusNum <= 45) {
+            IllegalArgumentException(BonusErrorCode.BONUS_NOT_VALID.message)
         }
     }
     fun bonusRepeat(bonusNumber: Int, prizeNumber: List<Int>) {
