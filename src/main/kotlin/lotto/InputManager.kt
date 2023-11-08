@@ -47,13 +47,7 @@ class InputManager {
 
     // 입력된 보너스 번호 처리 및 반환
     fun getBonusNumber(): Int {
-        val bonusNumber =
-                try {
-                    inputBonusNumber().toInt()
-                } catch (e: IllegalArgumentException) {
-                    println("[ERROR] 올바른 숫자를 입력해주세요.")
-                    inputBonusNumber().toInt()
-                }
+        val bonusNumber = handleInputCorrectBonusNumberException(inputBonusNumber())
 
         handleWrongScopeBonusNumberException(bonusNumber)
 
@@ -81,6 +75,16 @@ class InputManager {
     private fun handleNumberOfWinningNumbersException(winningNumbers: ArrayList<Int>) {
         if (winningNumbers.size != 6) {
             throw IllegalArgumentException("[ERROR] 당첨 번호를 올바르게 입력해주세요.")
+        }
+    }
+
+    // 보너스 번호 입력시 문자 입력 예외 처리
+    private fun handleInputCorrectBonusNumberException(bonusNumber: String): Int {
+        return try {
+            bonusNumber.toInt()
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] 올바른 숫자를 입력해주세요.")
+            inputBonusNumber().toInt()
         }
     }
 
