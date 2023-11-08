@@ -25,7 +25,13 @@ class InputManager {
 
     // 입력된 구입 금액 처리 및 반환
     fun getMoney(): Int {
-        val inputMoney = inputMoney().toInt()
+        val inputMoney =
+                try {
+                    inputMoney().toInt()
+                } catch (e: IllegalArgumentException) {
+                    println("[ERROR] 올바른 숫자를 입력해주세요.")
+                    inputMoney().toInt()
+                }
 
         handleMoneyUnitException(inputMoney)
 
