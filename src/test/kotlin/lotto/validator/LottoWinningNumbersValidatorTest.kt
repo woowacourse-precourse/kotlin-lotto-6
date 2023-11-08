@@ -1,13 +1,12 @@
 package lotto.validator
 
-import lotto.model.LottoWinningNumbers
 import lotto.utils.validator.LottoWinningNumberInputValidator
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
+import org.junit.jupiter.api.Assertions.assertFalse
+
 @DisplayName("로또 당첨 번호 및 보너스 번호 입력 테스트")
 class LottoWinningNumbersValidatorTest {
     private lateinit var lottoWinningNumberInputValidator : LottoWinningNumberInputValidator
@@ -19,11 +18,11 @@ class LottoWinningNumbersValidatorTest {
 
     @Test
     fun `정상적인 로또 번호 입력`(){
-        assert(lottoWinningNumberInputValidator.validate(listOf("1","2","33","44","12","15")))
+        assert(lottoWinningNumberInputValidator.validate(listOf("1","2","3","4","5","6")))
     }
 
     fun `로또 번호가 6개 아닐 때`(){
-        assert(!lottoWinningNumberInputValidator.validate(listOf("1","2","33","44","12")))
+        assertFalse(lottoWinningNumberInputValidator.validate(listOf("1","2","33","44","12")))
     }
 
     @Test

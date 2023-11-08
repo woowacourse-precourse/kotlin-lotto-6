@@ -15,17 +15,14 @@ class LottoGame(
             if (isBonus(lottoNumbers)) {
                 equalNumberCount++
             }
-            val lottoResult = LottoResult(equalNumberCount, isBonus(lottoNumbers))
-            val resultCase = checkResultCase(lottoResult)
-
+            val resultCase = checkResultCase(equalNumberCount, isBonus(lottoNumbers))
 
             lottoResults[resultCase] = lottoResults[resultCase]?.plus(1) ?: 1
         }
         displayLottoGameResult()
-
     }
 
-    fun displayLottoGameResult() {
+    private fun displayLottoGameResult() {
         println("\n당첨 통계")
         println("---")
         println("3개 일치 (5,000원) - ${lottoResults[LottoResultCase.THREE_CORRECT] ?: 0}개")
@@ -36,13 +33,12 @@ class LottoGame(
         println("총 수익률은 ${calculateLottoProfit()}%입니다.")
     }
 
-    fun calculateLottoProfit(): Double {
+    private fun calculateLottoProfit(): Double {
         val profit = calculateTotalPrize() / lottoCost.toDouble() * 100.0
         return (profit * 100.0).roundToInt() / 100.0
     }
 
-
-    fun calculateTotalPrize(): Int {
+    private fun calculateTotalPrize(): Int {
         var totalPrize = 0
         lottoResults.forEach { lottoResultCase, value ->
             when (lottoResultCase) {
@@ -70,18 +66,16 @@ class LottoGame(
     private fun isBonus(lottoNumbers: List<Int>): Boolean =
         if (lottoNumbers.contains(lottoWinningNumbers.bonusNumber)) true else false
 
-    private fun checkResultCase(lottoResult: LottoResult): LottoResultCase {
+    private fun checkResultCase(winningCount: Int, isBonus: Boolean): LottoResultCase {
         return when {
-            lottoResult.winningCount == 3 -> LottoResultCase.THREE_CORRECT
-            lottoResult.winningCount == 4 -> LottoResultCase.FOUR_CORRECT
-            lottoResult.winningCount == 5 -> LottoResultCase.FIVE_CORRECT
-            lottoResult.winningCount == 5 && lottoResult.isBonus == true -> LottoResultCase.FIVE_CORRECT_AND_BONUS
-            lottoResult.winningCount == 6 -> LottoResultCase.SIX_CORRECT
+            winningCount == 3 -> LottoResultCase.THREE_CORRECT
+            winningCount == 4 -> LottoResultCase.FOUR_CORRECT
+            winningCount == 5 -> LottoResultCase.FIVE_CORRECT
+            winningCount == 5 && isBonus == true -> LottoResultCase.FIVE_CORRECT_AND_BONUS
+            winningCount == 6 -> LottoResultCase.SIX_CORRECT
             else -> LottoResultCase.UNKNOWN
         }
     }
-
-    data class LottoResult(val winningCount: Int, val isBonus: Boolean)
 
     enum class LottoResultCase {
         THREE_CORRECT,

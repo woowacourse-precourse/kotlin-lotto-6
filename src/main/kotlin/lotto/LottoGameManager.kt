@@ -39,13 +39,6 @@ class LottoGameManager {
 
         return LottoWinningNumbers(winningNumbers,bonusNumber)
     }
-
-    private fun matchLottoNumbers(){
-
-    }
-
-
-
     private fun receiveLottoTicketsAmount(): Int = lottoInputHandler.receiveLottoCost() / 1000
 
     private fun receiveWinningNumbers(): List<Int> = lottoInputHandler.receiveLottoWinningNumbers()
