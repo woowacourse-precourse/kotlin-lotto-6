@@ -2,11 +2,18 @@ package lotto
 
 class Lotto(private val numbers: List<Int>) {
 
+    private var bonusNumber: Int = -1
+
     init {
         require(numbers.size == 6)
         checkLottoNumber(numbers)
         checkDuplicationNumber(numbers)
     }
+
+    internal fun inputBonusNumber(value: Int) {
+        bonusNumber = value
+    }
+
 
     private fun checkLottoNumber(numbers: List<Int>) {
         val lottoNumberRange = 1..45
