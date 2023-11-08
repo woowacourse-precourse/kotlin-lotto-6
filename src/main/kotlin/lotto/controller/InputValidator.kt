@@ -21,15 +21,15 @@ class InputValidator {
         return isValid
     }
 
-    private fun validateLottoNumberCount(numbers: List<Int?>): Boolean {
-        return executeSafelyAndPrintException {
-            require(numbers.size == 6) {
-                INVALID_LOTTO_NUMBERS_COUNT
-            }
+    fun validateBonusNumber(bonusNumber: Int, numbers: List<Int>): Boolean {
+        var isValid = validateNumber(bonusNumber)
+        if (isValid) {
+            isValid = validateDuplicate(bonusNumber, numbers)
         }
+        return isValid
     }
 
-    fun validateNumber(number: Int): Boolean {
+    internal fun validateNumber(number: Int): Boolean {
         return executeSafelyAndPrintException {
             require(number in (1..45)) {
                 INVALID_LOTTO_NUMBER
@@ -37,7 +37,7 @@ class InputValidator {
         }
     }
 
-    fun validateDuplicate(bonusNumber: Int, numbers: List<Int>): Boolean {
+    internal fun validateDuplicate(bonusNumber: Int, numbers: List<Int>): Boolean {
         return executeSafelyAndPrintException {
             require(!numbers.contains(bonusNumber)) {
                 INVALID_DUPLICATE_NUMBER
@@ -45,6 +45,13 @@ class InputValidator {
         }
     }
 
+    private fun validateLottoNumberCount(numbers: List<Int?>): Boolean {
+        return executeSafelyAndPrintException {
+            require(numbers.size == 6) {
+                INVALID_LOTTO_NUMBERS_COUNT
+            }
+        }
+    }
 
     companion object {
         const val INVALID_PURCHASE_AMOUNT = "[ERROR] 구입할 금액은 1,000 원 단위 숫자여야 합니다."
