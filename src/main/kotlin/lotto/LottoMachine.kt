@@ -1,6 +1,6 @@
 package lotto
 
-class LottoMachine(private val amount: String) {
+class LottoMachine(private val amount: String = "") {
 
     private val outputView = OutputView()
     private val lottoGenerator = LottoGenerator()
@@ -29,6 +29,10 @@ class LottoMachine(private val amount: String) {
             val hasBonus = bonusNumber in lotto
             matchCount to hasBonus
         }
+    }
+
+    fun tallyResults(results: List<Pair<Int, Boolean>>): Map<Jackpot?, Int> {
+        return results.groupingBy { Jackpot.findByMatchInfo(it.first, it.second) }.eachCount()
     }
 
     companion object {
