@@ -6,4 +6,8 @@ class User {
     fun inputMoney() {
         val money = Console.readLine()
     }
+
+    fun inputWinningNumbers() {
+        val numbers = Console.readLine()
+    }
 }
