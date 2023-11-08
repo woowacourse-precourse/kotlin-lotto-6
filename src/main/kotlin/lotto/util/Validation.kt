@@ -1,17 +1,21 @@
 package lotto.util
 
+import lotto.util.Constants.DUPLICATE_ERROR
+import lotto.util.Constants.DUPLICATE_WITH_LOTTO_ERROR
+import lotto.util.Constants.INPUT_BLANK_OR_STRING_ERROR
+import lotto.util.Constants.INPUT_WRONG_LENGTH_ERROR
+import lotto.util.Constants.INPUT_WRONG_RANGE_ERROR
+import lotto.util.Constants.INPUT_WRONG_UNIT_ERROR
+
 object Validation {
 
     fun validatePurchaseAmount(amount: String) {
 
-        require(amount.isNotEmpty())
-        { "[ERROR] 구매 금액을 입력해주세요." }
-
         require(amount.toIntOrNull() != null)
-        { "[ERROR] 숫자만 입력 가능합니다." }
+        { INPUT_BLANK_OR_STRING_ERROR }
 
         require((amount.toInt() % 1000 == 0) && (amount.toInt() > 0))
-        { "[ERROR] 금액은 1,000원 단위로만 입력 가능합니다." }
+        { INPUT_WRONG_UNIT_ERROR }
 
     }
 
@@ -30,27 +34,27 @@ object Validation {
     fun validateWinningNumbers(winningNumbers: List<String>) {
 
         require(winningNumbers.all { it.toIntOrNull() != null })
-        { "[ERROR] 로또 번호로 숫자를 입력해주세요." }
+        { INPUT_BLANK_OR_STRING_ERROR }
 
         require(winningNumbers.size == 6)
-        { "[ERROR] 로또 번호는 6개의 숫자입니다." }
+        { INPUT_WRONG_LENGTH_ERROR }
 
         require(winningNumbers.all { it.toInt() in 1..45 })
-        { "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다." }
+        { INPUT_WRONG_RANGE_ERROR }
 
         require(!validateDuplicateNumbers(winningNumbers.map { it.toInt() }))
-        { "[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다." }
+        { DUPLICATE_ERROR }
     }
 
     fun validateBonusNumber(winningNumbers: List<Int>, bonusNumber: String) {
         require(bonusNumber.toIntOrNull() != null)
-        { "[ERROR] 보너스 번호로 숫자를 입력해주세요." }
+        { INPUT_BLANK_OR_STRING_ERROR }
 
         require(bonusNumber.toInt() in 1..45)
-        { "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다." }
+        { INPUT_WRONG_RANGE_ERROR }
 
         require(!winningNumbers.contains(bonusNumber.toInt()))
-        { "[ERROR] 로또 번호와 중복되는 번호입니다." }
+        { DUPLICATE_WITH_LOTTO_ERROR }
     }
 
 }
