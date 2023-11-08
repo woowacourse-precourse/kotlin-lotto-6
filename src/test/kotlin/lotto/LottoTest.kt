@@ -2,7 +2,7 @@ package lotto
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-
+import org.assertj.core.api.Assertions.assertThat
 
 class LottoTest {
     @Test
@@ -21,4 +21,12 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @Test
+    fun `발행한 로또 번호를 검사해 등수를 반환한다`() {
+        val lotto = Lotto(listOf<Int>(1,2,3,4,5,6))
+        val rank = lotto.round(listOf<Int>(1,2,3,5,12,42), 6)
+        assertThat(rank == 4).isTrue()
+    }
+
 }
