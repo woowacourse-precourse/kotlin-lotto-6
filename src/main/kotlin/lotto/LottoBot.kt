@@ -27,26 +27,28 @@ class LottoBot(
     private fun receiveBudget() {
         var flag = true
         while (flag) {
-            runCatching {
+            try {
                 println("구입금액을 입력해주세요.")
                 val input = Console.readLine()
                 budget = Validator.validateBudget(input)
+                flag = false
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
             }
-                .onSuccess { flag = false }
-                .onFailure { exception -> println(exception.message) }
         }
     }
 
     private fun purchaseLotto() {
         purchaseChance = budget / Validator.LOTTO_PRICE
         while (lottoWallet.size < purchaseChance) {
-            runCatching {
+            try {
                 val newLotto = Lotto(LottoMaker.createRandomLottoNumbers())
                 val newBonus = LottoMaker.createRandomBonusNumbers()
                 lottoWallet.add(newLotto)
                 bonusWallet.add(newBonus)
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
             }
-                .onFailure { exception -> println(exception.message) }
         }
     }
 
@@ -60,15 +62,16 @@ class LottoBot(
     private fun receiveWinningNumbers() {
         var flag = true
         while (flag) {
-            runCatching {
+            try {
                 println("당첨 번호를 입력해 주세요.")
                 val input = Console.readLine()
                 val numbers = Validator.mapToWinningNumbers(input)
                 winningNumbers.addAll(Validator.validateNumbers(numbers))
                 winningNumbers.sort()
+                flag = false
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
             }
-                .onSuccess { flag = false }
-                .onFailure { exception -> println(exception.message) }
         }
     }
 
