@@ -1,7 +1,5 @@
 package revenue
 
-import output.CompareResult
-
 class Reward {
     fun calculateReward(ranks: List<Int>): Int {
         var totalReward = 0
