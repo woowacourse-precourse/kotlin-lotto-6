@@ -21,7 +21,7 @@ class RunGame {
 
     private fun buyLotto(num: Int): MutableList<List<Int>> {
         var numbers: MutableList<List<Int>> = mutableListOf<List<Int>>()
-        for (i in 1..num) {
+        for (i in 0 until num) {
             numbers.add(makeLotto())
             ComputerOutput().purchasedLotto(numbers[i])
         }
@@ -34,17 +34,17 @@ class RunGame {
     }
 
     private fun checkResult(wNum: List<Int>, bLotto: MutableList<List<Int>>, bNum: Int): MutableList<List<Int>> {
-        var lottoResult: MutableList<List<Int>> = mutableListOf<List<Int>>()
-        for (i in 1..bLotto.size) {
-            lottoResult[i] = Lotto(wNum).checkLotto(bLotto[i], bNum)
+        var lottoResult: MutableList<List<Int>> = mutableListOf()
+        for (i in 0 until bLotto.size) {
+            lottoResult.add(Lotto(wNum).checkLotto(bLotto[i], bNum))
         }
         return lottoResult
     }
 
     private fun checkPrize(wNum: List<Int>, bNum: Int, lResult: MutableList<List<Int>>): Int {
         var prize: Int = 0
-        for ( i in 1..lResult.size) {
-            prize = Lotto(wNum).checkMoney(lResult[i] as MutableList<Int>, bNum)
+        for (i in 0 until lResult.size) {
+            prize += Lotto(wNum).checkMoney(lResult[i] as MutableList<Int>, bNum)
         }
         return prize
     }
