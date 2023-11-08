@@ -59,8 +59,7 @@ class LottoController() {
         }
     }
 
-    fun startMatchLotto(lottoTicket: List<LottoTicket>, winningNumber: List<Int>, bonusNumber: Int) {
-
+    fun startMatchLotto(lottoTickets: List<LottoTicket>, winningNumber: List<Int>, bonusNumber: Int) {
     }
 
     fun validateInputPurchaseAmountOfLottoNumeric(input: String) {
