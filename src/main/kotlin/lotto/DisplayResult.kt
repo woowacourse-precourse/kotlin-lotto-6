@@ -1,8 +1,9 @@
 package lotto
 
 
-fun displayPurchasement(lottoGameTicketCount:Int){
+fun displayPurchasement(lottoGameTicketCount:Int, tickets: List<Lotto>){
     println("${lottoGameTicketCount}개를 구매했습니다.")
+    tickets.forEach { displayTicketInfo(it) }
 }
 
 fun displayTicketInfo(ticket:Lotto){
