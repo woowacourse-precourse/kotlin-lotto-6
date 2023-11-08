@@ -1,6 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.enumeration.Bonus
 import lotto.enumeration.Buy
 import lotto.enumeration.Winning
 
@@ -37,6 +38,14 @@ class LottoService {
             winningNumbers.size != 6 -> throw IllegalArgumentException(Winning.ERROR_NOT_SIX.value)
             winningNumbers.map { it.toInt() }
                 .distinct().size != 6 -> throw IllegalArgumentException(Winning.ERROR_NOT_UNIQUE.value)
+        }
+    }
+
+    fun checkInvalidBonusNumber(bonusNumber: String, winningLotto: Lotto) {
+        when {
+            bonusNumber.toIntOrNull() == null -> throw IllegalArgumentException(Bonus.ERROR_NOT_INTEGER.value)
+            bonusNumber.toInt() !in 1..45 -> throw IllegalArgumentException(Bonus.ERROR_NOT_RANGE.value)
+            bonusNumber.toInt() in winningLotto.getNumbers() -> throw IllegalArgumentException(Bonus.ERROR_NOT_UNIQUE.value)
         }
     }
 }
