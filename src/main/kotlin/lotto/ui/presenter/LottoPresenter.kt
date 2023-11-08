@@ -1,5 +1,6 @@
 package lotto.ui.presenter
 
+import lotto.domain.model.Lotto
 import lotto.domain.model.Money
 import lotto.domain.repository.LottoRepository
 import lotto.ui.view.LottoView
@@ -12,33 +13,31 @@ class LottoPresenter(
     private var _money: Money? = null
     private val money get() = requireNotNull(_money)
 
+    private lateinit var lottoes: List<Lotto>
+
     fun getMoney() {
-        view.displayEnterMoney()
+        view.displayMessage(ENTER_MONEY_MESSAGE)
 
         runCatching {
             view.getMoney()
         }.onSuccess {
             _money = it
-            onSuccessGetMoney()
         }.onFailure { error ->
             view.displayErrorMessage(message = error.message)
-            onFailureGetMoney()
+            getMoney()
         }
     }
 
-    private fun onSuccessGetMoney() {
-        view.displayNumberOfBoughtLottoes(number = money.amount / Money.DIVISION_AMOUNT)
-    }
-
-    private fun onFailureGetMoney() {
-        view.displayEnterMoney()
-        view.getMoney()
-    }
-
     fun getLottoes() {
-        view.displayNumberOfBoughtLottoes(number = money.amount / Money.DIVISION_AMOUNT)
+        val numberOfBoughtLottoes = money.amount / Money.DIVISION_AMOUNT
+        view.displayMessage("\n$numberOfBoughtLottoes$NUMBER_OF_BOUGHT_LOTTOES_MESSAGE")
 
-        val lottoes = repository.getLottoes(amount = money.amount / Money.DIVISION_AMOUNT)
-        view.displayLottoes(lottoes = lottoes)
+        lottoes = repository.getLottoes(amount = money.amount / Money.DIVISION_AMOUNT)
+        lottoes.forEach { view.displayMessage(it.toString()) }
+    }
+
+    companion object {
+        const val ENTER_MONEY_MESSAGE = "구입금액을 입력해 주세요."
+        const val NUMBER_OF_BOUGHT_LOTTOES_MESSAGE = "개를 구매했습니다."
     }
 }
