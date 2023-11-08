@@ -1,9 +1,11 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
 
 class User {
     var purchaseMoney: Int = 0
+    val lottoTickets = mutableListOf<List<Int>>()
     val validator = Validator()
 
     fun inputPurchaseMoney() {
@@ -15,6 +17,14 @@ class User {
             validation = validator.validatePurchaseMoney(money)
         }
         purchaseMoney = money.toInt()
+    }
+
+    fun purchaseLottoTickets() {
+        val ticketCounts: Int = purchaseMoney // 1000
+        for (count in 0 until ticketCounts) {
+            val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+            lottoTickets.add(numbers)
+        }
     }
 
     fun inputLottoNumbers(): String {
