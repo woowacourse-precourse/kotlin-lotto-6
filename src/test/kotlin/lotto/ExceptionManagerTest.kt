@@ -66,6 +66,7 @@ class ExceptionManagerTest {
         }
         assert(exception.message == ErrorMessage.NOT_RANGE.msg)
     }
+
     @Test
     fun `값에 중복이 있을 경우 예외처리`() {
         val numbers = listOf("1", "2", "3", "4", "4", "5")
@@ -74,6 +75,7 @@ class ExceptionManagerTest {
         }
         assert(exception.message == ErrorMessage.NOT_DUPLICATE.msg)
     }
+
     @Test
     fun `숫자가 6개가 아닌 경우 예외처리`() {
         val numbers = listOf("1", "2", "3", "4", "5")
