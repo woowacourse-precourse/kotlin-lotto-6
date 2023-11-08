@@ -4,6 +4,11 @@ class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
         require(isAllUnique(this.numbers))
+        require(isSorted(this.numbers))
+    }
+
+    private fun isSorted(numbers: List<Int>): Boolean {
+        return numbers == numbers.sorted()
     }
 
     private fun isAllUnique(numbers: List<Int>): Boolean {
