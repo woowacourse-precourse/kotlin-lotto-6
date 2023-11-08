@@ -12,33 +12,33 @@ import lotto.view.InputView
 import lotto.view.OutputView
 
 class LottoController {
-    private var numberOfLottoTickets = 0
+    private var numberOfTickets = 0
     private val lottos = mutableListOf<Lotto>()
     private lateinit var userLottos: Lotto
-    private var userLottoBonusNumber = 0
+    private var userBonusNumber = 0
     private val winnings = Winning.values()
 
-    fun showLottoWinningNumbers() {
+    fun showWinningNumbers() {
         lottos.forEach {
             it.printWinningNumbers()
         }
     }
 
-    fun getLottoPurchaseAmount(): String {
+    fun getPurchasePrice(): String {
         OutputView.printPriceMessage()
         return InputView.inputPrice()
     }
 
-    fun getNumberOfLottoTickets(lottoPurchaseAmount: String) {
-        val lottoTickets = lottoPurchaseAmount.toIntOrNull()
-        if (PriceValidator.inputPrice(lottoPurchaseAmount)) {
-            OutputView.printLottoCountMessage(lottoTickets!! / lottoPrice)
-            numberOfLottoTickets = lottoTickets / lottoPrice
+    fun getNumberOfTickets(purchasePrice: String) {
+        val tickets = purchasePrice.toIntOrNull()
+        if (PriceValidator.inputPrice(purchasePrice)) {
+            OutputView.printLottoCountMessage(tickets!! / lottoPrice)
+            numberOfTickets = tickets / lottoPrice
         }
     }
 
-    fun getLottoWinningNumbers() {
-        repeat(numberOfLottoTickets) {
+    fun getWinningNumbers() {
+        repeat(numberOfTickets) {
             val numbers = NumberPicker.pickNumbers()
             Lotto(numbers).apply {
                 lottos.add(this)
@@ -46,11 +46,11 @@ class LottoController {
         }
     }
 
-    fun getUserLottoNumbers(): String {
+    fun getUserNumbers(): String {
         return InputView.inputNumbers()
     }
 
-    fun validateUserLottoNumbers(userInputNumbers: String) {
+    fun validateUserNumbers(userInputNumbers: String) {
         val parsedUserInputNumbers = userInputNumbers.split(",").filter {
             it.isNotEmpty()
         }.map {
@@ -65,21 +65,21 @@ class LottoController {
         }
     }
 
-    fun getUserBonusLottoNumber(): String {
+    fun getUserBonusNumber(): String {
         return InputView.inputBonusNumber()
     }
 
-    fun validateUserBonusLottoNumber(userInputBonusNumber: String) {
+    fun validateUserBonusNumber(userInputBonusNumber: String) {
         if (LottoBonusNumbersValidator.inputNumber(userLottos, userInputBonusNumber)) {
             userInputBonusNumber.toInt().apply {
-                userLottoBonusNumber = this
+                userBonusNumber = this
             }
         }
     }
 
     fun checkWinning() {
         lottos.forEach {
-            val winningResult = it.checkWinning(userLottos, userLottoBonusNumber)
+            val winningResult = it.checkWinning(userLottos, userBonusNumber)
             winnings.toList().indexOf(winningResult).apply {
                 if (this >= 0) winnings[this].winningCnt++
             }
@@ -97,7 +97,7 @@ class LottoController {
         val totalWinningPrice = winnings.fold(0) { acc, winning ->
             acc + winning.winningPrice * winning.winningCnt
         }
-        return RateOfReturnCalculator.calculateRateOfReturn(totalWinningPrice, numberOfLottoTickets)
+        return RateOfReturnCalculator.calculateRateOfReturn(totalWinningPrice, numberOfTickets)
     }
 
     fun showRateOfReturn(totalRateOfReturn: String) {

@@ -1,6 +1,6 @@
 package lotto.util
 
-fun doLogic(tryLogic: () -> Unit) {
+fun retryUntilSuccess(tryLogic: () -> Unit) {
     while (true) {
         try {
             tryLogic()

@@ -1,25 +1,25 @@
 package lotto
 
 import lotto.domain.controller.LottoController
-import lotto.util.doLogic
+import lotto.util.retryUntilSuccess
 
 
 fun main() {
     val lottoController = LottoController()
 
-    doLogic {
-        val lottoPurchaseAmount = lottoController.getLottoPurchaseAmount()
-        lottoController.getNumberOfLottoTickets(lottoPurchaseAmount)
+    retryUntilSuccess {
+        val lottoPurchasePrice = lottoController.getPurchasePrice()
+        lottoController.getNumberOfTickets(lottoPurchasePrice)
     }
-    lottoController.getLottoWinningNumbers()
-    lottoController.showLottoWinningNumbers()
-    doLogic {
-        val userInputNumbers = lottoController.getUserLottoNumbers()
-        lottoController.validateUserLottoNumbers(userInputNumbers)
+    lottoController.getWinningNumbers()
+    lottoController.showWinningNumbers()
+    retryUntilSuccess {
+        val userInputNumbers = lottoController.getUserNumbers()
+        lottoController.validateUserNumbers(userInputNumbers)
     }
-    doLogic {
-        val userInputBonusNumber = lottoController.getUserBonusLottoNumber()
-        lottoController.validateUserBonusLottoNumber(userInputBonusNumber)
+    retryUntilSuccess {
+        val userInputBonusNumber = lottoController.getUserBonusNumber()
+        lottoController.validateUserBonusNumber(userInputBonusNumber)
     }
     lottoController.checkWinning()
     lottoController.showWinningResult()
