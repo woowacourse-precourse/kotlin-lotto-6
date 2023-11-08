@@ -12,5 +12,10 @@ class Lotto(private val numbers: List<Int>) {
         return numbers.intersect(winning.toSet())
     }
 
+    fun contains(bonus: Int): Boolean {
+        if (numbers.contains(bonus)) return true
+        return false
+    }
+
 //    fun sortNumber(): List<Int> = numbers.sorted()
 }

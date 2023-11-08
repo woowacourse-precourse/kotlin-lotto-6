@@ -24,6 +24,7 @@ fun main() {
     println()
     printBonusNumber()
     val bonusNumber = inputBonusNumber() // bonusNumber 얻음
+    val bonusCount = LottoCompare(lotto).compareBonus(bonusNumber)
     printWinningStatic()
-    LottoWinning(winningCount).calculate()
+    LottoWinning(winningCount, bonusCount).calculate()
 }

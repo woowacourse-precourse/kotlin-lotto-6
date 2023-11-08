@@ -1,6 +1,7 @@
 package lotto.presentation
 
 import lotto.util.PROFIT_RATE_TEXT
+import lotto.util.WINNING_RESULT_FIVE_BONUS_TEXT
 import lotto.util.WINNING_RESULT_FIVE_TEXT
 import lotto.util.WINNING_RESULT_FOUR_TEXT
 import lotto.util.WINNING_RESULT_SIX_TEXT
@@ -22,6 +23,10 @@ object LottoWinningView {
 
     fun outputFiveWinningResult(winningCount: Int) {
         println("$WINNING_RESULT_FIVE_TEXT${winningCount}개")
+    }
+
+    fun outputFiveBonusWinningResult(winningCount: Int) {
+        println("${WINNING_RESULT_FIVE_BONUS_TEXT}${winningCount}개")
     }
 
     fun outputSixWinningResult(winningCount: Int) {

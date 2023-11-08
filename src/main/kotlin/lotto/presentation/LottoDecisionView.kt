@@ -19,7 +19,6 @@ object LottoDecisionView {
     }
 
     fun inputBonusNumber(): Int {
-        val bonusNumbers = Console.readLine().trim().toInt()
-        return bonusNumbers
+        return Console.readLine().trim().toInt()
     }
 }

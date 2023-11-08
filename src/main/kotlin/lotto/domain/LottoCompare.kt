@@ -10,20 +10,24 @@ class LottoCompare(private val numbers: MutableList<Lotto>) {
         return winningCount
     }
 
-//    fun compareBonus(bonus: Int, lotto: MutableList<List<Int>>) {
-//        for (index in lotto.indices) {
-//            compareRBonus(bonus, lotto[index])
-//        }
-//    }
+    fun compareBonus(bonus: Int): Int {
+        var count = 0
+        for (index in numbers.indices) {
+            count = compareRBonus(bonus, numbers[index])
+        }
+        return count
+    }
 
     private fun compareR(winning: List<Int>, i: Lotto): Int {
         val intersectNumber: Set<Int> = i.intersect(winning)
         return intersectNumber.size
     }
 
-//    private fun compareRBonus(bonus: Int, i: List<Int>) {
-//        if (i.contains(bonus)) {
-//            // 포함하면 안되기 때문에 예외 발생
-//        }
-//    }
+    private fun compareRBonus(bonus: Int, i: Lotto): Int {
+        var bonusCount = 0
+        if (i.contains(bonus)) {
+            bonusCount++
+        }
+        return bonusCount
+    }
 }
