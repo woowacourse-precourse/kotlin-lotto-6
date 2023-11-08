@@ -34,7 +34,7 @@ class ComputerOutput {
         println(m)
     }
 
-    fun staticLotto(money: Int, lotto: Int){
+    fun staticLotto(money: Int, lotto: Int) {
         var profit: Long = ((lotto / money) * 100).toLong()
         var m: String = "총 수익률은 ${profit}%입니다."
     }

@@ -13,17 +13,15 @@
 
 ## UserInput: 사용자로부터 입력을 받는 모든 기능
 
-___
-
 ### payMoney(): 로또 구입 금액을 입력받는다.
 
 ### getLotNum(): 당첨 번호를 입력받는다.
 
 ### getBonusNum(): 보너스 번호를 입력받는다.
 
-## ComputerOutput: 출력하는 모든 기능
-
 ___
+
+## ComputerOutput: 출력하는 모든 기능
 
 ### takeOrder(): 구입 금액을 입력하라는 메세지를 출력한다.
 
@@ -33,33 +31,21 @@ ___
 
 ### askWinNum(): 당첨 번호를 입력하라는 메세지를 출력한다.
 
-### winLotto(): 당첨 내역을 출력한다.
-
 ### askBonNum(): 보너스 번호를 입력하라는 메세지를 출력한다.
+
+### winLotto(): 당첨 내역을 출력한다.
 
 ### staticLotto(): 당첨 통계를 출력한다.
 
-
-
-
+___
 
 ## Lotto: 로또 게임 내 기능
 
-___
-
 ### checkLotto(): 당첨 내역을 확인한다.
 
-## LottoStatics
-
-___
-
-### checkMoney(): 당첨 금액을 확인한다.
-
-### checkProfit(): 수익률을 확인한다.
+---
 
 ## RunGame: 게임 실행 부분
-
-___
 
 ### startGame(): 게임을 실행한다.
 
