@@ -1,5 +1,11 @@
 package lotto
 
+import lotto.controller.LottoController
+
 fun main() {
-    TODO("프로그램 구현")
+//    val lr = LottoRepository()
+//    print(lr.generateLottoTickets(10))
+    val lottoController = LottoController()
+    lottoController.startGame()
+
 }
