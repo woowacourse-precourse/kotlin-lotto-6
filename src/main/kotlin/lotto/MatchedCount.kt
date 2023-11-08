@@ -1,6 +1,6 @@
 package lotto
 
-enum class MatchedCount(val title: String, val prize: Long, val description: String) {
+enum class MatchedCount(val title: String, val prize: Long, val statement: String) {
     FIFTH("5등", 5_000, "3개 일치"),
     FOURTH("4등", 50_000, "4개 일치"),
     THIRD("3등", 1_500_000, "5개 일치"),
