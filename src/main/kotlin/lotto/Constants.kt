@@ -28,11 +28,17 @@ object Constants {
     const val MIN_LOTTO_NUMBER = 1
     const val MAX_LOTTO_NUMBER = 45
     const val LOTTO_NUMBER_COUNT = 6
+    const val CASE_1_WINNINGS = 5000
+    const val CASE_2_WINNINGS = 50000
+    const val CASE_3_WINNINGS = 1500000
+    const val CASE_4_WINNINGS = 30000000
+    const val CASE_5_WINNINGS = 2000000000
 
     const val ERROR = "[ERROR] "
     const val BRIDGE = " - "
     const val COUNT_UNIT = "개"
     const val COMMA = ","
+    const val PERCENT = "%"
     const val THOUSAND = 1000
     const val ZERO = 0
 }

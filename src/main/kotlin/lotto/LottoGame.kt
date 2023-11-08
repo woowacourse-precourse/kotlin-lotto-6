@@ -22,9 +22,9 @@ class LottoGame {
     }
 
     private fun nextGameState() {
-        val index = LottoGameState.values().indexOf(gameState)
+        var index = LottoGameState.values().indexOf(gameState)
 
-        gameState = LottoGameState.values()[index + 1]
+        gameState = LottoGameState.values()[++index]
     }
 
     private fun isGameNotFinished() = gameState != FINISHED

@@ -2,17 +2,20 @@ package lotto
 
 import lotto.state.LottoGameState.*
 import lotto.state.LottoGameManagerState.*
+import lotto.state.LottoGameState
+import lotto.state.LottoGameManagerState
 import camp.nextstep.edu.missionutils.Console
 import lotto.data.Lotto
 import lotto.data.Money
+import lotto.data.WinningResult
 import lotto.data.Winning
-import lotto.state.LottoGameManagerState
-import lotto.state.LottoGameState
+import java.util.*
 
 class LottoGameManager {
     private var gameState = LottoGameState.values().first()
     private var gameManagerState = LottoGameManagerState.values().first()
     private val lottoGenerator = LottoGenerator()
+    private val winningResultGenerator = WinningResultGenerator()
     private var data: Any = ""
     private var userLotteryTickets = listOf<Lotto>()
     private var winningNumbers = listOf<Int>()
@@ -66,7 +69,8 @@ class LottoGameManager {
     private fun winningProcess() {
         when (gameManagerState) {
             READY -> setWinningResult()
-            else -> {}
+            REQUEST, REQUEST_ERROR -> {}
+            RESULT -> gameManagerState = READY
         }
     }
 
@@ -130,7 +134,8 @@ class LottoGameManager {
     }
 
     private fun setWinningResult() {
-
+        val result = winningResultGenerator.get(userLotteryTickets, winning, money)
+        whenGameManagerOnResult(result)
     }
 
     /**
