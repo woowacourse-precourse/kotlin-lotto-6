@@ -4,15 +4,16 @@ import lotto.model.Lotto
 import lotto.model.LottoBank
 import lotto.model.LottoGenerator
 import lotto.model.LottoRanking.Companion.calculateMatchingLottoRank
+import lotto.model.WinningLotto
 import lotto.view.InputView
 import lotto.view.OutputView
 
 class LottoManager {
-    val lottoGenerator = LottoGenerator()
-    val lottoBank = LottoBank()
+    private val lottoGenerator = LottoGenerator()
+    private val lottoBank = LottoBank()
 
-    val outputView = OutputView()
-    val inputView = InputView()
+    private val outputView = OutputView()
+    private val inputView = InputView()
 
 
     fun runApplication() {
@@ -22,27 +23,25 @@ class LottoManager {
             purchasedLottoList.add(lottoGenerator.createLotto())
         }
         runPrintLottoList(purchasedLottoCount, purchasedLottoList)
-        val lottoWinningNumberAndBonusNumber = runInputLottoNumbers()
-        val lottoWinningNumbers = lottoWinningNumberAndBonusNumber.first
-        val lottoBonusNumber = lottoWinningNumberAndBonusNumber.second
-        runCalculateMatchingLottoRank(lottoWinningNumbers, lottoBonusNumber, purchasedLottoList)
-
+        val lottoWinningNumbers = runInputLottoWinningNumbers()
+        val winningLotto = runInputLottoBonusNumbers(lottoWinningNumbers)
+        runCalculateMatchingLottoRank(winningLotto.getLottoWinningNumbers(), winningLotto.getLottoBonusNumber(), purchasedLottoList)
         val rateOfReturn = lottoBank.getRateOfReturn(purchasedLottoCount)
         runPrintWinningLottoStatistics(rateOfReturn)
-
     }
 
     fun runPurchaseLottoAmount(): Int {
-        var purchasedLottoCount = 0
+        var purchasedLottoCount: Int? = null
         try {
             outputView.askPurchaseLottoAmount()
             purchasedLottoCount = inputView.inputPurchaseLottoAmount()
             outputView.printLineBreaking()
         } catch (e: IllegalArgumentException) {
             println(e.message)
-            runPurchaseLottoAmount()
+            outputView.printLineBreaking()
+            purchasedLottoCount = runPurchaseLottoAmount()
         }
-        return purchasedLottoCount
+        return purchasedLottoCount!!
     }
 
     fun runPrintLottoList(purchasedLottoCount: Int, purchasedLottoList: List<Lotto>) {
@@ -50,16 +49,34 @@ class LottoManager {
         outputView.printLineBreaking()
     }
 
-    fun runInputLottoNumbers(): Pair<Lotto, Int> {
-        outputView.askLottoWinningNumbers()
-        val lottoWinningNumbers = inputView.inputLottoWinningNumbers()
-        outputView.printLineBreaking()
+    fun runInputLottoWinningNumbers(): Lotto {
+        var lottoWinningNumbers: Lotto? = null
+        try {
+            outputView.askLottoWinningNumbers()
+            lottoWinningNumbers = inputView.inputLottoWinningNumbers()
+            outputView.printLineBreaking()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            outputView.printLineBreaking()
+            lottoWinningNumbers = runInputLottoWinningNumbers()
+        }
+        return lottoWinningNumbers!!
+    }
 
-        outputView.askLottoBonusNumber()
-        val lottoBonusNumber = inputView.inputLottoBonusNumber()
-        outputView.printLineBreaking()
-
-        return Pair(lottoWinningNumbers, lottoBonusNumber)
+    fun runInputLottoBonusNumbers(lottoWinningNumbers: Lotto): WinningLotto {
+        var lottoBonusNumber: Int? = null
+        var winningLotto: WinningLotto? = null
+        try {
+            outputView.askLottoBonusNumber()
+            lottoBonusNumber = inputView.inputLottoBonusNumber()
+            winningLotto = WinningLotto(lottoWinningNumbers, lottoBonusNumber)
+            outputView.printLineBreaking()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            outputView.printLineBreaking()
+            winningLotto = runInputLottoBonusNumbers(lottoWinningNumbers)
+        }
+        return winningLotto!!
     }
 
     fun runCalculateMatchingLottoRank(lottoWinningNumbers: Lotto, lottoBonusNumber: Int, userLottoList: List<Lotto>){
