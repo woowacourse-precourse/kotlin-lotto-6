@@ -43,7 +43,7 @@ enum class GRADE(val countOfSame: Int, private val isBonusContain: Boolean) {
             } ?: LOSE
         }
 
-        fun fromRank(rank: Int): GRADE {
+        fun from(rank: Int): GRADE {
             return entries.firstOrNull {
                 it.rank() == rank
             } ?: LOSE

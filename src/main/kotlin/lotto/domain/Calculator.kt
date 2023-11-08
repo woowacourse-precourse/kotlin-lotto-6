@@ -17,7 +17,7 @@ class Calculator {
         if (rank == GRADE.LOSE.rank()) {
             return@foldIndexed sum
         }
-        sum + GRADE.fromRank(rank).price().toLong() * count
+        sum + GRADE.from(rank).price().toLong() * count
     }
 
     fun calculateProfitRate(totalProfit: Long, sizeOfTicket: Int) =
