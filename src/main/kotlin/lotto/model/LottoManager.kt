@@ -1,16 +1,24 @@
 package lotto.model
 
-import lotto.model.Lotto
+import camp.nextstep.edu.missionutils.Randoms
 
-class LottoManager(private val purchaseAmount: Int, private val answerNumInt: List<Int>, private val bonusNumber: Int) {
+class LottoManager(private val purchaseAmount: Int) {
 
     private val _lottoes = mutableListOf<Lotto>()
-    val carList: List<Lotto>
+    val lottoes: List<Lotto>
         get() = _lottoes
 
-    fun create() {
+    private val lottoNum = purchaseAmount / 1000
 
+    fun create() {
+        repeat(lottoNum) {
+            val lottoNums = getLottoNum()
+            _lottoes.add(Lotto(lottoNums))
+        }
     }
 
+    private fun getLottoNum(): List<Int> {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6)
+    }
 
 }
