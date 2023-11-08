@@ -24,8 +24,8 @@ class WinningLottoTest {
 
     @ParameterizedTest
     @CsvSource(value = ["1 : true", "7 : false"], delimiter = ':')
-    fun `보너스 번호와 로또 번호를 비교하여 맞은 개수를 확인하는 기능 테스트` (bonus: Int, expected: Boolean) {
-        val lotto = Lotto(listOf(1,2,3,4,5,6))
+    fun `보너스 번호와 로또 번호를 비교하여 맞은 개수를 확인하는 기능 테스트`(bonus: Int, expected: Boolean) {
+        val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
         val winningLotto = WinningLotto(Lotto(listOf(1, 2, 3, 4, 5, 6)), bonus)
         assertThat(winningLotto.hasBonusNumber(lotto)).isEqualTo(expected)
     }
