@@ -47,8 +47,8 @@ class LottoController(private val view: ScreenView) {
         when(count){
             Winning.FIFTH.winningCount -> result.win[0]++
             Winning.FOURTH.winningCount -> result.win[1]++
-            Winning.THIRD.winningCount -> if(!Winning.THIRD.bonus) {result.win[2]++}
-            Winning.SECOND.winningCount -> if(Winning.SECOND.bonus) {result.win[3]++}
+            Winning.THIRD.winningCount -> if(!bonus) {result.win[2]++}
+            Winning.SECOND.winningCount -> if(bonus) {result.win[3]++}
             Winning.FIRST.winningCount -> result.win[4]++
         }
     }
@@ -64,11 +64,11 @@ class LottoController(private val view: ScreenView) {
         rateOfReturn *= 100
         result.rateOfReturn = rateOfReturn
     }
-    enum class Winning(val winningCount: Int, val bonus: Boolean, val winningMoney: Int) {
-        FIFTH(3, false,5000),
-        FOURTH(4, false,50000),
-        THIRD(5, false,1500000),
-        SECOND(5, true,30000000),
-        FIRST(6, false,2000000000)
+    enum class Winning(val winningCount: Int, val winningMoney: Int) {
+        FIFTH(3, 5000),
+        FOURTH(4, 50000),
+        THIRD(5, 1500000),
+        SECOND(5, 30000000),
+        FIRST(6, 2000000000)
     }
 }
