@@ -9,7 +9,7 @@ class LottoGameController() {
     private val outputView: OutputView = OutputView()
 
     fun start() {
-        inputPurchaseAmount()
+        val purchase = inputPurchaseAmount()
     }
 
     private fun inputPurchaseAmount(): Purchase {
