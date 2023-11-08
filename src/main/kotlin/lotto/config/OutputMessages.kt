@@ -16,4 +16,4 @@ enum class OutputMessages(val message: String) {
     FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT("5개 일치, 보너스 볼 일치 (30,000,000원)"),
     SIX_NUMBER_CORRECT("6개 일치 (2,000,000,000원)"),
     YIELD_RATE_OF_RETURN("총 수익률은 %.1f%%입니다.")
-}
+ }

@@ -7,8 +7,7 @@ class LottoController(
     private val inputView: InputView=InputView(),
     private val outputView: OutputView=OutputView()
 ) {
-    fun lottoGameStarter(){
-
+    fun lottoGameStarter() {
         val lotto=moneyInput()
         val lottoNumbers=LottoNumberGenerator().lottoNumberCreation(lotto)
         outputView.lottoNumbersView(lottoNumbers)
@@ -22,7 +21,7 @@ class LottoController(
         outputView.lottoCompareResult(compareResult)
         outputView.lottoProfit(ProfitCalculation().profit(compareResult,lotto))
     }
-    private fun moneyInput():Int{
+    private fun moneyInput():Int {
         outputView.lottoPurchaseMessage()
         val money = inputView.lottoPurchase()
         try{
@@ -46,12 +45,12 @@ class LottoController(
         }
         return rightLottoNumber
     }
-    private fun bonusLottoNumberInput(rightLottoNumber:List<Int>):Int{
+    private fun bonusLottoNumberInput(rightLottoNumber:List<Int>):Int {
         outputView.bonusLottoNumberMessage()
         val bonusNumber=inputView.inputBonusNumber()
-        try{
+        try {
             BonusNumberVerification(bonusNumber,rightLottoNumber)
-        }catch (e:IllegalArgumentException){
+        } catch (e:IllegalArgumentException){
             println(e.message)
             return bonusLottoNumberInput(rightLottoNumber)
         }

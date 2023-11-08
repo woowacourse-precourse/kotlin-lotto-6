@@ -64,5 +64,4 @@ class LottoTest{
 
         assertTrue { result[0].distinct().size == 6 }
     }
-
 }

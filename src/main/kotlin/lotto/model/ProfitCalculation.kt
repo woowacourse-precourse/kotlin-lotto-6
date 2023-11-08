@@ -14,7 +14,7 @@ import lotto.config.OutputMessages.THREE_NUMBER_CORRECT
 
 class ProfitCalculation {
 
-    fun profit(compareResult: LottoCompare,money:Int): Double{
+    fun profit(compareResult: LottoCompare,money:Int): Double {
         var sum=0
         val result = compareResult.calculateCorrect()
 
@@ -24,7 +24,6 @@ class ProfitCalculation {
         sum+= result[FOUR_NUMBER_CORRECT]!!.times((FOUR_NUMBER_NUMBER_PRICE))
         sum+= result[THREE_NUMBER_CORRECT]!!.times((THREE_NUMBER_NUMBER_PRICE))
 
-        println(money*PURCHASE_AMOUNT_UNIT)
         return ((sum.toDouble()/((money*PURCHASE_AMOUNT_UNIT)))*100)
     }
 }

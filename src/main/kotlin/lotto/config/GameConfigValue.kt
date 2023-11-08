@@ -15,4 +15,4 @@ object GameConfigValue {
     const val FIVE_NUMBER_NUMBER_PRICE=1500000
     const val FOUR_NUMBER_NUMBER_PRICE=50000
     const val THREE_NUMBER_NUMBER_PRICE=5000
-}
+ }

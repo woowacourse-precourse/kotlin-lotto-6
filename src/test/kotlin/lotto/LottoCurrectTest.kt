@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest
 
-class LottoCorrectTest: NsTest() {
+class LottoCorrectTest : NsTest() {
     @Test
     fun `여섯자리의 번호 정답`() {
         assertRandomUniqueNumbersInRangeTest(

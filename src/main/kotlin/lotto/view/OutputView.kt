@@ -25,5 +25,5 @@ class OutputView {
     fun lottoProfit(lottoProfit:Double) {
         println(OutputMessages.YIELD_RATE_OF_RETURN.message.format(lottoProfit))
     }
-}
+ }
 
