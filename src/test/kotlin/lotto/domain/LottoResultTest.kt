@@ -12,7 +12,7 @@ class LottoResultTest {
 
         val rateOfReturn = lottoResult.calculateRateOfReturn(results, purchasePrice)
 
-        val expectedRateOfReturn = (((1500000.0 + 50000.0) - purchasePrice) / purchasePrice) * 100
+        val expectedRateOfReturn = ((1500000.0 + 50000.0) / purchasePrice) * 100
         assertEquals(expectedRateOfReturn, rateOfReturn)
     }
 }
