@@ -8,7 +8,9 @@ class LottoGenerator(var money: Int) {
     val lottos: MutableList<Lotto> = mutableListOf()
 
     init {
-        InputValidator.checkIsDivisibleByThousand(money)
+        InputValidator
+            .checkPurchaseRange(money)
+            .checkIsDivisibleByThousand(money)
     }
 
     fun create(): LottoGenerator {
