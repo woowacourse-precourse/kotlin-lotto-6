@@ -15,6 +15,28 @@ class Lotto(private val numbers: List<Int>) {
         checkBonusNumber(value)
     }
 
+    internal fun result(randomLottoNumbers: List<List<Int>>): List<Place> {
+        val places = mutableListOf<Place>()
+        randomLottoNumbers.forEach { randomLottoNumber ->
+            val intersection = randomLottoNumber - numbers.toSet()
+            if (intersection.isEmpty()) {
+                places.add(Place.FIRST)
+            }
+            if (intersection.size == 1 && !intersection.contains(bonusNumber)) {
+                places.add(Place.SECOND)
+            }
+            if (intersection.size == 1) {
+                places.add(Place.THIRD)
+            }
+            if (intersection.size == 2) {
+                places.add(Place.FOURTH)
+            }
+            if (intersection.size == 3) {
+                places.add(Place.FIFTH)
+            }
+        }
+        return places
+    }
 
     private fun checkLottoNumber(numbers: List<Int>) {
         val lottoNumberRange = 1..45
