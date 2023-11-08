@@ -39,13 +39,13 @@ class LottoInspector {
         println("총 수익률은 ${earningRateToPercent(earningRate)}%입니다.")
     }
 
-    private fun getEarningRate(lottoResultList: Array<Int>, issuedLotto: List<Lotto>): Double {
+    fun getEarningRate(lottoResultList: Array<Int>, issuedLotto: List<Lotto>): Double {
         val earnedMoney = getEarnedMoney(lottoResultList)
         val purchasedMoney = issuedLotto.size * LOTTO_PRICE
         return earnedMoney.toDouble() / purchasedMoney.toDouble()
     }
 
-    private fun earningRateToPercent(earningRate: Double): Double {
+    fun earningRateToPercent(earningRate: Double): Double {
         return round(earningRate * THOUSAND) / TEN
     }
 
