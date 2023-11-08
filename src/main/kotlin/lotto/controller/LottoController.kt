@@ -75,10 +75,10 @@ class LottoController(
     ) {
         val winStatics =
             lottoStatics.getWinStatics(answerAmount, bonusNum)
-        val totalReturn = lottoStatics.getTotalReturn()
+        val totalReturn = lottoStatics.getReturnRate(purchaseAmount)
 
         output.printWinStatics(winStatics)
-        output.printTotalReturn(totalReturn, purchaseAmount)
+        output.printTotalReturn(totalReturn)
     }
 
 }

@@ -16,12 +16,17 @@ class LottoStatics(
     fun getWinStatics(answerNumbers: List<Int>, bonusNumber: Int): Map<WinningType, Int> {
         lottoManager.lottoes.forEach { lotto ->
             val winningType = lotto.matchAnswer(answerNumbers, bonusNumber)
-            winStatics[winningType] = winStatics[winningType]!! +1
+            winStatics[winningType] = winStatics[winningType]!! + 1
         }
         return winStatics
     }
 
-    fun getTotalReturn(): Int {
+    fun getReturnRate(purchaseAmount: Int): String {
+        val returnRate = (getTotalReturn().toDouble() / purchaseAmount) * 100
+        return String.format("%.1f", returnRate)
+    }
+
+    private fun getTotalReturn(): Int {
         return winStatics.map { (winningType, num) ->
             winningType.reward * num
         }.sum()

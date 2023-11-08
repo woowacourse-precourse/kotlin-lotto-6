@@ -15,10 +15,8 @@ class Output {
         println(firstWinMessage(winStatics[WinningType.FIRST]))
     }
 
-    fun printTotalReturn(totalReturn: Int, purchaseAmount: Int) {
-        val returnRate = (totalReturn.toDouble() / purchaseAmount) * 100
-        val roundedRate = String.format("%.1f", returnRate)
-        println(returnRateMessage(roundedRate))
+    fun printTotalReturn(returnRate: String) {
+        println(returnRateMessage(returnRate))
     }
 
     fun printLottoesNum(lottoes: List<Lotto>) {
@@ -33,11 +31,11 @@ class Output {
         private const val DIVIDER_MESSAGE = "---"
 
 
-        fun fifthWinMessage(num:Int?) = "3개 일치 (5,000원) - ${num}개"
-        fun fourthWinMessage(num:Int?) = "4개 일치 (50,000원) - ${num}개"
-        fun thirdWinMessage(num:Int?) = "5개 일치 (1,500,000원) - ${num}개"
-        fun secondWinMessage(num:Int?) = "5개 일치, 보너스 볼 일치 (30,000,000원) - ${num}개"
-        fun firstWinMessage(num:Int?) = "6개 일치 (2,000,000,000원) - ${num}개"
+        fun fifthWinMessage(num: Int?) = "3개 일치 (5,000원) - ${num}개"
+        fun fourthWinMessage(num: Int?) = "4개 일치 (50,000원) - ${num}개"
+        fun thirdWinMessage(num: Int?) = "5개 일치 (1,500,000원) - ${num}개"
+        fun secondWinMessage(num: Int?) = "5개 일치, 보너스 볼 일치 (30,000,000원) - ${num}개"
+        fun firstWinMessage(num: Int?) = "6개 일치 (2,000,000,000원) - ${num}개"
 
         fun returnRateMessage(returnRate: String) = "총 수익률은 $returnRate%입니다."
         fun purchaseNumMessage(purchaseNum: Int) = "${purchaseNum}개를 구매했습니다."
