@@ -1,11 +1,9 @@
 package lotto
 
-
-fun validateLottoPriceString(digits: String) {
-    require(isValidInteger(digits)) {
-        ErrorMessages.PRICE_NOT_INT
-    }
+fun isPriceMultipleOfTicketPrice(value: Int): Boolean {
+    return value % LottoConstraints.TICKET_PRICE == 0
 }
+
 
 fun validateLottoPrice(price: Int) {
     require(price >= 0) { ErrorMessages.PRICE_IS_NEGATIVE }

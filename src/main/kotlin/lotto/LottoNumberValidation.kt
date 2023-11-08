@@ -8,7 +8,7 @@ fun areAllNumbersInValidRange(numbers: List<Int>): Boolean {
     return numbers.all { isNumberInValidRange(it) }
 }
 
-fun isNumberInValidRange(number:Int):Boolean{
+fun isNumberInValidRange(number: Int): Boolean {
     return (LottoConstraints.NUMBER_START <= number) and (number <= LottoConstraints.NUMBER_END)
 }
 
