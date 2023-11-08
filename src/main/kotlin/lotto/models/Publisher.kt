@@ -5,10 +5,10 @@ import lotto.models.Purchase.Companion.AMOUNT_UNIT
 
 class Publisher {
 
-    fun publishLottos(purchaseAmount: Int): List<Lotto> {
+    fun publishLottos(purchase: Purchase): List<Lotto> {
         val publishedLottos = mutableListOf<Lotto>()
 
-        repeat(purchaseAmount / AMOUNT_UNIT) {
+        repeat(purchase.getAmount() / AMOUNT_UNIT) {
             val lottoNumbers = generateLottoNumbers()
             val publishedLotto = Lotto(lottoNumbers)
 

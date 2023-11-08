@@ -11,10 +11,11 @@ class LottoGameController() {
     fun start() {
         val publisher = Publisher()
         val winningRecord = WinningRecord()
+        val profitRate = ProfitRate()
 
-        val purchaseAmount = inputPurchaseAmount()
+        val purchase = inputPurchaseAmount()
 
-        val purchasedLottos = publisher.publishLottos(purchaseAmount)
+        val purchasedLottos = publisher.publishLottos(purchase)
         outputView.printPurchasedLottos(purchasedLottos)
 
         val winningLotto = inputWinningLottoNumbers()
@@ -22,9 +23,11 @@ class LottoGameController() {
 
         winningRecord.updateWinningResults(purchasedLottos, winningLotto, bonus)
         outputView.printWinningStatics(winningRecord)
+
+        profitRate.calculate(purchase, winningRecord)
     }
 
-    private fun inputPurchaseAmount(): Int {
+    private fun inputPurchaseAmount(): Purchase {
         var purchase: Purchase? = null
 
         while (purchase == null) {
@@ -37,7 +40,7 @@ class LottoGameController() {
             }
         }
 
-        return purchase.getAmount()
+        return purchase
     }
 
     private fun inputWinningLottoNumbers(): Lotto {
