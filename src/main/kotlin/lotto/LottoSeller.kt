@@ -29,9 +29,9 @@ class LottoSeller {
     fun validateBonusNumber() {
         for (i in 0..this.winningNumbers.size - 1) {
             if (this.winningNumbers[i] == this.bonusNumber)
-                throw IllegalArgumentException("중복되지 않는 번호를 입력하여 주세요.")
+                throw IllegalArgumentException(ValidateMsg.REDUNDANT.msg)
             if (this.bonusNumber < 1 || this.bonusNumber > 45)
-                throw IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+                throw IllegalArgumentException(ValidateMsg.NUMRANGE.msg)
         }
     }
 
