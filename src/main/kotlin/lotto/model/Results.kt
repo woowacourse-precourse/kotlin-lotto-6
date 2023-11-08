@@ -11,7 +11,7 @@ import lotto.util.GameConstants.INDEX_4TH
 import lotto.util.GameConstants.INDEX_5TH
 import lotto.util.GameConstants.NO_RANK
 
-class Result(private val winningNumbers: List<Int>, private val bonus: Int) {
+class Results(private val winningNumbers: List<Int>, private val bonus: Int) {
     fun calculateRanking(ticket: List<Int>): Int {
         val matchCount = ticket.intersect(winningNumbers.toSet()).count()
         return when (matchCount) {
