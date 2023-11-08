@@ -3,13 +3,13 @@ package lotto
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
-import org.assertj.core.api.Assertions.assertThat
+import lotto.Constants.ERROR_TAG
+import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
 import org.junit.jupiter.api.Test
 
 class ApplicationTest : NsTest() {
-
     @Test
-    fun `기능 테스트`() {
+    fun `전체 기능 통합 테스트`() {
         assertRandomUniqueNumbersInRangeTest(
             {
                 run("8000", "1,2,3,4,5,6", "7")
@@ -43,18 +43,20 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun `예외 테스트`() {
+    fun `예외 데이터 입력시 재시작 테스트`() {
         assertSimpleTest {
-            runException("1000j")
-            assertThat(output()).contains(ERROR_MESSAGE)
+            runException(
+                "\n", "1a", "1001", "20000",
+                "1, 2, 3, 4, 5",
+                "1, 2, 3, 4, 5, 6", "6",
+                "1, 2, 3, 4, 5, 6", "A",
+                "1, 2, 3, 4, 5, 6", "7",
+            )
+            assertThat(output()).contains(ERROR_TAG)
         }
     }
 
     override fun runMain() {
         main()
-    }
-
-    companion object {
-        private const val ERROR_MESSAGE = "[ERROR]"
     }
 }
