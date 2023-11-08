@@ -7,24 +7,30 @@ class LottoWinningResultTest {
     @Test
     fun `로또 당첨 결과 로또 당첨 결과 맵에 테스트`() {
         var lottoResult: LottoResult = LottoResult()
-        var matchingLottoNumCount = mutableListOf<Int>(1, 2, 0, 4, 0)
-        lottoResult.setMatchingLottoResult(matchingLottoNumCount)
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(3))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(3))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(4))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(4))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(51))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(51))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(51))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(51))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(6))
 
         assertThat(lottoResult.getMatchingLottoResult()).isEqualTo(
             mutableMapOf(
-                LottoMatchNum.THREE_MATCH to 1,
+                LottoMatchNum.THREE_MATCH to 2,
                 LottoMatchNum.FOUR_MATCH to 2,
                 LottoMatchNum.FIVE_MATCH to 0,
                 LottoMatchNum.FIVE_PLUS_BONUS to 4,
-                LottoMatchNum.SIX_MATCH to 0
+                LottoMatchNum.SIX_MATCH to 1
             )
         )
     }
     @Test
     fun `로또 당첨 결과 따른 당첨금 계산 테스트 value1`() {
         var lottoResult: LottoResult = LottoResult()
-        var matchingLottoNumCount = mutableListOf<Int>(0, 0, 0, 0, 1)
-        lottoResult.setMatchingLottoResult(matchingLottoNumCount)
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(6))
         lottoResult.calculateTotalLottoPrize()
 
         assertThat(lottoResult.getTotalLottoPrize()).isEqualTo(2000000000)
@@ -33,8 +39,11 @@ class LottoWinningResultTest {
     @Test
     fun `로또 당첨 결과 따른 당첨금 계산 테스트 value2`() {
         var lottoResult: LottoResult = LottoResult()
-        var matchingLottoNumCount = mutableListOf<Int>(1, 1, 1, 1, 1)
-        lottoResult.setMatchingLottoResult(matchingLottoNumCount)
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(3))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(4))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(5))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(51))
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(6))
         lottoResult.calculateTotalLottoPrize()
 
         assertThat(lottoResult.getTotalLottoPrize()).isEqualTo(2031555000)
@@ -44,9 +53,22 @@ class LottoWinningResultTest {
     fun `로또 당첨 결과 따른 당첨금 계산 테스트 value3`() {
         var lottoResult: LottoResult = LottoResult()
         var matchingLottoNumCount = mutableListOf<Int>(0, 0, 0, 0, 0)
-        lottoResult.setMatchingLottoResult(matchingLottoNumCount)
         lottoResult.calculateTotalLottoPrize()
 
         assertThat(lottoResult.getTotalLottoPrize()).isEqualTo(0)
     }
+
+/*    @Test
+    fun `보너스 번호 당첨 결과에 따른 당첨금 계`() {
+        var lottoResult: LottoResult = LottoResult()
+        var matchingLottoNumCount = mutableListOf<Int>(0, 0, 0, 0, 0)
+
+        fun setMatchingLottoResult(lottoMatchNum: LottoMatchNum) {
+            matchingLottoResult[lottoMatchNum] = matchingLottoResult[lottoMatchNum]!! + 1
+        }
+        lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(3))
+        lottoResult.calculateTotalLottoPrize()
+
+        assertThat(lottoResult.getTotalLottoPrize()).isEqualTo(0)
+    }*/
 }

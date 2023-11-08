@@ -9,8 +9,6 @@ class LottoResult {
         LottoMatchNum.FIVE_MATCH to 0,
         LottoMatchNum.FIVE_PLUS_BONUS to 0,
         LottoMatchNum.SIX_MATCH to 0,
-        LottoMatchNum.EXTRA to 0,
-        LottoMatchNum.ERROR to 0
     )
 
     fun getTotalLottoPrize(): Int = totalLottoPrize
