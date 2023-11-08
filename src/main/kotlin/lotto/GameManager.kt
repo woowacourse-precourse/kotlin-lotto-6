@@ -9,19 +9,17 @@ class GameManager {
     private lateinit var winningNumbers: List<Int>
     private var bonusNumber = 0
 
+    // 로또 게임 진행
     fun runLottoGame() {
-        // 사용자 구입 금액 입력
         money = inputManager.getMoney()
-        // 발행 로또 번호 생성
         getLottoTickets(money)
-        // 발행 로또 갯수 및 번호 출력
         printPurchaseResult()
-        // 당첨 번호 입력 및 저장
         winningNumbers = inputManager.getWinningNumber()
-        // 보너스 번호 입력 및 저장
         bonusNumber = inputManager.getBonusNumber()
     }
 
+
+    // 사용자 급액에 따른 발행 로또 발행 및 번호 생성
     private fun getLottoTickets(money: Int) {
         val numberOfLottoTickets = money / LOTTO_PRICE
 
@@ -30,12 +28,15 @@ class GameManager {
         }
     }
 
+    // 로또 한 장 발행
     private fun generateLotto(): Lotto {
         val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
 
         return Lotto(numbers.sorted())
     }
 
+
+    // 발행 로또 갯수 및 번호 출력
     private fun printPurchaseResult() {
         println()
         println("8개를 구매했습니다.")
