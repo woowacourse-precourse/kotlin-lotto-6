@@ -11,9 +11,17 @@ data class WinningNumber(
         require(
             numbers.all {
                 it in 1..GameConst.MAX_NUM
-            } && numbers.distinct().size == numbers.size && bonus in 1..GameConst.MAX_NUM && numbers.contains(bonus).not()
-        ){
+            }){
             StringRes.NUMBER_RANGE_ERR
+        }
+        require(numbers.distinct().size == numbers.size) {
+            StringRes.WINNING_LIST_DISTINCT
+        }
+        require(bonus in 1..GameConst.MAX_NUM) {
+            StringRes.NUMBER_RANGE_ERR
+        }
+        require(numbers.contains(bonus).not()) {
+            StringRes.WINNING_LIST_DISTINCT 
         }
     }
 }       
