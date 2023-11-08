@@ -21,11 +21,13 @@ fun main() {
     val lotto = LottoMake().resultLottoNumber(count)
     println()
     printWinningNumber()
-    val winningNumber = inputWinningNumber().sorted() // winningNumber 얻음
+    val winningNumber =
+        Validation().validationLotto(inputWinningNumber().sorted()) // winningNumber 얻음
     val winningCount = LottoCompare(lotto).compare(winningNumber)
     println()
     printBonusNumber()
-    val bonusNumber = inputBonusNumber() // bonusNumber 얻음
+    val bonusNumber =
+        Validation().validationBonusDuplication(inputBonusNumber(), winningNumber) // bonusNumber 얻음
     val bonusCount = LottoCompare(lotto).compareBonus(bonusNumber)
     println()
     printWinningStatic()

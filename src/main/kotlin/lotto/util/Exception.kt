@@ -1,7 +1,5 @@
 package lotto.util
 
-import lotto.presentation.LottoPurchaseView.inputLottoPurchase
-
 object Exception {
     fun validateTypeException(amount: String) {
         requireNotNull(amount.toIntOrNull()) { EXCEPTION_MESSAGE + WRONG_NUMBER_EXCEPTION }
@@ -13,5 +11,27 @@ object Exception {
 
     fun validateUnitException(amount: Int) {
         require(amount % LOTTO_PRICE_STANDARD == 0 && amount > 0) { EXCEPTION_MESSAGE + WRONG_UNIT_EXCEPTION }
+    }
+
+    fun validationRangeException(number: Int) {
+        require(number in LOTTO_NUMBER_MIN..LOTTO_NUMBER_MAX) { EXCEPTION_MESSAGE + WRONG_RANGE_EXCEPTION }
+    }
+
+    fun validationDuplicationException(lotto: List<Int>, number: Int) {
+        if (lotto.count { it == number } != 1) throw IllegalArgumentException(
+            DUPLICATE_NUMBER_EXCEPTION
+        )
+    }
+
+    fun validationSeparatorException(number: String) {
+        require(number.contains(",")) { EXCEPTION_MESSAGE + WRONG_SEPARATOR }
+    }
+
+    fun validationBonusCountException(bonus: String) {
+        require(!bonus.contains(",")) { EXCEPTION_MESSAGE + WRONG_BONUS_COUNT_EXCEPTION }
+    }
+
+    fun validationBonusDuplicationException(bonus: Int, winningNumber: List<Int>) {
+        require(!winningNumber.contains(bonus)) { EXCEPTION_MESSAGE + DUPLYCATE_BONUS_EXCEPTION }
     }
 }

@@ -1,5 +1,6 @@
 package lotto.domain
 
+import lotto.util.EXCEPTION_MESSAGE
 import lotto.util.WRONG_COUNT_EXCEPTION
 
 class Lotto(private val numbers: List<Int>) {
