@@ -1,7 +1,5 @@
 package lotto.models
 
-import lotto.roundTo2DecimalPlaces
-
 class ProfitRate {
     private var value: Double = 0.0
 
@@ -10,5 +8,9 @@ class ProfitRate {
     fun calculate(purchaseAmount: Int, winningRecord: Map<WinningRank, Int>): Double {
 
         return 100.0
+    }
+
+    internal fun sumTotalWinningAmount(winningRecord: WinningRecord): Double {
+        return 300.0
     }
 }
