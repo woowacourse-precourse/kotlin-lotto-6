@@ -16,5 +16,5 @@ fun main() {
     printManager.inputBonusNumber()
     val bonusNumber = inputManager.bonusNum(winningNumber)
 
-    gameManager.playGame(lottos, winningNumber, bonusNumber)
+    gameManager.playGame(lottos, winningNumber, bonusNumber, money)
 }

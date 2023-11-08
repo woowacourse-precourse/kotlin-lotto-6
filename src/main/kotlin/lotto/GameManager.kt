@@ -1,11 +1,25 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
+import kotlin.math.round
 
 class GameManager(val printManager: PrintManager) {
-    fun playGame(lottos: List<Lotto>, winningNumber: Lotto, bonusNumber: Int) {
+    fun playGame(lottos: List<Lotto>, winningNumber: Lotto, bonusNumber: Int, money: Int) {
         val winningResult = compareLottos(lottos, winningNumber, bonusNumber)
         printManager.printResult(winningResult)
+
+        val rateOfReturn = getRateOfReturn(winningResult, money)
+        printManager.printRateOfReturn(rateOfReturn)
+    }
+
+    private fun getRateOfReturn(result: List<Int>, money: Int): Double {
+        val winningsByRank = listOf(5000, 50000, 1500000, 30000000, 2000000000)
+        var winnings = 0
+        result.forEachIndexed { index, it ->
+            winnings += it * winningsByRank[index]
+        }
+        val rateOfReturn = (winnings/money).toDouble()
+        return round(rateOfReturn*10)/10
     }
 
     private fun compareLottos(lottos: List<Lotto>, winningNumber: Lotto, bonusNumber: Int): List<Int> {
@@ -14,16 +28,16 @@ class GameManager(val printManager: PrintManager) {
         lottos.forEach { lotto ->
             val count = lotto.countDuplicateNumbers(winningNumber)
             val countIndex = when (count) {
-                0 -> CountDuplicationNumIndex.ZERO
-                1 -> CountDuplicationNumIndex.ONE
-                2 -> CountDuplicationNumIndex.TWO
+                in 0..2 -> null
                 3 -> CountDuplicationNumIndex.THREE
                 4 -> CountDuplicationNumIndex.FOUR
                 5 -> if (lotto.contains(bonusNumber)) CountDuplicationNumIndex.FIVE_BONUS else CountDuplicationNumIndex.FIVE
                 6 -> CountDuplicationNumIndex.SIX
                 else -> throw IllegalArgumentException("Invalid count: $count")
             }
-            countDuplicationNums[countIndex.ordinal]++
+            countIndex?.let {
+                countDuplicationNums[it.ordinal]++
+            }
         }
 
         return countDuplicationNums

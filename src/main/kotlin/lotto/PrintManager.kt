@@ -10,16 +10,20 @@ class PrintManager {
     fun printLottoNumber(lottoNumber: Int) = println("\n${lottoNumber}${LOTTO_NUMBER_PROMPT}")
 
     fun printLotto(lottos: List<Lotto>) {
-        lottos.forEach {lotto ->
+        lottos.forEach { lotto ->
             println(lotto)
         }
     }
 
-    fun printResult(result: List<Int>){
+    fun printResult(result: List<Int>) {
         println(RESULT_PROMPT)
         result.forEachIndexed { index, count ->
-            if (index >= 3) println("${resultListPrompt[index-3]}${count}${EA_PROMPT}")
+            println("${resultListPrompt[index]}${count}${EA_PROMPT}")
         }
+    }
+
+    fun printRateOfReturn(rate: Double) {
+        println("${RATE_OF_RETURN_FIRST_PROMPT} ${rate}${RATE_OF_RETURN_FINAL_PROMPT}")
     }
 
     companion object {
@@ -37,6 +41,6 @@ class PrintManager {
         )
         const val EA_PROMPT = "개"
         const val RATE_OF_RETURN_FIRST_PROMPT = "총 수익률은"
-        const val RATE_OF_RETURN_FINAL_PROMPT = "입니다."
+        const val RATE_OF_RETURN_FINAL_PROMPT = "%입니다."
     }
 }
