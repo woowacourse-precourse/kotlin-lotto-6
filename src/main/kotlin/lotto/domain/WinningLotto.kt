@@ -20,11 +20,8 @@ class WinningLotto(private val winningNumbers: List<Int>, private val bonusNumbe
       3 -> FIFTH.addCount()
       4 -> FOURTH.addCount()
       5 -> {
-        if (bonusNumber[0] in lottoNumbers) {
-          SECOND.addCount()
-        } else {
-          THIRD.addCount()
-        }
+        if (bonusNumber[0] in lottoNumbers) { SECOND.addCount() }
+        else { THIRD.addCount() }
       }
       6 -> FIRST.addCount()
     }
