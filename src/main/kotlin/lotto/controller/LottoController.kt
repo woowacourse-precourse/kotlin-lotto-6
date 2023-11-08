@@ -8,6 +8,7 @@ import lotto.presentation.LottoBonusView.inputBonusNumberOfLotto
 import lotto.presentation.LottoBonusView.printBonusNumberOfLotto
 import lotto.presentation.LottoGeneratorView.printLottoTickets
 import lotto.presentation.LottoGeneratorView.printPurchaseLottoCount
+import lotto.presentation.LottoProfitView
 import lotto.presentation.LottoStatisticsView.printStatistics
 import lotto.presentation.LottoWinningView.inputWinningNumberOfLotto
 import lotto.presentation.LottoWinningView.printWinningNumberOfLotto
@@ -62,6 +63,7 @@ class LottoController() {
 
     fun startLottoProfit(rank: List<Int>, amount: Int) {
         val profit = LottoProfit().calculateTotal(rank, amount)
+        LottoProfitView.printLottoProfit(profit)
     }
 
     fun validateInputPurchaseAmountOfLottoNumeric(input: String) {

@@ -16,6 +16,7 @@ const val LOTTO_THIRD_RANK_MESSAGE = "5개 일치 (1,500,000원) - $MATCH_COUNT"
 const val LOTTO_FOURTH_RANK_MESSAGE = "4개 일치 (50,000원) - $MATCH_COUNT" + "개"
 const val LOTTO_FIFTH_RANK_MESSAGE = "3개 일치 (5,000원) - $MATCH_COUNT" + "개"
 const val LOTTO_STATISTICS_MESSAGE = "당첨 통계\n---"
+const val LOTTO_PROFIT_MESSAGE = "총 수익률은 %.1f%%입니다."
 
 const val MATCH_SIX: Int = 6
 const val MATCH_FIVE: Int = 5
