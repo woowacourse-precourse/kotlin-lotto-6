@@ -63,5 +63,9 @@ class PurchasedLotto {
 
     fun getWinPrize(): Int {
         return winPrize
-    }   
+    }
+
+    fun getWinRank(): Int {
+        return winRank
+    }
 }
