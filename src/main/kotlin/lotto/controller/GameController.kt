@@ -12,24 +12,31 @@ class GameController {
     private lateinit var lottoes: RealLottoes
 
     fun start() {
-        outputView.purchasePrompt()
-        val payment = inputView.purchaseAmount()
-
-        validator.validatePurchaseAmount(payment)
-        lottoes = RealLottoes(payment)
+        var isValid: Boolean
+        var inputNumbers: List<Int>
+        do {
+            outputView.purchasePrompt()
+            val payment = inputView.purchaseAmount()
+            isValid = validator.validatePurchaseAmount(payment)
+            lottoes = RealLottoes(payment)
+        } while (!isValid)
 
         outputView.lottoNumbersPrompt(lottoes.lottoTicketCount)
         outputView.lottoNumbers(lottoes.lottoes)
 
-        outputView.inputLottoNumbersPrompt()
-        val inputNumbers = inputView.lottoNumbers()
-        validator.validateLottoNumbers(inputNumbers)
-        lottoes.userNumbers = inputNumbers.toSet()
+        do {
+            outputView.inputLottoNumbersPrompt()
+            inputNumbers = inputView.lottoNumbers()
+            isValid = validator.validateLottoNumbers(inputNumbers)
+            lottoes.userNumbers = inputNumbers.toSet()
+        } while (!isValid)
 
-        outputView.inputBonusNumberPrompt()
-        val bonusNumber = inputView.bonusLottoNumber()
-        validator.validateNumber(bonusNumber)
-        lottoes.bonusNumber = bonusNumber
+        do {
+            outputView.inputBonusNumberPrompt()
+            val bonusNumber = inputView.bonusLottoNumber()
+            isValid = validator.validateBonusNumber(bonusNumber, inputNumbers)
+            lottoes.bonusNumber = bonusNumber
+        } while (!isValid)
 
         val winningResult = lottoes.calculateLottoesResult()
         outputView.winningResultPrompt()
