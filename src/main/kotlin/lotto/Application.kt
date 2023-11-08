@@ -1,5 +1,10 @@
 package lotto
 
 fun main() {
-    TODO("프로그램 구현")
+    val cashier = Cashier()
+    val machine = LottoMachine()
+
+    val purchases = cashier.purchase()
+    val winningNumbers = machine.drawNumbers()
+    machine.printResult(purchases, winningNumbers)
 }
