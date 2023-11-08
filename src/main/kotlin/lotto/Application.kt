@@ -6,22 +6,33 @@ fun main() {
     val lotto_tickets = buyLotto()
     val lotto_list = generateLottoNumbers(lotto_tickets)
     val winning_numbers_list = receiveWinningNumbers()
-    val bonus_number = receiveBonusNumbers()
+    val bonus_number = receiveBonusNumbers(winning_numbers_list)
     val result = calculateLottoNumbers(lotto_list, winning_numbers_list, bonus_number)
     printResult(result, lotto_tickets)
 }
 
 fun buyLotto(): Int {
-    println("구입금액을 입력해 주세요.")
-    val price = readLine()!!.toInt()
-    if (price % 1000 != 0) {
-        throw IllegalArgumentException("[ERROR] 로또 구매는 1000원 단위로만 가능합니다.")
-    } else if (price == null) {
-        throw IllegalArgumentException("[ERROR] 구입금액을 입력해주세요.")
-    } else return price / 1000
+    var validInput = false
+    var price = 0
+    while(!validInput) {
+        println("구입금액을 입력해 주세요.")
+        price = readLine()!!.toInt()
+        try {
+            if (price % 1000 != 0) {
+                throw IllegalArgumentException("[ERROR] 로또 구매는 1000원 단위로만 가능합니다.")
+            }
+            validInput = true
+
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+        }
+
+    }
+    return price / 1000
 }
 
 fun generateLottoNumbers(lotto_tickets: Int): MutableList<MutableList<Int>> {
+    println()
     println("${lotto_tickets}개를 구매했습니다.")
     val lotto_list: MutableList<MutableList<Int>> = mutableListOf()
     repeat(lotto_tickets){
@@ -41,31 +52,52 @@ fun generateLottoNumbers(lotto_tickets: Int): MutableList<MutableList<Int>> {
 
 fun receiveWinningNumbers(): MutableList<Int> {
     val winning_numbers_list = mutableListOf<Int>()
-    println("당첨 번호를 입력해 주세요.")
-    val winning_numbers = readLine().toString().split(",")
-    for (numbers in winning_numbers) {
-        if (numbers.toInt() < 1 || numbers.toInt() > 45 ) {
-            throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+    println()
+    var validInput = false
+    while(!validInput) {
+        println("당첨 번호를 입력해 주세요.")
+        val winning_numbers = readLine().toString().split(",")
+        try {
+            for (numbers in winning_numbers) {
+                if (numbers.toInt() < 1 || numbers.toInt() > 45) {
+                    throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+                }
+                winning_numbers_list.add(numbers.toInt())
+            }
+            if (winning_numbers.size > 6) {
+                throw IllegalArgumentException("[ERROR] 로또 번호는 6개만 입력 가능 합니다.")
+            }
+            if (winning_numbers.size != winning_numbers.distinct().count()) {
+                throw IllegalArgumentException("[ERROR] 로또 번호는 중복 없이 입력해야 합니다.")
+            }
+            validInput = true
+            winning_numbers_list.sort()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
         }
-        winning_numbers_list.add(numbers.toInt())
     }
-    if(winning_numbers.size > 6) {
-        throw IllegalArgumentException("[ERROR] 로또 번호는 6개만 입력 가능 합니다.")
-    }
-    if(winning_numbers.size != winning_numbers.distinct().count()){
-        throw IllegalArgumentException("[ERROR] 로또 번호는 중복 없이 입력해야 합니다.")
-    }
-    winning_numbers_list.sort()
-
     return winning_numbers_list
 }
 
-fun receiveBonusNumbers(): Int {
-    println("보너스 번호를 입력해 주세요.")
-    val bonus_number = readLine()!!.toInt()
-    if (bonus_number < 1 || bonus_number > 45 ) {
-        throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
-        receiveBonusNumbers()
+fun receiveBonusNumbers(winning_numbers_list: MutableList<Int>): Int {
+    println()
+    var validInput = false
+    var bonus_number = 0
+    while(!validInput) {
+        try {
+            println("보너스 번호를 입력해 주세요.")
+            bonus_number = readLine()!!.toInt()
+            if (bonus_number < 1 || bonus_number > 45) {
+                throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+            }
+            else if (winning_numbers_list.contains(bonus_number)) {
+                throw IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.")
+            }
+            validInput = true
+        }
+        catch (e: IllegalArgumentException) {
+            println(e.message)
+        }
     }
 
     return bonus_number
@@ -92,6 +124,7 @@ fun calculateLottoNumbers(lotto_list: MutableList<MutableList<Int>>, winning_num
 }
 
 fun printResult(result: MutableList<Int>, lotto_tickets: Int) {
+    println()
     println("당첨 통계")
     println("---")
     println("3개 일치 (5,000원) - ${result[0]}개")
