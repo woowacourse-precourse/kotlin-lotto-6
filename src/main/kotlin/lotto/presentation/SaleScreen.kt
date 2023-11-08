@@ -3,7 +3,6 @@ package lotto.presentation
 class SaleScreen {
     fun outputTicketCount(count: Int) = println(LINE_SEPARATOR + "$count$TICKET_COUNT")
 
-
     fun outputTickets(lottoTickets: List<List<Int>>) =
         lottoTickets.forEach {
             println(it)
