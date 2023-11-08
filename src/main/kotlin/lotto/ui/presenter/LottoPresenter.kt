@@ -72,6 +72,16 @@ class LottoPresenter(
         }
     }
 
+    fun getResults() {
+        val results = lottoes.map {
+            it.calculateResult(winningNumbers = winningNumbers, bonusNumber = bonusNumber)
+        }.groupingBy { result ->
+            result
+        }.eachCount()
+
+        view.displayResults(results = results)
+    }
+
     companion object {
         const val ENTER_MONEY_MESSAGE = "구입금액을 입력해 주세요."
         const val NUMBER_OF_BOUGHT_LOTTOES_MESSAGE = "개를 구매했습니다."

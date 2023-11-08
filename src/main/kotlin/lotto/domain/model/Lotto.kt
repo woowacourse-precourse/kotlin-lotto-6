@@ -1,5 +1,7 @@
 package lotto.domain.model
 
+import lotto.domain.model.Result.*
+
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == NUMBER_OF_LOTTO_NUMBERS) { MISMATCH_NUMBER_OF_LOTTO_NUMBERS_MESSAGE }
@@ -18,6 +20,23 @@ class Lotto(private val numbers: List<Int>) {
     private fun List<Int>.inAscendingOrder(): Boolean = this == this.sortedBy { it }
 
     override fun toString(): String = numbers.toString()
+
+    fun calculateResult(winningNumbers: WinningNumbers, bonusNumber: BonusNumber): Result {
+        val sizeOfNumbersInCommon = numbers.intersect(winningNumbers.numbers.toSet()).size
+
+        return when (sizeOfNumbersInCommon) {
+            FIRST_PLACE.matchingNumberCount -> FIRST_PLACE
+            SECOND_PLACE.matchingNumberCount -> decideSecondOrThirdPlace(bonusNumber = bonusNumber)
+            FOURTH_PLACE.matchingNumberCount -> FOURTH_PLACE
+            FIFTH_PLACE.matchingNumberCount -> FIFTH_PLACE
+            else -> NOTHING
+        }
+    }
+
+    private fun decideSecondOrThirdPlace(bonusNumber: BonusNumber): Result {
+        if (bonusNumber.number in numbers) return SECOND_PLACE
+        return THIRD_PLACE
+    }
 
     companion object {
         const val MIN_NUMBER = 1
