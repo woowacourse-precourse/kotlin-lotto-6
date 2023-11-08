@@ -14,6 +14,7 @@ class InputManager {
     fun inputWinningNumber(): List<Int> {
         println(PRINT_INPUT_WINNING_NUMBER)
         val nums = Console.readLine().split(DELIMITER)
+        exceptionManager.winningNumberException(nums)
         println()
         return nums.map { it.toInt() }
     }

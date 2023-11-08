@@ -14,4 +14,16 @@ class ExceptionManager {
             throw IllegalArgumentException("구입 최대 금액은 10만원입니다.")
         }
     }
+
+    fun winningNumberException(nums: List<String>) {
+        val numbers = mutableListOf<Int>()
+
+        for (num in nums) {
+            val convertedNum = num.toIntOrNull()
+            convertedNum?.let {
+                numbers.add(convertedNum)
+            } ?: throw IllegalArgumentException("숫자를 입력해주세요.")
+        }
+
+    }
 }
