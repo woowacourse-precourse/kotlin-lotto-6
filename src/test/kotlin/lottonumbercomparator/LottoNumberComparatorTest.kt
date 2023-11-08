@@ -20,6 +20,7 @@ class LottoNumberComparatorTest {
     @BeforeEach
     fun setUp() {
         lottoNumberComparator = LottoNumberComparatorImpl()
+        LottoRanking.entries.forEach { it.count = 0 }
     }
 
     @ParameterizedTest
