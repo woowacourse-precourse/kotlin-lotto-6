@@ -19,8 +19,8 @@ class Controller {
     fun getRandomLottoNumbers(ticketNumber: Int): List<List<Int>> {
         var lottoNumberResults : MutableList<List<Int>> = mutableListOf()
         repeat(ticketNumber) {
-            var lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6).toList()
-            lottoNumberResults.add(lottoNumbers)
+            var lottoNumbers = Randoms.pickUniqueNumbersInRange(Utils.MIN_NUMBER, Utils.MAX_NUMBER, Utils.LOTTO_NUMBER_SIZE).toList()
+            lottoNumberResults.add(lottoNumbers.sorted())
         }
         return lottoNumberResults
     }
@@ -28,5 +28,23 @@ class Controller {
     fun printRandomLottoNumbers(lottoNumberResults: List<List<Int>>) {
         for(lottoNumbers in lottoNumberResults)
             println("[${lottoNumbers.joinToString(", ")}]")
+    }
+
+
+    fun getRealLottoNumbers(): List<Int> {
+        println(Utils.GET_REAL_LOTTO_NUMBER_MESSAGE)
+
+        val realLottoNumberString = Console.readLine()
+        val realLottoNumbers = realLottoNumberString.replace(" ", "").split(",")
+
+        return realLottoNumbers.map { it.toInt() }
+    }
+
+    fun getBonusLottoNumber(): Int {
+        println(Utils.GET_BONUS_LOTTO_NUMBER_MESSAGE)
+
+        val bonusLottoNumber = Console.readLine()
+
+        return bonusLottoNumber.toInt()
     }
 }
