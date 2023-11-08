@@ -3,6 +3,7 @@ package lotto.domain
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.model.Lotto
 import lotto.model.WinningLotto
+import java.text.DecimalFormat
 
 class LottoManager {
 
@@ -11,9 +12,14 @@ class LottoManager {
     fun calculateResult(
         purchasePrice: Int,
         totalProceeds: Int
-    ): Double = String.format(
-        RETURN_FORMAT, ((totalProceeds.toDouble() / purchasePrice.toDouble()) * RETURN_RATE)
-    ).toDouble()
+    ): String {
+        val rate = String.format(
+            RATE_FORMAT,
+            ((totalProceeds.toDouble() / purchasePrice.toDouble()) * RETURN_RATE)
+        ).toDouble()
+        return if (rate >= 100.0) DecimalFormat(RETURN_FORMAT).format(rate)
+        else rate.toString()
+    }
 
     fun getMathResult(matchCount: Int): GameResult? =
         GameResult.entries.find { it.matchNumber == matchCount }
@@ -45,7 +51,8 @@ class LottoManager {
         )
 
     companion object {
-        private const val RETURN_FORMAT = "%.1f"
+        private const val RATE_FORMAT = "%.1f"
+        private const val RETURN_FORMAT = "#,###.0"
         private const val RETURN_RATE = 100
     }
 }

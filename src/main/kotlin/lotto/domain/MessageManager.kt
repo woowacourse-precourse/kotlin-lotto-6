@@ -17,7 +17,7 @@ class MessageManager {
 
     fun printGameResult(resultComment: String) = println(resultComment)
 
-    fun printTotalReturnRate(rate: Double) = println("총 수익률은 ${rate}%입니다.")
+    fun printTotalReturnRate(rate: String) = println("총 수익률은 ${rate}%입니다.")
 
     companion object {
         private const val ENTER_PURCHASE_PRICE = "구입금액을 입력해 주세요."
