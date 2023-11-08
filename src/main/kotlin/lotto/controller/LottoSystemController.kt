@@ -5,6 +5,7 @@ import lotto.model.LottoMatchNum
 import lotto.model.LottoPaper
 import lotto.model.LottoResult
 import lotto.model.validation.InputValidation
+import lotto.util.inputHandler
 import lotto.view.LottoSystemView
 
 class LottoSystemController(lottoSystemView: LottoSystemView) {
@@ -33,8 +34,15 @@ class LottoSystemController(lottoSystemView: LottoSystemView) {
     }
 
     private fun inputLottoPurchaseMount(): Int {
-        var inputLottoPurchaseAmount = lottoSystemView.getLottoPurchaseMount()
-        return InputValidation().validateLottoPurchaseAmount(inputLottoPurchaseAmount)
+        lottoSystemView.printLottoPurchaseMountMessage()
+        while (true) {
+            try {
+                val inputLottoPurchaseAmount = inputHandler()
+                return InputValidation().validateLottoPurchaseAmount(inputLottoPurchaseAmount)
+            } catch (e: IllegalArgumentException) {
+                println("${e.message} 다시 입력하세요.")
+            }
+        }
     }
 
     private fun createLottoLineList(lottoLineCount: Int): LottoPaper {
@@ -46,13 +54,29 @@ class LottoSystemController(lottoSystemView: LottoSystemView) {
     }
 
     private fun inputWinningNumbers() {
-        var inputWinningNum = lottoSystemView.getWinningLottoNum()
-        winningLottoNum = InputValidation().validateInputWinningLottoNum(inputWinningNum)
+        lottoSystemView.printWinningLottoNumMessage()
+        while (true) {
+            try {
+                var inputWinningNum = inputHandler()
+                winningLottoNum = InputValidation().validateInputWinningLottoNum(inputWinningNum)
+                return
+            } catch (e: IllegalArgumentException) {
+                println("${e.message} 다시 입력하세요.")
+            }
+        }
     }
 
     private fun inputBonusNumbers() {
-        var inputBonusNum = lottoSystemView.getBonusLottoNum()
-        bonusNum = InputValidation().validateInputBonusNum(inputBonusNum)
+        lottoSystemView.printBonusLottoNumMessage()
+        while (true) {
+            try {
+                var inputBonusNum = inputHandler()
+                bonusNum = InputValidation().validateInputBonusNum(inputBonusNum)
+                return
+            } catch (e: IllegalArgumentException) {
+                println("${e.message} 다시 입력하세요.")
+            }
+        }
     }
 
     private fun checkDuplicateLottoNumbers(lottoPaper: LottoPaper) {
@@ -66,8 +90,8 @@ class LottoSystemController(lottoSystemView: LottoSystemView) {
         }
     }
 
-    private fun checkDuplicateBonusNumber(lotto: Lotto){
-        if (bonusNum in lotto.getLottoNumbers()){
+    private fun checkDuplicateBonusNumber(lotto: Lotto) {
+        if (bonusNum in lotto.getLottoNumbers()) {
             lottoResult.setMatchingLottoResult(LottoMatchNum.fromValue(LottoMatchNum.FIVE_PLUS_BONUS.matchingNum))
         }
     }

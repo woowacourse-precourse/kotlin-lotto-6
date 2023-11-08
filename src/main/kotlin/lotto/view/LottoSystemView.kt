@@ -4,19 +4,16 @@ import lotto.model.*
 import lotto.util.inputHandler
 
 class LottoSystemView {
-    fun getLottoPurchaseMount(): String {
+    fun printLottoPurchaseMountMessage() {
         println(ENTER_LOTTO_PURCHASE_AMOUNT_MESSAGE)
-        return inputHandler()
     }
 
-    fun getWinningLottoNum(): String {
+    fun printWinningLottoNumMessage() {
         println(REQUEST_WINNING_LOTTO_NUM_MESSAGE)
-        return inputHandler()
     }
 
-    fun getBonusLottoNum(): String {
+    fun printBonusLottoNumMessage() {
         println(REQUEST_BONUS_LOTTO_NUM_MESSAGE)
-        return inputHandler()
     }
 
     fun printLottoNumList(lottoNumList: LottoPaper) {
@@ -43,7 +40,13 @@ class LottoSystemView {
 
         when (matchNum) {
             LottoMatchNum.FIVE_PLUS_BONUS -> {
-                print("${LottoMatchNum.FIVE_MATCH.matchingNum}$COINCIDE_NUM_MESSAGE, $COINCIDE_BONUS_NUM_MESSAGE ${printLottoPrizes(matchNum)} - ")
+                print(
+                    "${LottoMatchNum.FIVE_MATCH.matchingNum}$COINCIDE_NUM_MESSAGE, $COINCIDE_BONUS_NUM_MESSAGE ${
+                        printLottoPrizes(
+                            matchNum
+                        )
+                    } - "
+                )
                 println("${matchNumCount[matchNum]}개")
             }
             LottoMatchNum.EXTRA -> {}
@@ -82,6 +85,5 @@ class LottoSystemView {
         const val WINNING_INFO_MESSAGE = "(winningPrice원)"
         const val DIVIDER_LINE = "---"
         const val RATE_OF_RETURN_MESSAGE = "총 수익률은 profitPercentage%입니다."
-
     }
 }
