@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Console
 class TargetLottoStatus {
     var lottoNumbers = mutableListOf<Int>()
     var bonusNumber: Int = 0
-
     fun inputTargetLotto() {
         repeatUntilValidLottoNumber()
         repeatUntilValidBonusNumber()
@@ -38,7 +37,6 @@ class TargetLottoStatus {
         bonusNumber = validateNumber(inputNumber)
         validateBonusNumberIsDuplicateWithLottoNumbers()
     }
-
     fun inputLottoNumbers() {
         lottoNumbers.clear()
         println(LottoResource.LOTTO_NUMBER_INPUT_MESSAGE)
@@ -46,15 +44,13 @@ class TargetLottoStatus {
         putValidNumberIntoLottoNumbers(inputNumbers)
         Lotto(lottoNumbers)
     }
-
-    private fun putValidNumberIntoLottoNumbers(inputNumbers: String) {
+    fun putValidNumberIntoLottoNumbers(inputNumbers: String) {
         val numbers = inputNumbers.split(",")
         numbers.forEach {
             val number = validateNumber(it)
             lottoNumbers.add(number)
         }
     }
-
     fun validateNumber(number: String): Int {
         require(number.toIntOrNull() != null) {
             Error.printErrorMessage(Error.LOTTO_NUMBER_TYPE_IS_NOT_INT)
@@ -65,12 +61,9 @@ class TargetLottoStatus {
         }
         return currentNumber
     }
-
-    private fun validateBonusNumberIsDuplicateWithLottoNumbers() {
-        lottoNumbers.forEach {
-            require(it != bonusNumber) {
-                Error.printErrorMessage(Error.BONUS_NUMBER_CANT_EQUAL_LOTTO_NUMBER)
-            }
+    fun validateBonusNumberIsDuplicateWithLottoNumbers() {
+        require(!lottoNumbers.contains(bonusNumber)) {
+            Error.printErrorMessage(Error.BONUS_NUMBER_CANT_EQUAL_LOTTO_NUMBER)
         }
     }
 }
