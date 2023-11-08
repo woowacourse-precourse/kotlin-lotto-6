@@ -3,8 +3,8 @@ package lotto.model
 import lotto.util.LottoView
 
 class LottoCalculate {
-    fun formattedCheck(profit: Double): Double {
-        return String.format("%.1f", profit).toDouble()
+    fun formattedCheck(profit: Double) : String {
+        return String.format("%.1f", profit)
     }
 
     fun lottoProfit(invest: Int,totalResult: List<Int>) {
