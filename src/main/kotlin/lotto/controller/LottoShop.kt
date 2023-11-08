@@ -27,7 +27,7 @@ class LottoShop {
     private fun getPrice(): Int {
         while (true) {
             try {
-                val price = inputView.inputView()
+                val price = inputView.inputValue()
                 validatePrice(price)
                 return price.toInt()
             } catch (e: IllegalArgumentException) {
@@ -64,7 +64,7 @@ class LottoShop {
         inputView.lottoMessage()
         while (true) {
             try {
-                val inputLottoNum = inputView.inputView()
+                val inputLottoNum = inputView.inputValue()
                 return lottoMC.pickLottoNum(inputLottoNum)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
@@ -76,7 +76,7 @@ class LottoShop {
         inputView.bonusMessage()
         while (true) {
             try {
-                val inputBonusNum = inputView.inputView()
+                val inputBonusNum = inputView.inputValue()
                 return lottoMC.pickBonusNum(inputBonusNum, lottoNum)
             } catch (e: IllegalArgumentException) {
                 println(e.message)

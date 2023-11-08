@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 
 class InputView {
 
-    fun inputView(): String = Console.readLine()
+    fun inputValue(): String = Console.readLine()
 
     fun buyMessage() {
         println(PURCHASE_MESSAGE)
