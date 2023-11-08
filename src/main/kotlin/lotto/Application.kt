@@ -11,4 +11,7 @@ fun main() {
 
     val winningNumbers = LottoLogic.getWinningNumbers()
     println()
+
+    val bonusNumber = LottoLogic.getBonusNumber(winningNumbers)
+    println()
 }

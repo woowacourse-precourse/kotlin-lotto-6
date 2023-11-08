@@ -31,4 +31,8 @@ object LottoLogic {
         return LottoUserInput.getWinningNumbers()
     }
 
+    fun getBonusNumber(winningNumbers: List<Int>): Int {
+        return LottoUserInput.getBonusNumber(winningNumbers)
+    }
+
 }

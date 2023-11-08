@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.enums.BonusNumberInput
 import lotto.enums.PriceInputType
 import lotto.enums.WinningNumbersInput
 import org.assertj.core.api.Assertions.assertThat
@@ -42,6 +43,34 @@ class LottoUserInputTest {
             .isEqualTo(WinningNumbersInput.OUT_OF_LOTTO_RANGE)
         assertThat(LottoUserInput.checkWinningNumbersInput("1,2,3,4,5,a"))
             .isEqualTo(WinningNumbersInput.NOT_ALL_NUMBERS)
+    }
+
+    @Test
+    fun `보너스 번호가 숫자가 아닌 경우 확인`() {
+        assertThat(LottoUserInput.checkBonusNumberInput("abc", listOf()))
+            .isEqualTo(BonusNumberInput.NOT_INTEGER)
+    }
+
+    @Test
+    fun `보너스 번호가 로또 번호 범위를 넘어가는 경우 확인`() {
+        assertThat(LottoUserInput.checkBonusNumberInput("70", (1..6).toList()))
+            .isEqualTo(BonusNumberInput.OUT_OF_RANGE)
+        assertThat(LottoUserInput.checkBonusNumberInput("0", (1..6).toList()))
+            .isEqualTo(BonusNumberInput.OUT_OF_RANGE)
+        assertThat(LottoUserInput.checkBonusNumberInput("-10", (1..6).toList()))
+            .isEqualTo(BonusNumberInput.OUT_OF_RANGE)
+    }
+
+    @Test
+    fun `보너스 번호가 당첨 번호와 중복되는 경우 확인`() {
+        assertThat(LottoUserInput.checkBonusNumberInput("5", (1..6).toList()))
+            .isEqualTo(BonusNumberInput.WINNING_NUMBERS_DUPLICATE)
+    }
+
+    @Test
+    fun `보너스 번호가 올바른 입력인 경우 확인`() {
+        assertThat(LottoUserInput.checkBonusNumberInput("10", (1..6).toList()))
+            .isEqualTo(BonusNumberInput.VALID)
     }
 
 }

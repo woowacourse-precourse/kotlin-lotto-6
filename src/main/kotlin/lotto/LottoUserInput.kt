@@ -3,8 +3,10 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 import lotto.LottoUtil.isAllInLottoRange
 import lotto.LottoUtil.isAllNumbers
+import lotto.LottoUtil.isInLottoRange
 import lotto.LottoUtil.toIntList
 import lotto.LottoUtil.uniqueSize
+import lotto.enums.BonusNumberInput
 import lotto.enums.PriceInputType
 import lotto.enums.WinningNumbersInput
 import lotto.messages.ErrorMessage
@@ -91,6 +93,44 @@ object LottoUserInput {
 
     fun inputToWinningNumbers(input: String): List<Int> {
         return input.split(",").map { it.toInt() }
+    }
+
+    fun getBonusNumber(winningNumbers: List<Int>): Int {
+        while (true) {
+            printBonusNumberMessage()
+            val input = Console.readLine()
+            when (checkBonusNumberInput(input, winningNumbers)) {
+                BonusNumberInput.NOT_INTEGER -> printBonusNumberNotIntegerMessage()
+                BonusNumberInput.OUT_OF_RANGE -> printBonusNumberOutOfRangeMessage()
+                BonusNumberInput.WINNING_NUMBERS_DUPLICATE -> printBonusNumberIsDuplicateMessage()
+                BonusNumberInput.VALID -> return input.toInt()
+            }
+        }
+    }
+
+    private fun printBonusNumberMessage() {
+        println(InputMessage.BONUS_NUMBER)
+    }
+
+    fun checkBonusNumberInput(input: String, winningNumbers: List<Int>): BonusNumberInput {
+        return when {
+            !LottoUtil.isStringNumber(input) -> BonusNumberInput.NOT_INTEGER
+            !input.toInt().isInLottoRange() -> BonusNumberInput.OUT_OF_RANGE
+            input.toInt() in winningNumbers -> BonusNumberInput.WINNING_NUMBERS_DUPLICATE
+            else -> BonusNumberInput.VALID
+        }
+    }
+
+    private fun printBonusNumberNotIntegerMessage() {
+        println(ErrorMessage.BONUS_NUMBER_NOT_INTEGER)
+    }
+
+    private fun printBonusNumberOutOfRangeMessage() {
+        println(ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE)
+    }
+
+    private fun printBonusNumberIsDuplicateMessage() {
+        println(ErrorMessage.BONUS_NUMBER_DUPLICATE)
     }
 
 }
