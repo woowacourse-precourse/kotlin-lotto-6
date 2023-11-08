@@ -2,7 +2,6 @@ package lotto.controller
 
 import lotto.models.Publisher
 import lotto.models.Purchase
-import lotto.models.Purchase.Companion.AMOUNT_UNIT
 import lotto.views.InputView
 import lotto.views.OutputView
 
