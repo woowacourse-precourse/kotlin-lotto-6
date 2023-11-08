@@ -22,6 +22,7 @@ class Lotto(private val numbers: List<Int>) {
         val bonusFlag = score.first
         val matchingCount = score.second
 
+        println("matchingCount "+matchingCount.toString())
         lottoRank = when (matchingCount) {
             6 -> LottoRank.FIRST
             5 -> calculateSecondThirdRank(bonusFlag)
@@ -37,12 +38,12 @@ class Lotto(private val numbers: List<Int>) {
     ): Pair<BonusFlag, Int> {
         var bonusFlag = BonusFlag.MISS_BONUS
         var matchingCount = 0
-
-        winningNumbers.forEach { number ->
-            if (number in winningNumbers) matchingCount += 1
+        numbers.forEach { number ->
+            if (number in winningNumbers) {
+                matchingCount += 1
+            }
             if (number == bonusNumber) {
                 bonusFlag = BonusFlag.HIT_BONUS
-                matchingCount += 1
             }
         }
         return bonusFlag to matchingCount

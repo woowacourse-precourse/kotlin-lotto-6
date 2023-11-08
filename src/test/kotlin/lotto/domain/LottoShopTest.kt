@@ -1,7 +1,7 @@
 package lotto.domain
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -73,7 +73,7 @@ class LottoShopTest {
 
         //then
         val actual = lottoShop.purchaseLottos(input).size
-        val excepted = (input.toInt())/1000
-        assertThat(actual).isEqualTo(excepted)
+        val expected = (input.toInt())/1000
+        assertThat(actual).isEqualTo(expected)
     }
 }
