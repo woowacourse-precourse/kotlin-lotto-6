@@ -8,7 +8,7 @@ class LottoGame() {
             val lottoCount = purchaseSequence()
             val lottos = generateLottos(lottoCount)
             val winningNumbers = getWinnningNumberSequence()
-            val bonusNumber = getBonusNumberSequence()
+            val bonusNumber = getBonusNumberSequence(winningNumbers)
 
             LottoResult(lottos, winningNumbers, bonusNumber)
     }
@@ -65,13 +65,13 @@ class LottoGame() {
         return userInput
     }
 
-    private fun getBonusNumberSequence(): Int {
+    private fun getBonusNumberSequence(winningNumbers: List<Int>): Int {
         PrintText.printMessage("GetBonusNumber", 0)
-        return getBonusNumber().toInt()
+        return getBonusNumber(winningNumbers).toInt()
     }
-    private fun getBonusNumber() : String {
+    private fun getBonusNumber(winningNumbers: List<Int>) : String {
         val userInput = Console.readLine()
-        InputValidator.validateBonusNumber(userInput)
+        InputValidator.validateBonusNumber(userInput, winningNumbers)
         return userInput
     }
 

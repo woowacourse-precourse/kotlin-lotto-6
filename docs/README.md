@@ -33,6 +33,7 @@
    - [x] LottaGame.kt - LottaGame 객체 선언
      -  [x] count값에 맞는 Lottos 객체 생성
    - [x] InputValidator.kt - 입력에 대한 유효성 검사 클래스
+     - [x] 보너스 번호와 당첨 번호의 중복 여부 확인
    - [x] LottoResult.kt 당첨 여부 및 출력
      - [x] 로또 번호 비교 및 등수 산정
      - [x] 당첨 내역 계산
@@ -45,7 +46,7 @@
       - [x] 로또 구입 금액 입력 처리
       - [x] 당첨 번호 입력 처리
       - [x] 보너스 번호 입력 처리
-      - [x] 기준에 맞지 않는 입력이 들어왔을 경우 예외처리
+      - [x] 기준에 맞지 않는 입력이 들어왔을 경우 예외처리 및 재입력 처리
 
     - [x] pickUniqueNumbersInRange()를 로또 번호 발행 처리
 
@@ -76,3 +77,7 @@
    - enum class를 통한 상수 선언 (prize, 출력멘트)
    - 수익률 오버플로우를 고려한 자료형 책정.
    - 가로 120줄이 넘는 구문 처리.
+
+4. 학습한 내용
+   - IllegalStateException vs IllegalArugumentException
+     - 

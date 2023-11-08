@@ -3,16 +3,16 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 
 object InputValidator {
-    fun validateBonusNumber(userInput: String) {
-        require(userInput.all{ it.isDigit() })
-        val number = userInput.toInt()
-        require(number in 1..45) { "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다." }
+    fun validateBonusNumber(userInput: String, winningNumbers: List<Int>) {
+        require(userInput.all{ it.isDigit() }) { "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다." }
+        require(userInput.toInt() in 1..45) { "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다." }
+        if (winningNumbers.contains(userInput.toInt()))
+            throw IllegalStateException("[ERROR] 보너스 번호는 당첨 번호의 숫자들과 별개의 숫자여야 합니다.")
+        // IllegalStateException에러를 전달하기 위한 if 구문
     }
 
     fun validatePurchaseAmount(userInput: String) {
-        require(userInput.all { it.isDigit() }) {
-            "[ERROR]"
-        }
+        require(userInput.all { it.isDigit() }) { "[ERROR] 로또 구입 금액은 1,000원 단위의 숫자여야 합니다." }
         val amount = userInput.toInt()
         require(amount % 1000 == 0) { "[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다." }
     }
