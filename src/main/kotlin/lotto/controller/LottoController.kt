@@ -4,7 +4,7 @@ import lotto.model.Lotto
 import lotto.model.Winning
 import lotto.util.NumberPicker
 import lotto.util.RateOfReturnCalculator
-import lotto.util.lottoPrice
+import lotto.util.const.lottoPrice
 import lotto.util.validations.LottoBonusNumbersValidator
 import lotto.util.validations.LottoNumbersValidator
 import lotto.util.validations.PriceValidator

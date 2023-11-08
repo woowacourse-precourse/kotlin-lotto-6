@@ -1,7 +1,7 @@
 package lotto.util.validations
 
-import lotto.util.lottoPrice
-import lotto.util.errorPrefix
+import lotto.util.const.ErrorMessage.error_price
+import lotto.util.const.lottoPrice
 
 object PriceValidator {
 
@@ -9,11 +9,11 @@ object PriceValidator {
         val lottoTickets = lottoPurchaseAmount.toIntOrNull()
         lottoTickets?.let {
             if (lottoTickets % lottoPrice != 0) {
-                throw IllegalArgumentException("$errorPrefix 구입금액은 ${lottoPrice}원 단위의 숫자 여야합니다.")
+                throw IllegalArgumentException(error_price)
             }
             return true
         }
-        throw IllegalArgumentException("$errorPrefix 구입금액은 $lottoPrice 단위의 숫자 여야합니다.")
+        throw IllegalArgumentException(error_price)
     }
 
 }

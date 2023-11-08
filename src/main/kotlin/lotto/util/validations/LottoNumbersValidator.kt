@@ -1,9 +1,9 @@
 package lotto.util.validations
 
-import lotto.util.errorPrefix
-import lotto.util.lottoWinningNumberQuantity
-import lotto.util.maxLottoWinningNumber
-import lotto.util.minLottoWinningNumber
+import lotto.util.const.ErrorMessage.error_lotto_numbers
+import lotto.util.const.lottoWinningNumberQuantity
+import lotto.util.const.maxLottoWinningNumber
+import lotto.util.const.minLottoWinningNumber
 
 object LottoNumbersValidator {
     fun inputNumbers(input: List<Int?>): Boolean {
@@ -11,7 +11,7 @@ object LottoNumbersValidator {
             isUserInputInRange(input) &&
             isUerInputRightQuantity(input)
         ) return true
-        else throw IllegalArgumentException("$errorPrefix 당첨 번호는 $minLottoWinningNumber~$maxLottoWinningNumber 사이의 중복되지 않는 숫자를 , 로 구분하여 ${lottoWinningNumberQuantity}개를 입력해야 합니다.")
+        else throw IllegalArgumentException(error_lotto_numbers)
     }
 
     private fun isUserInputNumberType(input: List<Int?>): Boolean = !input.contains(null)

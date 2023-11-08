@@ -1,7 +1,7 @@
 package lotto.model
 
-import lotto.util.errorPrefix
-import lotto.util.lottoWinningNumberQuantity
+import lotto.util.const.errorPrefix
+import lotto.util.const.lottoWinningNumberQuantity
 
 class Lotto(private val numbers: List<Int>) {
     init {
