@@ -38,7 +38,7 @@ object InputChecker {
         val lottoNumbers: List<Int>
 
         require(inputString.split(",").size == LOTTO_COUNT) {
-            println(IllegalNumbersException.numbersNotList)
+            println(IllegalNumbersException.numbersNotLottoSize)
             return returnCode
         }
         require(inputString.split(",").filter { it.matches(Regex("\\d+")) }.size == LOTTO_COUNT) {

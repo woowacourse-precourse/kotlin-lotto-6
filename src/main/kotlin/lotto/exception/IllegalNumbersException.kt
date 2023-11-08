@@ -10,8 +10,8 @@ class IllegalNumbersException(
         get() = "[ERROR] $errorMessage"
 
     companion object {
-        val numbersNotList = IllegalNumbersException(
-            errorMessage = ErrorConstants.NUMBERS_NOT_LIST
+        val numbersNotLottoSize = IllegalNumbersException(
+            errorMessage = ErrorConstants.NUMBERS_NOT_LOTTO_SIZE
         )
         val numbersNotRange = IllegalNumbersException(
             errorMessage = ErrorConstants.NUMBERS_NOT_RANGE

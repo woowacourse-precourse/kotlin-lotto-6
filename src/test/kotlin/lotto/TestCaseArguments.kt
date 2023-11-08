@@ -108,4 +108,40 @@ object TestCaseArguments {
         ),
         2064725000
     )
+
+    val CHECK_INPUT_NUMBERS_TEST_CASE_SUCCESS_FIRST: Arguments = Arguments.of(
+        "1,2,3,4,5,6", listOf(-1), listOf(1, 2, 3, 4, 5, 6),
+    )
+    val CHECK_INPUT_NUMBERS_TEST_CASE_SUCCESS_SECOND: Arguments = Arguments.of(
+        "8,13,34,37,42,45", listOf(-1), listOf(8, 13, 34, 37, 42, 45),
+    )
+    val CHECK_INPUT_NUMBERS_TEST_CASE_SUCCESS_THIRD: Arguments = Arguments.of(
+        "4,12,17,21,42,44", listOf(-1), listOf(4, 12, 17, 21, 42, 44),
+    )
+
+    val CHECK_INPUT_NUMBERS_TEST_CASE_FAIL_NOT_LOTTO_SIZE: Arguments = Arguments.of(
+        "1,2,3,4,5,6,7", listOf(-1), listOf(-1),
+    )
+    val CHECK_INPUT_NUMBERS_TEST_CASE_FAIL_NOT_NUMBER: Arguments = Arguments.of(
+        "1,2,삼,4,오,6", listOf(-1), listOf(-1),
+    )
+    val CHECK_INPUT_NUMBERS_TEST_CASE_FAIL_NOT_RANGE: Arguments = Arguments.of(
+        "0,19,22,39,44,53", listOf(-1), listOf(-1),
+    )
+    val CHECK_INPUT_NUMBERS_TEST_CASE_FAIL_DUPLICATE: Arguments = Arguments.of(
+        "1,1,3,4,5,6,7", listOf(-1), listOf(-1),
+    )
+
+    val CHECK_INPUT_BONUS_TEST_CASE_SUCCESS: Arguments = Arguments.of(
+        listOf(1, 2, 3, 4, 5, 6), "7", -1, 7
+    )
+    val CHECK_INPUT_BONUS_TEST_CASE_FAIL_NOT_NUMBER: Arguments = Arguments.of(
+        listOf(1, 2, 3, 4, 5, 6), "칠", -1, -1
+    )
+    val CHECK_INPUT_BONUS_TEST_CASE_FAIL_NOT_RANGE: Arguments = Arguments.of(
+        listOf(1, 2, 3, 4, 5, 6), "0", -1, -1
+    )
+    val CHECK_INPUT_BONUS_TEST_CASE_FAIL_DUPLICATE: Arguments = Arguments.of(
+        listOf(1, 2, 3, 4, 5, 6), "6", -1, -1
+    )
 }

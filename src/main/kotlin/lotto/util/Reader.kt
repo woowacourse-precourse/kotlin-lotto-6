@@ -4,8 +4,8 @@ import camp.nextstep.edu.missionutils.Console
 
 object Reader {
     private fun readLine() = Console.readLine()
-    private const val RETURN_CODE = 0
-    private val RETURN_LIST = listOf(0)
+    private const val RETURN_CODE = -1
+    private val RETURN_LIST = listOf(-1)
 
     fun readLottoMoney(): Int {
         var money = RETURN_CODE

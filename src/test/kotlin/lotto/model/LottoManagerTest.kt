@@ -30,7 +30,7 @@ class LottoManagerTest {
 
     @Nested
     @DisplayName("입력된 금액을 로또 개수로 바꿔주는 메서드 테스트")
-    inner class GetMoneyToCountTest {
+    inner class MoneyToCountTest {
 
         @ParameterizedTest
         @CsvSource("1000, 1", "230000, 230", "384173000, 384173")
