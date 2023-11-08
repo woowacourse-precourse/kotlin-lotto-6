@@ -13,11 +13,11 @@ class Controller {
     val bonusNumber by lazy { Input.getBonusNumber() }
     val prizeCalculator by lazy { PrizeCalculator(lottoList, winningNumber, bonusNumber) }
     val sumOfWinningPrize by lazy { prizeCalculator.getSumOfWinningPrize() }
-    val rate by lazy { Rate(sumOfWinningPrize, budget, 100)}
+    val rate by lazy { Rate(sumOfWinningPrize, budget, 10) }
     fun play() {
         with(Output) {
             printPleaseInputBudget()
-            //budget
+            // budget
             printHowMuchBought(lottoBuyer.amountOfLotto)
             printListOfLottoNumbers(lottoList)
             printPleaseInputWinningNumbers()

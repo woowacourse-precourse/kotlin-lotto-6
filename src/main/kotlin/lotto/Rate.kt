@@ -8,9 +8,9 @@ class Rate(
     private val decimalPoint: Int,
 ) {
     private val rate = num.toDouble() / denum.toDouble()
-    private val roundRate = round(rate * decimalPoint) / decimalPoint
+    private val percentRate = round(rate * 100 * decimalPoint) / decimalPoint
     init {
         require(denum > 0)
     }
-    override fun toString(): String = "$roundRate%"
+    override fun toString(): String = "$percentRate%"
 }
