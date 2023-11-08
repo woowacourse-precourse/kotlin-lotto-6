@@ -5,7 +5,7 @@ class Validator {
         return try {
             isNumberOverZero(purchaseMoney) && isDividedUpThousand(purchaseMoney.toInt())
         } catch (e: IllegalArgumentException) {
-            println("[ERROR] ${e}")
+            println("[ERROR] ${e.message}")
             false
         }
     }
@@ -36,7 +36,7 @@ class Validator {
             }
             true
         } catch (e: IllegalArgumentException) {
-            println("[ERROR] ${e}")
+            println("[ERROR] ${e.message}")
             false
         }
     }
