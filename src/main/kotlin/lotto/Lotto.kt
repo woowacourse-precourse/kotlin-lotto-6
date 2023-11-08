@@ -8,7 +8,7 @@ enum class InputErrorCode(val message: String) {
 }
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6){
+        require(numbers.size == 6) {
             InputErrorCode.NUMBERS_NOT_VALID.message
         }
         validateNumbers()
@@ -17,41 +17,32 @@ class Lotto(private val numbers: List<Int>) {
 
 
     private fun validateNumbers() {
-        for (number in numbers) {
-            if (number !in 1..45) {
-                throw IllegalArgumentException(InputErrorCode.NUMBER_IN_RANGE.message)
-            }
+        require(numbers.all { it in 1..45 }) {
+            InputErrorCode.NUMBER_IN_RANGE.message
         }
     }
 
-    private fun validateRepeat(){
-        val checkRepeat = mutableListOf<Int>()
-        for(number in numbers){
-            if(number in checkRepeat){
-                throw IllegalArgumentException(InputErrorCode.REPEATED_NUMBER.message)
-            }
-            checkRepeat.add(number)
+    private fun validateRepeat() {
+        require(numbers.distinct().size == 6) {
+            InputErrorCode.REPEATED_NUMBER.message
         }
     }
 
-    private fun bonusCheck(inputNumbers: List<Int>, bonus: Int): Boolean{
+    private fun bonusCheck(inputNumbers: List<Int>, bonus: Int) : Boolean {
         val frequency = inputNumbers.count { it == bonus }
         return frequency == 1
     }
-    private fun matchNumber(inputNumbers: List<Int>, bonusNum: Int): Pair<Int, Boolean> {
-        val difference = inputNumbers.minus(numbers)
+    private fun matchNumber(inputNumbers: List<Int>, bonusNum: Int) : Pair<Int, Boolean> {
+        val difference = inputNumbers.minus(numbers.toSet())
         val duplicationCount = inputNumbers.size - difference.size
-        var rank = 0
-        var check = false
-        when (duplicationCount) {
-            3 -> rank = 5
-            4 -> rank = 4
-            5 -> {
-                rank = 3
-                check = bonusCheck(inputNumbers, bonusNum)
-            }
-            6 -> rank = 1
+        val rank = when (duplicationCount) {
+            3 -> 5
+            4 -> 4
+            5 -> 3
+            6 -> 1
+            else -> 0
         }
+        val check = (rank == 3 && bonusCheck(inputNumbers, bonusNum))
         return Pair(rank, check)
     }
 
@@ -61,14 +52,15 @@ class Lotto(private val numbers: List<Int>) {
             val result = matchNumber(lottoList, bonusNum)
             if(result.first == 3 && result.second) {
                 lottoResult[1] += 1
-            } else if(result.first > 0)
-                lottoResult[result.first-1] += 1
+            } else if(result.first > 0) {
+                lottoResult[result.first - 1] += 1
+            }
         }
         LottoView().prizeStatusView(lottoResult)
         return lottoResult
     }
 
-    fun lottoProfit(invest: Int,totalResult: List<Int>){
+    fun lottoProfit(invest: Int,totalResult: List<Int>) {
         var profit = 0.0
         profit += totalResult[0] * 2000000000
         profit += totalResult[1] * 30000000
