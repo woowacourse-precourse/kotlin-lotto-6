@@ -10,7 +10,7 @@ class WinningNumber {
             println(UserInterface.INPUT_WINNING_NUMBERS.mention)
             try {
                 winningNumber = Console.readLine().split(",").toMutableList()
-                WinningNumberCheck().checkWinningNumber(winningNumber)
+                WinningNumberValidate().checkWinningNumber(winningNumber)
                 return winningNumber
             }catch (e: IllegalArgumentException){
                 println(e.message)

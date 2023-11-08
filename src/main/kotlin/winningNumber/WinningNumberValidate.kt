@@ -2,7 +2,7 @@ package winningNumber
 
 import output.UserInterface
 
-class WinningNumberCheck {
+class WinningNumberValidate {
 
     fun checkWinningNumber(input: List<String>){
         checkNumberSize(input)

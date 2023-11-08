@@ -9,7 +9,7 @@ class BonusNumber {
             println(UserInterface.INPUT_BONUS_NUMBERS.mention)
             try {
                 var bonusNumber = Console.readLine()
-                BonusNumberCheck().checkBonusNumber(bonusNumber, winningNumber)
+                BonusNumberValidate().checkBonusNumber(bonusNumber, winningNumber)
                 winningNumber.add(bonusNumber)
                 return winningNumber
             } catch (e: IllegalArgumentException) {

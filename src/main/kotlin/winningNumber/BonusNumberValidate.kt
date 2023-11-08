@@ -2,7 +2,7 @@ package winningNumber
 
 import output.UserInterface
 
-class BonusNumberCheck {
+class BonusNumberValidate {
     fun checkBonusNumber(input: String, winningNumbers: MutableList<String>){
         checkNumberRange(input)
         checkNumberSize(input)
