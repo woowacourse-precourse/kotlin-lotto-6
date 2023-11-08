@@ -1,9 +1,6 @@
 package lotto.view
 
-import lotto.model.LottoMatchNum
-import lotto.model.LottoPaper
-import lotto.model.LottoPrize
-import lotto.model.LottoResult
+import lotto.model.*
 import lotto.util.inputHandler
 
 class LottoSystemView {
@@ -36,9 +33,13 @@ class LottoSystemView {
         println(DIVIDER_LINE)
 
         lottoMatchNum.forEach { matchNum ->
+            if (matchNum == LottoMatchNum.ERROR || matchNum == LottoMatchNum.EXTRA) {
+                return@forEach
+            }
             printMatchingPrizeByNumber(lottoResult, matchNum)
         }
     }
+
 
     private fun printMatchingPrizeByNumber(lottoResult: LottoResult, matchNum: LottoMatchNum) {
         var matchNumCount = lottoResult.getMatchingLottoResult()
