@@ -1,20 +1,22 @@
 package lotto
 
+import kotlin.math.roundToInt
+
 class LottoGame(
     private val lottoTickets: List<Lotto>,
     private val winningNumbers: List<Int>,
     private val bonusNumber: Int
 ) {
-    private val lottoResults : HashMap<LottoResultCase,Int> = hashMapOf()
-    private val lottoCost : Int = lottoTickets.size * 1000
+    private val lottoResults: HashMap<LottoResultCase, Int> = hashMapOf()
+    private val lottoCost: Int = lottoTickets.size * 1000
     fun matchLottoNumbers() {
         lottoTickets.forEach { lotto ->
             val lottoNumbers = lotto.getNumbers()
             var equalNumberCount = countCommonLottoNumbers(lottoNumbers)
-            if (isBonus(lottoNumbers)){
+            if (isBonus(lottoNumbers)) {
                 equalNumberCount++
             }
-            val lottoResult = LottoResult(equalNumberCount,isBonus(lottoNumbers))
+            val lottoResult = LottoResult(equalNumberCount, isBonus(lottoNumbers))
             val resultCase = checkResultCase(lottoResult)
 
 
@@ -32,6 +34,28 @@ class LottoGame(
         println("5개 일치 (1,500,000원) - ${lottoResults[LottoResultCase.FIVE_CORRECT] ?: 0}개")
         println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoResults[LottoResultCase.FIVE_CORRECT_AND_BONUS] ?: 0}개")
         println("6개 일치 (2,000,000,000원) - ${lottoResults[LottoResultCase.SIX_CORRECT] ?: 0}개")
+        println("총 수익률은 ${calculateLottoProfit()}%입니다.")
+    }
+
+    fun calculateLottoProfit(): Double {
+        val profit = calculateTotalPrize() / lottoCost.toDouble() * 100.0
+        return (profit * 100.0).roundToInt() / 100.0
+    }
+
+
+    fun calculateTotalPrize(): Int {
+        var totalPrize = 0
+        lottoResults.forEach { lottoResultCase, value ->
+            when (lottoResultCase) {
+                LottoResultCase.THREE_CORRECT -> totalPrize += 5000
+                LottoResultCase.FOUR_CORRECT -> totalPrize += 50000
+                LottoResultCase.FIVE_CORRECT -> totalPrize += 1500000
+                LottoResultCase.FIVE_CORRECT_AND_BONUS -> totalPrize += 30000000
+                LottoResultCase.SIX_CORRECT -> totalPrize += 2000000000
+                else -> {}
+            }
+        }
+        return totalPrize
     }
 
     private fun countCommonLottoNumbers(lottoNumbers: List<Int>): Int {
@@ -44,12 +68,12 @@ class LottoGame(
         return count
     }
 
-    private fun isBonus (lottoNumbers: List<Int>) : Boolean = if(lottoNumbers.contains(bonusNumber)) true else false
-    private fun checkResultCase(lottoResult: LottoResult): LottoResultCase{
-        return when{
-            lottoResult.winningCount == 3 ->LottoResultCase.THREE_CORRECT
-            lottoResult.winningCount == 4 ->LottoResultCase.FOUR_CORRECT
-            lottoResult.winningCount == 5 ->LottoResultCase.FIVE_CORRECT
+    private fun isBonus(lottoNumbers: List<Int>): Boolean = if (lottoNumbers.contains(bonusNumber)) true else false
+    private fun checkResultCase(lottoResult: LottoResult): LottoResultCase {
+        return when {
+            lottoResult.winningCount == 3 -> LottoResultCase.THREE_CORRECT
+            lottoResult.winningCount == 4 -> LottoResultCase.FOUR_CORRECT
+            lottoResult.winningCount == 5 -> LottoResultCase.FIVE_CORRECT
             lottoResult.winningCount == 5 && lottoResult.isBonus == true -> LottoResultCase.FIVE_CORRECT_AND_BONUS
             lottoResult.winningCount == 6 -> LottoResultCase.SIX_CORRECT
             else -> LottoResultCase.UNKNOWN
@@ -58,7 +82,7 @@ class LottoGame(
 
     data class LottoResult(val winningCount: Int, val isBonus: Boolean)
 
-    enum class LottoResultCase{
+    enum class LottoResultCase {
         THREE_CORRECT,
         FOUR_CORRECT,
         FIVE_CORRECT,
