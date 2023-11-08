@@ -22,7 +22,7 @@ class LottoSystemView {
     fun printLottoNumList(lottoNumList: LottoPaper) {
         println("${lottoNumList.getLottoPaper().size}$PURCHASED_LOTTO_COUNT_MESSAGE")
         for (lottoNums in lottoNumList.getLottoPaper()) {
-            println(lottoNums)
+            println(lottoNums.getLottoNumbers())
         }
     }
 
@@ -33,9 +33,6 @@ class LottoSystemView {
         println(DIVIDER_LINE)
 
         lottoMatchNum.forEach { matchNum ->
-            if (matchNum == LottoMatchNum.ERROR || matchNum == LottoMatchNum.EXTRA) {
-                return@forEach
-            }
             printMatchingPrizeByNumber(lottoResult, matchNum)
         }
     }
@@ -44,12 +41,16 @@ class LottoSystemView {
     private fun printMatchingPrizeByNumber(lottoResult: LottoResult, matchNum: LottoMatchNum) {
         var matchNumCount = lottoResult.getMatchingLottoResult()
 
-        if (matchNum == LottoMatchNum.FIVE_PLUS_BONUS) {
-            print("${LottoMatchNum.FIVE_MATCH}$COINCIDE_NUM_MESSAGE, $COINCIDE_BONUS_NUM_MESSAGE ${printLottoPrizes(matchNum)} - ")
-            println("${matchNumCount[matchNum]}개")
-        } else {
-            print("${matchNum.matchingNum}$COINCIDE_NUM_MESSAGE ${printLottoPrizes(matchNum)} - ")
-            println("${matchNumCount[matchNum]}개")
+        when (matchNum) {
+            LottoMatchNum.FIVE_PLUS_BONUS -> {
+                print("${LottoMatchNum.FIVE_MATCH.matchingNum}$COINCIDE_NUM_MESSAGE, $COINCIDE_BONUS_NUM_MESSAGE ${printLottoPrizes(matchNum)} - ")
+                println("${matchNumCount[matchNum]}개")
+            }
+            LottoMatchNum.EXTRA -> {}
+            else -> {
+                print("${matchNum.matchingNum}$COINCIDE_NUM_MESSAGE ${printLottoPrizes(matchNum)} - ")
+                println("${matchNumCount[matchNum]}개")
+            }
         }
     }
 
@@ -80,7 +81,7 @@ class LottoSystemView {
         const val COINCIDE_BONUS_NUM_MESSAGE = "보너스 볼 일치"
         const val WINNING_INFO_MESSAGE = "(winningPrice원)"
         const val DIVIDER_LINE = "---"
-        const val RATE_OF_RETURN_MESSAGE = "총 수익률은 profitPercentage%입니다"
+        const val RATE_OF_RETURN_MESSAGE = "총 수익률은 profitPercentage%입니다."
 
     }
 }
