@@ -1,9 +1,11 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console.readLine
+import camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange
 
 private var lottoPurchaseAmount: Int = -1
 private var lottoCount: Int = -1
+private val lottoRandomNumber: MutableList<List<Int>> = mutableListOf()
 
 fun main() {
 
@@ -13,6 +15,8 @@ fun main() {
 
     calculatorLottoCount()
     printLottoCount()
+
+    generatorLottoRandomNumber()
 }
 
 private fun inputLottoPurchaseAmount() {
@@ -35,4 +39,11 @@ private fun calculatorLottoCount() {
 
 private fun printLottoCount() {
     println("${lottoCount}개를 구매했습니다.")
+}
+
+private fun generatorLottoRandomNumber() {
+    repeat(lottoCount) {
+        val randomNumbers = pickUniqueNumbersInRange(1, 45, 6)
+        lottoRandomNumber.add(randomNumbers.sorted())
+    }
 }
