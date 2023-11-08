@@ -20,6 +20,8 @@ object LottoPurchaseView {
       inputPurchaseMoney()
     }
 
+    println()
+
     return validatedPurchaseMoney
   }
 }
