@@ -1,4 +1,4 @@
-package lotto.presentation
+package lotto.view
 
-class OutputView {
+object OutputView {
 }

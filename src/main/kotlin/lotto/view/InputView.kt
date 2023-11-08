@@ -1,8 +1,8 @@
-package lotto.presentation
+package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
 
-object LottoPresentation {
+object InputView {
     fun getLottoPurchaseCostInput(): String {
         println("구입 금액을 입력해 주세요.")
         val purchaseLottoInput = Console.readLine()
