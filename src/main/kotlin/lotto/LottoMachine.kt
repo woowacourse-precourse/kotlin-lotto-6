@@ -12,10 +12,10 @@ class LottoMachine(
         val result = calculateMyResult()
         val totalProfit = getTotalProfit(result)
         val rates = getProfitRate(totalProfit,user.getAmount())
-        ui.showMyResult(result,rates)
+        showMyResult(result,rates)
 
     }
-    fun calculateMyResult():Map<LottoRank,Int> {
+    private fun calculateMyResult():Map<LottoRank,Int> {
         return user.compareToWinningLotto(winningLotto.numbers,winningLotto.bonusNumber)
 
     }
@@ -26,14 +26,14 @@ class LottoMachine(
         }
         return totalProfit
     }
-    fun getProfitRate(totalProfit: Int, purchaseAmount: Int): String {
+    private fun getProfitRate(totalProfit: Int, purchaseAmount: Int): String {
         val rates = totalProfit * 100.0 / purchaseAmount.toDouble()
         val df = DecimalFormat("###,###.0")
         return df.format(rates)
     }
-    private fun showMyResult(result:Map<LottoRank,Int>, totalProfit:String) {
+    private fun showMyResult(result:Map<LottoRank,Int>, profitRate:String) {
         val ui =UserInterface()
-        ui.showMyResult(result, totalProfit)
+        ui.showMyResult(result, profitRate)
     }
 
 

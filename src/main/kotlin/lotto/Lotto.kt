@@ -7,23 +7,18 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
         require(numbers.size == numbers.distinct().size)
     }
-
-    fun showNumbers() {
-        val ui = UserInterface()
-        ui.printLotto(numbers)
-    }
-
     fun compareToWinningLotto(winningLotto: Lotto, bonusNumber: Int): LottoRank {
+        val matchedCount = getMatchedCount(winningLotto)
 
-        val matchedCount = getMatchedCount(winningLotto, bonusNumber)
         if (matchedCount == 5) {
             return getThisRank(matchedCount, bonusNumber)
         }
         return getThisRank(matchedCount)
     }
 
-    private fun getMatchedCount(winningLotto: Lotto, bonusNumber: Int): Int {
+    private fun getMatchedCount(winningLotto: Lotto): Int {
         var matchedCount = 0
+
         for (number in numbers) {
             if (winningLotto.numbers.contains(number)) {
                 matchedCount++
@@ -46,8 +41,10 @@ class Lotto(private val numbers: List<Int>) {
             return LottoRank.SECOND
         }
         return LottoRank.THIRD
+    }
 
-
+    fun getLottoNumbers():List<Int> {
+        return numbers
     }
 
 
