@@ -19,11 +19,14 @@ class TestLottoes(private val userNumbers: Set<Int>, private val bonusNumber: In
         return lottoesResult
     }
 
-    override fun getProfitRate(): Double = 0.0
+    override fun getProfitRate(): Double {
+        val profitAmount = calculateTotalProfit()
+        val profit = Profit(profitAmount)
+        return profit.profitRate
+    }
 
     internal fun calculateTotalProfit(): Int =
         lottoesResult.entries.sumOf { (rank, count) ->
             rank.prize * count
         }
-
 }

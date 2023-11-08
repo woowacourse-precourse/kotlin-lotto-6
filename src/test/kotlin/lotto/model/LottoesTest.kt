@@ -56,21 +56,12 @@ class LottoesTest {
             Lotto(listOf(11, 22, 33, 17, 27, 37)),
             Lotto(listOf(11, 22, 33, 8, 27, 9))
         )
+        lottoes.calculateLottoesResult()
 
         // when
-        lottoes.calculateLottoesResult()
-        expectedLottoes = mapOf(
-            WinningRank.FIRST to 1,
-            WinningRank.SECOND to 1,
-            WinningRank.THIRD to 0,
-            WinningRank.FOURTH to 0,
-            WinningRank.FIFTH to 2,
-            WinningRank.FAILURE to 2
-        )
         val result = lottoes.calculateTotalProfit()
 
         // then
         assertThat(result).isEqualTo(2_030_010_000)
-
     }
 }

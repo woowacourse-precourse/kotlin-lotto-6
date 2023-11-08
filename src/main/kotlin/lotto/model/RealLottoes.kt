@@ -27,7 +27,9 @@ class RealLottoes(private val userNumbers: Set<Int>, private val bonusNumber: In
     }
 
     override fun getProfitRate(): Double {
-        return 0.0
+        val profitAmount = calculateTotalProfit()
+        val profit = Profit(profitAmount)
+        return profit.profitRate
     }
 
     private fun calculateTotalProfit(): Int =
