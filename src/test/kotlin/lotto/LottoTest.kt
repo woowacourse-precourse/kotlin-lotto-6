@@ -83,12 +83,61 @@ class LottoTest {
         assertEquals(gameRank(Lotto(listOf(1, 2, 3, 4, 5, 6)), listOf(1, 2, 3, 4, 5, 6) to 7), LottoRank.FIRST)
         assertEquals(gameRank(Lotto(listOf(1, 2, 3, 4, 5, 7)), listOf(1, 2, 3, 4, 5, 6) to 7), LottoRank.SECOND)
         assertEquals(gameRank(Lotto(listOf(1, 2, 3, 4, 5, 8)), listOf(1, 2, 3, 4, 5, 6) to 7), LottoRank.THIRD)
-        assertEquals(gameRank(Lotto(listOf(1, 2, 3, 4, 5, 8)), listOf(1, 2, 3, 4, 5, 6) to 7), LottoRank.THIRD)
         assertEquals(gameRank(Lotto(listOf(1, 2, 3, 4, 8, 7)), listOf(1, 2, 3, 4, 5, 6) to 7), LottoRank.FOURTH)
         assertEquals(gameRank(Lotto(listOf(1, 2, 3, 4, 8, 9)), listOf(1, 2, 3, 4, 5, 6) to 7), LottoRank.FOURTH)
         assertEquals(gameRank(Lotto(listOf(1, 2, 3, 8, 9, 7)), listOf(1, 2, 3, 4, 5, 6) to 7), LottoRank.FIFTH)
         assertEquals(gameRank(Lotto(listOf(1, 2, 3, 8, 9, 10)), listOf(1, 2, 3, 4, 5, 6) to 7), LottoRank.FIFTH)
         assertEquals(gameRank(Lotto(listOf(1, 2, 7, 9, 10, 11)), listOf(1, 2, 3, 4, 5, 6) to 7), LottoRank.NONE)
         assertEquals(gameRank(Lotto(listOf(1, 2, 8, 9, 10, 11)), listOf(1, 2, 3, 4, 5, 6) to 7), LottoRank.NONE)
+    }
+
+    @Test
+    fun checkForPrize() {
+        assertEquals(calculateTotalReward(mapOf(LottoRank.FIRST to 4)), 8_000_000_000L)
+        assertEquals(calculateTotalReward(mapOf(LottoRank.FIRST to 1, LottoRank.SECOND to 1)), 2_030_000_000L)
+    }
+
+    @Test
+    fun checkForRankList() {
+        assertEquals(
+            calculateRankCount(
+                listOf(
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 2, 3, 4, 5, 7)),
+                    Lotto(listOf(1, 2, 3, 4, 5, 8)),
+                    Lotto(listOf(1, 2, 3, 4, 8, 7)),
+                    Lotto(listOf(1, 2, 3, 4, 8, 9)),
+                    Lotto(listOf(1, 2, 3, 8, 9, 7)),
+                    Lotto(listOf(1, 2, 3, 8, 9, 10)),
+                    Lotto(listOf(1, 2, 7, 9, 10, 11)),
+                    Lotto(listOf(1, 2, 8, 9, 10, 11))
+                ), listOf(1, 2, 3, 4, 5, 6) to 7
+            ), mapOf(
+                LottoRank.FIRST to 1,
+                LottoRank.SECOND to 1,
+                LottoRank.THIRD to 1,
+                LottoRank.FOURTH to 2,
+                LottoRank.FIFTH to 2,
+                LottoRank.NONE to 2
+            )
+        )
+        assertEquals(
+            calculateRankCount(
+                listOf(
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                ), listOf(1, 2, 3, 4, 5, 6) to 7
+            ), mapOf(
+                LottoRank.FIRST to 10,
+            )
+        )
     }
 }
