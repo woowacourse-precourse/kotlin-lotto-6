@@ -21,9 +21,11 @@ class User {
 
     fun purchaseLottoTickets() {
         val ticketCounts: Int = purchaseMoney // 1000
+        println("${ticketCounts}개를 구매했습니다.")
         for (count in 0 until ticketCounts) {
             val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
             lottoTickets.add(numbers)
+            println(numbers)
         }
     }
 
