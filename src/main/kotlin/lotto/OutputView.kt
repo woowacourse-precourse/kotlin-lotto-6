@@ -22,7 +22,7 @@ class OutputView {
     fun printPurchaseAGame(number: List<Int>) {
         println(number)
     }
-    fun printPurchaseLotto(game: Int, numbers: List<List<Int>>) {
+    fun printPurchaseLotto(game: Int, numbers: MutableList<Lotto>) {
         printNumberOfGame(game)
         for (number in numbers) {
             printPurchaseAGame(number)
