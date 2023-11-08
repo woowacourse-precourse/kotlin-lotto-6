@@ -1,10 +1,7 @@
-package lotto.domain
+package lotto.model
 
-import camp.nextstep.edu.missionutils.Randoms
 import lotto.util.errorPrefix
 import lotto.util.lottoWinningNumberQuantity
-import lotto.util.maxLottoWinningNumber
-import lotto.util.minLottoWinningNumber
 
 class Lotto(private val numbers: List<Int>) {
     init {
