@@ -37,10 +37,9 @@ class LottoController {
     }
 
     private fun issueTickets(lottoStore: LottoStore): List<Lotto> {
-        OutputView.printPurchaseCount(lottoStore.getNumberOfTickets())
-
         val tickets = lottoStore.sellTickets()
-        OutputView.printTickets(tickets).also { println() }
+        OutputView.purchaseCount(lottoStore.getNumberOfTickets())
+        OutputView.ticketDetails(tickets).also { println() }
         return tickets
     }
 
@@ -78,7 +77,6 @@ class LottoController {
 
     private fun calculateResult(tickets: List<Lotto>, winNumbers: List<Int>, bonusNumber: Int): List<LottoRank> {
         val results = mutableListOf<LottoRank>()
-
         for (ticket in tickets) {
             val matchCount = ticket.matchCount(winNumbers)
             val hasBonus = ticket.matchBonusNumber(bonusNumber)
@@ -91,11 +89,11 @@ class LottoController {
 
     private fun printPrizeDetails(results: List<LottoRank>) {
         val ranks = LottoRank.entries.filter { it.matchCount > 0 }
-        OutputView.printPrizeDetails(results, ranks)
+        OutputView.prizeDetails(results, ranks)
     }
 
     private fun printRateOfReturn(results: List<LottoRank>, purchasePrice: Int) {
         val rateOfReturn = LottoResult().calculateRateOfReturn(results, purchasePrice)
-        OutputView.printRateOfReturn(rateOfReturn)
+        OutputView.rateOfReturn(rateOfReturn)
     }
 }

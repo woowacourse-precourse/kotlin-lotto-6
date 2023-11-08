@@ -11,17 +11,17 @@ class OutputView {
         const val RATE_OF_RETURN_STRING = "총 수익률은 "
         const val PERCENT_SUFFIX = "%입니다."
 
-        fun printPurchaseCount(numberOfTickets: Int) {
+        fun purchaseCount(numberOfTickets: Int) {
             println("$numberOfTickets$PURCHASE_COUNT_STRING")
         }
 
-        fun printTickets(tickets: List<Lotto>) {
+        fun ticketDetails(tickets: List<Lotto>) {
             tickets.forEach { ticket ->
                 println(ticket.getNumbers().joinToString(", ", prefix = "[", postfix = "]"))
             }
         }
 
-        fun printPrizeDetails(results: List<LottoRank>, ranks: List<LottoRank>) {
+        fun prizeDetails(results: List<LottoRank>, ranks: List<LottoRank>) {
             println(WINNING_STATISTICS_STRING)
             println(DASH_SEPARATOR)
 
@@ -34,7 +34,7 @@ class OutputView {
             }
         }
 
-        fun printRateOfReturn(rateOfReturn: Double) {
+        fun rateOfReturn(rateOfReturn: Double) {
             print(RATE_OF_RETURN_STRING + String.format("%.1f", rateOfReturn) + PERCENT_SUFFIX)
         }
     }
