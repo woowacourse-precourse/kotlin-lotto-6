@@ -50,4 +50,19 @@ class LottoServiceTest {
         }
         LottoService().checkInvalidWinningNumbers("1,2,3,4,5,6".split(","))
     }
+
+    @Test
+    fun `보너스 번호 입력 에러 발생 테스트`() {
+        val lottoNumbers = Lotto("1,2,3,4,5,6".split(",").map { it.toInt() })
+        assertThrows<IllegalArgumentException> {
+            LottoService().checkInvalidBonusNumber("a", lottoNumbers)
+        }
+        assertThrows<IllegalArgumentException> {
+            LottoService().checkInvalidBonusNumber("100", lottoNumbers)
+        }
+        assertThrows<IllegalArgumentException> {
+            LottoService().checkInvalidBonusNumber("1", lottoNumbers)
+        }
+        LottoService().checkInvalidBonusNumber("7", lottoNumbers)
+    }
 }
