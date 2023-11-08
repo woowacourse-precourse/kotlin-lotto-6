@@ -19,7 +19,7 @@ class LottoSystemView {
     fun printLottoNumList(lottoNumList: LottoPaper) {
         println("${lottoNumList.getLottoPaper().size}$PURCHASED_LOTTO_COUNT_MESSAGE")
         for (lottoNums in lottoNumList.getLottoPaper()) {
-            println(lottoNums.getLottoNumbers())
+            println(lottoNums.getLottoNumbers().sorted())
         }
     }
 
