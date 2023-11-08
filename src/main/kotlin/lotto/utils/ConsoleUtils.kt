@@ -15,4 +15,8 @@ class ConsoleUtils {
         print(OUTPUT_PURCHASE_COUNT_MESSAGE)
         return Console.readLine()
     }
+
+    //당첨 번호 입력
+
+
 }
