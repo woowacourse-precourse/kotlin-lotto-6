@@ -2,7 +2,7 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.data.LottoData
-import lotto.data.LottoMatchInfo
+import lotto.data.LottoWinnerInfo
 import lotto.domain.Lotto
 import lotto.domain.WinningNumber
 import lotto.domain.bonusValidation
@@ -14,19 +14,21 @@ import lotto.resources.Comment.ENTER_WINNING_NUMBERS_COMMENT
 import lotto.resources.Comment.WINNING_STATS_COMMENT
 import lotto.resources.Comment.lottoCountComment
 import lotto.resources.Comment.totalRateComment
-import lotto.resources.Lotto.LOTTO_PRISE
+import lotto.utils.calculateLottoCount
 import lotto.utils.calculateLottoROI
 import lotto.utils.lottoGenerator
 
 class PlayLotto(
     private val winningNumber: WinningNumber,
-    private val lottoData: LottoData
+
 ) {
+
+    private var lottoData : LottoData = LottoData()
+    private var currentState : PlayLottoState = PlayLottoState.PURCHASE_AMOUNT
 
     fun start() {
         while (true) {
-            lottoData.currentState = when (lottoData.currentState) {
-                PlayLottoState.IDLE -> PlayLottoState.PURCHASE_AMOUNT
+            when (currentState) {
                 PlayLottoState.PURCHASE_AMOUNT -> purchaseAmountProcess()
                 PlayLottoState.WINNING_NUMBERS -> winningNumbersProcess()
                 PlayLottoState.BONUS_NUMBER -> bonusNumberProcess()
@@ -39,74 +41,78 @@ class PlayLotto(
         }
     }
 
-    private fun purchaseAmountProcess(): PlayLottoState {
+    private fun purchaseAmountProcess() {
         println(ENTER_PURCHASE_AMOUNT_COMMENT)
 
         try {
-            lottoData.purchaseAmount = inputPurchaseAmount()
-            val lottoCount = lottoData.purchaseAmount.purchaseAmountToCount()
-            println(lottoCountComment(lottoCount))
-            lottoData.lotteries = lottoGenerator(lottoCount)
-            return PlayLottoState.WINNING_NUMBERS
+            val purchaseAmount = inputPurchaseAmount()
+            buyLotteries(purchaseAmount)
+            currentState = PlayLottoState.WINNING_NUMBERS
         } catch (illegalArgumentException: IllegalArgumentException) {
             println(illegalArgumentException.message)
         }
-
-        return PlayLottoState.PURCHASE_AMOUNT
     }
 
-    private fun winningNumbersProcess(): PlayLottoState {
+    private fun buyLotteries(purchaseAmount: Int) {
+        val lottoCount = calculateLottoCount(purchaseAmount)
+        println(lottoCountComment(lottoCount))
+        val lotteries = lottoGenerator(lottoCount).onEach(::println)
+        lottoData = lottoData.copy(
+            purchaseAmount = purchaseAmount,
+            lotteries = lotteries
+        )
+    }
+
+    private fun winningNumbersProcess() {
         println(ENTER_WINNING_NUMBERS_COMMENT)
 
         try {
-            lottoData.winningNumbers = inputWinningNumbers()
-            return PlayLottoState.BONUS_NUMBER
+            lottoData = lottoData.copy(winningNumbers = inputWinningNumbers())
+            currentState = PlayLottoState.BONUS_NUMBER
         } catch (illegalArgumentException: IllegalArgumentException) {
             println(illegalArgumentException.message)
         }
-
-        return PlayLottoState.WINNING_NUMBERS
     }
 
-    private fun bonusNumberProcess(): PlayLottoState {
+    private fun bonusNumberProcess() {
         println(ENTER_BONUS_NUMBERS_COMMENT)
 
         try {
-            lottoData.bonusNumber = inputBonusNumbers()
-            return PlayLottoState.MATCHING
+            lottoData = lottoData.copy(bonusNumber = inputBonusNumbers())
+            currentState = PlayLottoState.MATCHING
         } catch (illegalArgumentException: IllegalArgumentException) {
             println(illegalArgumentException.message)
         }
-
-        return PlayLottoState.BONUS_NUMBER
     }
 
-    private fun matchingProcess(): PlayLottoState {
-        lottoData.lotteries.map { numbers ->
+    private fun matchingProcess() {
+        lottoData.lotteries.forEach { numbers ->
             val lottoMatchInfo = Lotto(numbers).matchingLotto(lottoData.winningNumbers, lottoData.bonusNumber)
-            addValueLottoResult(lottoMatchInfo)
-        }
-        return PlayLottoState.END
-    }
-
-    private fun addValueLottoResult(lottoMatchInfo: LottoMatchInfo) {
-        lottoData.lottoResults = lottoData.lottoResults.map { lottoResult ->
-            if (lottoResult.lottoMatchInfo == lottoMatchInfo) {
-                lottoResult.copy(
-                    value = lottoResult.value + 1
-                )
-            } else {
-                lottoResult
+            if (lottoMatchInfo != null) {
+                addValueLottoResult(lottoMatchInfo)
             }
         }
+        currentState = PlayLottoState.END
     }
 
-    private fun inputPurchaseAmount(): Double {
+    private fun addValueLottoResult(lottoMatchInfo: LottoWinnerInfo) {
+        lottoData = lottoData.copy(
+            lottoResults = lottoData.lottoResults.map { lottoResult ->
+                if (lottoResult.lottoWinnerInfo == lottoMatchInfo) {
+                    lottoResult.copy(
+                        value = lottoResult.value + 1
+                    )
+                } else {
+                    lottoResult
+                }
+            }
+        )
+    }
+
+    private fun inputPurchaseAmount(): Int {
         val userInput = Console.readLine()
-        return userInput.also { it.purchaseAmountValidation() }.toDouble()
+        return userInput.also { it.purchaseAmountValidation() }.toInt()
     }
-
-    private fun Double.purchaseAmountToCount() = this.toInt() / LOTTO_PRISE
 
     private fun inputWinningNumbers(): List<Int> {
         val userInput = Console.readLine()
@@ -123,7 +129,7 @@ class PlayLotto(
 
         lottoData.lottoResults.forEach { lottoResult ->
             val value = lottoResult.value
-            val comment = lottoResult.lottoMatchInfo.comment
+            val comment = lottoResult.lottoWinnerInfo.comment
             println(comment(value))
         }
 
@@ -131,7 +137,7 @@ class PlayLotto(
     }
 
     private fun calculationTotalRate(): String {
-        val winnings = lottoData.lottoResults.sumOf { it.value * it.lottoMatchInfo.prise }
-        return calculateLottoROI(lottoData.purchaseAmount, winnings)
+        val winnings = lottoData.lottoResults.sumOf { it.value * it.lottoWinnerInfo.prise }
+        return calculateLottoROI(lottoData.purchaseAmount.toDouble(), winnings)
     }
 }
