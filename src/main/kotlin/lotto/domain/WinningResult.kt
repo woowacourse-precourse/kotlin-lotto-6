@@ -29,7 +29,7 @@ class WinningResult(
         return LottoRank.entries.map { rank ->
             val count = statistics[rank] ?: 0
             val prizeMoney = rank.prizeMoney
-            val formattedPrizeMoney = String.format("%,d", prizeMoney)
+            val formattedPrizeMoney = prizeMoney.formatPrizeMoney()
             Triple(rank.rankDescription, formattedPrizeMoney, count)
         }
     }
@@ -38,6 +38,14 @@ class WinningResult(
         val totalPrize = calculateTotalPrize(statistics)
         val profitRate = calculateProfitRate(lottoTickets.size * 1000, totalPrize)
 
-        return String.format("%,.1f", profitRate)
+        return profitRate.formatProfitRate()
+    }
+
+    private fun Int.formatPrizeMoney(): String {
+        return String.format("%,d", this)
+    }
+
+    private fun Double.formatProfitRate(): String {
+        return String.format("%,.1f", this)
     }
 }
