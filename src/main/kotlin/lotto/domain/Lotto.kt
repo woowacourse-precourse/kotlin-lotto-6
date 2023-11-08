@@ -1,5 +1,14 @@
 package lotto.domain
 
+import lotto.domain.BonusFlag.HIT_BONUS
+import lotto.domain.BonusFlag.MISS_BONUS
+import lotto.domain.LottoRank.FIFTH
+import lotto.domain.LottoRank.FIRST
+import lotto.domain.LottoRank.FOURTH
+import lotto.domain.LottoRank.INIT
+import lotto.domain.LottoRank.NOTHING
+import lotto.domain.LottoRank.SECOND
+import lotto.domain.LottoRank.THIRD
 import lotto.domain.validator.LottoValidator.validateLottoNumbers
 
 class Lotto(private val numbers: List<Int>) {
@@ -7,12 +16,8 @@ class Lotto(private val numbers: List<Int>) {
         validateLottoNumbers(numbers)
     }
 
-    var lottoRank: LottoRank = LottoRank.INIT
+    var lottoRank: LottoRank = INIT
         private set
-
-    fun getLottoNumbers(): List<Int> {
-        return numbers.toList().sorted()
-    }
 
     fun calculateWinningRank(
         winningNumbers: List<Int>,
@@ -23,11 +28,11 @@ class Lotto(private val numbers: List<Int>) {
         val matchingCount = score.second
 
         lottoRank = when (matchingCount) {
-            6 -> LottoRank.FIRST
+            6 -> FIRST
             5 -> calculateSecondThirdRank(bonusFlag)
-            4 -> LottoRank.FOURTH
-            3 -> LottoRank.FIFTH
-            else -> LottoRank.NOTHING
+            4 -> FOURTH
+            3 -> FIFTH
+            else -> NOTHING
         }
     }
 
@@ -35,14 +40,14 @@ class Lotto(private val numbers: List<Int>) {
         winningNumbers: List<Int>,
         bonusNumber: Int
     ): Pair<BonusFlag, Int> {
-        var bonusFlag = BonusFlag.MISS_BONUS
+        var bonusFlag = MISS_BONUS
         var matchingCount = 0
         numbers.forEach { number ->
             if (number in winningNumbers) {
                 matchingCount += 1
             }
             if (number == bonusNumber) {
-                bonusFlag = BonusFlag.HIT_BONUS
+                bonusFlag = HIT_BONUS
             }
         }
         return bonusFlag to matchingCount
@@ -50,14 +55,12 @@ class Lotto(private val numbers: List<Int>) {
 
     private fun calculateSecondThirdRank(bonusFlag: BonusFlag): LottoRank {
         return when (bonusFlag) {
-            BonusFlag.HIT_BONUS -> LottoRank.SECOND
-            BonusFlag.MISS_BONUS -> LottoRank.THIRD
+            HIT_BONUS -> SECOND
+            MISS_BONUS -> THIRD
         }
     }
 
-    override fun toString() : String{
-        return numbers.toString()
-    }
+    override fun toString(): String = numbers.sorted().toString()
 
     companion object {
         val LOTTO_NUMBER_COUNT = 6

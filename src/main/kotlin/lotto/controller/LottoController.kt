@@ -16,7 +16,7 @@ class LottoController {
     fun run() {
         val purchaseMoney = getLottoPurchaseCostInput()
         val lottoBundle = LottoBundle(lottoShop.purchaseLottos(purchaseMoney))
-        printLottoBundleNumbers(lottobundle = lottoBundle)
+        printLottoBundleNumbers(lottoBundle = lottoBundle)
 
         val winningNumbers = getWinningNumbersInput()
         lottoManager.setWinningNumbers(input = winningNumbers)

@@ -6,9 +6,10 @@ import lotto.domain.LottoRank.INIT
 import lotto.domain.LottoRank.NOTHING
 
 object OutputView {
-    fun printLottoBundleNumbers(lottobundle: LottoBundle) {
-        println("${lottobundle.amount()}개를 구매했습니다.")
-        lottobundle.forEach { lotto ->
+    fun printLottoBundleNumbers(lottoBundle: LottoBundle) {
+        println()
+        println("${lottoBundle.amount()}개를 구매했습니다.")
+        lottoBundle.forEach { lotto ->
             println(lotto.toString())
         }
         println()
@@ -22,10 +23,13 @@ object OutputView {
                 println("${lottoRank.message} (${lottoRank.prize}) - ${rankCount}개")
             }
         }
-        printRateOfReturn(lottoBundle = lottoBundle)
     }
 
-    fun printRateOfReturn(lottoBundle: LottoBundle) {
-        println("총 수익률은 ${lottoBundle.getRateOfReturn()}%입니다.")
+    fun printRateOfReturn(
+        lottoBundle: LottoBundle,
+        winningNumbers: List<Int>,
+        bonusNumber: Int,
+    ) {
+        println("총 수익률은 ${lottoBundle.getRateOfReturn(winningNumbers, bonusNumber)}%입니다.")
     }
 }

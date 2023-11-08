@@ -7,7 +7,7 @@ enum class LottoRank(val message: String, val prize: Int) {
     FOURTH("4개 일치", FOURTH_PRIZE),
     FIFTH("3개 일치", FIFTH_PRIZE),
     NOTHING("꽝", NOTHING_PRIZE),
-    INIT("기본", 0)
+    INIT("기본", NOTHING_PRIZE)
 }
 
 private const val FIRST_PRIZE = 2_000_000_000
