@@ -61,7 +61,7 @@ class LottoInspector {
         return lottoRewardMoney.replace(",","").toInt()
     }
 
-    private fun checkLotto(lotto: Lotto, winningNumber: List<Int>, bonusNumber: Int): Int {
+    fun checkLotto(lotto: Lotto, winningNumber: List<Int>, bonusNumber: Int): Int {
         val lottoNumber = lotto.getLottoNumber()
         val lottoResult = compareLotto(lottoNumber, winningNumber)
         when (lottoResult) {
