@@ -2,7 +2,6 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
-import java.util.NoSuchElementException
 import kotlin.math.roundToInt
 
 fun main() {
@@ -21,14 +20,12 @@ fun main() {
 fun getMoney(): Int {
     println("구입금액을 입력해 주세요.")
     val money = Console.readLine().trim()
-
     try {
         ExceptionHandler.checkInputMoney(money)
     } catch (e: IllegalArgumentException) {
         print("[ERROR]")
-        throw NoSuchElementException()
+        return getMoney()
     }
-
     return money.toInt()
 }
 
@@ -64,7 +61,7 @@ fun getWinningNumber(): List<Int> {
         ExceptionHandler.checkWinningNumber(inputNumbers)
     } catch (e: IllegalArgumentException) {
         print("[ERROR]")
-        throw NoSuchElementException()
+        return getWinningNumber()
     }
 
     var numbers = inputNumbers.split(",")
@@ -77,7 +74,7 @@ fun getWinningNumber(): List<Int> {
         ExceptionHandler.checkNumberList(winningNumber)
     } catch (e: IllegalArgumentException) {
         print("[ERROR]")
-        throw NoSuchElementException()
+        return getWinningNumber()
     }
     return winningNumber
 }
@@ -90,7 +87,7 @@ fun getBonusNumber(winningNumber: List<Int>): Int {
         ExceptionHandler.checkBonusNumber(number, winningNumber)
     } catch (e: IllegalArgumentException) {
         print("[ERROR]")
-        throw NoSuchElementException()
+        return getBonusNumber(winningNumber)
     }
 
     return number.toInt()

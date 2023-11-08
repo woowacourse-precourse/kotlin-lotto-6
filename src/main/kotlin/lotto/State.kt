@@ -13,4 +13,5 @@ enum class Message(val msg: String) {
     PRINT_LOTTO("개를 구매했습니다."),
     INQUIRE_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
     INQUIRE_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
+    ERROR_MESSAGE("[ERROR]")
 }
