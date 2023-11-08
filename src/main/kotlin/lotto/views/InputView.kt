@@ -23,7 +23,7 @@ class InputView {
         return validateWinningNumbersInput(input)
     }
 
-    private fun validateWinningNumbersInput(input: String): List<Int> {
+    internal fun validateWinningNumbersInput(input: String): List<Int> {
         val splitInputs = input.split(SEPARATOR)
         val trimmedInputs = splitInputs.map { it.trim() }
         trimmedInputs.forEach {
