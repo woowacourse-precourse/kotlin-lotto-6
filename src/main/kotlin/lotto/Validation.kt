@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.ErrorMessage.ERROR_BONUS_DUPLICATED
 import lotto.ErrorMessage.ERROR_INPUT_N0T_NUM
 import lotto.ErrorMessage.ERROR_INPUT_NUMBER_NO_FORMAT
 import lotto.ErrorMessage.ERROR_INPUT_PURCHASE_PRICE
@@ -27,6 +28,7 @@ object Validation {
 
     fun validateBonusNumber(bonusNumber: String) {
         validateNumberRange(bonusNumber)
+        validateBonusNumberDuplicated(bonusNumber)
     }
 
     private fun validateInputAbleToConvertToInt(price: String) {
@@ -78,5 +80,10 @@ object Validation {
                 throw IllegalArgumentException(ERROR_NUMBER_OUT_OF_RANGE)
             }
         }
+    }
+
+    private fun validateBonusNumberDuplicated(number: String) {
+        if (LottoData.myLottoNumber.contains(number.toInt()))
+            throw IllegalArgumentException(ERROR_BONUS_DUPLICATED)
     }
 }
