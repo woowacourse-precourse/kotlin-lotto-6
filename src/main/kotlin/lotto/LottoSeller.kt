@@ -52,7 +52,7 @@ class LottoSeller() {
     //미쳐버려 이거 잘못된 보너스 번호잖아!
     //당첨번호랑 안겹치는 걸로 다시 적어서 내렴
     fun checkLottoHasBonusNum(lottoList: List<Int>, bonusNum: Int): Int {
-우        checkContainNum(lottoList, bonusNum)
+        checkContainNum(lottoList, bonusNum)
         checkBonusLength(bonusNum)
         return bonusNum
     }

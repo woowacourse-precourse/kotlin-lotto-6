@@ -32,5 +32,15 @@ class LottoSellerTest {
             lottoSeller.checkLottoHasBonusNum(lottoUser, money)
         }
     }
+
+    @Test
+    fun `보너스가 입력받은 값과 중복일 때`() {
+        val lottoUser = listOf(1, 2, 3, 4, 5, 6)
+        val money = 6
+        val lottoSeller = LottoSeller()
+        assertThrows<IllegalArgumentException> {
+            lottoSeller.checkLottoHasBonusNum(lottoUser, money)
+        }
+    }
 }
 
