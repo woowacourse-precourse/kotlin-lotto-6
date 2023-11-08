@@ -39,18 +39,24 @@ class InputView {
                 println(error.message)
             } catch (error: UnvalidLottoNumberCountException) {
                 println(error.message)
+            } catch (error: DuplicatedNumberException) {
+                println(error.message)
             }
         }
     }
 
-    fun inputBonusNumber(): Int {
+    fun inputBonusNumber(lottoList: List<Int>): Int {
         while (true) {
             println(INPUT_MESSAGE_BONUS_NUMBER)
             val userInput = Console.readLine()
 
             try {
-                inputValidator.checkListNumberIsInRange(userInput)
+                inputValidator.checkBonusInput(userInput, lottoList)
             } catch (error: UnvalidLottoNumberException) {
+                println(error.message)
+            } catch (error: ContainsNotDigitException) {
+                println(error.message)
+            } catch (error: DuplicatedNumberException) {
                 println(error.message)
             }
         }
