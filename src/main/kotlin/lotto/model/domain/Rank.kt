@@ -12,7 +12,7 @@ enum class Rank(val countOfMatch: Int, val isBonus: Boolean, val winningAmount: 
         fun findRank(countOfMatch: Int, isBonus: Boolean): Rank {
             return when (countOfMatch) {
                 5 -> if (isBonus) SECOND else THIRD
-                else -> values().find { it.countOfMatch == countOfMatch } ?: NONE
+                else -> entries.find { it.countOfMatch == countOfMatch } ?: NONE
             }
         }
     }
