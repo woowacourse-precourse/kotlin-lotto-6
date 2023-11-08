@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.domain.compareToLotto
+import lotto.domain.getEarningRate
 import lotto.domain.matchCheck
 import lotto.view.printEarningRate
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -34,5 +35,18 @@ class WinningTest {
 
         // then
         assertEquals(mutableListOf(1,1,0,1,0), result)
+    }
+
+    @Test
+    fun `수익률 반환 테스트`() {
+        // given
+        val amount = 1000
+        val total = 5000
+
+        // when
+        val result = getEarningRate(amount,total)
+
+        // then
+        assertEquals(500.0f, result)
     }
 }
