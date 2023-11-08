@@ -7,7 +7,7 @@ class LottoMachineTest {
 
     @Test
     fun `로또 번호와 당첨번호(+보너스 번호)를 비교해 결과를 반환`() {
-        val lottoMachine = LottoMachine("5000")
+        val lottoMachine = LottoMachine("4000")
 
         val allLotto = listOf(
             listOf(1, 4, 10, 25, 32, 41),
