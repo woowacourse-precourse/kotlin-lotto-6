@@ -68,21 +68,21 @@
 
 
 ## (추가된) 프로그래밍 요구 사항
-- [ ] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
+- [x] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
     - 힌트: 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어, 함수(또는 메서드)를 분리한다.
 - [ ] JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
 - [ ] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
   - 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
-- [ ] else를 지양한다.
+- [x] else를 지양한다.
   - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
 - [x] Enum 클래스를 적용해 프로그래밍을 구현한다.
 - [ ] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
   - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
   - 단위 테스트 작성이 익숙하지 않다면 `test/kotlin/lotto/LottoTest`를 참고하여 학습한 후 테스트를 구현한다.
-- [ ] `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms` 및 `Console` API를 사용하여 구현해야 한다.
+- [x] `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms` 및 `Console` API를 사용하여 구현해야 한다.
   - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 pickUniqueNumbersInRange()를 활용한다.
   - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 readLine()을 활용한다.
-- [ ] 제공된 Lotto 클래스를 활용해 구현해야 한다.
+- [x] 제공된 Lotto 클래스를 활용해 구현해야 한다.
   - `numbers`의 접근 제어자인 private을 변경할 수 없다.
   - `Lotto`에 필드를 추가할 수 없다.
   - `Lotto`의 패키지 변경은 가능하다.
