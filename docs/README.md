@@ -111,9 +111,10 @@
 
 사용자로부터 값을 입력받고 검증하는 클래스
 
-    - getInputMoney() : 사용자로부터 구입금액을 입력받고, 올바른 값이 입력될 때 까지 반복하는 기능
-    - getWinningNumbers() : 사용자로부터 당첨 번호를 입력받고, 올바른 값이 입력될 때 까지 반복하는 기능
-    - getBonusNumber(winningNumber: List<Int>) : 사용자로부터 보너스 번호를 입력받고, 올바른 값이 입력될 때 까지 반복하는 기능
+    - getInputMoney() : 사용자로부터 구입금액을 입력받는 기능
+    - getWinningNumbers() : 사용자로부터 당첨 번호를 입력받는 기능
+    - getBonusNumber(winningNumber: List<Int>) : 사용자로부터 보너스 번호를 입력받는 기능
+    - getValidatedInput(promptMessage: String, validate: (String) -> Unit) : 올바른 입력 값이 입력될 때 까지 반복하는 기능
     - readString() : readLine을 활용하여 사용자로부터 문자열을 입력받는 기능
 
 ## OutputManager

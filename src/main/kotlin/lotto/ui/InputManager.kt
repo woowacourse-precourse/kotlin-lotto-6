@@ -12,38 +12,29 @@ class InputManager {
     private val bonusNumberValidator = BonusNumberValidator()
 
     fun getInputMoney(): Int {
-        return try {
-            outputManager.printPromptMessage(INPUT_MONEY_PROMPT_MESSAGE)
-            val inputMoney = readString()
-            inputMoneyValidator.validate(inputMoney)
-            inputMoney.toInt()
-        } catch (e: IllegalArgumentException) {
-            println(e.message)
-            getInputMoney()
-        }
+        return getValidatedInput(INPUT_MONEY_PROMPT_MESSAGE, inputMoneyValidator::validate).toInt()
     }
 
     fun getWinningNumbers(): List<Int> {
-        return try {
-            outputManager.printPromptMessage(WINNING_NUMBERS_PROMPT_MESSAGE)
-            val winningNumber = readString()
-            winningNumbersValidator.validate(winningNumber)
-            winningNumber.split(",").map { it.trim().toInt() }
-        } catch (e: IllegalArgumentException) {
-            println(e.message)
-            getWinningNumbers()
-        }
+        val winningNumbers = getValidatedInput(WINNING_NUMBERS_PROMPT_MESSAGE, winningNumbersValidator::validate)
+        return winningNumbers.split(",").map { it.trim().toInt() }
     }
 
-    fun getBonusNumber(winningNumber: List<Int>): Int {
+    fun getBonusNumber(winningNumbers: List<Int>): Int {
+        return getValidatedInput(BONUS_NUMBER_PROMPT_MESSAGE) {
+            bonusNumberValidator.validate(it, winningNumbers)
+        }.toInt()
+    }
+
+    private fun getValidatedInput(promptMessage: String, validate: (String) -> Unit): String {
         return try {
-            outputManager.printPromptMessage(BONUS_NUMBER_PROMPT_MESSAGE)
-            val bonusNumber = readString()
-            bonusNumberValidator.validate(bonusNumber, winningNumber)
-            bonusNumber.toInt()
+            outputManager.printPromptMessage(promptMessage)
+            val input = readString()
+            validate(input)
+            input
         } catch (e: IllegalArgumentException) {
             println(e.message)
-            getBonusNumber(winningNumber)
+            getValidatedInput(promptMessage, validate)
         }
     }
 
