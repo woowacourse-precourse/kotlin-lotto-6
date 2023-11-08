@@ -9,6 +9,8 @@ class LottoGame {
         val lottoCount = getLottoCount(money)
         val lottoList = getLotto(lottoCount)
         lottoList.forEach { println(it) }
+        val winningNum = Input().inputWinningNum()
+        println(winningNum)
 
     }
 
@@ -21,6 +23,9 @@ class LottoGame {
         val lottoList = List(lottoCount){
             Randoms.pickUniqueNumbersInRange(1, 45, 6).sorted()
         }
+        lottoList.forEach { Lotto(it) }
         return lottoList
     }
+
+
 }
