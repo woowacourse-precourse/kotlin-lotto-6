@@ -1,4 +1,4 @@
-package lotto
+package input
 
 import lotto.validation.CheckInputValidation
 import org.junit.jupiter.api.Test

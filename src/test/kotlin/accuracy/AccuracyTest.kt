@@ -1,4 +1,4 @@
-package lotto
+package accuracy
 
 import lotto.domain.GameResult
 import lotto.domain.LottoManager
