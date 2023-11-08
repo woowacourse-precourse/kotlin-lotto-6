@@ -1,6 +1,9 @@
 package lotto.model
 
 class PurchaseAmount(val amount: Int) {
+
+    val lottoCnt: Int = amount / 1_000
+
     init {
         checkRange()
         checkUnit()

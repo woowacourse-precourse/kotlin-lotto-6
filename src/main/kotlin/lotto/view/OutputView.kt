@@ -1,6 +1,5 @@
 package lotto.view
 
-import lotto.constants.ErrorMessage
 import lotto.constants.Strings
 
 class OutputView {
@@ -8,5 +7,13 @@ class OutputView {
 
     fun outputAmount() {
         println(strings.OUTPUT_PURCHASE_AMOUNT)
+    }
+
+    fun outputLottoCnt(cnt: Int) {
+        println(strings.OUTPUT_LOTTO_COUNT.format(cnt))
+    }
+
+    fun outputBlankLine() {
+        println()
     }
 }
