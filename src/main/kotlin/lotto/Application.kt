@@ -34,6 +34,8 @@ fun generateLottos(count: Int): List<Lotto> {
             if (lottos.none { it.isSameAs(lotto)}) {
                 lottos.add(lotto)
                 break
+            } else {
+                throw IllegalArgumentException("[ERROR] 중복된 로또 번호가 생성되었습니다. 다시 시도해 주세요.")
             }
         }
     }
