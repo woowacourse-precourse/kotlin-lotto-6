@@ -6,22 +6,24 @@ fun parseLottoPrice(): String {
     return Console.readLine()
 }
 
-fun parseNormalWinningNumbers(): List<Int> {
-    val input = Console.readLine()
+fun readNormalWinningNumberLine():String{
+    return Console.readLine()
+}
+
+fun readBonusNumberLine():String{
+    return Console.readLine()
+}
+
+fun parseNormalWinningNumbers(input:String): List<Int> {
     val numbers = input.split(",").map { it.trim() }
     if (numbers.any { it.toIntOrNull() == null }) {
         throw IllegalArgumentException(ErrorMessages.NORMAL_NUMBER_NOT_INT)
     }
-    return numbers.map { it.toInt() }
+    return numbers.map{it.toInt()}
 }
 
-fun parseBonusNumber(): Int {
-    val input = Console.readLine().trim()
+fun parseBonusNumber(input:String): Int {
     return input.toIntOrNull() ?: throw IllegalArgumentException(ErrorMessages.BONUS_NUMBER_NOT_INT)
-}
-
-fun convertLottoPrice(digits: String): Int? {
-    return digits.toIntOrNull()
 }
 
 fun promptLottoPrice(): Int {
@@ -29,7 +31,8 @@ fun promptLottoPrice(): Int {
     while (true) {
         try {
             val digits = parseLottoPrice()
-            val price = convertLottoPrice(digits) ?: throw IllegalArgumentException(ErrorMessages.PRICE_NOT_INT)
+            validateLottoPriceString(digits)
+            val price = digits.toIntOrNull() ?: continue
             validateLottoPrice(price)
             return price // Successfully validated, break the loop
         } catch (e: IllegalArgumentException) {
@@ -43,9 +46,11 @@ fun promptWinningNumber(): Pair<List<Int>, Int> {
     while (true) {
         try {
             println(PromptMessages.WAITING_FOR_NORMAL_WINNING_NUMBER)
-            val normalNumbers = parseNormalWinningNumbers()
+            val normalNumberLine = readNormalWinningNumberLine()
+            val normalNumbers = parseNormalWinningNumbers(normalNumberLine)
             println(PromptMessages.WAITING_FOR_BONUS_NUMBER)
-            val bonusNumber = parseBonusNumber()
+            val bonusNumberLine = readBonusNumberLine()
+            val bonusNumber = parseBonusNumber(bonusNumberLine)
             val winningNumber = normalNumbers to bonusNumber
             validateWinningNumber(winningNumber)
             return winningNumber

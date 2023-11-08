@@ -1,7 +1,13 @@
 package lotto
 
 
+fun validateLottoPriceString(digits: String) {
+    require(isValidInteger(digits)) {
+        ErrorMessages.PRICE_NOT_INT
+    }
+}
+
 fun validateLottoPrice(price: Int) {
-    require(isValidInteger(price.toString())) { "[ERROR] 주어진 금액이 음이 아닌 정수가 아닙니다." }
-    require(isPriceMultipleOfTicketPrice(price)) { "[ERROR] 주어진 금액이 1000의 배수가 아닙니다." }
+    require(price >= 0) { ErrorMessages.PRICE_IS_NEGATIVE }
+    require(isPriceMultipleOfTicketPrice(price)) { ErrorMessages.PRICE_HAS_REMAINDER }
 }

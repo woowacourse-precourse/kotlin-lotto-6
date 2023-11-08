@@ -2,6 +2,8 @@ package lotto
 
 object ErrorMessages {
     const val PRICE_NOT_INT = "[ERROR] 주어진 금액은 정수여야 합니다."
+    const val PRICE_IS_NEGATIVE = "[ERROR] 주어진 금액은 음수가 아니여야 합니다."
+    const val PRICE_HAS_REMAINDER = "[ERROR] 주어진 금액이 1000의 배수가 아닙니다."
     const val NORMAL_NUMBER_NOT_INT = "[ERROR] 당첨 번호는 정수여야 합니다."
     const val BONUS_NUMBER_NOT_INT = "[ERROR] 보너스 번호는 정수여야 합니다."
     const val NORMAL_NUMBER_COUNT_SHOULD_BE_SIX = "[ERROR] 당첨 번호는 숫자가 6개만 있어야합니다."
