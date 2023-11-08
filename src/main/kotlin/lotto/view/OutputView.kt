@@ -1,4 +1,7 @@
 package lotto.view
+
+import lotto.Lotto
+
 class OutputView {
     fun amountMessage() {
         println("구입 금액을 입력해 주세요.")
@@ -30,10 +33,10 @@ class OutputView {
     private fun printPurchaseAGame(number: List<Int>) {
         println(number)
     }
-    fun printPurchase(game: Int, numbers: List<List<Int>>) {
+    fun printPurchase(game: Int, lottos: List<Lotto>) {
         printNumberOfGame(game)
-        for (number in numbers) {
-            printPurchaseAGame(number)
+        for (lotto in lottos) {
+            printPurchaseAGame(lotto.getLotto())
         }
         printEmptyLine()
     }
