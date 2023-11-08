@@ -25,6 +25,10 @@ class Lotto(private val numbers: List<LottoNumber> = generateRandomNumbers()) {
         }
     }
 
+    fun getNumbers(): List<LottoNumber> {
+        return numbers
+    }
+
     override fun toString(): String {
         return numbers.joinToString(separator = ", ", prefix = "[", postfix = "]") { it.number.toString() }
     }

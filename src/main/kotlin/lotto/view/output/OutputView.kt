@@ -1,6 +1,7 @@
 package lotto.view.output
 
 import lotto.constants.GameConstants
+import lotto.domain.winningnumber.WinningRank
 
 object OutputView {
     private val output: OutputInterface = ConsoleOutput()
@@ -25,24 +26,8 @@ object OutputView {
         output.printMessage(GameConstants.MESSAGE_WINNING_STATISTICS)
     }
 
-    fun matchThreeMessage() {
-        output.printMessage(GameConstants.MESSAGE_MATCH_THREE)
-    }
-
-    fun matchFourMessage() {
-        output.printMessage(GameConstants.MESSAGE_MATCH_FOUR)
-    }
-
-    fun matchFiveMessage() {
-        output.printMessage(GameConstants.MESSAGE_MATCH_FIVE)
-    }
-
-    fun matchFiveBonusMessage() {
-        output.printMessage(GameConstants.MESSAGE_MATCH_FIVE_BONUS)
-    }
-
-    fun matchSixMessage() {
-        output.printMessage(GameConstants.MESSAGE_MATCH_SIX)
+    fun printRankStatistics(rank: WinningRank, count: Int) {
+        output.printMessage("${rank.matchCount}개 일치 (${rank.prize}원) - ${count}개")
     }
 
     fun profitRateMessage(profitRate: Double) {
