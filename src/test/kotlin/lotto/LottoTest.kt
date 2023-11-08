@@ -13,9 +13,6 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class LottoTest {
 
-    private val ANSWER = listOf(1, 2, 3, 4, 5, 6)
-    private val BONUS = 7
-
     @Test
     fun `로또 번호의 개수가 6개가 넘어가면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
@@ -71,6 +68,11 @@ class LottoTest {
         val lottoNumbers = listOf(1, 2, 7, 8, 9, 10)
         val actual = Lotto(lottoNumbers).matchAnswer(ANSWER, BONUS)
         assertEquals(actual, WinningType.NOTHING)
+    }
+
+    companion object {
+        private val ANSWER = listOf(1, 2, 3, 4, 5, 6)
+        private const val BONUS = 7
     }
 
 
