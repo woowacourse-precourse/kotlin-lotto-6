@@ -3,7 +3,7 @@ package lotto.domain
 import lotto.model.Lotto
 import lotto.model.Winning
 
-class WinningStatistics() {
+class WinningStatistics {
 
     fun computeStatistics(
         lottoNumbers: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): HashMap<Winning, Int> {
@@ -11,9 +11,9 @@ class WinningStatistics() {
         val reward = HashMap<Winning, Int>()
 
         lottoNumbers.forEach {
-            var countMatch = compareLotto(it.issueNumbers(), winningNumbers)
+            val countMatch = compareLotto(it.issueNumbers(), winningNumbers)
 
-            var match = Winning.makeRewardStatistics(countMatch,compareBonus(it.issueNumbers(),bonusNumber))
+            val match = Winning.makeRewardStatistics(countMatch,compareBonus(it.issueNumbers(),bonusNumber))
             reward[match] = reward.getOrDefault(match, 0) + 1
         }
         return reward
