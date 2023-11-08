@@ -15,7 +15,7 @@ class Grade {
     }
 
     fun decideGrade(lotto: Lotto, winningNumber: WinningNumber) {
-        val numberCount = lotto.compareLottoNumber(winningNumber)
+        val numberCount = lotto.compareLottoNumber(winningNumber.getWinningNumbers())
         val bonusNumberResult = lotto.compareBonusNumber(winningNumber.getBonusNumber())
         when {
             numberCount == 6 || (numberCount == 5 && bonusNumberResult) -> countGrade(FIRST, this.lottoGrade)

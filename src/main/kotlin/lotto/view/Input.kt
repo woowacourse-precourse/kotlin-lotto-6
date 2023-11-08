@@ -1,6 +1,7 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.model.Lotto
 import lotto.validation.BonusNumberValidation
 import lotto.validation.MoneyValidation
 import lotto.validation.WinningNumberValidation
@@ -19,15 +20,16 @@ class Input {
         }
     }
 
-    fun inputWinningNumber(): List<Int> {
+    fun inputWinningNumber(): Lotto {
         while (true) {
             println(INPUT_WINNING_NUMBER)
             val winningNumbers = Console.readLine()
             try {
                 WinningNumberValidation.VALIDATION_START.getMessage(winningNumbers)
-                return winningNumbers.split(SPLIT_STRING).map { number ->
+                val result = winningNumbers.split(SPLIT_STRING).map { number ->
                     number.toInt()
                 }
+                return Lotto(result)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
