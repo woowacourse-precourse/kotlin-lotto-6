@@ -8,6 +8,12 @@ import lotto.Constants.THREE_MATCH_WINNING_AMOUNT
 import lotto.Constants.FORE_MATCH_WINNING_AMOUNT
 import lotto.Constants.FIVE_MATCH_WINNING_AMOUNT
 import lotto.Constants.FIVE_WITH_BONUS_MATCH_WINNING_AMOUNT
+import lotto.Constants.MATCH_FIVE_LOTTO_NUMBERS
+import lotto.Constants.MATCH_FOUR_LOTTO_NUMBERS
+import lotto.Constants.MATCH_THREE_LOTTO_NUMBERS
+import lotto.Constants.MATCH_TWO_LOTTO_NUMBERS
+import lotto.Constants.MAX_NUMBER
+import lotto.Constants.MIN_NUMBER
 import lotto.Constants.SIX_MATCH_WINNING_AMOUNT
 import lotto.model.LottoRank
 
@@ -21,7 +27,7 @@ class LottoGameService {
         for (ticketCheck in 0 until ticket) {
             purchaseLottoLists[ticketCheck] = Randoms.pickUniqueNumbersInRange(
                 MIN_LOTTO_NUMBER,
-                MAX_LOTTO_NUMBER, 6
+                MAX_LOTTO_NUMBER, MAX_NUMBER
             ).sorted()
         }
         return purchaseLottoLists
@@ -33,7 +39,7 @@ class LottoGameService {
         randomLottoLists: MutableMap<Int, List<Int>>,
         ticket: Int
     ) {
-        for (ticketCheck in 0 until ticket) {
+        for (ticketCheck in MIN_NUMBER until ticket) {
             val winningLottoCheck = checkWinningLottoNumber(lotto, randomLottoLists, ticketCheck)
             val bonusNumberCheck = checkWinningBonusNumber(bonus, randomLottoLists, ticketCheck)
             saveWinningStatsToRank(winningLottoCheck, bonusNumberCheck, ticketCheck)
@@ -57,19 +63,19 @@ class LottoGameService {
     }
 
     private fun saveWinningStatsToRank(winningLottoCheck: Int, bonusNumberCheck: Boolean, ticketCheck: Int) {
-        if (winningLottoCheck == 3 || winningLottoCheck == 2 && bonusNumberCheck) {
+        if (winningLottoCheck == MATCH_THREE_LOTTO_NUMBERS || winningLottoCheck == MATCH_TWO_LOTTO_NUMBERS && bonusNumberCheck) {
             LottoRank.THREE_MATCH.increment()
         }
-        if (winningLottoCheck == 4 || winningLottoCheck == 3 && bonusNumberCheck) {
+        if (winningLottoCheck == MATCH_FOUR_LOTTO_NUMBERS || winningLottoCheck == MATCH_THREE_LOTTO_NUMBERS && bonusNumberCheck) {
             LottoRank.FOUR_MATCH.increment()
         }
-        if (winningLottoCheck == 5) {
+        if (winningLottoCheck == MATCH_FIVE_LOTTO_NUMBERS) {
             LottoRank.FIVE_MATCH.increment()
         }
-        if (winningLottoCheck == 5 && bonusNumberCheck) {
+        if (winningLottoCheck == MATCH_FIVE_LOTTO_NUMBERS && bonusNumberCheck) {
             LottoRank.FIVE_MATCH_WITH_BONUS.increment()
         }
-        if (winningLottoCheck == 6) {
+        if (winningLottoCheck == MAX_NUMBER) {
             LottoRank.SIX_MATCH.increment()
         }
     }

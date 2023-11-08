@@ -1,5 +1,7 @@
 package lotto.model
 
+import lotto.Constants.MIN_NUMBER
+
 enum class LottoRank() {
     THREE_MATCH,
     FOUR_MATCH,
@@ -7,7 +9,7 @@ enum class LottoRank() {
     FIVE_MATCH_WITH_BONUS,
     SIX_MATCH;
 
-    private var count = 0
+    private var count = MIN_NUMBER
 
     fun increment() {
         count++
