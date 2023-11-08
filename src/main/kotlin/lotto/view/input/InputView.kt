@@ -3,12 +3,13 @@ package lotto.view.input
 import lotto.domain.purchase.LottoPurchaseAmountParser
 import camp.nextstep.edu.missionutils.Console
 import lotto.constants.ErrorConstants
+import lotto.constants.ErrorConstants.EMPTY_INPUT_ERROR_MESSAGE
 import lotto.domain.lotto.parser.LottoNumberParser
-import lotto.domain.winningnumber.parser.WinningNumberParser
+import lotto.domain.winning.parser.WinningNumberParser
 
 object InputView {
     fun readPurchaseAmount(): Int {
-        val input = Console.readLine()
+        val input = Console.readLine()?.trim() ?: throw IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE)
         return try {
             LottoPurchaseAmountParser.parse(input)
         } catch (e: IllegalArgumentException) {
@@ -18,7 +19,8 @@ object InputView {
     }
 
     fun readWinningNumber(): List<Int> {
-        val input = Console.readLine()
+        val input = Console.readLine()?.trim() ?: throw IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE)
+        println("$input")
         return try {
             val parseWinningNumbers = WinningNumberParser.parseWinningNumbers(input)
             parseWinningNumbers
@@ -29,7 +31,7 @@ object InputView {
     }
 
     fun readBonusNumber(winningNumbers: List<Int>): Int {
-        val input = Console.readLine()
+        val input = Console.readLine()?.trim() ?: throw IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE)
         return try {
             val bonusNumber = LottoNumberParser.parseNumber(input)
             validateBonusNumberNotInWinningNumbers(bonusNumber = bonusNumber, winningNumbers = winningNumbers)

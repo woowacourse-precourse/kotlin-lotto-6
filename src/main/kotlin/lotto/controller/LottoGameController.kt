@@ -3,7 +3,7 @@ package lotto.controller
 import lotto.constants.GameConstants.LOTTO_COUNT
 import lotto.constants.GameConstants.PURCHASE_UNIT
 import lotto.domain.lotto.model.Lotties
-import lotto.domain.winningnumber.WinningRank
+import lotto.domain.winning.model.WinningRank
 import lotto.view.input.InputView
 import lotto.view.output.OutputView
 
@@ -15,11 +15,12 @@ object LottoGameController {
     private var lottoPurchaseAmount: Int = 0
     private var winningNumbers = List(LOTTO_COUNT) { 0 }
     private var bonusNumber: Int = 0
+    private var rankCounts: Map<WinningRank, Int> = mapOf()
+    private var profitRate: Double = 0.0
+    private var profitAmount: Long = 0
 
     fun start() {
         purchaseLotto()
-        setLotto(lottoPurchaseCount)
-        readWinningNumbersAndBonusNumber()
     }
 
     private fun purchaseLotto() {
@@ -27,11 +28,13 @@ object LottoGameController {
         lottoPurchaseAmount = inputView.readPurchaseAmount()
         lottoPurchaseCount = lottoPurchaseAmount / PURCHASE_UNIT
         outputView.countLottoMessage(lottoPurchaseCount)
+        setLotto(lottoPurchaseCount)
     }
 
     private fun setLotto(lottoPurchaseCount: Int) {
         lotties.generateLotties(lottoPurchaseCount)
         lotties.printLotties()
+        readWinningNumbersAndBonusNumber()
     }
 
     private fun readWinningNumbersAndBonusNumber() {
@@ -39,11 +42,11 @@ object LottoGameController {
         winningNumbers = InputView.readWinningNumber()
         outputView.requestBonusNumberMessage()
         bonusNumber = InputView.readBonusNumber(winningNumbers)
-        calculateResults()
+        calculateWinningResults()
     }
 
-    private fun calculateResults() {
-        val rankCounts = lotties.winningResults(winningNumbers, bonusNumber)
+    private fun calculateWinningResults() {
+        rankCounts = lotties.winningResults(winningNumbers, bonusNumber)
 
         outputView.winningStatisticsMessage()
         WinningRank.entries.forEach { rank ->
@@ -51,5 +54,16 @@ object LottoGameController {
                 outputView.printRankStatistics(rank, rankCounts[rank] ?: 0)
             }
         }
+        profitRateResult()
+    }
+
+    private fun profitRateResult() {
+        WinningRank.entries.forEach { rank ->
+            if (rank != WinningRank.NONE) {
+                profitAmount += rank.prize * (rankCounts[rank] ?: 0)
+            }
+        }
+        profitRate = profitAmount.toDouble() / lottoPurchaseAmount * 100
+        outputView.profitRateMessage(profitRate)
     }
 }

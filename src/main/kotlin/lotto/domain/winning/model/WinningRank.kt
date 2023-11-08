@@ -1,4 +1,4 @@
-package lotto.domain.winningnumber
+package lotto.domain.winning.model
 
 enum class WinningRank(val matchCount: Int, val prize: Long, val isBonus: Boolean = false) {
     FIRST(6, 2_000_000_000),

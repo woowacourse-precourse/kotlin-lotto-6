@@ -1,7 +1,7 @@
 package lotto.view.output
 
 import lotto.constants.GameConstants
-import lotto.domain.winningnumber.WinningRank
+import lotto.domain.winning.model.WinningRank
 
 object OutputView {
     private val output: OutputInterface = ConsoleOutput()
@@ -31,6 +31,6 @@ object OutputView {
     }
 
     fun profitRateMessage(profitRate: Double) {
-        output.printMessage("${GameConstants.MESSAGE_PROFIT_RATE_START} ${profitRate.toString()} ${GameConstants.MESSAGE_PROFIT_RATE_END}")
+        println("${GameConstants.MESSAGE_PROFIT_RATE_START} ${String.format("%.2f", profitRate)} ${GameConstants.MESSAGE_PROFIT_RATE_END}")
     }
 }

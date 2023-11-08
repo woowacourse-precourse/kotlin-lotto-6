@@ -1,6 +1,6 @@
 package lotto.domain.lotto.model
 
-import lotto.domain.winningnumber.WinningRank
+import lotto.domain.winning.model.WinningRank
 
 class Lotties {
     private val lotties: MutableList<Lotto> = mutableListOf()
@@ -24,5 +24,4 @@ class Lotties {
         }
         return results.mapValues { it.value.size }
     }
-
 }
