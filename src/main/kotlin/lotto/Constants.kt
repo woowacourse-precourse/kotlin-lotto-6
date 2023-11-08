@@ -16,12 +16,13 @@ object Constants {
     const val ERROR_LOTTO_NUMBER_BOUNDARY_MESSAGE = "로또 번호는 1 부터 45 사이의 숫자 이여야 합니다."
     const val ERROR_BONUS_NUMBER_DISTINCTION_MESSAGE = "보너스 번호는 당첨 번호와 중복되지 않아야 합니다."
 
-    const val RESULT_WINNING_TITLE = "\n당첨 통계\n---"
-    const val RESULT_WINNING_CASE_1 = "\n3개 일치 (5,000원)"
-    const val RESULT_WINNING_CASE_2 = "\n4개 일치 (50,000원)"
-    const val RESULT_WINNING_CASE_3 = "\n5개 일치 (1,500,000원)"
-    const val RESULT_WINNING_CASE_4 = "\n5개 일치, 보너스 볼 일치 (30,000,000원)"
-    const val RESULT_WINNING_CASE_5 = "\n6개 일치 (2,000,000,000원)"
+    const val RESULT_WINNING_TITLE = "당첨 통계"
+    const val RESULT_WINNING_DIVIDER = "---"
+    const val RESULT_WINNING_CASE_1 = "3개 일치 (5,000원)"
+    const val RESULT_WINNING_CASE_2 = "4개 일치 (50,000원)"
+    const val RESULT_WINNING_CASE_3 = "5개 일치 (1,500,000원)"
+    const val RESULT_WINNING_CASE_4 = "5개 일치, 보너스 볼 일치 (30,000,000원)"
+    const val RESULT_WINNING_CASE_5 = "6개 일치 (2,000,000,000원)"
     const val RESULT_WINNING_MARGIN_HEADER = "총 수익률은 "
     const val RESULT_WINNING_MARGIN_FOOTER = "입니다."
 
@@ -39,6 +40,7 @@ object Constants {
     const val COUNT_UNIT = "개"
     const val COMMA = ","
     const val PERCENT = "%"
+    const val NEW_LINE = "\n"
     const val THOUSAND = 1000
     const val ZERO = 0
 }

@@ -28,8 +28,8 @@ class LottoGameViewer {
 
     private fun printRequestMessageByGameState() {
         if (gameState == BUYING) println(Constants.REQUEST_BUYING_MESSAGE)
-        if (gameState == PICKING_WINNING) println(Constants.REQUEST_PICKING_WINNING_MESSAGE)
-        if (gameState == PICKING_BONUS) println(Constants.REQUEST_PICKING_BONUS_MESSAGE)
+        if (gameState == PICKING_WINNING) println(Constants.NEW_LINE + Constants.REQUEST_PICKING_WINNING_MESSAGE)
+        if (gameState == PICKING_BONUS) println(Constants.NEW_LINE + Constants.REQUEST_PICKING_BONUS_MESSAGE)
     }
 
     private fun printError() {
@@ -44,17 +44,45 @@ class LottoGameViewer {
     }
 
     private fun printResultOfBuyingLotto() {
-        val userLotteryTickets = data as List<Lotto>
+        val lotteryTickets = data as List<Lotto>
 
-        println("${userLotteryTickets.size}" + Constants.RESULT_BUYING_COUNT_MESSAGE)
-        userLotteryTickets.map { println(it.getNumbers().sorted()) }
+        printBuyingLottoCount(lotteryTickets)
+        printLottoNumbersInGroup(lotteryTickets)
+    }
+
+    private fun printBuyingLottoCount(lotteryTickets: List<Lotto>) {
+        val message = Constants.NEW_LINE + "${lotteryTickets.size}" + Constants.RESULT_BUYING_COUNT_MESSAGE
+
+        println(message)
+    }
+
+    private fun printLottoNumbersInGroup(lotteryTickets: List<Lotto>) {
+        lotteryTickets.map { printLottoNumbers(it) }
+    }
+
+    private fun printLottoNumbers(lotto: Lotto) {
+        println(lotto.getNumbers().sorted())
     }
 
     private fun printResultOfWinning() {
         val result = data as WinningResult
 
+        printWinningResultTitle()
         printWinningsByCountInGroup(result.winningCounts)
         printWinningMarginRate(result.margin)
+    }
+
+    private fun printWinningResultTitle() {
+        printTitle()
+        printDivider()
+    }
+
+    private fun printTitle() {
+        println(Constants.NEW_LINE + Constants.RESULT_WINNING_TITLE)
+    }
+
+    private fun printDivider() {
+        println(Constants.RESULT_WINNING_DIVIDER)
     }
 
     private fun printWinningsByCountInGroup(winningCounts: List<Int>) {

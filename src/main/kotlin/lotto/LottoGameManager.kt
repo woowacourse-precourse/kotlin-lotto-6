@@ -7,9 +7,7 @@ import lotto.state.LottoGameManagerState
 import camp.nextstep.edu.missionutils.Console
 import lotto.data.Lotto
 import lotto.data.Money
-import lotto.data.WinningResult
 import lotto.data.Winning
-import java.util.*
 
 class LottoGameManager {
     private var gameState = LottoGameState.values().first()
