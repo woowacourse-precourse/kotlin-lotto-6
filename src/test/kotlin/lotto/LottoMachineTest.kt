@@ -18,4 +18,9 @@ class LottoMachineTest {
             LottoMachine(800)
         }
     }
+
+    @Test
+    fun `로또 생성 갯수를 확인하는 테스트`() {
+        assertThat(LottoMachine(8000).generateLotto().size).isEqualTo(8)
+    }
 }
