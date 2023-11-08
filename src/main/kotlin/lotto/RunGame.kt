@@ -15,7 +15,7 @@ class RunGame {
         var bonNum: Int = UserInput().getBonusNum()!!
         var lottoResult: MutableList<List<Int>> = checkResult(winNum,boughtLotto,bonNum)
         var prize: Int = checkPrize(winNum, bonNum, lottoResult)
-        ComputerOutput().winLotto()
+        ComputerOutput().winLotto(lottoResult)
         ComputerOutput().staticLotto(money,prize)
     }
 
