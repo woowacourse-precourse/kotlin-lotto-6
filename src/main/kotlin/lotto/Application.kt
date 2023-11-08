@@ -14,6 +14,14 @@ fun main() {
     for (ticket in lottoTickets) {
         println("[${ticket.getNumbers().joinToString(", ")}]")
     }
+
+    val winningNumbers = getWinningNumbers()
+    val bonusNumber = getBonusNumber()
+
+    println("당첨 번호: [${winningNumbers.joinToString(", ")}]")
+    println("보너스 번호: [$bonusNumber]")
+
+    return
 }
 
 fun generateLottoNumbers(purchaseAmount: Int): List<Lotto> {
@@ -51,4 +59,67 @@ fun inputPurchase(amount: Int): Int {
         return amount
     }
     return confirmAmount
+}
+
+fun getWinningNumbers(): List<Int> {
+    var numbers = listOf(0)
+    println("당첨 번호를 입력해 주세요.")
+    while (numbers == listOf(0)) {
+        numbers = inputWinningNumbers()
+    }
+    return numbers
+}
+
+fun inputWinningNumbers(): List<Int> {
+    try {
+        var numbers: List<Int>
+        val input = Console.readLine()
+        numbers = input?.split(",")!!.mapNotNull { it.trim().toIntOrNull() }
+        validateLottoNumbers(numbers)
+        return numbers
+    } catch (e: NumberFormatException) {
+        println("[ERROR] 잘못된 입력 형식입니다.")
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+    }
+    return listOf(0)
+}
+
+fun getBonusNumber(): Int {
+    var number = 0
+    println("보너스 번호를 입력해 주세요.")
+    while (number < 1 || number > 45) {
+        number = inputBonusNumbers()
+    }
+    return number
+}
+
+fun inputBonusNumbers(): Int {
+    var result = 0
+    try {
+        result = Console.readLine()!!.toInt()
+        validateBonusNumbers(result)
+        return result
+    } catch (e: NumberFormatException) {
+        println("[ERROR] 잘못된 입력 형식입니다.")
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+    }
+    return result
+}
+
+fun validateLottoNumbers(numbers: List<Int>) {
+    if (numbers.any { it < 1 || it > 45 } || numbers.size != 6) {
+        throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자 6개를 입력해야 합니다.")
+    }
+    val uniqueNumbers = numbers.toSet()
+    if (uniqueNumbers.size != 6) {
+        throw IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 포함되어 있습니다.")
+    }
+}
+
+fun validateBonusNumbers(number: Int) {
+    if (number < 1 || number > 45) {
+        throw IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.")
+    }
 }
