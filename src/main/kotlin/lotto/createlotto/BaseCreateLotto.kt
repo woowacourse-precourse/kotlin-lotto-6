@@ -1,4 +1,7 @@
-package lotto
+package lotto.createlotto
+
+import lotto.lotto.Lotto
+import lotto.consts.StringRes
 
 class BaseCreateLotto(private vararg val numbers: List<Int>) : CreateLottoInterface {
     private var index = 0

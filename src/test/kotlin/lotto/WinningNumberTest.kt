@@ -1,6 +1,8 @@
 package lotto
 
-import org.assertj.core.api.Assertions
+import lotto.consts.GameConst
+import lotto.consts.StringRes
+import lotto.lotto.winning.WinningNumber
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

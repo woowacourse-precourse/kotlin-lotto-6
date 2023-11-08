@@ -1,4 +1,4 @@
-package lotto
+package lotto.consts
 
 object GameConst {
     const val MAX_NUM = 45

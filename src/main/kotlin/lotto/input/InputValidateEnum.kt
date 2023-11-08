@@ -1,4 +1,7 @@
-package lotto
+package lotto.input
+
+import lotto.consts.GameConst
+import lotto.consts.StringRes
 
 enum class InputValidateEnum(val validator: (String) -> (Unit)) {
     BUDGET({ input ->
@@ -42,7 +45,7 @@ enum class InputValidateEnum(val validator: (String) -> (Unit)) {
         }) {
             StringRes.INPUT_CHAR_ERR
         }
-        require(input.toInt() in 1..lotto.GameConst.MAX_NUM) {
+        require(input.toInt() in 1..GameConst.MAX_NUM) {
             StringRes.INPUT_OUT_OF_RANGE
         }
     })

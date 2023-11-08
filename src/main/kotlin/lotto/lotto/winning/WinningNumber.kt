@@ -1,4 +1,7 @@
-package lotto
+package lotto.lotto.winning
+
+import lotto.consts.GameConst
+import lotto.consts.StringRes
 
 data class WinningNumber(
     val numbers: List<Int>,

@@ -1,4 +1,4 @@
-package lotto
+package lotto.lotto.winning
 
 enum class WinningStrategyEnum(
     val title: String,

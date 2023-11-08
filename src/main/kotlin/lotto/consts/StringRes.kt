@@ -1,4 +1,4 @@
-package lotto
+package lotto.consts
 
 object StringRes {
     private const val ERR_PREFIX = "[ERROR] "

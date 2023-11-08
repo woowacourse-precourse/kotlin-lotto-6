@@ -1,4 +1,8 @@
-package lotto
+package lotto.lotto
+
+import lotto.lotto.winning.WinningNumber
+import lotto.lotto.winning.WinningStrategyEnum
+import lotto.consts.GameConst
 
 class Lotto(private val numbers: List<Int>) {
     init {
