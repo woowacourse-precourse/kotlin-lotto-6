@@ -1,6 +1,7 @@
 package lotto.view
 
 import lotto.domain.Lotto
+import lotto.domain.LottoRank
 
 class OutputView {
     companion object {
@@ -20,10 +21,17 @@ class OutputView {
             }
         }
 
-        fun printPrizeDetails() {
+        fun printPrizeDetails(results: List<LottoRank>, ranks: List<LottoRank>) {
             println(WINNING_STATISTICS_STRING)
             println(DASH_SEPARATOR)
 
+            ranks.forEach { rank ->
+                val count = results.count { it == rank }
+                println(
+                    "${rank.matchCount}개 일치${if (rank.hasBonus) ", 보너스 볼 일치 " else " "}" +
+                            "(${rank.prizeMoney}원) - ${count}개"
+                )
+            }
         }
 
         fun printRateOfReturn(rateOfReturn: Double) {

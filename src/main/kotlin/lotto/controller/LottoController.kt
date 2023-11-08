@@ -12,10 +12,10 @@ import lotto.view.OutputView
 class LottoController {
     fun run() {
         val (lottoStore, purchasePrice) = inputPrice()
-        val tickets : List<Lotto> = issueTickets(lottoStore)
+        val tickets: List<Lotto> = issueTickets(lottoStore)
         val winNumbers: List<Int> = inputWinNumbers()
         val bonusNumber: Int = inputBonusNumber(winNumbers)
-        val results : List<LottoRank> = calculateResult(tickets, winNumbers, bonusNumber)
+        val results: List<LottoRank> = calculateResult(tickets, winNumbers, bonusNumber)
 
         printPrizeDetails(results)
         printRateOfReturn(results, purchasePrice)
@@ -76,27 +76,22 @@ class LottoController {
         throw IllegalArgumentException("입력에 여러 차례 실패했습니다. 프로그램을 종료합니다.")
     }
 
-    private fun calculateResult(tickets: List<Lotto>, winNumbers: List<Int>, bonusNumber: Int): List<LottoRank>{
+    private fun calculateResult(tickets: List<Lotto>, winNumbers: List<Int>, bonusNumber: Int): List<LottoRank> {
         val results = mutableListOf<LottoRank>()
 
         for (ticket in tickets) {
-        val matchCount = ticket.matchCount(winNumbers)
-        val hasBonus = ticket.matchBonusNumber(bonusNumber)
-        val prize = LottoRank.getRank(matchCount, hasBonus)
-        results.add(prize)
+            val matchCount = ticket.matchCount(winNumbers)
+            val hasBonus = ticket.matchBonusNumber(bonusNumber)
+            val prize = LottoRank.getRank(matchCount, hasBonus)
+            results.add(prize)
         }
 
         return results
     }
 
     private fun printPrizeDetails(results: List<LottoRank>) {
-        OutputView.printPrizeDetails()
-
-        LottoRank.entries.forEach { prize ->
-            val count = results.count { it == prize }
-            println("${prize.matchCount}개 일치${if (prize.hasBonus) ", 보너스 볼 일치 " else " "}" +
-                    "(${prize.prizeMoney}원) - ${count}개")
-        }
+        val ranks = LottoRank.entries.filter { it.matchCount > 0 }
+        OutputView.printPrizeDetails(results, ranks)
     }
 
     private fun printRateOfReturn(results: List<LottoRank>, purchasePrice: Int) {
