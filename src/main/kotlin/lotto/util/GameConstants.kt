@@ -14,7 +14,7 @@ object GameConstants {
 
     const val VALUE_5TH = 5_000
     const val VALUE_4TH = 50_000
-    const val VALUE_3RD = 1_500_500
+    const val VALUE_3RD = 1_500_000
     const val VALUE_2ND = 30_000_000
     const val VALUE_1ST = 2_000_000_000
 
