@@ -10,4 +10,8 @@ class User {
     fun inputWinningNumbers() {
         val numbers = Console.readLine()
     }
+
+    fun inputBonusNumber() {
+        val bonusNumber = Console.readLine()
+    }
 }
