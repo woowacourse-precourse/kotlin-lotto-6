@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.consts.StringRes
 import lotto.createlotto.RandomCreateLotto
 import lotto.input.Input
 import lotto.input.InputValidateEnum
@@ -27,7 +28,7 @@ object GameHost {
         winningNumber: WinningNumber,
         budget: Int
     ) {
-        println("당첨 통계")
+        println(StringRes.RESULT_MSG)
         println("---")
         Result.getPrintResult(lottos, winningNumber, budget)
     }
@@ -37,7 +38,7 @@ object GameHost {
         do {
             err = false
             try {
-                println("당첨 번호를 입력해 주세요.")
+                println(StringRes.NUMBER_MSG)
                 val numbers = Input.getInput(InputValidateEnum.WINNING_NUMBER).split(",").map { it.trim().toInt() }
                 println()
                 return numbers
@@ -54,7 +55,7 @@ object GameHost {
         do{
             err = false
             try{
-                println("보너스 번호를 입력해 주세요.")
+                println(StringRes.BONUS_MSG)
                 val bonus = Input.getInput(InputValidateEnum.BONUS).toInt()
                 println()
                 return bonus
@@ -74,7 +75,7 @@ object GameHost {
 
     private fun getBudget(): Int {
         try {
-            println("구매 금액을 입력해 주세요.")
+            println(StringRes.BUDGET_MSG)
             val budget = Input.getInput(InputValidateEnum.BUDGET).toInt()
             return budget
         }catch (e:IllegalArgumentException){
