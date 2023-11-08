@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console
 
 class InputView {
     fun inputPurchaseAmount(): Int {
+        printPromptMessage(INPUT_PURCHASE_AMOUNT_MESSAGE)
+
         val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
         require(isEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
 
@@ -18,6 +20,8 @@ class InputView {
     }
 
     fun inputWinningNumbers(): List<Int> {
+        printPromptMessage(INPUT_WINNING_NUMBERS_MESSAGE)
+
         val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
         require(isEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
 
@@ -35,6 +39,8 @@ class InputView {
     }
 
     fun inputBonusNumber(): Int {
+        printPromptMessage(INPUT_BONUS_NUMBER_MESSAGE)
+
         val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
         require(isEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
 
@@ -48,11 +54,17 @@ class InputView {
         return input.toInt()
     }
 
+    private fun printPromptMessage(message: String) = println(message)
+
     private fun isEmptyOrBlankInput(input: String) = input.isEmpty() or input.isBlank()
 
     private fun isNotDigitInput(input: String) = input.all { it.isDigit() }
 
     companion object {
+        const val INPUT_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요."
+        const val INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요."
+        const val INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요."
+
         const val INPUT_ERROR_MESSAGE = "다시 입력해주세요."
         const val NOT_DIGIT_INPUT_ERROR_MESSAGE = "숫자로만 입력해주세요."
 
