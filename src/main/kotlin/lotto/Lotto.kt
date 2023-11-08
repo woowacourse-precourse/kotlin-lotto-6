@@ -54,10 +54,7 @@ class Lotto(private val numbers: List<Int>) {
         }
         return result
     }
-    fun printResult()
-    {
 
-    }
     override fun toString() = numbers.toString()
 }
 enum class PRIZE{

@@ -133,18 +133,7 @@ fun getIntMoney(prize: PRIZE):Int
         NONE-> return 0
     }
 }
-fun getRank(prize: PRIZE):Int
-{
-    when(prize)
-    {
-        FIFTH -> return 3
-        FOURTH -> return 4
-        THIRD -> return 5
-        SECOND -> return 5
-        FIRST -> return 6
-        NONE-> return 0
-    }
-}
+
 fun printProfit(result: Map<PRIZE, Int>,invest:Int)
 {
     val keys = result.keys.sorted()
