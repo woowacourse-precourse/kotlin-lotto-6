@@ -28,7 +28,6 @@ class LottoMachine {
             Money().moneyChangesValidate(money)
             money.toInt()
         } catch (e: IllegalArgumentException) {
-            money = Input().write()
             moneyInput()
         }
     }

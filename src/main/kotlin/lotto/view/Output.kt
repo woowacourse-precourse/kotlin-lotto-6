@@ -4,6 +4,7 @@ package lotto.view
 import lotto.model.Constants
 import lotto.model.Lotto
 import lotto.model.Random
+import lotto.model.Rank
 
 class Output {
     fun printWriteMoney() {
@@ -29,11 +30,9 @@ class Output {
     fun printAnswerCompare(answers: List<Int>, profit: Float) {
         println(Constants.COMPARE_ANSWER)
         println(Constants.THREE_DASH)
-        println(Constants.THREE_SAME + answers[0] + Constants.COUNT)
-        println(Constants.FOUR_SAME + answers[1] + Constants.COUNT)
-        println(Constants.FIVE_SAME + answers[2] + Constants.COUNT)
-        println(Constants.FIVE_WITH_BONUS_SAME + answers[3] + Constants.COUNT)
-        println(Constants.SIX_SAME + answers[4] + Constants.COUNT)
+        for((index,rank) in Rank.entries.withIndex()){
+            println(rank.label + answers[index] + rank.countLabel)
+        }
         println(Constants.TOTAL_PROFIT + profit + Constants.PERCENT)
     }
 }
