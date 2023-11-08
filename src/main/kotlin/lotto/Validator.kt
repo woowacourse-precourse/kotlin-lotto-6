@@ -27,16 +27,13 @@ class Validator {
         }
     }
 
-    fun validateLottoNumber(lotto: String): Boolean {
+    fun couldConvertIntList(winning: String): Boolean {
         return try {
-            containsComma(lotto)
-            val lottoNumbers: List<String> = lotto.split(",")
-            countsLottoNumbers(lottoNumbers)
-            for (number in lottoNumbers) {
+            containsComma(winning)
+            val winningNumbers: List<String> = winning.split(",")
+            for (number in winningNumbers) {
                 isNumberOverZero(number)
-                inCorrectRange(number.toInt())
             }
-            hasDuplicateNumbers(lottoNumbers)
             true
         } catch (e: IllegalArgumentException) {
             println("[ERROR] ${e}")
@@ -47,28 +44,6 @@ class Validator {
     fun containsComma(lotto: String) {
         if (!lotto.contains(',')) {
             throw IllegalArgumentException("로또 번호는 쉼표(,)로 구분지어주세요.")
-        }
-    }
-
-    fun countsLottoNumbers(lottoNumbers: List<String>) {
-        if (lottoNumbers.size != 6) {
-            throw IllegalArgumentException("로또 번호의 개수는 6개여야 합니다.")
-        }
-    }
-
-    fun inCorrectRange(lottoNumber: Int) {
-        if (lottoNumber < 1 && lottoNumber > 45) {
-            throw IllegalArgumentException("로또 번호는 1과 45 사이의 정수여야 합니다.")
-        }
-    }
-
-    fun hasDuplicateNumbers(lottoNumbers: List<String>) {
-        var validator = mutableListOf<Int>()
-        for (lotto in lottoNumbers) {
-            if (validator.contains(lotto.toInt())){
-                throw IllegalArgumentException("로또 번호는 중복되지 않아야 합니다.")
-            }
-            validator.add(lotto.toInt())
         }
     }
 }
