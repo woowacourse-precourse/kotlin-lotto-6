@@ -30,7 +30,7 @@ class User {
         }
     }
 
-    fun inputLottoNumbers(): String {
+    fun inputLottoNumbers(): List<Int> {
         var validation: Boolean = false
         var lottoNumbers: String = ""
         while (!validation) {
@@ -38,6 +38,15 @@ class User {
             lottoNumbers = Console.readLine()
             validation = validator.couldConvertIntList(lottoNumbers)
         }
-        return lottoNumbers
+        return convertIntList(lottoNumbers)
+    }
+
+    private fun convertIntList(winning: String): List<Int> {
+        var winningNumbers = mutableListOf<Int>()
+        for (number in winning.split(",")) {
+            winningNumbers.add(number.toInt())
+        }
+        winningNumbers.sort()
+        return winningNumbers
     }
 }
