@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.dto.CostDto
+import lotto.exception.DuplicatedNumberException
 import lotto.model.BonusNumber
 import lotto.model.Cost
 import lotto.model.Lotto
@@ -33,7 +34,11 @@ class LottoController {
     }
 
     fun getLottoNumber() {
-        lotto = Lotto(inputView.inputLottoNumbers())
+        try {
+            lotto = Lotto(inputView.inputLottoNumbers())
+        } catch (error: DuplicatedNumberException) {
+            println(error.message)
+        }
     }
 
     fun getBonuseNumber() {
