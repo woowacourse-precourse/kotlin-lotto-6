@@ -14,14 +14,6 @@ class LottoStore {
         resultLotto(lottoNumbers, isBonusValid)
     }
 
-    private fun resultLotto(lottoNumbers: List<Int>, isBonusValid: Int) {
-        val lottoResult = Calculator()
-        lottoResult.compareNum(lottoNumbers, isBonusValid, randomLottos)
-        LottoGameView().printMatchedNumbersCount()
-        LottoGameView().printProfitRate(lottoResult.calculateProfitRate())
-    }
-
-
     private fun userInput(money: String): Int {
         return try {
             LottoSeller().checkLottoTicketCount(money)
@@ -38,5 +30,12 @@ class LottoStore {
             println(machineLottoNumbers)
             randomLottos.add(machineLottoNumbers)
         }
+    }
+
+    private fun resultLotto(lottoNumbers: List<Int>, isBonusValid: Int) {
+        val lottoResult = Calculator()
+        lottoResult.compareNum(lottoNumbers, isBonusValid, randomLottos)
+        LottoGameView().printMatchedNumbersCount()
+        LottoGameView().printProfitRate(lottoResult.calculateProfitRate())
     }
 }
