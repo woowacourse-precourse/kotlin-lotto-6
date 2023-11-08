@@ -9,6 +9,7 @@ fun main() {
     val lottos = generateLottos(lottoCount) // 로또 티켓을 생성
     printLottos(lottos) // 로또 티켓 목록 출력
     val winningNumbers = getWinningNumbers() // 당첨 번호를 입력 받음
+    val bonusNumber = getBonusNumber(winningNumbers) // 보너스 번호를 입력 받음
 }
 
 // 구입 금액를 입력하는 함수
@@ -25,6 +26,7 @@ fun getPurchaseAmount(): Int {
         }catch (e: IllegalArgumentException) { println(e.message) }
     }
 }
+
 // 주어진 개수만큼 로또 티켓을 생성하는 함수
 fun generateLottos(count: Int): List<Lotto> {
     val lottos = mutableListOf<Lotto>()
@@ -42,6 +44,7 @@ fun generateLottos(count: Int): List<Lotto> {
     }
     return lottos
 }
+
 // 로또 티켓 목록을 출력하는 함수
 fun printLottos(lottos: List<Lotto>) {
     println("\n${lottos.size}개를 구매했습니다.")
@@ -49,6 +52,7 @@ fun printLottos(lottos: List<Lotto>) {
         println("${lotto.numbers.sorted()}")
     }
 }
+
 // 당첨번호를 입력하는 함수
 fun getWinningNumbers(): List<Int> {
     while (true) {
@@ -62,8 +66,19 @@ fun getWinningNumbers(): List<Int> {
         } catch (e: IllegalArgumentException) { println(e.message) }
     }
 }
+
 // 사용자로부터 입력 받은 숫자 목록을 파싱하여 리스트로 반환하는 함수
 fun readNumbers(): List<Int> {
     val input = Console.readLine()
     return input?.split(",")?.mapNotNull { it.trim().toIntOrNull() } ?: emptyList()
+}
+
+// 보너스 번호를 입력하는 함수
+fun getBonusNumber(winningNumbers: List<Int>): Int {
+    while (true) {
+        try {
+            println("\n보너스 번호를 입력해 주세요.")
+            val input = Console.readLine()
+        } catch (e: IllegalArgumentException) { println(e.message) }
+    }
 }
