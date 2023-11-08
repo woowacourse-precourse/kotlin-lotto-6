@@ -14,10 +14,10 @@ class LottoGameView {
         println(INPUT_BONUS)
     }
 
-    fun printMatchedNumbersCount() {
+    fun printMatchedNumbersCount(lottoResult: Calculator) {
         println(SHOW_MATCH_PROFIT)
         println(SHOW_PROFIT_LINE)
-        Calculator().lottoResult.forEach { (rank, count) ->
+        lottoResult.lottoResult.forEach { (rank, count) ->
             val prize = rank.prize
             println("${rank.statement} (${prize.toDecimalFormat()}$MONEY_WON) - ${count}$COUNT")
         }
