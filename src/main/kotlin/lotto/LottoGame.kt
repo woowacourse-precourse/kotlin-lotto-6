@@ -1,10 +1,10 @@
 package lotto
 
-import lotto.domain.lotto.Lotto
-import lotto.domain.lotto.LottoWallet
 import lotto.domain.Purchaser
 import lotto.domain.WinningDetails
 import lotto.domain.WinningLotto
+import lotto.domain.lotto.Lotto
+import lotto.domain.lotto.LottoWallet
 import lotto.view.InputManager
 
 class LottoGame {
@@ -27,9 +27,11 @@ class LottoGame {
         return checkException { WinningLotto(winningNumber, InputManager.getBonusNumber()) }
     }
 
-    private fun <T> checkException(createClass: () -> T): T = runCatching { createClass() }
-        .getOrElse {
-            println(it.message)
-            checkException(createClass)
+    private fun <T> checkException(createClass: () -> T): T =
+        try {
+            createClass()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            createClass()
         }
 }
