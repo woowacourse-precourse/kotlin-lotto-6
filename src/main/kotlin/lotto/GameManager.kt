@@ -53,11 +53,18 @@ class GameManager {
         val numbers = lotto.getNumbers()
         var numberOfCorrection = 0
 
+        // 기본 당첨 번호 계산
         for (winningNumber in winningNumbers) {
             if (numbers.contains(winningNumber)) {
                 numberOfCorrection++
             }
         }
+
+        // 보너스 당첨 번호 계산
+        if (numbers.contains(bonusNumber) && numberOfCorrection == 5) {
+            numberOfCorrection += 10
+        }
+
         return numberOfCorrection
     }
 
@@ -116,7 +123,7 @@ class GameManager {
 
 enum class Ranking(val grade: String, val prizeMoney: Int, val numberOfCorrection: Int) {
     FIRST("1등", 2000000000, 6),
-    SECOND("2등", 30000000, 5),
+    SECOND("2등", 30000000, 15),
     THIRD("3등", 1500000, 5),
     FOURTH("4등", 50000, 4),
     FIFTH("5등", 5000, 3)
