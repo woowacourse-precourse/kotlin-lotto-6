@@ -12,6 +12,7 @@ class ValidationUtilTest {
     @Test
     fun `결제금액 입력시 제대로 값을 입력했는지 확인하는 checkPurchaseAmount 테스트 - 값이 맞는 경우`() {
         ValidationUtil.checkPurchaseAmount("1000")
+        ValidationUtil.checkPurchaseAmount("1000000")
     }
 
     @Test
@@ -24,7 +25,7 @@ class ValidationUtilTest {
     @Test
     fun `결제금액 입력시 제대로 값을 입력했는지 확인하는 checkPurchaseAmount 테스트 - 1000000원 이상일시`() {
         assertThrows<IllegalArgumentException> {
-            ValidationUtil.checkPurchaseAmount("1000000")
+            ValidationUtil.checkPurchaseAmount("1000001")
         }
     }
 
