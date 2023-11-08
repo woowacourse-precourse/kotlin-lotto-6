@@ -2,7 +2,7 @@ package lotto
 
 //사용자 입력을 받아 모델에 전달하고, 모델로부터 받은 결과를 뷰에 전달합니다. 뷰와 모델을 연결하는 역할을 합니다.
 class LottoController(private val lottoView: LottoView, private val lotto: Lotto) {
-    private fun generateLottoTickets(purchaseAmount: Int): List<Lotto> {
+     fun generateLottoTickets(purchaseAmount: Int): List<Lotto> {
         val numOfTickets = purchaseAmount / 1000
         val lottoTickets = mutableListOf<Lotto>()
 
@@ -15,17 +15,17 @@ class LottoController(private val lottoView: LottoView, private val lotto: Lotto
         return lottoTickets
     }
 
-    private fun getWinningNumbersAndBonus(): Pair<List<Int>, Int> {
+     fun getWinningNumbersAndBonus(): Pair<List<Int>, Int> {
         val winningNumbers = lottoView.getWinningNumbersFromUser()
         val bonusNumber = lottoView.getBonusNumberFromUser(winningNumbers)
         return winningNumbers to bonusNumber
     }
 
-    private fun compareTicketsWithWinningNumbers(lottoTickets: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): List<Int> {
+     private fun compareTicketsWithWinningNumbers(lottoTickets: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): List<Int> {
         return lottoTickets.map { it.matchCount(winningNumbers) }
     }
 
-    private fun calculateWinnings(matchCounts: List<Int>): Map<LottoRank, Int> {
+     fun calculateWinnings(matchCounts: List<Int>): Map<LottoRank, Int> {
         val winnings = mutableMapOf<LottoRank, Int>()
 
         for (matchCount in matchCounts) {
@@ -36,7 +36,7 @@ class LottoController(private val lottoView: LottoView, private val lotto: Lotto
         return winnings
     }
 
-    private fun formatRankString(rank: LottoRank, count: Int, prize: Int): String {
+     private fun formatRankString(rank: LottoRank, count: Int, prize: Int): String {
         return when {
             rank == LottoRank.SECOND && count >= 0 -> {
                 "${rank.matchCount}개 일치, 보너스 볼 일치 (${String.format("%,d", prize)}원) - ${count}개"
@@ -48,7 +48,7 @@ class LottoController(private val lottoView: LottoView, private val lotto: Lotto
         }
     }
 
-    private fun winningStatistics(winnings: Map<LottoRank, Int>, purchaseAmount: Int) {
+     fun calculateTotalProfitRate(winnings: Map<LottoRank, Int>, purchaseAmount: Int) {
         lottoView.displayWinningStatistics()
         val sortedWinnings = winnings.entries.sortedByDescending { it.key.matchCount }
         for (rank in LottoRank.values()) {
@@ -71,7 +71,7 @@ class LottoController(private val lottoView: LottoView, private val lotto: Lotto
         val (winningNumbers, bonusNumber) = getWinningNumbersAndBonus()
         val matchCounts = compareTicketsWithWinningNumbers(lottoTickets, winningNumbers, bonusNumber)
         val winnings = calculateWinnings(matchCounts)
-        winningStatistics(winnings, purchaseAmount)
+        calculateTotalProfitRate(winnings, purchaseAmount)
     }
 
 
