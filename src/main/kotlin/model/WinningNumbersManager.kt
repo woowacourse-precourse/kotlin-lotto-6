@@ -13,8 +13,8 @@ class WinningNumbersManager(numbers: List<String>) {
         numbers.forEach {
             InputValidation.NUMBER_EMPTY.isValid(it)
             InputValidation.ONLY_NUMBER.isValid(it)
-            InputValidation.NUMBER_FORMAT.isValid(it)
             InputValidation.NUMBER_RANGE.isValid(it)
+            InputValidation.NUMBER_FORMAT.isValid(it)
         }
         winningNumbers = numbers.map { it.toInt() }
         LottoValidation.REQUIRED_LOTTO_NUMBER_COUNT.isValid(winningNumbers)
@@ -25,8 +25,8 @@ class WinningNumbersManager(numbers: List<String>) {
     fun isBonusNumberValid(number: String) {
         InputValidation.NUMBER_EMPTY.isValid(number)
         InputValidation.ONLY_NUMBER.isValid(number)
-        InputValidation.NUMBER_FORMAT.isValid(number)
         InputValidation.NUMBER_RANGE.isValid(number)
+        InputValidation.NUMBER_FORMAT.isValid(number)
         LottoValidation.UNIQUE_LOTTO_NUMBERS.isValid(winningNumbers.plus(number.toInt()))
         bonusNumber = number.toInt()
     }

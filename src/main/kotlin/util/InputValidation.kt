@@ -10,7 +10,7 @@ enum class InputValidation(val message: String, val isValid: (String) -> Unit) {
         fun(value: String) = require(value.isNotBlank()) { NUMBER_EMPTY.message },
     ),
     NUMBER_FORMAT(
-        "[ERROR] 올바른 숫자 형태가 아닙니다.",
+        "[ERROR] 0으로 시작하는 숫자는 입력할 수 없습니다 .",
         fun(value: String) = require(value.first() != '0') { NUMBER_FORMAT.message },
     ),
     VALID_RANGE(
