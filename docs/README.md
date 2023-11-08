@@ -7,33 +7,28 @@
 
 ## 역할 구분
 1. domain
-- data
-    - lotto
-        - init(유효성 검사)
-    - customer(money)
-      - lottos
-      - buyLottos(price)
-    - LottoMachine
-      - getWinNumbers
-      - getBonusNumber 
 - enum
-  - Error
-    - ErrorMessage
+    - error
+        - ErrorMessage
+    - notice
+      - Guide
+    - number
+      - UnitNumber
+    - winning
+      - MatchCountPrize
+      - RankCount
+      - RankPrize
+- model
+  - Customer
   - Winning
-       - winningText
-       - winningPrizes 
 - service
   - LottoService
-       - createLotto
-  - CustomerService
-      - createCustomer
-  - LottoStatisticsCalculator
-      - matchWinNumber
-      - winLottery(3,4,5,5.5,6)
-      - LottoMachine
-        - createLottoMachine 
+  - LottoCalculator
+  - WinningCalculator
 2. presentation
 - view
+  - LottoInputView
+  - LottoOutputView
   - LottoView
 - viewModel
   - LottoViewModel
