@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.LottoUtil.commaString
 import lotto.LottoUtil.isAllNumbers
 import lotto.LottoUtil.isInLottoRange
 import org.assertj.core.api.Assertions.assertThat
@@ -48,6 +49,22 @@ class LottoUtilTest {
         val result = numbers.map { number -> number.isInLottoRange() }
         assertThat(result)
             .containsExactly(true, true, false, true, false, false)
+    }
+
+    @Test
+    fun `세 자리 이하의 수는 콤마가 찍히지 않아야 한다`() {
+        assertThat(123.commaString)
+            .isEqualTo("123")
+    }
+
+    @Test
+    fun `네 자리 이상의 수는 콤마가 찍혀야 한다`() {
+        assertThat(123456.commaString)
+            .isEqualTo("123,456")
+        assertThat(123456789.commaString)
+            .isEqualTo("123,456,789")
+        assertThat(1234567890.commaString)
+            .isEqualTo("1,234,567,890")
     }
 
 }

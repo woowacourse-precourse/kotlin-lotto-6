@@ -39,4 +39,7 @@ object LottoUtil {
     val <T> List<T>.uniqueSize: Int
         get() = this.toSet().size
 
+    val Int.commaString: String
+        get() = "%,d".format(this)
+
 }
