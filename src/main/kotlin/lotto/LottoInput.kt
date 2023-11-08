@@ -10,9 +10,9 @@ object LottoInput {
     fun putBonusNumber() {
         try {
             println("보너스 번호를 입력해주세요")
-            val Text = Console.readLine()
-            Validator.convertNumber(Text)
-            val number = Text.toInt()
+            val text = Console.readLine()
+            Validator.convertNumber(text)
+            val number = text.toInt()
             Validator.range(number)
             Validator.exist(winingNumbers, number)
             bonusNumber = number
@@ -27,10 +27,12 @@ object LottoInput {
         val inputText: String = Console.readLine()
         try {
             inputText.split(",").forEach {
+                Validator.convertNumber(it)
                 Validator.range(it.toInt())
                 winingNumbers.add(it.toInt())
                 Validator.duplication(winingNumbers)
             }
+            Lotto(winingNumbers)
         } catch (e: IllegalArgumentException) {
             println(e.message)
             winingNumbers.clear()
