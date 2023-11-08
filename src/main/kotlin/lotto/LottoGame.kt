@@ -122,18 +122,18 @@ class LottoGame(private val user: User) {
         return Pair(matchedCount, isMatchedBonus)
     }
 
-    private fun showWinningRecordMessages(winningRecord: Map<WinningRank, Int>) {
-        val winnings = WinningRank.getSortedWinnings()
-
-        winnings.forEach {
-            val matchCount = winningRecord[it] ?: 0
-            if (it.hasBonus) {
-                showMessage(WINNING_WITH_BONUS_MESSAGE.format(it.count, it.amount.withCommas(), matchCount))
-            } else {
-                showMessage(WINNING_WITHOUT_BONUS_MESSAGE.format(it.count, it.amount.withCommas(), matchCount))
-            }
-        }
-    }
+//    private fun showWinningRecordMessages(winningRecord: Map<WinningRank, Int>) {
+//        val winnings = WinningRank.getSortedWinnings()
+//
+//        winnings.forEach {
+//            val matchCount = winningRecord[it] ?: 0
+//            if (it.hasBonus) {
+//                showMessage(WINNING_WITH_BONUS_MESSAGE.format(it.count, it.amount.withCommas(), matchCount))
+//            } else {
+//                showMessage(WINNING_WITHOUT_BONUS_MESSAGE.format(it.count, it.amount.withCommas(), matchCount))
+//            }
+//        }
+//    }
 
     private fun calculateROI(purchasedAmount: Int, winningRecord: Map<WinningRank, Int>): Double {
         val totalWinningAmount = winningRecord.entries.sumOf { (winning, count) -> winning.amount * count }
