@@ -5,13 +5,14 @@ class Lotto(private val numbers: List<Int>) {
         require(numbers.size == 6)
         require(hasNumberDuplicates())
     }
-    fun printNumbers(){
+
+    fun printNumbers() {
         println(numbers.sorted())
     }
 
     fun getNumbers() = numbers
 
-    private fun hasNumberDuplicates() : Boolean = numbers.toSet().size == numbers.size
+    private fun hasNumberDuplicates(): Boolean = numbers.toSet().size == numbers.size
 
 
 }

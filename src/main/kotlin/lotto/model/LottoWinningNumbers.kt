@@ -13,7 +13,7 @@ class LottoWinningNumbers(
         val allNumbers = winningNumbers.toMutableSet()
         allNumbers.add(bonusNumber)
 
-        if (winningNumbers.size+1 != allNumbers.size) {
+        if (winningNumbers.size + 1 != allNumbers.size) {
             return false
         }
         return true

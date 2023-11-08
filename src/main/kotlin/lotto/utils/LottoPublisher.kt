@@ -17,10 +17,10 @@ class LottoPublisher {
     }
 
     private fun publishLotto(): Lotto {
-        var lotto : Lotto
-        try{
-            lotto = Lotto(Randoms.pickUniqueNumbersInRange(1,45,6))
-        } catch (e : IllegalArgumentException){
+        var lotto: Lotto
+        try {
+            lotto = Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6))
+        } catch (e: IllegalArgumentException) {
             return publishLotto()
         }
         return lotto

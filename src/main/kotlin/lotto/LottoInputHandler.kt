@@ -6,40 +6,40 @@ import lotto.utils.validator.LottoCostInputValidator
 import lotto.utils.validator.LottoWinningNumberInputValidator
 
 class LottoInputHandler {
-    private var lottoCostInputValidator : LottoCostInputValidator
-    private var lottoWinningNumberInputValidator : LottoWinningNumberInputValidator
+    private var lottoCostInputValidator: LottoCostInputValidator
+    private var lottoWinningNumberInputValidator: LottoWinningNumberInputValidator
 
     init {
         lottoCostInputValidator = LottoCostInputValidator()
         lottoWinningNumberInputValidator = LottoWinningNumberInputValidator()
     }
 
-    fun receiveLottoCost() : Int{
+    fun receiveLottoCost(): Int {
         val cost = Console.readLine()
-        try{
+        try {
             lottoCostInputValidator.validate(cost)
-        } catch (e : IllegalArgumentException){
+        } catch (e: IllegalArgumentException) {
             return receiveLottoCost()
         }
         return cost.toInt()
     }
 
-    fun receiveLottoWinningNumbers() : List<Int>{
+    fun receiveLottoWinningNumbers(): List<Int> {
         val numbers = Console.readLine()
             .split(",")
-        try{
+        try {
             lottoWinningNumberInputValidator.validate(numbers)
-        } catch (e : IllegalArgumentException){
+        } catch (e: IllegalArgumentException) {
             return receiveLottoWinningNumbers()
         }
         return numbers.map { it.toInt() }
     }
 
-    fun receiveLottoBonusNumber(winningNumbers: List<Int>) : Int {
+    fun receiveLottoBonusNumber(winningNumbers: List<Int>): Int {
         val bonusNumber = Console.readLine()
-        try{
-            lottoWinningNumberInputValidator.validate(winningNumbers,bonusNumber)
-        } catch (e : IllegalArgumentException){
+        try {
+            lottoWinningNumberInputValidator.validate(winningNumbers, bonusNumber)
+        } catch (e: IllegalArgumentException) {
             return receiveLottoBonusNumber(winningNumbers)
         }
         return bonusNumber.toInt()

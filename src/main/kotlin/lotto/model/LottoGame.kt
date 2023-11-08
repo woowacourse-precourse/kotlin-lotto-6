@@ -47,7 +47,7 @@ class LottoGame(
                 LottoResultCase.FIVE_CORRECT -> totalPrize += 1500000
                 LottoResultCase.FIVE_CORRECT_AND_BONUS -> totalPrize += 30000000
                 LottoResultCase.SIX_CORRECT -> totalPrize += 2000000000
-                else -> {}
+                else -> 0
             }
         }
         return totalPrize
