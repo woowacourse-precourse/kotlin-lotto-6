@@ -6,7 +6,7 @@ object ExceptionPrinter {
         try {
             block()
         } catch (e: IllegalArgumentException) {
-            println(e)
+            println(e.message)
             return false
         }
         return true
