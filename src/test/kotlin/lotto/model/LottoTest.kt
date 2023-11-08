@@ -1,5 +1,6 @@
 package lotto.model
 
+import lotto.model.validation.LottoNumber
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -9,7 +10,7 @@ class LottoTest {
     @Test
     fun `로또 번호의 개수가 6개 보다 작으면, 예외가 발생한다`() {
         val exception = assertThrows<IllegalArgumentException> {
-            Lotto(listOf(1, 2, 3, 4, 5))
+            Lotto(listOf(1, 2, 3, 4, 5).map { LottoNumber(it.toString()) })
         }
         assertThat(exception.message).isEqualTo(Lotto.LOTTO_NUMBERS_OUT_OF_SIZE)
     }
@@ -17,7 +18,7 @@ class LottoTest {
     @Test
     fun `로또 번호의 개수가 6개가 넘어가면, 예외가 발생한다`() {
         val exception = assertThrows<IllegalArgumentException> {
-            Lotto(listOf(1, 2, 3, 4, 5, 6, 7))
+            Lotto(listOf(1, 2, 3, 4, 5, 6, 7).map { LottoNumber(it.toString()) })
         }
         assertThat(exception.message).isEqualTo(Lotto.LOTTO_NUMBERS_OUT_OF_SIZE)
     }
@@ -25,11 +26,9 @@ class LottoTest {
     @Test
     fun `로또 번호에 중복된 숫자가 있으면, 예외가 발생한다`() {
         val exception = assertThrows<IllegalArgumentException> {
-            Lotto(listOf(1, 2, 3, 4, 5, 5))
+            Lotto(listOf(1, 2, 3, 4, 5, 5).map { LottoNumber(it.toString()) })
         }
 
         assertThat(exception.message).isEqualTo(Lotto.LOTTO_NUMBERS_NON_DUPLICATE)
     }
-
-
 }

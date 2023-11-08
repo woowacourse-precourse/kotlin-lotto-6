@@ -1,5 +1,7 @@
 package lotto.model
 
+import lotto.model.validation.LottoNumber
+
 class WinningNumbers(_winningNumbers: String) {
     private val lotto: Lotto
     val numbers get() = lotto.numbers
@@ -10,15 +12,9 @@ class WinningNumbers(_winningNumbers: String) {
     }
 
     companion object {
-        private fun parseWinningNumbers(winningNumbers: String): List<Int> {
-            try {
-                return winningNumbers.split(",")
-                    .map { it.trim().toInt() }
-            } catch (e: NumberFormatException) {
-                throw IllegalArgumentException(WINNING_NUMBERS_IS_ONLY_DIGIT, e)
-            }
+        private fun parseWinningNumbers(winningNumbers: String): List<LottoNumber> {
+            return winningNumbers.split(",")
+                    .map { LottoNumber(it.trim()) }
         }
-
-        const val WINNING_NUMBERS_IS_ONLY_DIGIT = "당첨 번호는 숫자로 구성되어야 합니다."
     }
 }
