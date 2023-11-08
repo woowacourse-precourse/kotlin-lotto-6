@@ -1,6 +1,7 @@
 package lotto.domain
 
 class LottoMC {
+
     fun pickLottoNum(lottoNum: String): List<Int> {
         val numbers = lottoNum.split(LOTTO_NUM_DIVIDING).map { it.trim().toInt() }
 
