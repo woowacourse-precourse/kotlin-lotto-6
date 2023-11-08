@@ -22,7 +22,7 @@ class ExceptionManager {
             val convertedNum = num.toIntOrNull()
             convertedNum?.let {
                 numbers.add(convertedNum)
-            } ?: throw IllegalArgumentException("숫자를 입력해주세요.")
+            } ?: throw IllegalArgumentException("문자가 아닌 숫자를 입력해주세요.")
         }
 
         for (index in numbers) {
@@ -30,6 +30,8 @@ class ExceptionManager {
                 throw IllegalArgumentException("1~45 사이의 숫자를 입력해주세요.")
             }
         }
-
+        if (numbers.distinct().size != numbers.size) {
+            throw IllegalArgumentException("동일한 번호가 중복되었습니다.")
+        }
     }
 }
