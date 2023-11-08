@@ -84,9 +84,10 @@
 
 ### 입력에 대한 유효성 검증
 
-- [ ] 구입할 금액은 자연수이며, 1000원 단위이다.
-- [ ] 로또 번호는 6자리이며, 각 번호는 자연수이고 1~45 사이여야 한다.
-- [ ] 보너스 번호는 자연수이며 1 ~ 45 사이여야 하고, 기존 로또 번호와 중복이 없어야 한다.
+- [x] 구입할 금액은 자연수이며, 1000원 단위이다. (`InputValidator.validatePurchaseAmount`)
+- [x] 로또 번호는 1 ~ 45 여야 한다. (`InputValidator.validateNumber`)
+- [x] 로또 번호는 6자리이다. (`InputValidator.validateLottoNumberCount`)
+- [x] 보너스 번호는 기존 로또 번호와 중복이 없어야 한다. (`InputValidator.validateDuplicate`)
 
 ## 코딩 전 UML 작성
 

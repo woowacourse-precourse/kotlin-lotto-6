@@ -5,10 +5,7 @@ import camp.nextstep.edu.missionutils.Console.readLine
 class InputView {
     fun purchaseAmount(): Int? = readLine().toIntOrNull()
 
-    fun lottoNumbers(): List<String> {
-        val numbers = readLine()
-        return numbers.split(DELIMITER).map { it.trim() }
-    }
+    fun lottoNumbers(): List<Int?> = readLine().split(DELIMITER).map { it.trim().toIntOrNull() }
 
     fun bonusLottoNumber() = readLine().toIntOrNull()
 
