@@ -22,6 +22,12 @@ class LottoController(private val view: ScreenView) {
         return lottos
     }
 
+    fun checkBonusNum(answerLotto: Lotto, bonusNum: BonusNum){
+        if (answerLotto.getNumbers().contains(bonusNum.getBonusNum())){
+            throw IllegalArgumentException("[ERROR] 당첨 번호 안에 있는 숫자를 보너스 번호로 입력하셨습니다.")
+        }
+    }
+
     fun countEqualNums(answer: List<Int>, input: List<Int>): Int {
         var count = 0
         input.forEach {
