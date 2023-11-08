@@ -1,37 +1,5 @@
 # 미션 - 로또
 
-## 🔍 진행 방식
-
-- 미션은 **기능 요구 사항, 프로그래밍 요구 사항, 과제 진행 요구 사항** 세 가지로 구성되어 있다.
-- 세 개의 요구 사항을 만족하기 위해 노력한다. 특히 기능을 구현하기 전에 기능 목록을 만들고, 기능 단위로 커밋 하는 방식으로 진행한다.
-- 기능 요구 사항에 기재되지 않은 내용은 스스로 판단하여 구현한다.
-
-## 📮 미션 제출 방법
-
-- 미션 구현을 완료한 후 GitHub을 통해 제출해야 한다.
-  - GitHub을 활용한 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고해
-    제출한다.
-- GitHub에 미션을 제출한 후 [우아한테크코스 지원](https://apply.techcourse.co.kr) 사이트에 접속하여 프리코스 과제를 제출한다.
-  - 자세한 방법은 [제출 가이드](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 참고
-  - **Pull Request만 보내고 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
-
-## 🚨 과제 제출 전 체크 리스트 - 0점 방지
-
-- 기능 구현을 모두 정상적으로 했더라도 **요구 사항에 명시된 출력값 형식을 지키지 않을 경우 0점으로 처리**한다.
-- 기능 구현을 완료한 뒤 아래 가이드에 따라 테스트를 실행했을 때 모든 테스트가 성공하는지 확인한다.
-- **테스트가 실패할 경우 0점으로 처리**되므로, 반드시 확인 후 제출한다.
-
-### 테스트 실행 가이드
-
-- 터미널에서 Mac 또는 Linux 사용자의 경우 `./gradlew clean test` 명령을 실행하고,   
-  Windows 사용자의 경우 `gradlew.bat clean test` 또는 `./gradlew.bat clean test` 명령을 실행할 때 모든 테스트가 아래와 같이 통과하는지 확인한다.
-
-```
-BUILD SUCCESSFUL in 0s
-```
-
----
-
 ## 🚀 기능 요구 사항
 
 로또 게임 기능을 구현해야 한다. 로또 게임은 아래와 같은 규칙으로 진행된다.
@@ -54,7 +22,37 @@ BUILD SUCCESSFUL in 0s
 - 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
   - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
+ 
+### 기능에 따른 메서드 분리
 
+1. 사용자 입력
+    1. 로또 구입 금액을 받는 `lotto_pay` 메서드 
+        - 로또 금액 반환 : Int
+        - 사용자 입력 오류 처리를 위해 `IllegalArgumentException` 사용
+           - null : 사용자 입력이 없는 경우
+           - (input%1000)!= 0 : 1000으로 나눠 떨어지지 않는 경우
+    2. 당첨 번호를 입력 받는 `lotto_input` 메서드
+        - 당첨 번호 반환 : List<Int>
+        - 사용자 입력 오류 처리를 위해 `IllegalArgumentException` 사용
+    3. 보너스 번호를 입력 받는 `lotto_inputbonus` 메서드
+        - 보너스 번호 반환 : Int
+        - 사용자 입력 오류 처리를 위해 `IllegalArgumentException` 사용
+2. 1..45인 6개의 난수를 생성해주는 `Lotto` 클래스
+    - `Randoms.pickUniqueNumbersInRange` 사용
+
+3. 사용자 입력 횟수만큼 로또 번호를 생성해주는 `Lottogenerator` 메서드
+    - (로또 횟수 : Int)
+    - `Lotto` 클래스 사용
+          -`Lotto` 클래스 내부에 값을 반환해주는 `getlottonum` 추가
+    -  : `List<Lotto>` 반환
+    -  로또 번호 생성 결과를 출력해주는 `lotto_numbers_print`
+  
+4. 당첨 여부를 연산하는 `cal_lotto` 메서드
+    - ( : `List<Lotto>` , 당첨 번호 : List<Int> , 보너스 번호 : Int )
+    -  : Map< 일치한 공의 개수(key) , 회수(value) >
+5. `cal_lotto`의 결과를 출력하는 `print_lotto`
+
+   
 ### 입출력 요구 사항
 
 #### 입력
