@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms
 class User {
     var purchaseMoney: Int = 0
     val lottoTickets = mutableListOf<List<Int>>()
+    var bonusNumber: Int = 0
     val validator = Validator()
 
     fun inputPurchaseMoney() {
@@ -48,5 +49,16 @@ class User {
         }
         winningNumbers.sort()
         return winningNumbers
+    }
+
+    fun inputBonusNumber() {
+        var validation: Boolean = false
+        var bonus: String = ""
+        while (!validation) {
+            println("\n보너스 번호를 입력해 주세요.")
+            bonus = Console.readLine()
+            validation = validator.validateBonusNumber(bonus)
+        }
+        bonusNumber = bonus.toInt()
     }
 }
