@@ -4,11 +4,14 @@ import lotto.Lotto
 import lotto.domain.Stats
 
 class OutputView {
-
     fun printBuyLottos(buyLottos: List<Lotto>) {
         buyLottos.forEach{ lotto ->
             println(lotto)
         }
+    }
+
+    fun printBuyLottoNumber(buyAmount: Int) {
+        println(BUY_LOTTO_NUMBER.format(buyAmount))
     }
 
     fun printLottoStats(lottoStats: Map<Stats, Int>) {
@@ -25,7 +28,6 @@ class OutputView {
 
     fun getEarningRate(lottoStats: Map<Stats, Int>, buyAmount: Int) : Double {
         val totalPrize = getTotalPrize(lottoStats).toDouble()
-        println("totalPrize $totalPrize buyAmount $buyAmount")
         return totalPrize / (buyAmount * LOTTO_PRICE) * DIVIDE_NUMBER_RATE
     }
 
@@ -38,6 +40,7 @@ class OutputView {
     }
 
     companion object {
+        const val BUY_LOTTO_NUMBER = "\n%d개를 구매했습니다."
         const val PRINT_LOTTO_STATS_MESSAGE = "%d개 일치%s %d개"
         const val PRINT_EARNING_RATE_MESSAGE = "총 수익률은 %.1f%%입니다."
         const val DIVIDE_NUMBER_RATE = 100
