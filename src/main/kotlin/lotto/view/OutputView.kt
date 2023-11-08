@@ -26,7 +26,7 @@ class OutputView {
             appendLine()
             appendLine(Message.WinningStatsHeader)
             append(getPrizeReport(prizeReceipt))
-            append("총 수익률은 ${String.format("%.1f", prizeReceipt.rate)}%입니다.")
+            append(format(Message.ProfitRateTemplate, prizeReceipt.rate))
         }
         print(message)
     }
@@ -58,6 +58,7 @@ class OutputView {
         PrizeTemplate("%,d"),
         PrizeCountTemplate(" (%s원) - %d개"),
         MatchedCountTemplate("%d개 일치"),
+        ProfitRateTemplate("총 수익률은 %.1f%%입니다."),
         ErrorToken("[ERROR]");
 
         override fun toString(): String = message
