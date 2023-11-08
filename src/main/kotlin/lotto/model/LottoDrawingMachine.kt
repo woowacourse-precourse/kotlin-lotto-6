@@ -12,11 +12,11 @@ class LottoDrawingMachine(
 
     fun getRankCounts(): Map<Rank, Int> {
         val resultRank = mutableListOf<Rank>()
-        lottoTickets.forEach { lotto -> resultRank.add(findRank(lotto)) }
+        lottoTickets.forEach { lotto -> resultRank.add(checkRank(lotto)) }
         return resultRank.groupingBy { rank -> rank }.eachCount()
     }
 
-    private fun findRank(lotto: Lotto): Rank {
+    private fun checkRank(lotto: Lotto): Rank {
         val countOfMatch = lotto.getCountOfMatch(winningNumbers)
         val isBonusMatch = lotto.isContainNumber(bonusNumber.number)
         return Rank.findRank(countOfMatch, isBonusMatch)
