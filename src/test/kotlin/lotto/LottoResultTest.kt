@@ -90,4 +90,14 @@ class LottoResultTest {
             )
         }
     }
+
+    @Test
+    fun `로또를 발행하지 않고 당첨 번호를 확인하면 예외 발생`() {
+        assertThrows<IllegalStateException> {
+            LottoResult(
+                winLotto = Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                bonus = 7
+            ).calculateWinLottos(mutableListOf())
+        }
+    }
 }
