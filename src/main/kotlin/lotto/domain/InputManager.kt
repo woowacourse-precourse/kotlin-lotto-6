@@ -69,16 +69,14 @@ class InputManager {
     private fun makeLottoNumbers(
         lotto: List<String>
     ): List<Int> {
-        checkInputValidation.apply {
-            val numbers = lotto.map { number ->
-                checkIsNumber(number)
-                checkIsLottoNumber(number)
-                checkIsPositiveInteger(number)
-                number.toInt()
-            }
-            checkDuplication(numbers)
-            return numbers
+        val numbers = lotto.map { number ->
+            checkInputValidation.checkIsNumber(number)
+            checkInputValidation.checkIsLottoNumber(number)
+            checkInputValidation.checkIsPositiveInteger(number)
+            number.toInt()
         }
+        checkInputValidation.checkDuplication(numbers)
+        return numbers
     }
 
     private fun makeBonusNumber(userInput: String): Int {

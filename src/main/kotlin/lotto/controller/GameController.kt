@@ -50,20 +50,18 @@ object GameController {
     }
 
     fun endGame() {
-        messenger.apply {
-            printLottoResult()
-            GameResult.entries.forEach { gameResult ->
-                matchResults[gameResult]?.let {
-                    printGameResult(gameResult.getResultComment(it))
-                }
+        messenger.printLottoResult()
+        GameResult.entries.forEach { gameResult ->
+            matchResults[gameResult]?.let {
+                messenger.printGameResult(gameResult.getResultComment(it))
             }
-            printTotalReturnRate(
-                lottoManager.calculateResult(
-                    getPurchasePrice(),
-                    getTotalProceeds()
-                )
-            )
         }
+        messenger.printTotalReturnRate(
+            lottoManager.calculateResult(
+                getPurchasePrice(),
+                getTotalProceeds()
+            )
+        )
     }
 
     private fun getWinningNumbers(): Set<Int> {

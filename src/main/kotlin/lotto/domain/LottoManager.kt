@@ -13,11 +13,8 @@ class LottoManager {
         purchasePrice: Int,
         totalProceeds: Int
     ): String {
-        val rate = String.format(
-            RATE_FORMAT,
-            ((totalProceeds.toDouble() / purchasePrice.toDouble()) * RETURN_RATE)
-        ).toDouble()
-        return if (rate >= 100.0) DecimalFormat(RETURN_FORMAT).format(rate)
+        val rate = makeRateFormat(purchasePrice, totalProceeds)
+        return if (rate >= THREE_OVER_FORMAT) DecimalFormat(RETURN_FORMAT).format(rate)
         else rate.toString()
     }
 
@@ -50,9 +47,20 @@ class LottoManager {
             LottoRule.COUNT.num
         )
 
+    private fun makeRateFormat(
+        purchasePrice: Int,
+        totalProceeds: Int
+    ): Double {
+        return String.format(
+            RATE_FORMAT,
+            ((totalProceeds.toDouble() / purchasePrice.toDouble()) * RETURN_RATE)
+        ).toDouble()
+    }
+
     companion object {
         private const val RATE_FORMAT = "%.1f"
         private const val RETURN_FORMAT = "#,###.0"
         private const val RETURN_RATE = 100
+        private const val THREE_OVER_FORMAT = 1000.0
     }
 }
