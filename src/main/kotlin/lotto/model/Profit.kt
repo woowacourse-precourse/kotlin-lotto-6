@@ -9,6 +9,8 @@ class Profit {
         for ((index, value) in Rank.entries.withIndex()) {
             profit += (jackpot[index] * value.money)
         }
-        return round(profit / money.toFloat() * Constants.TEN_THOUSAND) / Constants.HUNDRED
+
+
+        return round((profit.toFloat() / money.toFloat() * 100) * 10)/10
     }
 }
