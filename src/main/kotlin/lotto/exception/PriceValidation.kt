@@ -3,27 +3,26 @@ package lotto.exception
 class PriceValidation(private val price: String) {
 
     init {
+        validatePriceDigit()
         validatePriceUnit()
         validatePricePositive()
-        validatePriceNumber()
+    }
+
+    private fun validatePriceDigit() {
+        require(price.toIntOrNull() != null) {
+            ErrorConstants.INVALID_PRICE_FORMAT_ERROR
+        }
     }
 
     private fun validatePriceUnit() {
         require(price.toInt() % 1000 == 0) {
-            "[ERROR] 1,000원 단위의 값을 입력해주세요."
+            ErrorConstants.INVALID_PRICE_UNIT_ERROR
         }
     }
 
     private fun validatePricePositive() {
         require(price.toInt() >= 1000) {
-            "[ERROR] 1,000원 이상의 값을 입력해주세요."
-        }
-    }
-
-    private fun validatePriceNumber() {
-        val length = price.length
-        require(price.matches(Regex("[0-9]{$length}"))) {
-            "[ERROR] 숫자만 입력해주세요."
+            ErrorConstants.INVALID_PRICE_RANGE_ERROR
         }
     }
 }
