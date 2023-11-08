@@ -54,4 +54,28 @@ class LottoMachineTest {
         assertEquals(exceptedResults, tallyResults)
     }
 
+    @Test
+    fun `당첨 내역 확인`() {
+        val lottoMachine = LottoMachine()
+
+        val stats = mapOf(
+            Jackpot.FIRST to 1,
+            Jackpot.SECOND to 2,
+            Jackpot.FIFTH to 1,
+            null to 0
+        )
+
+        val winningDetails = lottoMachine.getWinningDetails(stats)
+
+        val expectedResult = listOf(
+            "3개 일치 (5,000원) - 1개",
+            "4개 일치 (50,000원) - 0개",
+            "5개 일치 (1,500,000원) - 0개",
+            "5개 일치, 보너스 볼 일치 (30,000,000원) - 2개",
+            "6개 일치 (2,000,000,000원) - 1개"
+        )
+
+        assertEquals(expectedResult, winningDetails)
+    }
+
 }
