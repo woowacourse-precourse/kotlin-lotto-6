@@ -53,3 +53,9 @@ private fun generatorLottoRandomNumber() {
 private fun printLottoRandomNumber() {
     lottoRandomNumber.forEach { println(it) }
 }
+
+private fun inputLottoNumber(): List<Int> {
+    val inputNumber = readLine()
+    val stringList = inputNumber.split(",")
+    return stringList.map { it.toInt() }
+}
