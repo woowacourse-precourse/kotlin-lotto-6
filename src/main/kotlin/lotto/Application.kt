@@ -8,7 +8,6 @@ fun main() {
     try {
         val purchaseAmount = getValidPurchaseAmount()
 
-
     } catch (e: IllegalArgumentException) {
         println(e.message)
     }
