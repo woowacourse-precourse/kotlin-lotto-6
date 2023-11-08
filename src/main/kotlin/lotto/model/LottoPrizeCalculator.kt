@@ -14,8 +14,12 @@ class LottoPrizeCalculator(private val winningNumbers: Lotto, private val bonus:
             val matchingCount = lotto.getMatchCount(winningNumbers)
             val isMatchedBonus = lotto.isMatchedBonus(bonus.number)
             val rank = Rank.of(matchingCount, isMatchedBonus)
-            if (rank != null) countByRank[rank] = countByRank.getOrDefault(rank, 0)
+            if (rank != null) countByRank[rank] = countByRank.getOrDefault(rank, INITIAL_COUNT) + 1
         }
         return PrizeReceipt(ticket.cost, countByRank)
+    }
+
+    companion object {
+        private const val INITIAL_COUNT = 0
     }
 }
