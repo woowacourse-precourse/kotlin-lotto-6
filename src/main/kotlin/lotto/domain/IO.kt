@@ -21,7 +21,6 @@ class IO private constructor() {
         require(Validator.getInstance().checkInputIsPositiveNum(input)) {
             SHOULD_BE_POSITIVE_NUM
         }
-
         return input.toUInt()
     }
 
@@ -61,7 +60,6 @@ class IO private constructor() {
     }
 
     private fun getInput() = Console.readLine()
-
 
     companion object {
         const val INPUT_SPLITTER = ","
