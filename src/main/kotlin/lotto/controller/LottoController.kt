@@ -66,6 +66,14 @@ class LottoController() {
         LottoProfitView.printLottoProfit(profit)
     }
 
+    fun generateLottoTickets(amount: Int) {
+        repeat(amount) {
+            val lottoTicket = LottoTicket()
+            lottoTickets.add(lottoTicket)
+        }
+        printLottoTickets(lottoTickets)
+    }
+
     fun validateInputPurchaseAmountOfLottoNumeric(input: String) {
         lottoModel.isPurchaseAmountNumeric(input)
     }
@@ -76,14 +84,6 @@ class LottoController() {
 
     fun validateInputPurchaseAmountOfLottoDivisionPrice(input: Int) {
         lottoModel.isDivisibleBy1000(input)
-    }
-
-    fun generateLottoTickets(amount: Int) {
-        repeat(amount) {
-            val lottoTicket = LottoTicket()
-            lottoTickets.add(lottoTicket)
-        }
-        printLottoTickets(lottoTickets)
     }
 
     fun validateInputWinningNumberSize(input: List<String>) {
