@@ -14,10 +14,9 @@ object WinningLottoView {
   fun inputWinningNumbers(): List<Int> {
     val inputWinningNumbers: String = Console.readLine()
     val separatedWinningNumbers = WinningNumbersSeparator.separateWinningNumbers(inputWinningNumbers)
-    var winningNumbers: List<Int> = listOf()
 
-    try {
-      winningNumbers = WinningNumbersExceptionHandler.validateWinningNumbers(separatedWinningNumbers)
+    val winningNumbers: List<Int> = try {
+      WinningNumbersExceptionHandler.validateWinningNumbers(separatedWinningNumbers)
     } catch (e: IllegalArgumentException) {
       ExceptionView.printExceptionMessage(e)
       inputWinningNumbers()
