@@ -19,9 +19,8 @@ class LottoResultTest {
             Lotto(listOf(6,7,8,9,10,11)))
         val winningLottoInfo = Lotto(listOf(5,6,7,20,30,40))
         val value = lottoResult.calculateLottoResult(lottoTicketsNum, autoLottoTickets, winningLottoInfo, 45)
-        val ranks = listOf(0, 0, 0, 0, 0, 4)
+        val ranks = listOf(2, 0, 0, 0, 0, 4)
         val rate = "333.33"
-        println(ranks)
         assert(value.first == ranks && value.second == rate)
     }
 

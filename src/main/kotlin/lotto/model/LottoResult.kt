@@ -31,7 +31,7 @@ class LottoResult {
         }
         result = result.divide(BigDecimal(lottoTicketsNum * 10), 2, RoundingMode.HALF_UP)
 
-        return result.toString()
+        return result.toDouble().toString()
     }
 
     private fun getMoneyByRank(idx: Int): Long {

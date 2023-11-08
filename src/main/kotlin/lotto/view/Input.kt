@@ -39,11 +39,7 @@ class Input {
             userInput.toInt()
         }
         catch (e: IllegalArgumentException){
-            println(e.message)
-            getPurchasedMoney()
-        }
-        catch (e: NoSuchElementException){
-            println("[ERROR] 구매 금액은 0일 수 없습니다.")
+            println("[ERROR] "+ e.message)
             getPurchasedMoney()
         }
     }
