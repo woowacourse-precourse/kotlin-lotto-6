@@ -6,8 +6,9 @@ class InputView {
     fun inputPurchaseAmount(): Int {
         println(INPUT_PURCHASE_AMOUNT_MESSAGE)
 
+
         val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
-        require(isEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
+        require(isNotEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
 
         return validatePurchaseAmountInput(input)
     }
@@ -23,7 +24,7 @@ class InputView {
         println(INPUT_WINNING_NUMBERS_MESSAGE)
 
         val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
-        require(isEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
+        require(isNotEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
 
         return validateWinningNumbersInput(input)
     }
@@ -42,7 +43,7 @@ class InputView {
         println(INPUT_BONUS_NUMBER_MESSAGE)
 
         val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
-        require(isEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
+        require(isNotEmptyOrBlankInput(input)) { INPUT_ERROR_MESSAGE }
 
         return validateBonusNumber(input)
     }
@@ -54,7 +55,7 @@ class InputView {
         return input.toInt()
     }
 
-    private fun isEmptyOrBlankInput(input: String) = input.isEmpty() or input.isBlank()
+    private fun isNotEmptyOrBlankInput(input: String) = !(input.isEmpty() || input.isBlank())
 
     private fun isNotDigitInput(input: String) = input.all { it.isDigit() }
 
