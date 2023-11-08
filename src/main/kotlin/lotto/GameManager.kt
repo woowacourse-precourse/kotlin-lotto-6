@@ -4,8 +4,29 @@ import camp.nextstep.edu.missionutils.Randoms
 
 class GameManager(val printManager: PrintManager) {
     fun playGame(lottos: List<Lotto>, winningNumber: Lotto, bonusNumber: Int) {
-        // winningNumber와 lottos 비교
+        val winningResult = compareLottos(lottos, winningNumber, bonusNumber)
+        printManager.printResult(winningResult)
+    }
 
+    private fun compareLottos(lottos: List<Lotto>, winningNumber: Lotto, bonusNumber: Int): List<Int> {
+        val countDuplicationNums = MutableList(CountDuplicationNumIndex.entries.size) { 0 }
+
+        lottos.forEach { lotto ->
+            val count = lotto.countDuplicateNumbers(winningNumber)
+            val countIndex = when (count) {
+                0 -> CountDuplicationNumIndex.ZERO
+                1 -> CountDuplicationNumIndex.ONE
+                2 -> CountDuplicationNumIndex.TWO
+                3 -> CountDuplicationNumIndex.THREE
+                4 -> CountDuplicationNumIndex.FOUR
+                5 -> if (lotto.contains(bonusNumber)) CountDuplicationNumIndex.FIVE_BONUS else CountDuplicationNumIndex.FIVE
+                6 -> CountDuplicationNumIndex.SIX
+                else -> throw IllegalArgumentException("Invalid count: $count")
+            }
+            countDuplicationNums[countIndex.ordinal]++
+        }
+
+        return countDuplicationNums
     }
 
     fun makeLottosByMoney(money: Int): List<Lotto> {
@@ -16,7 +37,7 @@ class GameManager(val printManager: PrintManager) {
 
     private fun getLottoNumberByMoney(money: Int): Int = money / 1000
 
-    private fun makeLottos(lottoNumber: Int) : List<Lotto> {
+    private fun makeLottos(lottoNumber: Int): List<Lotto> {
         val lottos = mutableListOf<Lotto>()
         repeat(lottoNumber) {
             val lotto = Lotto(getRandomNumbers().sorted())
