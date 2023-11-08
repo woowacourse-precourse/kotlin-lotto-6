@@ -1,18 +1,13 @@
 package lotto.view
 
-import lotto.domain.Lotto
+import lotto.domain.LottoBundle
 
 object OutputView {
-    fun printLottosNumbers(lottos: List<Lotto>) {
-        println("${lottos.size}개를 구매했습니다.")
-        lottos.forEach { lotto ->
-            printLottoNumbers(lotto)
+    fun printLottosNumbers(lottobundle: LottoBundle) {
+        println("${lottobundle.amount()}개를 구매했습니다.")
+        lottobundle.forEach { lotto ->
+            println(lotto.toString())
         }
         println()
-    }
-
-    fun printLottoNumbers(lotto: Lotto) {
-        val lottoNumbers = lotto.getLottoNumbers()
-        print("["+lottoNumbers+"]")
     }
 }

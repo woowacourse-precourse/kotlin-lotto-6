@@ -1,5 +1,6 @@
 package lotto.controller
 
+import lotto.domain.LottoBundle
 import lotto.domain.LottoManager
 import lotto.domain.LottoShop
 import lotto.view.InputView.getBonusNumbersInput
@@ -13,8 +14,8 @@ class LottoController {
 
     fun run() {
         val purchaseMoney = getLottoPurchaseCostInput()
-        val lottos = lottoShop.purchaseLottos(purchaseMoney)
-        printLottosNumbers(lottos)
+        val lottoBundle = LottoBundle(lottoShop.purchaseLottos(purchaseMoney))
+        printLottosNumbers(lottoBundle)
 
         val winningNumbers = getWinningNumbersInput()
         lottoManager.setWinningNumbers(winningNumbers)

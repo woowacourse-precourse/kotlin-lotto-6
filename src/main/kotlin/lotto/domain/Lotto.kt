@@ -22,7 +22,6 @@ class Lotto(private val numbers: List<Int>) {
         val bonusFlag = score.first
         val matchingCount = score.second
 
-        println("matchingCount "+matchingCount.toString())
         lottoRank = when (matchingCount) {
             6 -> LottoRank.FIRST
             5 -> calculateSecondThirdRank(bonusFlag)
@@ -54,6 +53,10 @@ class Lotto(private val numbers: List<Int>) {
             BonusFlag.HIT_BONUS -> LottoRank.SECOND
             BonusFlag.MISS_BONUS -> LottoRank.THIRD
         }
+    }
+
+    override fun toString() : String{
+        return numbers.toString()
     }
 
     companion object {
