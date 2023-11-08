@@ -3,15 +3,15 @@ package lotto
 class LottoMachine {
     private val inputManager = InputManager()
     private val outputManager = OutputManager()
-    val money = inputManager.inputMoney()
-    var firstPlace = 0
-    var secondPlace = 0
-    var thirdPlace = 0
-    var fourthPlace = 0
-    var fifthPlace = 0
+    private val money = inputManager.inputMoney()
+    private var firstPlace = 0
+    private var secondPlace = 0
+    private var thirdPlace = 0
+    private var fourthPlace = 0
+    private var fifthPlace = 0
     fun checkRank() {
         val lotto = Lottos().makeLotto(lottoNum())
-        val (lottos,bonusNum) = inputManager.qinputWinningNumber()
+        val (lottos,bonusNum) = inputManager.inputWinningNumber()
         //val bonusNum = inputManager.inputBonusNumber()
 
         for (l in lotto) {
@@ -29,11 +29,11 @@ class LottoMachine {
         outputManager.printRate(calculateRate())
     }
 
-    fun lottoNum(): Int {
+    private fun lottoNum(): Int {
         return money / LOTTO_COST
     }
 
-    fun calculatePrizeSum(): Int {
+    private fun calculatePrizeSum(): Int {
         return firstPlace * FIRST_PLACE_PRIZE +
                 secondPlace * SECOND_PLACE_PRIZE +
                 thirdPlace * THIRD_PLACE_PRIZE +
@@ -41,7 +41,7 @@ class LottoMachine {
                 fifthPlace * FIFTH_PLACE_PRIZE
     }
 
-    fun calculateRate(): Double {
+    private fun calculateRate(): Double {
         val sum = calculatePrizeSum()
         val money = money.toDouble()
         return sum / money

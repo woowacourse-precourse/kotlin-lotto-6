@@ -11,7 +11,7 @@ class InputManager {
         return money.toInt()
     }
 
-    fun qinputWinningNumber(): Pair<List<Int>,Int> {
+    fun inputWinningNumber(): Pair<List<Int>,Int> {
         println(PRINT_INPUT_WINNING_NUMBER)
         val nums = Console.readLine().split(DELIMITER)
         exceptionManager.winningNumberException(nums)
