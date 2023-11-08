@@ -2,9 +2,12 @@ package lotto.model
 
 import lotto.model.validation.LottoNumber
 
-data class BonusNumber(
+class BonusNumber(
     private val _bonus: String
 ) {
+    val number: LottoNumber
 
-    val number get() = LottoNumber(_bonus)
+    init {
+        number = LottoNumber(_bonus)
+    }
 }

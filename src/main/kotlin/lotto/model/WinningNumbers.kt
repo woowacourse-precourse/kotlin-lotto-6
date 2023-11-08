@@ -1,6 +1,7 @@
 package lotto.model
 
 import lotto.model.validation.LottoNumber
+import lotto.util.Converter.toLottoNumbers
 
 class WinningNumbers(_winningNumbers: String) {
     private val lotto: Lotto
@@ -13,8 +14,7 @@ class WinningNumbers(_winningNumbers: String) {
 
     companion object {
         private fun parseWinningNumbers(winningNumbers: String): List<LottoNumber> {
-            return winningNumbers.split(",")
-                    .map { LottoNumber(it.trim()) }
+            return winningNumbers.split(",").toLottoNumbers()
         }
     }
 }

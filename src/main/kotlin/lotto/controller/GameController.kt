@@ -1,39 +1,45 @@
 package lotto.controller
 
 import lotto.Constants
+import lotto.dto.WinningAndBonusNumbers
 import lotto.model.BonusNumber
+import lotto.model.BuyingAmount
 import lotto.model.Lotto
 import lotto.model.LottoCalculator
-import lotto.model.LottosMatchCount
 import lotto.model.Lottos
-import lotto.model.BuyingAmount
+import lotto.model.LottosMatchCount
 import lotto.model.RateOfReturn
 import lotto.model.WinningNumbers
-import lotto.dto.WinningAndBonusNumbers
 import lotto.model.validation.WinningValidation
 import lotto.util.Task
 import lotto.view.InputView
 import lotto.view.OutputView
 
-class GameController {
-    private val inputView = InputView()
-    private val outputView = OutputView()
+class GameController(
+    private val inputView: InputView,
+    private val outputView: OutputView,
+) {
 
     // TODO: 가능하면 멤버 변수에서 빼기
-    lateinit var lottos: Lottos
     lateinit var buyingAmount: BuyingAmount
-
+    lateinit var lottos: Lottos
 
     fun play(task: Task) {
         while (task.inputState != Task.State.DONE) {
             try {
                 mainProcess(task)
             } catch (e: IllegalArgumentException) {
-                e.message?.let { outputView.printError(it) }
+                handleException(e)
             } catch (e: IllegalStateException) {
-                e.message?.let { outputView.printError(it) }
+                handleException(e)
+            } catch (e: UninitializedPropertyAccessException) {
+                handleException(e)
             }
         }
+    }
+
+    fun handleException(e: Exception) {
+        e.message?.let { outputView.printError(it) }
     }
 
     private fun mainProcess(task: Task) {
@@ -42,7 +48,7 @@ class GameController {
             Task.State.INPUT_WINNING_AND_BONUS_NUMBERS ->
                 processWinningAndBonusNumbers(task, lottos.lottoNumbers)
 
-            else -> throw IllegalStateException(INCORRECT_CONDITION)
+            else -> throw IllegalStateException(TASK_IS_INCORRECT_CONDITION)
         }
     }
 
@@ -68,7 +74,8 @@ class GameController {
     }
 
     fun inputWinningAndBonusNumbers(): WinningAndBonusNumbers {
-        val winningNumbers = inputToClassInstance({ inputView.winningNumbersPrompt() }, ::WinningNumbers)
+        val winningNumbers =
+            inputToClassInstance({ inputView.winningNumbersPrompt() }, ::WinningNumbers)
         val bonusNumber = inputToClassInstance({ inputView.bonusNumberPrompt() }, ::BonusNumber)
 
         WinningValidation(winningNumbers.numbers, bonusNumber.number)
@@ -82,7 +89,7 @@ class GameController {
         winningAndBonusNumbers: WinningAndBonusNumbers
     ) {
         lottos.forEach {
-            val lottoMatchResult = LottoCalculator.calculate(
+            val lottoMatchResult = LottoCalculator.matchCount(
                 it.numbers, winningAndBonusNumbers
             )
             lottosMatchCount.update(lottoMatchResult)
@@ -98,6 +105,6 @@ class GameController {
     }
 
     companion object {
-        private const val INCORRECT_CONDITION = "입력 상태가 올바르지 않습니다."
+        private const val TASK_IS_INCORRECT_CONDITION = "Task.inputState 값이 올바르지 않습니다."
     }
 }

@@ -26,6 +26,8 @@ data class LottoNumber(private val inputdata: String) {
         const val LOTTO_NUMBER_NOT_DIGIT = "로또 번호는 숫자여야 합니다."
         const val LOTTO_NUMBER_OUT_OF_RANGE =
             "로또 번호는 ${Constants.LOTTO_RANGE_MIN_VALUE}부터 ${Constants.LOTTO_RANGE_MAX_VALUE} 사이의 숫자여야 합니다."
+
+
     }
 
     override fun toString(): String {

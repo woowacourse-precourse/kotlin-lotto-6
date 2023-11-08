@@ -9,7 +9,7 @@ import lotto.model.validation.LottoNumber
     2. Lotto에 필드를 추가할 수 없다.
     3. Lotto의 패키지 변경은 가능하다.
 */
-open class Lotto(private val _numbers: List<LottoNumber>) {
+class Lotto(private val _numbers: List<LottoNumber>) {
     val numbers: List<LottoNumber> get() = _numbers
 
     init {

@@ -1,5 +1,6 @@
 package lotto.util
 
+// Rank 클래스로 정의하는 게 좋을까? (RANK_1 ~ RANK_5)
 enum class Match(val count: Int, val info: String, val amount: String) {
     THIRD(3, "3개 일치", "5,000"),
     FOURTH(4, "4개 일치", "50,000"),

@@ -15,7 +15,7 @@ class LottoCalculatorTest {
         val winningAndBonusNumbers =
             WinningAndBonusNumbers(winningNumbers.numbers, bonusNumber.number)
 
-        val data = LottoCalculator.calculate(lotto.numbers, winningAndBonusNumbers)
+        val data = LottoCalculator.matchCount(lotto.numbers, winningAndBonusNumbers)
         val lottoMatchCount = LottoMatchCount(winning = 5, bonus = 1)
 
         assertThat(data).isEqualTo(lottoMatchCount)

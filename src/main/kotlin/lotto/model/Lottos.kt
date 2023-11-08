@@ -3,8 +3,9 @@ package lotto.model
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.Constants
 import lotto.model.validation.LottoNumber
+import lotto.util.Converter.toLottoNumbers
 
-data class Lottos(
+class Lottos(
     val lottoNumbers: List<Lotto>
 ) {
     override fun toString(): String {
@@ -12,9 +13,9 @@ data class Lottos(
     }
 
     companion object {
-        fun create(count: Int): Lottos {
+        fun create(count: Long): Lottos {
             return Lottos(
-                List(count) {
+                List(count.toInt()) {
                     Lotto(createSortedUniqueLottoNumbers())
                 }
             )
@@ -27,7 +28,7 @@ data class Lottos(
                 Constants.LOTTO_NUMBER_SIZE
             )
                 .sorted()
-                .map { LottoNumber(it.toString()) }
+                .toLottoNumbers()
         }
     }
 }

@@ -29,12 +29,12 @@ class InputView {
 
     companion object {
         private const val BUYING_AMOUNT_INPUT_MESSAGE = "구입금액을 입력해 주세요."
-        private const val BUYING_AMOUNT_IS_EMPTY = "구입금액이 입력되지 않았습니다."
+        const val BUYING_AMOUNT_IS_EMPTY = "구입금액이 입력되지 않았습니다."
 
         private const val WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요."
-        private const val WINNING_NUMBERS_IS_EMPTY = "당첨 번호가 입력되지 않았습니다."
+        const val WINNING_NUMBERS_IS_EMPTY = "당첨 번호가 입력되지 않았습니다."
 
         private const val BOUNS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요."
-        private const val BOUNS_NUMBER_IS_EMPTY = "보너스 번호가 입력되지 않았습니다."
+        const val BOUNS_NUMBER_IS_EMPTY = "보너스 번호가 입력되지 않았습니다."
     }
 }
