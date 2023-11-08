@@ -27,4 +27,5 @@ object GameConstants {
     const val RATE_MESSAGE = "총 수익률은 %.1f%%입니다."
 
     const val SEPARATOR = ","
+    const val ZERO = 0
 }
