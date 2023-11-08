@@ -3,7 +3,7 @@
 ## 구현할 기능 목록
 
 - [ ] 구입할 금액을 입력받는다.
-    - [ ] 구입할 금액을 입력하라는 안내 메시지를 출력한다. (`OutputView.purchasePrompt`)
+    - [x] 구입할 금액을 입력하라는 안내 메시지를 출력한다. (`OutputView.purchasePrompt`)
   ```
   구입 금액을 입력해주세요.
   ```
@@ -36,7 +36,7 @@
     - [x] 로또 번호의 숫자 범위는 1 ~ 45 이다.
     - [x] 로또 번호는 중복되지 않는다.
 
-- [ ] 당첨 번호 입력 안내 메시지를 출력한다. (`OutputView.inputlottoNumbersPrompt`)
+- [x] 당첨 번호 입력 안내 메시지를 출력한다. (`OutputView.inputlottoNumbersPrompt`)
   ```
   당첨 번호를 입력해주세요.
   ```
@@ -46,6 +46,7 @@
 
 - [ ] 보너스 번호를 입력받는다. (`Inputview.bonusLottoNumber`)
     - [ ] 보너스 번호는 1개이다.
+    - [x] 보너스 번호 입력 안내 메시지를 출력한다. (`OutputView.inputBonusNumberPrompt`)
 
 - [x] 당첨 기준. enum class 로 구현하면 될 것 같음.  (`WinningRank`)
     - 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
@@ -63,7 +64,7 @@
     - [x] 총 로또 당첨 수익금을 계산한다. (`Lottoes.calculateTotalProfit`)
 
 - [ ] 당첨 통계
-    - [ ] 당첨 통계 안내 메시지를 출력한다. (`OutputView.winningResultPrompt`)
+    - [x] 당첨 통계 안내 메시지를 출력한다. (`OutputView.winningResultPrompt`)
       ```
       당첨 통계
       ---
