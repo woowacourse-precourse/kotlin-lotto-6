@@ -23,14 +23,14 @@ class LottoSeller() {
     //다시 적어서 내렴
     fun isValidateLotto(): List<Int> {
         return try {
-            return Lotto(User().inputLottoNumber()).checkLottoNumberException()
-        } catch (e: Exception) {
+            Lotto(User().inputLottoNumber()).checkLottoNumberException()
+        } catch (e: IllegalArgumentException) {
             checkExceptionStatement(e)
             LottoSeller().isValidateLotto()
         }
     }
 
-    private fun checkExceptionStatement(e: Exception) {
+    private fun checkExceptionStatement(e: IllegalArgumentException) {
         when (e.message) {
             ERROR_INPUT_NUM_LENGTH -> println(ERROR_INPUT_NUM_LENGTH_PRINT)
             ERROR_INPUT_NUM -> println(ERROR_INPUT_NUM_PRINT)
