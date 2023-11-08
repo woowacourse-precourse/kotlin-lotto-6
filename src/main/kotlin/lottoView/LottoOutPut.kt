@@ -37,22 +37,22 @@ class LottoOutPut {
         printlnThreeBar()
     }
     fun printWinningResult(winningList : Map<Int, Int>) {
-        for(i in 5 downTo 1){
-            val result = getWinningPrice(i).correspondResult
-            val price = getWinningPrice(i).price
+        for(indexing in 5 downTo 1){
+            val result = getWinningPrice(indexing).correspondResult
+            val price = getWinningPrice(indexing).price
 
             val formattedPrice = String.format("%,d원", price)
-            println("$result ($formattedPrice) - ${winningList[i]}개")}
+            println("$result ($formattedPrice) - ${winningList[indexing]}개")}
     }
 
-    private fun getWinningPrice(rank: Int): ValidInput.WinningPrice {
+    private fun getWinningPrice(rank: Int): WinningReward {
         return when (rank) {
-            5 -> ValidInput.WinningPrice.THREE
-            4 -> ValidInput.WinningPrice.FOUR
-            3 -> ValidInput.WinningPrice.FIVE
-            2 -> ValidInput.WinningPrice.FIVEANDBONUS
-            1 -> ValidInput.WinningPrice.SIX
-            else -> ValidInput.WinningPrice.ZERO
+            5 -> WinningReward.THREE
+            4 -> WinningReward.FOUR
+            3 -> WinningReward.FIVE
+            2 -> WinningReward.FIVEANDBONUS
+            1 -> WinningReward.SIX
+            else -> WinningReward.ZERO
         }
     }
 }

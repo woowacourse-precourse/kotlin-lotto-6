@@ -1,6 +1,7 @@
 package lotto
 
 import lottoView.LottoOutPut
+import lottoView.WinningReward
 import lottoViewModel.CreateNumbers
 import lottoViewModel.ValidInput
 class LottoController {
@@ -52,7 +53,7 @@ class LottoController {
     private fun calculateMount(){
        winningList=getWinningList(lottoList,winningNumbers, bonus)
         val totalWinning=getTotalPrice(winningList)
-        val rate=totalWinning/(10*purchaseAmount)
+        val rate=totalWinning*10/(100*purchaseAmount)
         lottoOutput.printWinningResult(winningList)
         println(WinningRate.RESULT_RATE.message.format(rate))
     }
@@ -76,14 +77,14 @@ class LottoController {
         return totalWinningPrice
     }
 
-    private fun getWinningPrice(rank: Int): ValidInput.WinningPrice {
+    private fun getWinningPrice(rank: Int): WinningReward {
         return when (rank) {
-            5 -> ValidInput.WinningPrice.THREE
-            4 -> ValidInput.WinningPrice.FOUR
-            3 -> ValidInput.WinningPrice.FIVE
-            2 -> ValidInput.WinningPrice.FIVEANDBONUS
-            1 -> ValidInput.WinningPrice.SIX
-            else -> ValidInput.WinningPrice.ZERO
+            5 -> WinningReward.THREE
+            4 -> WinningReward.FOUR
+            3 -> WinningReward.FIVE
+            2 -> WinningReward.FIVEANDBONUS
+            1 -> WinningReward.SIX
+            else -> WinningReward.ZERO
         }
     }
 
