@@ -62,10 +62,12 @@ class LottoGame() {
 
     private fun getWinnningNumberSequence(): List<Int> {
         val winningNumber = getWinnningNumber()
+
         return winningNumber.split(",").map{ it.trim().toInt() }
     }
     private fun getWinnningNumber(): String {
         var userInput = ""
+
         while (true) {
             PrintText.printMessage("GetWinningNumber", 0)
             userInput = Console.readLine()
@@ -86,6 +88,7 @@ class LottoGame() {
     }
     private fun getBonusNumber(winningNumbers: List<Int>) : String {
         val userInput = Console.readLine()
+
         InputValidator.validateBonusNumber(userInput, winningNumbers)
         return userInput
     }

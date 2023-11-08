@@ -116,4 +116,9 @@ class LottoTest {
         assertEquals(1, rankCounts[5])
     }
 
+    @Test
+    fun `오버플로우 테스트`() {
+
+    }
+
 }

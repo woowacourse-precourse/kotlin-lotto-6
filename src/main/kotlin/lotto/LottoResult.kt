@@ -45,21 +45,30 @@ class LottoResult (private val lottos: List<Lotto>,
 
     private fun printResult() {
         PrintText.printMessage("PrintWinningStatistics", 0)
-        val decimal = DecimalFormat("#,###.0")
-        val prizeAmount = calResult()
-        val totalPrizeRate = ((prizeAmount.toDouble() / (lottos.size * 1000)) * 100)
-
-        println("총 수익률은 ${decimal.format(LottoMath.roundRate(totalPrizeRate))}%입니다.")
+        printRate()
     }
 
-    private fun calResult(): Int {
+    private fun printRate() {
+        val decimal = DecimalFormat("#,###.0")
+        val prizeAmount = calPrizeAmount()
+        val totalPrizeRate = calPrizeRate(prizeAmount)
+
+        PrintText.printRate(decimal.format(LottoMath.roundRate(totalPrizeRate)))
+    }
+
+    private fun calPrizeAmount(): Int {
         var result = 0
+
         for (rank in 1..5) {
             val count = rankCounts[rank]!!
             result += prize[rank]!! * count
             printMatchedNumber(rank, count)
         }
         return result
+    }
+
+    private fun calPrizeRate(prizeAmount: Int): Double {
+         return (prizeAmount.toDouble() / (lottos.size * 1000)) * 100
     }
 
     private fun printMatchedNumber(rank: Int, count: Int) {

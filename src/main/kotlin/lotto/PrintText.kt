@@ -12,4 +12,7 @@ object PrintText {
             // printMessage type 에러 처리를 위한 else 사용
         }
     }
+    fun printRate(rate: String) {
+        println("총 수익률은 ${String}%입니다.")
+    }
 }
