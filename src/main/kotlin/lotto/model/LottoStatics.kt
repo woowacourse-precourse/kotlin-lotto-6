@@ -21,7 +21,11 @@ class LottoStatics(
         return winStatics
     }
 
-    fun getTotalReturn() {
+    fun getTotalReturn(): Int {
+        return winStatics.map { (winningType, num) ->
+            winningType.reward * num
+        }.sum()
 
     }
+
 }
