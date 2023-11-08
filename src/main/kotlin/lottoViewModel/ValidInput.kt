@@ -62,7 +62,7 @@ class ValidInput {
     fun bringBonusNumber(winningNumbers: List<Int>): Int {
         LottoOutPut().printlnBonusNumberMent()
         val bonusNumberInput = Console.readLine()
-        try {
+        return try {
             val bonusNumber = bonusNumberInput.toIntOrNull()
             if (bonusNumber==null||bonusNumber<1||bonusNumber>45) {
                 throw IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER)
@@ -71,10 +71,10 @@ class ValidInput {
                 throw IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER)
             }
             LottoOutPut().outputMent()
-            return bonusNumber
+            bonusNumber
         } catch (e: IllegalArgumentException) {
             println(e.message)
-            return bringBonusNumber(winningNumbers)
+            bringBonusNumber(winningNumbers)
         }
     }
 
