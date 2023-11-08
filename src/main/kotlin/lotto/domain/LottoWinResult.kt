@@ -20,11 +20,11 @@ enum class LottoWinResult(
 
         fun calculateRank(ball: Int, bonus: Boolean) {
             when (ball) {
-                6 -> ranks[ALL_MATCH.grade] += 1
-                5 -> ranks[calculateRankOrMoneyWithBonus(bonus)] += 1
-                4 -> ranks[FOUR_MATCH.grade] += 1
-                3 -> ranks[THREE_MATCH.grade] += 1
-                else -> ranks[NOT_MATCH.grade] += 1
+                6 -> ranks[ALL_MATCH.grade]++
+                5 -> ranks[calculateRankOrMoneyWithBonus(bonus)]++
+                4 -> ranks[FOUR_MATCH.grade]++
+                3 -> ranks[THREE_MATCH.grade]++
+                else -> ranks[NOT_MATCH.grade]++
             }
         }
 
