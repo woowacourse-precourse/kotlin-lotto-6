@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms
 import lotto.model.domain.Lotto
 import lotto.model.domain.Rank
 import lotto.model.domain.WinningLotto
+import java.text.DecimalFormat
 
 class Service {
     fun generateLotto(): Lotto {
@@ -49,7 +50,7 @@ class Service {
         println("${Rank.SECOND.toString()} - ${rankList.count { it == Rank.SECOND }} 개")
         println("${Rank.FIRST.toString()} - ${rankList.count { it == Rank.FIRST }} 개")
         val totalMoney = rankList.map { it.getMoney() }.sum()
-        println("총 수익률은 ${totalMoney / inputMoney}입니다.")
+        println("총 수익률은 ${DecimalFormat("#.##").format((totalMoney.toDouble() / inputMoney.toDouble()) * 100)}%입니다.")
         println("---")
     }
 }
