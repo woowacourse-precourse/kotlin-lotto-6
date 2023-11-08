@@ -3,9 +3,7 @@ package lotto
 import lotto.LottoSeller.Companion.LOTTO_TICKET_PRICE
 
 class Calculator(
-    private val userLotto: List<Int>,
-    private val bonusNum: Int,
-    private val lottoMachine: MutableList<List<Int>>
+
 ) {
 //비교하는 곳 , 나 이거 비교해줘! 라는 곳에 대한 대답
 //그러려면 사용자가 입력한 값과 로또 리스트를 비교하는자가 가지고 있어야겠지?
@@ -18,13 +16,19 @@ class Calculator(
         MatchedCount.FIRST to 0,
     )
     private var profitability = 0L
-    fun compareNum() {
+    private var lottoTicketCount = 0
+    fun compareNum(
+        userLotto: List<Int>,
+        bonusNum: Int,
+        lottoMachine: MutableList<List<Int>>
+    ) {
         //로또속 번호와 사용자가 입력한 번호를 비교해서 몇개가 당첨인지를 알수 있다.
+        lottoTicketCount = lottoMachine.size
         for (lotto in lottoMachine) {
 
             val matchedNumbers = lotto.intersect(userLotto).size
             val isBonusMatched = userLotto.contains(bonusNum)    //보너스 볼이 포함 되어 있는지 확인
-
+//            println("matchedNumbers $matchedNumbers")
             val lottoRank = MatchedCount.fromMatchedNumbers(matchedNumbers, isBonusMatched)
             if (lottoRank != MatchedCount.NONE) lottoResult[lottoRank] = lottoResult.getOrDefault(lottoRank, 0) + 1
         }
@@ -32,12 +36,15 @@ class Calculator(
 
     fun calculateProfitRate(): Float {
         calculateProfit()
-        val moneySpent = lottoMachine.size * LOTTO_TICKET_PRICE
+        val moneySpent = lottoTicketCount * LOTTO_TICKET_PRICE
+//        println("수익률 계산하는 곳 $moneySpent")
+//        println("수익률 $profitability")
         return (profitability * 100f) / moneySpent
     }
 
     private fun calculateProfit() {
         lottoResult.forEach { (rank, count) ->
+//            println("lottoResult $lottoResult")
             profitability += rank.prize * count
         }
     }
