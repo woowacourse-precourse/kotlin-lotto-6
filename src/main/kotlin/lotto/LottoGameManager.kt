@@ -1,19 +1,20 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
+import lotto.utils.LottoPublisher
 
 class LottoGameManager {
     private lateinit var lottoGame: LottoGame
     private var lottoInputHandler: LottoInputHandler
+    private var lottoPublisher: LottoPublisher
 
     init {
         lottoInputHandler = LottoInputHandler()
+        lottoPublisher = LottoPublisher()
     }
 
     fun startLottoGame() {
-        println("구입금액을 입력해 주세요.")
-        val lottoTicketsAmount = receiveLottoTicketsAmount()
-        val lottoTickets = publishLottoTickets(lottoTicketsAmount)
+        val lottoTickets = publishLottoTickets()
 
         println("\n당첨 번호를 입력해 주세요.")
         val winningNumbers = receiveWinningNumbers()
@@ -25,26 +26,17 @@ class LottoGameManager {
         lottoGame.matchLottoNumbers()
     }
 
-    private fun publishLottoTickets(lottoAmount: Int): List<Lotto> {
-        val lottoTickets = mutableListOf<Lotto>()
-        println("\n${lottoAmount}개를 구매했습니다.")
-        repeat(lottoAmount) {
-            val lotto = publishLotto()
-            lotto.printNumbers()
-            lottoTickets.add(lotto)
-        }
-        return lottoTickets
+    private fun publishLottoTickets() : List<Lotto>{
+        println("구입금액을 입력해 주세요.")
+        val lottoTicketsAmount = receiveLottoTicketsAmount()
+        return lottoPublisher.publishLottoTickets(lottoTicketsAmount)
     }
 
-    private fun publishLotto(): Lotto{
-        var lotto : Lotto
-        try{
-            lotto = Lotto(Randoms.pickUniqueNumbersInRange(1,45,6))
-        } catch (e : IllegalArgumentException){
-            return publishLotto()
-        }
-        return lotto
+    private fun matchLottoNumbers(){
+
     }
+
+
 
     private fun receiveLottoTicketsAmount(): Int = lottoInputHandler.receiveLottoCost() / 1000
 
