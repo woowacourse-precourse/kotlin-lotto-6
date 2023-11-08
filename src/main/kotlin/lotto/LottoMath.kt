@@ -5,10 +5,9 @@ object LottoMath {
         val scaledNumber = (doubleNumber * 100).toInt()
         val remainder = scaledNumber % 10
         println("${(scaledNumber / 100)} , $remainder")
-        return if (remainder >= 5) {
-            (((scaledNumber - remainder).toDouble() + 10) / 100)
-        } else {
-            ((scaledNumber - remainder).toDouble() / 100)
+        if (remainder >= 5) {
+            return ((scaledNumber - remainder).toDouble() + 10) / 100
         }
+        return (scaledNumber - remainder).toDouble() / 100
     }
 }

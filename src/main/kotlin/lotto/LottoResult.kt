@@ -9,8 +9,10 @@ enum class LottoRank(val prize: Int, val prizeString: String) {
     NONE(0, "0원")
 }
 
-class LottoResult (private val lottos: List<Lotto>, private val winningNumbers: List<Int>, private val bonusNumber: Int) {
-    private val matchedCounts = mutableMapOf(5 to 0, 4 to 0, 3 to 0, 2 to 0, 1 to 0)
+class LottoResult (private val lottos: List<Lotto>,
+                   private val winningNumbers: List<Int>,
+                   private val bonusNumber: Int) {
+    private val rankCounts = mutableMapOf(5 to 0, 4 to 0, 3 to 0, 2 to 0, 1 to 0)
 
     init {
         checkMatches()
@@ -23,33 +25,34 @@ class LottoResult (private val lottos: List<Lotto>, private val winningNumbers: 
             val isBonusMatched = lotto.getNumbers().contains(bonusNumber)
 
             if (matchedCount == 6) {
-                matchedCounts[1] = matchedCounts[1]!! + 1
+                rankCounts[1] = rankCounts[1]!! + 1
             } else if (matchedCount == 5 && isBonusMatched) {
-                matchedCounts[2] = matchedCounts[2]!! + 1
+                rankCounts[2] = rankCounts[2]!! + 1
             } else if (matchedCount == 5) {
-                matchedCounts[3] = matchedCounts[3]!! + 1
+                rankCounts[3] = rankCounts[3]!! + 1
             } else if (matchedCount == 4) {
-                matchedCounts[4] = matchedCounts[4]!! + 1
+                rankCounts[4] = rankCounts[4]!! + 1
             } else if (matchedCount == 3) {
-                matchedCounts[5] = matchedCounts[5]!! + 1
+                rankCounts[5] = rankCounts[5]!! + 1
             }
         }
     }
-    fun getMatchedCountsForTest(): Map<Int, Int> {
-        return matchedCounts
+    fun getRankCountsForTest(): Map<Int, Int> {
+        return rankCounts
     }
 
     private fun printResult() {
         PrintText.printMessage("PrintWinningStatistics", 0)
         val prizeAmount = calResult()
         val totalPrizeRate = ((prizeAmount.toDouble() / (lottos.size * 1000)) * 100)
+
         println("총 수익률은 ${LottoMath.roundRate(totalPrizeRate)}%입니다.")
     }
 
     private fun calResult(): Int {
         var result = 0
         for (rank in 1..5) {
-            val count = matchedCounts[rank]!!
+            val count = rankCounts[rank]!!
             result += prize[rank]!! * count
             printMatchedNumber(rank, count)
         }
@@ -57,18 +60,22 @@ class LottoResult (private val lottos: List<Lotto>, private val winningNumbers: 
     }
 
     private fun printMatchedNumber(rank: Int, count: Int) {
-        val matchedNumber = when(rank) {
-            1 -> 6
-            2 -> 5
-            else -> 8 - rank
-        }
+        val matchedNumber = getMatchedNumberFromRank(rank)
         val prizeDescription = LottoRank.values()[rank - 1].prizeString
-        when (rank) {
-            2 -> println("${matchedNumber}개 일치, 보너스 볼 일치 (${prizeDescription}) - ${count}개")
-            else -> println("${matchedNumber}개 일치 (${prizeDescription}) - ${count}개")
-        }
+
+        println(getResultText(rank, matchedNumber, prizeDescription, count))
+    }
+    private fun getMatchedNumberFromRank(rank: Int): Int {
+        if (rank == 1 || rank == 2)
+            return 7 - rank
+        return 8 - rank
     }
 
+    private fun getResultText(rank: Int, matchedNumber: Int, prizeDescription: String, count: Int): String {
+        if (rank == 2)
+            return "${matchedNumber}개 일치, 보너스 볼 일치 (${prizeDescription}) - ${count}개"
+        return "${matchedNumber}개 일치 (${prizeDescription}) - ${count}개"
+    }
     companion object {
         private val prize = mutableMapOf(
             5 to LottoRank.FIFTH.prize,

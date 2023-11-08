@@ -88,13 +88,13 @@ class LottoTest {
         val bonusNumber = 7
 
         val lottoResult = LottoResult(lottos, winningNumbers, bonusNumber)
-        val matchedCounts = lottoResult.getMatchedCountsForTest()
+        val rankCounts = lottoResult.getRankCountsForTest()
 
-        assertEquals(1, matchedCounts[1])
-        assertEquals(1, matchedCounts[2])
-        assertEquals(1, matchedCounts[3])
-        assertEquals(1, matchedCounts[4])
-        assertEquals(1, matchedCounts[5])
+        assertEquals(1, rankCounts[1])
+        assertEquals(1, rankCounts[2])
+        assertEquals(1, rankCounts[3])
+        assertEquals(1, rankCounts[4])
+        assertEquals(1, rankCounts[5])
     }
 
     @Test
@@ -107,13 +107,13 @@ class LottoTest {
         val bonusNumber = 7
 
         val lottoResult = LottoResult(lottos, winningNumbers, bonusNumber)
-        val matchedCounts = lottoResult.getMatchedCountsForTest()
+        val rankCounts = lottoResult.getRankCountsForTest()
 
-        assertEquals(0, matchedCounts[1])
-        assertEquals(0, matchedCounts[2])
-        assertEquals(0, matchedCounts[3])
-        assertEquals(1, matchedCounts[4])
-        assertEquals(1, matchedCounts[5])
+        assertEquals(0, rankCounts[1])
+        assertEquals(0, rankCounts[2])
+        assertEquals(0, rankCounts[3])
+        assertEquals(1, rankCounts[4])
+        assertEquals(1, rankCounts[5])
     }
 
 }
