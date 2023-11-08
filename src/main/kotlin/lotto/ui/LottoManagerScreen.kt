@@ -16,14 +16,14 @@ class LottoManagerScreen(lottoResult: LottoResult, lottoRevenue: Double) {
     }
 
     fun printLottoResult() {
-        println("당첨 통계")
+        println(ConstString.LOTTO_STATISTICS)
         println("---")
-        println("${ConstString.Three_Corresponding} (${ConstString.Three_Lotto_Amount}원) - ${lottoResult.three}개")
-        println("${ConstString.Four_Corresponding} (${ConstString.Four_Lotto_Amount}원) - ${lottoResult.four}개")
-        println("${ConstString.Five_Corresponding} (${ConstString.Five_Lotto_Amount}원) - ${lottoResult.five}개")
-        println("${ConstString.Five_Bonus_Corresponding} (${ConstString.Five_Bonus_Lotto_Amount}원) - ${lottoResult.bonus}개")
-        println("${ConstString.Six_Corresponding} (${ConstString.Six_Lotto_Amount}원) - ${lottoResult.six}개")
-        println("총 수익률은 ${revenue}%입니다.")
+        println("${ConstString.THREE_CORRESPONDING} (${ConstString.THREE_LOTTO_AMOUNT}원) - ${lottoResult.three}개")
+        println("${ConstString.FOUR_CORRESPONDING} (${ConstString.FOUR_LOTTO_AMOUNT}원) - ${lottoResult.four}개")
+        println("${ConstString.FIVE_CORRESPONDING} (${ConstString.FIVE_LOTTO_AMOUNT}원) - ${lottoResult.five}개")
+        println("${ConstString.FIVE_BONUS_CORRESPONDING} (${ConstString.FIVE_BONUS_LOTTO_AMOUNT}원) - ${lottoResult.bonus}개")
+        println("${ConstString.SIX_CORRESPONDING} (${ConstString.SIX_LOTTO_AMOUNT}원) - ${lottoResult.six}개")
+        println(ConstString.REVENUE_MESSAGE.format(revenue))
 
 
     }

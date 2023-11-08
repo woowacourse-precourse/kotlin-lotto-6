@@ -14,7 +14,7 @@ class LottoManager {
     private lateinit var lottoResult : LottoResult
     private var revenue : Double = 0.0
 
-    fun startGame(){
+    fun startLotto(){
 
         val customer = Customer()
 

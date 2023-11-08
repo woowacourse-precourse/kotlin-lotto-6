@@ -1,6 +1,7 @@
 package lotto.domain
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.data.ConstString
 import lotto.data.ErrorMessage
 import lotto.data.LottoNums
 
@@ -19,7 +20,8 @@ class LottoInputManager {
     }
 
     private fun inputToInt() : List<Int> {
-        println("당첨 번호를 입력해 주세요.")
+
+        println(ConstString.INPUT_LOTTO_NUM)
         val inputLottoNums = Console.readLine()
         if (!checkInputLottoNums(inputLottoNums)) return inputToInt()
 
@@ -68,7 +70,7 @@ class LottoInputManager {
     }
 
     private fun bonusToInt() : Int{
-        println("보너스 번호를 입력해주세요")
+        println(ConstString.INPUT_BONUS_NUM)
         val bonus = Console.readLine()
         if(!checkBonusNums(bonus) || !checkBonusDuplicated(bonus!!.toInt()))  bonusToInt()
 

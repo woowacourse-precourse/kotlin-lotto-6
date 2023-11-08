@@ -2,26 +2,34 @@ package lotto.data
 
 object ConstNum {
 
-    const val Three_Lotto_Amount = 5000
-    const val Four_Lotto_Amount= 50000
-    const val Five_Lotto_Amount = 1500000
-    const val Five_Bonus_Lotto_Amount = 30000000
-    const val Six_Lotto_Amount = 2000000000
+    const val THREE_LOTTO_AMOUNT = 5000
+    const val FOUR_LOTTO_AMOUNT= 50000
+    const val FIVE_LOTTO_AMOUNT = 1500000
+    const val FIVE_BONUS_LOTTO_AMOUNT = 30000000
+    const val SIX_LOTTO_AMOUNT = 2000000000
 
 
 }
 object ConstString {
-    const val Three_Corresponding = "3개 일치"
-    const val Four_Corresponding = "4개 일치"
-    const val Five_Corresponding = "5개 일치"
-    const val Five_Bonus_Corresponding ="5개 일치, 보너스 볼 일치"
-    const val Six_Corresponding = "6개 일치"
+    const val THREE_CORRESPONDING = "3개 일치"
+    const val FOUR_CORRESPONDING= "4개 일치"
+    const val FIVE_CORRESPONDING = "5개 일치"
+    const val FIVE_BONUS_CORRESPONDING ="5개 일치, 보너스 볼 일치"
+    const val SIX_CORRESPONDING = "6개 일치"
 
-    const val Three_Lotto_Amount = "5,000"
-    const val Four_Lotto_Amount= "50,000"
-    const val Five_Lotto_Amount = "1,500,000"
-    const val Five_Bonus_Lotto_Amount = "30,000,000"
-    const val Six_Lotto_Amount = "2,000,000,000"
+    const val THREE_LOTTO_AMOUNT = "5,000"
+    const val FOUR_LOTTO_AMOUNT= "50,000"
+    const val FIVE_LOTTO_AMOUNT = "1,500,000"
+    const val FIVE_BONUS_LOTTO_AMOUNT = "30,000,000"
+    const val SIX_LOTTO_AMOUNT = "2,000,000,000"
+
+    const val INPUT_LOTTO_AMOUNT = "구입금액을 입력해주세요"
+    const val INPUT_LOTTO_NUM = "당첨번호를 입력해주세요"
+    const val INPUT_BONUS_NUM = "보너스 번호를 입력해주세요"
+    const val LOTTO_STATISTICS ="당첨 통계"
+    const val REVENUE_MESSAGE = "총 수익률은 %s%%입니다."
+    const val LOTTO_COUNTS_MESSAGE = "%s개를 구매했습니다."
+
 
 }
 

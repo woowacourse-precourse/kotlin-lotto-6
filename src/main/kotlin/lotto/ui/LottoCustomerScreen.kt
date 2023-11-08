@@ -1,5 +1,7 @@
 package lotto.ui
 
+import lotto.data.ConstNum
+import lotto.data.ConstString
 import lotto.domain.Customer
 
 class LottoCustomerScreen(lottoCounts : Int, lottoNumsList : List<List<Int>>) {
@@ -17,7 +19,8 @@ class LottoCustomerScreen(lottoCounts : Int, lottoNumsList : List<List<Int>>) {
 
     fun printLottoNumsList(){
 
-        println("${lottoCounts}개를 구매했습니다.")
+        println(ConstString.LOTTO_COUNTS_MESSAGE.format(lottoCounts))
+     //   println("${lottoCounts}개를 구매했습니다.")
         lottoNumsList.forEach {
                 nums ->
             println(nums)

@@ -7,11 +7,6 @@ import lotto.ui.LottoCustomerScreen
 import lotto.ui.LottoManagerScreen
 
 fun main() {
-
     val lottoManager = LottoManager()
-
-    lottoManager.startGame()
-
-
-
+    lottoManager.startLotto()
 }

@@ -1,6 +1,7 @@
 package lotto.domain
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.data.ConstString
 import lotto.data.ErrorMessage
 import java.lang.NumberFormatException
 
@@ -22,7 +23,7 @@ class Customer {
 
 
     private fun inputToInt() : Int {
-
+        println(ConstString.INPUT_LOTTO_AMOUNT)
         val inputCount  = Console.readLine()
         if(!checkInputCount(inputCount)) inputToInt()
 

@@ -22,9 +22,9 @@ class LottoOutputManager() {
 
     fun calculateRevenue(purchaseAmounts : Long) {
 
-        val amounts  = (ConstNum.Three_Lotto_Amount * _lottoResult.three + ConstNum.Four_Lotto_Amount * _lottoResult.four
-        + ConstNum.Five_Lotto_Amount * _lottoResult.five + ConstNum.Five_Bonus_Lotto_Amount* _lottoResult.bonus
-        + ConstNum.Six_Lotto_Amount * _lottoResult.six).toBigInteger()
+        val amounts  = (ConstNum.THREE_LOTTO_AMOUNT * _lottoResult.three + ConstNum.FOUR_LOTTO_AMOUNT * _lottoResult.four
+        + ConstNum.FIVE_LOTTO_AMOUNT * _lottoResult.five + ConstNum.FIVE_BONUS_LOTTO_AMOUNT* _lottoResult.bonus
+        + ConstNum.SIX_LOTTO_AMOUNT* _lottoResult.six).toBigInteger()
 
         _revenue = (amounts.toDouble() / purchaseAmounts.toDouble()) * 100
     }
