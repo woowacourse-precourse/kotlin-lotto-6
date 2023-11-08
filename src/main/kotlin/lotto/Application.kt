@@ -1,5 +1,12 @@
 package lotto
 
+import lotto.controller.LottoController
+import lotto.model.LottoModel
+import lotto.view.LottoView
+
 fun main() {
-    TODO("프로그램 구현")
+    val lottoModel = LottoModel()
+    val lottoView = LottoView()
+    val lottoController = LottoController(lottoModel, lottoView)
+    lottoController.startLotto()
 }
