@@ -21,7 +21,7 @@ class PaymentValidator : Validator<PaymentValidation> {
 
     private fun validateOverflow(input: String) {
         val cost = input.toBigInteger()
-        require(cost.compareTo(MAX_LOTTO_PURCHASE.toBigInteger()) == 0) { OVERFLOW_ERROR }
+        require(cost <= MAX_LOTTO_PURCHASE.toBigInteger()) { OVERFLOW_ERROR }
     }
 
     companion object {
