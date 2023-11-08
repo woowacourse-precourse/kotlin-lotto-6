@@ -229,8 +229,4 @@ class PrintResultsTest : NsTest() {
     override fun runMain() {
         main()
     }
-
-    companion object {
-        private const val ERROR_MESSAGE = "[ERROR]"
-    }
 }
