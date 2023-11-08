@@ -2,8 +2,10 @@ package lotto.view
 
 import lotto.domain.Lotto
 import lotto.domain.WinningRank
+    import java.text.DecimalFormat
 
 class OutputView {
+    private val moneyDecimal = DecimalFormat("#,###")
 
     fun printAskPurchaseMoney() {
         println(INPUT_MONEY_MESSAGE)
@@ -30,8 +32,8 @@ class OutputView {
     fun printRank(rank: Map<WinningRank, Int>) {
         println(WINNING_RANK_MESSAGE)
         println(SEPARATOR)
-        rank.forEach {
-            println("${it.key.message} (${it.key.winningPrize}원) - ${it.value}개")
+        rank.filter { it.key != WinningRank.NO_MATCHES }.forEach { entry ->
+            println("${entry.key.message} (${moneyDecimal.format(entry.key.winningPrize)}원) - ${entry.value}개")
         }
     }
 
