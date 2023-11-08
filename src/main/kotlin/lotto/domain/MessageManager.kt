@@ -4,7 +4,7 @@ class MessageManager {
 
     fun printInputPrice() = println(ENTER_PURCHASE_PRICE)
 
-    fun printPurchaseAmount(amount: String) =
+    fun printPurchaseAmount(amount: Int) =
         println("$amount$COUNT_PURCHASE_AMOUNT")
 
     fun printPurchaseLottoNumber(lotto: List<Int>) =

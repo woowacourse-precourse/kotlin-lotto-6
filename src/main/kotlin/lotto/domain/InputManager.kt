@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Console
 import lotto.validation.CheckInputValidation
 import lotto.validation.ExceptionMessageManager
 
-
-// 사용자 입력 관리
 class InputManager {
     private val checkInputValidation = CheckInputValidation()
     private val exceptionManager = ExceptionMessageManager()
@@ -35,12 +33,12 @@ class InputManager {
         }
     }
 
-    fun inputBonusNumber(lottoNumber: Set<Int>): Int? {
+    fun inputBonusNumber(winningNumber: Set<Int>): Int? {
         return try {
             val userInput = getUserInput()
             val bonusNumber = makeBonusNumber(userInput)
             checkInputValidation
-                .checkBonusNumberDuplication(lottoNumber, bonusNumber)
+                .checkBonusNumberDuplication(winningNumber, bonusNumber)
             bonusNumber
         } catch (e: IllegalArgumentException) {
             exceptionManager.printErrorMessage(e.message)

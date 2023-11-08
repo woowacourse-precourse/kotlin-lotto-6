@@ -1,8 +1,5 @@
 package lotto.validation
 
-import lotto.domain.ErrorType
-import lotto.domain.MessageManager
-
 class ExceptionMessageManager {
 
     fun printErrorMessage(errorMessage: String?) =
