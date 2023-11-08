@@ -18,7 +18,7 @@ class LottoMachine {
         return bonusNumber
     }
 
-    private fun validateWinningNumbers(winningNumbers: List<Int>) {
+    fun validateWinningNumbers(winningNumbers: List<Int>) {
         require(winningNumbers.all { it in Constants.MIN_LOTTO_NUMBER..Constants.MAX_LOTTO_NUMBER }) {
             throw IllegalArgumentException(
                 NUMBER_OUT_OF_RANGE
@@ -32,7 +32,7 @@ class LottoMachine {
         }
     }
 
-    private fun validateBonusNumber(bonusNumber: Int, winningNumbers: List<Int>) {
+    fun validateBonusNumber(bonusNumber: Int, winningNumbers: List<Int>) {
         require(bonusNumber in Constants.MIN_LOTTO_NUMBER..Constants.MAX_LOTTO_NUMBER) {
             throw IllegalArgumentException(
                 NUMBER_OUT_OF_RANGE
