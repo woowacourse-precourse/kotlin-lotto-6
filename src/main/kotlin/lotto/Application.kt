@@ -11,4 +11,8 @@ fun main() {
     val winningNumber = WinningNumber()
     winningNumber.inputWinningNumber()
     winningNumber.inputBonusNumber()
+
+    val result = Result()
+    result.printResult()
+
 }

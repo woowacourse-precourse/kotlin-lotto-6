@@ -19,10 +19,12 @@ class WinningNumber {
         return winningNumber
     }
 
-    fun inputBonusNumber() {
+    fun inputBonusNumber(): Int {
         println()
         println("보너스 번호를 입력해 주세요.")
-        val bonusNumber = readLine()
-        // TODO 옳지않은 값 들어오면 Exception 처리 구현
+        val bonusNumber = readLine()!!.toInt()
+        // TODO 옳지않은 값 들어오면 Exception 처리 구현 (try-catch)
+
+        return bonusNumber
     }
 }
