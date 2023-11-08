@@ -2,10 +2,6 @@ package lotto
 
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest
 import camp.nextstep.edu.missionutils.test.NsTest
-import lotto.dto.CostDto
-import lotto.model.Cost
-import lotto.model.PurchasedLotto
-import lotto.model.PurchasedLottoCollection
 import lotto.view.OutputView
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
