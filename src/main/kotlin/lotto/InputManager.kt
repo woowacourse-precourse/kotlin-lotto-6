@@ -5,18 +5,37 @@ import java.rmi.dgc.Lease
 
 class InputManager(val exceptionManager: ExceptionManager) {
     fun money(): Int {
-        val str = readLine()
-        return exceptionManager.money(str)
+        while (true) {
+            try {
+                val str = readLine()
+                return exceptionManager.money(str)
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 
     fun winningNum(): Lotto {
-        val str = readLine()
-        val numbers = exceptionManager.winningNum(str)
-        return Lotto(numbers)
+        while (true) {
+            try {
+                val str = readLine()
+                val numbers = exceptionManager.winningNum(str)
+                return Lotto(numbers)
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 
     fun bonusNum(winningNum: Lotto): Int {
-        val str = readLine()
-        return exceptionManager.bonusNum(str, winningNum)
+        while (true) {
+            try {
+                val str = readLine()
+                return exceptionManager.bonusNum(str, winningNum)
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+
     }
 }

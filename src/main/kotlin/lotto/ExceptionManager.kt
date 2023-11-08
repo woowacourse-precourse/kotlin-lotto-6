@@ -3,8 +3,8 @@ package lotto
 class ExceptionManager {
     fun money(str: String): Int {
         val number = str.safeToInt()
-        require(number >= 0) { print("[ERROR] 구입 금액은 0 이상이어야 합니다.") }
-        require(number % 1000 == 0) { print("[ERROR] 구입 금액은 1,000원 단위여야 합니다.") }
+        require(number >= 0) { "[ERROR] 구입 금액은 0 이상이어야 합니다." }
+        require(number % 1000 == 0) { "[ERROR] 구입 금액은 1,000원 단위여야 합니다." }
         return number
     }
 
