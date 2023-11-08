@@ -1,12 +1,11 @@
 package lotto
 
 object ExceptionHandler {
-    private const val ERROR_MESSAGE = "[ERROR]"
      fun checkLotto(lotto: Lotto): Boolean {
          if (isDuplicate(lotto.numberList)
              || !isOverLength(lotto.numberList)
              || !isInRange(lotto.numberList)) {
-             throw IllegalArgumentException("{$ERROR_MESSAGE}")
+             throw IllegalArgumentException("[ERROR]")
          }
         return true
     }
@@ -15,7 +14,7 @@ object ExceptionHandler {
          if (isDuplicate(list)
              || !isOverLength(list)
              || !isInRange(list)) {
-             throw IllegalArgumentException("{$ERROR_MESSAGE}")
+             throw IllegalArgumentException("[ERROR]")
          }
          return true
      }
@@ -53,7 +52,7 @@ object ExceptionHandler {
 
     fun checkInputMoney(money: String): Boolean {
          if (!isOnlyInt(money) || !isDivideBy1000(money.toInt())) {
-             throw IllegalArgumentException("{$ERROR_MESSAGE}")
+             throw IllegalArgumentException("[ERROR]")
          }
          return false
      }
@@ -74,7 +73,7 @@ object ExceptionHandler {
         if(!isOnlyInt(number)
             || !isInRange(number)
             || winningNumberList.contains(number.toInt())){
-            throw IllegalArgumentException("{$ERROR_MESSAGE}")
+            throw IllegalArgumentException("[ERROR]")
         }
     }
 }
