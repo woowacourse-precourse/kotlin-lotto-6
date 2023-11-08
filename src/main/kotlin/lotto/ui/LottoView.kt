@@ -10,17 +10,14 @@ class LottoView {
 
     fun getTicketPrice(): String {
         var inputPrice = ""
-        var isValid = false
 
-        while (!isValid) {
+        while (true) {
             try {
                 inputPrice = askPurchaseTickets()
                 validTicketPrice(inputPrice)
 
-                isValid = true
+                break
             } catch (exception: IllegalArgumentException) {
-                println(exception.message)
-            } catch (exception: NumberFormatException) {
                 println(exception.message)
             }
         }
@@ -30,14 +27,13 @@ class LottoView {
 
     fun getLuckyNumbers(): List<Int> {
         var inputLuckyNumbers = ""
-        var isValid = false
 
-        while (!isValid) {
+        while (true) {
             try {
                 inputLuckyNumbers = askLuckyNumbers()
                 validLuckyNumbers(inputLuckyNumbers)
 
-                isValid = true
+                break
             } catch (exception: IllegalArgumentException) {
                 println(exception.message)
             } catch (exception: NumberFormatException) {
@@ -52,14 +48,13 @@ class LottoView {
 
     fun getBonusNumber(): Int {
         var inputBonusNumber = ""
-        var isValid = false
 
-        while (!isValid) {
+        while (true) {
             try {
                 inputBonusNumber = askBonusNumber()
                 validBonusNumber(inputBonusNumber)
 
-                isValid = true
+                break
             } catch (exception: IllegalArgumentException) {
                 println(exception.message)
             } catch (exception: NumberFormatException) {
