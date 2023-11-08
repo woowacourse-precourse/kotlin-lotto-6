@@ -10,7 +10,7 @@ object LottoNumberValidator {
     private const val MAXIMUM_LOTTO_NUMBER = 45
     private const val LOTTO_SIZE = 6
 
-    fun appropriateLottoNumber(input: String) {
+    fun isAppropriateLottoNumber(input: String) {
         val lottoNumbers = input.split(",")
 
         require(lottoNumbers.distinct().size == LOTTO_SIZE) { OutputView.error(LOTTO_SIZE_IS_SIX) }
