@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms
 class NumberGenerator {
     fun generateNumbers(): List<Int> {
         val numbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, GENERATE_COUNT)
-        return numbers
+        return numbers.sorted()
     }
 
     companion object {
