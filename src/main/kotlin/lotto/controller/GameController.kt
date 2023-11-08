@@ -2,33 +2,35 @@ package lotto.controller
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.global.InformationMessage
-import lotto.service.IssuerService
 import lotto.service.LottoService
+import lotto.service.WinningService
+import lotto.service.RankService
 
 class GameController {
-	private val issuerService = IssuerService()
 	private val lottoService = LottoService()
+	private val winningService = WinningService()
+	private val rankService = RankService()
 
 	fun start() {
 		println(InformationMessage.PURCHASE_AMOUNT.message)
 		purchase()
 
-		println(InformationMessage.WINNING_NUMBER.message)
+		println("\n${InformationMessage.WINNING_NUMBER.message}")
 		winningNumber()
 
-		println(InformationMessage.BONUS_NUMBER.message)
+		println("\n${InformationMessage.BONUS_NUMBER.message}")
 		bonusNumber()
 
-		println(InformationMessage.WINNING_STATISTIC.message)
+		println("\n${InformationMessage.WINNING_STATISTIC.message}")
 		checkLottoNumber()
 	}
 
 	private fun purchase() {
 		try {
 			val input = Console.readLine()
-			val count = issuerService.purchaseLotto(input)
+			val count = lottoService.purchaseLotto(input)
 			println("\n$count${InformationMessage.PURCHASE_SUCCESS.message}")
-			issuerService.createLotto(count).forEach(::println)
+			lottoService.createLotto(count)
 		} catch (e: IllegalArgumentException) {
 			println(e.message)
 			purchase()
@@ -38,7 +40,7 @@ class GameController {
 	private fun winningNumber() {
 		try {
 			val input = Console.readLine()
-			lottoService.winningNumber(input)
+			winningService.winningNumber(input)
 		} catch (e: IllegalArgumentException) {
 			println(e.message)
 			winningNumber()
@@ -48,7 +50,7 @@ class GameController {
 	private fun bonusNumber() {
 		try {
 			val input = Console.readLine()
-			lottoService.bonusNumber(input)
+			winningService.bonusNumber(input)
 		} catch (e: IllegalArgumentException) {
 			println(e.message)
 			bonusNumber()
@@ -56,32 +58,18 @@ class GameController {
 	}
 
 	private fun checkLottoNumber() {
-		val matches: IntArray = intArrayOf(0, 0, 0, 0, 0)
-		val winningNumber = lottoService.getLotto()
-		val bonusNumber = lottoService.getBonus()
-		val lottos = issuerService.getLotto()
-		println(winningNumber)
+		val winningNumber = winningService.getLotto()
+		val bonusNumber = winningService.getBonus()
+		val lottos = lottoService.getLotto()
 
-		// 로직
-		var tempMatch = 0
-		lottos.forEach{ it: MutableSet<Int> ->
-			for(i in it) {
-				if(winningNumber.contains(i)) {
-					println("contain")
-					tempMatch++
-				}
-			}
-			when(tempMatch) {
-				3 -> matches[0] = matches[0]++
-				4 -> matches[1] = matches[1]++
-				5 -> if(!it.contains(bonusNumber)) {matches[2] = matches[2]++} else {matches[3] = matches[3]++}
-				6 -> matches[4] = matches[4]++
-			}
-		}
-		rate(matches)
+		val matches = rankService.rateRank(winningNumber, bonusNumber, lottos)
+		println(InformationMessage.place(matches))
+
+		calculateReturn(matches)
 	}
 
-	fun rate(matches: IntArray) {
-		matches
+	private fun calculateReturn(matches: MutableList<Int>) {
+		val price = lottoService.getPrice()
+		println(InformationMessage.returnRate(rankService.calculateReturn(price, matches)))
 	}
 }

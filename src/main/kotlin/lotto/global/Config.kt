@@ -1,7 +1,7 @@
 package lotto.global
 
-enum class Config(val value: Int) {
-	LOTTO_RANGE(45),
-	NUMBER_DRAW(6),
-	LOTTO_PRICE(1000)
+object Config {
+	const val LOTTO_RANGE = 45
+	const val NUMBER_DRAW = 6
+	const val LOTTO_PRICE = 1000
 }

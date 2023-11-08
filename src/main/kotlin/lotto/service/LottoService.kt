@@ -1,41 +1,40 @@
 package lotto.service
 
+import camp.nextstep.edu.missionutils.Randoms
 import lotto.global.Config
 import lotto.global.Error
+import lotto.model.Lotto
 
 class LottoService {
-	private var lottoNumber: MutableSet<Int> = mutableSetOf()
-	private var bonusNumber: Int = 0
+	private var price = Config.LOTTO_PRICE
+	private var lottos: MutableList<Lotto> = mutableListOf()
 
-	fun winningNumber(winningNumber: String) {
-		winningNumber.split(",").forEach{
-			val number = try {
-				it.toInt()
-			} catch (e: NumberFormatException) {
-				throw IllegalArgumentException(Error.NOT_NUMBER.message())
-			}
-			require(number in (1..Config.LOTTO_RANGE.value)) {Error.NUMBER_RANGE.message()}
-			lottoNumber.add(number)
+	fun purchaseLotto(price: String): Int {
+		require(price.matches(Regex("^[0-9]*$"))) { Error.NOT_NUMBER.message() }
+		require(
+			(price.toDouble() / Config.LOTTO_PRICE).toString().matches(Regex("^[0-9]+.0$"))
+		) { Error.PURCHASE_AMOUNT.message() }
+		this.price = price.toInt()
+		return this.price / Config.LOTTO_PRICE
+	}
+
+	fun createLotto(count: Int) {
+		for (i in 0..<count) {
+			val random = makeRandomNumber()
+			println(random)
+			lottos.add(Lotto(random))
 		}
-		require(lottoNumber.size == 6) {Error.NUMBER_NUMBER.message()}
-
-		lottoNumber = lottoNumber.toSortedSet()
 	}
 
-	fun bonusNumber(bonusNumber: String) {
-		val number = try {
-			bonusNumber.toInt()
-		} catch (e: NumberFormatException) {
-			throw IllegalArgumentException(Error.NOT_NUMBER.message())
-		}
-		require(number in (1..Config.LOTTO_RANGE.value)) {Error.NUMBER_RANGE.message()}
-		this.bonusNumber = number
+	private fun makeRandomNumber(): MutableList<Int> {
+		return Randoms.pickUniqueNumbersInRange(1, Config.LOTTO_RANGE, Config.NUMBER_DRAW)
 	}
 
-	fun getLotto(): MutableSet<Int> {
-		return lottoNumber
+	fun getPrice(): Int {
+		return price
 	}
-	fun getBonus(): Int {
-		return bonusNumber
+
+	fun getLotto(): MutableList<Lotto> {
+		return lottos
 	}
 }

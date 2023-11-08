@@ -1,9 +1,13 @@
 package lotto.model
 
-class Lotto(private val numbers: List<Int>) {
-    init {
-        require(numbers.size == 6)
-    }
+import lotto.global.Config
 
-    // TODO: 추가 기능 구현
+class Lotto(private val numbers: List<Int>) {
+	init {
+		require(numbers.size == Config.NUMBER_DRAW)
+		require(numbers.toSet().size == Config.NUMBER_DRAW)
+		numbers.forEach { require(it in 1..Config.LOTTO_RANGE) }
+	}
+
+	fun getLotto() = numbers
 }
