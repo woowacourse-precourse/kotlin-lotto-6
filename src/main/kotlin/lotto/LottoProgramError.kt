@@ -19,4 +19,8 @@ class LottoProgramError {
             if (it > 45 || it < 1) throw IllegalArgumentException()
         }
     }
+
+    fun checkBonusNumberRange(bonusNumber: Int) {
+        if (bonusNumber > 45 || bonusNumber < 1) throw IllegalArgumentException()
+    }
 }
