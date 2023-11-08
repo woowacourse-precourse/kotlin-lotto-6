@@ -15,7 +15,8 @@ class BonusValidation(private val lotto: List<Int>, private val bonus: String) {
     }
 
     private fun validateBonusNumber() {
-        require(bonus.matches(Regex("[0-9]"))) {
+        val length = bonus.length
+        require(bonus.matches(Regex("[0-9]{$length}"))) {
             "[ERROR] 숫자만 입력해주세요."
         }
     }

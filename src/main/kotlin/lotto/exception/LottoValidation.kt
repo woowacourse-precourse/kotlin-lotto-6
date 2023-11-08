@@ -27,7 +27,8 @@ class LottoValidation(private val lotto: String) {
 
     private fun validateLottoNumber() {
         repeat(input.size) {
-            require(input[it].matches(Regex("[0-9]"))) {
+            val length = input[it].length
+            require(input[it].matches(Regex("[0-9]{$length}"))) {
                 "[ERROR] 숫자만 입력해주세요."
             }
         }

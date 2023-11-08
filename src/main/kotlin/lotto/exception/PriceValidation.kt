@@ -21,7 +21,8 @@ class PriceValidation(private val price: String) {
     }
 
     private fun validatePriceNumber() {
-        require(price.matches(Regex("[0-9]"))) {
+        val length = price.length
+        require(price.matches(Regex("[0-9]{$length}"))) {
             "[ERROR] 숫자만 입력해주세요."
         }
     }
