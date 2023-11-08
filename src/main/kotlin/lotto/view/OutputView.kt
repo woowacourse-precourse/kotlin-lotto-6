@@ -13,6 +13,7 @@ class OutputView {
 
     fun printPurchaseLottoQuantity(quantity: Int) {
         println(String.format(PURCHASE_LOTTO_QUANTITY_MESSAGE, quantity))
+        print(BLANK_LINE)
     }
 
     fun printLotto(lotto: List<Lotto>) {
@@ -42,6 +43,7 @@ class OutputView {
     }
 
     companion object {
+        private const val BLANK_LINE = "\n"
         private const val INPUT_MONEY_MESSAGE = "구입 금액을 입력해 주세요."
         private const val PURCHASE_LOTTO_QUANTITY_MESSAGE = "%d개를 구매했습니다."
         private const val INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요."
@@ -50,5 +52,4 @@ class OutputView {
         private const val SEPARATOR = "---"
         private const val TOTAL_REVENUE_MESSAGE = "총 수익률은 %s%%입니다."
     }
-
 }
