@@ -1,9 +1,9 @@
-package view
+package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
-import domain.amount.Amount
-import domain.lotto.BonusNumber
-import domain.lotto.WinningNumber
+import lotto.amount.Amount
+import lotto.lottonumber.BonusNumber
+import lotto.lottonumber.WinningNumber
 
 
 class InputView {

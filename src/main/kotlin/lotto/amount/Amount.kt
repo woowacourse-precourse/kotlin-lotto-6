@@ -1,4 +1,4 @@
-package domain.amount
+package lotto.amount
 
 class Amount(private val amount: String) {
 

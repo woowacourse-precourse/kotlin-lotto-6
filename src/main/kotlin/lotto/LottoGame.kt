@@ -1,7 +1,9 @@
-import domain.machine.LottoMachine
-import view.InputView
-import view.OutputView
-import domain.winningdetail.Profit
+package lotto
+
+import lotto.machine.LottoMachine
+import lotto.view.InputView
+import lotto.view.OutputView
+import lotto.winningdetail.Profit
 
 class LottoGame {
 

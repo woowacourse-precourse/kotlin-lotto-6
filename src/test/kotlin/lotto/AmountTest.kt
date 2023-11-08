@@ -1,6 +1,6 @@
 package lotto
 
-import domain.amount.Amount
+import lotto.amount.Amount
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource

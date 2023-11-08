@@ -1,7 +1,7 @@
-package domain.machine
+package lotto.machine
 
-import domain.winningdetail.Jackpot
-import view.OutputView
+import lotto.winningdetail.Jackpot
+import lotto.view.OutputView
 
 class LottoMachine(private val amount: String = "") {
 
