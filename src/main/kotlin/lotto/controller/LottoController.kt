@@ -17,8 +17,8 @@ class LottoController(
 
     fun run() {
         val purchaseAmount = buyLotto()
-        val answerAmount = inputAnswerNumLoop()
-        val bonusNum = inputBonusNumLoop()
+        val answerAmount = inputAnswerLoop()
+        val bonusNum = inputBonusLoop()
 
         lottoStatics = LottoStatics(lottoManager)
         printResult(answerAmount, bonusNum, purchaseAmount)
@@ -26,7 +26,7 @@ class LottoController(
     }
 
 
-    private fun inputPurchaseAmountLoop(): Int {
+    private fun inputPurchaseLoop(): Int {
         while (true) {
             try {
                 return Validation.getPurchaseAmount(userInput.getPurchaseAmount())
@@ -37,7 +37,7 @@ class LottoController(
         }
     }
 
-    private fun inputAnswerNumLoop(): List<Int> {
+    private fun inputAnswerLoop(): List<Int> {
         while (true) {
             try {
                 return Validation.getAnswerNumber(userInput.getAnswerNumber())
@@ -48,7 +48,7 @@ class LottoController(
         }
     }
 
-    private fun inputBonusNumLoop(): Int {
+    private fun inputBonusLoop(): Int {
         while (true) {
             try {
                 return Validation.getBonusNum(userInput.getBonusNum())
@@ -60,7 +60,7 @@ class LottoController(
     }
 
     private fun buyLotto(): Int {
-        val purchaseAmount = inputPurchaseAmountLoop()
+        val purchaseAmount = inputPurchaseLoop()
         lottoManager = LottoManager(purchaseAmount)
         lottoManager.create()
         output.printLottoesNum(lottoManager.lottoes)
