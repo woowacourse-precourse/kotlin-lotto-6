@@ -98,9 +98,8 @@ fun checkResults(lotteries: List<Lotto>, wonNums: Set<Int>, bonusNum: Int): Map<
         val matchCount = lotto.getNumbers().count { it in wonNums } // 당첨 번호와 일치 개수
         val matchBonus = bonusNum in lotto.getNumbers() // 보너스 번호 포함 여부
         val rank = Rank.valueOf(matchCount, matchBonus) // 일치 번호와 보너스 번호 여부
-        if (rank != Rank.None) { // 번호가 2개 이하로 일치하는 경우
-            results[rank] = results.getOrDefault(rank, 0) + 1
-        }
+        // 번호가 2개 이하로 일치하는 경우
+        results[rank] = results.getOrDefault(rank, 0) + 1
     }
     return results
 }
@@ -117,7 +116,7 @@ fun printStatistics(lottoResults: Map<Rank, Int>): List<String> {
     rankPrint.forEach { rank ->
         val count = lottoResults[rank] ?: 0
         val resultString = rankResult(rank)
-        printStat.add("$printStat - $count 개")
+        printStat.add("$resultString - $count 개")
     }
     return printStat
 }
