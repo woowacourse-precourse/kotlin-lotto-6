@@ -5,6 +5,9 @@ class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
         require(numbers.distinct().size == 6)
+        for (i in numbers) {
+            require(i > 0 && i < 46)
+        }
     }
 
     fun getLotto(): List<Int> {
@@ -14,8 +17,6 @@ class Lotto(private val numbers: List<Int>) {
 
 object LottoFactory {
     fun createLotto(numbers: List<Int>): Lotto {
-        require(numbers.size == 6)
-        require(numbers.distinct().size == 6)
         return Lotto(numbers)
     }
 }
