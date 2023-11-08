@@ -21,6 +21,7 @@ class LottoController(
         val bonusNum = inputBonusNumLoop()
 
         lottoStatics = LottoStatics(lottoManager)
+        printResult(answerAmount, bonusNum, purchaseAmount)
 
     }
 
@@ -67,5 +68,17 @@ class LottoController(
         return purchaseAmount
     }
 
+    private fun printResult(
+        answerAmount: List<Int>,
+        bonusNum: Int,
+        purchaseAmount: Int
+    ) {
+        val winStatics =
+            lottoStatics.getWinStatics(answerAmount, bonusNum)
+        val totalReturn = lottoStatics.getTotalReturn()
+
+        output.printWinStatics(winStatics)
+        output.printTotalReturn(totalReturn, purchaseAmount)
+    }
 
 }
