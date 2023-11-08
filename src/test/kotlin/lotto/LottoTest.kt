@@ -21,6 +21,7 @@ class LottoTest {
         }
     }
 
+    // 아래에 추가 테스트 작성 가능
     @Test
     fun `로또 번호에 올바르지 않은 범위의 숫자가 있으면 예외가 발생한다(45초과)`() {
         assertThrows<IllegalArgumentException> {
@@ -67,6 +68,13 @@ class LottoTest {
     }
 
     @Test
+    fun `당첨 번호와 보너스 번호에 중복되는 숫자가 있으면 예외가 발생한다`() {
+        assertThrows<IllegalStateException> {
+            InputValidator.validateBonusNumber("1", listOf(1, 2, 3, 4, 5, 6))
+        }
+    }
+
+    @Test
     fun `등수 산정 테스트_1`() {
         val lottos = listOf(
             Lotto(listOf(1, 2, 3, 4, 5, 6)),
@@ -108,5 +116,4 @@ class LottoTest {
         assertEquals(1, matchedCounts[5])
     }
 
-    // 아래에 추가 테스트 작성 가능
 }

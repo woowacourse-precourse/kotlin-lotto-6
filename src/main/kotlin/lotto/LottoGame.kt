@@ -21,12 +21,27 @@ class LottoGame() {
         return lottoCount
     }
 
-    private fun generateLottos(count: Int) :List<Lotto>{
-        return List(count) {
-            val lotto = Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6))
-            println(lotto)
-            lotto
+    private fun generateUniqueLotto(): Lotto {
+        var lotto: Lotto? = null
+        while (lotto == null) {
+            try {
+                val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                lotto = Lotto(numbers)
+            } catch (e: Exception) {
+                println("[ERROR] ${e.message}")
+            }
         }
+        return lotto
+    }
+
+    private fun generateLottos(count: Int): List<Lotto> {
+        val lottoList = mutableListOf<Lotto>()
+        repeat(count) {
+            val lotto = generateUniqueLotto()
+            lottoList.add(lotto)
+            println(lotto)
+        }
+        return lottoList
     }
 
     private fun getPurchaseAmount(): String {
@@ -38,7 +53,7 @@ class LottoGame() {
                 InputValidator.validatePurchaseAmount(userInput)
                 break
             }
-            catch (e: IllegalArgumentException) {
+            catch (e: Exception) {
                 println("[ERROR] ${e.message}")
             }
         }
@@ -58,7 +73,7 @@ class LottoGame() {
                 InputValidator.validateWinningNumber(userInput)
                 break
             }
-            catch (e: IllegalArgumentException) {
+            catch (e: Exception) {
                 println("[ERROR] ${e.message}")
             }
         }
