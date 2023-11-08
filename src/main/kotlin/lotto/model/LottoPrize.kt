@@ -1,15 +1,24 @@
 package lotto.model
 
-enum class LottoMatchNum(val matchingNum: Int) {
+enum class LottoMatchNum(val matchingNum: Int?) {
     THREE_MATCH(3),
     FOUR_MATCH(4),
     FIVE_MATCH(5),
     FIVE_PLUS_BONUS(5),
-    SIX_MATCH(6)
+    SIX_MATCH(6),
+    EXTRA(null),
+    ERROR(null);
+
+    companion object {
+        fun fromValue(value: Int): LottoMatchNum {
+            return values().firstOrNull { it.matchingNum == value } ?: ERROR
+        }
+    }
 }
 
 class LottoPrize {
     val winningsPrizeMap: Map<LottoMatchNum, Int> = mapOf(
+        LottoMatchNum.EXTRA to 0,
         LottoMatchNum.THREE_MATCH to 5000,
         LottoMatchNum.FOUR_MATCH to 50000,
         LottoMatchNum.FIVE_MATCH to 1500000,
