@@ -11,15 +11,15 @@ class LottoProfit {
         FIRST_REWARD, SECOND_REWARD, THIRD_REWARD, FOURTH_REWARD, FIFTH_REWARD
     )
 
-    fun calculateTotal(rank: List<Int>, amount: Int): Double {
+    fun calculateTotal(rank: List<Int>): Double {
         var totalReward = 0.0
         for (index in rank.indices) {
             val count = rank[index]
             val reward = rewards[index]
             totalReward += count * reward
         }
-        val profit = calculateProfit(totalReward, amount)
-        return profit
+
+        return totalReward
     }
 
     fun calculateProfit(totalReward: Double, amount: Int): Double {

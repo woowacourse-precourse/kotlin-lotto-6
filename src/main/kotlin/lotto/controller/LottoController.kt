@@ -62,7 +62,8 @@ class LottoController() {
     }
 
     fun startLottoProfit(rank: List<Int>, amount: Int) {
-        val profit = LottoProfit().calculateTotal(rank, amount)
+        val total = LottoProfit().calculateTotal(rank)
+        val profit = LottoProfit().calculateProfit(total, amount)
         LottoProfitView.printLottoProfit(profit)
     }
 
