@@ -3,9 +3,9 @@ package lotto.controller
 import camp.nextstep.edu.missionutils.Console
 import lotto.Lotto
 import lotto.Lotto.Companion.LOTTO_PRICE_PER_GAME
-import lotto.MoneyUtils
 import lotto.domain.WinningLotto
 import lotto.presentation.InputBonusNumber
+import lotto.presentation.InputMoney
 import lotto.presentation.InputWinningNumber
 import lotto.presentation.LottoGameView
 import lotto.toDecimalFormat
@@ -56,7 +56,7 @@ class LottoGameController {
         while (!isValid) {
             try {
                 inputMoney = Console.readLine()
-                MoneyUtils.validateInputMoney(inputMoney)
+                InputMoney.validateInputMoney(inputMoney)
                 isValid = true
             } catch (exception: IllegalArgumentException) {
                 lottoGameView.printErrorMessage(exception.message)

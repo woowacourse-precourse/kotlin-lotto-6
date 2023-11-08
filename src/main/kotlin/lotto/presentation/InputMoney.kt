@@ -1,10 +1,11 @@
-package lotto
+package lotto.presentation
 
+import lotto.Lotto
 import lotto.exception.NonDivisibleLottoPurchaseAmountException
 import lotto.exception.NonNumberLottoPurchaseAmountException
 import lotto.exception.NonPositiveLottoPurchaseAmountException
 
-class MoneyUtils {
+class InputMoney {
     companion object {
         fun validateInputMoney(input: String) {
             validateInputMoneyIsNumber(input)
