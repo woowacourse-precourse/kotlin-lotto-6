@@ -26,7 +26,7 @@ class PurchasedLottoList {
 
     private fun printPurchasedLottoList() {
         for(i in 0 until purchasedLottoList.size) {
-            println("${purchasedLottoList[i].getNumbersList()}")
+            println("${purchasedLottoList[i].getNumbers()}")
         }
     }
 

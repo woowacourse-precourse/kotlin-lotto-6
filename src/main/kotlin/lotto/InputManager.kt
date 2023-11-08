@@ -3,11 +3,14 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 
 const val ONE_LOTTO_PRICE = 1000
+const val MIN_NUMBER = 1
+const val MAX_NUMBER = 45
+const val LOTTO_SIZE = 6
 
 class InputManager {
     private lateinit var winningNumber: List<String>
     private var inputMoney: Int = ONE_LOTTO_PRICE
-    private var bonusNumber: Int = 1
+    private var bonusNumber: Int = MIN_NUMBER
 
     fun playerInsertMoney() : Int{
         setInputMoney()
@@ -68,21 +71,22 @@ class InputManager {
         }
     }
     private fun checkWinningNumberRange() {
-        if(winningNumber.size != 6) {
+        if(winningNumber.size != LOTTO_SIZE) {
             throw IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.")
         }
-        if (winningNumber.toSet().size != 6) {
+        if (winningNumber.toSet().size != LOTTO_SIZE) {
             throw IllegalArgumentException("[ERROR] 중복되는 수는 넣을 수 없습니다.")
         }
+        winningNumber.toList()
         for(i in winningNumber.indices) {
-            if(winningNumber[i].toInt() !in 1..45) {
+            if(winningNumber[i].toInt() !in MIN_NUMBER..MAX_NUMBER) {
                 throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
             }
         }
     }
 
     private fun checkBonusNumberRange() {
-        if(bonusNumber !in 1..45) {
+        if(bonusNumber !in MIN_NUMBER..MAX_NUMBER) {
             throw IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자입니다.")
         }
     }
