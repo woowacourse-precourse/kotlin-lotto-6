@@ -39,7 +39,7 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 
-    fun findMatch(winningNumbers: List<Int>) : Int {
+    private fun findMatch(winningNumbers: List<Int>) : Int {
         var matchNumbers = 0
         winningNumbers.forEach {
             if(numbers.contains(it)) matchNumbers++

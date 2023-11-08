@@ -57,7 +57,7 @@ class LottoController {
         lottoOutput.printWinningResult(winningList)
         println(WinningRate.RESULT_RATE.message.format(rate))
     }
-    fun getWinningList(lottoList: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): Map<Int, Int> {
+    private fun getWinningList(lottoList: List<Lotto>, winningNumbers: List<Int>, bonusNumber: Int): Map<Int, Int> {
         val rankCounts = mutableMapOf(1 to 0, 2 to 0, 3 to 0, 4 to 0, 5 to 0, 6 to 0)
 
         for (lotto in lottoList) {
@@ -69,7 +69,7 @@ class LottoController {
     }
 
 
-    fun getTotalPrice(winningList: Map<Int, Int>): Double {
+    private fun getTotalPrice(winningList: Map<Int, Int>): Double {
         var totalWinningPrice = 0.0
         for (i in 1..<6) {
             totalWinningPrice += getWinningPrice(i).price * winningList[i]!!
