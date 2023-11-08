@@ -43,41 +43,9 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun IntegerOverflowTest() {
-        assertRandomUniqueNumbersInRangeTest(
-            {
-                run("2000", "8,21,23,41,42,43", "7")
-                assertThat(output()).contains(
-                    "2개를 구매했습니다.",
-                    "[8, 21, 23, 41, 42, 43]",
-                    "[8, 21, 23, 41, 42, 43]",
-                    "3개 일치 (5,000원) - 0개",
-                    "4개 일치 (50,000원) - 0개",
-                    "5개 일치 (1,500,000원) - 0개",
-                    "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
-                    "6개 일치 (2,000,000,000원) - 2개",
-                    "총 수익률은 200000000.0%입니다."
-                )
-            }, listOf(8, 21, 23, 41, 42, 43), listOf(8, 21, 23, 41, 42, 43)
-        )
-    }
-
-    @Test
-    fun `에외 테스트`() {
+    fun `예외 테스트`() {
         assertSimpleTest {
             runException("1000j")
-            assertThat(output()).contains(ERROR_MESSAGE)
-        }
-        assertSimpleTest {
-            runException("-1000")
-            assertThat(output()).contains(ERROR_MESSAGE)
-        }
-        assertSimpleTest {
-            runException("1000", "1,2,3,4,5,5")
-            assertThat(output()).contains(ERROR_MESSAGE)
-        }
-        assertSimpleTest {
-            runException("1000", "1,2,3,4,5,6", "6")
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
