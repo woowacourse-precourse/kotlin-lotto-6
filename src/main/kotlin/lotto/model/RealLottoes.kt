@@ -27,6 +27,6 @@ class RealLottoes(private val userNumbers: Set<Int>, private val bonusNumber: In
     }
 
     override fun getTotalProfit(): Profit {
-        return Profit()
+        return Profit(0)
     }
 }

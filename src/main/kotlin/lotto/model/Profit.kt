@@ -1,6 +1,6 @@
 package lotto.model
 
-class Profit {
+data class Profit(val amount: Int) {
 
     private fun getTotalProfit() {
 

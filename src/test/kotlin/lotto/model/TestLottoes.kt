@@ -19,8 +19,7 @@ class TestLottoes(private val userNumbers: Set<Int>, private val bonusNumber: In
         return lottoesResult
     }
 
-    override fun getTotalProfit(): Profit {
-        TODO("Not yet implemented")
-    }
+    override fun getTotalProfit(): Profit = Profit(0)
+
 
 }
