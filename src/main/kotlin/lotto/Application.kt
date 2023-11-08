@@ -17,6 +17,8 @@ fun main() {
     printLottoCount()
 
     generatorLottoRandomNumber()
+    printLottoRandomNumber()
+
 }
 
 private fun inputLottoPurchaseAmount() {
@@ -46,4 +48,8 @@ private fun generatorLottoRandomNumber() {
         val randomNumbers = pickUniqueNumbersInRange(1, 45, 6)
         lottoRandomNumber.add(randomNumbers.sorted())
     }
+}
+
+private fun printLottoRandomNumber() {
+    lottoRandomNumber.forEach { println(it) }
 }
