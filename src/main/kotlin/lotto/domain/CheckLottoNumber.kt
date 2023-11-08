@@ -26,7 +26,7 @@ class CheckLottoNumber(
         return winningCount
     }
 
-    private fun getMatchNumberCount(lotto: Lotto): Int =
+    fun getMatchNumberCount(lotto: Lotto): Int =
         getMatchWinningNumberCount(lotto) + getMatchBonusNumber(lotto)
 
 
@@ -52,7 +52,7 @@ class CheckLottoNumber(
             winningCount.getOrDefault(stat, LOTTO_WINNING_COUNT_DEFAULT_VALUE) + LOTTO_WINNING_COUNT_ADD_ONE
     }
 
-    private fun checkBonusNumberMatch(lotto: Lotto): Boolean = lotto.getLottoNumbers().contains(bonusNumber)
+    fun checkBonusNumberMatch(lotto: Lotto): Boolean = lotto.getLottoNumbers().contains(bonusNumber)
 
     companion object {
         const val LOTTO_MATCH_COUNT_MIN = 0
