@@ -10,20 +10,16 @@ class LottoInputManager {
     private var _lottoNums = LottoNums(emptyList(),0)
     val split = ","
 
-    init {
-        _lottoNums.lottoNums = inputToInt()
-        _lottoNums.bonusNum = bonusToInt()
-    }
 
     fun getLottoNums() : LottoNums {
         return  _lottoNums
     }
 
-    private fun inputToInt() : List<Int> {
+    fun inputToInt()  {
 
         println(ConstString.INPUT_LOTTO_NUM)
         val inputLottoNums = Console.readLine()
-        if (!checkInputLottoNums(inputLottoNums)) return inputToInt()
+        if (!checkInputLottoNums(inputLottoNums)) inputToInt()
 
         val nums = inputLottoNums?.split(split)
         var checkNum: Int?
@@ -33,11 +29,11 @@ class LottoInputManager {
             checkNum = num.toInt()
             numsList.add(checkNum!!)
         }
-        if (!checkDuplicateNums(numsList)) return inputToInt()
+        if (!checkDuplicateNums(numsList)) inputToInt()
 
-        return numsList
+       _lottoNums.lottoNums = numsList
     }
-    private fun checkInputLottoNums(inputLottoNums: String?) : Boolean {
+     fun checkInputLottoNums(inputLottoNums: String?) : Boolean {
 
         return try {
             val nums = inputLottoNums?.split(split)
@@ -58,7 +54,7 @@ class LottoInputManager {
 
     }
 
-    private fun checkDuplicateNums(nums : List<Int>) : Boolean{
+    fun checkDuplicateNums(nums : List<Int>) : Boolean{
 
         return try{
             if(nums.distinct().size != 6) throw IllegalArgumentException()
@@ -69,12 +65,12 @@ class LottoInputManager {
         }
     }
 
-    private fun bonusToInt() : Int{
+   fun bonusToInt()  {
         println(ConstString.INPUT_BONUS_NUM)
         val bonus = Console.readLine()
         if(!checkBonusNums(bonus) || !checkBonusDuplicated(bonus!!.toInt()))  bonusToInt()
 
-        return bonus.toInt()
+        _lottoNums.bonusNum = bonus.toInt()
     }
 
     private fun checkBonusNums(bonusNum : String?) : Boolean {

@@ -15,21 +15,16 @@ class Customer {
     val lottoNumsList= _lottoNumsList
 
     private var order = 1
-    init {
-        _lottoAmounts = inputToInt()
 
-        produceLottoList()
-    }
-
-
-    private fun inputToInt() : Int {
+    fun inputToInt() {
         println(ConstString.INPUT_LOTTO_AMOUNT)
         val inputCount  = Console.readLine()
         if(!checkInputCount(inputCount)) inputToInt()
 
-        return inputCount.toInt()
+        _lottoAmounts = inputCount.toInt()
     }
-    private fun checkInputCount(input: String) : Boolean {
+
+    fun checkInputCount(input: String) : Boolean {
         return try {
             require( input.toIntOrNull()!=null && input.toInt() % 1000 == 0,{ ErrorMessage.ERROR_LOTTO_AMOUNTS })
             true
@@ -48,7 +43,7 @@ class Customer {
 
     }
 
-    private fun produceLottoList() {
+     fun produceLottoList() {
 
         _purchaseCounts = _lottoAmounts / 1000
 

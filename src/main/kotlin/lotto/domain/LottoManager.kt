@@ -18,6 +18,9 @@ class LottoManager {
 
         val customer = Customer()
 
+        customer.inputToInt()
+        customer.produceLottoList()
+
         lottoAmount = customer.getPurchaseAmounts()
         lottoCounts = customer.getPurchaseCounts()
         lottoNumsList = customer.lottoNumsList
@@ -26,6 +29,8 @@ class LottoManager {
         lottoCustomerScreen.printLottoNumsList()
 
         val inputManager = LottoInputManager()
+        inputManager.inputToInt()
+        inputManager.bonusToInt()
         lottoNums = inputManager.getLottoNums()
 
         val outputManager = LottoOutputManager()
