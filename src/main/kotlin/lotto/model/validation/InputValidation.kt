@@ -1,5 +1,7 @@
 package lotto.model.validation
 
+import lotto.model.Lotto
+
 class InputValidation {
     fun validateLottoPurchaseAmount(amount: String): Int {
         var lottoAmountNum = parseToInt(amount)
@@ -8,14 +10,6 @@ class InputValidation {
         isLottoPurchaseAmountNotPositive(lottoAmountNum)
 
         return lottoAmountNum
-    }
-
-    private fun parseToInt(input: String): Int {
-        return try {
-            input.toInt()
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException(IS_NOT_NUMBER_ERROR)
-        }
     }
 
     private fun isLottoPurchaseAmountDivisibleByThousand(amount: Int) {
@@ -30,9 +24,10 @@ class InputValidation {
         require(amount > 0) { INPUT_NEGATIVE_AMOUNT_ERROR }
     }
 
-    fun validateInputLottoNum(inputNumbers: String) {
+    fun validateInputWinningLottoNum(inputNumbers: String): Lotto {
         var trimmedInputNum = removeSpaces(inputNumbers)
         validateCommaSeparatedNumbers(trimmedInputNum)
+        return Lotto(trimmedInputNum.split(",").map { it.toInt() })
     }
 
     private fun removeSpaces(input: String): String {
@@ -41,8 +36,22 @@ class InputValidation {
 
     private fun validateCommaSeparatedNumbers(inputNumbers: String) {
         val numbersRegex = Regex("^(\\d+,)*\\d+$")
-
         require(numbersRegex.matches(inputNumbers)) { SEPARATE_BY_COMMA_ERROR }
+    }
+
+    fun validateInputBonusNum(inputBonusNum: String): Int {
+        var lottoBonusNum = parseToInt(inputBonusNum)
+        isLottoPurchaseAmountNotZero(lottoBonusNum)
+        isLottoPurchaseAmountNotPositive(lottoBonusNum)
+        return lottoBonusNum
+    }
+
+    private fun parseToInt(input: String): Int {
+        return try {
+            input.toInt()
+        } catch (e: NumberFormatException) {
+            throw IllegalArgumentException(IS_NOT_NUMBER_ERROR)
+        }
     }
 
     companion object {

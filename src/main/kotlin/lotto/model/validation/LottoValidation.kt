@@ -9,6 +9,10 @@ class LottoNumValidation {
         checkLottoNumRange(input)
     }
 
+    fun validateBonusLottoNum(input: Int) {
+        checkLottoNumRange(mutableListOf(input))
+    }
+
     private fun checkLottoNumSize(input: List<Int>) {
         require(input.size == 6) { LOTTO_NUM_SIZE_ERROR }
     }
