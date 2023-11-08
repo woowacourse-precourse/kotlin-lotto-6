@@ -6,14 +6,6 @@ import lotto.data.Stats
 
 class IO private constructor() {
 
-    private fun show(content: String, lineBreak: Boolean) {
-        print(content)
-
-        if (lineBreak) {
-            println()
-        }
-    }
-
     fun getPurchaseAmount(): UInt {
         show(INPUT_AMOUNT_OF_PURCHASING, true)
 
@@ -56,6 +48,14 @@ class IO private constructor() {
     fun showStats(stats: Stats) {
         show(EMPTY_TEXT_FOR_LINE_BREAK, true)
         show(stats.toString(), false)
+    }
+
+    private fun show(content: String, lineBreak: Boolean) {
+        print(content)
+
+        if (lineBreak) {
+            println()
+        }
     }
 
     private fun getInput() = Console.readLine()
