@@ -6,20 +6,17 @@ enum class LottoMatchNum(val matchingNum: Int) {
     FIVE_MATCH(5),
     FIVE_PLUS_BONUS(51),
     SIX_MATCH(6),
-    EXTRA(0),
-    ERROR(0);
+    EXTRA(-1);
 
     companion object {
         fun fromValue(value: Int): LottoMatchNum {
-            return values().firstOrNull { it.matchingNum == value } ?: ERROR
+            return values().firstOrNull { it.matchingNum == value }?:EXTRA
         }
     }
 }
 
 class LottoPrize {
     val winningsPrizeMap: Map<LottoMatchNum, Int> = mapOf(
-        LottoMatchNum.EXTRA to 0,
-        LottoMatchNum.ERROR to 0,
         LottoMatchNum.THREE_MATCH to 5000,
         LottoMatchNum.FOUR_MATCH to 50000,
         LottoMatchNum.FIVE_MATCH to 1500000,

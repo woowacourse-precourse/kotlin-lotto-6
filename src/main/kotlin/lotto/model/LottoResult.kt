@@ -18,7 +18,10 @@ class LottoResult {
     fun getMatchingLottoResult(): MutableMap<LottoMatchNum, Int> = matchingLottoResult
     fun getTotalLottoRateOfReturn(): Double = totalLottoRateOfReturn
     fun setMatchingLottoResult(lottoMatchNum: LottoMatchNum) {
-        matchingLottoResult[lottoMatchNum] = matchingLottoResult[lottoMatchNum]!! + 1
+        if (matchingLottoResult.containsKey(lottoMatchNum)) {
+            val currentValue = matchingLottoResult[lottoMatchNum]
+            matchingLottoResult[lottoMatchNum] = currentValue!! + 1
+        }
     }
 
     fun calculateTotalLottoPrize() {
@@ -32,9 +35,8 @@ class LottoResult {
         }
     }
 
-    fun calculateLottoReturnOfRate(total: Int, lottoPurchaseMount: Int) {
-        totalLottoRateOfReturn =
-            roundNumber((1 + ((total - lottoPurchaseMount).toDouble() / lottoPurchaseMount)) * 100)
+    fun calculateLottoReturnOfRate(lottoPurchaseMount: Int) {
+        totalLottoRateOfReturn = roundNumber((1 + ((totalLottoPrize - lottoPurchaseMount).toDouble() / lottoPurchaseMount)) * 100)
     }
 
     private fun roundNumber(num: Double): Double {
