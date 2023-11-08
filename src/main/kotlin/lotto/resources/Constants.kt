@@ -28,10 +28,10 @@ object Lotto {
 }
 
 object Error {
-    const val CANT_BUY_ERROR = "\n[ERROR] 1,000원 미만으로는 로또를 구매하실 수 없습니다."
-    const val NOT_INT_ERROR = "\n[ERROR] 정수만 입력할 수 있습니다."
-    const val NOT_IN_LOTTO_RANGE_ERROR = "\n[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."
-    const val CANT_CONTAIN_WINNING_NUMBER_ERROR ="\n[ERROR] 당첨 번호와 겹치는 숫자는 입력할 수 없습니다."
-    const val MISMATCHED_UNIT_ERROR = "\n[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다."
-    const val WINNING_NUMBER_SIZE_ERROR = "\n[ERROR] 당첨 번호는 총 6개여야 합니다."
+    const val CANT_BUY_ERROR = "[ERROR] 1,000원 미만으로는 로또를 구매하실 수 없습니다."
+    const val NOT_INT_ERROR = "[ERROR] 정수만 입력할 수 있습니다."
+    const val NOT_IN_LOTTO_RANGE_ERROR = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."
+    const val CANT_CONTAIN_WINNING_NUMBER_ERROR ="[ERROR] 당첨 번호와 겹치는 숫자는 입력할 수 없습니다."
+    const val MISMATCHED_UNIT_ERROR = "[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다."
+    const val WINNING_NUMBER_SIZE_ERROR = "[ERROR] 당첨 번호는 총 6개여야 합니다."
 }
