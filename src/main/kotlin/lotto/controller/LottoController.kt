@@ -1,6 +1,7 @@
 package lotto.controller
 
 import lotto.domain.*
+import lotto.utils.Constant.LOTTO_PRICE
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -20,15 +21,14 @@ class LottoController(
         WinningRank.SIX_MATCHES to DEFAULT_COUNT
     )
 
-    // start 파라미터에 player 추가 예정
     fun start() {
         val money = getPurchaseMoney()
         val player = Player(money)
         val purchaseQuantity = money.value.div(LOTTO_PRICE)
         printPurchaseLottoQuantity(purchaseQuantity)
         val playerLotto = purchaseLotto(player)
-        val winningLotto = getWinningLotto()
-        val bonusNumber = getBonusNumber()
+
+        val (winningLotto, bonusNumber) = getWinningLottoAndBonusNumber()
         val playerLottoRank = getLottoRank(winningLotto, playerLotto, bonusNumber)
         printWinningRank(playerLottoRank)
         val revenue = calculateRevenue(player, playerLottoRank)
@@ -37,18 +37,11 @@ class LottoController(
 
     private fun getPurchaseMoney(): Money {
         outputView.printAskPurchaseMoney()
-        val money = inputView.inputMoney()
-        return Money(money)
+        return inputView.inputMoney()
     }
 
     private fun printPurchaseLottoQuantity(quantity: Int) {
         outputView.printPurchaseLottoQuantity(quantity)
-    }
-
-    private fun getBonusNumber(): LottoNumber {
-        outputView.printAskBonusNumber()
-        val number = inputView.inputBonusNumber()
-        return LottoNumber(number)
     }
 
     private fun purchaseLotto(player: Player): List<Lotto> {
@@ -61,10 +54,8 @@ class LottoController(
         outputView.printLotto(lotto)
     }
 
-    private fun getWinningLotto(): WinningLotto {
-        outputView.printAskWinningNumber()
-        val winningNumbers = inputView.inputWinningNumbers().map { LottoNumber(it) }
-        return WinningLotto(winningNumbers)
+    private fun getWinningLottoAndBonusNumber(): Pair<WinningLotto, LottoNumber> {
+        return inputView.inputWinningNumbersWithBonusNumber()
     }
 
     private fun getLottoRank(winningLotto: WinningLotto, playerLotto: List<Lotto>, bonusNumber: LottoNumber): Map<WinningRank, Int> {

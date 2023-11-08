@@ -2,46 +2,53 @@ package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.domain.LottoNumber
+import lotto.domain.Money
 import lotto.domain.WinningLotto
 import lotto.utils.ExceptionHandler
 
 class InputView {
+    private val outputView = OutputView()
 
-    fun inputMoney(): Int {
+    fun inputMoney(): Money {
         while (true) {
             try {
-                val money = Console.readLine().trim()
-                ExceptionHandler.isBlank(money)
-                ExceptionHandler.isDigit(money)
-                return money.toInt()
+                val input = Console.readLine().trim()
+                ExceptionHandler.isBlank(input)
+                ExceptionHandler.isDigit(input)
+                val money = Money(input.toInt())
+                return money
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
     }
 
-    fun inputWinningNumbers(): WinningLotto {
+    fun inputWinningNumbersWithBonusNumber(): Pair<WinningLotto, LottoNumber> {
         while (true) {
             try {
-                val winningNumbers = Console.readLine()
-                ExceptionHandler.winningNumbersIsDigit(winningNumbers)
-                val winningLotto = WinningLotto(winningNumbers.split(",").map { LottoNumber(it.toInt()) })
-                return winningLotto
+                val winningLotto = inputWinningNumber()
+                val bonusNumber = inputBonusNumber()
+                ExceptionHandler.checkBonusNumberIsDuplicate(winningLotto, bonusNumber)
+                return Pair(winningLotto, bonusNumber)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
     }
 
-    fun inputBonusNumber(): Int {
-        while (true) {
-            try {
-                val number = Console.readLine()
-                ExceptionHandler.isDigit(number)
-                return number.toInt()
-            } catch (e: IllegalArgumentException) {
-                println(e.message)
-            }
-        }
+    private fun inputWinningNumber(): WinningLotto {
+        outputView.printAskWinningNumber()
+        val input = Console.readLine()
+        ExceptionHandler.winningNumbersIsDigit(input)
+        val winningLotto = WinningLotto(input.split(",").map { LottoNumber(it.toInt()) })
+        return winningLotto
+    }
+
+    private fun inputBonusNumber(): LottoNumber {
+        outputView.printAskBonusNumber()
+        val input = Console.readLine()
+        ExceptionHandler.isDigit(input)
+        val bonusNumber = LottoNumber(input.toInt())
+        return bonusNumber
     }
 }
