@@ -4,6 +4,7 @@ import lotto.user.LottoPick
 import lotto.user.LottoPurchase
 import lotto.user.LottoBonusPick
 import lotto.model.Lotto
+import lotto.model.LottoCalculate
 import lotto.util.LottoGenerator
 
 class LottoManager {
@@ -13,6 +14,6 @@ class LottoManager {
         val prizeNumber = LottoPick().pickNumber()
         val bonusNumber = LottoBonusPick().bonusPickNumber(prizeNumber)
         val totalProfit = Lotto(prizeNumber).compareLotto(lottoNumbers, bonusNumber)
-        Lotto(prizeNumber).lottoProfit(cost, totalProfit)
+        LottoCalculate().lottoProfit(cost, totalProfit)
     }
 }

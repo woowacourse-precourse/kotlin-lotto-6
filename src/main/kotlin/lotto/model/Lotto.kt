@@ -62,15 +62,4 @@ class Lotto(private val numbers: List<Int>) {
         return lottoResult
     }
 
-    fun lottoProfit(invest: Int,totalResult: List<Int>) {
-        var profit = 0.0
-        profit += totalResult[0] * 2000000000
-        profit += totalResult[1] * 30000000
-        profit += totalResult[2] * 1500000
-        profit += totalResult[3] * 50000
-        profit += totalResult[4] * 5000
-        val profitMargin = profit / invest * 100
-        LottoView().totalRate(profitMargin)
-    }
-
 }
