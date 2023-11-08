@@ -13,7 +13,7 @@ object OutputConsole {
 
     fun printLottoTickets(lottoTickets: List<Lotto>) {
         with(lottoTickets) {
-            String.format(TICKET_QUANTITY_MESSAGE, size)
+            println(String.format(TICKET_QUANTITY_MESSAGE, size))
             forEach { println(it.toString()) }
         }
     }
