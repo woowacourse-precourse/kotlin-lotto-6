@@ -62,7 +62,6 @@ class LottoService {
                         result[2]++
                     }
                 }
-
                 6 -> result[4]++
                 else -> result[5]++
             }
@@ -72,6 +71,8 @@ class LottoService {
 
     fun calculateEarnRate(result: List<Int>): Any {
         val total = result.sum()
-        return (result[0] * 5000 + result[1] * 50000 + result[2] * 1500000 + result[3] * 30000000 + result[4] * 2000000000) / (total * 100)
+        val rate =
+            (result[0] * 5000 + result[1] * 50000 + result[2] * 1500000 + result[3] * 30000000 + result[4] * 2000000000).toDouble() / (total * 1000) * 100
+        return "%.2f".format(rate).toDouble()
     }
 }
