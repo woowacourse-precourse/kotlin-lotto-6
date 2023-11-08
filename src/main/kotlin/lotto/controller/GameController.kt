@@ -1,9 +1,6 @@
 package lotto.controller
 
-import lotto.domain.GameResult
-import lotto.domain.InputManager
-import lotto.domain.LottoManager
-import lotto.domain.MessageManager
+import lotto.domain.*
 import lotto.model.Lotto
 import lotto.model.WinningLotto
 
@@ -23,7 +20,7 @@ object GameController {
 
     fun startGame() {
         messenger.printInputPrice()
-        var number: Int = -1
+        var number = -1
         while (number == -1) number = inputManager.inputPurchaseCost()
         repeat(number) { lottoBundle.add(lottoManager.purchaseLotto()) }
         messenger.apply {
@@ -33,6 +30,7 @@ object GameController {
             println()
         }
     }
+
 
     fun settingWinningNumbers() {
         messenger.printInputLottoNumber()
@@ -52,30 +50,45 @@ object GameController {
             lottoManager.apply {
                 var currentGameResult = getMathResult(matchCount)
                 currentGameResult?.let { gameResult ->
-                    currentGameResult = if (isBonusResult(gameResult)) {
-                        getMathBonusResult(
-                            winningLotto
-                                .checkWinningBonusNumber(
-                                    lotto.changeLottoNumbersToSet()
-                                )
-                        )
-                    } else {
-                        gameResult
+                    currentGameResult =
+                        if (isBonusResult(gameResult)) {
+                            getMathBonusResult(
+                                winningLotto
+                                    .checkWinningBonusNumber(lotto.changeLottoNumbersToSet())
+                            )
+                        } else {
+                            gameResult
+                        }
+                    currentGameResult?.let {
+                        matchResults[it] = (matchResults[it] ?: 0) + 1
                     }
-                    matchResults[currentGameResult]?.plus(1)
                 }
-
             }
         }
     }
 
-    fun endGame(){
-        messenger.printLottoResult()
-        GameResult.entries.forEach {gameResult ->
-            matchResults[gameResult]?.let {
-                gameResult.getResultComment(it)
+    fun endGame() {
+        messenger.apply {
+            printLottoResult()
+            GameResult.entries.forEach { gameResult ->
+                matchResults[gameResult]?.let {
+                    printGameResult(gameResult.getResultComment(it))
+                }
             }
+            printTotalReturnRate(
+                lottoManager.calculateResult(
+                    getPurchasePrice(),
+                    getTotalProceeds()
+                )
+            )
         }
     }
+
+    private fun getPurchasePrice() = lottoBundle.size * LottoRule.PRICE.num
+
+    private fun getTotalProceeds(): Int =
+        GameResult.entries.sumOf {
+            (matchResults[it] ?: 0) * it.price
+        }
 
 }

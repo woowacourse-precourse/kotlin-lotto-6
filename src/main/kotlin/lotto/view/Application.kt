@@ -1,5 +1,12 @@
 package lotto.view
 
-fun main() {
+import lotto.controller.GameController
 
+fun main() {
+    GameController.apply {
+        startGame()
+        settingWinningNumbers()
+        matchWinningLotto()
+        endGame()
+    }
 }

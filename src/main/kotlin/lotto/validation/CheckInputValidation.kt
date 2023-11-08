@@ -23,14 +23,17 @@ class CheckInputValidation {
     }
 
     fun checkIsCorrectCost(cost: Int) {
-        require(cost % LottoRule.PRICE.num != 0) {
+        require(cost % LottoRule.PRICE.num == 0 &&
+                cost >= LottoRule.PRICE.num) {
             ErrorType.IS_INCORRECT_PURCHASE.message
         }
     }
 
     fun checkIsLottoNumber(number: String) {
-        require(number.toInt() in LottoRule.START_INCLUSIVE.num..
-                LottoRule.END_INCLUSIVE.num) {
+        require(
+            number.toInt() in LottoRule.START_INCLUSIVE.num..
+                    LottoRule.END_INCLUSIVE.num
+        ) {
             ErrorType.IS_INCORRECT_NUMBER.message
         }
     }
@@ -52,7 +55,7 @@ class CheckInputValidation {
         numbers: Set<Int>,
         bonusNumber: Int
     ) {
-        require(numbers.contains(bonusNumber)) {
+        require(!numbers.contains(bonusNumber)) {
             ErrorType.IS_CONTAIN_DUPLICATES.message
         }
     }

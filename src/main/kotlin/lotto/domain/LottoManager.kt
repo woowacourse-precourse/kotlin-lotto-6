@@ -7,11 +7,12 @@ class LottoManager {
 
     fun purchaseLotto(): Lotto = Lotto(makeRandomNumbers())
 
-    fun matchLotto(
-        matchResults: MutableMap<GameResult,Int>
-    ){
-
-    }
+    fun calculateResult(
+        purchasePrice: Int,
+        totalProceeds: Int
+    ): Double = String.format(
+        "%.1f",((totalProceeds.toDouble() / purchasePrice.toDouble())*100)
+    ).toDouble()
 
     fun getMathResult(matchCount: Int): GameResult? =
         GameResult.entries.find { it.matchNumber == matchCount }

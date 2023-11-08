@@ -13,7 +13,7 @@ class InputManager {
             val userInput = getUserInput()
             val cost = makePurchaseCost(userInput)
             checkInputValidation.checkIsCorrectCost(cost)
-            cost
+            getLottoCount(cost)
         } catch (e: IllegalArgumentException) {
             exceptionManager.printErrorMessage(e.message)
             -1
@@ -88,6 +88,8 @@ class InputManager {
         }
         return userInput.toInt()
     }
+
+    private fun getLottoCount(cost: Int): Int = cost.div(LottoRule.PRICE.num)
 
     companion object {
         private const val SPLIT_SEPARATOR = ","

@@ -15,6 +15,6 @@ class Lotto(private val numbers: List<Int>) {
 
     fun getLottoNumbers(): List<Int> = numbers
 
-    fun changeLottoNumbersToSet(): Set<Int> = numbers.toMutableSet()
+    fun changeLottoNumbersToSet(): Set<Int> = numbers.toSet()
 
 }
