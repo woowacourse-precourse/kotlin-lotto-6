@@ -9,10 +9,10 @@ import kotlin.NumberFormatException
 
 class InputView {
     private val inputValidator = InputValidator()
+    private var userInput : String = ""
     fun inputCost(): Int {
         while (true) {
-            println(INPUT_MESSAGE_COST)
-            val userInput = Console.readLine()
+            printMessageAndGetInput(INPUT_MESSAGE_COST)
 
             try {
                 inputValidator.checkCostInput(userInput)
@@ -29,8 +29,7 @@ class InputView {
 
     fun inputLottoNumbers(): List<Int> {
         while (true) {
-            println(INPUT_MESSAGE_LOTTO_NUMBERS)
-            val userInput = Console.readLine()
+            printMessageAndGetInput(INPUT_MESSAGE_LOTTO_NUMBERS)
 
             try {
                 inputValidator.checkLottoInput(userInput)
@@ -47,8 +46,7 @@ class InputView {
 
     fun inputBonusNumber(lottoList: List<Int>): Int {
         while (true) {
-            println(INPUT_MESSAGE_BONUS_NUMBER)
-            val userInput = Console.readLine()
+            printMessageAndGetInput(INPUT_MESSAGE_BONUS_NUMBER)
 
             try {
                 inputValidator.checkBonusInput(userInput, lottoList)
@@ -61,5 +59,10 @@ class InputView {
                 println(error.message)
             }
         }
+    }
+
+    private fun printMessageAndGetInput(string: String) {
+        println(string)
+        userInput = Console.readLine()
     }
 }
