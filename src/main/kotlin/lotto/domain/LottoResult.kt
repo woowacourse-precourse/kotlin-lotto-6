@@ -24,19 +24,25 @@ class LottoResult(private val lottos: List<Lotto>, private val winningNumberSet:
     }
 
     fun printResultStatistics() {
-        println("\n당첨 통계\n---")
+        println(RESULT_STATISTICS_HEADER)
         resultLottos.filterKeys { it != LottoRank.OUT_OF_RANK }.forEach { (key, value) ->
-            println("${key.toString()} - ${value}개")
+            println(RANK_MESSAGE_FORMAT.format(key.toString(), value))
         }
     }
 
-    fun computerProfit(cost: Int) :Double{
+    fun computeProfit(cost: Int): Double {
         val lottoProfit = (totalPrize.toDouble() / cost.toDouble()) * 100
         profit = "%.1f".format(lottoProfit).toDouble()
         return profit
     }
 
     fun printProfit() {
-        println("총 수익률은 $profit%입니다. ")
+        println(TOTAL_PROFIT_MESSAGE.format(profit))
+    }
+
+    companion object {
+        private const val RESULT_STATISTICS_HEADER = "\n당첨 통계\n---"
+        private const val RANK_MESSAGE_FORMAT = "%s - %d개"
+        private const val TOTAL_PROFIT_MESSAGE = "총 수익률은 %s%%입니다."
     }
 }

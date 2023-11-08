@@ -7,25 +7,25 @@ class WinningNumber {
     private var bonusNumber: Int = -1
 
     fun decideWinningNumbers() {
-        println("\n당첨 번호를 입력해 주세요.")
+        println(INPUT_WINNING_NUMBERS)
         winningNumbers = validateNumbers()
     }
 
     fun getWinningNumbers(): List<Int> {
         if (!::winningNumbers.isInitialized) {
-            throw UninitializedPropertyAccessException("당첨 번호들이 결정되지 않았습니다.")
+            throw UninitializedPropertyAccessException(INPUT_WINNING_NUMBERS_ERROR)
         }
         return winningNumbers
     }
 
     fun decideBonusNumber() {
-        println("\n보너스 번호를 입력해 주세요.")
+        println(INPUT_BONUS_NUMBER)
         bonusNumber = validateBonus()
     }
 
     fun getBonusNumber(): Int {
         if (bonusNumber == -1) {
-            throw UninitializedPropertyAccessException("보너스 번호가 결정되지 않았습니다.")
+            throw UninitializedPropertyAccessException(INPUT_BONUS_NUMBER_ERROR)
         }
         return bonusNumber
     }
@@ -42,7 +42,7 @@ class WinningNumber {
                 return enterNumbers.map { it!! }
 
             } catch (e: IllegalArgumentException) {
-                printErrorMessage(e.message ?: "[ERROR] Invalid input")
+                printErrorMessage(e.message ?: DEFAULT_ERROR)
             }
         }
     }
@@ -57,12 +57,20 @@ class WinningNumber {
 
                 return enterNumber
             } catch (e: IllegalArgumentException) {
-                printErrorMessage(e.message ?: "[ERROR] Invalid input")
+                printErrorMessage(e.message ?: DEFAULT_ERROR)
             }
         }
     }
 
     private fun printErrorMessage(message: String) {
         println(message)
+    }
+
+    companion object{
+        private const val INPUT_WINNING_NUMBERS = "\n당첨 번호를 입력해 주세요."
+        private const val INPUT_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요."
+        private const val INPUT_WINNING_NUMBERS_ERROR = "당첨 번호들이 결정되지 않았습니다."
+        private const val INPUT_BONUS_NUMBER_ERROR = "보너스 번호가 결정되지 않았습니다."
+        private const val DEFAULT_ERROR = "[ERROR] Invalid input"
     }
 }

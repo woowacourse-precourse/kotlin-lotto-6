@@ -6,7 +6,7 @@ class Store {
     private var cost: Int = 0
     private var totalSold: Int = 0
     fun payToBuy(): Int {
-        println("구입금액을 입력해 주세요.")
+        println(INPUT_COST_MESSAGE)
         cost = validatePayment()
         return totalSold
     }
@@ -25,13 +25,13 @@ class Store {
                 }
 
             } catch (e: IllegalArgumentException) {
-                printErrorMessage(e.message ?: "[ERROR] Invalid input")
+                printErrorMessage(e.message ?: DEFAULT_ERROR)
             }
         }
     }
 
     private fun printSuccessMessage(count: Int) {
-        println("\n${count}개를 구매했습니다.")
+        println(LOTTO_COUNT_MESSAGE.format(count))
     }
 
     private fun printErrorMessage(message: String) {
@@ -39,7 +39,14 @@ class Store {
     }
 
     private fun howManyLotto(money: Int): Int {
-        totalSold = money / 1000
+        totalSold = money / LOTTO_PRICE
         return totalSold
+    }
+
+    companion object {
+        private const val LOTTO_PRICE = 1000
+        private const val INPUT_COST_MESSAGE = "구입금액을 입력해 주세요."
+        private const val LOTTO_COUNT_MESSAGE = "\n%d개를 구매했습니다."
+        private const val DEFAULT_ERROR = "[ERROR] Invalid input"
     }
 }
