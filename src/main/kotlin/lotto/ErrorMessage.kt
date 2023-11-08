@@ -10,6 +10,6 @@ object ErrorMessage {
     const val LACK_OF_NUMBER = "당첨 번호 수가 모자랍니다. ${Constants.LOTTO_COUNT}개를 입력해야 합니다."
     const val INVALID_NUMBER = "입력은 숫자여야 합니다."
     fun print(message: String) {
-        println("[Error] $message")
+        println("[ERROR] $message")
     }
 }

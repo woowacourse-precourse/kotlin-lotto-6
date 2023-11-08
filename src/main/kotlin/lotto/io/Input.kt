@@ -11,6 +11,7 @@ import lotto.ErrorMessage.INVALID_LOTTO_RANGE
 import lotto.ErrorMessage.INVALID_NUMBER
 import lotto.ErrorMessage.LACK_OF_NUMBER
 import lotto.ErrorMessage.WINNING_NUMBER_INTERSECTED
+import java.lang.IllegalArgumentException
 
 object Input {
     private fun getInput(): String {
@@ -56,7 +57,7 @@ object Input {
         while (true) {
             ret = try {
                 inputFunction()
-            } catch (e: Exception) {
+            } catch (e: IllegalArgumentException) {
                 continue
             }
             break
