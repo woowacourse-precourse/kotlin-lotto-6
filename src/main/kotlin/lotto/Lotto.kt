@@ -1,9 +1,15 @@
 package lotto
 
+import lotto.view.OutputView
+
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
+        require(!isDuplicate())
+        OutputView().printLotto(numbers)
     }
 
-    // TODO: 추가 기능 구현
+    private fun isDuplicate() = numbers.distinct().size != numbers.size
+
+    fun getLottoNumbers(): List<Int> = numbers
 }
