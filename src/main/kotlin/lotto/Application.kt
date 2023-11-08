@@ -55,6 +55,9 @@ fun getWinningNumbers(): List<Int> {
         try {
             println("\n당첨 번호를 입력해 주세요.")
             val numbers = readNumbers()
+            if (numbers.size != 6) { throw IllegalArgumentException("[ERROR] 당첨 번호는 정확히 6개를 입력해야 합니다.") }
+            if (numbers.any { it < 1 || it > 45 }) { throw IllegalArgumentException("[ERROR] 당첨 번호는 1에서 45 사이의 숫자여야 합니다.") }
+            if (numbers.toSet().size != 6) { throw IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 있습니다. 다시 입력해 주세요.") }
             return numbers
         } catch (e: IllegalArgumentException) { println(e.message) }
     }
