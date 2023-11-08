@@ -6,7 +6,7 @@
 
 - [ ] 로또 구입 UI - LottoPurchaseView
   - [x] 구입금액 입력 요청 메시지 출력 기능
-  - [ ] 구입금액 입력 받는 기능
+  - [x] 구입금액 입력 받는 기능
 - [ ] 로또 발행 UI - LottoIssueView
   - [ ] 로또 수량 메시지 출력 기능
   - [ ] 로또 번호 출력 기능
@@ -19,6 +19,9 @@
 - 당첨 통계 UI - WinningStatisticsView
   - [ ] 당첨 내역 출력 기능
   - [ ] 수익률 출력 기능
+- 사용자가 잘못된 값을 입력할 경우의 UI - ExceptionView
+  - [ ] "[ERROR]"로 시작하는 `IllegalArgumentException` 에러 메시지 출력 기능
+
 
 ### 도메인 로직
 
@@ -43,7 +46,7 @@
 
 - 예외처리
   - (공통) 사용자가 잘못된 값을 입력할 경우
-    - [ ] "[ERROR]"로 시작하는 `IllegalArgumentException` 에러 메시지 출력 기능
+    - "[ERROR]"로 시작하는 `IllegalArgumentException` 에러 메시지 출력 기능
     - [ ] 그 부분부터 입력을 다시 받는 기능
   - 로또 구입
     - [ ] 로또 구입 금액이 1,000원으로 나누어 떨어지지 않는 경우
