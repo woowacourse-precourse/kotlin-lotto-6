@@ -29,4 +29,7 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 
+    fun printLottoNumbers() {
+        println(numbers)
+    }
 }
