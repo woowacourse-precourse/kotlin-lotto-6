@@ -32,10 +32,10 @@ class LottoUI {
         lottos.forEach {
             println("${it.getNumbers()}")
         }
-        println()
     }
 
     fun printWinningNumbers() {
+        println()
         println(Winning.NUMBER_INPUT.value)
     }
 
@@ -56,6 +56,7 @@ class LottoUI {
     }
 
     fun printBonusNumber() {
+        println()
         println(Bonus.NUMBER_INPUT.value)
     }
 
@@ -69,6 +70,11 @@ class LottoUI {
             return inputBonusNumber(winningLotto)
         }
         return bonusNumber.toInt()
+    }
+
+    fun printResult(lottos: List<Lotto>, winningLotto: Lotto, bonusNumber: Int) {
+        println()
+        println("당첨통계")
     }
 
 }
