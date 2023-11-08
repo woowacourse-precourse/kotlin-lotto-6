@@ -1,17 +1,32 @@
 package lotto.model
 
-class RealLottoes(val userNumbers: Set<Int>, val bonusNumber: Int, val paymentAmount: String) : Lottoes {
+class RealLottoes(private val userNumbers: Set<Int>, private val bonusNumber: Int, paymentAmount: String): Lottoes {
 
-    private lateinit var lottoes: List<Lotto>
-    private lateinit var lottoesResult: Map<WinningRank, Int>
+    private var lottoes: MutableList<Lotto> = mutableListOf()
     private var lottoTicketCount: Int = paymentAmount.toInt() / 1000
-    private lateinit var lottoGenerator: LottoGenerator
+    private var lottoesResult: MutableMap<WinningRank, Int> =
+        WinningRank.values().associateWith { 0 }.toMutableMap()
+    private var lottoGenerator: LottoGenerator = LottoGenerator()
+
+    init {
+        for (i in 1..lottoTicketCount) {
+            lottoes.add(lottoGenerator.generateLotto())
+        }
+    }
+
 
     override fun calculateLottoesResult(): Map<WinningRank, Int> {
-        TODO("Not yet implemented")
+        lottoes.forEach {
+            val numMatchCount = it.calculateMatchingCount(userNumbers)
+            val bonusNumberMatch = it.containBonusNumber(bonusNumber)
+            val result = it.calculateLottoRank(numMatchCount, bonusNumberMatch)
+
+            lottoesResult[result] = (lottoesResult[result] ?: 0) + 1
+        }
+        return lottoesResult
     }
 
     override fun getTotalProfit(): Profit {
-        TODO("Not yet implemented")
+        return Profit()
     }
 }
