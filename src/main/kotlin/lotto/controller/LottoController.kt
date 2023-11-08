@@ -1,11 +1,12 @@
 package lotto.controller
 
-import lotto.constant.Constants.MAX_ATTEMPTS
 import lotto.domain.Lotto
 import lotto.domain.LottoRank
 import lotto.domain.LottoResult
 import lotto.domain.LottoStore
 import lotto.validator.BonusNumberValidator
+import lotto.validator.InputValidator
+import lotto.validator.PurchasePriceValidator
 import lotto.validator.WinNumbersValidator
 import lotto.view.InputView
 import lotto.view.OutputView
@@ -23,18 +24,11 @@ class LottoController {
     }
 
     private fun inputPrice(): Pair<LottoStore, Int> {
-        var attempts = 0
-        while (attempts <= MAX_ATTEMPTS) {
-            try {
-                val purchasePrice = InputView.promptForPurchasePrice().also { println() }
-                return Pair(LottoStore(purchasePrice), purchasePrice.toInt())
-            } catch (e: IllegalArgumentException) {
-                println(e.message)
-                attempts++
-            }
-        }
-
-        throw IllegalArgumentException("입력에 여러 차례 실패했습니다. 프로그램을 종료합니다.")
+        val purchasePrice = InputValidator().inputWithRetry(
+            prompt = { InputView.promptForPurchasePrice() },
+            validator = { PurchasePriceValidator(it) }
+        )
+        return Pair(LottoStore(purchasePrice), purchasePrice.toInt())
     }
 
     private fun issueTickets(lottoStore: LottoStore): List<Lotto> {
@@ -45,35 +39,19 @@ class LottoController {
     }
 
     private fun inputWinNumbers(): List<Int> {
-        var attempts = 0
-        while (attempts <= MAX_ATTEMPTS) {
-            try {
-                val winNumbers = InputView.promptForWinNumbers().also { println() }
-                WinNumbersValidator(winNumbers)
-                return winNumbers.map { it.toInt() }
-            } catch (e: IllegalArgumentException) {
-                println(e.message)
-                attempts++
-            }
-        }
-
-        throw IllegalArgumentException("입력에 여러 차례 실패했습니다. 프로그램을 종료합니다.")
+        val winNumbers = InputValidator().inputWithRetry(
+            prompt = { InputView.promptForWinNumbers() },
+            validator = { WinNumbersValidator(it) }
+        )
+        return winNumbers.map { it.toInt() }
     }
 
     private fun inputBonusNumber(winNumbers: List<Int>): Int {
-        var attempts = 0
-        while (attempts <= MAX_ATTEMPTS) {
-            try {
-                val bonusNumber = InputView.promptForBonusNumber().also { println() }
-                BonusNumberValidator(winNumbers, bonusNumber)
-                return bonusNumber.toInt()
-            } catch (e: IllegalArgumentException) {
-                println(e.message)
-                attempts++
-            }
-        }
-
-        throw IllegalArgumentException("입력에 여러 차례 실패했습니다. 프로그램을 종료합니다.")
+        val bonusNumber = InputValidator().inputWithRetry(
+            prompt = { InputView.promptForBonusNumber() },
+            validator = { BonusNumberValidator(winNumbers, it) }
+        )
+        return bonusNumber.toInt()
     }
 
     private fun calculateResult(tickets: List<Lotto>, winNumbers: List<Int>, bonusNumber: Int): List<LottoRank> {
@@ -84,7 +62,6 @@ class LottoController {
             val prize = LottoRank.getRank(matchCount, hasBonus)
             results.add(prize)
         }
-
         return results
     }
 
