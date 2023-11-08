@@ -3,6 +3,7 @@ package lotto.views
 import lotto.models.Lotto
 import lotto.models.WinningRank
 import lotto.models.WinningRecord
+import lotto.utils.Extensions.withCommas
 
 class OutputView {
 
@@ -40,6 +41,8 @@ class OutputView {
 
     fun printProfitRate(profitRate: Double) = println(PROFIT_RATE_MESSAGE.format(profitRate))
 
+    fun printErrorMessage(message: String?) = println("$ERROR_MESSAGE_PREFIX ${message ?: UNKNOWN_ERROR_MESSAGE}")
+
     companion object {
         const val PURCHASED_LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다."
         const val PURCHASED_LOTTO_NUMBERS_MESSAGE = "[%s]"
@@ -51,9 +54,8 @@ class OutputView {
         const val WINNING_WITH_BONUS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개"
 
         const val PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다."
-    }
-}
 
-fun Int.withCommas(): String {
-    return "%,d".format(this)
+        const val ERROR_MESSAGE_PREFIX = "[ERROR]"
+        const val UNKNOWN_ERROR_MESSAGE = "알 수 없는 에러가 발생했습니다."
+    }
 }

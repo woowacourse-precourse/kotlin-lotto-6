@@ -1,6 +1,6 @@
 package lotto.models
 
-import lotto.withCommas
+import lotto.utils.Extensions.withCommas
 
 class Purchase(private val amount: Int) {
 

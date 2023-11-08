@@ -1,12 +1,12 @@
 package lotto.models
 
-import lotto.withCommas
+import lotto.models.Purchase.Companion.AMOUNT_UNIT
+import lotto.models.Purchase.Companion.AMOUNT_UNIT_ERROR_MESSAGE
+import lotto.utils.Extensions.withCommas
 import org.assertj.core.api.AssertionsForClassTypes.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
-import lotto.models.Purchase.Companion.AMOUNT_UNIT_ERROR_MESSAGE
-import lotto.models.Purchase.Companion.AMOUNT_UNIT
 import org.junit.jupiter.api.assertDoesNotThrow
+import org.junit.jupiter.api.assertThrows
 
 
 class PurchaseTest {
