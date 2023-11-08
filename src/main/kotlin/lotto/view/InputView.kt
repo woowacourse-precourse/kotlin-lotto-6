@@ -52,6 +52,7 @@ class InputView {
 
             try {
                 inputValidator.checkBonusInput(userInput, lottoList)
+                return userInput.toInt()
             } catch (error: UnvalidLottoNumberException) {
                 println(error.message)
             } catch (error: ContainsNotDigitException) {
