@@ -6,18 +6,18 @@ const val ONE_LOTTO_PRICE = 1000
 
 class InputManager {
     private lateinit var winningNumber: List<String>
-    private var inputMoney: Int = 1000
+    private var inputMoney: Int = ONE_LOTTO_PRICE
     private var bonusNumber: Int = 1
 
     fun playerInsertMoney() : Int{
         setInputMoney()
         return inputMoney
     }
-    fun playerInputnumbers() {
+    fun playerInputNumbers() {
         setWinningNumber()
         setBonusNumber()
     }
-    fun setInputMoney() {
+    private fun setInputMoney() {
         println("구입금액을 입력해 주세요.")
         while(true) {
             try {
@@ -33,7 +33,7 @@ class InputManager {
     }
 
     fun getWinningNumber() = winningNumber
-    fun setWinningNumber() {
+    private fun setWinningNumber() {
         println("당첨 번호를 입력해 주세요.")
         while(true) {
             try {
@@ -48,7 +48,7 @@ class InputManager {
         }
     }
 
-    fun setBonusNumber() {
+    private fun setBonusNumber() {
         println("보너스 번호를 입력해 주세요.")
         while(true) {
             try {
@@ -62,23 +62,26 @@ class InputManager {
             }
         }
     }
-    fun checkInputNumberRange() {
+    private fun checkInputNumberRange() {
         if(inputMoney % ONE_LOTTO_PRICE != 0) {
             throw IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위에 맞춰서 넣어주세요.")
         }
     }
-    fun checkWinningNumberRange() {
+    private fun checkWinningNumberRange() {
         if(winningNumber.size != 6) {
             throw IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.")
         }
+        if (winningNumber.toSet().size != 6) {
+            throw IllegalArgumentException("[ERROR] 중복되는 수는 넣을 수 없습니다.")
+        }
         for(i in winningNumber.indices) {
-            if(inputMoney !in 1..45) {
+            if(winningNumber[i].toInt() !in 1..45) {
                 throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
             }
         }
     }
 
-    fun checkBonusNumberRange() {
+    private fun checkBonusNumberRange() {
         if(bonusNumber !in 1..45) {
             throw IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자입니다.")
         }

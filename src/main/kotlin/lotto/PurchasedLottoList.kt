@@ -2,18 +2,31 @@ package lotto
 
 class PurchasedLottoList {
     private var inputManager = InputManager()
-    lateinit var purchasedLottoList : MutableList<Lotto>
-    private lateinit var decideLottoNumber : DecideLottoNumber
+    private var purchasedLottoList = mutableListOf<Lotto>()
+    private var decidePurchasedLottoNumber = DecidePurchasedLottoNumber()
     private var lottoCount: Int = 0
 
-    fun initLottoCount() {
+    fun purchasingLotto() {
+        initLottoCount()
+        makePurchasedLottoListInstance()
+        printPurchasedLottoList()
+        inputManager.playerInputNumbers()
+    }
+
+    private fun initLottoCount() {
         lottoCount = calculateLottoCount()
     }
 
-    fun makePurchasedLottoListInstance() {
+    private fun makePurchasedLottoListInstance() {
         for(i in 0 until lottoCount) {
-            var temporalLotto = Lotto(decideLottoNumber.randomLottoNumberGenerator())
+            val temporalLotto = Lotto(decidePurchasedLottoNumber.randomLottoNumberGenerator())
             purchasedLottoList.add(temporalLotto)
+        }
+    }
+
+    private fun printPurchasedLottoList() {
+        for(i in 0 until purchasedLottoList.size) {
+            println("${purchasedLottoList[i].getNumbersList()}")
         }
     }
 
