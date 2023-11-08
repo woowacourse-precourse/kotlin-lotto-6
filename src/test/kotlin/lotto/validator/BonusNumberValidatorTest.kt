@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class BonusNumberValidatorTest {
     private val winNumbers = listOf(1, 2, 3, 4, 5, 6)
+
     @ParameterizedTest
     @ValueSource(strings = [" ", ""])
     fun `공백 or 아무 것도 입력하지 않았을 때`(value: String) {
@@ -55,7 +56,7 @@ class BonusNumberValidatorTest {
     @Test
     fun `올바른 값 입력 시`() {
         assertDoesNotThrow {
-            BonusNumberValidator(winNumbers,"35")
+            BonusNumberValidator(winNumbers, "35")
         }
     }
 }
