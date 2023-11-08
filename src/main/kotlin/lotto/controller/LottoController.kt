@@ -52,6 +52,7 @@ class LottoController() {
 
             val lottoMatch = LottoMatch(lottoTickets, winningNumber, bonusNumber)
             val lottoRank = lottoMatch.countMatch()
+
             printStatistics(lottoRank)
             startLottoProfit(lottoRank, amount)
         } catch (e: IllegalArgumentException) {
@@ -63,6 +64,7 @@ class LottoController() {
     fun startLottoProfit(rank: List<Int>, amount: Int) {
         val total = LottoProfit().calculateTotal(rank)
         val profit = LottoProfit().calculateProfit(total, amount)
+
         LottoProfitView.printLottoProfit(profit)
     }
 
