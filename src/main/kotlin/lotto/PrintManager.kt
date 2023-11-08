@@ -18,7 +18,8 @@ class PrintManager {
     fun printResult(result: List<Int>) {
         println(RESULT_PROMPT)
         result.forEachIndexed { index, count ->
-            println("${resultListPrompt[index]}${count}${EA_PROMPT}")
+            val rank = CountDuplicationNumIndex.values()[index].rank
+            println("$rank - ${count}${EA_PROMPT}")
         }
     }
 
@@ -32,13 +33,6 @@ class PrintManager {
         const val INPUT_BONUS_NUMBER_PROMPT = "\n보너스 번호를 입력해 주세요."
         const val LOTTO_NUMBER_PROMPT = "개를 구매했습니다."
         const val RESULT_PROMPT = "\n당첨 통계\n---"
-        val resultListPrompt = listOf(
-                "3개 일치 (5,000원) - ",
-                "4개 일치 (50,000원) - ",
-                "5개 일치 (1,500,000원) - ",
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
-                "6개 일치 (2,000,000,000원) - "
-        )
         const val EA_PROMPT = "개"
         const val RATE_OF_RETURN_FIRST_PROMPT = "총 수익률은"
         const val RATE_OF_RETURN_FINAL_PROMPT = "%입니다."
