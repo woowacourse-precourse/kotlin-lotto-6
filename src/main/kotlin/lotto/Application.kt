@@ -3,7 +3,6 @@ package lotto
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.PRIZE.*
-import java.lang.NumberFormatException
 
 
 fun main() {
@@ -14,19 +13,7 @@ fun main() {
     val lotto = getLotto()
 
     println("보너스 번호를 입력해 주세요.")
-    var bonusNumber:Int
-    while(true)
-    {
-        try {
-            bonusNumber = Console.readLine().toInt()
-            if(isValidLuckyNumber(bonusNumber,lotto)) throw IllegalArgumentException("[ERROR] 유효하지 않은 보너스 번호입니다.")
-        }catch (e:IllegalArgumentException)
-        {
-            println(e.message)
-            continue
-        }
-        break
-    }
+    var bonusNumber = getBonusNumber(lotto)
 
     val myLottos = mutableListOf<Lotto>()
     repeat(amount / PAYMENT_UNIT)
@@ -63,31 +50,9 @@ fun generateLotto(numbers:List<Int>):Lotto
     }
     return lotto
 }
-fun isPaymentValid(amount:Int) = (amount % PAYMENT_UNIT) == 0
-fun getNumber():Int
-{
-    var input:Int
-    try {
-        input = Console.readLine().toInt()
-    }catch (e:NumberFormatException)
-    {
-        throw IllegalArgumentException("[ERROR] 숫자만 입력가능합니다.")
-    }
-    return input
-}
-fun getPayment():Int
-{
-    var amount:Int
-    try {
-        amount = getNumber()
-        if(!isPaymentValid(amount)) throw IllegalArgumentException("[ERROR]")
-    }catch (e:IllegalArgumentException)
-    {
-        println(e.message)
-        return -1
-    }
-    return amount
-}
+
+
+
 fun getLotto(): Lotto {
     var lotto:Lotto
     while(true)
@@ -147,4 +112,3 @@ fun printPrize(result:Map<PRIZE,Int>)
         println("${getStringMoney(key)} - ${result[key]}개 ")
     }
 }
-fun isValidLuckyNumber(bonusNumber:Int,lotto: Lotto) = lotto.contains(bonusNumber) && bonusNumber in 1..45
