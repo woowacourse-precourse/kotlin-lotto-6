@@ -9,5 +9,9 @@ class Lotto(private val numbers: List<Int>) {
         return numbers.toString()
     }
 
+    fun contains(number: Int): Boolean {
+        return numbers.contains(number)
+    }
+
     val numberList get() = this.numbers
 }
