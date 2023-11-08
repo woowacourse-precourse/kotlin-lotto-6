@@ -3,16 +3,10 @@ package lotto
 class ExceptionManager {
 
     fun moneyException(num: String) {
-        val money = num.toIntOrNull() ?: throw IllegalArgumentException("숫자를 입력해주세요.")
-        if (money < 1) {
-            throw IllegalArgumentException("1 이상의 금액을 입력해주세요")
-        }
-        if (money % 1000 != 0) {
-            throw IllegalArgumentException("1,000원 단위 금액을 입력해주세요")
-        }
-        if (money > 100000) {
-            throw IllegalArgumentException("구입 최대 금액은 10만원입니다.")
-        }
+        val money = num.toIntOrNull() ?: throw IllegalArgumentException(ErrorMessage.INPUT_NUMBER.msg)
+        require(money >= 1) { ErrorMessage.INPUT_NOT_MINUS.msg }
+        require(money % 1000 == 0) { ErrorMessage.INPUT_THOUSAND.msg }
+        require(money <= 100000) { ErrorMessage.MAX_PURCHASE_PRIZE.msg }
     }
 
     fun winningNumberException(nums: List<String>) {
@@ -22,30 +16,24 @@ class ExceptionManager {
             val convertedNum = num.toIntOrNull()
             convertedNum?.let {
                 numbers.add(convertedNum)
-            } ?: throw IllegalArgumentException("문자가 아닌 숫자를 입력해주세요.")
+            } ?: throw IllegalArgumentException(ErrorMessage.NOT_STRING.msg)
         }
 
         for (index in numbers) {
             if (index > 45 || index < 1) {
-                throw IllegalArgumentException("1~45 사이의 숫자를 입력해주세요.")
+                throw IllegalArgumentException(ErrorMessage.NOT_RANGE.msg)
             }
         }
-        if (numbers.distinct().size != numbers.size) {
-            throw IllegalArgumentException("동일한 번호가 중복되었습니다.")
-        }
-        if (numbers.distinct().size != 6) {
-            throw IllegalArgumentException("6개의 당첨번호를 입력해주세요.")
-        }
+        require(numbers.distinct().size == numbers.size) { ErrorMessage.NOT_DUPLICATE.msg }
+        require(numbers.distinct().size == 6) { ErrorMessage.NOT_SIX.msg }
     }
 
     fun bonusNumberException(pair: Pair<List<String>, String>) {
-        val convertedNum = pair.second.toIntOrNull() ?: throw IllegalArgumentException("문자가 아닌 숫자를 입력해주세요.")
-        if (convertedNum > 45 || convertedNum < 1) {
-            throw IllegalArgumentException("1~45 사이의 숫자를 입력해주세요.")
-        }
-        if(pair.second in pair.first){
-            throw IllegalArgumentException("보너스 숫자가 당첨번호와 중복됩니다.")
-        }
+        val convertedNum = pair.second.toIntOrNull() ?: throw IllegalArgumentException(ErrorMessage.NOT_STRING.msg)
+        require(convertedNum in 1..45) { ErrorMessage.NOT_RANGE}
 
+        if (pair.second in pair.first) {
+            throw IllegalArgumentException(ErrorMessage.NOT_IN_NUMBERS.msg)
+        }
     }
 }
