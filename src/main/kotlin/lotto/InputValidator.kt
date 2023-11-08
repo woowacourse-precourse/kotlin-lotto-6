@@ -4,22 +4,23 @@ import camp.nextstep.edu.missionutils.Console
 
 object InputValidator {
     fun validateBonusNumber(userInput: String, winningNumbers: List<Int>) {
-        require(userInput.all{ it.isDigit() }) { "보너스 번호는 1부터 45 사이의 숫자여야 합니다." }
-        require(userInput.toInt() in Constants.MIN_NUMBER..Constants.MAX_NUMBER) {
+        val bonusNumber = userInput.toInt()
+
+        require(bonusNumber in Constants.MIN_NUMBER..Constants.MAX_NUMBER) {
             "보너스 번호는 1부터 45 사이의 숫자여야 합니다."
         }
         require(!winningNumbers.contains(userInput.toInt())) { "보너스 번호는 당첨 번호의 숫자들과 별개의 숫자여야 합니다." }
     }
 
     fun validatePurchaseAmount(userInput: String) {
-        require(userInput.all { it.isDigit() }) { "로또 구입 금액은 1,000원 단위의 숫자여야 합니다." }
         val amount = userInput.toInt()
+
         require(amount % Constants.LOTTO_PRIZE == 0) { "로또 구입 금액은 1,000원 단위여야 합니다." }
     }
 
     fun validateWinningNumber(userInput: String) {
-        require(userInput.all{ it.isDigit() ||  it == ',' || it == ' '})
         val numbers = userInput.split(",").map{ it.trim().toInt() }
+
         require(numbers.size == Constants.LOTTO_SIZE) { "당첨 번호는 숫자 6개로 이루어져야 합니다." }
         require(numbers.all { it in Constants.MIN_NUMBER..Constants.MAX_NUMBER }) {
             "당첨 번호는 1부터 45사이의 숫자여야 합니다."

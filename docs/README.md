@@ -70,14 +70,18 @@
 3. 개선할 사항
    - 테스트 코드 작성 시 라이브러리를 호출해도 되는가? 
      - junit 라이브러리니까 OK
-   - 구조 개선을 통해 test용 getter 없이도 테스트 코드 동작하게 하기(mvp)
-   - test double
-   - mock, fake 등
-     gof
+   - [ ] 구조 개선을 통해 test용 getter 없이도 테스트 코드 동작하게 하기(mvp)
    - factory method 등 학습
    - [x] enum class를 통한 상수 선언 (prize)
-   - 수익률 오버플로우를 고려한 자료형 책정.
+   - [x] round 계산 시의 수익률 오버플로우를 고려한 자료형 책정.
    - [x] 가로 120줄이 넘는 구문 처리.
+   - [x] validateWinningNumber 함수의 구조가 다소 복잡함.
+     - toInt() 메서드로 NumberFormatException를 던지면서 해결함.
 
 4. 학습한 내용
    - IllegalStateException vs IllegalArugumentException
+     - IllegalStateException의 경우 enum을 통해서 프로그램의 state(시작, 입력, 당첨처리, 출력)에 이상이 있는 경우에 발생하는 에러를
+       내보내는 것으로 이해하였지만 state관리가 어려워서 보류...
+
+   - toInt() 메서드를 통해 발생하는 NumberFormatException 오픈 클래스가 IllegalArugumentException 클래스를 상속받는 형태로 되어 있어
+     별도의 처리를 하지 않아도 catch(e: IllegalArugumentException) 구문에서 잡힘.
