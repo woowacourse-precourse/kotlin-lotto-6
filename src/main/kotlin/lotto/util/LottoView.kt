@@ -28,6 +28,7 @@ class LottoView {
         println("6개 일치 (2,000,000,000원) - ${lottoResult[0]}개")
     }
     fun totalRate(rate: Double) {
-        println("총 수익률은 ${rate}%입니다.")
+        val roundedRate = String.format("%.1f", rate)
+        println("총 수익률은 ${roundedRate}%입니다.")
     }
 }
