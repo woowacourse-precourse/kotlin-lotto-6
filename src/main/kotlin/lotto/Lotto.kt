@@ -12,5 +12,16 @@ class Lotto(private val numbers: List<Int>) {
     fun getLottoFormat(): String {
         return numbers.toString()
     }
+
+    fun compareNumbers(target: List<Int>): Int {
+        val correctNumbers = numbers.filter { it in target }
+        return correctNumbers.size
+    }
+
+    fun compareBonusNumber(target: Int): Boolean {
+        if (target in numbers)
+            return true
+        return false
+    }
 }
 

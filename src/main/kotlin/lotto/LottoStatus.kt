@@ -28,16 +28,11 @@ class LottoStatus {
         println()
     }
     private fun pickRandomNumbersForLotto(): List<Int> {
-        val currentLottoNumbers = mutableListOf<Int>()
-        while (true) {
-            val currentNumber = Randoms.pickNumberInRange(LottoResource.MIN_LOTTO_NUMBER, LottoResource.MAX_LOTTO_NUMBER)
-            val isAlreadyInNumbers = currentLottoNumbers.contains(currentNumber)
-            if (!isAlreadyInNumbers)
-                currentLottoNumbers.add(currentNumber)
-            if (currentLottoNumbers.size == LottoResource.LOTTO_SIZE)
-                break
-        }
-        return currentLottoNumbers
+        return Randoms.pickUniqueNumbersInRange(
+            LottoResource.MIN_LOTTO_NUMBER,
+            LottoResource.MAX_LOTTO_NUMBER,
+            LottoResource.LOTTO_SIZE
+        )
     }
     private fun inputPrice() {
         println(LottoResource.PRICE_INPUT_MESSAGE)
