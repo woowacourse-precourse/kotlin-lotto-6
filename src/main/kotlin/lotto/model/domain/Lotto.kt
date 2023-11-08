@@ -15,7 +15,7 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     fun getCountOfMatch(newLotto: Lotto): Int {
-        return 12 - (newLotto.toAscendingNumbers() + numbers).toSet().size
+        return TOTAL_NUMBER_OF_LOTTO_COUNT - (newLotto.toAscendingNumbers() + numbers).toSet().size
     }
 
     fun isContainNumber(number: Int): Boolean = numbers.contains(number)
@@ -27,6 +27,7 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     companion object {
+        const val TOTAL_NUMBER_OF_LOTTO_COUNT = 12
         const val INVALID_LOTTO_SIZE = "6개의 숫자를 입력해 주세요"
     }
 }
