@@ -1,4 +1,4 @@
-package lotto.domain
+package lotto.domain.Lotto
 
 import lotto.domain.lotto.Lotto
 import org.junit.jupiter.api.Test
