@@ -1,5 +1,8 @@
 package lotto
 
+import lotto.domain.RandomNumbersGenerator
+import lotto.model.Lotto
+import lotto.model.LottoRank
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -34,7 +37,7 @@ class LottoTest {
 
     @Test
     fun `랜덤 생성한 로또 번호들이 오름차순 정렬 되어있는지 확인`() {
-        val generator =RandomNumbersGenerator()
+        val generator = RandomNumbersGenerator()
 
         var numbers: List<Int>
 

@@ -1,12 +1,13 @@
-package lotto
+package lotto.model
 
-import lotto.io.UserInterface
+import lotto.util.Const
 
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6)
         require(numbers.size == numbers.distinct().size)
     }
+
     fun compareToWinningLotto(winningLotto: Lotto, bonusNumber: Int): LottoRank {
         val matchedCount = getMatchedCount(winningLotto)
 
@@ -43,9 +44,7 @@ class Lotto(private val numbers: List<Int>) {
         return LottoRank.THIRD
     }
 
-    fun getLottoNumbers():List<Int> {
+    fun getLottoNumbers(): List<Int> {
         return numbers
     }
-
-
 }

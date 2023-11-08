@@ -1,21 +1,21 @@
 package lotto.io
 
-import lotto.LottoRank
+import lotto.model.LottoRank
 import java.lang.IllegalArgumentException
 
 class UserInterface(
     private val output: Output = Output(),
     private val input: Input = Input()
 ) {
-    fun askPurchaseAmount():Int {
-        while(true) {
-            val purchaseAmount:Int
-            try{
+    fun askPurchaseAmount(): Int {
+        while (true) {
+            val purchaseAmount: Int
+            try {
                 output.printAmountMsg()
                 purchaseAmount = input.enterPurchaseAmount()
 
                 return purchaseAmount
-            } catch (e:IllegalArgumentException) {
+            } catch (e: IllegalArgumentException) {
                 println(e.message)
 
             }
@@ -23,7 +23,7 @@ class UserInterface(
     }
 
     fun askWinningNumbers(): List<Int> {
-        while(true) {
+        while (true) {
             val winningNumbers: List<Int>
             try {
                 output.printWinningNumbersMsg()
@@ -37,7 +37,7 @@ class UserInterface(
     }
 
     fun askBonusNumber(winningNumbers: List<Int>): Int {
-        while(true) {
+        while (true) {
             val bonusNumber: Int
             try {
                 output.printBonusNumberMsg()
@@ -50,15 +50,16 @@ class UserInterface(
         }
     }
 
-    fun printLotto(lottoTickets:List<Int>){
+    fun printLotto(lottoTickets: List<Int>) {
         output.printLotto(lottoTickets)
     }
-    fun printLottoCounts(counts:Int) {
+
+    fun printLottoCounts(counts: Int) {
         output.printQuantityMsg(counts)
     }
 
-    fun showMyResult(lottoResult:Map<LottoRank,Int>,profitRate:String) {
-        output.printResult(lottoResult,profitRate)
+    fun showMyResult(lottoResult: Map<LottoRank, Int>, profitRate: String) {
+        output.printResult(lottoResult, profitRate)
     }
 
 

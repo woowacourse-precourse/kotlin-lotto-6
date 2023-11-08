@@ -1,6 +1,7 @@
-package lotto
+package lotto.domain
 
-import lotto.io.UserInterface
+import lotto.model.User
+import lotto.model.WinningLotto
 
 class LottoMachineInitializer(
     private val moneyInput: MoneyInput,

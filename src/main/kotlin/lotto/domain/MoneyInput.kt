@@ -1,6 +1,9 @@
-package lotto
+package lotto.domain
 
 import lotto.io.UserInterface
+import lotto.model.Lotto
+import lotto.model.User
+import lotto.util.Const
 
 class MoneyInput(
     private val ui: UserInterface
@@ -21,6 +24,4 @@ class MoneyInput(
         }
 
     }
-
-
 }

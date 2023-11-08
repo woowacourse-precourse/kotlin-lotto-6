@@ -1,6 +1,6 @@
 package lotto.exception
 
-import lotto.Const
+import lotto.util.Const
 
 
 class ExceptionChecker {
@@ -58,12 +58,16 @@ class ExceptionChecker {
 
     private fun isInRange(numbers: List<Int>) {
         for (number in numbers) {
-            if (number < Const.LOTTO_MIN_NUMBER || number > Const.LOTTO_MAX_NUMBER) throw IllegalArgumentException(ERROR_LABEL + ERROR_RANGE)
+            if (number < Const.LOTTO_MIN_NUMBER || number > Const.LOTTO_MAX_NUMBER) throw IllegalArgumentException(
+                ERROR_LABEL + ERROR_RANGE
+            )
         }
     }
 
     private fun isInRange(number: Int) {
-        if (number < Const.LOTTO_MIN_NUMBER || number > Const.LOTTO_MAX_NUMBER) throw IllegalArgumentException(ERROR_LABEL + ERROR_RANGE)
+        if (number < Const.LOTTO_MIN_NUMBER || number > Const.LOTTO_MAX_NUMBER) throw IllegalArgumentException(
+            ERROR_LABEL + ERROR_RANGE
+        )
 
     }
 
