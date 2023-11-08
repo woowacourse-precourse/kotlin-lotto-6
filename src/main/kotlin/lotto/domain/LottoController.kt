@@ -7,12 +7,12 @@ import lotto.view.InputView
 import lotto.view.OutputView
 
 class LottoController(private val inputView: InputView, private val outputView: OutputView) {
-    private val lottoResult = makeLottoResultMap()
     fun start() {
         val money = enterPurchaseMoney()
         val lotteries = purchaseLotteries(money)
         val (prizeLottoNumber, bonusNumber) = userInputPrizeNumber()
-        val sortedLottoResult = countLottoMatch(lotteries, prizeLottoNumber, bonusNumber)
+        val lottoResult = countLottoMatch(lotteries, prizeLottoNumber, bonusNumber)
+        val sortedLottoResult = sortLottoResult(lottoResult)
         showLottoResult(money, sortedLottoResult)
     }
 
@@ -62,13 +62,14 @@ class LottoController(private val inputView: InputView, private val outputView: 
         prizeLottoNumber: List<Int>,
         bonusNumber: Int
     ): MutableMap<LottoRank, Int> {
+        val lottoResult = makeLottoResultMap()
         for (lotto in lotteries) {
             val (lottoNumberCount, bonusNumberMatchStatus) = lotto.matchCount(prizeLottoNumber, bonusNumber)
             val rank = LottoRank.matchRank(lottoNumberCount, bonusNumberMatchStatus)
             lottoResult[rank] = lottoResult.getOrDefault(rank, 0) + 1
         }
         lottoResult.remove(LottoRank.MISS)
-        return sortLottoResult(lottoResult)
+        return lottoResult
     }
 
     private fun sortLottoResult(lottoResult: MutableMap<LottoRank, Int>): MutableMap<LottoRank, Int> {
