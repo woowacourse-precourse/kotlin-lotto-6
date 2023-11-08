@@ -1,4 +1,4 @@
-package lotto.controller
+package lotto.controllers
 
 import lotto.models.*
 import lotto.views.InputView
