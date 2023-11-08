@@ -21,4 +21,20 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    fun `구입 금액 입력 에러 발생 테스트`() {
+        assertThrows<IllegalArgumentException> {
+            LottoUI().checkInvalidBuyPrice("abc")
+        }
+        assertThrows<IllegalArgumentException> {
+            LottoUI().checkInvalidBuyPrice("1001")
+        }
+        assertThrows<IllegalArgumentException> {
+            LottoUI().checkInvalidBuyPrice("0")
+        }
+        assertThrows<IllegalArgumentException> {
+            LottoUI().checkInvalidBuyPrice("-1")
+        }
+        LottoUI().checkInvalidBuyPrice("1000")
+    }
 }
