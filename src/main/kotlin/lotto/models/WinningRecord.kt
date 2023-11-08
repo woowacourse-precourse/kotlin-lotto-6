@@ -8,7 +8,7 @@ class WinningRecord {
         initializeRecord()
     }
 
-    private fun initializeRecord() = WinningRank.get().forEach { _value[it] = 0 }
+    private fun initializeRecord() = WinningRank.getAll().forEach { _value[it] = 0 }
 
     fun updateWinningResults(purchasedLottos: List<Lotto>, winningLotto: Lotto, bonus: Bonus) {
         purchasedLottos.forEach { purchasedLotto ->

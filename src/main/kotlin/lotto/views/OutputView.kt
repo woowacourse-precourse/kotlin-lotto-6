@@ -24,7 +24,7 @@ class OutputView {
     fun printWinningStatics(winningRecord: WinningRecord) {
         println(WINNING_STATISTICS_MESSAGE)
 
-        val winningRanks = WinningRank.getWithoutNothing()
+        val winningRanks = WinningRank.getAllWithoutNothing()
         winningRanks.forEach {
             val winningCount = winningRecord.value[it] ?: 0
             val staticsMessage = generateStaticsMessage(it, winningCount)
