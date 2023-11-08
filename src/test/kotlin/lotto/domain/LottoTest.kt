@@ -140,4 +140,17 @@ class LottoTest {
         val expected = LottoRank.NOTHING
         assertThat(actual).isEqualTo(expected)
     }
+
+    @Test
+    fun `로또의 등수를 계산하기 전 까지 해당 로또가 몇 등인지 알 수 없다`() {
+        //given
+        val lotto = Lotto(listOf(1,2,3,4,5,6))
+
+        //when
+        val actual = lotto.lottoRank
+
+        //then
+        val expected = LottoRank.INIT
+        assertThat(actual).isEqualTo(expected)
+    }
 }
