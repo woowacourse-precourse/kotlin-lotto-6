@@ -216,3 +216,30 @@ class Lotto(private val numbers: List<Int>) {
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
   - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+
+## 구현할 기능 목록
+1. 로또 구입 금액 입력 후 로또 발행
+2. 발행한 로또 번호 오름차순 정렬 후 출력
+3. 당첨 번호, 보너스 번호 입력
+4. 당첨 내역, 수익률 구한 뒤 출력
+
+
+## 참고 사이트
+enum 클래스
+https://www.devkuma.com/docs/kotlin/enum-classes/
+
+비지니스 로직, 도메인 로직
+https://velog.io/@eddy_song/domain-logic
+
+단위 테스트
+https://velog.io/@seongwon97/Unit-Test-%EB%8B%A8%EC%9C%84-%ED%85%8C%EC%8A%A4%ED%8A%B8
+
+AssertJ
+https://www.daleseo.com/assertj/
+
+2차원 배열, List
+https://velog.io/@lifeisbeautiful/Kotlin%EC%97%90%EC%84%9C%EC%9D%98-%EB%B0%B0%EC%97%B4%EA%B3%BC-List-Java%EC%99%80-%EC%B0%A8%EC%9D%B4%EC%A0%90
+
+리스트 정렬
+https://velog.io/@changhee09/Kotlin-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%A0%95%EB%A0%ACsort-sortBy-sortWith
