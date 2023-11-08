@@ -4,6 +4,7 @@ import lotto.model.Lotto
 import lotto.model.Lottos
 import lotto.model.PurchaseAmount
 import lotto.model.WinningLotto
+import lotto.model.WinningResult
 import lotto.util.HandleException
 import lotto.util.UserLottosGenerator
 import lotto.view.InputView
@@ -13,10 +14,10 @@ class LottoController(private val inputView: InputView, private val outputView: 
     fun run() {
         val purchaseAmount: PurchaseAmount = handleException.tryUntilSuccess {receiveAmount()}
         val userLottos: Lottos = issueLottos(purchaseAmount.lottoCnt)
-
         printPurchasedLotto(purchaseAmount.lottoCnt, userLottos)
 
         val winningLotto: WinningLotto = receiveWinningLotto()
+        printWinningResult(winningLotto, userLottos)
     }
 
     private fun receiveAmount() : PurchaseAmount {
@@ -49,5 +50,9 @@ class LottoController(private val inputView: InputView, private val outputView: 
     private fun receiveBonusNum(): Int {
         outputView.outputBonusNum()
         return inputView.inputBonusNum()
+    }
+
+    private fun printWinningResult(winningLotto: WinningLotto, userLottos: Lottos) {
+        outputView.outputWinningResult(WinningResult.of(winningLotto, userLottos))
     }
 }

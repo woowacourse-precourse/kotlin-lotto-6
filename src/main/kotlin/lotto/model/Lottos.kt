@@ -1,3 +1,5 @@
 package lotto.model
 
-data class Lottos(val lottos: List<Lotto>)
+data class Lottos(
+    val lottos: List<Lotto>,
+)

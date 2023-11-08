@@ -8,6 +8,10 @@ class WinningLotto(val winningNums: Lotto, val bonusNum: Int) {
         }
     }
 
+    fun getMatchCnt(lotto: Lotto) : Int = lotto.getNumbers().count {winningNums.getNumbers().contains(it)}
+
+    fun getMatchBonus(lotto: Lotto): Boolean = lotto.getNumbers().contains(bonusNum)
+
     companion object {
         const val MIN_NUM = 1
         const val MAX_NUM = 45
