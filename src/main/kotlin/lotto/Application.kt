@@ -10,7 +10,7 @@ fun main() {
 
     val lottoManager = LottoManager()
 
-        lottoManager.startGame()
+    lottoManager.startGame()
 
 
 

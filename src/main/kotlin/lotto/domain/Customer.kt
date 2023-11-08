@@ -1,6 +1,7 @@
 package lotto.domain
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.data.ErrorMessage
 import java.lang.NumberFormatException
 
 class Customer {
@@ -27,7 +28,6 @@ class Customer {
     }
 
 
-
     private fun inputToInt() : Int {
 
         val inputCount  = Console.readLine()
@@ -35,14 +35,13 @@ class Customer {
 
         return inputCount.toInt()
     }
-    private fun checkInputCount(input : String) : Boolean {
+    private fun checkInputCount(input
+                                : String) : Boolean {
         return try {
-            require( input.toIntOrNull()!=null && input.toInt() % 1000 == 0,{"[ERROR]"})
+            require( input.toIntOrNull()!=null && input.toInt() % 1000 == 0,{ ErrorMessage.ERROR_LOTTO_AMOUNTS })
             true
         }catch (e : IllegalArgumentException){
-            e.message?.let{
-                println(it)
-            } ?: println()
+            println(e.message)
             false
         }
     }
@@ -55,6 +54,10 @@ class Customer {
         return sortNums
 
     }
+
+
+
+
 
     fun getPurchaseCounts() : Int {
         return _purchaseCounts

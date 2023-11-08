@@ -1,6 +1,7 @@
 package lotto.domain
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.data.ErrorMessage
 import lotto.data.LottoNums
 
 class LottoInputManager {
@@ -11,7 +12,6 @@ class LottoInputManager {
     init {
         _lottoNums.lottoNums = inputToInt()
         _lottoNums.bonusNum = bonusToInt()
-
     }
 
     fun getLottoNums() : LottoNums {
@@ -50,7 +50,7 @@ class LottoInputManager {
 
             true
         }catch (e : IllegalArgumentException){
-            println("[ERROR] 로또 번호는 1부터 45 사이의 6가지 숫자여야 합니다.")
+            println(ErrorMessage.ERROR_LOTTO_NUM)
             false
         }
 
@@ -62,7 +62,7 @@ class LottoInputManager {
             if(nums.distinct().size != 6) throw IllegalArgumentException()
             true
         }catch (e : IllegalArgumentException){
-            println("[ERROR] 로또 번호는 중복 될 수 없습니다.")
+            println(ErrorMessage.ERROR_LOTTO_DUPLICATE)
             false
         }
     }
@@ -82,7 +82,7 @@ class LottoInputManager {
 
             true
         }catch (e: IllegalArgumentException){
-            println("[ERROR] 로또 번호는 1부터 45 사이의 6가지 숫자여야 합니다.")
+            println(ErrorMessage.ERROR_LOTTO_NUM)
             false
         }
 
@@ -94,7 +94,7 @@ class LottoInputManager {
             if(_lottoNums.lottoNums.contains(bonusNum))throw IllegalArgumentException()
             true
         }catch (e: IllegalArgumentException){
-            println("[ERROR] 로또 번호는 중복 될 수 없습니다.")
+            println(ErrorMessage.ERROR_LOTTO_DUPLICATE)
             false
         }
     }

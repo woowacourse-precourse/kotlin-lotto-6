@@ -22,5 +22,5 @@ class Lotto(private val numbers: List<Int>) {
 
 
 
-    // TODO: 추가 기능 구현
+
 }
