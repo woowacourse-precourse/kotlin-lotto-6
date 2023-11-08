@@ -1,6 +1,5 @@
 package lotto.model
 
-import lotto.TestLottoes
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

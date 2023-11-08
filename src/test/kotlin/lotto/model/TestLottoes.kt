@@ -1,6 +1,4 @@
-package lotto
-
-import lotto.model.*
+package lotto.model
 
 class TestLottoes(private val userNumbers: Set<Int>, private val bonusNumber: Int, paymentAmount: String) :
     Lottoes {
