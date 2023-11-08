@@ -23,11 +23,14 @@ class CheckInputValidation {
     }
 
     fun checkIsCorrectCost(cost: Int) {
-        require(
-            cost % LottoRule.PRICE.num == 0 &&
-                    cost >= LottoRule.PRICE.num
-        ) {
+        require(cost % LottoRule.PRICE.num == 0) {
             ErrorType.IS_INCORRECT_PURCHASE.message
+        }
+    }
+
+    fun checkIsEnoughCost(cost: Int) {
+        require(cost >= LottoRule.PRICE.num) {
+            ErrorType.IS_NOT_ENOUGH_COST.message
         }
     }
 

@@ -13,6 +13,7 @@ class InputManager {
             val userInput = getUserInput()
             val cost = makePurchaseCost(userInput)
             checkInputValidation.checkIsCorrectCost(cost)
+            checkInputValidation.checkIsEnoughCost(cost)
             getLottoCount(cost)
         } catch (e: IllegalArgumentException) {
             exceptionManager.printErrorMessage(e.message)
