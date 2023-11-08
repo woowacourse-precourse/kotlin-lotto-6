@@ -102,15 +102,15 @@ class LottoController() {
         winningNumber.isWinningNumberDuplicate(input)
     }
 
-    fun validateInputBonusNumberNumeric(input: String) {
+    fun validateBonusNumberNumeric(input: String) {
         bonusNumber.isBonusNumberNumeric(input)
     }
 
-    fun validateInputBonusNumberRange(input: Int) {
+    fun validateBonusNumberRange(input: Int) {
         bonusNumber.isBonusNumberRange(input)
     }
 
-    fun validateInputBonusNumberDuplication(input: Int, winningNumber: List<Int>) {
+    fun validateBonusNumberDuplication(input: Int, winningNumber: List<Int>) {
         bonusNumber.isBonusNumberDuplicate(input, winningNumber)
     }
 }

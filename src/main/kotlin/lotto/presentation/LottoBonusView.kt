@@ -11,9 +11,9 @@ object LottoBonusView {
 
     fun inputBonusNumberOfLotto(winningNumber: List<Int>): Int {
         val bonusNumber = Console.readLine()
-        LottoController().validateInputBonusNumberNumeric(bonusNumber)
-        LottoController().validateInputBonusNumberRange(bonusNumber.toInt())
-        LottoController().validateInputBonusNumberDuplication(bonusNumber.toInt(), winningNumber)
+        LottoController().validateBonusNumberNumeric(bonusNumber)
+        LottoController().validateBonusNumberRange(bonusNumber.toInt())
+        LottoController().validateBonusNumberDuplication(bonusNumber.toInt(), winningNumber)
 
         return bonusNumber.toInt()
     }
