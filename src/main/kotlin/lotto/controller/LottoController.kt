@@ -5,6 +5,7 @@ import lotto.domain.LottoShop
 import lotto.view.InputView.getBonusNumbersInput
 import lotto.view.InputView.getLottoPurchaseCostInput
 import lotto.view.InputView.getWinningNumbersInput
+import lotto.view.OutputView.printLottosNumbers
 
 class LottoController {
     private val lottoManager: LottoManager by lazy { LottoManager() }
@@ -13,12 +14,15 @@ class LottoController {
     fun run() {
         val purchaseMoney = getLottoPurchaseCostInput()
         val lottos = lottoShop.purchaseLottos(purchaseMoney)
-        lottos.forEach {
-
-        }
+        printLottosNumbers(lottos)
 
         val winningNumbers = getWinningNumbersInput()
+        lottoManager.setWinningNumbers(winningNumbers)
+        println()
+
         val bonusNumber = getBonusNumbersInput()
+        lottoManager.setBonusNumber(bonusNumber)
+        println()
     }
 
 }
