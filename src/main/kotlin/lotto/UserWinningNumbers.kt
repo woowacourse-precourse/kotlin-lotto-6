@@ -6,10 +6,11 @@ data class UserWinningNumbers(
 ) {
 
     init {
-        require(userPickNumbers.size == 6)
+        require(userPickNumbers.size == 6) { Message.ERROR_USER_PICK_NUMBERS_SIX_RANGE }
         requireUserPickNumberDuplicateLottoNumber()
         requireUserPickNumberValidRange()
         requireDuplicateBonusNumber()
+        requireBonusNumberValidRange()
     }
 
     private fun requireDuplicateBonusNumber() {
@@ -29,8 +30,12 @@ data class UserWinningNumbers(
 
     private fun requireUserPickNumberValidRange() {
         for (number in userPickNumbers) {
-            require(number in VALID_RANGE) { Message.ERROR_RANDOM_NUMBER_RANGE }
+            require(number in VALID_RANGE) { Message.ERROR_VALID_RANGE }
         }
+    }
+
+    private fun requireBonusNumberValidRange() {
+        require(bonusNumber in VALID_RANGE) { Message.ERROR_VALID_RANGE }
     }
 
     companion object {

@@ -16,6 +16,16 @@ class Lotto(private val numbers: List<Int>) {
         }
     }
 
+    fun formatNumbers(): String {
+        return numbers.joinToString(separator = ", ", prefix = "[", postfix = "]")
+    }
+
+    fun checkMatchWinCount(winningNumbers: UserWinningNumbers): LottoResult {
+        val matchingNumbers = numbers.intersect(winningNumbers.userPickNumbers.toSet()).count()
+        val bonusMatch = numbers.contains(winningNumbers.bonusNumber)
+        return LottoResult(matchingNumbers, bonusMatch)
+    }
+
     private fun requireRandomNumberValidRange() {
         for (number in numbers) {
             require(number in VALID_RANGE) { Message.ERROR_RANDOM_NUMBER_RANGE }
@@ -26,16 +36,6 @@ class Lotto(private val numbers: List<Int>) {
         for (i in 1 until numbers.size) {
             require(numbers[i] > numbers[i - 1]) { Message.ERROR_RANDOM_NUMBER_SORTING }
         }
-    }
-
-    fun formatNumbers(): String {
-        return numbers.joinToString(separator = ", ", prefix = "[", postfix = "]")
-    }
-
-    fun checkMatchWinCount(winningNumbers: UserWinningNumbers): LottoResult {
-        val matchingNumbers = numbers.intersect(winningNumbers.userPickNumbers.toSet()).count()
-        val bonusMatch = numbers.contains(winningNumbers.bonusNumber)
-        return LottoResult(matchingNumbers, bonusMatch)
     }
 
     companion object {
