@@ -3,7 +3,7 @@ package lotto.view
 import camp.nextstep.edu.missionutils.Console
 
 class InputView {
-    
+
     fun inputView(): String = Console.readLine()
 
     fun buyMessage() {

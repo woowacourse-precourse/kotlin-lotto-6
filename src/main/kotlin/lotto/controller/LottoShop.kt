@@ -37,13 +37,13 @@ class LottoShop {
     }
 
     private fun validatePrice(price: String) {
-        require(price.isNotBlank()) { "[ERROR] 로또 구입 금액은 천원 이상으로 입력 가능합니다." }
-        require(price.all { it.isDigit() }) { "[ERROR] 로또 구입 금액은 숫자로만 입력 가능합니다." }
-        require(price.toInt() % 1000 == 0) { "[ERROR] 로또 구입 금액은 천원 단위로만 입력 가능합니다." }
+        require(price.isNotBlank()) { ERROR_PRICE_BLANK }
+        require(price.all { it.isDigit() }) { ERROR_PRICE_NOT_NUM }
+        require(price.toInt() % PRICE_DIVIDING_UNIT == DEFAULT_VALUE) { ERROR_PRICE_NOT_1000_UNIT }
     }
 
     private fun generateAndPrintAutoLottos(price: Int) {
-        val lottoCount = price / 1000
+        val lottoCount = price / PRICE_DIVIDING_UNIT
         outputView.printLottoCount(lottoCount)
         repeat(lottoCount) {
             val numbers = randomUtils.pickLottoNum()
@@ -96,14 +96,24 @@ class LottoShop {
         val lottoPrice = LottoPrice.values()
             .firstOrNull { it.matchCount == correctCnt && !(it == LottoPrice.BONUS_MATCH && !bonusCnt) }
         if (lottoPrice != null) {
-            matchCounts[lottoPrice] = (matchCounts[lottoPrice] ?: 0) + 1
+            matchCounts[lottoPrice] = (matchCounts[lottoPrice] ?: 0) + ONE_MATCH_INCREMENT
         }
     }
 
     private fun printResult(price: Int) {
         val totalPrize = LottoPrice.values().sumOf { (matchCounts[it] ?: 0) * it.price }
-        val earningRate = ((totalPrize.toDouble() / price.toDouble()) * 100)
+        val earningRate = ((totalPrize.toDouble() / price.toDouble()) * PERCENTAGE)
         val roundedEarningRate = String.format("%.1f", earningRate).toDouble()
         outputView.printLottoResult(matchCounts, roundedEarningRate)
+    }
+
+    companion object {
+        const val PRICE_DIVIDING_UNIT = 1000
+        const val DEFAULT_VALUE = 0
+        const val ONE_MATCH_INCREMENT = 1
+        const val PERCENTAGE = 100
+        const val ERROR_PRICE_BLANK = "[ERROR] 로또 구입 금액은 천원 이상으로 입력 가능합니다."
+        const val ERROR_PRICE_NOT_NUM = "[ERROR] 로또 구입 금액은 숫자로만 입력 가능합니다."
+        const val ERROR_PRICE_NOT_1000_UNIT = "[ERROR] 로또 구입 금액은 천원 단위로만 입력 가능합니다."
     }
 }
