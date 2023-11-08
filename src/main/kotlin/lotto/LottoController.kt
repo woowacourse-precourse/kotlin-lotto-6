@@ -77,5 +77,12 @@ class LottoController(
     fun doNothing() {
 
     }
-
+    fun getRevenue(ranks: List<Int>): Int {
+        val reward = listOf(5, 50, 1500, 30000, 2000000)
+        var revenue = 0
+        for(i in 0..4) {
+            revenue += ranks[i] * reward[i]
+        }
+        return revenue
+    }
 }
