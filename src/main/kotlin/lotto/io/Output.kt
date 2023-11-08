@@ -21,7 +21,7 @@ object Output {
                 return@forEach
             }
             val formattedPrize = decimalFormat.format(it.key.winningPrize)
-            println("${it.key.message} ($formattedPrize) - ${it.value}개")
+            println("${it.key.message} (${formattedPrize}원) - ${it.value}개")
         }
     }
     fun printProfitRate(rate: Rate) = println("총 수익률은 ${rate}입니다.")
