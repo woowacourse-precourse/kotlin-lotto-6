@@ -2,10 +2,7 @@ package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.*
-import lotto.exception.ContainsNotDigitException
-import lotto.exception.UnvalidCostException
-import lotto.exception.UnvalidLottoNumberCountException
-import lotto.exception.UnvalidNubmerFormatException
+import lotto.exception.*
 import lotto.utility.Utils
 
 import kotlin.NumberFormatException
@@ -47,14 +44,15 @@ class InputView {
     }
 
     fun inputBonusNumber(): Int {
-        println(INPUT_MESSAGE_BONUS_NUMBER)
-        return readLine()!!.toInt()
-    }
+        while (true) {
+            println(INPUT_MESSAGE_BONUS_NUMBER)
+            val userInput = Console.readLine()
 
-    fun checkInputString(input: String): Boolean {
-        if (Utils.containsNonDigits(input)) {
-            throw NumberFormatException(EXCEPTION_CONTAINS_NOT_DIGIT)
+            try {
+                inputValidator.checkListNumberIsInRange(userInput)
+            } catch (error: UnvalidLottoNumberException) {
+                println(error.message)
+            }
         }
-        return true
     }
 }
