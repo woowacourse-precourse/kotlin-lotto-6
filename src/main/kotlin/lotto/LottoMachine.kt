@@ -19,6 +19,18 @@ class LottoMachine(private val amount: String) {
         return allLotto
     }
 
+    fun calculateMatchResults(
+        allLotto: List<List<Int>>,
+        winningNumbers: List<Int>,
+        bonusNumber: Int,
+    ): List<Pair<Int, Boolean>> {
+        return allLotto.map { lotto ->
+            val matchCount = lotto.count { it in winningNumbers }
+            val hasBonus = bonusNumber in lotto
+            matchCount to hasBonus
+        }
+    }
+
     companion object {
         const val PRICE_LOTTO = 1000
     }
