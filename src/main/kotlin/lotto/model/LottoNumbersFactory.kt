@@ -3,13 +3,9 @@ package lotto.model
 import lotto.util.randomNumberGenerator
 
 class LottoNumbersFactory {
-    fun createLottoNumbers():Lotto {
-        var createdLottoNumbers = mutableSetOf<Int>()
-        while (createdLottoNumbers.size != LOTTO_NUM_COUNT){
-            var randomNum = randomNumberGenerator(LOTTO_START_NUM, LOTTO_LAST_NUM)
-            createdLottoNumbers.add(randomNum)
-        }
-        return Lotto(createdLottoNumbers.toList())
+    fun createLottoNumbers(): Lotto {
+        var createdLottoNumbers = randomNumberGenerator(LOTTO_START_NUM, LOTTO_LAST_NUM, LOTTO_NUM_COUNT)
+        return Lotto(createdLottoNumbers)
     }
 
     companion object {
