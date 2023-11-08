@@ -3,10 +3,6 @@ package lotto.domain.lotto
 import lotto.exception.LottoException
 
 class Lotto(private val numbers: List<LottoNumber>) {
-    companion object {
-        const val LOTTO_SIZE = 6
-    }
-
     init {
         checkLottoSize(numbers)
         checkNumberDuplicate(numbers)
@@ -23,4 +19,8 @@ class Lotto(private val numbers: List<LottoNumber>) {
     fun getLottoMatchCount(input: Lotto) = numbers.count { input.isContainLottoNumber(it) }
 
     override fun toString(): String = numbers.sortedBy { it.value }.toString()
+
+    companion object {
+        const val LOTTO_SIZE = 6
+    }
 }
