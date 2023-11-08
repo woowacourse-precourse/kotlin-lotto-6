@@ -73,7 +73,6 @@ object UserInput {
 
     private fun inputToNumbersByDelimiter(input: String, delimiter: String): List<Int> {
         return input.split(delimiter)
-            .filter { it.isNotBlank() || it.isNotEmpty() }
             .map {
                 val digit = it.trim()
                 InputValidator
