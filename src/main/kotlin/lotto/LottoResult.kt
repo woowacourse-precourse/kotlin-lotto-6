@@ -30,12 +30,14 @@ class LottoResult(private val results: List<Int>, private val bonusNumber: Int, 
             println("6개 일치 (${prize}원) - ${count6Matches}개")
         }
 
-        val totalPrize = count3Matches * prizeMoney[3].replace(",", "").toInt() +
-                count4Matches * prizeMoney[3].replace(",", "").toInt() +
-                count5Matches * prizeMoney[3].replace(",", "").toInt() +
+        val totalPrize = count3Matches * prizeMoney[0].replace(",", "").toInt() +
+                count4Matches * prizeMoney[1].replace(",", "").toInt() +
+                count5Matches * prizeMoney[2].replace(",", "").toInt() +
                 count5WithBonus * prizeMoney[3].replace(",", "").toInt() +
                 count6Matches * prizeMoney[4].replace(",", "").toInt()
-        val profitRate = ((totalPrize - purchaseAmount) / purchaseAmount.toDouble()) * 100
+
+        val profitRate = ((totalPrize) / purchaseAmount.toDouble()) * 100
+
         println("총 수익률은 %.1f%%입니다.".format(profitRate))
     }
 }
