@@ -17,13 +17,7 @@ class LottoCompare(
     private val lottoNumbers: MutableList<List<Int>>
 ){
     fun calculateCorrect(): MutableMap<OutputMessages, Int> {
-        val lottoResults = mutableMapOf(
-            THREE_NUMBER_CORRECT to 0,
-            FOUR_NUMBER_CORRECT to 0,
-            FIVE_NUMBER_CORRECT to 0,
-            FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT to 0,
-            SIX_NUMBER_CORRECT to 0,
-        )
+        val lottoResults=initializeLottoResults()
 
         lottoNumbers.forEach { lottoNumber ->
             when (lottoNumber.intersect(correctLottoNumber.toSet()).count()) {
@@ -35,7 +29,15 @@ class LottoCompare(
         }
         return lottoResults
     }
-
+    private fun initializeLottoResults(): MutableMap<OutputMessages, Int> {
+        return mutableMapOf(
+            THREE_NUMBER_CORRECT to 0,
+            FOUR_NUMBER_CORRECT to 0,
+            FIVE_NUMBER_CORRECT to 0,
+            FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT to 0,
+            SIX_NUMBER_CORRECT to 0,
+        )
+    }
     private fun fiveNumberCorrect(lottoNumber: List<Int>,lottoResults: MutableMap<OutputMessages, Int>) {
         if (lottoNumber.contains(bonusNumber)) {
             lottoResults[FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT] = (lottoResults[FIVE_NUMBER_AND_BONUS_NUMBER_CORRECT]!! + 1)
