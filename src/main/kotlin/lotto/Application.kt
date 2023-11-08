@@ -15,12 +15,7 @@ fun main() {
     println("보너스 번호를 입력해 주세요.")
     var bonusNumber = getBonusNumber(lotto)
 
-    val myLottos = mutableListOf<Lotto>()
-    repeat(amount / PAYMENT_UNIT)
-    {
-        val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
-        myLottos.add(generateLotto(numbers))
-    }
+    val myLottos = getMyLottos(amount / PAYMENT_UNIT)
 
     println("${amount / PAYMENT_UNIT}개를 구매했습니다.")
     myLottos.forEach{

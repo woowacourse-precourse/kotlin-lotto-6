@@ -47,3 +47,13 @@ fun catchErrorLotto(input:String): Lotto?
         return null
     }
 }
+fun catchErrorLotto(input:List<Int>): Lotto?
+{
+    try {
+        return Lotto(input)
+    }catch (e:IllegalArgumentException)
+    {
+        print(e.message)
+        return null
+    }
+}
