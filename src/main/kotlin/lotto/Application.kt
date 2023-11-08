@@ -1,5 +1,8 @@
 package lotto
 
+import lotto.controller.LottoShop
+
 fun main() {
-    TODO("프로그램 구현")
+    val lottoShop = LottoShop()
+    lottoShop.buyLotto()
 }
