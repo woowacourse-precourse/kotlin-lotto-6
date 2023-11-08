@@ -33,6 +33,12 @@ class InputView {
         return trimmedInputs.map { it.toInt() }
     }
 
+    fun inputBonusNumber(): Int {
+        val input = Console.readLine() ?: throw IllegalArgumentException(INPUT_ERROR_MESSAGE)
+
+        return input.trim().toInt()
+    }
+
     private fun isEmptyOrBlankInput(input: String) = input.isEmpty() or input.isBlank()
 
     private fun isNotDigitInput(input: String) = input.all { it.isDigit() }
