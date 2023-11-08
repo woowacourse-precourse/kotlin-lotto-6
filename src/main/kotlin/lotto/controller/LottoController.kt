@@ -26,28 +26,41 @@ class LottoController {
         printLottoResult(lottoBundle = lottoBundle)
     }
 
-    fun purchaseLottos() : LottoBundle{
-        val purchaseMoney = getLottoPurchaseCostInput()
-        val lottoBundle = LottoBundle(lottoShop.purchaseLottos(purchaseMoney))
-        printLottoBundleNumbers(lottoBundle = lottoBundle)
+    fun purchaseLottos(): LottoBundle {
+        return try {
+            val purchaseMoney = getLottoPurchaseCostInput()
+            val lottoBundle = LottoBundle(lottoShop.purchaseLottos(purchaseMoney))
+            printLottoBundleNumbers(lottoBundle = lottoBundle)
 
-        return lottoBundle
+            lottoBundle
+        } catch (exception: IllegalArgumentException) {
+            println(exception.message)
+            purchaseLottos()
+        }
     }
 
-    fun setLotteryNumbers(){
+    fun setLotteryNumbers() {
         setWinningNumbers()
         setBonusNumber()
     }
 
-    fun setWinningNumbers(){
-        val winningNumbers = getWinningNumbersInput()
-        lottoManager.setWinningNumbers(input = winningNumbers)
-        println()
+    fun setWinningNumbers() {
+        try {
+            val winningNumbers = getWinningNumbersInput()
+            lottoManager.setWinningNumbers(input = winningNumbers)
+            println()
+        } catch (exception: IllegalArgumentException) {
+            setWinningNumbers()
+        }
     }
 
-    fun setBonusNumber(){
-        val bonusNumber = getBonusNumbersInput()
-        lottoManager.setBonusNumber(input = bonusNumber)
-        println()
+    fun setBonusNumber() {
+        try {
+            val bonusNumber = getBonusNumbersInput()
+            lottoManager.setBonusNumber(input = bonusNumber)
+            println()
+        } catch (exception: IllegalArgumentException) {
+            setBonusNumber()
+        }
     }
 }
