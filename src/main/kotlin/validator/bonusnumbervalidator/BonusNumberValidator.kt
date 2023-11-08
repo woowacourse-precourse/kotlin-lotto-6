@@ -8,7 +8,7 @@ object BonusNumberValidator {
     private const val BONUS_NUMBER_SIZE = 1
     private const val TOTAL_LOTTO_NUMBER_SIZE = 7
 
-    fun appropriateBonusNumber(input: String, lottoNumber: List<Int>) {
+    fun isAppropriateBonusNumber(input: String, lottoNumber: List<Int>) {
         require(input.length == BONUS_NUMBER_SIZE) { OutputView.error(LENGTH_ONE_NUMBER) }
         val bonusNumber = input.toIntOrNull()
         requireNotNull(bonusNumber) { OutputView.error(LENGTH_ONE_NUMBER) }

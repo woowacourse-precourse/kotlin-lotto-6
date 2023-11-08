@@ -13,7 +13,7 @@ class BonusNumberValidatorTest {
     @ValueSource(strings = ["7,8,9", "", "7,8,9,10,11,12"])
     fun `보너스 번호 숫자가 1자리가 아닐 때 예외를 던지는지`(bonusNumber: String) {
         assertThrows<IllegalArgumentException> {
-            BonusNumberValidator.appropriateBonusNumber(bonusNumber, listOf(1, 2, 3, 4, 5, 6))
+            BonusNumberValidator.isAppropriateBonusNumber(bonusNumber, listOf(1, 2, 3, 4, 5, 6))
         }
     }
 
@@ -21,7 +21,7 @@ class BonusNumberValidatorTest {
     @ValueSource(strings = ["a", "b", "십", "구"])
     fun `보너스 번호가 숫자가 아닐 때 예외를 던지는지`(bonusNumber: String) {
         assertThrows<IllegalArgumentException> {
-            BonusNumberValidator.appropriateBonusNumber(bonusNumber, listOf(1, 2, 3, 4, 5, 6))
+            BonusNumberValidator.isAppropriateBonusNumber(bonusNumber, listOf(1, 2, 3, 4, 5, 6))
         }
     }
 
@@ -29,7 +29,7 @@ class BonusNumberValidatorTest {
     @MethodSource("generateData")
     fun `보너스 번호 숫자가 로또 번호와 중복되는 수일 때 예외를 던지는지`(bonusNumber: String, lottoNumber: List<Int>) {
         assertThrows<IllegalArgumentException> {
-            BonusNumberValidator.appropriateBonusNumber(bonusNumber, lottoNumber)
+            BonusNumberValidator.isAppropriateBonusNumber(bonusNumber, lottoNumber)
         }
     }
 
