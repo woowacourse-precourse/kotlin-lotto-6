@@ -6,7 +6,7 @@ class LottoWinningNumberInputValidator {
         var numberState: LottoInputState.WinningNumber
 
         if (numbers.size != 6) {
-            displayErrorMessage(LottoInputState.WinningNumber.NUMBERS_SIZE_IS_NOT_6)
+            displayErrorMessage(LottoInputState.WinningNumber.NUMBERS_SIZE_IS_NOT_SIX)
             throw IllegalArgumentException()
         }
         numbers.forEach {
@@ -47,7 +47,7 @@ class LottoWinningNumberInputValidator {
                 errorMessage = "[ERROR]유효한 값이 아닙니다. 로또 번호는 1 ~ 45 까지의 자연수만 입력 가능합니다."
             }
 
-            LottoInputState.WinningNumber.NUMBERS_SIZE_IS_NOT_6 -> {
+            LottoInputState.WinningNumber.NUMBERS_SIZE_IS_NOT_SIX -> {
                 errorMessage = "[ERROR]당첨 번호는 6개이어야 합니다."
             }
 
