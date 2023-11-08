@@ -4,6 +4,8 @@ fun main() {
     val lottoTicket = LottoTicket()
     val price = lottoTicket.getPrice()
     val lottoList = lottoTicket.getLottoTickets(price)
-    println(lottoTicket.getLottoNumbers())
+    val lotto = Lotto(lottoTicket.getLottoNumbers())
+    lotto.printLottoNumbers()
+    lotto.getBonusNumber()
 
 }
