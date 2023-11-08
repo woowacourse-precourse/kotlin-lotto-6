@@ -4,7 +4,7 @@
 
 ### UI 로직
 
-- [ ] 로또 구입 UI - LottoPurchaseView
+- [x] 로또 구입 UI - LottoPurchaseView
   - [x] 구입금액 입력 요청 메시지 출력 기능
   - [x] 구입금액 입력 받는 기능
 - [ ] 로또 발행 UI - LottoIssueView
@@ -26,7 +26,7 @@
 ### 도메인 로직
 
 - Lotto
-  - 로또 번호를 반환하는 기능 - #getLottoNumbers()
+  - [ ] 로또 번호를 반환하는 기능 - #getLottoNumbers()
 - LottoStore
   - [ ] 1개의 로또를 발행하는 기능 - #issueLotto()
     - [ ] '중복되지 않는' 6개의 숫자
