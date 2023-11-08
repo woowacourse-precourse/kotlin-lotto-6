@@ -12,6 +12,7 @@ object LottoInputState {
         SUCCESSFUL,
         IS_NULL,
         OUT_OF_RANGE,
-        NUMBERS_SIZE_IS_NOT_SIX
+        NUMBERS_SIZE_IS_NOT_SIX,
+        HAS_DUPLICATE
     }
 }

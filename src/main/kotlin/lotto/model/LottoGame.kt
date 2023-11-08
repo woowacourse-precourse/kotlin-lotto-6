@@ -1,11 +1,10 @@
-package lotto
+package lotto.model
 
 import kotlin.math.roundToInt
 
 class LottoGame(
     private val lottoTickets: List<Lotto>,
-    private val winningNumbers: List<Int>,
-    private val bonusNumber: Int
+    private val lottoWinningNumbers: LottoWinningNumbers
 ) {
     private val lottoResults: HashMap<LottoResultCase, Int> = hashMapOf()
     private val lottoCost: Int = lottoTickets.size * 1000
@@ -60,7 +59,7 @@ class LottoGame(
 
     private fun countCommonLottoNumbers(lottoNumbers: List<Int>): Int {
         var count = 0
-        winningNumbers.forEach {
+        lottoWinningNumbers.winningNumbers.forEach {
             if (lottoNumbers.contains(it)) {
                 count++
             }
@@ -68,7 +67,9 @@ class LottoGame(
         return count
     }
 
-    private fun isBonus(lottoNumbers: List<Int>): Boolean = if (lottoNumbers.contains(bonusNumber)) true else false
+    private fun isBonus(lottoNumbers: List<Int>): Boolean =
+        if (lottoNumbers.contains(lottoWinningNumbers.bonusNumber)) true else false
+
     private fun checkResultCase(lottoResult: LottoResult): LottoResultCase {
         return when {
             lottoResult.winningCount == 3 -> LottoResultCase.THREE_CORRECT

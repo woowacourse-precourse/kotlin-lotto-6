@@ -1,6 +1,7 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.model.LottoWinningNumbers
 import lotto.utils.validator.LottoCostInputValidator
 import lotto.utils.validator.LottoWinningNumberInputValidator
 
@@ -34,12 +35,12 @@ class LottoInputHandler {
         return numbers.map { it.toInt() }
     }
 
-    fun receiveLottoBonusNumber() : Int {
+    fun receiveLottoBonusNumber(winningNumbers: List<Int>) : Int {
         val bonusNumber = Console.readLine()
         try{
-            lottoWinningNumberInputValidator.validate(bonusNumber)
+            lottoWinningNumberInputValidator.validate(winningNumbers,bonusNumber)
         } catch (e : IllegalArgumentException){
-            return receiveLottoBonusNumber()
+            return receiveLottoBonusNumber(winningNumbers)
         }
         return bonusNumber.toInt()
     }

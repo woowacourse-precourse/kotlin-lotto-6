@@ -9,6 +9,11 @@ class LottoWinningNumberInputValidator {
             displayErrorMessage(LottoInputState.WinningNumber.NUMBERS_SIZE_IS_NOT_SIX)
             throw IllegalArgumentException()
         }
+        if (hasNumberDuplicates(numbers)){
+            displayErrorMessage(LottoInputState.WinningNumber.HAS_DUPLICATE)
+            throw IllegalArgumentException()
+        }
+
         numbers.forEach {
             numberState = getState(it.toIntOrNull())
             if (numberState != LottoInputState.WinningNumber.SUCCESSFUL) {
@@ -19,8 +24,13 @@ class LottoWinningNumberInputValidator {
         return true
     }
 
-    fun validate(number: String): LottoInputState.WinningNumber {
-        var numberState = getState(number.toIntOrNull())
+    fun validate(numbers: List<Int>, bonusNumber: String): LottoInputState.WinningNumber {
+        if (hasNumberDuplicates(numbers,bonusNumber)){
+            displayErrorMessage(LottoInputState.WinningNumber.HAS_DUPLICATE)
+            throw IllegalArgumentException()
+        }
+
+        var numberState = getState(bonusNumber.toIntOrNull())
         if (numberState != LottoInputState.WinningNumber.SUCCESSFUL) {
             displayErrorMessage(numberState)
             throw IllegalArgumentException()
@@ -50,9 +60,32 @@ class LottoWinningNumberInputValidator {
             LottoInputState.WinningNumber.NUMBERS_SIZE_IS_NOT_SIX -> {
                 errorMessage = "[ERROR]당첨 번호는 6개이어야 합니다."
             }
+            LottoInputState.WinningNumber.HAS_DUPLICATE -> {
+                errorMessage = "[ERROR]중복된 번호가 존재합니다."
+            }
 
             else -> {}
         }
         println(errorMessage)
     }
+
+    private fun hasNumberDuplicates(winningNumbers : List<String>): Boolean {
+        val allNumbers = winningNumbers.toHashSet()
+        if (winningNumbers.size != allNumbers.size) {
+            return true
+        }
+        return false
+    }
+
+    private fun hasNumberDuplicates(winningNumbers : List<Int>, bonusNumber: String): Boolean {
+        val allNumbers = winningNumbers.toMutableSet()
+        bonusNumber.toIntOrNull()?.let {
+            allNumbers.add(it)
+            if (winningNumbers.size+1 != allNumbers.size) {
+                return true
+            }
+        }
+        return false
+    }
+
 }

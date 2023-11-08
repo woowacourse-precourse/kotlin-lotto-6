@@ -1,4 +1,4 @@
-package lotto
+package lotto.validator
 
 import lotto.utils.validator.LottoCostInputValidator
 import org.junit.jupiter.api.BeforeEach

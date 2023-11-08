@@ -1,6 +1,8 @@
 package lotto
 
-import camp.nextstep.edu.missionutils.Randoms
+import lotto.model.Lotto
+import lotto.model.LottoGame
+import lotto.model.LottoWinningNumbers
 import lotto.utils.LottoPublisher
 
 class LottoGameManager {
@@ -15,13 +17,9 @@ class LottoGameManager {
 
     fun startLottoGame() {
         val lottoTickets = publishLottoTickets()
+        val lottoWinningNumbers = setWinningNumbers()
 
-        println("\n당첨 번호를 입력해 주세요.")
-        val winningNumbers = receiveWinningNumbers()
-
-        println("\n보너스 번호를 입력해 주세요.")
-        val bonusNumber = receiveBonusNumber()
-        lottoGame = LottoGame(lottoTickets, winningNumbers, bonusNumber)
+        lottoGame = LottoGame(lottoTickets, lottoWinningNumbers)
 
         lottoGame.matchLottoNumbers()
     }
@@ -30,6 +28,16 @@ class LottoGameManager {
         println("구입금액을 입력해 주세요.")
         val lottoTicketsAmount = receiveLottoTicketsAmount()
         return lottoPublisher.publishLottoTickets(lottoTicketsAmount)
+    }
+
+    private fun setWinningNumbers() : LottoWinningNumbers{
+        println("\n당첨 번호를 입력해 주세요.")
+        val winningNumbers = receiveWinningNumbers()
+
+        println("\n보너스 번호를 입력해 주세요.")
+        val bonusNumber = receiveBonusNumber(winningNumbers)
+
+        return LottoWinningNumbers(winningNumbers,bonusNumber)
     }
 
     private fun matchLottoNumbers(){
@@ -42,5 +50,5 @@ class LottoGameManager {
 
     private fun receiveWinningNumbers(): List<Int> = lottoInputHandler.receiveLottoWinningNumbers()
 
-    private fun receiveBonusNumber(): Int = lottoInputHandler.receiveLottoBonusNumber()
+    private fun receiveBonusNumber(winningNumbers: List<Int>): Int = lottoInputHandler.receiveLottoBonusNumber(winningNumbers)
 }

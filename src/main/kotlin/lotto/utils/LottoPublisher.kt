@@ -1,7 +1,7 @@
 package lotto.utils
 
 import camp.nextstep.edu.missionutils.Randoms
-import lotto.Lotto
+import lotto.model.Lotto
 
 class LottoPublisher {
 
