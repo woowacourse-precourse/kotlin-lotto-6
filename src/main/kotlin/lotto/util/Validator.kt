@@ -1,6 +1,7 @@
 package lotto.util
 
 import lotto.util.GameConstants.LOTTO_PRICE
+import lotto.util.GameConstants.LOTTO_SIZE
 import lotto.util.GameConstants.MAX_NUMBER
 import lotto.util.GameConstants.MIN_NUMBER
 
@@ -45,6 +46,12 @@ object Validator {
     fun validateRange(input: Int) {
         require(input in MIN_NUMBER..MAX_NUMBER) {
             ErrorMessage.NUMBER_RANGE.getMessage()
+        }
+    }
+
+    fun validateSize(input: List<Int>) {
+        require(input.size == LOTTO_SIZE) {
+            ErrorMessage.NUMBER_SIZE.getMessage()
         }
     }
 }
