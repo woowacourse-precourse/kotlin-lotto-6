@@ -1,5 +1,6 @@
 package lotto.domain.service
 
+import lotto.domain.enum.number.UnitNumber
 import lotto.domain.enum.winning.RankPrize
 import lotto.domain.model.Customer
 import lotto.domain.model.Winning
@@ -10,14 +11,14 @@ class WinningCalculator(private val winning: Winning, private val customer: Cust
         val result = mutableMapOf<Int, Int>()
         customer.lotteries.forEach { lotto ->
             val lottoRank = lottoCalculator.checkWinningRank(lotto)
-            result[lottoRank] = result.getOrDefault(lottoRank, 0) + 1
+            result[lottoRank] = result.getOrDefault(lottoRank, INITIAL_NUMBER) + COUNT
         }
         return result
     }
 
     fun getTotalReturnPercent(): Double {
-        val price = customer.lotteries.size.times(1000)
-        return (getTotalReturn() / price) * 100
+        val price = customer.lotteries.size.times(UnitNumber.LOTTO_PRICE.number)
+        return (getTotalReturn() / price) * UnitNumber.PERCENT.number
     }
 
     private fun getTotalReturn(): Double {
@@ -37,5 +38,10 @@ class WinningCalculator(private val winning: Winning, private val customer: Cust
             RankPrize.FIFTH.rank -> RankPrize.FIFTH.amount
             else -> RankPrize.NOT.amount
         }
+    }
+
+    companion object{
+        const val INITIAL_NUMBER = 0
+        const val COUNT = 1
     }
 }
