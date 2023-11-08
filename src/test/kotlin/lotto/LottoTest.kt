@@ -1,6 +1,5 @@
 package lotto
 
-import lotto.data.Rank
 import lotto.domain.Lotto
 import lotto.domain.LottoWinResult
 import org.junit.jupiter.api.Test
@@ -47,28 +46,26 @@ class LottoTest {
 
     @Test
     fun `당첨 번호가 일치할 때, 당첨 결과(등수)를 알 수 있다`() {
-        val winResult = LottoWinResult()
         val luckyNumbers = listOf(1, 2, 3, 4, 5, 6)
         val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
 
         val matchCount = lotto.matchNumbers(luckyNumbers)
-        winResult.calculateRank(matchCount, false)
-        val ranks = winResult.getRanks()
+        LottoWinResult.calculateRank(matchCount, false)
+        val ranks = LottoWinResult.getRanks()
 
-        assertThat(ranks[Rank.ALL_MATCH.grade]).isEqualTo(1)
+        assertThat(ranks[LottoWinResult.ALL_MATCH.grade]).isEqualTo(1)
     }
 
     @Test
     fun `로또 8개를 구입한 후 5,000원에 당첨되었을 때 수익률을 알 수 있다`() {
-        val winResult = LottoWinResult()
         val luckyNumbers = listOf(1, 2, 3, 4, 5, 6)
         val lotto = Lotto(listOf(1, 2, 3, 10, 11, 12))
         val price = 8000
 
         val matchCount = lotto.matchNumbers(luckyNumbers)
-        winResult.addPrizeMoney(matchCount, false)
-        val totalMoney = winResult.getTotalMoney()
-        val rateOfProfit = winResult.calculateRateOfProfit(price, totalMoney)
+        LottoWinResult.addPrizeMoney(matchCount, false)
+        val totalMoney = LottoWinResult.getMoney()
+        val rateOfProfit = LottoWinResult.calculateRateOfProfit(price, totalMoney)
 
         assertThat(totalMoney).isEqualTo(5000)
         assertThat(rateOfProfit).isEqualTo(62.5)

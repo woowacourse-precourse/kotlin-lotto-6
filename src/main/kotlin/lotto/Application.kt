@@ -1,14 +1,13 @@
 package lotto
 
 import lotto.domain.Lotto
-import lotto.domain.LottoWinResult
 import lotto.domain.NumberGenerator
+import lotto.domain.LottoWinResult
 import lotto.ui.LottoView
 
 fun main() {
     val numberGenerator = NumberGenerator()
     val lottoView = LottoView()
-    val winResult = LottoWinResult()
 
     val tickets = mutableListOf<List<Int>>()
 
@@ -33,7 +32,7 @@ fun main() {
         val ball = lotto.matchNumbers(luckyNumbers)
         val bonus = lotto.hasBonusNumber(bonusNumber)
 
-        with(winResult) {
+        with(LottoWinResult) {
             calculateRank(ball, bonus)
             addPrizeMoney(ball, bonus)
         }
@@ -41,10 +40,10 @@ fun main() {
 
     with(lottoView) {
         showOverviewWinResult()
-        showWinResult(winResult.getRanks())
+        showWinResult(LottoWinResult.getRanks())
     }
 
-    val rateOfProfit = winResult.calculateRateOfProfit(ticketPrice.toInt(), winResult.getTotalMoney())
+    val rateOfProfit = LottoWinResult.calculateRateOfProfit(ticketPrice.toInt(), LottoWinResult.getMoney())
     lottoView.showRateOfProfit(rateOfProfit)
 
     lottoView.closeConsole()
