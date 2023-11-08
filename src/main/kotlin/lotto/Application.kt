@@ -7,7 +7,7 @@ fun main() {
 
     try {
         val purchaseAmount = getValidPurchaseAmount()
-        println("로또 구입 금액: $purchaseAmount 원")
+
 
     } catch (e: IllegalArgumentException) {
         println(e.message)
