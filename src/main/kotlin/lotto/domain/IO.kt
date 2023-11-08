@@ -6,7 +6,7 @@ import lotto.data.Stats
 
 class IO private constructor() {
 
-    fun show(content: String, lineBreak: Boolean) {
+    private fun show(content: String, lineBreak: Boolean) {
         print(content)
 
         if (lineBreak) {
@@ -15,7 +15,7 @@ class IO private constructor() {
     }
 
     fun getPurchaseAmount(): UInt {
-        show(INPUT_PURCHASE_AMOUNT, true)
+        show(INPUT_AMOUNT_OF_PURCHASING, true)
 
         val input = getInput()
         require(Validator.getInstance().checkInputOfPurchasingCorrect(input)) {
@@ -37,7 +37,7 @@ class IO private constructor() {
 
         val input = getInput()
         require(Validator.getInstance().checkInputIsConsistOfPositiveNum(input)) {
-            SHOULD_BE_KEEP_LOTTO_INPUT_FORM
+            LOTTO_INPUT_FORM_SHOULD_BE_KEPT
         }
         val nums = input.split(INPUT_SPLITTER).map { it.toInt() }
         Validator.getInstance().checkLottoNumberIsCorrect(nums)
@@ -65,26 +65,26 @@ class IO private constructor() {
 
     companion object {
         const val INPUT_SPLITTER = ","
-        private const val INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요."
+        private const val INPUT_AMOUNT_OF_PURCHASING = "구입금액을 입력해 주세요."
         private const val ISSUED_N_TICKET = "%d개를 구매했습니다."
         private const val INPUT_WINNING_NUM = "당첨 번호를 입력해 주세요."
         private const val INPUT_BONUS_NUM = "보너스 번호를 입력해 주세요."
         private const val SHOULD_BE_POSITIVE_NUM = "[ERROR] 0보다 큰 숫자를 입력해주세요."
-        private const val SHOULD_BE_KEEP_LOTTO_INPUT_FORM = "[ERROR] 번호는 쉼표(,)를 기준으로 입력하세요. ex) 1,2,3,4,5,6"
+        private const val LOTTO_INPUT_FORM_SHOULD_BE_KEPT = "[ERROR] 번호는 쉼표(,)를 기준으로 입력하세요. ex) 1,2,3,4,5,6"
         private const val LINE_BREAK = "\n"
         private const val EMPTY_TEXT_FOR_LINE_BREAK = ""
 
         @Volatile
         private var instance: IO? = null
         fun getInstance(): IO {
-            val io = instance
-            if (io != null) {
-                return io
+            val currentInstance = instance
+            if (currentInstance != null) {
+                return currentInstance
             }
             return synchronized(this) {
-                val ioForCheck = instance
-                if (ioForCheck != null) {
-                    return@synchronized ioForCheck
+                val synchronizedInstance = instance
+                if (synchronizedInstance != null) {
+                    return@synchronized synchronizedInstance
                 }
                 val createdIO = IO()
                 instance = createdIO
