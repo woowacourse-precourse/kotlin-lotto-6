@@ -10,4 +10,6 @@ class Input {
         val winNumber = winNum.map { it.toInt() }
         return winNumber.toMutableList()
     }
+
+    fun drawBonusNumber(): Int = Console.readLine().toInt()
 }
