@@ -1,13 +1,17 @@
 package lotto.controller
 
+import lotto.util.ExceptionPrinter.tryCatchAndPrintException
+
 class InputValidator {
-    fun validatePurchaseAmount(input: Int?) {
-        require(input != null && input > 0 && input % 1000 == 0) {
-            INVALID_PURCHASE_AMOUNT
+    fun validatePurchaseAmount(input: Int) {
+        tryCatchAndPrintException {
+            require(input > 0 && input % 1000 == 0) {
+                INVALID_PURCHASE_AMOUNT
+            }
         }
     }
 
-    fun validateLottoNumbers(numbers: List<Int?>) {
+    fun validateLottoNumbers(numbers: List<Int>) {
         validateLottoNumberCount(numbers)
         numbers.forEach {
             validateNumber(it)
@@ -15,20 +19,26 @@ class InputValidator {
     }
 
     private fun validateLottoNumberCount(numbers: List<Int?>) {
-        require(numbers.size == 6) {
-            INVALID_LOTTO_NUMBERS_COUNT
+        tryCatchAndPrintException {
+            require(numbers.size == 6) {
+                INVALID_LOTTO_NUMBERS_COUNT
+            }
         }
     }
 
-    fun validateNumber(number: Int?) {
-        require((number != null) && (number in (1..45))) {
-            INVALID_LOTTO_NUMBER
+    fun validateNumber(number: Int) {
+        tryCatchAndPrintException {
+            require(number in (1..45)) {
+                INVALID_LOTTO_NUMBER
+            }
         }
     }
 
     fun validateDuplicate(bonusNumber: Int, numbers: List<Int>) {
-        require(!numbers.contains(bonusNumber)) {
-            INVALID_DUPLICATE_NUMBER
+        tryCatchAndPrintException {
+            require(!numbers.contains(bonusNumber)) {
+                INVALID_DUPLICATE_NUMBER
+            }
         }
     }
 
