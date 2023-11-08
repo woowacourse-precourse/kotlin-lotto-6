@@ -8,36 +8,37 @@ import lotto.view.InputView
 import lotto.view.OutputView
 
 class Controller(private val inputView: InputView, private val outputView: OutputView) {
-    var buyAmount : Int = 0
-    lateinit var buyLottos: List<Lotto>
-    lateinit var winningNumbers: List<Int>
+    private lateinit var buyLottos: List<Lotto>
+    private lateinit var winningNumbers: List<Int>
 
     fun startGame() {
-        buyLotto()
-        getInputWinningNumbers()
+        val buyAmount = buyLotto()
+        getWinningNumbers()
+        val lottoStats = getLottoNumberStats(winningNumbers, getBonusNumber(winningNumbers))
+        getEarningRate(lottoStats, buyAmount)
     }
 
-    fun buyLotto() {
-        buyAmount = inputView.inputBuyAmount()
+    private fun buyLotto() : Int{
+        val buyAmount = inputView.inputBuyAmount()
         buyLottos = BuyLottos().buyLottos(buyAmount)
         outputView.printBuyLottos(buyLottos)
+        return buyAmount
     }
 
-    fun getInputWinningNumbers() {
-        winningNumbers = InputWinningNumbers()
-        InputBonusNumber(winningNumbers)
+    private fun getWinningNumbers() {
+        winningNumbers = inputView.inputWinningNumbers()
     }
 
-    fun InputWinningNumbers() : List<Int> {
-        val winningNumbers = inputView.inputWinningNumbers()
-        return winningNumbers
-    }
+    private fun getBonusNumber(winningNumbers: List<Int>) : Int = inputView.inputBonusNumber(winningNumbers)
 
-    fun InputBonusNumber(winningNumbers: List<Int>) {
-        val bonusNumber = inputView.inputBonusNumber(winningNumbers)
+
+    private fun getLottoNumberStats(winningNumbers: List<Int>, bonusNumber: Int) : Map<Stats, Int> {
         val lottoStats = CheckLottoNumber(buyLottos, Lotto(winningNumbers), bonusNumber).checkLottoNumber()
         outputView.printLottoStats(lottoStats)
-        outputView.printEarningRate(lottoStats, buyAmount)
+        return lottoStats
     }
+
+    private fun getEarningRate(lottoStats: Map<Stats, Int>, buyAmount: Int)
+        = outputView.printEarningRate(lottoStats, buyAmount)
 
 }
