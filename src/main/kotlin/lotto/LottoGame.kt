@@ -3,6 +3,7 @@ package lotto
 import camp.nextstep.edu.missionutils.Randoms
 import lotto.models.Lotto
 import lotto.models.WinningRank
+import lotto.models.roundTo2DecimalPlaces
 import kotlin.math.roundToInt
 
 class LottoGame(private val user: User) {
@@ -167,8 +168,4 @@ class LottoGame(private val user: User) {
 
 fun Int.withCommas(): String {
     return "%,d".format(this)
-}
-
-fun Double.roundTo2DecimalPlaces(): Double {
-    return (this * 100.0).roundToInt() / 100.0
 }
