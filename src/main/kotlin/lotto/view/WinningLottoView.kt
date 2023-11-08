@@ -12,7 +12,7 @@ class WinningLottoView {
   }
 
   fun printBonusNumberInputMessage() {
-
+    println(ENTER_BONUS_NUMBER)
   }
 
   fun inputBonusNumber() {
