@@ -1,6 +1,6 @@
 package lotto.model
 
-class RealLottoes(private val userNumbers: Set<Int>, private val bonusNumber: Int, paymentAmount: String): Lottoes {
+class RealLottoes(private val userNumbers: Set<Int>, private val bonusNumber: Int, paymentAmount: String) : Lottoes {
 
     private var lottoes: MutableList<Lotto> = mutableListOf()
     private var lottoTicketCount: Int = paymentAmount.toInt() / 1000
@@ -29,4 +29,10 @@ class RealLottoes(private val userNumbers: Set<Int>, private val bonusNumber: In
     override fun getProfitRate(): Double {
         return 0.0
     }
+
+    private fun calculateTotalProfit(): Int =
+        lottoesResult.entries.sumOf { (rank, count) ->
+            rank.prize * count
+        }
+
 }

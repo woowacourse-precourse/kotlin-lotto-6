@@ -21,4 +21,9 @@ class TestLottoes(private val userNumbers: Set<Int>, private val bonusNumber: In
 
     override fun getProfitRate(): Double = 0.0
 
+    internal fun calculateTotalProfit(): Int =
+        lottoesResult.entries.sumOf { (rank, count) ->
+            rank.prize * count
+        }
+
 }
