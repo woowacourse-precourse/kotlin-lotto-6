@@ -11,5 +11,6 @@ class LottoSimulator(
         view.bindPresenter(presenter = presenter)
 
         view.onStart()
+        view.onGetMoneyDone()
     }
 }
