@@ -2,8 +2,8 @@ package lotto.validation
 
 enum class WinningNumberValidation(private val errorMessage: String) {
     VALIDATION_START("Validation Start"),
-    EMPTY_NUMBER("[ERROR] 값을 입력해 주세요."),
-    INCLUDE_BLANK("[ERROR] 공백은 입력할 수 없습니다."),
+    EMPTY_NUMBER("[ERROR] 값을 입력하지 않았습니다. 값을 입력해 주세요."),
+    INCLUDE_BLANK("[ERROR] 공백이 포함되어 있습니다. 공백은 입력할 수 없습니다."),
     NUMBER_NOT_CORRECT("[ERROR] 당첨 번호는 6개 입력해 주세요."),
     NOT_NUMBER("[ERROR] 로또 번호는 숫자로 이루어져야 합니다."),
     OUT_NUMBER_RANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
@@ -20,7 +20,6 @@ enum class WinningNumberValidation(private val errorMessage: String) {
         winningNumbers.forEach { number ->
             when {
                 number.contains(" ") -> throw IllegalArgumentException(INCLUDE_BLANK.errorMessage)
-                numbers.isBlank() -> throw IllegalArgumentException()
                 !number.matches(Regex("\\d+")) -> throw IllegalArgumentException(NOT_NUMBER.errorMessage)
                 number.toInt() !in (MIN_NUMBER..MAX_NUMBER) ->
                     throw IllegalArgumentException(OUT_NUMBER_RANGE.errorMessage)
