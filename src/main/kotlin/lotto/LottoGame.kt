@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 class LottoGame {
-    private fun readBoughtAmount(): Int {
+    fun readBoughtAmount(): Int {
         println("구입금액을 입력해 주세요.")
         var boughtAmount: String
         while (true) {
@@ -23,7 +23,7 @@ class LottoGame {
         return boughtAmountToInt / UnitAmount.unit.price
     }
 
-    private fun printBoughtLottos(
+    fun printBoughtLottos(
         numberOfLottos: Int,
         winningNumbers: List<Int>,
         bonusNumber: Int
@@ -43,13 +43,13 @@ class LottoGame {
         return winningMap
     }
 
-    private fun readWinningNumberExceptionHandling(winningNumbersToInt: List<Int>) {
+    fun readWinningNumberExceptionHandling(winningNumbersToInt: List<Int>) {
         for (winningNumber in winningNumbersToInt) {
             require(winningNumber in 1..45)
         }
     }
 
-    private fun readWinningNumber(): List<Int> {
+    fun readWinningNumber(): List<Int> {
         println("당첨 번호를 입력해 주세요.")
         var winningNumbersToInt: List<Int>
         while (true) {
@@ -69,7 +69,7 @@ class LottoGame {
         return winningNumbersToInt
     }
 
-    private fun readBonusNumber(winningNumbers: List<Int>): Int {
+    fun readBonusNumber(winningNumbers: List<Int>): Int {
         println("보너스 번호를 입력해 주세요.")
         var bonusNumberToInt: Int
         while (true) {
@@ -88,7 +88,7 @@ class LottoGame {
         return bonusNumberToInt
     }
 
-    private fun printWinningDetails(winningMap: MutableMap<Int, Int>, numberOfLottos: Int) {
+    fun printWinningDetails(winningMap: MutableMap<Int, Int>, numberOfLottos: Int) {
         println("3개 일치 (5,000원) - ${winningMap[3]}개")
         println("4개 일치 (50,000원) - ${winningMap[4]}개")
         println("5개 일치 (1,500,000원) - ${winningMap[5]}개")
