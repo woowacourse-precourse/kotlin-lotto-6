@@ -8,14 +8,15 @@ class LottoView {
     }
 
     fun printLottoNumbers(lottoCount: Int, lottoList: List<List<Int>>) {
-        printMessage("$lottoCount 개를 구매했습니다.")
+        printMessage("\n${lottoCount}개를 구매했습니다.")
         lottoList.forEach { lotto ->
-            printMessage(lotto.sorted().toString())
+            printMessage(lotto.sorted().joinToString(", ", "[", "]"))
         }
+        println()
     }
 
     fun printResult(result: Map<String, Int>, lottoCount: Int) {
-        printMessage("당첨 통계")
+        printMessage("\n당첨 통계")
         printMessage("---")
         var totalPrize = 0
         val prizeMoney = mapOf(
@@ -28,9 +29,9 @@ class LottoView {
         for ((key, value) in result) {
             val prize = when (key) {
                 "5개 일치" -> if (result[LottoController.LottoPrize.fiveSamePlusBonus.prizeName] == 0) "1,500,000원" else "30,000,000원"
-                else -> "${prizeMoney[key]}원"
+                else -> "${prizeMoney[key]?.let { "%,d".format(it) }}원"
             }
-            printMessage("$key ($prize) - ${value}개")
+            printMessage("$key ($prize) - $value 개")
             totalPrize += if (key == "5개 일치") {
                 if (result[LottoController.LottoPrize.fiveSamePlusBonus.prizeName] == 0) prizeMoney["5개 일치"]!! * value else prizeMoney["5개 일치, 보너스 볼 일치"]!! * value
             } else {
@@ -39,6 +40,6 @@ class LottoView {
         }
         val inputMoney = lottoCount * 1000
         val rateOfReturn = ((totalPrize - inputMoney) / inputMoney.toDouble() * 100).coerceAtLeast(0.0)
-        printMessage("총 수익률은 ${"%.1f".format(rateOfReturn)}%입니다.")
+        printMessage("총 수익률은 ${"%,.1f".format(rateOfReturn)}%입니다.")
     }
 }

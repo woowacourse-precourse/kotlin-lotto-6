@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Console
 
 class LottoController {
     private val lottoView = LottoView()
+
     enum class LottoPrize(val sameCount: Int, val prizeMoney: Int, val prizeName: String) {
         threeSame(3, 5000, "3개 일치"),
         fourSame(4, 50000, "4개 일치"),
@@ -13,6 +14,7 @@ class LottoController {
         fiveSamePlusBonus(5, 30000000, "5개 일치, 보너스 볼 일치"),
         sixSame(6, 2000000000, "6개 일치")
     }
+
     fun startGame() {
         try {
             val inputMoney = lottoMoneyInput()
@@ -27,16 +29,30 @@ class LottoController {
             lottoView.printResult(result, count)
         } catch (e: IllegalArgumentException) {
             lottoView.printMessage("[ERROR] ${e.message}")
+            startGame()
         }
     }
 
     private fun lottoMoneyInput(): Int {
-        lottoView.printMessage("구입금액을 입력해 주세요.")
-        val inputMoney = Console.readLine().toInt()
-        if (inputMoney % 1000 != 0) {
-            throw IllegalArgumentException("1000원 단위로 입력해 주세요.")
+        val message = "구입금액을 입력해 주세요."
+        return readIntFromConsole(message)
+    }
+
+    private fun readIntFromConsole(message: String): Int {
+        while (true) {
+            try {
+                lottoView.printMessage(message)
+                val input = Console.readLine().toInt()
+                if (input % 1000 != 0) {
+                    throw IllegalArgumentException("1000원 단위로 입력해 주세요.")
+                }
+                return input
+            } catch (e: NumberFormatException) {
+                lottoView.printMessage("[ERROR] 숫자를 입력해 주세요.")
+            } catch (e: IllegalArgumentException) {
+                lottoView.printMessage("[ERROR] ${e.message}")
+            }
         }
-        return inputMoney
     }
 
     private fun lottoCnt(inputMoney: Int): Int {
@@ -53,20 +69,37 @@ class LottoController {
     }
 
     private fun lottoNumberChoose(): List<Int> {
-        lottoView.printMessage("당첨 번호를 입력해 주세요.")
-        val lottoNumber = Console.readLine().split(",").map { it.toInt() }
-        if (lottoNumber.toSet().size != 6) {
-            throw IllegalArgumentException("중복되는 번호가 있습니다.")
-        }
-        if (lottoNumber.size != 6) {
-            throw IllegalArgumentException("6개의 숫자를 입력하세요.")
-        }
-        return lottoNumber
+        val message = "당첨 번호를 입력해 주세요."
+        return readNumbersFromConsole(message, 6)
     }
 
     private fun lottoNumberBonus(): Int {
-        lottoView.printMessage("보너스 번호를 입력해 주세요.")
-        return Console.readLine().toInt()
+        val message = "\n보너스 번호를 입력해 주세요."
+        return readNumbersFromConsole(message, 1)[0]
+    }
+
+    private fun readNumbersFromConsole(message: String, expectedSize: Int): List<Int> {
+        while (true) {
+            try {
+                lottoView.printMessage(message)
+                val input = Console.readLine()
+                val numbers = input.split(",").map { it.trim().toInt() }
+                if (numbers.size != expectedSize) {
+                    throw IllegalArgumentException("입력한 숫자의 개수가 올바르지 않습니다.")
+                }
+                if (numbers.toSet().size != expectedSize) {
+                    throw IllegalArgumentException("중복되는 번호가 있습니다.")
+                }
+                if (numbers.any { it < 1 || it > 45 }) {
+                    throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 값이어야 합니다.")
+                }
+                return numbers
+            } catch (e: NumberFormatException) {
+                lottoView.printMessage("[ERROR] 숫자를 입력해 주세요.")
+            } catch (e: IllegalArgumentException) {
+                lottoView.printMessage("[ERROR] ${e.message}")
+            }
+        }
     }
 
     private fun lottoNumberCheck(lottoList: List<List<Int>>, comNumber: List<Int>, bonusNumber: Int): Map<String, Int> {
@@ -95,5 +128,4 @@ class LottoController {
         }
         return lottoMoneyList
     }
-
 }
