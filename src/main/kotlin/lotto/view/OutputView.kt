@@ -1,7 +1,6 @@
 package lotto.view
 
 import lotto.Lotto
-import lotto.constants.Constants
 import lotto.domain.Stats
 
 class OutputView {
@@ -13,7 +12,7 @@ class OutputView {
     }
 
     fun printLottoStats(lottoStats: Map<Stats, Int>) {
-        println(Constants.WINNING_STATS)
+        println(WINNING_STATS)
         for (lottoStat in lottoStats.filterNot { lottoStat -> lottoStat.key.name == Stats.NONE.name }) {
             println(PRINT_LOTTO_STATS_MESSAGE
                 .format(lottoStat.key.correctNumberCount, lottoStat.key.winningMessage, lottoStat.value))
@@ -44,6 +43,7 @@ class OutputView {
         const val DIVIDE_NUMBER_RATE = 100
         const val INITIAL_TOTAL_PRIZE = 0
         const val LOTTO_PRICE = 1000
+        const val WINNING_STATS = "\n당첨 통계\n---"
     }
 
 }
