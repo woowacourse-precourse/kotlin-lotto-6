@@ -7,10 +7,9 @@ import lotto.validation.WinningNumberValidation
 
 class Input {
     fun inputMoney(): Int {
-        var money: String
         while(true) {
             println(INPUT_PURCHASE_AMOUNT)
-            money = Console.readLine()
+            val money: String = Console.readLine()
             try {
                 MoneyValidation.ERROR_VALIDATION.getMessage(money)
                 return money.toInt()
@@ -30,10 +29,16 @@ class Input {
     }
 
     fun inputBonusNumber(): Int {
-        println(INPUT_BONUS_NUMBER)
-        val number = Console.readLine()
-        BonusNumberValidation.ERROR_MESSAGE.getErrorMessage(number)
-        return number.toInt()
+        while (true) {
+            println(INPUT_BONUS_NUMBER)
+            val number = Console.readLine()
+            try {
+                BonusNumberValidation.ERROR_MESSAGE.getErrorMessage(number)
+                return number.toInt()
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 
     companion object {
