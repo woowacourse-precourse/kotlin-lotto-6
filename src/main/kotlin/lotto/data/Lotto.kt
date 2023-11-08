@@ -15,10 +15,14 @@ open class Lotto(private val numbers: List<Int>) {
     }
 
     fun checkGrade(winningLotto: WinningLotto): GRADE {
-        val countOfSame = numbers.intersect(winningLotto.numbers.toSet()).size
-        val isBonusContain = (countOfSame == GRADE.TWO.countOfSame && winningLotto.bonus in numbers)
+        val countOfSame = countMatchedNum(winningLotto.numbers)
+        val isBonusContain = isBonusValid(countOfSame, winningLotto.bonus)
         return GRADE.from(countOfSame, isBonusContain)
     }
+
+    private fun countMatchedNum(nums: List<Int>) = numbers.intersect(nums.toSet()).size
+
+    private fun isBonusValid(countOfSame: Int, bonus: Int) = countOfSame == GRADE.TWO.countOfSame && bonus in numbers
 
     override fun toString(): String {
         return numbers.toString()
