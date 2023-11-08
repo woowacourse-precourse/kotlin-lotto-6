@@ -8,9 +8,7 @@ object InputValidator {
         require(userInput.toInt() in Constants.MIN_NUMBER..Constants.MAX_NUMBER) {
             "보너스 번호는 1부터 45 사이의 숫자여야 합니다."
         }
-        if (winningNumbers.contains(userInput.toInt()))
-            throw IllegalStateException("보너스 번호는 당첨 번호의 숫자들과 별개의 숫자여야 합니다.")
-        // IllegalStateException에러를 전달하기 위한 if 구문
+        require(!winningNumbers.contains(userInput.toInt())) { "보너스 번호는 당첨 번호의 숫자들과 별개의 숫자여야 합니다." }
     }
 
     fun validatePurchaseAmount(userInput: String) {

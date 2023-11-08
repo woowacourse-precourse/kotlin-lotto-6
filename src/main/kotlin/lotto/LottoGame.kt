@@ -29,7 +29,7 @@ class LottoGame() {
                     Constants.MAX_NUMBER,
                     Constants.LOTTO_SIZE)
                 lotto = Lotto(numbers)
-            } catch (e: Exception) {
+            } catch (e: IllegalArgumentException) {
                 println("[ERROR] ${e.message}")
             }
         }
@@ -57,7 +57,7 @@ class LottoGame() {
                 println("")
                 break
             }
-            catch (e: Exception) {
+            catch (e: IllegalArgumentException) {
                 println("[ERROR] ${e.message}")
             }
         }
@@ -78,7 +78,7 @@ class LottoGame() {
                 println("")
                 break
             }
-            catch (e: Exception) {
+            catch (e: IllegalArgumentException) {
                 println("[ERROR] ${e.message}")
             }
         }
@@ -99,7 +99,7 @@ class LottoGame() {
                 println("")
                 break
             }
-            catch (e: Exception) {
+            catch (e: IllegalArgumentException) {
                 println("[ERROR] ${e.message}")
             }
         }

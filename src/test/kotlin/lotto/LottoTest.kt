@@ -69,7 +69,7 @@ class LottoTest {
 
     @Test
     fun `당첨 번호와 보너스 번호에 중복되는 숫자가 있으면 예외가 발생한다`() {
-        assertThrows<IllegalStateException> {
+        assertThrows<IllegalArgumentException> {
             InputValidator.validateBonusNumber("1", listOf(1, 2, 3, 4, 5, 6))
         }
     }
