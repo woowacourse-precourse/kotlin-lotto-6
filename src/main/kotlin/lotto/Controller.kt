@@ -23,7 +23,10 @@ class Controller(
     }
 
     fun createUserWinningNumbers(userPickInput: String, bonusInput: String): UserWinningNumbers {
-        val userPickNumbers = userPickInput.split(",").map { it.toInt() }
+        val userPickNumbers = userPickInput.split(",").map {
+            requireIsInt(it)
+            it.toInt()
+        }
         val bonusNumber = bonusInput.toInt()
         requireIsInt(bonusInput)
         return UserWinningNumbers(userPickNumbers, bonusNumber)
