@@ -5,12 +5,12 @@ class LottoStatics(
 ) {
 
     private val winStatics = mutableMapOf(
-        WinningType.FIRST to 0,
-        WinningType.SECOND to 0,
-        WinningType.THIRD to 0,
-        WinningType.FOURTH to 0,
-        WinningType.FIFTH to 0,
-        WinningType.NOTHING to 0
+        WinningType.FIRST to INITIALIZE_NUM,
+        WinningType.SECOND to INITIALIZE_NUM,
+        WinningType.THIRD to INITIALIZE_NUM,
+        WinningType.FOURTH to INITIALIZE_NUM,
+        WinningType.FIFTH to INITIALIZE_NUM,
+        WinningType.NOTHING to INITIALIZE_NUM
     )
 
     fun getWinStatics(answerNumbers: List<Int>, bonusNumber: Int): Map<WinningType, Int> {
@@ -26,6 +26,10 @@ class LottoStatics(
             winningType.reward * num
         }.sum()
 
+    }
+
+    companion object {
+        private const val INITIALIZE_NUM = 0
     }
 
 }
