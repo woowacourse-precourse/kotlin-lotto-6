@@ -1,5 +1,18 @@
 package lotto
 
+import ui.UserInput
+
 fun main() {
-    TODO("프로그램 구현")
+    LottoGenerator(money = UserInput.readMoney())
+        .run {
+            create()
+            printAll()
+
+            LottoResult().calculateWinLottos(this.lottos)
+                .LottoResultShow(this.money) // inner class 생성
+                .run {
+                    showWinLottoData()
+                    showProfitData()
+                }
+        }
 }

@@ -1,9 +1,24 @@
 package lotto
 
-class Lotto(private val numbers: List<Int>) {
+import camp.nextstep.edu.missionutils.Randoms
+import ui.InputValidator
+import ui.MAX_LOTTO_RANGE
+import ui.MIN_LOTTO_RANGE
+import ui.PROPER_LOTTO_SIZE
+
+class Lotto(
+    private val numbers: List<Int> =
+        Randoms.pickUniqueNumbersInRange(
+            MIN_LOTTO_RANGE,
+            MAX_LOTTO_RANGE,
+            PROPER_LOTTO_SIZE
+        )
+) {
     init {
-        require(numbers.size == 6)
+        InputValidator
+            .checkProperNumbersSize(numbers)
+            .checkNumberListInRange(numbers)
     }
 
-    // TODO: 추가 기능 구현
+    fun toAscendingList() = numbers.sorted()
 }
