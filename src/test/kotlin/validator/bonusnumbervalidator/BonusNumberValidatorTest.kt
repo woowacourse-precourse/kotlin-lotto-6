@@ -13,4 +13,12 @@ class BonusNumberValidatorTest {
             BonusNumberValidator.appropriateBonusNumber(bonusNumber, listOf(1, 2, 3, 4, 5, 6))
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["a", "b", "십", "구"])
+    fun `보너스 번호가 숫자가 아닐 때 예외를 던지는지`(bonusNumber: String) {
+        assertThrows<IllegalArgumentException> {
+            BonusNumberValidator.appropriateBonusNumber(bonusNumber, listOf(1, 2, 3, 4, 5, 6))
+        }
+    }
 }
