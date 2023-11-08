@@ -29,4 +29,8 @@ class Lotto(private val numbers: List<Int>) {
         }
         return true
     }
+
+    fun getWinningNumbers(): List<Int>{
+        return numbers
+    }
 }
