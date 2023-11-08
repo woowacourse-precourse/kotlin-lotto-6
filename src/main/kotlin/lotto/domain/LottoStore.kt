@@ -14,7 +14,13 @@ class LottoStore {
     return Lotto(numbers)
   }
 
-  fun sellIssuedLottos() {
+  fun sellIssuedLottos(purchaseAmount: Int): List<Lotto> {
+    val issuedLottos = mutableListOf<Lotto>()
 
+    repeat(purchaseAmount) {
+      issuedLottos += issueLotto()
+    }
+
+    return issuedLottos
   }
 }
