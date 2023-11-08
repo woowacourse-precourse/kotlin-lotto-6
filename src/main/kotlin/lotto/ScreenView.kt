@@ -9,7 +9,7 @@ class ScreenView {
 
     fun inputMoney(): Int {
         println(inputMoneyMessage)
-        try {
+        return try {
             val money = Console.readLine().toInt()
 
             if (money % 1000 != 0) {
@@ -17,11 +17,11 @@ class ScreenView {
             }
             println()
             println("${money/1000}개를 구매했습니다.")
-            return money/1000
+            money/1000
         } catch (e: NumberFormatException) {
             println("[ERROR] 1000으로 나누어 떨어지는 정수가 아닙니다.")
+            0
         }
-        return 0
     }
 
     fun inputLotto(): List<Int> {

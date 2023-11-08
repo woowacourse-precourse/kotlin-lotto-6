@@ -15,11 +15,11 @@ class LottoGame {
         val answerLotto = Lotto(view.inputLotto())
 
         // 보너스 번호를 입력 받는다.
-        val BonusNum = BonusNum(view.inputBonusNum())
+        val bonusNum = BonusNum(view.inputBonusNum())
 
         // 당첨 현황을 계산한다.
         val result = LottoResult()
-        controller.countWinningNums(boughtLottos, answerLotto, BonusNum, result)
+        controller.countWinningNums(boughtLottos, answerLotto, bonusNum, result)
         controller.calculateRateOfReturn(result, lottoQuantity*1000)
 
         // 당첨 내역을 출력한다.
