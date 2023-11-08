@@ -1,6 +1,6 @@
 package lotto.models
 
-import kotlin.math.roundToInt
+import lotto.utils.Extensions.roundTo2DecimalPlaces
 
 class ProfitRate {
     private var _value: Double = 0.0
@@ -20,8 +20,4 @@ class ProfitRate {
             (winning, count) -> winning.amount * count
         }
     }
-}
-
-fun Double.roundTo2DecimalPlaces(): Double {
-    return (this * 100.0).roundToInt() / 100.0
 }
