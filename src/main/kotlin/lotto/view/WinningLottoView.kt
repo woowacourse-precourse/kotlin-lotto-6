@@ -3,7 +3,6 @@ package lotto.view
 import camp.nextstep.edu.missionutils.Console
 import lotto.constants.GuideMessage.ENTER_BONUS_NUMBER
 import lotto.constants.GuideMessage.ENTER_WINNING_NUMBERS
-import lotto.utils.LottoPurchaseExceptionHandler
 import lotto.utils.WinningNumbersExceptionHandler
 import lotto.utils.WinningNumbersSeparator
 
