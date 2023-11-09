@@ -1,5 +1,11 @@
 package lotto
 
 fun main() {
-    TODO("프로그램 구현")
+    val game = Game()
+    val amount = game.paying()
+    val lottoTicketCount = game.calculating(amount)
+    val lottoTickets = game.buying(lottoTicketCount)
+    val drawNumber = game.drawing()
+    val bonusNumber = game.bonusDrawing(drawNumber)
+    game.winning(lottoTickets, drawNumber, bonusNumber)
 }
