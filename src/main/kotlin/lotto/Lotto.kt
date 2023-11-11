@@ -2,8 +2,15 @@ package lotto
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6)
+        require(numbers.size == LOTTO_NUMBERS)
+        require(numbers.distinct().size == LOTTO_NUMBERS)
     }
 
-    // TODO: 추가 기능 구현
+    fun getLottoNumber(): List<Int> {
+        return numbers.sorted()
+    }
+
+    companion object {
+        const val LOTTO_NUMBERS = 6
+    }
 }
