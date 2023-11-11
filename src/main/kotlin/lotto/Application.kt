@@ -1,5 +1,8 @@
 package lotto
 
+import lotto.domain.LottoProgram
+
 fun main() {
-    TODO("프로그램 구현")
+    val lottoProgram = LottoProgram()
+    lottoProgram.run()
 }
