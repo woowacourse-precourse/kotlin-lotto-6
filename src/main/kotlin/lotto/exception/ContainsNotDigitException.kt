@@ -1,0 +1,5 @@
+package lotto.exception
+
+import lotto.EXCEPTION_CONTAINS_NOT_DIGIT
+
+class ContainsNotDigitException : NumberFormatException(EXCEPTION_CONTAINS_NOT_DIGIT)
